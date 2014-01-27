@@ -12,10 +12,11 @@
     unsigned int _removedFunctionCount;
 }
 
++ (BOOL)_isAppleInternalContextFunction:(struct Function *)arg1 contextSet:(unordered_set_6cd805f9 *)arg2;
 @property(readonly, nonatomic) unsigned int removedFunctionCount; // @synthesize removedFunctionCount=_removedFunctionCount;
 - (void)onBeginFileInArchiveModifier:(id)arg1;
 - (id)initWithDeltaFilesTextureAndBufferLoadFilter;
-- (id)initWithAppleInternalContextFilter;
+- (id)initWithAppleInternalContextFilterWithContextSet:(unordered_set_6cd805f9 *)arg1;
 - (id)initWithCaptureFunctions:(id)arg1;
 - (id)init;
 

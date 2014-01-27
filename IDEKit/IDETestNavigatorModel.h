@@ -9,24 +9,23 @@
 #import "DVTInvalidation-Protocol.h"
 #import "IDETestsInTestableObserver-Protocol.h"
 
-@class DVTObservingToken, DVTStackBacktrace, IDEWorkspace, NSMutableArray;
+@class DVTObservingToken, DVTStackBacktrace, IDEWorkspace, NSArray, NSMutableArray;
 
 @interface IDETestNavigatorModel : NSObject <IDETestsInTestableObserver, DVTInvalidation>
 {
     id _viewUpdater;
     DVTObservingToken *_testableOriginObservingToken;
     DVTObservingToken *_activeRunContextObservingToken;
+    NSMutableArray *_orderedTestables;
     BOOL _filteringByScheme;
     BOOL _loadingComplete;
     IDEWorkspace *_workspace;
-    NSMutableArray *_orderedTestables;
 }
 
 + (id)keyPathsForValuesAffectingModelItems;
 + (void)initialize;
 @property(nonatomic) BOOL loadingComplete; // @synthesize loadingComplete=_loadingComplete;
 @property(nonatomic) BOOL filteringByScheme; // @synthesize filteringByScheme=_filteringByScheme;
-@property(retain) NSMutableArray *orderedTestables; // @synthesize orderedTestables=_orderedTestables;
 @property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 - (void).cxx_destruct;
 - (void)workspaceReferencedTestablesChanged;
@@ -43,6 +42,8 @@
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) NSMutableArray *mutableOrderedTestables; // @dynamic mutableOrderedTestables;
+@property(copy) NSArray *orderedTestables; // @dynamic orderedTestables;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -10,7 +10,6 @@
 
 @interface IDEDownloadsPrefDownloadableItemTableCellView : NSTableCellView
 {
-    BOOL _mouseInside;
     NSButton *_downloadButton;
     NSTextField *_downloadSizeField;
     DVTGauge *_progressGauge;
@@ -21,7 +20,6 @@
 }
 
 @property(retain) NSTrackingArea *trackingArea; // @synthesize trackingArea=_trackingArea;
-@property BOOL mouseInside; // @synthesize mouseInside=_mouseInside;
 @property __weak IDEDownloadableCapsuleViewController *capsuleController; // @synthesize capsuleController=_capsuleController;
 @property __weak IDEComponentDownloadsPrefPaneItem *downloadableItem; // @synthesize downloadableItem=_downloadableItem;
 @property __weak IDECombinedDownloadsPrefPaneController *controller; // @synthesize controller=_controller;
@@ -29,9 +27,6 @@
 @property(retain) NSTextField *downloadSizeField; // @synthesize downloadSizeField=_downloadSizeField;
 @property(retain) NSButton *downloadButton; // @synthesize downloadButton=_downloadButton;
 - (void).cxx_destruct;
-- (void)mouseExited:(id)arg1;
-- (void)mouseEntered:(id)arg1;
-- (void)updateTrackingAreas;
 - (void)download:(id)arg1;
 - (void)awakeFromNib;
 

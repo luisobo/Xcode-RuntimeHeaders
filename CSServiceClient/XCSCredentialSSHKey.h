@@ -18,7 +18,7 @@
 @property(retain) NSDictionary *credential; // @synthesize credential=_credential;
 - (void).cxx_destruct;
 - (id)pathToCredential;
-- (int)applyToPath:(id)arg1;
+- (BOOL)applyToPath:(id)arg1 error:(id *)arg2;
 - (id)copyPrivateKey;
 - (id)copyPublicKey;
 - (BOOL)hasPrivateKey;

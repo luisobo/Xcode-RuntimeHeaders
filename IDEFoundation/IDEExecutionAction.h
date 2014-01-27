@@ -24,7 +24,7 @@
 - (void)setTitleFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)dvt_encodeAttributesWithXMLArchiver:(id)arg1 version:(id)arg2;
 - (id)initFromXMLUnarchiver:(id)arg1 archiveVersion:(float)arg2;
-- (id)operationForExecutionWithRunDestination:(id)arg1 schemeCommand:(id)arg2 error:(id *)arg3;
+- (id)operationForExecutionWithBuildParameters:(id)arg1 error:(id *)arg2;
 @property(readonly) NSDictionary *actionEnvironmentVariables;
 
 @end

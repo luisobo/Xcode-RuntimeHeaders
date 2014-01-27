@@ -20,6 +20,7 @@
     BOOL _authenticated;
     BOOL _shouldRetryAuthentication;
     BOOL _representsGitSVNBridge;
+    BOOL _representsXcodeServiceHostedRepository;
     BOOL _enabled;
     NSString *_remoteName;
     NSString *_root;
@@ -71,6 +72,7 @@
 @property(retain) NSURL *URL; // @synthesize URL=_URL;
 - (void)setLocation:(id)arg1;
 - (void)setSourceControlExtension:(id)arg1;
+@property BOOL representsXcodeServiceHostedRepository; // @synthesize representsXcodeServiceHostedRepository=_representsXcodeServiceHostedRepository;
 @property BOOL enabled; // @synthesize enabled=_enabled;
 - (id)dictionaryRepresentation;
 - (id)initWithDictionaryRepresentation:(id)arg1 sourceControlManager:(id)arg2 error:(id *)arg3;

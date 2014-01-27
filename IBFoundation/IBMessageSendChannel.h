@@ -10,7 +10,7 @@
 {
 }
 
-- (BOOL)sendMessage:(SEL)arg1 returnValue:(id *)arg2 error:(id *)arg3 arguments:(int)arg4;
+- (BOOL)sendMessage:(SEL)arg1 returnValue:(id *)arg2 context:(id)arg3 error:(id *)arg4 arguments:(int)arg5;
 - (void)shutdown;
 - (BOOL)startupReturningError:(id *)arg1;
 

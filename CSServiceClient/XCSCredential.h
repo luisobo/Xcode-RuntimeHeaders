@@ -34,7 +34,7 @@
 - (id)copyPassword;
 - (BOOL)hasPassword;
 - (id)pathToCredential;
-- (int)applyToPath:(id)arg1;
+- (BOOL)applyToPath:(id)arg1 error:(id *)arg2;
 - (id)copyPrivateKey;
 - (BOOL)hasPrivateKey;
 - (id)copyPublicKey;

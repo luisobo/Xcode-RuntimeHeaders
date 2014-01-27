@@ -10,6 +10,7 @@
 
 @protocol DVTProvisioningProfile <NSObject>
 @property(readonly) NSString *dataProtectionLevel;
+@property(readonly) _Bool isKeychainAccessGroupsEnabled;
 @property(readonly) _Bool isGameCenterEnabled;
 @property(readonly) _Bool isMapsEnabled;
 @property(readonly) _Bool isInterAppAudioEnabled;

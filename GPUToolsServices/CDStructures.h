@@ -104,6 +104,8 @@ struct __hash_node<std::__1::pair<unsigned long long, GPUTools::SM::SharegroupSt
 
 struct __hash_node<std::__1::pair<unsigned long long, int>, void *>;
 
+struct __hash_node<unsigned long long, void *>;
+
 struct dy_timebase {
     struct mach_timebase_info mach_timebase;
     unsigned long long nanoseconds_since_epoch_timestamp;
@@ -173,6 +175,17 @@ struct unique_ptr<std::__1::__hash_node<std::__1::pair<unsigned long long, int>,
         struct __hash_node<std::__1::pair<unsigned long long, int>, void *> **__first_;
         struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, int>, void *>*>> {
             struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, int>, void *>*>> {
+                unsigned long long __first_;
+            } __data_;
+        } __second_;
+    } __ptr_;
+};
+
+struct unique_ptr<std::__1::__hash_node<unsigned long long, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<unsigned long long, void *>*>>> {
+    struct __compressed_pair<std::__1::__hash_node<unsigned long long, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<unsigned long long, void *>*>>> {
+        struct __hash_node<unsigned long long, void *> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<unsigned long long, void *>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<unsigned long long, void *>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
@@ -264,6 +277,23 @@ struct unordered_map<unsigned long long, int, std::__1::hash<unsigned long long>
     } __table_;
 };
 
+struct unordered_set<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long>> {
+    struct __hash_table<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long>> {
+        struct unique_ptr<std::__1::__hash_node<unsigned long long, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<unsigned long long, void *>*>>> __bucket_list_;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<unsigned long long, void *>*>, std::__1::allocator<std::__1::__hash_node<unsigned long long, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<unsigned long long, void *>*> {
+                struct __hash_node<unsigned long long, void *> *__next_;
+            } __first_;
+        } __p1_;
+        struct __compressed_pair<unsigned long, std::__1::hash<unsigned long long>> {
+            unsigned long long __first_;
+        } __p2_;
+        struct __compressed_pair<float, std::__1::equal_to<unsigned long long>> {
+            float __first_;
+        } __p3_;
+    } __table_;
+};
+
 struct vector<GPUTools::FD::Function, std::__1::allocator<GPUTools::FD::Function>> {
     struct Function *__begin_;
     struct Function *__end_;
@@ -323,4 +353,21 @@ typedef struct StateMirrorManager<GPUTools::AnalyzerBaseObjectTypes> {
     int _deviceOrientation;
     int _lastFunctionIndex;
 } StateMirrorManager_6a358214;
+
+typedef struct unordered_set<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long>> {
+    struct __hash_table<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long>> {
+        struct unique_ptr<std::__1::__hash_node<unsigned long long, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<unsigned long long, void *>*>>> __bucket_list_;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<unsigned long long, void *>*>, std::__1::allocator<std::__1::__hash_node<unsigned long long, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<unsigned long long, void *>*> {
+                struct __hash_node<unsigned long long, void *> *__next_;
+            } __first_;
+        } __p1_;
+        struct __compressed_pair<unsigned long, std::__1::hash<unsigned long long>> {
+            unsigned long long __first_;
+        } __p2_;
+        struct __compressed_pair<float, std::__1::equal_to<unsigned long long>> {
+            float __first_;
+        } __p3_;
+    } __table_;
+} unordered_set_6cd805f9;
 

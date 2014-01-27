@@ -38,10 +38,10 @@
 - (void)testSuite:(id)arg1 didStartAt:(id)arg2 rawOutput:(id)arg3;
 - (void)testOperationDidStartExecution:(id)arg1;
 - (void)_appendAndPropagateUpText:(id)arg1 startingWithRecorder:(id)arg2;
-- (void)_popUnfinishedRecorderForReason:(id)arg1 error:(id)arg2;
-- (id)_currentSubSectionRecorder;
+- (void)_popRecorderWithMessageForReason:(id)arg1 error:(id)arg2;
 - (void)_popRecorder;
 - (void)_pushRecorder:(id)arg1;
+- (id)_currentSubSectionRecorder;
 - (id)init;
 
 @end

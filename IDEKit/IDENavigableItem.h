@@ -116,6 +116,9 @@
 - (id)navigableItemsForPersistentNameTree:(id)arg1;
 - (id)_legacyItemsForNameArrays:(id)arg1;
 - (void)_fillItems:(id)arg1 fromNameDictionary:(id)arg2 withParent:(id)arg3 andChildren:(id)arg4;
+- (id)persistentNameTreeForNavigableItems:(id)arg1 errorOnInvalidItems:(BOOL)arg2 error:(id *)arg3;
+- (BOOL)_checkInvalidItemsAndFillRootDict:(id)arg1 forItem:(id)arg2 errorOnInvalidItems:(BOOL)arg3 error:(id *)arg4;
+- (id)persistentNameTreeForNavigableItemsIgnoringInvalid:(id)arg1;
 - (id)persistentNameTreeForNavigableItems:(id)arg1 error:(id *)arg2;
 - (id)_fillRootDict:(id)arg1 withItem:(id)arg2 isTerminus:(BOOL)arg3;
 - (id)_navigableItemWithName:(id)arg1 inArray:(id)arg2;

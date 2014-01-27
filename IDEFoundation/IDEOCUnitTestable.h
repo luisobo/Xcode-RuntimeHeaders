@@ -6,19 +6,18 @@
 
 #import "NSObject.h"
 
+#import "DVTInvalidation-Protocol.h"
 #import "IDETestable-Protocol.h"
 
-@class NSArray, NSMutableArray, NSMutableDictionary, NSSet, NSString;
+@class DVTStackBacktrace, NSArray, NSMutableArray, NSMutableDictionary, NSSet, NSString;
 
-@interface IDEOCUnitTestable : NSObject <IDETestable>
+@interface IDEOCUnitTestable : NSObject <IDETestable, DVTInvalidation>
 {
     NSMutableArray *_tests;
     NSMutableDictionary *_testIDsByURL;
-    NSMutableDictionary *_locationObservationTokensByTestID;
 }
 
 + (void)initialize;
-@property(readonly) NSMutableDictionary *locationObservationTokensByTestID; // @synthesize locationObservationTokensByTestID=_locationObservationTokensByTestID;
 @property(readonly) NSMutableDictionary *testIDsByURL; // @synthesize testIDsByURL=_testIDsByURL;
 - (void).cxx_destruct;
 - (BOOL)canHaveSubtestsForTestWithIdentifier:(id)arg1;
@@ -43,11 +42,15 @@
 - (id)newTestRunner;
 @property(readonly) NSString *name;
 @property(readonly) id <IDETestableProvider> testableProvider;
+- (void)primitiveInvalidate;
 - (id)init;
 
 // Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) NSMutableArray *mutableTests; // @dynamic mutableTests;
 @property(readonly) NSArray *tests; // @dynamic tests;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

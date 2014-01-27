@@ -72,6 +72,7 @@
 - (void)botRunsForBotGUID:(id)arg1 inRange:(struct _NSRange)arg2 completionHandler:(id)arg3;
 - (void)latestBotRunForBotGUID:(id)arg1 completionHandler:(id)arg2;
 - (void)botRunForGUID:(id)arg1 completionHandler:(id)arg2;
+- (void)cleanAndStartBotRunForBotGUID:(id)arg1 completionHandler:(id)arg2;
 - (void)startBotRunForBotGUID:(id)arg1 completionHandler:(id)arg2;
 - (void)downloadFileDataEntityWithGUID:(id)arg1 toPath:(id)arg2 withProgressHandler:(id)arg3 completionHandler:(void)arg4;
 - (void)downloadFileDataEntityWithGUID:(id)arg1 withProgressHandler:(id)arg2 completionHandler:(void)arg3;
@@ -102,6 +103,7 @@
 - (void)dispatchBatchServiceRequest:(id)arg1 toCompletionBlock:(id)arg2;
 - (void)dispatchServiceRequest:(id)arg1 toCompletionBlock:(id)arg2 checkServerEnabled:(void)arg3;
 - (void)dispatchServiceRequest:(id)arg1 toCompletionBlock:(id)arg2;
+- (void)checkIfServerIsAccessibleCompletionBlock:(id)arg1;
 - (void)checkIfServerEnabledCompletionBlock:(id)arg1;
 - (id)responsesFromBatchServiceResponse:(id)arg1 error:(id *)arg2;
 - (id)responseFromServiceResponse:(id)arg1 error:(id *)arg2;

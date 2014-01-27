@@ -81,6 +81,7 @@
 - (void)revertStateWithDictionary:(id)arg1;
 - (void)setStoredCompressionValue:(id)arg1;
 - (id)storedCompressionValue;
+- (id)_compressionLevelAsStringForMessageTracerReport;
 - (id)_contentDelegateForRightClickedItems;
 - (void)menuNeedsUpdate:(id)arg1;
 - (BOOL)outlineView:(id)arg1 shouldCollapseTrayForItem:(id)arg2;

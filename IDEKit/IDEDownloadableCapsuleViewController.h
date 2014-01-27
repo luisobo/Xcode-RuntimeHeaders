@@ -10,7 +10,7 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class IDECombinedDownloadsPrefPaneController, IDEDownloadableContentTypeGroup, NSImage, NSMapTable, NSString, NSTableView;
+@class IDECombinedDownloadsPrefPaneController, IDEDownloadableContentTypeGroup, NSImage, NSString, NSTableView;
 
 @interface IDEDownloadableCapsuleViewController : IDEViewController <NSTableViewDelegate, NSTableViewDataSource, IDECapsuleViewController>
 {
@@ -18,10 +18,8 @@
     IDEDownloadableContentTypeGroup *_downloadablesGroup;
     IDECombinedDownloadsPrefPaneController *_prefPaneController;
     NSTableView *_tableView;
-    NSMapTable *_cellViewMouseTrackerObservers;
 }
 
-@property(retain) NSMapTable *cellViewMouseTrackerObservers; // @synthesize cellViewMouseTrackerObservers=_cellViewMouseTrackerObservers;
 @property(retain) NSTableView *tableView; // @synthesize tableView=_tableView;
 @property __weak IDECombinedDownloadsPrefPaneController *prefPaneController; // @synthesize prefPaneController=_prefPaneController;
 @property(retain) IDEDownloadableContentTypeGroup *downloadablesGroup; // @synthesize downloadablesGroup=_downloadablesGroup;

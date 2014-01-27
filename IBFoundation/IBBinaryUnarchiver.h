@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSData, NSMutableArray;
+@class NSData, NSDictionary, NSMutableArray;
 
 @interface IBBinaryUnarchiver : NSObject
 {
@@ -21,9 +21,11 @@
             char *characters;
         } ;
     } buffer;
+    NSDictionary *_context;
 }
 
-+ (id)unarchiveObjectWithData:(id)arg1;
++ (id)unarchiveObjectWithData:(id)arg1 context:(id)arg2;
+@property(readonly, nonatomic) NSDictionary *context; // @synthesize context=_context;
 @property(readonly, nonatomic) long long archiveVersion; // @synthesize archiveVersion;
 - (void).cxx_destruct;
 - (id)decodeUTF8String;
@@ -42,7 +44,7 @@
 - (void)decodeBytes:(id)arg1;
 - (const char *)internalOnlyDecodeBytesWithLength:(unsigned long long *)arg1;
 - (BOOL)nextStructureTypeIsObject;
-- (id)initForReadingWithData:(id)arg1;
+- (id)initForReadingWithData:(id)arg1 context:(id)arg2;
 
 @end
 

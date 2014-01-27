@@ -99,6 +99,7 @@
 - (void)_fetchSchedule;
 - (void)enableBotWithCompletionBlock:(id)arg1;
 - (void)disableBotWithCompletionBlock:(id)arg1;
+- (void)startCleanBotExecutionWithCompletionBlock:(id)arg1;
 - (void)startBotExecutionWithCompletionBlock:(id)arg1;
 - (void)botExecutionForGUID:(id)arg1 integrationNumber:(unsigned long long)arg2 fetchIfNecessary:(BOOL)arg3 withCompletionBlock:(id)arg4;
 - (id)_botExecutionForGUID:(id)arg1;

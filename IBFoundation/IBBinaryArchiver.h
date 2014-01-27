@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class IBBinaryArchiverObjectIDTable, NSData;
+@class IBBinaryArchiverObjectIDTable, NSData, NSDictionary;
 
 @interface IBBinaryArchiver : NSObject
 {
@@ -20,10 +20,12 @@
     BOOL finished;
     NSData *archiveData;
     long long archiveVersion;
+    NSDictionary *_context;
 }
 
-+ (id)archivedDataWithRootObject:(id)arg1 version:(long long)arg2;
-+ (id)archiveDataWithVersion:(long long)arg1 byRunningBlock:(id)arg2;
++ (id)archivedDataWithRootObject:(id)arg1 version:(long long)arg2 context:(id)arg3;
++ (id)archiveDataWithVersion:(long long)arg1 context:(id)arg2 byRunningBlock:(id)arg3;
+@property(readonly, nonatomic) NSDictionary *context; // @synthesize context=_context;
 @property(readonly, nonatomic) long long archiveVersion; // @synthesize archiveVersion;
 @property(readonly) NSData *archiveData; // @synthesize archiveData;
 - (void).cxx_destruct;
@@ -45,7 +47,7 @@
 - (void)finishEncoding;
 - (void)dealloc;
 - (void)finalize;
-- (id)initWithVersion:(long long)arg1;
+- (id)initWithVersion:(long long)arg1 context:(id)arg2;
 
 @end
 

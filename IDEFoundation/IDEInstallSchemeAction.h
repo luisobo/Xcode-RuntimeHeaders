@@ -32,7 +32,7 @@
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
 - (BOOL)hasDefaultValues;
 - (id)overridingMacrosForInstallBuildForWorkspaceArena:(id)arg1 destination:(id)arg2;
-- (id)installOperationWithExecutionEnvironment:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 runDestination:(id)arg4 schemeActionRecord:(id)arg5 outError:(id *)arg6 actionCallbackBlock:(id)arg7;
+- (id)installOperationWithExecutionEnvironment:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 schemeActionRecord:(id)arg4 outError:(id *)arg5 actionCallbackBlock:(id)arg6;
 @property(copy) NSString *killProcessListString;
 @property(readonly) NSString *defaultInstallName;
 - (BOOL)doesNonActionWork;

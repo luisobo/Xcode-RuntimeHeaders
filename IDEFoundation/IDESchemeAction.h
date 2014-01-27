@@ -50,7 +50,7 @@
 @property(copy) NSArray *prePhaseExecutionActions; // @dynamic prePhaseExecutionActions;
 - (void)primitiveInvalidate;
 - (id)expandMacrosInString:(id)arg1 forSchemeCommand:(id)arg2;
-- (id)setUpActionDependenciesForCorePhaseOperation:(id)arg1 shouldRunPostActionsBlock:(id)arg2 prePhaseEnvironmentPopulationBlock:(void)arg3 postPhaseEnvironmentPopulationBlock:(id)arg4 runDestination:(void)arg5 schemeCommand:(id)arg6 schemeActionResultOperation:(void)arg7 error:(id)arg8;
+- (id)setUpActionDependenciesForCorePhaseOperation:(id)arg1 shouldRunPostActionsBlock:(id)arg2 prePhaseEnvironmentPopulationBlock:(void)arg3 postPhaseEnvironmentPopulationBlock:(id)arg4 buildParameters:(void)arg5 schemeActionResultOperation:(id)arg6 error:(void)arg7;
 - (void)setRunContext:(id)arg1;
 @property(readonly) BOOL doesNonActionWork;
 @property(readonly) NSString *subtitle;

@@ -109,7 +109,7 @@
 - (void)setIgnoresPersistentStateOnLaunchFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)dvt_encodeAttributesWithXMLArchiver:(id)arg1 version:(id)arg2;
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
-- (id)runOperationForExecutionEnvironment:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 runDestination:(id)arg5 schemeActionRecord:(id)arg6 outError:(id *)arg7 actionCallbackBlock:(id)arg8;
+- (id)runOperationForExecutionEnvironment:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 schemeActionRecord:(id)arg5 outError:(id *)arg6 actionCallbackBlock:(id)arg7;
 - (id)_realAppNameForRunnablePath:(id)arg1;
 @property(retain) NSString *customLaunchCommand; // @synthesize customLaunchCommand=_customLaunchCommand;
 - (id)customLaunchCommandMacroExpanded;

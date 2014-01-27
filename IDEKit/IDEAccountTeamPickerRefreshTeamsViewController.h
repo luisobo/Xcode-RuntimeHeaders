@@ -19,11 +19,13 @@
     NSButton *_addAccountsButton;
     NSButton *_joinProgramButton;
     NSButton *_viewAccountsButton;
+    NSButton *_cancelButton;
     NSArray *_accountWrappers;
 }
 
 + (id)addAccountPromptWithUserFacingReason:(id)arg1;
 @property(copy, nonatomic) NSArray *accountWrappers; // @synthesize accountWrappers=_accountWrappers;
+@property(retain, nonatomic) NSButton *cancelButton; // @synthesize cancelButton=_cancelButton;
 @property(retain, nonatomic) NSButton *viewAccountsButton; // @synthesize viewAccountsButton=_viewAccountsButton;
 @property(retain, nonatomic) NSButton *joinProgramButton; // @synthesize joinProgramButton=_joinProgramButton;
 @property(retain, nonatomic) NSButton *addAccountsButton; // @synthesize addAccountsButton=_addAccountsButton;

@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTDocumentLocation, NSArray, NSMutableArray, NSString;
+#import "DVTInvalidation-Protocol.h"
 
-@interface IDETest : NSObject
+@class DVTDocumentLocation, DVTStackBacktrace, NSArray, NSMutableArray, NSString;
+
+@interface IDETest : NSObject <DVTInvalidation>
 {
     NSMutableArray *_subtests;
     NSArray *_cachedArrangedSubtests;
@@ -42,11 +44,15 @@
 - (BOOL)isEqual:(id)arg1;
 - (id)description;
 - (id)initWithTestable:(id)arg1 identifier:(id)arg2;
+- (void)primitiveInvalidate;
 - (BOOL)_isInFile:(id)arg1;
 
 // Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) NSMutableArray *mutableSubtests; // @dynamic mutableSubtests;
 @property(copy) NSArray *subtests; // @dynamic subtests;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

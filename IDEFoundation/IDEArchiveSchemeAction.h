@@ -35,7 +35,8 @@
 - (void)dvt_encodeAttributesWithXMLArchiver:(id)arg1 version:(id)arg2;
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
 - (id)initFromXMLUnarchiver:(id)arg1 archiveVersion:(float)arg2;
-- (id)archivingOperationGroupForExecutionEnvironment:(id)arg1 buildLog:(id)arg2 schemeActionRecord:(id)arg3 error:(id *)arg4 actionCallbackBlock:(id)arg5;
+- (id)archivingOperationGroupForExecutionEnvironment:(id)arg1 buildLog:(id)arg2 buildParameters:(id)arg3 schemeActionRecord:(id)arg4 error:(id *)arg5 actionCallbackBlock:(id)arg6;
+- (id)overridingMacrosForArchiveBuildWithSchemeName:(id)arg1 workspaceArena:(id)arg2;
 @property(readonly) NSString *defaultArchiveName;
 - (BOOL)doesNonActionWork;
 - (id)subtitle;

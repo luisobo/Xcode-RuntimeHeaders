@@ -18,7 +18,14 @@
 }
 
 + (id)versionWithMajor:(unsigned long long)arg1 minor:(unsigned long long)arg2 update:(unsigned long long)arg3;
++ (id)version5_0_2;
++ (id)version5_0_1;
++ (id)version5_0_0;
++ (id)version4_6_3;
++ (id)version4_6_2;
++ (id)version4_6_1;
 + (id)version4_6_0;
++ (id)version4_5_2;
 + (id)version4_5_1;
 + (id)version4_5_0;
 + (id)version4_4_1;
@@ -28,6 +35,7 @@
 + (id)version4_3_1;
 + (id)version4_3_0;
 + (id)version4_2_5;
++ (id)version4_2_1;
 + (id)version4_2_0;
 + (id)version4_1_0;
 + (id)version4_0_2;

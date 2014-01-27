@@ -14,7 +14,8 @@ end
 folders = [
   xcode_folder(xcode, 'Frameworks'),
   xcode_folder(xcode, 'OtherFrameworks'),
-  xcode_folder(xcode, 'SharedFrameworks')
+  xcode_folder(xcode, 'SharedFrameworks'),
+  xcode_folder(xcode, 'PlugIns')
 ]
 
 folders.each do |path|

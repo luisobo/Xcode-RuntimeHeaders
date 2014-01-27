@@ -66,7 +66,7 @@
 - (id)commandLineArgumentsForDevice:(id)arg1;
 @property(readonly) NSMutableArray *mutableCommandLineArgumentEntries; // @dynamic mutableCommandLineArgumentEntries;
 @property(copy) NSArray *commandLineArgumentEntries; // @dynamic commandLineArgumentEntries;
-- (id)profileOperationForExecutionEnvironment:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 runDestination:(id)arg5 schemeActionRecord:(id)arg6 outError:(id *)arg7 actionCallbackBlock:(id)arg8;
+- (id)profileOperationForExecutionEnvironment:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 schemeActionRecord:(id)arg5 outError:(id *)arg6 actionCallbackBlock:(id)arg7;
 - (void)_setAnalysisToolService:(id)arg1;
 - (void)_updateCurrentTool;
 - (void)_updateAnalysisToolService;
