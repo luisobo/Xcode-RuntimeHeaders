@@ -26,6 +26,9 @@
     DVTObservingToken *_inMiniDebuggingModeObservingToken;
     BOOL _didLoadInitialNavigator;
     BOOL _isInvalidating;
+    DVTObservingToken *_editorSelectedItemObservingToken;
+    DVTObservingToken *_currentNavigatorObservingToken;
+    id <DVTCancellable> _updateFocusedEditorSelectedItemToken;
     IDENavigatorFilterControlBar *_filterControlBar;
 }
 
@@ -44,17 +47,20 @@
 - (id)_currentExtensionIdentifier;
 - (BOOL)delegateFirstResponder;
 - (void)_inMiniDebuggingModeChanged;
+@property(readonly) NSString *currentNavigatorIdentifier;
 - (id)currentNavigator;
 - (void)_clearPerNavigatorCache;
 - (void)_cancelWorkspaceActivityObserving;
 - (void)showNavigatorWithIdentifier:(id)arg1;
 - (void)viewWillUninstall;
+- (void)_requestUpdateFocusedEditorSelectedItem;
 - (void)viewDidInstall;
 - (void)outlineViewDidDrawInitialContent:(id)arg1;
 - (void)outlineViewWillDrawInitialContent:(id)arg1;
 - (void)replacementView:(id)arg1 didInstallViewController:(id)arg2;
 - (void)replacementView:(id)arg1 willInstallViewController:(id)arg2;
 - (void)replacementView:(id)arg1 willCloseViewController:(id)arg2;
+- (id)cacheDictionaryForNavigatorID:(id)arg1;
 - (id)perNavigatorCacheKeyForNavigator:(id)arg1;
 - (void)activateFilterFieldForFocus;
 - (void)installFilterControlBarForNavigator:(id)arg1;
@@ -63,7 +69,11 @@
 - (id)supportedContext;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(retain) DVTStateToken *stateToken; // @dynamic stateToken;
+@property(readonly) Class superclass;
 
 @end
 

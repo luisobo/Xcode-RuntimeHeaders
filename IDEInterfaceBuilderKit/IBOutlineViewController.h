@@ -8,8 +8,6 @@
 
 #import "DVTOutlineViewDelegate-Protocol.h"
 #import "IBEndPointProvider-Protocol.h"
-#import "IBHighlightProvider-Protocol.h"
-#import "IBHybridStructureSelectionProvider-Protocol.h"
 #import "IBOutlineViewDelegate-Protocol.h"
 #import "NSOutlineViewDataSource-Protocol.h"
 #import "NSOutlineViewDelegate-Protocol.h"
@@ -17,7 +15,7 @@
 
 @class DVTBorderedView, DVTDelayedInvocation, DVTObservingToken, IBAbstractDocumentEditor, IBCancellationToken, IBDocument, IBMutableIdentityDictionary, IBOutlineView, IBOutlineViewControllerItem, IBOutlineViewImageAndTextCell, IDEUtilityPlaceholderView, NSArray, NSMutableSet, NSPredicate, NSSet, NSString;
 
-@interface IBOutlineViewController : IDEViewController <DVTOutlineViewDelegate, IBEndPointProvider, IBHybridStructureSelectionProvider, IBHighlightProvider, NSOutlineViewDataSource, NSOutlineViewDelegate, NSUserInterfaceValidations, IBOutlineViewDelegate>
+@interface IBOutlineViewController : IDEViewController <DVTOutlineViewDelegate, IBEndPointProvider, NSOutlineViewDataSource, NSOutlineViewDelegate, NSUserInterfaceValidations, IBOutlineViewDelegate>
 {
     IBOutlineView *_outlineView;
     DVTBorderedView *_borderedView;
@@ -34,22 +32,25 @@
     DVTDelayedInvocation *_syncDelayedInvocation;
     IBOutlineViewImageAndTextCell *_prototypeCell;
     IBOutlineViewImageAndTextCell *_prototypeGroupCell;
+    IBOutlineViewImageAndTextCell *_prototypeUninstalledObjectCell;
     NSMutableSet *_pendingObjectsToRefreshAutolayoutStatus;
     DVTDelayedInvocation *_autolayoutStatusDelayedInvocation;
     BOOL _allowDirectDropInOutlineView;
-    NSSet *_selectedMembers;
     long long _ignoreOutlineViewSelectionUpdates;
     IDEUtilityPlaceholderView *_placeholderView;
     IBMutableIdentityDictionary *_unfilteredExpansionState;
     BOOL _drawsWithActiveLook;
     BOOL _wrapperTreeValid;
-    IBAbstractDocumentEditor *_documentEditor;
     id <IBOutlineViewControllerDelegate> _delegate;
+    IBAbstractDocumentEditor *_documentEditor;
+    NSSet *_selectedMembers;
 }
 
 + (id)wrapperKeyPathsToObserve;
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;
+@property(readonly, copy) NSSet *selectedMembers; // @synthesize selectedMembers=_selectedMembers;
+@property(retain, nonatomic) IBAbstractDocumentEditor *documentEditor; // @synthesize documentEditor=_documentEditor;
 @property __weak id <IBOutlineViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain) IBOutlineViewControllerItem *rootItem; // @synthesize rootItem=_rootItem;
 @property(retain) IBOutlineView *outlineView; // @synthesize outlineView=_outlineView;
@@ -58,7 +59,6 @@
 @property(retain) IDEUtilityPlaceholderView *placeholderView; // @synthesize placeholderView=_placeholderView;
 @property(copy) NSPredicate *filterPredicate; // @synthesize filterPredicate=_filterPredicate;
 @property(nonatomic) BOOL drawsWithActiveLook; // @synthesize drawsWithActiveLook=_drawsWithActiveLook;
-@property(nonatomic) __weak IBAbstractDocumentEditor *documentEditor; // @synthesize documentEditor=_documentEditor;
 - (void).cxx_destruct;
 - (void)cut:(id)arg1;
 - (void)deleteBackward:(id)arg1;
@@ -95,17 +95,7 @@
 - (id)endPointsFromBackToFrontAtPoint:(struct CGPoint)arg1 inView:(id)arg2 withContext:(id)arg3 forDocument:(id)arg4 connectionHandler:(id *)arg5;
 - (void)revealSpringLoadedObjectAndIndicateSuccess:(id)arg1;
 - (id)springLoadedObjectInfoAtPoint:(struct CGPoint)arg1 inView:(id)arg2 withContext:(id)arg3 forDocument:(id)arg4;
-@property(readonly) NSString *stateSavingIdentifier;
-- (void)willResignAsSelectionProviderForDocumentEditor:(id)arg1;
-- (void)didBecomeSelectionProviderForDocumentEditor:(id)arg1;
-- (BOOL)documentEditor:(id)arg1 canSelectMembers:(id)arg2;
-- (void)documentEditor:(id)arg1 deselectMembers:(id)arg2;
-- (void)documentEditor:(id)arg1 pullSelection:(id)arg2;
-- (void)documentEditor:(id)arg1 selectMembers:(id)arg2;
-@property(readonly, nonatomic) BOOL onlySupportsDocumentObjectMembers;
-@property(readonly) BOOL wantsFilterField;
-- (id)documentEditor:(id)arg1 highlightObjects:(id)arg2 showLabels:(BOOL)arg3 successfulObjects:(id *)arg4;
-- (double)highlightPriorityInDocumentEditor:(id)arg1;
+- (id)highlightObjects:(id)arg1 showLabels:(BOOL)arg2 successfulObjects:(id *)arg3;
 - (void)synchronizeOutlineViewSelection;
 - (void)selectMembers:(id)arg1;
 - (void)pushRootGroupState;
@@ -131,7 +121,6 @@
 - (void)outlineView:(id)arg1 didHandleMouseDown:(id)arg2;
 - (void)outlineView:(id)arg1 handleMouseDown:(id)arg2;
 - (BOOL)outlineView:(id)arg1 doCommandBySelector:(SEL)arg2;
-- (BOOL)outlineView:(id)arg1 shouldMouseHoverForTableColumn:(id)arg2 row:(long long)arg3;
 - (void)outlineView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 item:(id)arg4;
 - (double)outlineView:(id)arg1 heightOfRowByItem:(id)arg2;
 - (BOOL)outlineView:(id)arg1 isGroupHeaderItem:(id)arg2;
@@ -140,7 +129,9 @@
 - (id)outlineView:(id)arg1 dataCellForTableColumn:(id)arg2 item:(id)arg3;
 - (BOOL)wantsBoldGroupHeaderFont;
 - (id)prototypeGroupCell;
+- (id)prototypeUninstalledObjectCell;
 - (id)prototypeCell;
+- (id)basePrototypeCell;
 - (void)outlineView:(id)arg1 setObjectValue:(id)arg2 forTableColumn:(id)arg3 byItem:(id)arg4;
 - (id)outlineView:(id)arg1 objectValueForTableColumn:(id)arg2 byItem:(id)arg3;
 - (long long)outlineView:(id)arg1 numberOfChildrenOfItem:(id)arg2;
@@ -175,11 +166,16 @@
 - (void)viewWillUninstall;
 - (void)owningEditorInstalled;
 - (void)viewDidInstall;
-@property(readonly, nonatomic) NSString *selectionProviderSwitcherTitle;
 - (void)loadView;
 @property(readonly) IBDocument *document;
 - (void)registerWithDocumentEditor;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

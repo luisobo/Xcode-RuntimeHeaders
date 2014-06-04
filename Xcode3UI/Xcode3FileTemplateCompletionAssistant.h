@@ -23,6 +23,7 @@
 - (id)configuredSavePanel;
 - (void)configureTargetsTableView;
 - (BOOL)destinationManager:(id)arg1 shouldAddItemToMenu:(id)arg2;
+- (void)handleSavePanelResult:(long long)arg1 completionBlock:(id)arg2;
 - (void)loadView;
 - (void)setAssistantContext:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;

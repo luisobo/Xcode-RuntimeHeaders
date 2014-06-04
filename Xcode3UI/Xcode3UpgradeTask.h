@@ -6,13 +6,30 @@
 
 #import "IDEUpgradeTask.h"
 
-@class IDEUpgradeContext<Xcode3UpgradeContext>;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface Xcode3UpgradeTask : IDEUpgradeTask
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, IDEUpgradeContext<Xcode3UpgradeContext>, NSImage, NSString;
+
+@interface Xcode3UpgradeTask : IDEUpgradeTask <IDEKeyDrivenNavigableItemRepresentedObject>
 {
 }
 
+@property(readonly) NSString *navigableItem_name;
 @property(readonly) IDEUpgradeContext<Xcode3UpgradeContext> *context;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

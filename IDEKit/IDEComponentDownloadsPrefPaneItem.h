@@ -38,16 +38,20 @@
 @property int state; // @synthesize state=_state;
 @property(readonly) DVTDownloadable *downloadable; // @synthesize downloadable=_downloadable;
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 @property(readonly) NSImage *image;
 - (void)_updateCancelable;
 - (void)cancelDownload;
 - (BOOL)downloadWithError:(id *)arg1 downloadCompletionBlock:(id)arg2;
+- (long long)compare:(id)arg1;
 - (void)primitiveInvalidate;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

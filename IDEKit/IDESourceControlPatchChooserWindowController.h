@@ -11,7 +11,7 @@
 #import "NSTableViewDelegate-Protocol.h"
 #import "NSTextFieldDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTGradientImageButton, DVTTableView, IDEControlGroup, IDEWorkspace, NSArray, NSArrayController, NSProgressIndicator, NSSearchField, NSTextField, NSWindow;
+@class DVTBorderedView, DVTGradientImageButton, DVTTableView, IDEControlGroup, IDEWorkspace, NSArray, NSArrayController, NSProgressIndicator, NSSearchField, NSString, NSTextField, NSWindow;
 
 @interface IDESourceControlPatchChooserWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, NSSharingServicePickerDelegate, NSTextFieldDelegate>
 {
@@ -62,6 +62,12 @@
 - (void)textDidChange:(id)arg1;
 - (void)windowDidLoad;
 - (id)initWithWindow:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

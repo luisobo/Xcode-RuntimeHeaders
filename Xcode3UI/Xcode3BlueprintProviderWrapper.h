@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-#import "IDENavigableItemRepresentation-Protocol.h"
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
 @class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSArray, NSImage, NSString;
 
-@interface Xcode3BlueprintProviderWrapper : NSObject <IDENavigableItemRepresentation>
+@interface Xcode3BlueprintProviderWrapper : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     id <IDEBlueprintProvider> _provider;
 }
@@ -25,12 +25,17 @@
 - (id)initWithBlueprintProvider:(id)arg1;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

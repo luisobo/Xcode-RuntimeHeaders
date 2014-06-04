@@ -8,7 +8,7 @@
 
 #import "Xcode3ProjectTemplateUnitParent-Protocol.h"
 
-@class NSArray;
+@class NSArray, NSString;
 
 @interface Xcode3ProjectTemplate : IDETemplate <Xcode3ProjectTemplateUnitParent>
 {
@@ -17,7 +17,7 @@
 
 + (id)additionalAvailableTemplatesOfTemplateKind:(id)arg1;
 + (void)addUnit:(id)arg1 fromUnits:(id)arg2 toDependencies:(id)arg3;
-@property(readonly) NSArray *units; // @synthesize units=_units;
+@property(readonly, copy) NSArray *units; // @synthesize units=_units;
 - (void).cxx_destruct;
 - (id)defaultCompletionName;
 - (id)templateOptions;
@@ -28,6 +28,12 @@
 - (id)initWithTemplateInfo:(id)arg1 filePath:(id)arg2;
 - (id)initWithUnits:(id)arg1 templateKind:(id)arg2;
 - (id)objectSpecifier;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

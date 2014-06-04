@@ -6,11 +6,15 @@
 
 #import <IBFoundation/IBICMultipartImageRepSlotComponent.h>
 
-@interface IBICPlatform : IBICMultipartImageRepSlotComponent
+#import "NSCoding-Protocol.h"
+
+@interface IBICPlatform : IBICMultipartImageRepSlotComponent <NSCoding>
 {
 }
 
 + (id)contentsJSONKey;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (BOOL)isEqualToSchemaImageRepIDComponent:(id)arg1;
 - (BOOL)isEqualToPlatform:(id)arg1;
 

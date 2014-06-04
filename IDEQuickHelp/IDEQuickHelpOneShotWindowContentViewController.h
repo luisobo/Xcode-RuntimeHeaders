@@ -8,7 +8,7 @@
 
 #import "IDEQuickHelpPlaceholderViewDelegate-Protocol.h"
 
-@class IDEQuickHelpController, IDEQuickHelpPlaceholderView, WebView;
+@class IDEQuickHelpController, IDEQuickHelpPlaceholderView, NSString, WebView;
 
 @interface IDEQuickHelpOneShotWindowContentViewController : DVTViewController <IDEQuickHelpPlaceholderViewDelegate>
 {
@@ -33,6 +33,12 @@
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (void)_configureWebView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

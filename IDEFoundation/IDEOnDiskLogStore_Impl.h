@@ -20,16 +20,20 @@
 + (void)initialize;
 - (BOOL)preserveOldLogs;
 - (void).cxx_destruct;
+- (id)description;
 - (void)setPreserveOldLogs:(BOOL)arg1;
 - (id)_pathForUniqueIdentifier:(id)arg1;
 - (void)_removeAllButTheLatestLog;
 - (void)_pruneLogsToLogStoreSizeLimit;
 - (void)_removeLogRecord:(id)arg1 completionBlock:(id)arg2;
 - (void)_moveToRootDirectoryAtPath:(id)arg1 errorBlock:(id)arg2;
-- (id)addLog:(id)arg1 schemeIdentifier:(id)arg2 completionBlock:(id)arg3;
+- (id)addLog:(id)arg1 entityIdentifier:(id)arg2 completionBlock:(id)arg3;
 - (void)_saveLog:(id)arg1 logRecord:(id)arg2 toPath:(id)arg3 completionBlock:(id)arg4;
 - (BOOL)_saveCacheWithError:(id *)arg1;
 - (id)_cachePath;
+- (id)testableSummariesPlistFilePathForActivityLogSection:(id)arg1;
+- (id)rootDirectoryPath;
+- (void)primitiveInvalidate;
 - (id)initWithRootDirectoryAtPath:(id)arg1 error:(id *)arg2;
 
 @end

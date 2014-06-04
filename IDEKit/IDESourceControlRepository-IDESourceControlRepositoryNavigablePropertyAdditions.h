@@ -8,10 +8,8 @@
 
 @interface IDESourceControlRepository (IDESourceControlRepositoryNavigablePropertyAdditions)
 + (id)keyPathsForValuesAffectingProgress;
-+ (id)keyPathsForValuesAffectingNavigableItem_reachableImage;
 + (id)keyPathsForValuesAffectingNavigableItem_URLString;
 - (id)progress;
-- (id)navigableItem_reachableImage;
 - (id)navigableItem_URLString;
 @end
 

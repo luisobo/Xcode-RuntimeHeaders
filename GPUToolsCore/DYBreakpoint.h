@@ -28,8 +28,8 @@
 }
 
 + (id)keyPathsForValuesAffectingName;
-@property(readonly, nonatomic) NSString *threadName; // @synthesize threadName=_threadName;
-@property(readonly, nonatomic) NSArray *backtrace; // @synthesize backtrace=_backtrace;
+@property(readonly, retain, nonatomic) NSString *threadName; // @synthesize threadName=_threadName;
+@property(readonly, retain, nonatomic) NSArray *backtrace; // @synthesize backtrace=_backtrace;
 @property(readonly, nonatomic) int glError; // @synthesize glError=_glError;
 @property(readonly, nonatomic) int type; // @synthesize type=_type;
 @property(readonly, nonatomic) const struct Function *function; // @synthesize function=_function;
@@ -38,7 +38,7 @@
 @property(nonatomic) BOOL breakBefore; // @synthesize breakBefore=_breakBefore;
 @property(retain, nonatomic) NSPredicate *predicate; // @synthesize predicate=_predicate;
 @property(nonatomic) unsigned int fenum; // @synthesize fenum=_fenum;
-@property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
+@property(readonly, copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(copy, nonatomic) NSString *predicateString; // @dynamic predicateString;
 - (id)description;
 - (void)dealloc;

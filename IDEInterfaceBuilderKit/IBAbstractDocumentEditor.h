@@ -6,21 +6,24 @@
 
 #import "IDEEditor.h"
 
+#import "DVTFindBarFindable-Protocol.h"
 #import "DVTReplacementViewDelegate-Protocol.h"
 #import "IBDocumentArbitrationResponder-Protocol.h"
 #import "IBStructureViewControllerDelegate-Protocol.h"
 #import "IDESourceExpressionSource-Protocol.h"
 #import "NSPopoverDelegate-Protocol.h"
+#import "NSTextFinderClient-Protocol.h"
 #import "NSUserInterfaceValidations-Protocol.h"
 
-@class DVTDelayedInvocation, DVTMutableOrderedSet, DVTNotificationToken, DVTObservingToken, DVTReplacementView, DVTSourceExpression, DVTSplitView, DVTStackBacktrace, IBAutolayoutStatus, IBCancellationToken, IBCanvasView, IBCanvasViewController, IBDocument, IBMenuTargetResponderForwarder, IBMutableIdentityDictionary, IBStructureAreaDockLabelContainer, IBStructureViewController, NSArray, NSDictionary, NSMutableSet, NSOrderedSet, NSPopover, NSSegmentedControl, NSSet, NSString;
+@class DVTDelayedInvocation, DVTMutableOrderedSet, DVTNotificationToken, DVTObservingToken, DVTReplacementView, DVTSDK, DVTSourceExpression, DVTSourceLanguageService, DVTSplitView, DVTStackBacktrace, IBAttributeSearchLocation, IBAutolayoutStatus, IBCancellationToken, IBCanvasView, IBCanvasViewController, IBDocument, IBMenuTargetResponderForwarder, IBMutableIdentityDictionary, IBStructureAreaDockLabelContainer, IBStructureViewController, NSArray, NSDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSOrderedSet, NSPopover, NSSegmentedControl, NSSet, NSString;
 
-@interface IBAbstractDocumentEditor : IDEEditor <IBStructureViewControllerDelegate, NSPopoverDelegate, DVTReplacementViewDelegate, IDESourceExpressionSource, NSUserInterfaceValidations, IBDocumentArbitrationResponder>
+@interface IBAbstractDocumentEditor : IDEEditor <IBStructureViewControllerDelegate, NSPopoverDelegate, DVTFindBarFindable, NSTextFinderClient, DVTReplacementViewDelegate, IDESourceExpressionSource, NSUserInterfaceValidations, IBDocumentArbitrationResponder>
 {
     NSSegmentedControl *_toggleStructureButton;
     NSArray *_currentSelectedItemsMembers;
     NSArray *_currentSelectedItemsObjects;
     NSSet *_currentSelectedItemsObjectsAsSet;
+    NSSet *_currentSelectedItemsMembersAsSet;
     BOOL _establishingInitialSelection;
     BOOL _kickedOffInitialEnsureSelectionIsNonEmptyValidation;
     NSDictionary *_previouslyRestoredStateDictionary;
@@ -28,21 +31,25 @@
     BOOL _isInvalidating;
     DVTNotificationToken *_documentMemberRemovedObserver;
     DVTNotificationToken *_colorPanelObservation;
-    DVTNotificationToken *_willCloseUndoGroupNotification;
     DVTObservingToken *_kvoDocumentObservingToken;
+    DVTObservingToken *_memberConfigurationDidChangeToken;
     BOOL _registeredWithDocument;
     DVTDelayedInvocation *_selectionPushInvocation;
     DVTDelayedInvocation *_ensureAnObjectEditorIsOpenInvocation;
     NSMutableSet *_highlightProviders;
     DVTMutableOrderedSet *_selectionProviders;
     DVTObservingToken *_mainViewControllerObservationToken;
-    struct dispatch_queue_s *_quickHelpIndexAccessQueue;
+    NSObject<OS_dispatch_queue> *_quickHelpIndexAccessQueue;
     IBMutableIdentityDictionary *_flattenedObjectObservers;
     IBMutableIdentityDictionary *_objectObservers;
+    IBMutableIdentityDictionary *_allObjectsObservers;
+    IBMutableIdentityDictionary *_allConfigurationStorageObservers;
     long long _nextObjectObserverKey;
     NSSet *_possiblyStalePreviouslyHighlightedObjects;
     IBCancellationToken *_possiblyStaleCancelationTokenForPreviouslyHighlightedObjects;
     NSPopover *_currentConstraintAdditionPopover;
+    IBAttributeSearchLocation *_selectedAttributeSearchLocation;
+    IBCancellationToken *_findIndicatorCancellationToken;
     IBCanvasViewController *_canvasViewController;
     IBStructureAreaDockLabelContainer *_dockItemLabelPopUpContainer;
     DVTMutableOrderedSet *_selectedOrPreviouslySelectedMembersFromOldToFresh;
@@ -86,6 +93,10 @@
 @property(retain) IBStructureAreaDockLabelContainer *dockItemLabelPopUpContainer; // @synthesize dockItemLabelPopUpContainer=_dockItemLabelPopUpContainer;
 @property(retain, nonatomic) IBCanvasViewController *canvasViewController; // @synthesize canvasViewController=_canvasViewController;
 - (void).cxx_destruct;
+- (void)toggleAutomaticallyRefreshViews:(id)arg1;
+- (void)refreshLiveViews:(id)arg1;
+- (void)debugSelectedViews:(id)arg1;
+- (void)openInspectorForCategory:(id)arg1;
 - (void)openAttributesInspector;
 - (void)setLocalizationLockingNonLocalizableProperties:(id)arg1;
 - (void)setLocalizationLockingLocalizableProperties:(id)arg1;
@@ -108,9 +119,18 @@
 - (id)memberWrappersForMemberIDStrings:(id)arg1;
 - (BOOL)memberCanBeSelected:(id)arg1;
 - (BOOL)waitingForSubGraphInstantiation;
+- (void)debugMenuItemSelectAllInCurrent:(id)arg1;
+- (void)debugMenuItemSelectCanvasAndOutlineDeleteTargetsDefault:(id)arg1;
+- (void)debugMenuItemSelectModifierAddDeleteInCurrentExceptConstraints:(id)arg1;
+- (void)debugMenuItemSelectModifierAddDeleteInCurrent:(id)arg1;
+- (void)debugPrintAllPropertyValuesInNonEmptyConfigurations:(id)arg1;
+- (void)debugPrintAllPropertyValuesInAllConfigurations:(id)arg1;
 - (void)displayLockedMemberAlertForMembers:(id)arg1;
 - (BOOL)canAcceptPasteboardTypes:(id)arg1;
 - (id)typeForTopLevelPastingWithPasteboard:(id)arg1;
+- (void)updateCanvasLayoutPositioningScale;
+- (void)centerCanvasOnAnchorSpacePoint:(struct CGPoint)arg1;
+- (struct CGPoint)canvasAnchorSpaceCenter;
 - (void)zoomCanvasTo8:(id)arg1;
 - (void)zoomCanvasTo4:(id)arg1;
 - (void)zoomCanvasTo2:(id)arg1;
@@ -160,7 +180,7 @@
 - (BOOL)isExpressionInFunctionOrMethodBody:(id)arg1;
 - (BOOL)isExpressionFunctionOrMethodDefinition:(id)arg1;
 - (BOOL)isExpressionInPlainCode:(id)arg1;
-- (void)symbolsForExpression:(id)arg1 inQueue:(struct dispatch_queue_s *)arg2 completionBlock:(id)arg3;
+- (void)symbolsForExpression:(id)arg1 inQueue:(id)arg2 completionBlock:(id)arg3;
 - (struct CGRect)expressionFrameForExpression:(id)arg1;
 @property(readonly, nonatomic) DVTSourceExpression *mouseOverExpression;
 @property(readonly) DVTSourceExpression *contextMenuExpression;
@@ -173,6 +193,10 @@
 - (void)resizeSplitViewToFitStructureAreaView;
 - (void)replacementView:(id)arg1 willCloseViewController:(id)arg2;
 - (void)replacementView:(id)arg1 didInstallViewController:(id)arg2;
+- (void)refreshButtonBarImagesForEditedConfiguration;
+- (void)refreshToggleStructureButtonForEditedConfiguration;
+- (void)updateBarGlyphsForCurrentMemberConfigurationForSegmentedControl:(id)arg1;
+- (id)barGlyphImageForCurrentMemberConfigurationBasedOnBarGlyphTemplate:(id)arg1;
 - (void)didFinishLoadingSubViewControllers;
 - (void)structureViewController:(id)arg1 didChangeVisibility:(BOOL)arg2;
 - (void)structureViewControllerDidChangeContentSize:(id)arg1;
@@ -182,19 +206,32 @@
 - (void)showConnectionPanelForObject:(id)arg1 atLocation:(struct CGPoint)arg2;
 - (void)removeConnectionPanelController:(id)arg1;
 - (void)addConnectionPanelController:(id)arg1;
+- (id)currentSearchLocationStringValueGettingRange:(struct _NSRange *)arg1;
+- (id)currentSearchedMember;
+- (id)startingLocationForFindBar:(id)arg1 findingBackwards:(BOOL)arg2;
+- (void)dvtFindBar:(id)arg1 didUpdateCurrentResult:(id)arg2;
+- (id)selectionPreservationBlockForReplacingConnection:(SEL)arg1 withConnection:(id)arg2;
 - (BOOL)shouldAvoidEditingObject:(id)arg1;
 - (void)editedTopLevelObjectsDidChange;
 - (void)deselectMembers:(id)arg1;
 - (BOOL)hasActiveEditorsOpen;
 - (BOOL)hasInstalledSubViewControllers;
+- (void)showFindIndicatorAfterInspectorRefreshWithSearchedMember:(id)arg1 attributeSearchLocation:(id)arg2 searchString:(id)arg3 inspectorCategory:(id)arg4 attempts:(long long)arg5;
+- (void)showInspectorFindIndicatorWithSearchedMember:(id)arg1 attributeSearchLocation:(id)arg2 searchString:(id)arg3;
+- (BOOL)isShowingInspectorForCurrentSearchedMemberWithDisplayedCategory:(id)arg1;
+- (void)showFindIndicator;
+- (void)cancelFindIndicator;
 - (void)selectDocumentLocations:(id)arg1;
 - (id)membersFromDocumentLocations:(id)arg1;
 - (void)warnAboutBogusDocumentLocations:(id)arg1;
+- (void)selectDocumentMembers:(id)arg1 takeFocus:(BOOL)arg2 zoomIfNeeded:(BOOL)arg3;
 - (void)selectDocumentMembers:(id)arg1;
+- (void)selectMembersInCanvasView:(id)arg1 takeFocus:(BOOL)arg2 zoomIfNeeded:(BOOL)arg3;
 - (void)selectMembersInCanvasView:(id)arg1;
 - (void)selectMembersInDocumentOutline:(id)arg1;
 - (void)navigateToAnnotationWithRepresentedObject:(id)arg1 wantsIndicatorAnimation:(BOOL)arg2 exploreAnnotationRepresentedObject:(id)arg3;
 - (id)currentSelectedDocumentLocations;
+- (BOOL)selectionContainsMember:(id)arg1;
 - (BOOL)selectionContainsObject:(id)arg1;
 - (void)pushSelection:(id)arg1;
 - (void)invalidateSelectionPushInvocation;
@@ -207,6 +244,7 @@
 - (void)registerSelectionProvider:(id)arg1;
 - (id)defaultSelectionProvider;
 - (void)revealDocumentMember:(id)arg1;
+- (id)showTargetIdentifierForObjects:(id)arg1 showLabels:(BOOL)arg2;
 - (void)unregisterHighlightProvider:(id)arg1;
 - (void)registerHighlightProvider:(id)arg1;
 - (id)highlightProviders;
@@ -216,8 +254,10 @@
 - (void)takeFocus;
 - (BOOL)canBecomeMainViewController;
 @property(readonly) IBDocument *document;
-- (void)documentWillCloseUndoGroupNotification:(id)arg1;
+- (void)noteConfigurationPropertyStorage:(id)arg1 didChangeProperty:(id)arg2 fromValue:(id)arg3 inConfiguration:(id)arg4;
 - (void)noteMember:(id)arg1 didChangeProperty:(id)arg2 fromValue:(id)arg3;
+- (id)beginObservingAllConfigurationStoragesWithChangeObserver:(id)arg1;
+- (id)beginObservingAllObjectsWithChangeObserver:(id)arg1;
 - (id)beginObservingDescendantsOfObject:(id)arg1 withChangeObserver:(id)arg2;
 - (id)reigsteredChangeObserversForDescendantsOfObject:(id)arg1;
 - (void)verificationAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
@@ -238,11 +278,24 @@
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 document:(id)arg3;
 
 // Remaining properties
+@property(readonly) BOOL allowsMultipleSelection;
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly, getter=isEditable) BOOL editable;
+@property(readonly) struct _NSRange firstSelectedRange;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly, nonatomic) DVTSourceLanguageService *languageService;
 @property(readonly) DVTSourceExpression *quickHelpExpression;
+@property(readonly) DVTSDK *sdk;
+@property(readonly, getter=isSelectable) BOOL selectable;
+@property(copy) NSArray *selectedRanges;
 @property(readonly, nonatomic) NSString *selectedText;
+@property(readonly) NSString *string;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
+@property(readonly, copy) NSArray *visibleCharacterRanges;
 
 @end
 

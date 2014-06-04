@@ -6,10 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSImage, NSString, PBXTarget, Xcode3Project;
+@class NSImage, NSString, PBXTarget, Xcode3Project, Xcode3Target;
 
 @interface Xcode3TargetWrapper : NSObject
 {
+    Xcode3Target *_target;
     PBXTarget *_pbxTarget;
     Xcode3Project *_project;
     NSString *_name;
@@ -22,6 +23,7 @@
 @property BOOL selected; // @synthesize selected=_selected;
 @property(readonly) Xcode3Project *project; // @synthesize project=_project;
 @property(readonly) PBXTarget *pbxTarget; // @synthesize pbxTarget=_pbxTarget;
+@property(readonly) Xcode3Target *target; // @synthesize target=_target;
 - (void).cxx_destruct;
 - (id)initWithPBXTarget:(id)arg1 project:(id)arg2;
 

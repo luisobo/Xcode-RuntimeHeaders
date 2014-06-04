@@ -7,6 +7,7 @@
 #import "NSAttributedString.h"
 
 @interface NSAttributedString (DVTNSAttributedStringAdditions)
+- (id)dvt_attributedStringByApplyingFallbackAttributes:(id)arg1;
 - (struct CGSize)dvt_sizeConstrainedToWidth:(double)arg1;
 - (void)dvt_drawInRectByVerticallyCenteringAndTruncating:(struct CGRect)arg1;
 - (id)dvt_stringByTruncatingMultilineTextToFitSize:(struct CGSize)arg1;

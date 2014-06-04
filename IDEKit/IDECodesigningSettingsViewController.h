@@ -8,7 +8,7 @@
 
 #import "NSMenuDelegate-Protocol.h"
 
-@class NSPopUpButton, NSProgressIndicator, NSTextField;
+@class NSPopUpButton, NSProgressIndicator, NSString, NSTextField;
 
 @interface IDECodesigningSettingsViewController : IDEViewController <NSMenuDelegate>
 {
@@ -29,6 +29,12 @@
 - (void)refreshDevelopmentTeamsIfNeeded;
 - (void)setTarget:(id)arg1;
 - (void)primitiveInvalidate;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

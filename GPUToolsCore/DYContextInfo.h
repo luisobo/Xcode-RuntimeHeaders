@@ -8,13 +8,12 @@
 
 #import "NSCoding-Protocol.h"
 
-@class DYStaticResourcesInfo, NSArray, NSString;
+@class NSArray, NSString;
 
 @interface DYContextInfo : NSObject <NSCoding>
 {
     unsigned long long _identifier;
     unsigned long long _sharegroupIdentifier;
-    DYStaticResourcesInfo *_staticResources;
     NSArray *_renderers;
     NSString *_debugLabel;
     unsigned int _currentRendererIndex;
@@ -24,8 +23,7 @@
 @property(retain, nonatomic) NSString *debugLabel; // @synthesize debugLabel=_debugLabel;
 @property(readonly, nonatomic) int api; // @synthesize api=_api;
 @property(readonly, nonatomic) unsigned int currentRendererIndex; // @synthesize currentRendererIndex=_currentRendererIndex;
-@property(readonly, nonatomic) NSArray *renderers; // @synthesize renderers=_renderers;
-@property(retain, nonatomic) DYStaticResourcesInfo *staticResources; // @synthesize staticResources=_staticResources;
+@property(readonly, retain, nonatomic) NSArray *renderers; // @synthesize renderers=_renderers;
 @property(readonly, nonatomic) unsigned long long sharegroupIdentifier; // @synthesize sharegroupIdentifier=_sharegroupIdentifier;
 @property(readonly, nonatomic) unsigned long long identifier; // @synthesize identifier=_identifier;
 - (int)rendererType;

@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTDelayedInvocation, DVTMapTable, DVTStackBacktrace, NSHashTable, NSMapTable, NSMutableDictionary, NSMutableSet;
+@class DVTDelayedInvocation, DVTMapTable, DVTStackBacktrace, NSHashTable, NSMapTable, NSMutableDictionary, NSMutableSet, NSString;
 
 @interface IDENavigableItemCoordinator : NSObject <DVTInvalidation>
 {
@@ -21,6 +21,7 @@
     DVTDelayedInvocation *_delayedInvocation;
     NSMutableSet *_pendingGraphChangedItems;
     NSMutableSet *_pendingPropertyChangedItems;
+    NSMutableSet *_pendingForgettingItems;
     id <IDENavigableItemCoordinatorDelegate> _delegate;
     struct __navigableItemCoordinatorFlags {
         unsigned int _delegateRespondsToDocumentForNavigableItem:1;
@@ -55,7 +56,7 @@
 - (void)delayedPostGraphAndPropertyChangeNotifications:(id)arg1;
 - (void)processPendingChanges;
 - (void)_postNotificationNamed:(id)arg1 forChangedItems:(id)arg2;
-- (void)postDidForgetNotificationForItems:(id)arg1;
+- (void)postDidForgetNotification;
 @property(retain, nonatomic) id <IDENavigableItemCoordinatorDelegate> delegate;
 - (id)navigableItemFromArchivableRepresentation:(id)arg1 forWorkspace:(id)arg2 error:(id *)arg3;
 - (id)_navigableItemFromArchivableRepresentation:(id)arg1 rootItem:(id)arg2 error:(id *)arg3;
@@ -75,7 +76,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

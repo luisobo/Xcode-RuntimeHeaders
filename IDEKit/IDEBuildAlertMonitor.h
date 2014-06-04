@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTMapTable, DVTObservingToken, DVTStackBacktrace, IDEIssue, IDEWorkspaceDocument;
+@class DVTMapTable, DVTObservingToken, DVTStackBacktrace, IDEActivityLogSection, IDEBuildOperation, IDEIssue, IDEWorkspaceDocument, NSString;
 
 @interface IDEBuildAlertMonitor : NSObject <DVTInvalidation>
 {
@@ -17,7 +17,8 @@
     DVTObservingToken *_buildOperationToken;
     id <DVTCancellable> _issueProviderToken;
     id _buildLogObserver;
-    DVTMapTable *_watchedBuildLogsToBuildOperations;
+    IDEBuildOperation *_currentBuildOperation;
+    IDEActivityLogSection *_currentBuildLog;
     BOOL _started;
     BOOL _running;
     BOOL _stopped;
@@ -47,6 +48,10 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -4,53 +4,11 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2011 by Steve Nygard.
  */
 
-#import "NSObject.h"
+#import <IDEFoundation/IDEStandardTestable.h>
 
-#import "DVTInvalidation-Protocol.h"
-#import "IDETestable-Protocol.h"
-
-@class DVTStackBacktrace, NSArray, NSMutableArray, NSMutableDictionary, NSSet, NSString;
-
-@interface IDEOCUnitTestable : NSObject <IDETestable, DVTInvalidation>
+@interface IDEOCUnitTestable : IDEStandardTestable
 {
-    NSMutableArray *_tests;
-    NSMutableDictionary *_testIDsByURL;
 }
-
-+ (void)initialize;
-@property(readonly) NSMutableDictionary *testIDsByURL; // @synthesize testIDsByURL=_testIDsByURL;
-- (void).cxx_destruct;
-- (BOOL)canHaveSubtestsForTestWithIdentifier:(id)arg1;
-- (id)supertestForTestWithIdentifier:(id)arg1;
-- (id)supertestForTestWithIdentifier:(id)arg1 createIfNeeded:(BOOL)arg2;
-- (id)nameForTestWithIdentifier:(id)arg1;
-- (id)testForIdentifier:(id)arg1 createIfNeeded:(BOOL)arg2;
-- (id)testForIdentifier:(id)arg1;
-- (void)_removeTestIDFromURL:(id)arg1 testID:(id)arg2;
-- (void)_updateLocationOfTest:(id)arg1 oldLocation:(id)arg2;
-@property(readonly) NSSet *testFiles;
-- (id)testsInFile:(id)arg1;
-- (void)removeTest:(id)arg1;
-- (void)insertTest:(id)arg1 inTests:(id)arg2;
-- (id)parentBuildableInWorkspace:(id)arg1;
-- (id)testHostBuildableInWorkspace:(id)arg1;
-- (id)primaryBuildable;
-- (BOOL)matchesBlueprint:(id)arg1;
-- (void)waitUntilTestSearchIsFinished;
-@property(readonly) BOOL isSearchingForTests;
-- (void)searchForTestsInWorkspace:(id)arg1;
-- (id)newTestRunner;
-@property(readonly) NSString *name;
-@property(readonly) id <IDETestableProvider> testableProvider;
-- (void)primitiveInvalidate;
-- (id)init;
-
-// Remaining properties
-@property(retain) DVTStackBacktrace *creationBacktrace;
-@property(readonly) DVTStackBacktrace *invalidationBacktrace;
-@property(readonly) NSMutableArray *mutableTests; // @dynamic mutableTests;
-@property(readonly) NSArray *tests; // @dynamic tests;
-@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

@@ -33,7 +33,7 @@
 @property(nonatomic) BOOL canCreateQueryComplete; // @synthesize canCreateQueryComplete=_canCreateQueryComplete;
 @property(nonatomic) BOOL shouldHideServerWarningButton; // @synthesize shouldHideServerWarningButton=_shouldHideServerWarningButton;
 @property(retain, nonatomic) NSArray *servers; // @synthesize servers=_servers;
-@property(retain, nonatomic) IDEXcodeServer *selectedServer; // @synthesize selectedServer=_selectedServer;
+@property(retain, nonatomic) id selectedServer; // @synthesize selectedServer=_selectedServer;
 @property(copy) NSString *repositoryCreationMessage; // @synthesize repositoryCreationMessage=_repositoryCreationMessage;
 @property(nonatomic) BOOL shouldCreateLocalRepository; // @synthesize shouldCreateLocalRepository=_shouldCreateLocalRepository;
 @property BOOL enableCreateLocalRepository; // @synthesize enableCreateLocalRepository=_enableCreateLocalRepository;

@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class CABasicAnimation, CAGradientLayer, DVTDelayedInvocation, DVTStackBacktrace, IDESpinnerLayer, NSImage;
+@class CABasicAnimation, DVTDelayedInvocation, DVTStackBacktrace, IDESpinnerLayer, NSImage, NSString;
 
 @interface IDEActivityProgressIndicatorLayer : CALayer <DVTInvalidation>
 {
@@ -20,7 +20,7 @@
     CALayer *_progressContainerLayer;
     NSImage *_containerLayerContents;
     NSImage *_progressLayerContents;
-    CAGradientLayer *_progressLayer;
+    CALayer *_progressLayer;
     NSImage *_shadowLayerContents;
     CALayer *_containerLayer;
     double _doubleValue;
@@ -58,7 +58,6 @@
 - (struct CGPoint)effectiveProgressContainerLayerPosition;
 - (void)updateContainerLayerContents;
 - (void)clearCachedContainerLayerContents;
-- (id)effectiveContainerLayerContents;
 - (void)reflectIndeterminateState;
 - (void)setupLayers;
 - (id)_buildProgressLayerInRect:(struct CGRect)arg1;
@@ -68,8 +67,7 @@
 - (struct CGRect)_rectForIndeterminateSpinningIndicator;
 - (void)setBounds:(struct CGRect)arg1;
 - (void)setHidden:(BOOL)arg1;
-- (struct CGColor *)_progressIndicatorProgressBorderColorForCurrentActiveState;
-- (id)_determinateProgressIndicatorColorsForCurrentActiveState;
+- (id)_determinateProgressIndicatorColor;
 @property(getter=isIndeterminate) BOOL indeterminate;
 - (double)effectivePercentage;
 - (void)primitiveInvalidate;
@@ -79,7 +77,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

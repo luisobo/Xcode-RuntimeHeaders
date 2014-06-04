@@ -7,7 +7,6 @@
 #import "NSTableCellView.h"
 
 @interface NSTableCellView (IBNSTableCellViewIntegration)
-+ (id)keyPathsForValuesAffectingIbWidgetType;
 - (id)ibWidgetType;
 - (id)ibPasteboardTypes;
 - (BOOL)ibIsChildInitiallySelectable:(id)arg1;

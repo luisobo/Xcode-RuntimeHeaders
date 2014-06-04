@@ -6,13 +6,10 @@
 
 #import <IDEKit/IDEInspectorProperty.h>
 
-@class DVTColorPickerPopUpButton, IDEInspectorColorWell, IDEInspectorKeyPath, NSColor, NSTextField;
+@class DVTColorPickerPopUpButton, IDEInspectorKeyPath, NSColor, NSString, NSTextField;
 
 @interface IDEInspectorColorProperty : IDEInspectorProperty
 {
-    IDEInspectorColorWell *_colorWell;
-    NSTextField *_label;
-    DVTColorPickerPopUpButton *_popUpButton;
     IDEInspectorKeyPath *_defaultColorKeyPath;
     IDEInspectorKeyPath *_supportsNilKeyPath;
     IDEInspectorKeyPath *_valueKeyPath;
@@ -20,15 +17,22 @@
     NSColor *_defaultColor;
     BOOL _targettingCIColor;
     BOOL _defaultColorForNil;
+    NSString *_title;
+    DVTColorPickerPopUpButton *_popUpButton;
+    NSTextField *_label;
 }
 
+@property(retain, nonatomic) NSTextField *label; // @synthesize label=_label;
+@property(retain, nonatomic) DVTColorPickerPopUpButton *popUpButton; // @synthesize popUpButton=_popUpButton;
 - (void).cxx_destruct;
 - (void)userDidChangeValue:(id)arg1;
 - (void)refresh;
 - (id)valueFromColor:(id)arg1;
 - (id)colorFromValue:(id)arg1;
 - (void)setupRefreshTriggersAndConfigure;
+- (id)nibName;
 - (double)baseline;
+- (id)initWithPropertyDefinition:(id)arg1 andController:(id)arg2;
 
 @end
 

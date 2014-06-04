@@ -12,7 +12,7 @@
 }
 
 @property unsigned int suggestedFragmentSize; // @synthesize suggestedFragmentSize=_suggestedFragmentSize;
-- (void)transmitMessage:(id)arg1 fragment:(unsigned int)arg2 transmitter:(id)arg3;
+- (void)transmitMessage:(id)arg1 routingInfo:(struct DTXMessageRoutingInfo)arg2 fragment:(unsigned int)arg3 transmitter:(id)arg4;
 - (unsigned int)fragmentsForLength:(unsigned long long)arg1;
 
 @end

@@ -14,7 +14,7 @@
     id destination;
 }
 
-@property(readonly) id destination; // @synthesize destination;
+@property(readonly) NSObject *destination; // @synthesize destination;
 @property(readonly) NSSet *sources; // @synthesize sources;
 - (void).cxx_destruct;
 - (id)description;

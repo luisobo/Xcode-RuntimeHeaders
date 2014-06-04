@@ -18,7 +18,7 @@
     NSArray *_messages;
 }
 
-@property(readonly) NSArray *messages; // @synthesize messages=_messages;
+@property(readonly, copy) NSArray *messages; // @synthesize messages=_messages;
 @property(readonly) DVTPerformanceTestOutput *performanceTestOutput; // @synthesize performanceTestOutput=_performanceTestOutput;
 @property(readonly) double duration; // @synthesize duration=_duration;
 @property(readonly) NSDate *date; // @synthesize date=_date;

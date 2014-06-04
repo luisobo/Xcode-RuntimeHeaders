@@ -9,7 +9,7 @@
 #import "NSTextFieldDelegate-Protocol.h"
 #import <DevToolsInterface/XCRefactoringTransformationSetUpModule-Protocol.h>
 
-@class NSDictionary, NSMapTable, NSMutableSet, XCRefactoringSetUpModule, XCRefactoringTransformationSetUpRow2Module;
+@class NSDictionary, NSMapTable, NSMutableSet, NSString, XCRefactoringSetUpModule, XCRefactoringTransformationSetUpRow2Module;
 
 @interface XCRefactoringTransformationSetUpModule : PBXProjectModule <NSTextFieldDelegate, XCRefactoringTransformationSetUpModule>
 {
@@ -51,6 +51,12 @@
 - (id)_snapshotKeyForTextField:(id)arg1;
 - (void)_setSpellingStateForArray:(id)arg1;
 - (void)_populateWithDictionary:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

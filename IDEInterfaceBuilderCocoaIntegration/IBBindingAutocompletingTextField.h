@@ -8,6 +8,8 @@
 
 #import "NSTextViewDelegate-Protocol.h"
 
+@class NSString;
+
 @interface IBBindingAutocompletingTextField : NSTextField <NSTextViewDelegate>
 {
 }
@@ -24,7 +26,11 @@
 - (id)cell;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
 @property id <IBBindingAutocompletingTextFieldDelegate> delegate; // @dynamic delegate;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

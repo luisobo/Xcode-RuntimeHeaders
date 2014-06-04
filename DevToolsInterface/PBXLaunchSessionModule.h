@@ -8,7 +8,7 @@
 
 #import "PBXTrackableTask-Protocol.h"
 
-@class NSDate, NSView, PBXGestureSplitView, PBXLSLaunchSession, XCConsole;
+@class NSDate, NSString, NSView, PBXGestureSplitView, PBXLSLaunchSession, XCConsole;
 
 @interface PBXLaunchSessionModule : PBXProjectModule <PBXTrackableTask>
 {
@@ -76,6 +76,12 @@
 - (void)dealloc;
 - (id)initWithModuleNibName:(id)arg1;
 - (id)slideOutTabIconImage;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

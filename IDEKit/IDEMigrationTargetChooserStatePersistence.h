@@ -8,7 +8,7 @@
 
 #import "NSKeyedUnarchiverDelegate-Protocol.h"
 
-@class DVTFilePath;
+@class DVTFilePath, NSString;
 
 @interface IDEMigrationTargetChooserStatePersistence : NSObject <NSKeyedUnarchiverDelegate>
 {
@@ -21,6 +21,12 @@
 - (id)loadStateData;
 - (void)saveStateData:(id)arg1;
 - (id)mergeStateData:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

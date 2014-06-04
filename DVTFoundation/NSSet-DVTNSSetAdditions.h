@@ -8,9 +8,14 @@
 
 @interface NSSet (DVTNSSetAdditions)
 - (id)dvt_objectByFoldingWithBlock:(id)arg1;
+- (id)dvt_sortedArrayUsingComparator:(id)arg1;
+- (id)dvt_sortedArrayUsingSelector:(SEL)arg1;
+- (id)dvt_sortedArray;
 - (id)dvt_onlyObject;
+- (BOOL)dvt_isNonEmpty;
 - (id)dvt_anyObjectPassingTest:(id)arg1;
 - (id)dvt_setByFilteringUsingBlock:(id)arg1;
+- (id)dvt_setByApplyingBlockStrictly:(id)arg1;
 - (id)dvt_setByApplyingBlock:(id)arg1;
 - (id)dvt_setByApplyingSelector:(SEL)arg1;
 - (id)dvt_setBySubtractingSet:(id)arg1;

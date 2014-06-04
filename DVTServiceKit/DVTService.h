@@ -35,7 +35,7 @@
 - (id)requestHandlerForKey:(id)arg1;
 - (void)registerRequestHandler:(id)arg1 forKey:(id)arg2;
 - (void)registerAdaptor:(id)arg1;
-@property(readonly) NSArray *adaptors;
+@property(readonly, copy) NSArray *adaptors;
 - (id)init;
 
 @end

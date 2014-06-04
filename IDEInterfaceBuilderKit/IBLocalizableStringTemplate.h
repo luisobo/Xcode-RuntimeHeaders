@@ -12,8 +12,8 @@
     NSString *_developmentLanguageString;
 }
 
-@property(readonly) NSString *developmentLanguageString; // @synthesize developmentLanguageString=_developmentLanguageString;
-@property(readonly) NSString *stringsFileKey; // @synthesize stringsFileKey=_stringsFileKey;
+@property(readonly, copy) NSString *developmentLanguageString; // @synthesize developmentLanguageString=_developmentLanguageString;
+@property(readonly, copy) NSString *stringsFileKey; // @synthesize stringsFileKey=_stringsFileKey;
 - (void).cxx_destruct;
 - (unsigned short)characterAtIndex:(unsigned long long)arg1;
 - (unsigned long long)length;

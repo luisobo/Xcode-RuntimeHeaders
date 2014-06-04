@@ -12,12 +12,21 @@
 {
     IBCanvasView *canvasView;
     BOOL _canTile;
+    BOOL _canUpdateScrollers;
+    struct CGSize _scrollerDimensions;
 }
 
+@property(readonly) struct CGSize scrollerDimensions; // @synthesize scrollerDimensions=_scrollerDimensions;
+@property(nonatomic) BOOL canUpdateScrollers; // @synthesize canUpdateScrollers=_canUpdateScrollers;
 @property BOOL canTile; // @synthesize canTile=_canTile;
 - (void).cxx_destruct;
 - (void)tile;
 - (void)scrollWheel:(id)arg1;
+- (void)preferredScrollerStyleDidChange:(id)arg1;
+- (id)horizontalScroller;
+- (id)verticalScroller;
+- (void)awakeFromNib;
+- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 

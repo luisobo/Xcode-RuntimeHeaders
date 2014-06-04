@@ -10,6 +10,7 @@
 {
 }
 
++ (void)_gatherServiceInfo:(id)arg1 forBundles:(id)arg2;
 + (id)xpcProcessNamesForExecutablePath:(id)arg1 frameworkSearchPaths:(id)arg2;
 
 @end

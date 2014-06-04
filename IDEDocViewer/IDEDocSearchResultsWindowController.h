@@ -9,7 +9,7 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class DSMQuery, DVTPerformanceMetric, DVTTableView, IDEDocSearchField_FieldEditor, IDEDocSearchResultsContext, NSArray, NSTrackingArea;
+@class DSMQuery, DVTPerformanceMetric, DVTTableView, IDEDocSearchField_FieldEditor, IDEDocSearchResultsContext, NSArray, NSString, NSTrackingArea;
 
 @interface IDEDocSearchResultsWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 {
@@ -60,6 +60,12 @@
 - (void)_updateWindowSizeForEmptyTable;
 @property(readonly) BOOL isSelectableTableRowSelectedOrMousedOver;
 - (void)loadWindow;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

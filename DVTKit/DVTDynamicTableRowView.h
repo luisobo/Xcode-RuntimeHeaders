@@ -9,7 +9,7 @@
 #import "DVTDynamicTableRowViewSupport-Protocol.h"
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTComparisonSplitView, DVTStackBacktrace, NSView, NSViewAnimation;
+@class DVTComparisonSplitView, DVTStackBacktrace, NSObject<OS_dispatch_queue>, NSString, NSView, NSViewAnimation;
 
 @interface DVTDynamicTableRowView : DVTBorderedView <DVTDynamicTableRowViewSupport, DVTInvalidation>
 {
@@ -18,7 +18,7 @@
     NSView *_rightContentView;
     NSViewAnimation *_viewAnimation;
     id _populationBlock;
-    struct dispatch_queue_s *_popQ;
+    NSObject<OS_dispatch_queue> *_popQ;
     BOOL _removed;
 }
 
@@ -26,7 +26,7 @@
 + (id)dynamicTableRowViewUsingSplitViewStyle:(int)arg1;
 + (id)keyPathsForValuesAffectingSelected;
 @property(getter=isRemoved) BOOL removed; // @synthesize removed=_removed;
-@property struct dispatch_queue_s *popQ; // @synthesize popQ=_popQ;
+@property(retain) NSObject<OS_dispatch_queue> *popQ; // @synthesize popQ=_popQ;
 @property(copy) id populationBlock; // @synthesize populationBlock=_populationBlock;
 @property(retain) NSViewAnimation *viewAnimation; // @synthesize viewAnimation=_viewAnimation;
 @property(retain) NSView *rightContentView; // @synthesize rightContentView=_rightContentView;
@@ -40,7 +40,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

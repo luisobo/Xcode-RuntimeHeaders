@@ -8,7 +8,7 @@
 
 #import "IBWindowLayoutViewDelegate-Protocol.h"
 
-@class IBWindowLayoutView, IDEInspectorKeyPath;
+@class IBWindowLayoutView, IDEInspectorKeyPath, NSString;
 
 @interface IBNSWindowLayoutProperty : IDEInspectorProperty <IBWindowLayoutViewDelegate>
 {
@@ -25,6 +25,12 @@
 - (void)windowLayoutViewDidChangeWindowStruts:(id)arg1;
 - (double)baseline;
 - (void)primitiveInvalidate;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

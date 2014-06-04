@@ -8,7 +8,7 @@
 
 #import "IDEClientTracking-Protocol.h"
 
-@class NSMutableSet;
+@class NSMutableSet, NSString;
 
 @interface IDEConcreteClientTracker : NSObject <IDEClientTracking>
 {
@@ -26,6 +26,12 @@
 - (id)clientsRequiringCancellationPrompt;
 - (id)registerUncancellableClientWithName:(id)arg1;
 - (id)registerClientWithName:(id)arg1 promptForCancellation:(BOOL)arg2 cancellationBlock:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

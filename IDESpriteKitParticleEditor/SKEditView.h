@@ -6,13 +6,39 @@
 
 #import "SKView.h"
 
+@class EditOverlayView, NSEvent;
+
 @interface SKEditView : SKView
 {
+    unsigned long long _lastMouseEventModFlags;
+    unsigned long long _lastEventFlag;
+    unsigned long long _lastDragEventFlag;
+    id _eventMonitor;
+    struct CGPoint _lastTouchPoint;
+    unsigned long long _lastTouchId;
+    EditOverlayView *_overlayView;
+    NSEvent *_lastMouseDownEvent;
+    NSEvent *_lastMouseDragEvent;
 }
 
-- (void)touchEnded:(unsigned long long)arg1 location:(struct CGPoint)arg2;
-- (void)touchBegan:(unsigned long long)arg1 location:(struct CGPoint)arg2;
-- (void)touchMoved:(unsigned long long)arg1 location:(struct CGPoint)arg2;
+@property(readonly) NSEvent *lastMouseDragEvent; // @synthesize lastMouseDragEvent=_lastMouseDragEvent;
+@property(readonly) NSEvent *lastMouseDownEvent; // @synthesize lastMouseDownEvent=_lastMouseDownEvent;
+@property unsigned long long lastMouseEventModFlags; // @synthesize lastMouseEventModFlags=_lastMouseEventModFlags;
+@property __weak EditOverlayView *overlayView; // @synthesize overlayView=_overlayView;
+- (id).cxx_construct;
+- (void).cxx_destruct;
+- (void)draggingEnded:(id)arg1;
+- (void)draggingExited:(id)arg1;
+- (BOOL)performDragOperation:(id)arg1;
+- (unsigned long long)draggingEntered:(id)arg1;
+- (void)sendSelectedNodeToPasteboard;
+- (void)touchCancelled:(unsigned long long)arg1 location:(struct CGPoint)arg2 clickCount:(int)arg3;
+- (void)touchEnded:(unsigned long long)arg1 location:(struct CGPoint)arg2 clickCount:(int)arg3;
+- (void)touchMoved:(unsigned long long)arg1 location:(struct CGPoint)arg2 clickCount:(int)arg3;
+- (void)touchBegan:(unsigned long long)arg1 location:(struct CGPoint)arg2 clickCount:(int)arg3;
+- (void)keyUp:(id)arg1;
+- (void)keyDown:(id)arg1;
+- (void)flagsChanged:(id)arg1;
 - (void)mouseUp:(id)arg1;
 - (void)mouseDragged:(id)arg1;
 - (void)mouseDown:(id)arg1;

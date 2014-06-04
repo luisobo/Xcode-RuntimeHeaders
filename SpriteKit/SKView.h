@@ -6,10 +6,12 @@
 
 #import "NSView.h"
 
-@class NSData, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSOpenGLContext, SKDisplayLink, SKLabelNode, SKScene;
+@class NSData, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSOpenGLContext, SKDisplayLink, SKLabelNode, SKNode, SKScene;
 
 @interface SKView : NSView
 {
+    BOOL _allowsTransparency;
+    BOOL _priorResignActivePausedState;
     unsigned long long _frameInterval;
     SKDisplayLink *_displayLink;
     NSObject<OS_dispatch_queue> *_updateQueue;
@@ -28,11 +30,14 @@
     unsigned int _depthStencilRenderBuffer;
     unsigned int _frameBuffer;
     NSOpenGLContext *_layerBackedContext;
+    BOOL _prefersLowPowerGPU;
     BOOL _usesAsyncUpdateQueue;
     BOOL _hasRenderedOnce;
     BOOL _hasRenderedForCurrentUpdate;
     BOOL _isInTransition;
     BOOL _disableInput;
+    BOOL _mouseIsDown;
+    SKNode *_nodeUnderCursor;
     float _transitionDuration;
     float _transitionTime;
     SKScene *_nextScene;
@@ -49,22 +54,28 @@
 
 - (void).cxx_destruct;
 - (void)setFrameSize:(struct CGSize)arg1;
-@property(readonly) SKScene *scene;
+@property(readonly, nonatomic) SKScene *scene;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
+- (void)_setUpdateQueue:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 updateQueue:(id)arg2;
 - (id)init;
-- (id)_textureFromNode:(id)arg1;
+- (id)_textureFromNode:(id)arg1 crop:(struct CGRect)arg2;
+- (id)textureFromNode:(id)arg1 crop:(struct CGRect)arg2;
 - (id)textureFromNode:(id)arg1;
-@property BOOL showsDrawCount;
-@property BOOL showsNodeCount; // @synthesize showsNodeCount;
-@property BOOL showsFPS; // @synthesize showsFPS;
+@property(nonatomic) BOOL showsFields;
+@property(nonatomic) BOOL showsPhysics;
+@property(nonatomic) BOOL showsDrawCount;
+@property(nonatomic) BOOL showsQuadCount;
+@property(nonatomic) BOOL showsNodeCount; // @synthesize showsNodeCount;
+@property(nonatomic) BOOL showsFPS; // @synthesize showsFPS;
 - (BOOL)showsSpriteBounds;
 - (void)setShowsSpriteBounds:(BOOL)arg1;
-@property(readonly) struct CGSize pixelSize;
+@property(nonatomic) BOOL shouldCullNonVisibleNodes;
+@property(readonly, nonatomic) struct CGSize pixelSize;
 - (void)writeContentsToPNG:(id)arg1;
-@property(getter=isPaused) BOOL paused;
-@property long long frameInterval;
+@property(nonatomic, getter=isPaused) BOOL paused;
+@property(nonatomic) long long frameInterval;
 - (void)viewWillMoveToSuperview:(id)arg1;
 - (void)clipViewBoundsDidChange:(id)arg1;
 - (void)_renderContent;
@@ -76,7 +87,9 @@
 @property(retain) NSOpenGLContext *_context;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)makeBackingLayer;
-- (void)set_layerBackedContext:(id)arg1;
+@property(retain, nonatomic) NSOpenGLContext *_layerBackedContext;
+@property(nonatomic) BOOL allowsTransparency;
+- (BOOL)isOpaque;
 - (void)remakeFramebuffer:(double)arg1;
 - (void)_initialize;
 - (void)dealloc;
@@ -88,28 +101,32 @@
 - (void)mouseUp:(id)arg1;
 - (void)mouseDragged:(id)arg1;
 - (void)mouseMoved:(id)arg1;
+- (void)mouseExited:(id)arg1;
+- (void)mouseEntered:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)stopRenderCallbacks;
 - (void)startRenderCallbacks;
 - (void)setUpRenderCallback;
 - (void)bindOpenGLContext;
-@property BOOL _usesAsyncUpdateQueue;
-@property BOOL ignoresSiblingOrder;
-@property(getter=isAsynchronous) BOOL asynchronous;
-@property(readonly) int _spriteSubmitCount;
-@property(readonly) int _spriteRenderCount;
-@property(readonly) double _fps;
-@property(readonly) SKScene *_nextScene;
-@property(readonly) SKScene *_scene;
+@property(nonatomic) BOOL _usesAsyncUpdateQueue;
+@property(nonatomic) BOOL ignoresSiblingOrder;
+@property(nonatomic, getter=isAsynchronous) BOOL asynchronous;
+@property(readonly, nonatomic) int _spriteSubmitCount;
+@property(readonly, nonatomic) int _spriteRenderCount;
+@property(readonly, nonatomic) double _fps;
+@property(readonly, nonatomic) SKScene *_nextScene;
+@property(readonly, nonatomic) SKScene *_scene;
 - (void)_update:(double)arg1;
 - (void)_showAllStats;
-@property BOOL _showsTotalAreaRendered;
-@property BOOL _showsCulledNodesInNodeCount;
-@property BOOL _showsGPUStats;
-@property BOOL _showsCPUStats;
-@property BOOL _showsCoreAnimationFPS;
-@property BOOL _shouldCenterStats;
-@property BOOL _showsSpriteBounds;
+@property(nonatomic) BOOL _showsTotalAreaRendered;
+@property(nonatomic) BOOL _showsCulledNodesInNodeCount;
+@property(nonatomic) BOOL _showsGPUStats;
+@property(nonatomic) BOOL _showsCPUStats;
+@property(nonatomic) BOOL _showsCoreAnimationFPS;
+@property(nonatomic) BOOL _shouldCenterStats;
+@property(nonatomic) BOOL _showsSpriteBounds;
+@property(nonatomic) struct CGPoint _viewTranslation;
+@property(nonatomic) double _viewScale;
 - (void)renderToIOSurfaceID:(unsigned int)arg1 withScaleFactor:(double)arg2;
 - (void)renderToOpenGLTextureId:(unsigned int)arg1 size:(struct CGSize)arg2 scaleFactor:(double)arg3;
 - (id)snapshot;

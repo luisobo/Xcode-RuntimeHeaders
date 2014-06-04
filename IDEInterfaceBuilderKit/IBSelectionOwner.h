@@ -12,8 +12,6 @@
 {
     DVTMutableOrderedSet *selection;
     DVTMutableOrderedSet *cachedSelectionCopy;
-    BOOL delegateImplementsWillSelect;
-    BOOL delegateImplementsDidSelect;
     id <IBSelectionOwnerDelegate> _delegate;
 }
 

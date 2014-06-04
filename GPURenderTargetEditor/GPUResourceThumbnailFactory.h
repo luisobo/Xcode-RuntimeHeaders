@@ -23,9 +23,9 @@
 + (id)sharedThumbnailFactory;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (id)thumbnailWithResourceItem:(id)arg1 scale:(double)arg2;
+- (id)thumbnailWithResourceItem:(id)arg1 withContentsScale:(double)arg2;
 - (id)defaultImageForResourceItem:(id)arg1;
-- (id)_generateThumbnailForImage:(id)arg1 scale:(double)arg2;
+- (id)_generateThumbnailForImage:(id)arg1 withContentsScale:(double)arg2;
 - (void)dealloc;
 - (id)init;
 

@@ -12,13 +12,11 @@
 {
     IDEWorkspaceWindowController *_workspaceWindowController;
     IDEBreakpointIcon *_icon;
-    struct CGRect _lastRectDrawnIn;
     DVTObservingToken *_workspaceWindowControllerObserver;
     DVTObservingToken *_breakpointShouldBeEnabledObserver;
     DVTObservingToken *_breakpointLocationOrAddressObserver;
 }
 
-@property struct CGRect lastRectDrawnIn; // @synthesize lastRectDrawnIn=_lastRectDrawnIn;
 - (void).cxx_destruct;
 - (void)_updateLandmarkItemIfAppropriate;
 - (void)adjustParagraphIndexBy:(long long)arg1 lengthBy:(long long)arg2;

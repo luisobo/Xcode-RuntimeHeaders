@@ -12,6 +12,7 @@
 
 - (void)removePartialClassDescriptionWithSource:(id)arg1;
 - (void)integratePartialClassDescription:(id)arg1;
+- (void)replaceDescriptions:(id)arg1;
 
 @end
 

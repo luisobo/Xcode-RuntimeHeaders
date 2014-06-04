@@ -9,7 +9,7 @@
 #import "IDECapsuleListViewDataSource-Protocol.h"
 #import "IDEDataModelEditorController-Protocol.h"
 
-@class IDECapsuleListView, IDEDataModelEntityContentsEditor, IDEDataModelPropertiesTableController, NSArrayController;
+@class IDECapsuleListView, IDEDataModelEntityContentsEditor, IDEDataModelPropertiesTableController, NSArrayController, NSString;
 
 @interface IDEDataModelBrowserEditor : IDEDMEditorController <IDECapsuleListViewDataSource, IDEDataModelEditorController>
 {
@@ -65,6 +65,12 @@
 - (id)identifier;
 - (id)nibBundle;
 - (id)nibName;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

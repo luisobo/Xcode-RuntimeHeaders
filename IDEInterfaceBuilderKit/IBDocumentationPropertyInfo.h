@@ -10,14 +10,14 @@
 
 @interface IBDocumentationPropertyInfo : NSObject
 {
-    id _object;
+    NSObject *_object;
     NSString *_tokenName;
     NSString *_className;
 }
 
 @property(readonly, nonatomic) NSString *className; // @synthesize className=_className;
 @property(readonly, nonatomic) NSString *tokenName; // @synthesize tokenName=_tokenName;
-@property(readonly, nonatomic) id object; // @synthesize object=_object;
+@property(readonly, nonatomic) NSObject *object; // @synthesize object=_object;
 - (void).cxx_destruct;
 - (id)description;
 - (id)initWithTokenName:(id)arg1 andClassName:(id)arg2 andObject:(id)arg3;

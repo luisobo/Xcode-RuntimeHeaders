@@ -6,35 +6,26 @@
 
 #import "NSObject.h"
 
-@class IBClassDescriber, IBSystemClassProvider, NSMutableArray, NSMutableDictionary;
+@class NSMutableArray, NSMutableDictionary;
 
 @interface IBDocumentStructureRepresentation : NSObject
 {
-    NSMutableDictionary *oidToObjectInfo;
-    IBClassDescriber *classDescriber;
-    IBSystemClassProvider *systemClassProvider;
-    NSMutableArray *topLevelObjects;
-    NSMutableArray *topLevelConcreteObjects;
-    NSMutableDictionary *connectionsToObject;
-    NSMutableDictionary *connectionsFromObject;
+    NSMutableDictionary *_oidToObjectInfo;
+    NSMutableArray *_topLevelObjects;
+    NSMutableArray *_topLevelConcreteObjects;
+    NSMutableDictionary *_connectionsToObject;
+    NSMutableDictionary *_connectionsFromObject;
 }
 
 - (void).cxx_destruct;
-- (id)objectOIDsConnectedForObjectWithOID:(id)arg1 byWayOfConnectionLabeled:(id)arg2;
 - (id)objectOIDConnectedFromObjectWithOID:(id)arg1 byWayOfConnectionLabeled:(id)arg2;
-- (id)objectOIDConnectedToObjectWithOID:(id)arg1 byWayOfConnectionLabeled:(id)arg2;
 - (id)objectsConnectedForObjectWithOID:(id)arg1;
 - (id)objectsConnectedFromObjectWithOID:(id)arg1;
 - (id)objectsConnectedToObjectWithOID:(id)arg1;
 - (id)childrenOIDsOfObjectWithOID:(id)arg1;
-- (id)groupIDForObjectWithID:(id)arg1;
 - (id)parentOIDOfObjectWithOID:(id)arg1;
 - (id)topLevelObjectIDs;
-- (id)externalCustomClassNameForObjectWithOID:(id)arg1;
-- (id)classNameForObjectWithOID:(id)arg1;
 - (id)effectiveClassNameForObjectWithOID:(id)arg1;
-- (id)documentSystemClassProvider;
-- (id)documentClassDescriber;
 - (id)initWithDocument:(id)arg1;
 
 @end

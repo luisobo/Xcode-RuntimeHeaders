@@ -6,13 +6,14 @@
 
 #import "IDEInspectorViewController.h"
 
-@class SCNGeometry, SCNLight, SCNView;
+@class SCNGeometry, SCNLight, SCNScene, SCNView;
 
 @interface SKEMaterialPreviewInspector : IDEInspectorViewController
 {
-    SCNView *previewView;
-    SCNGeometry *previewObject;
-    SCNLight *ambiLight;
+    SCNView *_previewView;
+    SCNGeometry *_previewObject;
+    SCNLight *_ambientLight;
+    SCNScene *_scene;
 }
 
 - (void).cxx_destruct;
@@ -20,7 +21,6 @@
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)setContent:(id)arg1;
 - (void)viewDidInstall;
-- (void)setupPreviewView;
 - (id)previewScene;
 - (id)ambientLightFromMainScene;
 - (id)materialByDefaultingIfNeeded;

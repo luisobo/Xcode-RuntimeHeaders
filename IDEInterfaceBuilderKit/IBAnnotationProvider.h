@@ -6,32 +6,35 @@
 
 #import "DVTAnnotationProvider.h"
 
+#import "DVTInvalidation-Protocol.h"
 #import "DVTTextAnnotationDelegate-Protocol.h"
 #import "NSMenuDelegate-Protocol.h"
 
-@class DVTObservingToken, DVTTextStorage, IBAnnotationDataCache, IBCancellationToken, IBIndexClassProvider, IDEAnnotationContext, NSPopUpButtonCell;
+@class DVTObservingToken, DVTStackBacktrace, DVTTextStorage, IBAnnotationDataCache, IBCancellationToken, IBIndexClassDescriber, IDEAnnotationContext, NSObject<OS_dispatch_queue>, NSPopUpButtonCell, NSString;
 
-@interface IBAnnotationProvider : DVTAnnotationProvider <DVTTextAnnotationDelegate, NSMenuDelegate>
+@interface IBAnnotationProvider : DVTAnnotationProvider <DVTTextAnnotationDelegate, DVTInvalidation, NSMenuDelegate>
 {
-    IDEAnnotationContext *annotationContext;
-    DVTTextStorage *textStorage;
-    NSPopUpButtonCell *annotationPopUpCell;
-    IBIndexClassProvider *indexClassProvider;
-    IBAnnotationDataCache *annotationDataCache;
-    BOOL shouldReparseSourceModelImmediately;
-    BOOL annotationsShouldBeInteractive;
-    struct dispatch_queue_s *indexQueryQueue;
-    unsigned int indexQueryBlockGeneration;
-    DVTObservingToken *kvoAssociatedWorkspaceIndexToken;
-    id sourceCodeDocumentDidChangeToken;
-    id indexDidChangeNotificationToken;
-    id ibDidAddConnectionToken;
-    id ibDidRemoveConnectionToken;
-    IBCancellationToken *targetIdentifierCancellationToken;
+    IDEAnnotationContext *_annotationContext;
+    NSPopUpButtonCell *_annotationPopUpCell;
+    IBIndexClassDescriber *_indexClassDescriber;
+    IBAnnotationDataCache *_annotationDataCache;
+    BOOL _shouldUpdateFromParserImmediately;
+    BOOL _annotationsShouldBeInteractive;
+    NSObject<OS_dispatch_queue> *_indexQueryQueue;
+    unsigned int _indexQueryBlockGeneration;
+    DVTObservingToken *_kvoAssociatedWorkspaceIndexToken;
+    id _sourceCodeDocumentDidChangeToken;
+    id _sourceCodeDocumentDidAdjustNodeTypesToken;
+    id _indexDidChangeNotificationToken;
+    id _ibDidAddConnectionToken;
+    id _ibDidRemoveConnectionToken;
+    IBCancellationToken *_targetIdentifierCancellationToken;
+    DVTTextStorage *_textStorage;
 }
 
 + (id)annotationProviderForContext:(id)arg1 error:(id *)arg2;
 + (void)initialize;
+@property(retain) DVTTextStorage *textStorage; // @synthesize textStorage=_textStorage;
 - (void).cxx_destruct;
 - (void)annotation:(id)arg1 willDrawInTextSidebarView:(id)arg2 withAnnotationsInSameLine:(id)arg3;
 - (BOOL)annotation:(id)arg1 shouldDrawInTextSidebarView:(id)arg2 withAnnotationsInSameLine:(id)arg3;
@@ -56,8 +59,8 @@
 - (void)rebuildAnnotationsUsingIndex;
 - (void)updateExistingAnnotationsUsingOpenIBDocuments;
 - (id)existingAnnotationsForConnection:(id)arg1;
-- (id)existingAnnotationsIgnoringSourceModelContextWithName:(id)arg1 inClassNamed:(id)arg2;
-- (id)existingAnnotationNamed:(id)arg1 inClassNamed:(id)arg2 matchingSourceModelContext:(unsigned long long)arg3 inSet:(id)arg4;
+- (id)existingAnnotationsIgnoringKindWithName:(id)arg1 inClassNamed:(id)arg2;
+- (id)existingAnnotationNamed:(id)arg1 inClassNamed:(id)arg2 matchingKind:(unsigned long long)arg3 inSet:(id)arg4;
 - (void)removeAnnotation:(id)arg1;
 - (void)stopObservingIBDocumentConnectionChanges;
 - (void)startObservingIBDocumentConnectionChanges;
@@ -67,17 +70,28 @@
 - (void)startObservingSourceCodeDocumentChanges;
 - (void)handleChangeInSourceCodeDocument:(id)arg1;
 - (void)updateAnnotations;
+- (id)updateAnnotationsByParsingDocument;
 - (void)hideAnnotationsIfInsufficientData;
-- (id)sourceModelInfoForAnnotationInSourceModel:(id)arg1;
-- (void)createOrModifyAnnotationUsingSourceModelItemInfo:(id)arg1 inClassNamed:(id)arg2;
+- (struct _NSRange)itemRangeForAnnotationInParsedDocument:(id)arg1;
+- (void)recordAnnotationNamed:(id)arg1 type:(id)arg2 at:(struct _NSRange)arg3 inClassNamed:(id)arg4 matchingKind:(unsigned long long)arg5;
 - (id)document;
-- (id)classNamesInSourceModel;
+- (id)classNamesInParsedDocument;
 - (void)startObservingIndex;
 - (void)stopObservingIndex;
 - (id)index;
 - (void)cacheAnnotations;
 - (void)providerWillUninstall;
+- (void)primitiveInvalidate;
 - (id)initWithContext:(id)arg1;
+
+// Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

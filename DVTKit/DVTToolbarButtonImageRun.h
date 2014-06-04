@@ -10,7 +10,6 @@
 {
 }
 
-- (id)templatePathWithRect:(struct CGRect)arg1;
 - (id)templateImageForButton;
 - (struct CGSize)sizeWithoutHighlight;
 

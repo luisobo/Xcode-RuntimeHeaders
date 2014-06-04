@@ -46,7 +46,7 @@
 - (void)fillInPastedEntitiesWithUpdatedPList:(id)arg1;
 - (void)generateErrorsAndWarningsWithCallback:(id)arg1 forDocumentAtURL:(id)arg2;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (id)configurationForName:(id)arg1;
 - (id)entityForName:(id)arg1;
 - (id)fetchRequestForName:(id)arg1;
@@ -72,7 +72,10 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

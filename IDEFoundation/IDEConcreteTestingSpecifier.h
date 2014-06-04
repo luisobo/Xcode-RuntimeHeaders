@@ -8,7 +8,7 @@
 
 #import "IDETestingSpecifier-Protocol.h"
 
-@class DVTObservingToken, IDEDeviceAppDataReference, IDELocationScenarioReference, NSArray, NSMutableArray;
+@class DVTObservingToken, IDEDeviceAppDataReference, IDELocationScenarioReference, NSArray, NSMutableArray, NSString;
 
 @interface IDEConcreteTestingSpecifier : NSObject <IDETestingSpecifier>
 {
@@ -29,8 +29,12 @@
 - (id)initWithTestable:(id)arg1;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSMutableArray *mutableSkippedTests; // @dynamic mutableSkippedTests;
 @property(copy) NSArray *skippedTests; // @dynamic skippedTests;
+@property(readonly) Class superclass;
 
 @end
 

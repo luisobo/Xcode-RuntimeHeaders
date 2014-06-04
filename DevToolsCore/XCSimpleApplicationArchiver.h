@@ -8,7 +8,7 @@
 
 #import "XCApplicationArchiver-Protocol.h"
 
-@class DTExtension, NSArray, XCPlatformSpecification;
+@class DTExtension, NSArray, NSString, XCPlatformSpecification;
 
 @interface XCSimpleApplicationArchiver : NSObject <XCApplicationArchiver>
 {
@@ -25,7 +25,11 @@
 - (id)initWithExtension:(id)arg1;
 
 // Remaining properties
-@property(readonly) NSArray *actionNames;
+@property(readonly, copy) NSArray *actionNames;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

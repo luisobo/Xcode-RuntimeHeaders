@@ -6,17 +6,22 @@
 
 #import "NSObject.h"
 
-@class DVTFileDataType, IDEScheme, NSError, NSString;
+@class DVTFileDataType, DVTFilePath, IDEScheme, NSError, NSString;
 
 @interface IDERunnable : NSObject
 {
     IDEScheme *_scheme;
     DVTFileDataType *_dataType;
     NSError *_dataTypeDetectionError;
+    NSString *_bundleIdentifier;
+    DVTFilePath *_remotePath;
 }
 
+@property(readonly) DVTFilePath *remotePath; // @synthesize remotePath=_remotePath;
+@property(copy, nonatomic) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
 @property(retain) IDEScheme *scheme; // @synthesize scheme=_scheme;
 - (void).cxx_destruct;
+- (int)runnableType;
 - (void)resolveBuildableFromImport;
 @property(readonly) BOOL hasRunnablePath;
 @property(readonly) id <IDEBuildableProduct> buildableProduct;

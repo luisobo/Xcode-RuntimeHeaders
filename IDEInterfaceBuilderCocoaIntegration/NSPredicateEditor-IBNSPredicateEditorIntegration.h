@@ -16,8 +16,7 @@
 - (id)ibAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 insertionContext:(id)arg3;
 - (BOOL)ibCanAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 targetChildRelation:(id *)arg3;
 - (BOOL)ibHasSingleCell;
-- (void)ibFinishArchivingDocument:(id)arg1 withContext:(id)arg2;
-- (void)ibBeginArchivingDocument:(id)arg1 withContext:(id)arg2;
+- (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (struct CGRect)ibRectForChild:(id)arg1 inFrameController:(id)arg2;
 - (void)ibDidAddToDocument:(id)arg1 phase:(unsigned long long)arg2;

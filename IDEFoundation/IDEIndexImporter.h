@@ -6,14 +6,14 @@
 
 #import "NSObject.h"
 
-@class IDEIndexDBConnection, IDEIndexDBFactory, IDEIndexDBTransaction, IDEIndexDatabase, IDEIndexUniqueStringMap, NSDictionary, NSMutableDictionary, NSMutableSet, NSSet;
+@class IDEIndexDBConnection, IDEIndexDBFactory, IDEIndexDBTransaction, IDEIndexDatabase, IDEIndexUniqueStringMap, NSDictionary, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet;
 
 @interface IDEIndexImporter : NSObject
 {
     IDEIndexDatabase *_database;
-    struct dispatch_queue_s *_project_queue;
-    struct dispatch_queue_s *_autoQuery_queue;
-    struct dispatch_queue_s *_import_queue;
+    NSObject<OS_dispatch_queue> *_project_queue;
+    NSObject<OS_dispatch_queue> *_autoQuery_queue;
+    NSObject<OS_dispatch_queue> *_import_queue;
     int _isClosing;
     IDEIndexDBConnection *_dbConnection;
     NSDictionary *_providers;
@@ -62,7 +62,7 @@
 - (void)updateSpliceTableForDirtyFile:(id)arg1 oldGroupId:(long long)arg2 oldModified:(double)arg3;
 - (BOOL)spliceChanges:(id)arg1 toMainFile:(id)arg2 target:(id)arg3;
 - (long long)existingFileIdForPath:(id)arg1;
-- (long long)fileIdForPath:(id)arg1;
+- (long long)fileIdForPath:(id)arg1 moduleURL:(id)arg2;
 - (long long)realGroupIdForId:(long long)arg1;
 - (long long)realUnitIdForId:(long long)arg1;
 - (long long)realFileIdForId:(long long)arg1;

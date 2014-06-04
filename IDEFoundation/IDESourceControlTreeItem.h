@@ -6,7 +6,7 @@
 
 #import "DVTModelTreeNode.h"
 
-@class DVTDispatchLock, IDESourceControlRevision, IDESourceControlTree, IDESourceControlTreeGroup, NSArray, NSMutableDictionary, NSString;
+@class IDESourceControlRevision, IDESourceControlTree, IDESourceControlTreeGroup, NSArray, NSMutableDictionary, NSString;
 
 @interface IDESourceControlTreeItem : DVTModelTreeNode
 {
@@ -17,13 +17,13 @@
     IDESourceControlRevision *_baseRevision;
     IDESourceControlRevision *_currentRevision;
     NSMutableDictionary *_revisions;
-    DVTDispatchLock *_revisionsLock;
     NSString *_name;
     NSString *_pathString;
     unsigned long long _state;
 }
 
 + (BOOL)automaticallyNotifiesObserversOfCurrentRevision;
++ (id)_revisionLock;
 + (void)initialize;
 @property unsigned long long conflictStateForUpdateOrMerge; // @synthesize conflictStateForUpdateOrMerge=_conflictStateForUpdateOrMerge;
 @property int sourceControlServerStatus; // @synthesize sourceControlServerStatus=_sourceControlServerStatus;

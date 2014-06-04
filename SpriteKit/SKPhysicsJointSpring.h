@@ -14,8 +14,8 @@
 
 + (id)jointWithBodyA:(id)arg1 bodyB:(id)arg2 anchorA:(struct CGPoint)arg3 anchorB:(struct CGPoint)arg4;
 + (id)allocWithZone:(struct _NSZone *)arg1;
-@property double frequency; // @synthesize frequency=_frequency;
-@property double damping; // @synthesize damping=_damping;
+@property(nonatomic) double frequency; // @synthesize frequency=_frequency;
+@property(nonatomic) double damping; // @synthesize damping=_damping;
 
 @end
 

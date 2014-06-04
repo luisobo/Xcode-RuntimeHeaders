@@ -37,7 +37,7 @@
 
 // Remaining properties
 @property(retain) NSOperationQueue *diffQueue; // @dynamic diffQueue;
-@property(readonly) NSMutableArray *mutableDiffDescriptors; // @dynamic mutableDiffDescriptors;
+@property(readonly, copy) NSMutableArray *mutableDiffDescriptors; // @dynamic mutableDiffDescriptors;
 @property(retain) NSNumber *timestamp; // @dynamic timestamp;
 @property(retain) NSMutableArray *tmpDiffDescriptors; // @dynamic tmpDiffDescriptors;
 

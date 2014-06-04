@@ -8,12 +8,12 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, IBCocoaDocument, NSUserDefaultsController;
+@class DVTStackBacktrace, IBDocument, NSString, NSUserDefaultsController;
 
 @interface IBBindingManager : NSObject <DVTInvalidation>
 {
     NSUserDefaultsController *sharedUserDefaultsControllerProxy;
-    IBCocoaDocument *document;
+    IBDocument *document;
 }
 
 + (void)initialize;
@@ -31,7 +31,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -8,14 +8,15 @@
 
 #import "NSComboBoxDataSource-Protocol.h"
 
-@class NSArray, NSTextField, NSView;
+@class NSArray, NSMutableDictionary, NSString, NSTextField, NSView;
 
 @interface IDETemplateOptionsAssistant : IDETemplateInstantiationAssistant <NSComboBoxDataSource>
 {
-    BOOL _canGoForward;
     NSView *_mainView;
-    NSTextField *_firstTextField;
     NSArray *_classNames;
+    NSMutableDictionary *_controlsForOptionIds;
+    BOOL _canGoForward;
+    NSTextField *_firstTextField;
     NSArray *_allSortedOptions;
 }
 
@@ -30,13 +31,13 @@
 - (id)classNamesForComboBox:(id)arg1;
 - (void)writeStateToUserDefaults;
 - (void)restoreSelectionFromUserDefaults;
-- (void)setOptionsPersistanceDictionary:(id)arg1;
-- (id)optionsPersistanceDictionary;
 - (void)setupOptionViews;
 - (id)additionalOptions;
 - (double)requiredViewSpacingForOption:(id)arg1;
 - (id)createLabelForOption:(id)arg1;
 - (id)createControlForOption:(id)arg1;
+- (void)_setControl:(id)arg1 forOptionIdentifier:(id)arg2;
+- (id)controlForOptionIdentifier:(id)arg1;
 - (void)_setAccessibilityForCell:(id)arg1 withOption:(id)arg2 prefix:(id)arg3;
 - (id)assistantTitle;
 - (void)viewWillUninstall;
@@ -45,6 +46,12 @@
 - (id)nextAssistantIdentifier;
 - (void)updateOptions:(id)arg1;
 - (void)setAssistantContext:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -28,12 +28,14 @@
     NSArray *_targetIndices;
     id _substituteMacros;
     NSArray *_groups;
+    NSArray *_buildAttributes;
     long long _sortOrder;
 }
 
 @property long long sortOrder; // @synthesize sortOrder=_sortOrder;
 @property(retain) id groups; // @synthesize groups=_groups;
 @property(retain) id substituteMacros; // @synthesize substituteMacros=_substituteMacros;
+@property(retain) NSArray *buildAttributes; // @synthesize buildAttributes=_buildAttributes;
 @property(retain) NSArray *targetIndices; // @synthesize targetIndices=_targetIndices;
 @property(copy) NSArray *group; // @synthesize group=_group;
 @property(retain) id wrapsLines; // @synthesize wrapsLines=_wrapsLines;

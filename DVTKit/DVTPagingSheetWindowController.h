@@ -8,24 +8,25 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, DVTViewController;
+@class DVTStackBacktrace, DVTViewController, NSString;
 
 @interface DVTPagingSheetWindowController : NSWindowController <DVTInvalidation>
 {
-    DVTViewController *_contentViewController;
+    DVTViewController *_currentPageViewController;
     id _completionBlock;
 }
 
-+ (BOOL)automaticallyNotifiesObserversOfContentViewController;
++ (BOOL)automaticallyNotifiesObserversOfCurrentPageViewController;
 + (void)initialize;
 + (id)defaultWindowNibName;
 @property(copy, nonatomic) id completionBlock; // @synthesize completionBlock=_completionBlock;
-@property(retain, nonatomic) DVTViewController *contentViewController; // @synthesize contentViewController=_contentViewController;
+@property(retain, nonatomic) DVTViewController *currentPageViewController; // @synthesize currentPageViewController=_currentPageViewController;
 - (void).cxx_destruct;
 - (void)dvt_sheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)beginSheetModalForWindow:(id)arg1 completionBlock:(id)arg2;
 - (void)didEndSheetWithReturnCode:(long long)arg1;
 - (void)willBeginSheet;
+@property(retain, nonatomic) Class currentPageViewControllerClass;
 @property(retain, nonatomic) Class contentViewControllerClass;
 - (void)primitiveInvalidate;
 - (void)windowDidLoad;
@@ -33,7 +34,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

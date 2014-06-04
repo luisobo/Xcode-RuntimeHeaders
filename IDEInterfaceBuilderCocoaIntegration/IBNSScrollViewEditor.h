@@ -10,8 +10,9 @@
 {
 }
 
-- (CDStruct_648df176)activeKnobRectsForObject:(id)arg1;
+- (CDStruct_fa3e0eee)activeKnobRectsForObject:(id)arg1;
 - (BOOL)shouldChildHaveResizeKnobs:(id)arg1;
+- (id)editedScrollView;
 
 @end
 

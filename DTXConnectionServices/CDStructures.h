@@ -6,6 +6,30 @@
 
 #pragma mark Named Structures
 
+struct DTXMachMessage {
+    struct {
+        struct {
+            unsigned int _field1;
+            unsigned int _field2;
+            unsigned int _field3;
+            unsigned int _field4;
+            unsigned int _field5;
+            int _field6;
+        } _field1;
+        unsigned int _field2;
+    } _field1;
+    char _field2[32672];
+    char _field3[68];
+};
+
+struct DTXMessageRoutingInfo {
+    unsigned int _field1;
+    unsigned int _field2;
+    unsigned int _field3;
+    unsigned int :1;
+    unsigned int :31;
+};
+
 struct DTXSharedMemory {
     unsigned long long _field1;
     unsigned long long _field2;

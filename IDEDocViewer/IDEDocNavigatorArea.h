@@ -9,7 +9,7 @@
 #import "DVTReplacementViewDelegate-Protocol.h"
 #import "DVTStatefulObject-Protocol.h"
 
-@class DVTBorderedView, DVTChooserView, DVTExtension, DVTObservingToken, DVTReplacementView, IDEDocContentAreaViewController, IDENavigableItem, NSArrayController, NSIndexSet, NSString;
+@class DVTBorderedView, DVTChooserView, DVTExtension, DVTObservingToken, DVTReplacementView, IDEDocContentAreaViewController, NSArrayController, NSIndexSet, NSString;
 
 @interface IDEDocNavigatorArea : IDEViewController <DVTReplacementViewDelegate, DVTStatefulObject>
 {
@@ -19,7 +19,6 @@
     NSArrayController *_choicesController;
     DVTExtension *_currentExtension;
     DVTObservingToken *_selectedItemToken;
-    IDENavigableItem *_selectedNavigableItem;
     NSIndexSet *_chooserViewSelectionIndexes;
     NSString *_UUID;
     id _selectedItem;
@@ -56,6 +55,12 @@
 - (void)showNavigatorWithIdentifier:(id)arg1;
 - (void)viewDidInstall;
 - (void)loadView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

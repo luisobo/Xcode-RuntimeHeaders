@@ -8,7 +8,7 @@
 
 #import "XCElementMultiTogglerP-Protocol.h"
 
-@class NSMutableArray, NSObject;
+@class NSMutableArray, NSObject, NSString;
 
 @interface XCElementMultiTogglerImp : XCElementBaseTogglerImp <XCElementMultiTogglerP>
 {
@@ -30,6 +30,12 @@
 - (void)updateCurrentChildren;
 - (id)initInMain:(id)arg1;
 - (BOOL)isMultiToggler;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

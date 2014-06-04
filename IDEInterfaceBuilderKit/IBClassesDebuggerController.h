@@ -12,11 +12,11 @@
 
 @interface IBClassesDebuggerController : NSWindowController <NSWindowDelegate>
 {
-    IDENavigatorOutlineView *_outlineView;
     id <DVTCancellable> _classDescriberObservingToken;
     IDENavigableItemCoordinator *_navigableItemCoordinator;
     IDENavigatorDataCell *_topLevelPrototypeCell;
     IDENavigatorDataCell *_childPrototypeCell;
+    IDENavigatorOutlineView *_outlineView;
     unsigned long long _mode;
     NSString *_currentClass;
     NSString *_filterString;
@@ -25,14 +25,16 @@
 }
 
 + (id)classesDebuggerForDocument:(id)arg1;
-@property(nonatomic) unsigned long long mode; // @synthesize mode=_mode;
-@property(copy, nonatomic) NSString *filterString; // @synthesize filterString=_filterString;
 @property(retain, nonatomic) NSArray *results; // @synthesize results=_results;
 @property(copy) NSString *footer; // @synthesize footer=_footer;
+@property(copy, nonatomic) NSString *filterString; // @synthesize filterString=_filterString;
 @property(copy, nonatomic) NSString *currentClass; // @synthesize currentClass=_currentClass;
+@property(nonatomic) unsigned long long mode; // @synthesize mode=_mode;
+@property IDENavigatorOutlineView *outlineView; // @synthesize outlineView=_outlineView;
 - (void).cxx_destruct;
 - (void)reflectCurrentClass;
 - (id)sourcesItem;
+- (id)inspectablesItem;
 - (id)toManyOutletsItem;
 - (id)toOneOutletsItem;
 - (id)actionsItem;
@@ -58,6 +60,7 @@
 - (void)setDocument:(id)arg1;
 - (id)indexIcon;
 - (id)pluginIcon;
+- (id)inspectablesIcon;
 - (id)outletsIcon;
 - (id)actionsIcon;
 - (id)objectsIcon;
@@ -66,6 +69,12 @@
 - (void)windowDidLoad;
 - (id)_openWindowTerminationDisablingReason;
 - (id)initWithDocument:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

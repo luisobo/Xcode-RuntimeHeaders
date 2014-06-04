@@ -7,6 +7,7 @@
 #import "NSArray.h"
 
 @interface NSArray (IDEDocStringRanking)
+- (id)sortedArrayByShortestToLongestNames;
 - (id)sortedDSATokenArrayByRankingAgainstString:(id)arg1;
 @end
 

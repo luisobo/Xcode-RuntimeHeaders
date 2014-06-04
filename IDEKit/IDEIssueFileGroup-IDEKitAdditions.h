@@ -6,17 +6,33 @@
 
 #import "IDEIssueFileGroup.h"
 
-@class NSImage, NSString;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface IDEIssueFileGroup (IDEKitAdditions)
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString;
+
+@interface IDEIssueFileGroup (IDEKitAdditions) <IDEKeyDrivenNavigableItemRepresentedObject>
 + (id)imageForFileGroupWithURL:(id)arg1 issueType:(int)arg2;
 + (void)editorDocumentDirtyStatusDidChange:(id)arg1;
 + (void)initialize;
-- (id)navigableItem_name;
+@property(readonly) NSString *navigableItem_name;
 - (void)_noteDocumentEditedStateChanged;
 - (id)textColor;
 @property(readonly) NSImage *image;
 - (void)_observeFilePathIfNecessary;
 @property(readonly) NSString *displayName;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 @end
 

@@ -18,7 +18,7 @@
 
 @property struct _NSRange replacementRange; // @synthesize replacementRange=_replacementRange;
 @property struct _NSRange affectedRange; // @synthesize affectedRange=_affectedRange;
-@property(readonly) NSUndoManager *undoManager; // @synthesize undoManager=_undoManager;
+@property(readonly) __weak NSUndoManager *undoManager; // @synthesize undoManager=_undoManager;
 - (void).cxx_destruct;
 @property(readonly) BOOL isSupportingCoalescing;
 - (void)undoRedo:(id)arg1;

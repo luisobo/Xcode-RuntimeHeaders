@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTBindingToken, DVTDeveloperAccount, DVTNotificationToken, DVTStackBacktrace, DVTTableView, IDEAccountPrefsPaneController, IDETeamDescription, NSArray, NSArrayController, NSSet;
+@class DVTBindingToken, DVTDeveloperAccount, DVTNotificationToken, DVTStackBacktrace, DVTTableView, IDEAccountPrefsPaneController, IDETeamDescription, NSArray, NSArrayController, NSSet, NSString;
 
 @interface IDEAccountPrefsDeveloperAccountTeamDetailsController : NSWindowController <DVTInvalidation>
 {
@@ -59,6 +59,7 @@
 - (void).cxx_destruct;
 - (void)revokeIdentityDescription:(id)arg1;
 - (void)revoke:(id)arg1;
+- (void)_waitForResolutionOptionAndPresentResult:(id)arg1 identityDescription:(id)arg2 originalStatus:(long long)arg3;
 - (void)requestIdentityDescription:(id)arg1;
 - (void)exportSigningIdentityDescription:(id)arg1;
 - (void)exportSigningIdentity:(id)arg1;
@@ -79,7 +80,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

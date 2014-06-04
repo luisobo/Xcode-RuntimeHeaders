@@ -65,8 +65,6 @@
 - (id)automaticallyConfigureSVNLocations:(id)arg1;
 - (void)automaticallyConfigureSVNLocationsWithToken:(id)arg1 completionBlock:(id)arg2;
 @property(readonly) BOOL isConfiguredForBranching;
-- (void)endObservingReachability;
-- (void)startObservingReachability;
 - (id)itemForFilePath:(id)arg1;
 - (BOOL)containsItemAtLocation:(id)arg1;
 - (BOOL)containsItemAtFilePath:(id)arg1;

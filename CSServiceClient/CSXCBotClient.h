@@ -28,6 +28,7 @@
 + (void)initialize;
 @property(retain) NSString *sessionGUID; // @synthesize sessionGUID=_sessionGUID;
 - (void).cxx_destruct;
+- (void)isCompatibleWithServerVersionCompletionHandler:(id)arg1;
 - (void)devicesForTeamIDs:(id)arg1 completionHandler:(id)arg2;
 - (void)allDevicesCompletionHandler:(id)arg1;
 - (void)uploadCredentialsForSCMInfo:(id)arg1 completionHandler:(id)arg2;
@@ -110,6 +111,7 @@
 - (id)repositoryServiceRequestForMethod:(id)arg1 args:(id)arg2;
 - (id)authServiceRequestForMethod:(id)arg1 args:(id)arg2;
 - (id)schedulerServiceRequestForMethod:(id)arg1 args:(id)arg2;
+- (id)serverVersionServiceRequestForMethod:(id)arg1 args:(id)arg2;
 - (id)botServiceRequestForMethod:(id)arg1 args:(id)arg2;
 - (id)contentServiceRequestForMethod:(id)arg1 args:(id)arg2;
 - (id)graphServiceRequestForMethod:(id)arg1 args:(id)arg2;

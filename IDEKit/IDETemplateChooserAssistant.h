@@ -8,7 +8,7 @@
 
 #import "DVTTileViewDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTImageAndTextCell, DVTSplitView, DVTTileView, DVTTileViewItem, IDENavigableItemCoordinator, IDENavigatorOutlineView, NSArrayController, NSTextField, NSView;
+@class DVTBorderedView, DVTImageAndTextCell, DVTSplitView, DVTTileView, DVTTileViewItem, IDENavigableItemCoordinator, IDENavigatorOutlineView, NSArrayController, NSString, NSTextField, NSView;
 
 @interface IDETemplateChooserAssistant : IDETemplateInstantiationAssistant <DVTTileViewDelegate>
 {
@@ -39,9 +39,6 @@
 - (id)tileView:(id)arg1 typeCompletionStringForContentObject:(id)arg2;
 - (void)tileView:(id)arg1 didChangeContextClickedObjectFrom:(id)arg2;
 - (id)tileView:(id)arg1 titleForContentObject:(id)arg2;
-- (double)splitView:(id)arg1 constrainMaxCoordinate:(double)arg2 ofSubviewAt:(long long)arg3;
-- (double)splitView:(id)arg1 constrainMinCoordinate:(double)arg2 ofSubviewAt:(long long)arg3;
-- (BOOL)splitView:(id)arg1 canCollapseSubview:(id)arg2;
 - (BOOL)outlineView:(id)arg1 shouldShowOutlineCellForItem:(id)arg2;
 - (id)outlineView:(id)arg1 dataCellForTableColumn:(id)arg2 item:(id)arg3;
 - (id)sectionCell;
@@ -60,6 +57,12 @@
 - (void)viewDidInstall;
 - (void)loadView;
 - (void)primitiveInvalidate;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

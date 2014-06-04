@@ -10,6 +10,6 @@
 
 @protocol IDEDebugNavigableModel <NSObject>
 @property(readonly) IDELaunchSession *launchSession;
-@property(readonly) NSString *associatedProcessUUID;
+@property(readonly, copy) NSString *associatedProcessUUID;
 @end
 

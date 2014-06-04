@@ -22,7 +22,7 @@
 - (id)connectionByCompletingWithConnectionContext:(id)arg1;
 - (id)archiveKeyForLabel;
 - (id)endPointForEstimatingUnlabeledConnection;
-- (id)displayNameWithRespectToPredecessors:(id)arg1;
+- (id)explicitDisplayNameWithRespectToPredecessors:(id)arg1;
 - (id)displayDescriptionInDocument:(id)arg1;
 - (BOOL)refactorWithOutletChangeTypeRefactoringOperation:(id)arg1 inDocument:(id)arg2 error:(id *)arg3;
 - (BOOL)refactorWithOutletMoveRefactoringOperation:(id)arg1 inDocument:(id)arg2 error:(id *)arg3;

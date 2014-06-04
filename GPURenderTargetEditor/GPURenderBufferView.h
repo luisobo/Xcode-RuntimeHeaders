@@ -9,7 +9,7 @@
 #import "DVTInvalidation-Protocol.h"
 #import "DYOpenGLLayerContentProvider-Protocol.h"
 
-@class CALayer, CAScrollLayer, CATextLayer, DVTStackBacktrace, DYOpenGLLayer, DYResourceObject, GPURenderJob, NSImage, NSObject<OS_dispatch_source>, NSString;
+@class CALayer, CAScrollLayer, CATextLayer, DVTStackBacktrace, DYOpenGLLayer, GPURenderJob, NSObject<OS_dispatch_source>, NSString;
 
 @interface GPURenderBufferView : DVTLayerHostingView <DYOpenGLLayerContentProvider, DVTInvalidation>
 {
@@ -17,10 +17,9 @@
     DYOpenGLLayer *_imageLayer;
     CATextLayer *_titleLayer;
     CALayer *_titleHighlightLayer;
-    NSImage *_image;
     struct CGSize _scaledImageSize;
     NSString *_title;
-    DYResourceObject *_currentResource;
+    id <DYResource> _currentResource;
     struct CGPoint _scrollPoint;
     struct CGSize _scrollPadding;
     struct CGPoint _transactionScrollPoint;
@@ -49,11 +48,11 @@
 }
 
 + (void)initialize;
+@property(nonatomic) double relativeScale; // @synthesize relativeScale=_relativeScale;
 @property(copy, nonatomic) id swipeHandler; // @synthesize swipeHandler=_swipeHandler;
 @property(nonatomic) __weak id <GPURenderBufferViewStateCoordinationProtocol> coordinator; // @synthesize coordinator=_coordinator;
 @property(nonatomic) struct CGSize titleSize; // @synthesize titleSize=_titleSize;
 @property(retain, nonatomic) GPURenderJob *renderJob; // @synthesize renderJob=_renderJob;
-@property(retain, nonatomic) NSImage *image; // @synthesize image=_image;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)layout;
@@ -69,7 +68,6 @@
 @property(nonatomic) _Bool flipAboutX; // @dynamic flipAboutX;
 @property(readonly, nonatomic) struct CATransform3D imageTransform; // @dynamic imageTransform;
 @property(nonatomic) double zRotation; // @dynamic zRotation;
-@property(nonatomic) double relativeScale;
 @property(nonatomic) double scale; // @dynamic scale;
 @property(nonatomic) _Bool clampScaleToPowersOfTwo; // @dynamic clampScaleToPowersOfTwo;
 - (_Bool)clampZoomToPowersOfTwo;
@@ -79,7 +77,7 @@
 @property(readonly, nonatomic) double minimumScale; // @dynamic minimumScale;
 @property(readonly, nonatomic) double maximumScale; // @dynamic maximumScale;
 @property(copy, nonatomic) NSString *title; // @dynamic title;
-@property(retain, nonatomic) DYResourceObject *resource;
+@property(retain, nonatomic) id <DYResource> resource;
 - (BOOL)isOpaque;
 - (BOOL)wantsDepth;
 - (id)overlay;
@@ -135,7 +133,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -15,9 +15,9 @@
 
 + (id)jointWithBodyA:(id)arg1 bodyB:(id)arg2 anchor:(struct CGPoint)arg3 axis:(struct CGVector)arg4;
 + (id)allocWithZone:(struct _NSZone *)arg1;
-@property double upperDistanceLimit; // @synthesize upperDistanceLimit=_upperDistanceLimit;
-@property double lowerDistanceLimit; // @synthesize lowerDistanceLimit=_lowerDistanceLimit;
-@property BOOL shouldEnableLimits; // @synthesize shouldEnableLimits=_shouldEnableLimits;
+@property(nonatomic) double upperDistanceLimit; // @synthesize upperDistanceLimit=_upperDistanceLimit;
+@property(nonatomic) double lowerDistanceLimit; // @synthesize lowerDistanceLimit=_lowerDistanceLimit;
+@property(nonatomic) BOOL shouldEnableLimits; // @synthesize shouldEnableLimits=_shouldEnableLimits;
 
 @end
 

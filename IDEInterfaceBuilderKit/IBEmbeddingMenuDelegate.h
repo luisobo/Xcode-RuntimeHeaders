@@ -8,7 +8,7 @@
 
 #import "NSMenuDelegate-Protocol.h"
 
-@class IBMutableIdentityDictionary;
+@class IBMutableIdentityDictionary, NSString;
 
 @interface IBEmbeddingMenuDelegate : IBAbstractEditorMenuDelegate <NSMenuDelegate>
 {
@@ -19,6 +19,12 @@
 - (void)menuNeedsUpdate:(id)arg1;
 - (id)currentTargetRuntime;
 - (id)menuItemsForTargetRuntime:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

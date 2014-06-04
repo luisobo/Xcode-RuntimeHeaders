@@ -9,7 +9,7 @@
 #import "DVTSourceTextViewDelegate-Protocol.h"
 #import "DVTTextStorageDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTDelayedInvocation, DVTGradientImageButton, DVTNotificationToken, DVTScriptSourceTextView, DVTTableView, NSArray, NSButton, NSScrollView;
+@class DVTBorderedView, DVTDelayedInvocation, DVTGradientImageButton, DVTNotificationToken, DVTScriptSourceTextView, DVTTableView, NSArray, NSButton, NSDictionary, NSScrollView, NSString;
 
 @interface Xcode3ShellScriptBuildPhaseViewController : Xcode3BuildPhaseViewController <DVTSourceTextViewDelegate, DVTTextStorageDelegate>
 {
@@ -67,6 +67,13 @@
 - (void)textStorageDidProcessEditing:(id)arg1;
 - (void)loadView;
 - (id)nibName;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) NSDictionary *sourceLanguageServiceContext;
+@property(readonly) Class superclass;
 
 @end
 

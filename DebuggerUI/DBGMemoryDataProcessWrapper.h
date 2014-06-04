@@ -7,10 +7,11 @@
 #import "NSObject.h"
 
 #import "IDEDebugNavigableModel-Protocol.h"
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@class DBGProcess, IDELaunchSession, NSArray, NSString;
+@class DBGProcess, DVTDocumentLocation, DVTFileDataType, IDEFileReference, IDELaunchSession, NSArray, NSImage, NSString;
 
-@interface DBGMemoryDataProcessWrapper : NSObject <IDEDebugNavigableModel>
+@interface DBGMemoryDataProcessWrapper : NSObject <IDEDebugNavigableModel, IDEKeyDrivenNavigableItemRepresentedObject>
 {
     DBGProcess *_process;
     BOOL _useProcessIconAndName;
@@ -21,14 +22,28 @@
 - (void).cxx_destruct;
 - (unsigned long long)navigableItem_indexOfRepresentedObjectForIdentifier:(id)arg1 inRelationshipKeyPath:(id)arg2;
 - (id)navigableItem_identifierForRepresentedObjectAtIndex:(unsigned long long)arg1 inRelationshipKeyPath:(id)arg2;
+- (double)heightOfRow;
 - (BOOL)isGroupHeader:(id)arg1;
-- (id)navigableItem_image;
+@property(readonly) NSImage *navigableItem_image;
 @property(readonly) NSString *navigableItem_name;
 - (void)useProcessIconAndName;
 @property(readonly) NSArray *memoryDatas;
 @property(readonly) IDELaunchSession *launchSession;
-@property(readonly) NSString *associatedProcessUUID;
+@property(readonly, copy) NSString *associatedProcessUUID;
 - (id)initWithProcess:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

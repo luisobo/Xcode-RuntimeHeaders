@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSFileHandle, NSMutableArray, NSMutableData, NSString, NSTimer;
+@class NSFileHandle, NSMutableArray, NSMutableData, NSObject<OS_dispatch_queue>, NSString, NSTimer;
 
 @interface IDEConsoleAdaptor : NSObject
 {
     NSString *_type;
-    struct dispatch_queue_s *_writeSerialQueue;
+    NSObject<OS_dispatch_queue> *_writeSerialQueue;
     NSTimer *_endOfStandardOutputReadTimer;
     NSTimer *_endOfStandardErrorReadTimer;
     BOOL _finishedReceivingData;

@@ -10,15 +10,15 @@
 
 @interface SKEShadowBox : NSView
 {
-    NSShadow *shadow;
-    unsigned long long shadowedEdges;
+    NSShadow *_boxShadow;
+    unsigned long long _shadowedEdges;
 }
 
-@property(nonatomic) unsigned long long shadowedEdges; // @synthesize shadowedEdges;
-@property(copy, nonatomic) NSShadow *shadow; // @synthesize shadow;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)hitTest:(struct CGPoint)arg1;
+@property(nonatomic) unsigned long long shadowedEdges;
+@property(copy, nonatomic) NSShadow *boxShadow;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

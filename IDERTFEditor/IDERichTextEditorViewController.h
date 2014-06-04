@@ -11,7 +11,7 @@
 #import "NSTextDelegate-Protocol.h"
 #import "NSTextViewDelegate-Protocol.h"
 
-@class IDERichTextEditorScalingScrollView, NSLayoutManager;
+@class IDERichTextEditorScalingScrollView, NSLayoutManager, NSString;
 
 @interface IDERichTextEditorViewController : IDEEditor <NSLayoutManagerDelegate, NSTextViewDelegate, NSTextDelegate, DVTFindBarFindable>
 {
@@ -80,6 +80,12 @@
 - (void)rtf_insertParagraphBreak:(id)arg1;
 - (void)rtf_insertLineBreak:(id)arg1;
 - (void)rtf_insertPageBreak:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,7 +8,7 @@
 
 #import "DVTPagingSheetViewController-Protocol.h"
 
-@class IDEAccountTeamPickerWindowController, NSArray, NSButton, NSProgressIndicator, NSTextField;
+@class IDEAccountTeamPickerWindowController, NSArray, NSButton, NSProgressIndicator, NSString, NSTextField;
 
 @interface IDEAccountTeamPickerRefreshTeamsViewController : IDEViewController <DVTPagingSheetViewController>
 {
@@ -48,6 +48,12 @@
 - (void)showAddAccountsPrompt;
 - (void)primitiveInvalidate;
 - (void)viewDidInstall;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

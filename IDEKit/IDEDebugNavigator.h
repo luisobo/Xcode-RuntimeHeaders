@@ -8,54 +8,60 @@
 
 #import "NSMenuDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTGradientImageButton, DVTMapTable, DVTNotificationToken, DVTObservingToken, IDENavigatorDataCell, IDENavigatorOutlineView, NSArray, NSImage, NSMutableArray, NSMutableDictionary, NSSlider;
+@class DVTGradientImageButton, DVTMapTable, DVTNotificationToken, DVTObservingToken, IDENavigatorDataCell, IDENavigatorFilterControlBar, IDENavigatorOutlineView, NSArray, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, NSView;
 
 @interface IDEDebugNavigator : IDENavigator <NSMenuDelegate>
 {
     IDENavigatorOutlineView *_outlineView;
-    DVTGradientImageButton *_showOnlyInterestingContentButton;
-    DVTGradientImageButton *_autoCompressMaxButton;
-    NSSlider *_autoCompressSlider;
     DVTGradientImageButton *_autoCompressMinButton;
     IDENavigatorDataCell *_regularCell;
     DVTMapTable *_processHeaderCellForContentDelegateTable;
     NSMutableArray *_cachedNavigableDebugItems;
     DVTMapTable *_contentDelegateForIdentifierTable;
-    unsigned long long _compressionValue;
-    unsigned long long _maxCompressionValue;
-    NSImage *_showOnlyInterestingContentImage;
     DVTObservingToken *_rootNavigableChildItemsObservingToken;
     DVTObservingToken *_allFinishedObservingToken;
+    DVTObservingToken *_coalescedStateObservingToken;
+    DVTNotificationToken *_selectedObjectsObservingToken;
     BOOL _isInUserDirectSelection;
-    BOOL _showOnlyInterestingContent;
     BOOL _isInOutlineViewProcessPendingChanges;
     NSMutableDictionary *_cachedStateDictionary;
+    NSMutableDictionary *_transientStates;
     DVTMapTable *_uiControllerToItemMap;
     NSArray *_archivableNavigableItemsToSelect;
     DVTNotificationToken *_trayHideObservingToken;
     DVTNotificationToken *_trayShowObservingToken;
-    NSMutableArray *_processesWithClosedGauges;
-    DVTBorderedView *_glassBarBorderedView;
+    NSMutableSet *_processesWithClosedGauges;
+    NSMutableArray *_selectedObjects;
+    BOOL _showsCompressedStackFrames;
+    BOOL _showsOnlyInterestingContent;
+    NSString *_filterString;
+    unsigned long long _compressionValue;
+    NSView *_filterContainerView;
+    NSView *_defaultFilterView;
+    IDENavigatorFilterControlBar *_filterControl;
 }
 
 + (long long)version;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (id)createProcessActionPopUpMenuItemWithPopUpImage:(id)arg1 menuItemImage:(id)arg2 action:(SEL)arg3;
-+ (id)_transientStateForKey:(id)arg1;
-+ (void)registerDelegateClassForStatePersistence:(Class)arg1;
-@property __weak DVTBorderedView *glassBarBorderedView; // @synthesize glassBarBorderedView=_glassBarBorderedView;
-@property(readonly) BOOL isInUserDirectSelection; // @synthesize isInUserDirectSelection=_isInUserDirectSelection;
-@property(nonatomic) BOOL showOnlyInterestingContent; // @synthesize showOnlyInterestingContent=_showOnlyInterestingContent;
++ (void)initialize;
+@property __weak IDENavigatorFilterControlBar *filterControl; // @synthesize filterControl=_filterControl;
+@property __weak NSView *defaultFilterView; // @synthesize defaultFilterView=_defaultFilterView;
+@property __weak NSView *filterContainerView; // @synthesize filterContainerView=_filterContainerView;
+@property(nonatomic) BOOL showsOnlyInterestingContent; // @synthesize showsOnlyInterestingContent=_showsOnlyInterestingContent;
+@property(nonatomic) BOOL showsCompressedStackFrames; // @synthesize showsCompressedStackFrames=_showsCompressedStackFrames;
+@property(readonly, nonatomic) NSMutableDictionary *transientStates; // @synthesize transientStates=_transientStates;
+@property(readonly, nonatomic) unsigned long long compressionValue; // @synthesize compressionValue=_compressionValue;
+@property(readonly, nonatomic) BOOL isInUserDirectSelection; // @synthesize isInUserDirectSelection=_isInUserDirectSelection;
+@property(copy, nonatomic) NSString *filterString; // @synthesize filterString=_filterString;
 @property(readonly) IDENavigatorOutlineView *outlineView; // @synthesize outlineView=_outlineView;
 - (void).cxx_destruct;
-- (void)_resetFilterIconsAndToolTips;
-- (void)_checkToolTip:(id *)arg1 shouldShow:(char *)arg2 selector:(SEL)arg3 forContentDelegate:(id)arg4;
 - (BOOL)_uiShouldReact;
 - (void)_navigableItemCoordinatorProcessPendingChanges;
 - (BOOL)_writeRepresentedObjects:(id)arg1 toPasteboard:(id)arg2;
-- (void)_updateForNewCompressionValue;
 - (void)_handleLaunchSessionsChanged;
-- (id)_indexesOfNavigableItemsToSelect;
+- (id)_navigableItemsToSelect;
+- (id)_indexesForItems:(id)arg1;
 - (void)_openSelectedNavigableItemsWithEventType:(unsigned long long)arg1;
 - (void)_changeToNewLaunchSessionBeforeOpeningSelectedItem:(id)arg1;
 - (id)_representedObjectForSelectedRow;
@@ -65,11 +71,10 @@
 - (id)processActionPopUpCellForContentDelegate:(id)arg1;
 - (void)recordPersistenceStateChanges:(id)arg1;
 - (void)restorePreviousTransientStates;
-- (id)transientStates;
 - (id)expandedItemTokens;
-- (unsigned long long)maxCompressionValue;
-- (unsigned long long)compressionValue;
 - (void)restoreExpandedAndSelectionStates;
+- (void)_expandItemsForTokens:(id)arg1;
+- (void)restoreExpandedStatesForTokens:(id)arg1;
 - (void)restoreExpandedStates;
 - (void)restoreSelectedStatesAndScrollToSelection:(BOOL)arg1;
 - (void)scrollToSelection;
@@ -77,11 +82,13 @@
 - (id)_navigableItemArchivableRepresentationsForNavigableItems:(id)arg1;
 - (void)refreshForTrayAreaChanges;
 - (void)selectNavigableItems:(id)arg1;
+- (id)_addressStringForExecutionEnvironment;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
 - (void)setStoredCompressionValue:(id)arg1;
+- (void)_updateCompressionControls;
+- (void)_primitiveSetShowsCompressedStackFramesWithKVO:(BOOL)arg1;
 - (id)storedCompressionValue;
-- (id)_compressionLevelAsStringForMessageTracerReport;
 - (id)_contentDelegateForRightClickedItems;
 - (void)menuNeedsUpdate:(id)arg1;
 - (BOOL)outlineView:(id)arg1 shouldCollapseTrayForItem:(id)arg2;
@@ -96,6 +103,7 @@
 - (id)outlineView:(id)arg1 toolTipForCell:(id)arg2 rect:(struct CGRect *)arg3 tableColumn:(id)arg4 item:(id)arg5 mouseLocation:(struct CGPoint)arg6;
 - (BOOL)outlineView:(id)arg1 writeItems:(id)arg2 toPasteboard:(id)arg3;
 - (id)outlineView:(id)arg1 selectionIndexesForProposedSelection:(id)arg2;
+- (BOOL)_wasGaugeCellClickedAtCurrentPoint;
 - (BOOL)_wasActionPopUpCellClickedAtCurrentPoint;
 - (BOOL)outlineView:(id)arg1 shouldTrackCell:(id)arg2 forTableColumn:(id)arg3 item:(id)arg4;
 - (BOOL)_wasGaugeCellClickedForCell:(id)arg1 item:(id)arg2;
@@ -111,6 +119,7 @@
 - (id)outlineView:(id)arg1 dataCellForTableColumn:(id)arg2 item:(id)arg3;
 - (void)outlineView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 item:(id)arg4;
 - (id)_processHeaderCellWithDebugNavigableModelObject:(id)arg1 contentDelegate:(id)arg2;
+- (void)_configureProcessHeaderCell:(id)arg1;
 - (id)_regularCell;
 - (void)outlineViewItemDidCollapseTray:(id)arg1;
 - (void)outlineViewItemDidExpandTray:(id)arg1;
@@ -120,7 +129,7 @@
 - (id)_expandedItemTokens;
 - (id)_tokenForPersistingRepresentedObject:(id)arg1;
 - (id)_tokenForExpandedRepresentedObject:(id)arg1;
-@property(readonly) NSArray *navigableDebugItems;
+@property(readonly, copy) NSArray *navigableDebugItems;
 - (BOOL)delegateFirstResponder;
 - (id)domainIdentifier;
 - (id)_selectedRepresentedObjects;
@@ -128,14 +137,25 @@
 - (void)delete:(id)arg1;
 - (void)copy:(id)arg1;
 - (void)viewWillUninstall;
+- (void)_handleSelectedObjectsChanged;
+- (void)_addCoalescedStateObserver;
 - (void)viewDidInstall;
+- (void)_installFilterBarRepresentedObject:(id)arg1;
 - (void)primitiveInvalidate;
 - (void)loadView;
 - (void)openDoubleClickedNavigableItemsAction:(id)arg1;
 - (void)openClickedNavigableItemAction:(id)arg1;
 - (void)openSelectedNavigableItemsKeyAction:(id)arg1;
-- (void)revealCurrentItem;
-- (void)autoCompressStackFrames:(id)arg1;
+- (void)focusedEditorDidSelectItem:(id)arg1;
+- (void)revealArchivedNavigableItems:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly, copy) NSMutableArray *mutableSelectedObjects; // @dynamic mutableSelectedObjects;
+@property(copy) NSArray *selectedObjects; // @dynamic selectedObjects;
+@property(readonly) Class superclass;
 
 @end
 

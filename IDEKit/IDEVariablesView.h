@@ -11,7 +11,7 @@
 #import "NSMenuDelegate-Protocol.h"
 #import "NSOutlineViewDataSource-Protocol.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTOutlineView, DVTScopeBarView, DVTScrollView, DVTSearchField, IDEVariableViewRootNode, IDEVariablesViewQuickLookPopover, IDEVariablesViewStateManager, NSArray, NSButton, NSMapTable, NSPopUpButton, NSPopover, NSProgressIndicator, NSString, NSTableColumn, NSView;
+@class DVTBorderedView, DVTNotificationToken, DVTObservingToken, DVTOutlineView, DVTScopeBarView, DVTScrollView, DVTSearchField, IDEVariableViewRootNode, IDEVariablesViewQuickLookPopover, IDEVariablesViewStateManager, NSArray, NSButton, NSMapTable, NSPopUpButton, NSPopover, NSProgressIndicator, NSString, NSTableColumn, NSView;
 
 @interface IDEVariablesView : IDEViewController <NSOutlineViewDataSource, NSMenuDelegate, DVTOutlineViewDelegate, IDEScopeableView>
 {
@@ -33,6 +33,7 @@
     DVTObservingToken *_showsTypeObservationToken;
     DVTObservingToken *_viewModeObservationToken;
     DVTObservingToken *_textPreferencesShowLineNumbersObservationToken;
+    DVTNotificationToken *_outlineViewHiddenObservationToken;
     DVTObservingToken *_loadingNewVariablesInBackgroundObservationToken;
     id _outlineViewSelectionObserver;
     BOOL _viewWasInstalled;
@@ -56,8 +57,8 @@
     NSArray *_statusCellsCache;
     NSArray *_statusCellCategoriesCache;
     int _formatterSizeStyle;
-    DVTOutlineView *_outlineView;
     DVTScopeBarView *_scopeBarView;
+    DVTOutlineView *_outlineView;
     unsigned long long _textAlignment;
     DVTBorderedView *_containerView;
     DVTScrollView *_scrollView;
@@ -82,6 +83,7 @@
 @property __weak DVTScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property __weak DVTBorderedView *containerView; // @synthesize containerView=_containerView;
 @property unsigned long long textAlignment; // @synthesize textAlignment=_textAlignment;
+@property(retain) DVTOutlineView *outlineView; // @synthesize outlineView=_outlineView;
 @property BOOL showsRawValues; // @synthesize showsRawValues=_showsRawValues;
 @property BOOL showsType; // @synthesize showsType=_showsType;
 @property(nonatomic) BOOL scopeBarVisible; // @synthesize scopeBarVisible=_scopeBarVisible;
@@ -90,7 +92,6 @@
 @property(readonly) IDEVariablesViewStateManager *stateManager; // @synthesize stateManager=_stateManager;
 @property(retain, nonatomic) id <IDEVariablesViewContentProvider> contentProvider; // @synthesize contentProvider=_contentProvider;
 @property(retain) DVTScopeBarView *scopeBarView; // @synthesize scopeBarView=_scopeBarView;
-@property(readonly) DVTOutlineView *outlineView; // @synthesize outlineView=_outlineView;
 - (void).cxx_destruct;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
@@ -108,6 +109,7 @@
 - (void)_setRawValueColumnWidth:(double)arg1;
 - (void)_updateRawValueColumnWidthIfNecessary:(double)arg1;
 - (void)outlineView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 item:(id)arg4;
+- (BOOL)outlineView:(id)arg1 shouldMouseHoverForTableColumn:(id)arg2 row:(long long)arg3;
 - (id)outlineView:(id)arg1 dataCellForTableColumn:(id)arg2 item:(id)arg3;
 - (void)outlineView:(id)arg1 sortDescriptorsDidChange:(id)arg2;
 - (BOOL)outlineView:(id)arg1 writeItems:(id)arg2 toPasteboard:(id)arg3;
@@ -171,6 +173,12 @@
 - (void)_variablesViewCommonInit;
 - (void)awakeFromNib;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

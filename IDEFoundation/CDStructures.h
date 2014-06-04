@@ -27,6 +27,10 @@ struct _NSRange {
     unsigned long long length;
 };
 
+struct __hash_node<std::__1::__hash_value_type<__NStatSource *, SourceInfo>, void *>;
+
+struct __hash_node<std::__1::__hash_value_type<int, ProcessInfo>, void *>;
+
 struct in_addr {
     unsigned int _field1;
 };
@@ -63,6 +67,62 @@ struct stat {
 struct timespec {
     long long _field1;
     long long _field2;
+};
+
+struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<__NStatSource *, SourceInfo>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<__NStatSource *, SourceInfo>, void *>*>>> {
+    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<__NStatSource *, SourceInfo>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<__NStatSource *, SourceInfo>, void *>*>>> {
+        struct __hash_node<std::__1::__hash_value_type<__NStatSource *, SourceInfo>, void *> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<__NStatSource *, SourceInfo>, void *>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<__NStatSource *, SourceInfo>, void *>*>> {
+                unsigned long long __first_;
+            } __data_;
+        } __second_;
+    } __ptr_;
+};
+
+struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, ProcessInfo>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, ProcessInfo>, void *>*>>> {
+    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<int, ProcessInfo>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, ProcessInfo>, void *>*>>> {
+        struct __hash_node<std::__1::__hash_value_type<int, ProcessInfo>, void *> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, ProcessInfo>, void *>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, ProcessInfo>, void *>*>> {
+                unsigned long long __first_;
+            } __data_;
+        } __second_;
+    } __ptr_;
+};
+
+struct unordered_map<__NStatSource *, SourceInfo, std::__1::hash<__NStatSource *>, std::__1::equal_to<__NStatSource *>, std::__1::allocator<std::__1::pair<__NStatSource *const, SourceInfo>>> {
+    struct __hash_table<std::__1::__hash_value_type<__NStatSource *, SourceInfo>, std::__1::__unordered_map_hasher<__NStatSource *, std::__1::__hash_value_type<__NStatSource *, SourceInfo>, std::__1::hash<__NStatSource *>, true>, std::__1::__unordered_map_equal<__NStatSource *, std::__1::__hash_value_type<__NStatSource *, SourceInfo>, std::__1::equal_to<__NStatSource *>, true>, std::__1::allocator<std::__1::__hash_value_type<__NStatSource *, SourceInfo>>> {
+        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<__NStatSource *, SourceInfo>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<__NStatSource *, SourceInfo>, void *>*>>> __bucket_list_;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<__NStatSource *, SourceInfo>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<__NStatSource *, SourceInfo>, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<__NStatSource *, SourceInfo>, void *>*> {
+                struct __hash_node<std::__1::__hash_value_type<__NStatSource *, SourceInfo>, void *> *__next_;
+            } __first_;
+        } __p1_;
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<__NStatSource *, std::__1::__hash_value_type<__NStatSource *, SourceInfo>, std::__1::hash<__NStatSource *>, true>> {
+            unsigned long long __first_;
+        } __p2_;
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<__NStatSource *, std::__1::__hash_value_type<__NStatSource *, SourceInfo>, std::__1::equal_to<__NStatSource *>, true>> {
+            float __first_;
+        } __p3_;
+    } __table_;
+};
+
+struct unordered_map<int, ProcessInfo, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, ProcessInfo>>> {
+    struct __hash_table<std::__1::__hash_value_type<int, ProcessInfo>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, ProcessInfo>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, ProcessInfo>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, ProcessInfo>>> {
+        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, ProcessInfo>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, ProcessInfo>, void *>*>>> __bucket_list_;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, ProcessInfo>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, ProcessInfo>, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, ProcessInfo>, void *>*> {
+                struct __hash_node<std::__1::__hash_value_type<int, ProcessInfo>, void *> *__next_;
+            } __first_;
+        } __p1_;
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, ProcessInfo>, std::__1::hash<int>, true>> {
+            unsigned long long __first_;
+        } __p2_;
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, ProcessInfo>, std::__1::equal_to<int>, true>> {
+            float __first_;
+        } __p3_;
+    } __table_;
 };
 
 struct vector<long long, std::__1::allocator<long long>> {

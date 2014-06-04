@@ -6,13 +6,18 @@
 
 #import <DVTFoundation/DTDKDeveloperPortalService.h>
 
+@class NSData;
+
 @interface DTDKCertificateAuthorityService : DTDKDeveloperPortalService
 {
+    NSData *_certificateData;
 }
 
 + (id)serviceForDeveloperID;
 + (id)serviceForWWDR;
 + (id)_serviceForURL:(id)arg1;
+@property(retain) NSData *certificateData; // @synthesize certificateData=_certificateData;
+- (void).cxx_destruct;
 - (void)_internalExecute;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "DVTMessageBubbleAnnotationDelegate-Protocol.h"
 
-@class DBGDebugSession, DVTObservingToken, DVTTextDocumentLocation, IDEWorkspaceWindowController, NSImage;
+@class DBGDebugSession, DVTObservingToken, DVTTextDocumentLocation, IDEWorkspaceWindowController, NSImage, NSString;
 
 @interface DBGInstructionPointerAnnotation : DVTMessageBubbleAnnotation <DVTMessageBubbleAnnotationDelegate>
 {
@@ -21,6 +21,9 @@
     DVTObservingToken *_lastReasonStoppedObserverToken;
 }
 
++ (id)dvt_instructionPointerPathWithSize:(struct CGSize)arg1 tipWidth:(double)arg2;
++ (id)dvt_instructionPointerPathWithSize:(struct CGSize)arg1;
++ (id)_dvt_instructionPointerImageForSize:(struct CGSize)arg1 fillColor:(id)arg2;
 + (id)_createAnnotationTheme;
 @property(retain) DBGDebugSession *debugSession; // @synthesize debugSession=_debugSession;
 - (void).cxx_destruct;
@@ -30,7 +33,6 @@
 - (void)_moveInstructionPointerToAnnotationLocation;
 - (void)didMoveAnnotation:(id)arg1;
 - (unsigned long long)annotation:(id)arg1 willMoveToParagraphNumber:(unsigned long long)arg2;
-- (id)_instructionPointerImageForSize:(struct CGSize)arg1;
 - (id)_iconForRect:(struct CGRect)arg1;
 - (void)drawSidebarMarkerIconInRect:(struct CGRect)arg1 textView:(id)arg2;
 - (struct CGRect)sidebarMarkerRectForFirstLineRect:(struct CGRect)arg1;
@@ -39,6 +41,12 @@
 - (void)setRepresentedObject:(id)arg1;
 - (void)annotationWillUninstall;
 - (id)initWithWorkspaceWindowController:(id)arg1 documentLocation:(id)arg2 stackFrame:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

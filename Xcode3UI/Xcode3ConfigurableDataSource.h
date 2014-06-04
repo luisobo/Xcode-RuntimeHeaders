@@ -8,6 +8,8 @@
 
 #import "DVTOutlineViewDelegate-Protocol.h"
 
+@class NSString;
+
 @interface Xcode3ConfigurableDataSource : IDEConfigurableDataSource <DVTOutlineViewDelegate>
 {
 }
@@ -18,6 +20,12 @@
 - (BOOL)outlineView:(id)arg1 doCommandBySelector:(SEL)arg2;
 - (BOOL)outlineView:(id)arg1 shouldMouseHoverForTableColumn:(id)arg2 row:(long long)arg3;
 - (BOOL)outlineView:(id)arg1 shouldTrackCell:(id)arg2 forTableColumn:(id)arg3 item:(id)arg4;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

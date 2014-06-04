@@ -9,7 +9,7 @@
 #import "DTGraphDelegate-Protocol.h"
 #import "IDEGraphModelChartsModificationDelegate-Protocol.h"
 
-@class DTBarGraph, NSCache, NSMutableDictionary;
+@class DTBarGraph, NSCache, NSMutableDictionary, NSString;
 
 @interface IDEGraph : NSView <DTGraphDelegate, IDEGraphModelChartsModificationDelegate>
 {
@@ -73,6 +73,12 @@
 - (id)attributesForGraph;
 - (Class)graphClass;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

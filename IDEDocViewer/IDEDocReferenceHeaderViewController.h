@@ -8,7 +8,7 @@
 
 #import "NSTextViewDelegate-Protocol.h"
 
-@class DSAToken, DVTBorderedView, NSPopover, NSTextField, NSTextStorage, NSTextView, _IDEDocBookmarkButton;
+@class DSAToken, DVTBorderedView, NSPopover, NSString, NSTextField, NSTextStorage, NSTextView, _IDEDocBookmarkButton;
 
 @interface IDEDocReferenceHeaderViewController : DVTViewController <NSTextViewDelegate>
 {
@@ -60,6 +60,12 @@
 - (BOOL)textView:(id)arg1 clickedOnLink:(id)arg2 atIndex:(unsigned long long)arg3;
 - (void)primitiveInvalidate;
 - (void)loadView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

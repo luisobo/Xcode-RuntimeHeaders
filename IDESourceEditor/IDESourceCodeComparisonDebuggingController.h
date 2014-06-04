@@ -9,6 +9,8 @@
 #import "IDECommandHandler-Protocol.h"
 #import "IDECommandHandlerVendor-Protocol.h"
 
+@class NSString;
+
 @interface IDESourceCodeComparisonDebuggingController : NSObject <IDECommandHandlerVendor, IDECommandHandler>
 {
 }
@@ -16,6 +18,12 @@
 + (id)handlerForAction:(SEL)arg1 withSelectionSource:(id)arg2;
 - (void)switchDiffingAlgorithm:(id)arg1;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

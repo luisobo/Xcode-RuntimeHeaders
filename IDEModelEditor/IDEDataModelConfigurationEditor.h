@@ -9,7 +9,7 @@
 #import "IDECapsuleListViewDataSource-Protocol.h"
 #import "IDEDataModelEditorController-Protocol.h"
 
-@class IDECapsuleListView, IDEDataModelConfigurationTableController, IDEDataModelEditor;
+@class IDECapsuleListView, IDEDataModelConfigurationTableController, IDEDataModelEditor, NSString;
 
 @interface IDEDataModelConfigurationEditor : IDEDMEditorController <IDEDataModelEditorController, IDECapsuleListViewDataSource>
 {
@@ -41,6 +41,12 @@
 - (void)loadView;
 - (void)takeFocus;
 - (id)rootEditor;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

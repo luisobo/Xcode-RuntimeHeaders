@@ -7,6 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @protocol IBOutlineViewControllerDelegate <NSObject>
+- (id)selectionProviderForOutlineViewController:(id)arg1;
 - (void)outlineViewController:(id)arg1 didSelectAutolayoutIssuesItemForObject:(id)arg2;
 
 @optional

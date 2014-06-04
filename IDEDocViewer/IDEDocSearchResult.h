@@ -26,9 +26,9 @@
 - (void).cxx_destruct;
 - (id)childItems;
 - (id)description;
-@property(readonly) NSURL *URL;
-@property(readonly) NSString *displayName;
-@property(readonly) NSArray *children;
+@property(readonly, copy) NSURL *URL;
+@property(readonly, copy) NSString *displayName;
+@property(readonly, copy) NSArray *children;
 
 @end
 

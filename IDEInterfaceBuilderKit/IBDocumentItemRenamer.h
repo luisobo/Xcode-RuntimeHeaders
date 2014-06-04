@@ -24,5 +24,11 @@
 - (BOOL)_saveDictionaryAsStringsFile:(id)arg1 toPath:(id)arg2 error:(id *)arg3;
 - (id)renameableItemsForFile:(id)arg1 currentName:(id)arg2;
 
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
+
 @end
 

@@ -13,8 +13,6 @@
 + (id)ibKeyPathForXcode5ContentView;
 + (id)keyPathsForValuesAffectingIbInspectedMaxMagnification;
 + (id)keyPathsForValuesAffectingIbInspectedMinMagnification;
-+ (id)keyPathsForValuesAffectingIbWidgetType;
-+ (id)keyPathsForValuesAffectingIbQualifyingInfoForDefaultLabel;
 - (void)ibDidAddToDocument:(id)arg1 phase:(unsigned long long)arg2;
 @property(nonatomic) BOOL ibShadowedUsesManualLayerBacking;
 - (id)ibObjectsToReparentWhenAddingOrRemovingXcode5ContentView;
@@ -51,7 +49,7 @@
 - (BOOL)ibOverridablePrefersToVerticallyResizeWithContainer;
 - (BOOL)ibOverridablePrefersToHorizontallyResizeWithContainer;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
-- (void)ibBeginArchivingDocument:(id)arg1 withContext:(id)arg2;
+- (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (void)ibAwakeInDocument:(id)arg1;
 - (Class)ibEditorClass;
 - (void)setIbInspectedMaxMagnification:(double)arg1;

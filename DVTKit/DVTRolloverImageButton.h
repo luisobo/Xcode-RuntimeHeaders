@@ -15,13 +15,13 @@
     NSColor *_backgroundColor;
 }
 
++ (id)closeButtonImage;
 @property(copy) NSColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
+@property(retain, nonatomic) NSImage *alternateRolloverImage; // @synthesize alternateRolloverImage=_alternateRolloverImage;
+@property(retain, nonatomic) NSImage *rolloverImage; // @synthesize rolloverImage=_rolloverImage;
 - (void).cxx_destruct;
+- (void)configureAsCloseButton;
 - (void)drawRect:(struct CGRect)arg1;
-- (id)alternateRolloverImage;
-- (void)setAlternateRolloverImage:(id)arg1;
-- (id)rolloverImage;
-- (void)setRolloverImage:(id)arg1;
 - (void)awakeFromNib;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)_setAttributes;

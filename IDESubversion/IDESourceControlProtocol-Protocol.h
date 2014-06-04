@@ -9,6 +9,5 @@
 @protocol IDESourceControlProtocol <NSObject>
 - (id)operationForRequest:(id)arg1;
 - (BOOL)authenticationRequiredForRequest:(id)arg1;
-- (BOOL)validateRequest:(id)arg1 error:(id *)arg2;
 @end
 

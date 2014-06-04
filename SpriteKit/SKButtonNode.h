@@ -20,9 +20,9 @@
 }
 
 + (id)buttonWithFontNamed:(id)arg1;
-@property(retain) SKAction *upAction; // @synthesize upAction=_upAction;
-@property(retain) SKAction *downAction; // @synthesize downAction=_downAction;
-@property __weak NSObject<SKButtonNodeDelegate> *delegate; // @synthesize delegate=_delegate;
+@property(retain, nonatomic) SKAction *upAction; // @synthesize upAction=_upAction;
+@property(retain, nonatomic) SKAction *downAction; // @synthesize downAction=_downAction;
+@property(nonatomic) __weak NSObject<SKButtonNodeDelegate> *delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)onTouchDownInside:(id)arg1;

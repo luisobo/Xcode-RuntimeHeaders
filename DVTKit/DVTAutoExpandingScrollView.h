@@ -10,11 +10,15 @@
 {
     BOOL _hasHorizontalIntrinsicSize;
     BOOL _hasVerticalIntrinsicSize;
+    struct CGSize _documentSizeOffset;
+    struct CGSize _minimumDocumentSize;
     struct CGSize _lastRecordedDocumentSize;
 }
 
 + (BOOL)requiresConstraintBasedLayout;
 @property(nonatomic) struct CGSize lastRecordedDocumentSize; // @synthesize lastRecordedDocumentSize=_lastRecordedDocumentSize;
+@property(nonatomic) struct CGSize minimumDocumentSize; // @synthesize minimumDocumentSize=_minimumDocumentSize;
+@property(nonatomic) struct CGSize documentSizeOffset; // @synthesize documentSizeOffset=_documentSizeOffset;
 @property(nonatomic) BOOL hasVerticalIntrinsicSize; // @synthesize hasVerticalIntrinsicSize=_hasVerticalIntrinsicSize;
 @property(nonatomic) BOOL hasHorizontalIntrinsicSize; // @synthesize hasHorizontalIntrinsicSize=_hasHorizontalIntrinsicSize;
 - (void)scrollWheel:(id)arg1;

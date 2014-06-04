@@ -8,7 +8,7 @@
 
 #import "DBGNSImageProvider-Protocol.h"
 
-@class DBGDataValue, DBGNSDataForDataValueProvider, DVTObservingToken, NSImage;
+@class DBGDataValue, DBGNSDataForDataValueProvider, DVTObservingToken, NSImage, NSString;
 
 @interface DBGNSImageProviderForvImage_Buffer : NSObject <DBGNSImageProvider>
 {
@@ -34,6 +34,12 @@
 - (void)cancel;
 - (id)blockStartAddress;
 - (id)initWithDataValue:(id)arg1 options:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -16,13 +16,13 @@
 
 @property(readonly) DVTExtension *category; // @synthesize category=_category;
 - (void).cxx_destruct;
-- (void)validateInspectorExtensions:(id)arg1;
+- (void)validateUtilitySlices:(id)arg1;
 - (void)validateUsageOfSupportsDocumentInspection:(id)arg1;
 @property(readonly) BOOL supportsDocumentUndo;
 - (id)placeholderStringForInputNavigableItems:(id)arg1 derivedItems:(id)arg2;
 - (BOOL)inspectsEditorContent;
 - (id)navigableItemsForInputNavigableItems:(id)arg1;
-- (id)inspectorsForInspectedNavigables:(id)arg1 withWorkspaceDocument:(id)arg2;
+- (id)utilitySlicesForInspectedNavigables:(id)arg1 withWorkspaceDocument:(id)arg2;
 - (id)presentationOrderForInspectors:(id)arg1;
 - (id)representedObjectMatchedInspectors:(id)arg1 navigables:(id)arg2;
 - (id)extensionMatchedInspectorsForInspectedNavigables:(id)arg1 withWorkspaceDocument:(id)arg2;

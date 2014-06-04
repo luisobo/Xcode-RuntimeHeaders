@@ -14,8 +14,11 @@
 + (void)report:(char *)arg1 success:(BOOL)arg2 reason:(id)arg3;
 + (void)report:(char *)arg1 timeResult:(double)arg2 deresolver:(id)arg3;
 + (void)report:(char *)arg1 number:(long long)arg2 deresolver:(id)arg3;
++ (void)reportSummarized:(char *)arg1 collecting:(id)arg2;
++ (void)reportSummarized:(char *)arg1 ID:(id)arg2 rawLog:(id)arg3;
 + (void)reportSummarized:(char *)arg1 ID:(id)arg2;
 + (void)report:(char *)arg1 ID:(id)arg2;
++ (void)reportSummarized:(char *)arg1;
 + (void)reportHit:(char *)arg1;
 + (void)reportForDomain:(char *)arg1 summarize:(BOOL)arg2 collecting:(id)arg3;
 + (double)delay:(double)arg1;

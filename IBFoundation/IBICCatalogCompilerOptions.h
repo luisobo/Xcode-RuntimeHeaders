@@ -9,13 +9,14 @@
 #import "IBBinaryArchiving-Protocol.h"
 #import "NSCopying-Protocol.h"
 
-@class NSSet, NSString;
+@class NSMutableDictionary, NSSet, NSString;
 
 @interface IBICCatalogCompilerOptions : NSObject <IBBinaryArchiving, NSCopying>
 {
     BOOL _emitPNGs;
     BOOL _compressPNGs;
     BOOL _supportsResizableImages;
+    BOOL _supportsTemplateRenderingIntent;
     NSString *_outputDirectory;
     NSString *_commonAssetRepositoryFileName;
     NSString *_appIconName;
@@ -24,8 +25,17 @@
     NSString *_targetPlatform;
     NSSet *_targetDevices;
     NSString *_issueTextForResizableImage;
+    NSString *_issueTextForTemplateRenderingIntent;
+    NSMutableDictionary *_masksByName;
+    NSMutableDictionary *_successIssuesByName;
+    NSMutableDictionary *_failureIssuesByName;
 }
 
+@property(retain, nonatomic) NSMutableDictionary *failureIssuesByName; // @synthesize failureIssuesByName=_failureIssuesByName;
+@property(retain, nonatomic) NSMutableDictionary *successIssuesByName; // @synthesize successIssuesByName=_successIssuesByName;
+@property(retain, nonatomic) NSMutableDictionary *masksByName; // @synthesize masksByName=_masksByName;
+@property(copy) NSString *issueTextForTemplateRenderingIntent; // @synthesize issueTextForTemplateRenderingIntent=_issueTextForTemplateRenderingIntent;
+@property BOOL supportsTemplateRenderingIntent; // @synthesize supportsTemplateRenderingIntent=_supportsTemplateRenderingIntent;
 @property(copy) NSString *issueTextForResizableImage; // @synthesize issueTextForResizableImage=_issueTextForResizableImage;
 @property BOOL supportsResizableImages; // @synthesize supportsResizableImages=_supportsResizableImages;
 @property(copy) NSSet *targetDevices; // @synthesize targetDevices=_targetDevices;
@@ -38,12 +48,25 @@
 @property BOOL compressPNGs; // @synthesize compressPNGs=_compressPNGs;
 @property BOOL emitPNGs; // @synthesize emitPNGs=_emitPNGs;
 - (void).cxx_destruct;
+- (id)successIssueTextForName:(id)arg1;
+- (void)setSuccessIssueText:(id)arg1 forName:(id)arg2;
+- (id)failureIssueTextForName:(id)arg1;
+- (void)setFailureIssueText:(id)arg1 forName:(id)arg2;
+- (id)maskForName:(id)arg1;
+- (void)setMask:(id)arg1 forName:(id)arg2;
 @property(readonly) NSSet *targetIdioms;
 - (BOOL)isTargetingDeploymentTargetsPriorTo:(id)arg1;
-- (id)description;
+- (BOOL)isEqual:(id)arg1;
+@property(readonly, copy) NSString *description;
 - (void)encodeWithBinaryArchiver:(id)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

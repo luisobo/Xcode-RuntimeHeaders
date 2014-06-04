@@ -7,9 +7,7 @@
 #import "IBSystemLayoutConstraintAbstraction.h"
 
 @interface IBSystemLayoutConstraintAbstraction (IBSystemLayoutConstraintAbstraction)
-+ (id)keyPathsForValuesAffectingIbDefaultImage;
-+ (id)keyPathsForValuesAffectingIbDefaultLabel;
-- (id)ibDefaultImage;
++ (id)ibDefaultImageForInstance:(id)arg1;
 - (id)ibDefaultLabel;
 @end
 

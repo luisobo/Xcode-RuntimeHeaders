@@ -9,24 +9,27 @@
 #import "DVTInvalidation-Protocol.h"
 #import "IBDocumentMemberMutationDelegate-Protocol.h"
 #import "IDEInspectorMatching-Protocol.h"
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@class DVTStackBacktrace, IBDocument, IBDocumentMemberLocation, IBMemberID, NSArray, NSImage, NSMutableSet, NSString;
+@class DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, IBDocument, IBDocumentMemberLocation, IBMemberID, IDEFileReference, NSArray, NSImage, NSMutableSet, NSString;
 
-@interface IBDocumentMemberWrapper : NSObject <IBDocumentMemberMutationDelegate, IDEInspectorMatching, DVTInvalidation>
+@interface IBDocumentMemberWrapper : NSObject <IBDocumentMemberMutationDelegate, IDEInspectorMatching, DVTInvalidation, IDEKeyDrivenNavigableItemRepresentedObject>
 {
-    NSMutableSet *registeredDidChangeBlocks;
-    IBMemberID *cachedMemberIDValue;
-    id member;
-    IBDocument *document;
+    NSMutableSet *_registeredDidChangeBlocks;
+    IBMemberID *_cachedMemberIDValue;
+    NSObject *_member;
+    IBDocument *_document;
 }
 
 + (void)initialize;
-@property(retain) IBDocument *document; // @synthesize document;
-@property(readonly) id member; // @synthesize member;
+@property(retain) IBDocument *document; // @synthesize document=_document;
+@property(readonly) NSObject *member; // @synthesize member=_member;
 - (void).cxx_destruct;
 - (id)acceptDrop:(id)arg1 childIndex:(long long)arg2;
 - (unsigned long long)dragOperationForDropInfo:(id)arg1 proposedIndex:(long long)arg2 acceptingIndex:(long long *)arg3 isAlternativeItem:(BOOL)arg4;
-- (void)document:(id)arg1 relationshipKeyPath:(id)arg2 didChangeForMember:(id)arg3;
+- (void)document:(id)arg1 mayHaveTurnedMemberOnOrOff:(id)arg2;
+- (void)document:(id)arg1 didChangeRelationshipKeyPath:(id)arg2 forMember:(id)arg3;
+- (void)document:(id)arg1 didChangeKeyPath:(id)arg2 forMember:(id)arg3;
 - (void)document:(id)arg1 didRemoveChildObject:(id)arg2 fromMember:(id)arg3;
 - (void)document:(id)arg1 didAddChildObject:(id)arg2 toMember:(id)arg3;
 - (void)document:(id)arg1 willRemoveChildObject:(id)arg2 fromMember:(id)arg3;
@@ -37,22 +40,35 @@
 - (void)unregisterDidChangeBlock:(id)arg1;
 - (id)applicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
 - (BOOL)wrapsNormalDocumentObject;
+@property(readonly, getter=isInstalled) BOOL installed;
 @property(readonly) NSImage *image;
 @property(readonly) NSString *name;
-@property(readonly, nonatomic) NSArray *childWrappers;
+@property(readonly, copy, nonatomic) NSArray *childWrappers;
 @property(readonly) IBDocumentMemberLocation *navigableDocumentLocation;
 @property(readonly) NSString *navigableGroupIdentifier;
 - (id)descriptionWithChildren;
-- (id)description;
+@property(readonly, copy) NSString *description;
 @property(readonly) IBDocumentMemberLocation *documentLocation;
 @property(readonly) id identifier;
 @property(readonly) IBMemberID *memberID;
+@property(readonly) NSString *navigableItem_name;
 - (void)primitiveInvalidate;
 - (id)initWithMember:(id)arg1 document:(id)arg2;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

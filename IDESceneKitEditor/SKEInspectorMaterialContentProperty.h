@@ -6,12 +6,13 @@
 
 #import "IDEInspectorProperty.h"
 
-@class IDEInspectorKeyPath, SKEContentsPicker;
+@class IDEInspectorKeyPath, SKEContentsPickerPopUpButton;
 
 @interface SKEInspectorMaterialContentProperty : IDEInspectorProperty
 {
-    SKEContentsPicker *picker;
+    SKEContentsPickerPopUpButton *_picker;
     IDEInspectorKeyPath *_valueKeyPath;
+    IDEInspectorKeyPath *_delegateKeyPath;
 }
 
 - (void).cxx_destruct;

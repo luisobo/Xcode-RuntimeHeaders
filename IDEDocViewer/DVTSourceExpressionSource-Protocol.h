@@ -7,7 +7,7 @@
 #import "DVTInvalidation-Protocol.h"
 #import "NSObject-Protocol.h"
 
-@class DVTSourceExpression, NSString;
+@class DVTSDK, DVTSourceExpression, DVTSourceLanguageService, NSString;
 
 @protocol DVTSourceExpressionSource <NSObject, DVTInvalidation>
 @property(readonly, nonatomic) DVTSourceExpression *mouseOverExpression;
@@ -17,6 +17,8 @@
 - (struct CGRect)expressionFrameForExpression:(id)arg1;
 
 @optional
+@property(readonly) DVTSDK *sdk;
+@property(readonly, nonatomic) DVTSourceLanguageService *languageService;
 @property(readonly, nonatomic) NSString *selectedText;
 @property(readonly) DVTSourceExpression *quickHelpExpression;
 @end

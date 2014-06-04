@@ -18,10 +18,10 @@
 }
 
 @property BOOL enablesARC; // @synthesize enablesARC=_enablesARC;
-@property(readonly) NSImage *iconImage; // @synthesize iconImage=_iconImage;
-@property(readonly) NSString *warningMessage; // @synthesize warningMessage=_warningMessage;
+@property(readonly, copy) NSImage *iconImage; // @synthesize iconImage=_iconImage;
+@property(readonly, copy) NSString *warningMessage; // @synthesize warningMessage=_warningMessage;
 @property(readonly) IDEARCConversionTarget *target; // @synthesize target=_target;
-@property(readonly) IDEFileReference *fileReference; // @synthesize fileReference=_fileReference;
+@property(readonly, copy) IDEFileReference *fileReference; // @synthesize fileReference=_fileReference;
 - (void).cxx_destruct;
 - (id)_treeControllerWarningMessage;
 - (id)_treeControllerChildren;
@@ -29,7 +29,7 @@
 - (void)disableOverridingBuildSettings;
 - (void)enableOverridingBuildSettings;
 - (void)_setEnablesARC:(BOOL)arg1 overridingOnly:(BOOL)arg2;
-@property(readonly) NSString *displayName;
+@property(readonly, copy) NSString *displayName;
 - (id)initWithFileReference:(id)arg1 target:(id)arg2;
 
 @end

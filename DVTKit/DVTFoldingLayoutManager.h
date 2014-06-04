@@ -8,7 +8,7 @@
 
 #import "DVTFoldingManagerDelegate-Protocol.h"
 
-@class DVTFoldingManager, DVTTextFoldInlineTokenAttachmentCell, NSCell;
+@class DVTFoldingManager, DVTTextFoldInlineTokenAttachmentCell, DVTTextStorage, NSCell, NSString;
 
 @interface DVTFoldingLayoutManager : NSLayoutManager <DVTFoldingManagerDelegate>
 {
@@ -37,9 +37,14 @@
 - (struct _NSRange)paragraphRangeForLineRange:(struct _NSRange)arg1;
 - (struct CGSize)layoutSizeForFoldAtCharacterIndex:(unsigned long long)arg1;
 - (BOOL)foldsAreValid:(id)arg1;
-- (void)setTextStorage:(id)arg1;
+@property DVTTextStorage *textStorage;
 - (void)enableTextFolding:(BOOL)arg1;
-- (id)textStorage;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

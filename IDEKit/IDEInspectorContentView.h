@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, IDEInspectorLayoutGroup;
+@class DVTStackBacktrace, IDEInspectorLayoutGroup, NSString;
 
 @interface IDEInspectorContentView : DVTLayoutView_ML <DVTInvalidation>
 {
@@ -25,6 +25,8 @@
 - (void)drawRect:(struct CGRect)arg1;
 - (void)drawSectionBordersInRect:(struct CGRect)arg1;
 - (void)drawSectionBackgroundsInRect:(struct CGRect)arg1;
+- (void)enumerateProperties:(id)arg1;
+- (void)enumeratePropertiesInLayoutGroup:(id)arg1 outStop:(char *)arg2 withBlock:(id)arg3;
 - (void)visualElementDidTriggerRefresh:(id)arg1;
 - (void)didUninstallLayoutGroup:(id)arg1;
 - (void)didInstallLayoutGroup:(id)arg1;
@@ -36,7 +38,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

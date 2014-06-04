@@ -9,7 +9,7 @@
 #import "NSOutlineViewDataSource-Protocol.h"
 #import "NSOutlineViewDelegate-Protocol.h"
 
-@class NSArray, NSMapTable, NSMutableArray, NSOutlineView, NSTableColumn;
+@class NSArray, NSMapTable, NSMutableArray, NSOutlineView, NSString, NSTableColumn;
 
 @interface XCEConfigurableDataSource : NSObject <NSOutlineViewDataSource, NSOutlineViewDelegate>
 {
@@ -140,6 +140,12 @@
 - (void)dealloc;
 - (void)clear;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

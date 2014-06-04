@@ -15,6 +15,7 @@
 
 @property(retain, nonatomic) NSTextField *secondarySubtitleTextField; // @synthesize secondarySubtitleTextField=_secondarySubtitleTextField;
 - (void).cxx_destruct;
+- (void)populateSecondaryTextFields:(id)arg1;
 
 @end
 

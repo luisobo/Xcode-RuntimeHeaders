@@ -17,9 +17,9 @@
 
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;
-@property(readonly) GPUMainEditor *mainEditor; // @synthesize mainEditor=_mainEditor;
-@property(readonly) GPUTraceDocument *editorDocument; // @synthesize editorDocument=_editorDocument;
-@property(readonly) GPUSharedTabUIState *sharedUIStateObj; // @synthesize sharedUIStateObj=_sharedUIStateObj;
+@property(readonly) __weak GPUMainEditor *mainEditor; // @synthesize mainEditor=_mainEditor;
+@property(readonly) __weak GPUTraceDocument *editorDocument; // @synthesize editorDocument=_editorDocument;
+@property(readonly) __weak GPUSharedTabUIState *sharedUIStateObj; // @synthesize sharedUIStateObj=_sharedUIStateObj;
 - (void).cxx_destruct;
 - (void)setRepresentedObject:(id)arg1;
 - (void)onReplayCapture:(id)arg1;

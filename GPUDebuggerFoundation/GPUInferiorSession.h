@@ -85,8 +85,8 @@
 - (void)_handleAppDidLaunch;
 - (void)ensureNextCaptureArchive;
 - (void)createNextCaptureArchive;
-- (void)_handleContextsInfoUpdate:(id)arg1;
-- (void)_recursivePollForContext;
+- (void)_handleGraphicsAPIUsageUpdate:(BOOL)arg1;
+- (void)_recursivePollForGraphicsAPIUsage;
 - (id)prepareForLaunch:(id)arg1 error:(id *)arg2;
 @property(readonly) id <IDEDebugProcess> process;
 - (void)primitiveInvalidate;
@@ -96,7 +96,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

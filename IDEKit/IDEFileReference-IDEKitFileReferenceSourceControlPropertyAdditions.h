@@ -6,7 +6,7 @@
 
 #import "IDEFileReference.h"
 
-@class NSImage, NSString;
+@class NSString;
 
 @interface IDEFileReference (IDEKitFileReferenceSourceControlPropertyAdditions)
 + (id)keyPathsForValuesAffectingSourceControlInspectorRepositoryURLString;
@@ -19,7 +19,6 @@
 + (id)keyPathsForValuesAffectingNavigableItem_sourceControlLocalStatus;
 + (id)keyPathsForValuesAffectingNavigableItem_sourceControlCurrentBranch;
 + (id)keyPathsForValuesAffectingNavigableItem_sourceControlExtensionString;
-+ (id)keyPathsForValuesAffectingNavigableItem_repositoryReachableImage;
 + (id)keyPathsForValuesAffectingNavigableItem_sourceControlRepository;
 @property(readonly) unsigned long long navigableItem_conflictStateForUpdateOrMerge;
 - (id)sourceControlInspectorRepositoryURLString;
@@ -32,7 +31,6 @@
 @property(readonly) NSString *navigableItem_sourceControlLocalStatus;
 @property(readonly) NSString *navigableItem_sourceControlCurrentBranch;
 @property(readonly) NSString *navigableItem_sourceControlExtensionString;
-@property(readonly) NSImage *navigableItem_repositoryReachableImage;
 @property(readonly) NSString *navigableItem_sourceControlRepository;
 @end
 

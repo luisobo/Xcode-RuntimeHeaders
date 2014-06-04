@@ -8,7 +8,7 @@
 
 #import "DVTFontTextFieldDataSource-Protocol.h"
 
-@class NSArray, NSNumberFormatter;
+@class NSArray, NSNumberFormatter, NSString;
 
 @interface DVTFontDataSource : NSObject <DVTFontTextFieldDataSource>
 {
@@ -39,6 +39,12 @@
 - (id)fontFamiliesForFontTextField:(id)arg1;
 - (id)fontValuesForFontTextField:(id)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

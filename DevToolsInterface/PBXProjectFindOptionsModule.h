@@ -9,7 +9,7 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class NSButton, NSMatrix, NSPopUpButton, NSTableColumn, PBXExtendedTableView, PBXFindOptionsSet;
+@class NSButton, NSMatrix, NSPopUpButton, NSString, NSTableColumn, PBXExtendedTableView, PBXFindOptionsSet;
 
 @interface PBXProjectFindOptionsModule : PBXModule <NSTableViewDataSource, NSTableViewDelegate>
 {
@@ -69,6 +69,12 @@
 - (id)moduleWindowFrameAutosaveName;
 - (unsigned long long)moduleWindowStyleMask;
 - (Class)moduleWindowClass;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

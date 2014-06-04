@@ -87,8 +87,8 @@
 - (void)webViewZoomIn:(id)arg1;
 - (void)webViewGoForward:(id)arg1;
 - (void)webViewGoBack:(id)arg1;
-@property(readonly) NSString *webViewBackForwardListForwardItemURLString;
-@property(readonly) NSString *webViewBackForwardListBackItemURLString;
+@property(readonly, copy) NSString *webViewBackForwardListForwardItemURLString;
+@property(readonly, copy) NSString *webViewBackForwardListBackItemURLString;
 - (void)toggleTOCVisibility;
 - (void)toggleNavigatorVisibility;
 - (void)showNavigator;
@@ -117,7 +117,11 @@
 - (void)loadView;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSScrollView *scopeBarsAdjustableScrollView;
+@property(readonly) Class superclass;
 
 @end
 

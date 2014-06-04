@@ -9,7 +9,7 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTGradientImageButton, DVTTableView, IDENavigatorDataCell, NSArrayController, NSMutableDictionary, NSViewController;
+@class DVTBorderedView, DVTGradientImageButton, DVTTableView, IDENavigatorDataCell, NSArrayController, NSMutableDictionary, NSString, NSViewController;
 
 @interface Xcode3IconListInspectorCoordinator : NSObject <NSTableViewDelegate, NSTableViewDataSource>
 {
@@ -33,6 +33,12 @@
 - (void)rowCountChanged;
 - (void)awakeFromNib;
 - (void)_syncViewSizes;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

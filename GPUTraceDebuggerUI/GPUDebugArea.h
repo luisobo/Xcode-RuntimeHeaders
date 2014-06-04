@@ -7,32 +7,35 @@
 #import "IDESplitViewDebugArea.h"
 
 #import "DVTReplacementViewDelegate-Protocol.h"
-#import "IDEDebuggingAdditionUIControllerLifeCycleObserver-Protocol.h"
 
-@class GPUVariablesViewContentProvider, NSSegmentedControl;
+@class GPUVariablesViewContentProvider, NSSegmentedControl, NSString;
 
 // Not exported
-@interface GPUDebugArea : IDESplitViewDebugArea <IDEDebuggingAdditionUIControllerLifeCycleObserver, DVTReplacementViewDelegate>
+@interface GPUDebugArea : IDESplitViewDebugArea <DVTReplacementViewDelegate>
 {
     NSSegmentedControl *_comparisonSelector;
     GPUVariablesViewContentProvider *_leftContentProvider;
     GPUVariablesViewContentProvider *_rightContentProvider;
-    BOOL _alreadyAddedDebuggingAdditionUIControllerLifeCycleObserver;
+    BOOL _haveRequestedUIController;
+    id <DVTCancellable> _uiControllerObserver;
 }
 
 - (void).cxx_destruct;
 - (void)_comparisonSelectorClicked:(id)arg1;
 - (void)_createComparisonSelector;
-- (void)debuggingAddtionUIControllerInvalidated:(id)arg1;
-- (void)debuggingAddtionUIControllerUpdated:(id)arg1;
-- (Class)classOfDebuggingAddtionUIControllerInterestedIn;
 - (id)toolTipForShowRightViewButton;
 - (id)toolTipForShowLeftViewButton;
 - (id)stateSavingIdentifier;
 - (void)primitiveInvalidate;
-- (void)viewWillUninstall;
+- (void)_handleDebuggingAdditionUIControllerCreated:(id)arg1;
 - (void)viewDidInstall;
 - (void)loadView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

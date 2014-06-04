@@ -25,7 +25,11 @@
 @property(retain) IDESchemeBuildableReference *buildableReferenceToUseForMacroExpansion; // @synthesize buildableReferenceToUseForMacroExpansion=_buildableReferenceToUseForMacroExpansion;
 @property(readonly) IDEScheme *runContext; // @synthesize runContext=_runContext;
 - (void).cxx_destruct;
-- (id)updateSearchPathSettingsInEnvironment:(id)arg1 withBuildProducts:(id)arg2 runDestination:(id)arg3;
+- (void)addOptimizationProfileFromFilePath:(id)arg1 toContainer:(id)arg2;
+- (void)mergeOptimizationProfilesFromDirectoryAtPath:(id)arg1 toFileAtPath:(id)arg2 forBuildableProduct:(id)arg3 buildParameters:(id)arg4;
+- (id)relevantBuildablesForOptimizationProfileGenerationForSchemeCommand:(id)arg1;
+- (BOOL)addOptimizationProfileFilePathToEnvironmentVariables:(id)arg1 forBuildableProduct:(id)arg2 buildParameters:(id)arg3 schemeActionRecord:(id)arg4 outError:(id *)arg5;
+- (void)updateSearchPathSettingsInEnvironment:(id)arg1 withBuildProducts:(id)arg2 runDestination:(id)arg3;
 - (void)addPostActions:(id)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)addPreActions:(id)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)dvt_encodeRelationshipsWithXMLArchiver:(id)arg1 version:(id)arg2;
@@ -33,6 +37,7 @@
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
 @property(readonly) NSArray *_postPhaseExecutionActionsProxies;
 @property(readonly) NSArray *_prePhaseExecutionActionsProxies;
+- (void)schemeObjectGraphSetupComplete;
 @property(readonly) BOOL hasAwoken;
 - (void)replacePostPhaseExecutionActionsAtIndexes:(id)arg1 withPostPhaseExecutionActions:(id)arg2;
 - (void)replaceObjectInPostPhaseExecutionActionsAtIndex:(unsigned long long)arg1 withObject:(id)arg2;
@@ -49,6 +54,7 @@
 - (void)insertObject:(id)arg1 inPrePhaseExecutionActionsAtIndex:(unsigned long long)arg2;
 @property(copy) NSArray *prePhaseExecutionActions; // @dynamic prePhaseExecutionActions;
 - (void)primitiveInvalidate;
+- (id)bundleIdentifierWithRunnablePath:(id)arg1;
 - (id)expandMacrosInString:(id)arg1 forSchemeCommand:(id)arg2;
 - (id)setUpActionDependenciesForCorePhaseOperation:(id)arg1 shouldRunPostActionsBlock:(id)arg2 prePhaseEnvironmentPopulationBlock:(void)arg3 postPhaseEnvironmentPopulationBlock:(id)arg4 buildParameters:(void)arg5 schemeActionResultOperation:(id)arg6 error:(void)arg7;
 - (void)setRunContext:(id)arg1;
@@ -60,9 +66,13 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) NSMutableArray *mutablePostPhaseExecutionActions; // @dynamic mutablePostPhaseExecutionActions;
 @property(readonly) NSMutableArray *mutablePrePhaseExecutionActions; // @dynamic mutablePrePhaseExecutionActions;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -6,13 +6,13 @@
 
 #import "NSCollectionView.h"
 
+@class NSColor;
+
 @interface NSCollectionView (IBNSCollectionViewIntegration)
 + (id)keyPathsForValuesAffectingIbShadowedHasSecondaryBackgroundColor;
 - (BOOL)ibShouldUseConstraintsInsteadOfAutoresizingWhenChildOfClipView;
-- (void)setIbArchivedSecondaryBackgroundColor:(id)arg1;
-- (id)ibArchivedSecondaryBackgroundColor;
-- (void)setIbArchivedPrimaryBackgroundColor:(id)arg1;
-- (id)ibArchivedPrimaryBackgroundColor;
+@property(copy) NSColor *ibArchivedSecondaryBackgroundColor;
+@property(copy) NSColor *ibArchivedPrimaryBackgroundColor;
 - (void)setIbShadowedHasSecondaryBackgroundColor:(BOOL)arg1;
 - (BOOL)ibShadowedHasSecondaryBackgroundColor;
 - (void)setIbShadowedSecondaryBackgroundColor:(id)arg1;

@@ -6,12 +6,27 @@
 
 #import "GPUTraceResources.h"
 
-@interface GPUTraceResources (GPUTraceOutlineItemNavigableItemPropertySupport)
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
+
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString;
+
+@interface GPUTraceResources (GPUTraceOutlineItemNavigableItemPropertySupport) <IDEKeyDrivenNavigableItemRepresentedObject>
 - (id)gputraceResources_children;
-- (id)navigableItem_contentDocumentLocation;
-- (id)navigableItem_name;
-- (id)navigableItem_image;
-- (id)navigableItem_documentType;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) NSString *navigableItem_name;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
 - (id)ideModelObjectTypeIdentifier;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 @end
 

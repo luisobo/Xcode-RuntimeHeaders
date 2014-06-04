@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, IBDocument, IBMutableIdentityDictionary, IDEContainer, IDEMediaResourceVariantContext, IDEMutableMediaRepository, NSDictionary, NSMutableDictionary;
+@class DVTStackBacktrace, IBDocument, IBMutableIdentityDictionary, IDEContainer, IDEMediaResourceVariantContext, IDEMutableMediaRepository, NSDictionary, NSMutableDictionary, NSString;
 
 @interface IBResourceManager : NSObject <DVTInvalidation>
 {
@@ -30,7 +30,7 @@
 + (void)initialize;
 @property(copy, nonatomic) NSDictionary *variantForMatching; // @synthesize variantForMatching=_variantForMatching;
 @property(retain, nonatomic) IDEContainer *resourceProvidingContainer; // @synthesize resourceProvidingContainer=_resourceProvidingContainer;
-@property(readonly) IBDocument *document; // @synthesize document=_document;
+@property(readonly) __weak IBDocument *document; // @synthesize document=_document;
 - (void).cxx_destruct;
 - (id)variantContextExportedToLibrary;
 - (BOOL)mediaLibraryController:(id)arg1 variantSetIsSystemProvided:(id)arg2;
@@ -64,7 +64,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -16,6 +16,7 @@
 }
 
 + (id)scannedTextureNames;
++ (id)parseAssetCatalogAtPath:(id)arg1;
 + (id)supportedFileTypes;
 - (void).cxx_destruct;
 - (void)userDidChangeValue:(id)arg1;

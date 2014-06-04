@@ -10,7 +10,7 @@
 #import "NSSharingServiceDelegate-Protocol.h"
 #import "NSSharingServicePickerDelegate-Protocol.h"
 
-@class DVTBorderedView, IDESourceControlReviewFilesDataSource, NSButton, NSSplitView, NSString, NSTextField;
+@class DVTBorderedView, DVTObservingToken, IDESourceControlReviewFilesDataSource, NSButton, NSObject<OS_dispatch_semaphore>, NSSplitView, NSString, NSTextField;
 
 @interface IDESourceControlInteractivePatchWindowController : IDESourceControlReviewFilesWindowController <IDENavigableItemCoordinatorDelegate, NSSharingServicePickerDelegate, NSSharingServiceDelegate>
 {
@@ -23,7 +23,8 @@
     IDESourceControlReviewFilesDataSource *_workspaceDataSource;
     IDESourceControlReviewFilesDataSource *_fileSystemDataSource;
     IDESourceControlReviewFilesDataSource *_flatDataSource;
-    struct dispatch_semaphore_s *_multipleFileSaveWaiter;
+    NSObject<OS_dispatch_semaphore> *_multipleFileSaveWaiter;
+    DVTObservingToken *_checkedFilePathsObservationToken;
 }
 
 + (id)sourceControlInteractivePatchWindowLogAspect;
@@ -68,6 +69,12 @@
 - (void)windowDidLoad;
 - (id)windowNibName;
 - (id)initWithWindow:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

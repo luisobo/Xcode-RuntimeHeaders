@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, IDEWorkspace;
+@class DVTStackBacktrace, IDEWorkspace, NSString;
 
 @interface IDERefactoring : NSObject <DVTInvalidation>
 {
@@ -25,13 +25,16 @@
 - (void).cxx_destruct;
 - (id)objCOrCCompilationUnitIndexablesForMainFile:(id)arg1 indexableObjects:(id)arg2;
 - (BOOL)isFileObjCCompilationUnitOrHeader:(id)arg1 error:(id *)arg2;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)primitiveInvalidate;
 - (id)initWithWorkspace:(id)arg1;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

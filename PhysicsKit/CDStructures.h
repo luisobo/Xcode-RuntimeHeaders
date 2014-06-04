@@ -28,55 +28,98 @@ struct CGVector {
     double dy;
 };
 
+struct PKCAether {
+    struct vector<PKCField *, std::__1::allocator<PKCField *>> _field1;
+};
+
+struct PKCField;
+
+struct PKCGrid {
+    int _field1;
+    int _field2;
+    int _field3;
+    struct Range _field4;
+    struct vector<unsigned char, std::__1::allocator<unsigned char>> _field5;
+    struct vector<float __attribute__((ext_vector_type(4))), std::__1::allocator<float __attribute__((ext_vector_type(4)))>> _field6;
+    struct vector<int, std::__1::allocator<int>> _field7;
+    struct vector<signed char, std::__1::allocator<signed char>> _field8;
+};
+
+struct PKCMechanics {
+    struct b2World *_field1;
+    struct vector<QuadTree *, std::__1::allocator<QuadTree *>> _field2;
+};
+
+struct PKCPathHolder;
+
 struct PKContactListener {
     void **_vptr$b2ContactListener;
     NSMutableDictionary *_contacts;
     id _contactDelegate;
 };
 
-struct b2Block;
-
-struct b2BlockAllocator {
-    struct b2Chunk *_field1;
-    int _field2;
-    int _field3;
-    struct b2Block *_field4[14];
+struct PKDebugDrawPacket {
+    struct vector<PKPoint, std::__1::allocator<PKPoint>> _linePoints;
+    struct vector<PKDebugDrawPacket::color4, std::__1::allocator<PKDebugDrawPacket::color4>> _colors;
 };
+
+struct PKPath;
+
+struct PKPhysicsShape {
+    struct b2FixtureDef _field1;
+    struct b2Fixture *_field2;
+};
+
+struct QuadTree;
+
+struct Range {
+    float _field1;
+    float _field2;
+    float _field3;
+    float _field4;
+    float _field5;
+    float _field6;
+};
+
+struct __shared_weak_count;
 
 struct b2Body {
     _Bool _field1;
     unsigned int _field2;
     unsigned int _field3;
     unsigned int _field4;
-    int _field5;
-    unsigned short _field6;
-    int _field7;
-    struct b2Transform _field8;
-    struct b2Sweep _field9;
-    struct b2Vec2 _field10;
-    float _field11;
+    unsigned int _field5;
+    int _field6;
+    unsigned short _field7;
+    int _field8;
+    struct b2Transform _field9;
+    struct b2Transform _field10;
+    struct b2Sweep _field11;
     struct b2Vec2 _field12;
     float _field13;
-    struct b2World *_field14;
-    struct b2Body *_field15;
-    struct b2Body *_field16;
-    struct b2Fixture *_field17;
-    int _field18;
-    struct b2JointEdge *_field19;
-    struct b2ContactEdge *_field20;
-    float _field21;
-    float _field22;
+    struct b2Vec2 _field14;
+    float _field15;
+    struct b2World *_field16;
+    struct b2Body *_field17;
+    struct b2Body *_field18;
+    struct b2Fixture *_field19;
+    int _field20;
+    struct b2JointEdge *_field21;
+    struct b2ContactEdge *_field22;
     float _field23;
     float _field24;
     float _field25;
     float _field26;
     float _field27;
     float _field28;
-    void *_field29;
+    float _field29;
+    float _field30;
+    void *_field31;
 };
 
 struct b2BodyDef {
     _Bool _sk_affectedByGravity;
+    unsigned int _sk_fieldCategoryBitMask;
     unsigned int _sk_categoryBitMask;
     unsigned int _sk_collisionBitMask;
     unsigned int _sk_intersectionCallbackBitMask;
@@ -85,6 +128,7 @@ struct b2BodyDef {
     float angle;
     struct b2Vec2 linearVelocity;
     float angularVelocity;
+    float charge;
     float linearDamping;
     float angularDamping;
     _Bool allowSleep;
@@ -93,7 +137,6 @@ struct b2BodyDef {
     _Bool bullet;
     _Bool active;
     void *userData;
-    float gravityScale;
 };
 
 struct b2BroadPhase {
@@ -107,8 +150,6 @@ struct b2BroadPhase {
     int _field8;
     int _field9;
 };
-
-struct b2Chunk;
 
 struct b2Contact;
 
@@ -124,7 +165,6 @@ struct b2ContactManager {
     int _field3;
     struct b2ContactFilter *_field4;
     struct b2ContactListener *_field5;
-    struct b2BlockAllocator *_field6;
 };
 
 struct b2DestructionListener;
@@ -189,36 +229,23 @@ struct b2DynamicTree {
 };
 
 struct b2Filter {
-    unsigned int categoryBits;
-    unsigned int maskBits;
-    unsigned int groupIndex;
+    unsigned int _field1;
+    unsigned int _field2;
+    unsigned int _field3;
 };
 
-struct b2Fixture {
-    float _field1;
-    struct b2Fixture *_field2;
-    struct b2Body *_field3;
-    struct b2Shape *_field4;
-    float _field5;
-    float _field6;
-    struct b2FixtureProxy *_field7;
-    int _field8;
-    struct b2Filter _field9;
-    _Bool _field10;
-    void *_field11;
-};
+struct b2Fixture;
 
 struct b2FixtureDef {
-    struct b2Shape *shape;
-    void *userData;
-    float friction;
-    float restitution;
-    float density;
-    _Bool isSensor;
-    struct b2Filter filter;
+    struct b2Shape *_field1;
+    void *_field2;
+    float _field3;
+    float _field4;
+    float _field5;
+    float _field6;
+    float _field7;
+    struct b2Filter _field8;
 };
-
-struct b2FixtureProxy;
 
 struct b2Joint {
     void **_field1;
@@ -507,23 +534,166 @@ struct b2WeldJointDef {
 };
 
 struct b2World {
-    struct b2BlockAllocator _field1;
-    struct b2StackAllocator _field2;
-    int _field3;
-    struct b2ContactManager _field4;
-    struct b2Body *_field5;
-    struct b2Joint *_field6;
+    struct b2StackAllocator _field1;
+    int _field2;
+    struct b2ContactManager _field3;
+    struct b2Body *_field4;
+    struct b2Joint *_field5;
+    int _field6;
     int _field7;
-    int _field8;
-    struct b2Vec2 _field9;
-    _Bool _field10;
-    struct b2DestructionListener *_field11;
-    struct b2Draw *_field12;
-    float _field13;
+    struct PKCAether _field8;
+    _Bool _field9;
+    struct b2DestructionListener *_field10;
+    struct b2Draw *_field11;
+    float _field12;
+    _Bool _field13;
     _Bool _field14;
     _Bool _field15;
     _Bool _field16;
-    _Bool _field17;
+    double _field17;
     float _field18;
+    struct PKCMechanics _field19;
+};
+
+struct shared_ptr<PKCGrid> {
+    struct PKCGrid *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+};
+
+struct shared_ptr<PKCPathHolder> {
+    struct PKCPathHolder *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+};
+
+struct shared_ptr<PKPath> {
+    struct PKPath *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+};
+
+struct shared_ptr<QuadTree> {
+    struct QuadTree *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+};
+
+struct vector<PKCField *, std::__1::allocator<PKCField *>> {
+    struct PKCField **_field1;
+    struct PKCField **_field2;
+    struct __compressed_pair<PKCField **, std::__1::allocator<PKCField *>> {
+        struct PKCField **_field1;
+    } _field3;
+};
+
+struct vector<PKDebugDrawPacket::color4, std::__1::allocator<PKDebugDrawPacket::color4>> {
+    CDStruct_183601bc *__begin_;
+    CDStruct_183601bc *__end_;
+    struct __compressed_pair<PKDebugDrawPacket::color4 *, std::__1::allocator<PKDebugDrawPacket::color4>> {
+        CDStruct_183601bc *__first_;
+    } __end_cap_;
+};
+
+struct vector<PKPhysicsShape *, std::__1::allocator<PKPhysicsShape *>> {
+    struct PKPhysicsShape **__begin_;
+    struct PKPhysicsShape **__end_;
+    struct __compressed_pair<PKPhysicsShape **, std::__1::allocator<PKPhysicsShape *>> {
+        struct PKPhysicsShape **__first_;
+    } __end_cap_;
+};
+
+struct vector<PKPoint, std::__1::allocator<PKPoint>> {
+    CDStruct_183601bc *__begin_;
+    CDStruct_183601bc *__end_;
+    struct __compressed_pair<PKPoint *, std::__1::allocator<PKPoint>> {
+        CDStruct_183601bc *__first_;
+    } __end_cap_;
+};
+
+struct vector<QuadTree *, std::__1::allocator<QuadTree *>> {
+    struct QuadTree **_field1;
+    struct QuadTree **_field2;
+    struct __compressed_pair<QuadTree **, std::__1::allocator<QuadTree *>> {
+        struct QuadTree **_field1;
+    } _field3;
+};
+
+struct vector<float __attribute__((ext_vector_type(4))), std::__1::allocator<float __attribute__((ext_vector_type(4)))>> {
+    struct __compressed_pair<float * __attribute__((ext_vector_type(4))), std::__1::allocator<float __attribute__((ext_vector_type(4)))>> {
+        void *_field1;
+    } **_field1;
+};
+
+struct vector<int, std::__1::allocator<int>> {
+    int *_field1;
+    int *_field2;
+    struct __compressed_pair<int *, std::__1::allocator<int>> {
+        int *_field1;
+    } _field3;
+};
+
+struct vector<signed char, std::__1::allocator<signed char>> {
+    char *_field1;
+    char *_field2;
+    struct __compressed_pair<signed char *, std::__1::allocator<signed char>> {
+        char *_field1;
+    } _field3;
+};
+
+struct vector<unsigned char, std::__1::allocator<unsigned char>> {
+    char *_field1;
+    char *_field2;
+    struct __compressed_pair<unsigned char *, std::__1::allocator<unsigned char>> {
+        char *_field1;
+    } _field3;
+};
+
+#pragma mark Typedef'd Structures
+
+typedef struct CDStruct_183601bc;
+
+// Template types
+typedef struct shared_ptr<PKCGrid> {
+    struct PKCGrid *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+} shared_ptr_c9c6a83f;
+
+typedef struct shared_ptr<PKPath> {
+    struct PKPath *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+} shared_ptr_2aaf3a07;
+
+typedef struct shared_ptr<QuadTree> {
+    struct QuadTree *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+} shared_ptr_639e7c03;
+
+typedef struct vector<PKPhysicsShape *, std::__1::allocator<PKPhysicsShape *>> {
+    struct PKPhysicsShape **__begin_;
+    struct PKPhysicsShape **__end_;
+    struct __compressed_pair<PKPhysicsShape **, std::__1::allocator<PKPhysicsShape *>> {
+        struct PKPhysicsShape **__first_;
+    } __end_cap_;
+} vector_4360c5cc;
+
+#pragma mark Named Unions
+
+union _GLKMatrix4 {
+    struct {
+        float _field1;
+        float _field2;
+        float _field3;
+        float _field4;
+        float _field5;
+        float _field6;
+        float _field7;
+        float _field8;
+        float _field9;
+        float _field10;
+        float _field11;
+        float _field12;
+        float _field13;
+        float _field14;
+        float _field15;
+        float _field16;
+    } _field1;
+    float _field2[16];
 };
 

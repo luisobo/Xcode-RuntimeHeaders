@@ -9,7 +9,7 @@
 #import "IDECommandHandler-Protocol.h"
 #import "NSMenuDelegate-Protocol.h"
 
-@class DVTObservingToken, GPUDebuggingAddition;
+@class DVTObservingToken, GPUDebuggingAddition, NSString;
 
 // Not exported
 @interface GPUDebugMenuActionHandler : NSObject <IDECommandHandler, NSMenuDelegate>
@@ -26,6 +26,12 @@
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,13 +6,11 @@
 
 #import <IBAutolayoutFoundation/IBLayoutGuide.h>
 
-@class NSObject<IBAutolayoutItem>;
-
 @interface IBAbstractUserGuide : IBLayoutGuide
 {
 }
 
-@property(readonly) NSObject<IBAutolayoutItem> *view;
+- (id)view;
 
 @end
 

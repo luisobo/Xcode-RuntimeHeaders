@@ -9,7 +9,7 @@
 #import "PBXTSCharacterStreamConsuming-Protocol.h"
 #import "PBXTSStreamConsumerRetaining-Protocol.h"
 
-@class NSMutableString;
+@class NSMutableString, NSString;
 
 @interface PBXTSLineBufferFilter : PBXTSLineStream <PBXTSCharacterStreamConsuming, PBXTSStreamConsumerRetaining>
 {
@@ -23,6 +23,12 @@
 - (BOOL)coalescesCompleteLines;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

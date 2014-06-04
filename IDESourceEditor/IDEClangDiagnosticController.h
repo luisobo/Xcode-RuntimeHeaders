@@ -27,7 +27,7 @@
 - (void)scheduleDiagnosticsGeneration;
 - (void)scheduleDiagnosticsGenerationWithDelay:(double)arg1;
 - (void)primitiveInvalidate;
-- (id)initWithSourceCodeDocument:(id)arg1;
+- (id)initWithDataSource:(id)arg1;
 
 @end
 

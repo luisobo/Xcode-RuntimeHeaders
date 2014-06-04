@@ -6,27 +6,32 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class NSObject<OS_dispatch_queue>, NSString;
 
 @interface DVTDispatchLock : NSObject
 {
-    struct dispatch_queue_s *_queue;
-    NSString *_debugName;
-    BOOL _isRecursive;
+    NSObject<OS_dispatch_queue> *_queue;
+    long long _priority;
 }
 
++ (id)readWriteDispatchLockWithDebugName:(id)arg1;
 + (id)recursiveDispatchLockWithDebugName:(id)arg1;
 + (id)dispatchLockWithDebugName:(id)arg1;
-@property(readonly) NSString *debugName; // @synthesize debugName=_debugName;
-@property(readonly) BOOL isRecursive; // @synthesize isRecursive=_isRecursive;
+@property(readonly) NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
 - (void).cxx_destruct;
 - (void)performLockedBlockAsyncUnlessRecursing:(id)arg1;
-- (void)setPriority:(long long)arg1;
+@property long long priority; // @synthesize priority=_priority;
 - (void)afterTimeInterval:(double)arg1 asyncPerformLockedBlock:(id)arg2;
+- (void)asyncPerformLockedWriterBlock:(id)arg1;
+- (void)asyncPerformLockedReaderBlock:(id)arg1;
+- (void)performLockedWriterBlock:(id)arg1;
+- (void)performLockedReaderBlock:(id)arg1;
 - (void)asyncPerformLockedBlock:(id)arg1;
 - (void)performLockedBlock:(id)arg1;
+@property(readonly) BOOL isRecursive;
+@property(readonly) NSString *debugName;
 - (void)dealloc;
-- (id)init;
+- (id)initWithDebugName:(id)arg1;
 - (id)initWithDebugName:(id)arg1 isRecursive:(BOOL)arg2;
 
 @end

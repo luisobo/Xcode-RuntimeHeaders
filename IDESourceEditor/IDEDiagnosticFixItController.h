@@ -6,13 +6,13 @@
 
 #import "DVTPopoverContentViewController.h"
 
-@class DVTBorderedView, DVTSourceTextView, IDEDiagnosticActivityLogMessage, IDEDiagnosticAnnotation, IDESourceCodeDocument, NSArray, NSArrayController, NSImageView, NSObjectController, NSString, NSTableView, NSTextField;
+@class DVTBorderedView, DVTSourceTextView, IDEDiagnosticActivityLogMessage, IDEDiagnosticAnnotation, IDEEditorDocument<IDEDiagnosticControllerDataSource>, NSArray, NSArrayController, NSImageView, NSObjectController, NSString, NSTableView, NSTextField;
 
 @interface IDEDiagnosticFixItController : DVTPopoverContentViewController
 {
     NSString *_previewString;
     struct _NSRange _previewRange;
-    IDESourceCodeDocument *_sourceCodeDocument;
+    IDEEditorDocument<IDEDiagnosticControllerDataSource> *_editorDocument;
     DVTSourceTextView *_textView;
     IDEDiagnosticAnnotation *_diagnosticAnnotation;
     IDEDiagnosticActivityLogMessage *_diagnosticItem;
@@ -32,7 +32,7 @@
 @property(retain) IDEDiagnosticAnnotation *diagnosticAnnotation; // @synthesize diagnosticAnnotation=_diagnosticAnnotation;
 @property BOOL userAcceptedSession; // @synthesize userAcceptedSession=_userAcceptedSession;
 @property(retain) DVTSourceTextView *textView; // @synthesize textView=_textView;
-@property(retain) IDESourceCodeDocument *sourceCodeDocument; // @synthesize sourceCodeDocument=_sourceCodeDocument;
+@property(retain) IDEEditorDocument<IDEDiagnosticControllerDataSource> *editorDocument; // @synthesize editorDocument=_editorDocument;
 - (void).cxx_destruct;
 - (void)tableViewSelectionDidChange:(id)arg1;
 - (void)_tableViewDoubleClickAction:(id)arg1;

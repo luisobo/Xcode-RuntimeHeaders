@@ -9,9 +9,6 @@
 @interface NSProcessInfo (DVTNSProcessInfoAdditions)
 - (id)dvt_activeSystemActivityTokensMatchingOptions:(unsigned long long)arg1;
 - (id)dvt_beginActivityWithOptions:(unsigned long long)arg1 reason:(id)arg2;
-- (id)dvt_cachedEnvironment;
-- (void)dvt_removeEnvironmentVariable:(id)arg1;
-- (void)dvt_setValue:(id)arg1 forEnvironmentVariable:(id)arg2;
 - (BOOL)dvt_shouldDisallowSaving;
 - (void)dvt_setShouldDisallowSaving:(BOOL)arg1;
 - (void)dvt_disableSuddenTerminationForReason:(id)arg1;

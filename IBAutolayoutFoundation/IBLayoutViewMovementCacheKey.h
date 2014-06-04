@@ -15,7 +15,7 @@
     NSValue *_sizeValue;
 }
 
-@property(readonly) NSValue *sizeValue; // @synthesize sizeValue=_sizeValue;
+@property(readonly, copy) NSValue *sizeValue; // @synthesize sizeValue=_sizeValue;
 @property(readonly) NSObject<IBAutolayoutItem> *sizingView; // @synthesize sizingView=_sizingView;
 @property(readonly) NSObject<IBAutolayoutItem> *coordinateSpaceView; // @synthesize coordinateSpaceView=_coordinateSpaceView;
 - (void).cxx_destruct;

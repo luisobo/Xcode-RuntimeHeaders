@@ -10,7 +10,7 @@
 #import "XCEDataRootAdapterP-Protocol.h"
 #import "XCSelectionSource-Protocol.h"
 
-@class NSButton, NSSplitView, NSView, PBXNavigatorGroup, PBXProject, PBXProjectDocument, PBXProjectFindModule, XCBinder, XCBinderOutlineView, XCEConfigurableDataNode, XCEConfigurableDataSource, XCElementActionButton, XCOrganizerFileNodeAdapter;
+@class NSButton, NSSplitView, NSString, NSView, PBXNavigatorGroup, PBXProject, PBXProjectDocument, PBXProjectFindModule, XCBinder, XCBinderOutlineView, XCEConfigurableDataNode, XCEConfigurableDataSource, XCElementActionButton, XCOrganizerFileNodeAdapter;
 
 @interface XCBinderModule : PBXModule <NSWindowDelegate, XCEDataRootAdapterP, XCSelectionSource>
 {
@@ -182,6 +182,12 @@
 @property(retain) XCBinder *binder;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

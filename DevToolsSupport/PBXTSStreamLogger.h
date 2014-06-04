@@ -10,6 +10,8 @@
 #import "PBXTSCharacterStreamConsuming-Protocol.h"
 #import "PBXTSLineStreamConsuming-Protocol.h"
 
+@class NSString;
+
 @interface PBXTSStreamLogger : NSObject <PBXTSByteStreamConsuming, PBXTSCharacterStreamConsuming, PBXTSLineStreamConsuming>
 {
 }
@@ -19,6 +21,12 @@
 - (void)stream:(id)arg1 processBytes:(id)arg2;
 - (void)streamDidEnd:(id)arg1;
 - (void)_logMessage:(id)arg1 forStream:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

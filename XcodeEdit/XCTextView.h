@@ -9,7 +9,7 @@
 #import "NSAnimationDelegate-Protocol.h"
 #import "NSLayoutManagerDelegate-Protocol.h"
 
-@class DTMutableRangeArray, DTRangeArray, NSAnimation, NSColor, NSTimer, NSWindow, XCDiffComparatorView, XCTextAnnotation, XCTextAnnotationIndicatorAnimation, XCTextSelectionSymbolInfo;
+@class DTMutableRangeArray, DTRangeArray, NSAnimation, NSColor, NSString, NSTimer, NSWindow, XCDiffComparatorView, XCTextAnnotation, XCTextAnnotationIndicatorAnimation, XCTextSelectionSymbolInfo;
 
 @interface XCTextView : NSTextView <NSAnimationDelegate, NSLayoutManagerDelegate>
 {
@@ -297,6 +297,12 @@
 - (void)_invalidateAllRevealovers;
 - (void)indentSelectionIfIndentable:(id)arg1;
 - (void)indentSelection:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

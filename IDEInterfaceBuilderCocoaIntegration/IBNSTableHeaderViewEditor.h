@@ -18,7 +18,7 @@
 - (void)willClose;
 - (void)didOpen;
 - (id)editedTableView;
-- (id)editedHeaderView;
+- (id)editedTableHeaderView;
 
 @end
 

@@ -41,6 +41,7 @@
 - (void)replace:(id)arg1;
 - (void)findPrevious:(id)arg1;
 - (void)findNext:(id)arg1;
+- (long long)_compareLocation:(id)arg1 toLocation:(id)arg2;
 - (void)_showWrapOrEndOfFileBezel:(BOOL)arg1 reverse:(BOOL)arg2;
 - (void)_findBackwardsFrom:(id)arg1;
 - (void)selectFindField:(id)arg1;

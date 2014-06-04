@@ -8,7 +8,7 @@
 
 #import "XCEDataNodeAdapterP-Protocol.h"
 
-@class XCBinderModule;
+@class NSString, XCBinderModule;
 
 @interface XCOrganizerNodeAdapter : NSObject <XCEDataNodeAdapterP>
 {
@@ -37,6 +37,12 @@
 - (id)dataNode:(id)arg1 outlineView:(id)arg2 dataCellForTableColumn:(id)arg3;
 - (id)dataNode:(id)arg1 objectValueForTableColumn:(id)arg2;
 - (void)invalidate;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

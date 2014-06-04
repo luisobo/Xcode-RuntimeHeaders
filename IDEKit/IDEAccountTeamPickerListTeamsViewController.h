@@ -8,7 +8,7 @@
 
 #import "DVTPagingSheetViewController-Protocol.h"
 
-@class IDEAccountTeamPickerWindowController, NSArray, NSTableView, NSTextField;
+@class IDEAccountTeamPickerWindowController, NSArray, NSString, NSTableView, NSTextField;
 
 @interface IDEAccountTeamPickerListTeamsViewController : IDEViewController <DVTPagingSheetViewController>
 {
@@ -38,6 +38,12 @@
 - (long long)numberOfRowsInTableView:(id)arg1;
 - (id)dataSourceRowsFromAccountWrappers:(id)arg1;
 - (void)viewAccounts:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

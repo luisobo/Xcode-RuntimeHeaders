@@ -21,7 +21,7 @@
 
 // Remaining properties
 @property(copy) NSSet *annotations; // @dynamic annotations;
-@property(readonly) NSMutableSet *mutableAnnotations; // @dynamic mutableAnnotations;
+@property(readonly, copy) NSMutableSet *mutableAnnotations; // @dynamic mutableAnnotations;
 
 @end
 

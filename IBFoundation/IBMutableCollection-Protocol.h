@@ -7,6 +7,8 @@
 #import "IBCollection-Protocol.h"
 
 @protocol IBMutableCollection <IBCollection>
+- (void)ib_removeObjectsInCollection:(id)arg1;
+- (void)ib_addObjectsFromCollection:(id)arg1;
 - (void)ib_addObjectIfNonNil:(id)arg1;
 - (void)ib_appendObjects:(id)arg1;
 - (void)removeObject:(id)arg1;

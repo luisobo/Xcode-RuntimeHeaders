@@ -8,7 +8,7 @@
 
 #import "NSMenuDelegate-Protocol.h"
 
-@class DVTDelayedInvocation, IDENavigableItem, IDENavigableItemCoordinator, IDERunContextManager;
+@class DVTDelayedInvocation, IDENavigableItem, IDENavigableItemCoordinator, IDERunContextManager, NSString;
 
 @interface IDEDestinationMenuDelegate : NSObject <NSMenuDelegate>
 {
@@ -31,6 +31,12 @@
 - (void)_setSelectedNavigable:(id)arg1;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

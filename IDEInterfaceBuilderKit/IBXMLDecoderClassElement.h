@@ -18,10 +18,10 @@
 @property(readonly) NSString *className; // @synthesize className=_className;
 - (void).cxx_destruct;
 @property(readonly) IBXMLDecoderFallbacksElement *fallbacksElement;
-- (id)elements;
+- (void)enumerateElements:(id)arg1;
 - (BOOL)acceptFallbacksElement:(id)arg1 error:(id *)arg2;
 - (BOOL)requestInsertionIntoParent:(id)arg1 error:(id *)arg2;
-- (id)initWithAttributes:(const char **)arg1 parser:(id)arg2 error:(id *)arg3;
+- (id)initWithAttributes:(const char **)arg1 stringTable:(id)arg2 error:(id *)arg3;
 
 @end
 

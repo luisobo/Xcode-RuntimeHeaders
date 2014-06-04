@@ -7,5 +7,6 @@
 #import "IBICImageSet.h"
 
 @interface IBICImageSet (DisplayAdditions)
+- (void)populatePlistWithDescriptionForIctool:(id)arg1;
 @end
 

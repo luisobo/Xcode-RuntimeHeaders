@@ -10,11 +10,10 @@
 {
 }
 
-- (id)prepareToInsertSourceCode:(id *)arg1;
+- (id)sourceCodeInsertionOptions;
 - (id)counterpartsForInsertion;
-- (id)validatedSourceCodeConnectionNameForName:(id)arg1 error:(id *)arg2;
 - (BOOL)parseSourceModelItem:(id)arg1 sourceModel:(id)arg2;
-- (unsigned long long)methodContext;
+- (unsigned long long)methodKind;
 
 @end
 

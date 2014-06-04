@@ -13,7 +13,7 @@
 - (BOOL)interceptEvent:(id)arg1;
 - (void)positionChildEditorFrame;
 - (id)popUpButtonForChildEditor;
-- (id)editedRowTemplate;
+- (id)editedPredicateEditorRowTemplate;
 
 @end
 

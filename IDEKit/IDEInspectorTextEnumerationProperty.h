@@ -10,7 +10,6 @@
 
 @interface IDEInspectorTextEnumerationProperty : IDEInspectorEnumerationProperty
 {
-    NSPopUpButton *_popupButton;
     NSMenuItem *_multipleValuesItem;
     NSMenuItem *_invalidValueItem;
     NSMenuItem *_noSelectionItem;
@@ -24,8 +23,10 @@
     BOOL _nilPlaceholderIsSelectable;
     NSArray *optionGroups;
     id controllerValue;
+    NSPopUpButton *_popupButton;
 }
 
+@property(retain, nonatomic) NSPopUpButton *popupButton; // @synthesize popupButton=_popupButton;
 - (void).cxx_destruct;
 - (void)rebuildMenuContent;
 - (void)enumerateDynamicOptionGroupContent:(id)arg1 withBlock:(id)arg2;

@@ -21,11 +21,14 @@
 
 @property(retain) id <IDEIndexable> indexableObject; // @synthesize indexableObject=_indexableObject;
 - (void).cxx_destruct;
-- (id)buildSettingsForMainFile:(id)arg1;
+- (BOOL)isUnitTest;
+- (id)productType;
+- (id)productNameWithBuildSetting:(id)arg1 workspace:(id)arg2;
+- (id)buildSettingsForMainFile:(id)arg1 workspace:(id)arg2;
 - (id)localizedIndexableDescription;
-- (void)languageOfMainFile:(id)arg1 completionBlock:(id)arg2;
+- (void)languageOfMainFile:(id)arg1 workspace:(id)arg2 completionBlock:(id)arg3;
 - (void)clearCachedBuildSettings;
-- (void)settingsForFilesInWorkspace:(id)arg1 withCompletionBlock:(id)arg2;
+- (void)settingsForFilesInWorkspace:(id)arg1 shouldWriteAuxiliaryFiles:(BOOL)arg2 withCompletionBlock:(id)arg3;
 - (BOOL)writeProductHeaders:(id)arg1 toFile:(id)arg2 error:(id *)arg3;
 - (void)productHeadersInWorkspace:(id)arg1 withCompletionBlock:(id)arg2;
 - (id)containerForIndexables:(id)arg1 rootPaths:(id)arg2;
@@ -33,12 +36,15 @@
 - (id)indexName;
 - (id)identifier;
 - (BOOL)requiresMainThread;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithIndexable:(id)arg1;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(nonatomic) __weak id <IDEIndexable> proxy;
+@property(readonly) Class superclass;
 
 @end
 

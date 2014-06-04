@@ -8,37 +8,46 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, IDEInspectorChooserCategory, IDEInspectorLayoutGroup, NSImage, NSMenuItem, NSString;
+@class DVTStackBacktrace, IDEInspectorChooserCategory, IDEInspectorKeyPath, IDEInspectorLayoutGroup, NSImage, NSMenuItem, NSString;
 
 @interface IDEInspectorChooserChoice : NSObject <DVTInvalidation>
 {
-    id inspectorLayoutGroupInitializingBlock;
-    NSMenuItem *menuItem;
-    id <NSCopying> value;
-    NSString *title;
-    NSImage *image;
-    IDEInspectorLayoutGroup *inspectorLayoutGroup;
-    BOOL separator;
-    IDEInspectorChooserCategory *category;
+    id _inspectorLayoutGroupInitializingBlock;
+    IDEInspectorLayoutGroup *_inspectorLayoutGroup;
+    BOOL _separator;
+    BOOL _header;
+    NSString *_title;
+    IDEInspectorKeyPath *_visibleKeyPath;
+    NSImage *_image;
+    id <NSCopying> _value;
+    NSMenuItem *_menuItem;
+    IDEInspectorChooserCategory *_category;
 }
 
-+ (id)separatorChoice;
++ (id)headerChoiceWithTitle:(id)arg1 visibleKeyPath:(id)arg2 andLayoutGroup:(id)arg3;
++ (id)separatorChoiceWithVisibleKeyPath:(id)arg1 andLayoutGroup:(id)arg2;
 + (void)initialize;
-@property(getter=isSeparator) BOOL separator; // @synthesize separator;
-@property(retain, nonatomic) IDEInspectorChooserCategory *category; // @synthesize category;
-@property(retain) NSMenuItem *menuItem; // @synthesize menuItem;
-@property(readonly) id <NSCopying> value; // @synthesize value;
-@property(readonly) NSImage *image; // @synthesize image;
-@property(readonly) NSString *title; // @synthesize title;
+@property(getter=isHeader) BOOL header; // @synthesize header=_header;
+@property(getter=isSeparator) BOOL separator; // @synthesize separator=_separator;
+@property(retain, nonatomic) IDEInspectorChooserCategory *category; // @synthesize category=_category;
+@property(retain) NSMenuItem *menuItem; // @synthesize menuItem=_menuItem;
+@property(readonly) id <NSCopying> value; // @synthesize value=_value;
+@property(readonly) NSImage *image; // @synthesize image=_image;
+@property(readonly) IDEInspectorKeyPath *visibleKeyPath; // @synthesize visibleKeyPath=_visibleKeyPath;
+@property(readonly) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
-@property(readonly) IDEInspectorLayoutGroup *inspectorLayoutGroup; // @synthesize inspectorLayoutGroup;
+@property(readonly) IDEInspectorLayoutGroup *inspectorLayoutGroup;
 - (void)primitiveInvalidate;
-- (id)initWithTitle:(id)arg1 image:(id)arg2 value:(id)arg3 andLayoutGroup:(id)arg4;
-- (id)initWithTitle:(id)arg1 image:(id)arg2 value:(id)arg3 sliceXML:(id)arg4 inspectorController:(id)arg5;
+- (id)initWithTitle:(id)arg1 image:(id)arg2 value:(id)arg3 visibleKeyPath:(id)arg4 andLayoutGroup:(id)arg5;
+- (id)initWithTitle:(id)arg1 image:(id)arg2 value:(id)arg3 visibleKeyPath:(id)arg4 sliceXML:(id)arg5 inspectorController:(id)arg6;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

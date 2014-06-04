@@ -24,12 +24,12 @@
 - (void)showLibraryArea;
 - (id)_enclosingSplitView;
 - (void)invalidateContentView:(id)arg1;
-- (id)_contentViewForSliceExtension:(id)arg1 inCategory:(id)arg2;
+- (id)_contentViewForSlice:(id)arg1 inCategory:(id)arg2;
 - (id)viewControllerForContentView:(id)arg1;
 - (void)loadView;
 - (id)categoryIdentifiersForEditorExtension:(id)arg1;
 - (BOOL)categorySupportsMultipleSlices:(id)arg1;
-- (id)sliceExtensionsForNavigableItems:(id)arg1 inCategory:(id)arg2 withWorkspaceDocument:(id)arg3;
+- (id)slicesForNavigableItems:(id)arg1 inCategory:(id)arg2 withWorkspaceDocument:(id)arg3;
 - (id)_libraryExtensionForIdentifier:(id)arg1;
 - (BOOL)delegateFirstResponder;
 - (id)willReplaceSliceViewControllers:(SEL)arg1;

@@ -16,10 +16,10 @@
     NSMutableSet *_alreadyRunTestIDs;
 }
 
-@property(readonly) NSMutableSet *alreadyRunTestIDs; // @synthesize alreadyRunTestIDs=_alreadyRunTestIDs;
-@property(readonly) NSMutableSet *pendingRunTestIDs; // @synthesize pendingRunTestIDs=_pendingRunTestIDs;
-@property(readonly) NSMutableSet *skippedTestIDs; // @synthesize skippedTestIDs=_skippedTestIDs;
-@property(readonly) NSArray *skippedTestIDList; // @synthesize skippedTestIDList=_skippedTestIDList;
+@property(readonly, retain) NSMutableSet *alreadyRunTestIDs; // @synthesize alreadyRunTestIDs=_alreadyRunTestIDs;
+@property(readonly, retain) NSMutableSet *pendingRunTestIDs; // @synthesize pendingRunTestIDs=_pendingRunTestIDs;
+@property(readonly, retain) NSMutableSet *skippedTestIDs; // @synthesize skippedTestIDs=_skippedTestIDs;
+@property(readonly, retain) NSArray *skippedTestIDList; // @synthesize skippedTestIDList=_skippedTestIDList;
 - (void).cxx_destruct;
 - (BOOL)_testIsPendingRun:(id)arg1;
 - (void)_updateStatisticsForTestable:(id)arg1;

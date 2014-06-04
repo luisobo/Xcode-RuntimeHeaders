@@ -4,36 +4,34 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2011 by Steve Nygard.
  */
 
-#import "NSViewController.h"
+#import "NSObject.h"
 
 #import "IDEVariablesViewQuickLookProvider-Protocol.h"
 #import "QLPreviewViewDelegate-Protocol.h"
 
-@class NSLayoutConstraint, NSString, NSURL, NSView, QLPreviewView;
+@class DVTURLPreviewViewController, NSString, NSURL, NSView;
 
-@interface DBGNSURLQuickLookProvider : NSViewController <QLPreviewViewDelegate, IDEVariablesViewQuickLookProvider>
+@interface DBGNSURLQuickLookProvider : NSObject <QLPreviewViewDelegate, IDEVariablesViewQuickLookProvider>
 {
     NSURL *_url;
+    DVTURLPreviewViewController *_urlPreviewViewController;
     int _loadedState;
-    QLPreviewView *_qlPreviewView;
-    NSLayoutConstraint *_qlPreviewViewWidth;
-    NSLayoutConstraint *_qlPreviewViewHeight;
 }
 
-@property(retain) NSLayoutConstraint *qlPreviewViewHeight; // @synthesize qlPreviewViewHeight=_qlPreviewViewHeight;
-@property(retain) NSLayoutConstraint *qlPreviewViewWidth; // @synthesize qlPreviewViewWidth=_qlPreviewViewWidth;
-@property(retain) QLPreviewView *qlPreviewView; // @synthesize qlPreviewView=_qlPreviewView;
 @property int loadedState; // @synthesize loadedState=_loadedState;
 - (void).cxx_destruct;
 - (void)previewView:(id)arg1 didLoadPreviewItem:(id)arg2;
 @property(readonly) NSURL *existingURLToOpen;
 - (void)cancelLoading;
 @property(readonly) NSView *quickLookView;
-- (void)loadView;
 - (id)initWithDataValue:(id)arg1 options:(id)arg2;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) NSString *extensionForTemporaryFile;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

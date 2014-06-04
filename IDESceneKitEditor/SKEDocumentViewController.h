@@ -9,7 +9,7 @@
 #import "DVTReplacementViewDelegate-Protocol.h"
 #import "SKESceneViewDelegate-Protocol.h"
 
-@class DVTReplacementView, DVTSplitView, NSArray, SCNNode, SKECanvasViewController, SKEDocument, SKEDocumentStructureViewController;
+@class DVTReplacementView, DVTSplitView, NSArray, NSString, SCNNode, SKECanvasViewController, SKEDocument, SKEDocumentStructureViewController;
 
 @interface SKEDocumentViewController : IDEEditor <DVTReplacementViewDelegate, SKESceneViewDelegate>
 {
@@ -18,7 +18,7 @@
     DVTReplacementView *canvasContainer;
     SKEDocumentStructureViewController *_structureViewController;
     SKECanvasViewController *_canvasViewController;
-    NSArray *currentSelectedItems;
+    NSArray *_currentSelectedItems;
     SCNNode *_selectedNode;
     SCNNode *_currentPointOfView;
 }
@@ -30,13 +30,7 @@
 @property(retain) SKEDocumentStructureViewController *structureViewController; // @synthesize structureViewController=_structureViewController;
 @property(retain) SCNNode *selectedNode; // @synthesize selectedNode=_selectedNode;
 - (void).cxx_destruct;
-- (BOOL)validateUserInterfaceItem:(id)arg1;
-- (void)toggleDefaultLighting:(id)arg1;
-- (void)toggleMutlisampling:(id)arg1;
-- (void)toggleJittering:(id)arg1;
 - (id)selectedNodeForSceneView:(id)arg1;
-- (void)sceneViewLostSelectionAnchor:(id)arg1;
-- (void)sceneView:(id)arg1 didUpdateSelectionAnchor:(struct CGPoint)arg2;
 - (void)sceneViewBeganFreeBrowsing:(id)arg1;
 - (void)sceneView:(id)arg1 droppedContent:(id)arg2 onNode:(id)arg3 geometryIndex:(long long)arg4;
 - (void)sceneView:(id)arg1 didSelectNode:(id)arg2 geometryIndex:(long long)arg3;
@@ -65,7 +59,11 @@
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 document:(id)arg3;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) SKEDocument *document;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

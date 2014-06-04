@@ -12,14 +12,19 @@
     double _lowerAngleLimit;
     double _upperAngleLimit;
     double _frictionTorque;
+    double _rotationSpeed;
+    struct CGPoint _anchor;
 }
 
 + (id)jointWithBodyA:(id)arg1 bodyB:(id)arg2 anchor:(struct CGPoint)arg3;
 + (id)allocWithZone:(struct _NSZone *)arg1;
-@property double frictionTorque; // @synthesize frictionTorque=_frictionTorque;
-@property double upperAngleLimit; // @synthesize upperAngleLimit=_upperAngleLimit;
-@property double lowerAngleLimit; // @synthesize lowerAngleLimit=_lowerAngleLimit;
-@property BOOL shouldEnableLimits; // @synthesize shouldEnableLimits=_shouldEnableLimits;
+@property(readonly) struct CGPoint anchor; // @synthesize anchor=_anchor;
+@property(nonatomic) double rotationSpeed; // @synthesize rotationSpeed=_rotationSpeed;
+@property(nonatomic) double frictionTorque; // @synthesize frictionTorque=_frictionTorque;
+@property(nonatomic) double upperAngleLimit; // @synthesize upperAngleLimit=_upperAngleLimit;
+@property(nonatomic) double lowerAngleLimit; // @synthesize lowerAngleLimit=_lowerAngleLimit;
+@property(nonatomic) BOOL shouldEnableLimits; // @synthesize shouldEnableLimits=_shouldEnableLimits;
+- (id).cxx_construct;
 
 @end
 

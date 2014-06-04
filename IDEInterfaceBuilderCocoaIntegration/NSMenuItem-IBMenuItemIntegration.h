@@ -12,7 +12,9 @@
 + (id)defaultOnStateImage;
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
 + (id)keyPathsForValuesAffectingIbInspectedKeyEquivalent;
-+ (id)keyPathsForValuesAffectingIbQualifyingInfoForDefaultLabel;
+- (void)ibSetupTriggerForSegueTemplate:(id)arg1 inCompilationUnit:(id)arg2;
+- (id)ibSegueTriggers;
+- (id)ibDefaultSegueTrigger;
 - (void)setIbInspectedMixedStateImage:(id)arg1;
 - (id)ibInspectedMixedStateImage;
 - (void)setIbInspectedOnStateImage:(id)arg1;

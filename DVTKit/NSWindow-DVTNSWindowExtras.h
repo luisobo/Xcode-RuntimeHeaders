@@ -16,5 +16,7 @@
 - (BOOL)_dvt_hasActiveAppearanceIgnoringKeyFocus;
 - (BOOL)dvt_makeNonDeferred;
 - (struct CGImage *)_dvt_createCGImageForRect:(struct CGRect)arg1 excludingChildWindows:(id)arg2;
+- (struct CGPoint)dvt_convertPointFromScreen:(struct CGPoint)arg1;
+- (struct CGPoint)dvt_convertPointToScreen:(struct CGPoint)arg1;
 @end
 

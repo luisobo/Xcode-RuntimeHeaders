@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class IDERefactoringIssueLocation, NSString;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface IDERefactoringIssue : NSObject
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, IDERefactoringIssueLocation, NSImage, NSString;
+
+@interface IDERefactoringIssue : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     NSString *_message;
     int _category;
@@ -21,9 +23,23 @@
 @property(readonly) int category; // @synthesize category=_category;
 @property(readonly) NSString *message; // @synthesize message=_message;
 - (void).cxx_destruct;
+@property(readonly) NSString *navigableItem_name;
 - (long long)compare:(id)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)initWithMessage:(id)arg1 category:(int)arg2 kind:(int)arg3 oldLocation:(id)arg4 newLocation:(id)arg5;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

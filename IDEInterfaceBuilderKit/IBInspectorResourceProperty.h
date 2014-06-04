@@ -18,6 +18,7 @@
 }
 
 - (void).cxx_destruct;
+- (id)findIndicatorContentViewWithContext:(id)arg1;
 - (void)loadView;
 - (void)configureComboBoxButton;
 - (void)userDidChangeValue:(id)arg1;

@@ -6,7 +6,7 @@
 
 #import <IDEFoundation/IDEArchivedContent.h>
 
-@class DVTFilePath, NSArray, NSString;
+@class DVTFilePath, DVTPlatform, NSArray, NSString;
 
 @interface IDEArchivedApplication : IDEArchivedContent
 {
@@ -19,6 +19,7 @@
 + (id)archivedContentPropertiesPlistKey;
 + (BOOL)fillInfoDictionary:(id)arg1 forContentAtPath:(id)arg2 inArchiveProductsDirectory:(id)arg3;
 + (id)soleArchivedContentRelativePathInDirectory:(id)arg1;
+@property(readonly) DVTPlatform *platform;
 - (long long)autodetectedFormatForPackaging;
 - (BOOL)supportsPackagingAsFormat:(long long)arg1;
 - (id)packager;

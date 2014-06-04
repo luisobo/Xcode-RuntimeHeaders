@@ -8,7 +8,7 @@
 
 #import "IDEQuickHelpPlaceholderViewDelegate-Protocol.h"
 
-@class DVTNotificationToken, DVTObservingToken, IDEQuickHelpInspectorController, IDEQuickHelpPlaceholderView, NSTrackingArea, WebPreferences, WebView;
+@class DVTNotificationToken, DVTObservingToken, IDEQuickHelpInspectorController, IDEQuickHelpPlaceholderView, NSString, NSTrackingArea, WebPreferences, WebView;
 
 @interface IDEQuickHelpInspectorViewController : IDEInspectorViewController <IDEQuickHelpPlaceholderViewDelegate>
 {
@@ -47,6 +47,12 @@
 - (void)loadView;
 - (id)nibBundle;
 - (id)nibName;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

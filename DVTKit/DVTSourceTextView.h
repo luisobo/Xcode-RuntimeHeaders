@@ -19,7 +19,6 @@
     struct CGPoint _lastMouseMovedLocation;
     struct _NSRange _foldingHoverRange;
     DVTTextAnnotationIndicatorAnimation *_annotationIndicatorAnimation;
-    NSArray *_temporaryLinkRanges;
     unsigned long long _temporaryLinkHoverModifierFlags;
     unsigned long long _temporaryLinkHoverAltModifierFlags;
     NSArray *_clickedTemporaryLinkRanges;
@@ -48,7 +47,7 @@
     unsigned long long _locationOfOpenBracePendingClose;
     NSTimer *_scrollbarMarkerUpdateTimer;
     DVTAnnotationManager *_annotationManager;
-    DVTHashTable *_visibleViewAnnotations;
+    DVTHashTable *_preparedViewAnnotations;
     NSView *_staticVisualizationView;
     int _findResultStyle;
     DVTMutableRangeArray *_typeOverCompletionRanges;
@@ -61,7 +60,6 @@
         unsigned int dDidScroll:1;
         unsigned int dColoringContext:1;
         unsigned int delegateRespondsToWillReturnPrintJobTitle:1;
-        unsigned int temporaryLinkIsAlternate:1;
         unsigned int updatingInsertionPoint:1;
         unsigned int wasPostsFrameChangedNotifications:1;
         unsigned int doingDidChangeSelection:1;
@@ -83,6 +81,8 @@
     struct _NSRange _selectedRangeBeforeMouseDown;
 }
 
++ (BOOL)isCompatibleWithResponsiveScrolling;
++ (BOOL)_shouldEnableResponsiveScrolling;
 + (id)autoCompleteChars;
 + (id)performanceLogAspect;
 + (id)foldingLogAspect;
@@ -142,6 +142,7 @@
 - (struct _NSRange)_indentInsertedTextIfNecessaryAtRange:(struct _NSRange)arg1;
 - (void)indentSelectionIfIndentable:(id)arg1;
 - (void)indentSelection:(id)arg1;
+- (struct _NSRange)_adjustedSelectedRange:(struct _NSRange)arg1 fromChangeIndex:(unsigned long long)arg2;
 - (void)commentAndUncommentCurrentLines:(id)arg1;
 - (void)moveCurrentLineDown:(id)arg1;
 - (void)moveCurrentLineUp:(id)arg1;
@@ -153,6 +154,7 @@
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (void)layoutManager:(id)arg1 didCompleteLayoutForTextContainer:(id)arg2 atEnd:(BOOL)arg3;
 - (id)layoutManager:(id)arg1 shouldUseTemporaryAttributes:(id)arg2 forDrawingToScreen:(BOOL)arg3 atCharacterIndex:(unsigned long long)arg4 effectiveRange:(struct _NSRange *)arg5;
+- (id)accessibilityAXAttributedStringForCharacterRange:(struct _NSRange)arg1 parent:(id)arg2;
 - (BOOL)scrollRectToVisible:(struct CGRect)arg1;
 - (void)scrollPoint:(struct CGPoint)arg1;
 - (void)setMarkedText:(id)arg1 selectedRange:(struct _NSRange)arg2;
@@ -191,7 +193,7 @@
 - (void)updateTokenizedEditingRanges;
 - (void)_scheduleAutoHighlightTokenTimerIfNeeded;
 - (void)_autoHighlightTokenWithTimer:(id)arg1;
-- (void)tokenizableItemsForItemAtRange:(struct _NSRange)arg1 completionBlock:(id)arg2;
+- (void)tokenizableRangesWithRange:(struct _NSRange)arg1 completionBlock:(id)arg2;
 - (void)_scheduleAutoHighlightTokenMenuTimerIfNeeded;
 - (void)_showAutoHighlightTokenMenuWithTimer:(id)arg1;
 - (id)_autoHighlightTokenWindowWithTokenRect:(struct CGRect)arg1;
@@ -282,23 +284,21 @@
 - (void)_showClickedLinkProgressIndicators;
 - (void)_invalidateClickedLinks;
 - (id)_clickedLinkProgressIndicatorWithRect:(struct CGRect)arg1;
-- (void)_clearTemporaryLinkRanges;
-- (void)_setTemporaryLinkRanges:(id)arg1 isAlternate:(BOOL)arg2;
 - (void)animation:(id)arg1 didReachProgressMark:(float)arg2;
 - (void)animationDidEnd:(id)arg1;
 - (void)animationDidStop:(id)arg1;
 - (BOOL)animationShouldStart:(id)arg1;
 - (void)stopBlockHighlighting;
 - (void)startBlockHighlighting;
+- (id)codeFocusBlockAnimation;
 - (void)focusLocationMayHaveChanged:(id)arg1;
 - (void)toggleCodeFocus:(id)arg1;
+- (BOOL)codeFocusFollowsSelection;
 - (void)_drawViewBackgroundInRect:(struct CGRect)arg1;
 - (void)_drawTokensInRect:(struct CGRect)arg1;
 - (void)_drawCaretForTextAnnotationsInRect:(struct CGRect)arg1;
 - (void)drawTextAnnotationsInRect:(struct CGRect)arg1;
-- (long long)_drawRoundedBackgroundForItem:(id)arg1 dynamicItem:(id)arg2;
-- (id)_roundedRect:(struct CGRect)arg1 withRadius:(double)arg2;
-- (unsigned long long)_drawBlockBackground:(struct CGRect)arg1 atLocation:(unsigned long long)arg2 forItem:(id)arg3 dynamicItem:(id)arg4;
+- (long long)_drawRoundedBackgroundForFoldableBlockRangeAtLocation:(unsigned long long)arg1;
 - (double)_grayLevelForDepth:(long long)arg1;
 - (id)alternateColor;
 - (void)setFoldingHoverRange:(struct _NSRange)arg1;
@@ -311,6 +311,7 @@
 - (void)setSelectedRanges:(id)arg1 affinity:(unsigned long long)arg2 stillSelecting:(BOOL)arg3;
 - (void)_delayedTrimTrailingWhitespaceForLine:(id)arg1;
 - (void)trimTrailingWhitespaceOnLine:(unsigned long long)arg1;
+- (void)_trimTrailingWhitespaceOnLineAfterIndent:(unsigned long long)arg1 trimWhitespaceOnlyLine:(BOOL)arg2;
 - (void)trimTrailingWhitespaceOnLine:(unsigned long long)arg1 trimWhitespaceOnlyLine:(BOOL)arg2;
 - (void)trimTrailingWhitespaceOnLineFromCharacterIndex:(unsigned long long)arg1 trimWhitespaceOnlyLine:(BOOL)arg2;
 - (BOOL)shouldTrimTrailingWhitespace;
@@ -319,7 +320,8 @@
 - (void)toggleMessageBubbleShown:(id)arg1;
 - (void)_enumerateMessageBubbleAnnotationsInSelection:(id)arg1;
 - (void)setAccessoryAnnotationWidth:(unsigned long long)arg1;
-- (void)_updateAccessoryAnnotationViews;
+- (void)prepareContentInRect:(struct CGRect)arg1;
+- (void)_updateAccessoryAnnotationViewsInRect:(struct CGRect)arg1;
 - (void)_adjustSizeOfAccessoryAnnotation:(id)arg1;
 - (void)showAnnotation:(id)arg1 animateIndicator:(BOOL)arg2;
 - (void)_animateBubbleView:(id)arg1;
@@ -345,11 +347,17 @@
 - (id)initWithFrame:(struct CGRect)arg1 textContainer:(id)arg2;
 - (void)_commonInitDVTSourceTextView;
 - (id)menuForEvent:(id)arg1;
+- (BOOL)shouldIndentPastedText:(id)arg1;
+- (void)indentUserChangeBy:(long long)arg1;
 - (double)fmc_maxY;
 - (double)fmc_startOfLine:(long long)arg1;
 - (long long)fmc_lineNumberForPosition:(double)arg1;
-- (BOOL)shouldIndentPastedText:(id)arg1;
-- (void)indentUserChangeBy:(long long)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

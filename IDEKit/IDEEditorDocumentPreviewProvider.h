@@ -32,7 +32,7 @@
 + (double)minimumRowHeight;
 + (void)initialize;
 + (id)performanceLogAspect;
-+ (struct dispatch_queue_s *)populationQueue;
++ (id)populationQueue;
 @property BOOL disclosed; // @synthesize disclosed=_disclosed;
 @property(retain) DVTDispatchLock *cacheLock; // @synthesize cacheLock=_cacheLock;
 @property(copy, nonatomic) NSIndexSet *replaceResultsIndexSet; // @synthesize replaceResultsIndexSet=_replaceResultsIndexSet;
@@ -66,7 +66,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -21,14 +21,14 @@
 }
 
 - (void).cxx_destruct;
-@property(readonly) NSArray *arrayRepresentation;
+@property(readonly) __weak NSArray *arrayRepresentation;
 - (id)description;
 - (id)methodSignatureForSelector:(SEL)arg1;
 - (void)removeObjectsInArray:(id)arg1;
 - (void)forwardInvocation:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)initWithCapacity:(unsigned long long)arg1;
 - (id)init;
+- (id)initWithNSMutableArray:(id)arg1;
 
 @end
 

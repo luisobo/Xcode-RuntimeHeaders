@@ -17,8 +17,8 @@
 }
 
 @property BOOL enabled; // @synthesize enabled=_enabled;
-@property(readonly) NSString *subTitle; // @synthesize subTitle=_subTitle;
-@property(readonly) NSString *title; // @synthesize title=_title;
+@property(readonly, copy) NSString *subTitle; // @synthesize subTitle=_subTitle;
+@property(readonly, copy) NSString *title; // @synthesize title=_title;
 @property(readonly) IDEObjCModernizationAssistantContext *assistantContext; // @synthesize assistantContext=_assistantContext;
 - (void).cxx_destruct;
 - (id)_treeControllerWarningMessage;

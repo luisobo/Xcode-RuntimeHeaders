@@ -13,11 +13,10 @@
 #import "iCloudServiceObserver-Protocol.h"
 #import "iCloudUIDelegate-Protocol.h"
 
-@class DVTObservingToken, DVTStackBacktrace, IDEWorkspace, NSArray, NSButton, NSImageView, NSLayoutConstraint, NSMutableArray, NSMutableDictionary, NSRecursiveLock, NSSet, NSString, NSTextField, NSTimer, NSView, NSWindow, iCloud, iCloudDocumentLocation;
+@class DVTStackBacktrace, IDEWorkspace, NSArray, NSButton, NSImageView, NSLayoutConstraint, NSMutableArray, NSMutableDictionary, NSMutableSet, NSRecursiveLock, NSSet, NSString, NSTextField, NSTimer, NSView, NSWindow, iCloud;
 
 @interface iCloudController : NSObject <IDEInitialization, DVTInvalidation, iCloudServiceObserver, iCloudUIDelegate, IDECommandHandlerVendor, IDECommandHandler>
 {
-    DVTObservingToken *_workspaceLoadingToken;
     NSMutableArray *_transferMeasurements;
     double _transferMeasurementsinitialTimeInterval;
     double _transferMeasurementsLastTimeInterval;
@@ -34,7 +33,6 @@
     NSSet *_containerNames;
     double _lastUpdated;
     NSArray *_logEntries;
-    iCloudDocumentLocation *_contentDocumentLocation;
     NSMutableDictionary *_progressForItemID;
     NSRecursiveLock *_itemsLock;
     NSMutableDictionary *_items;
@@ -44,7 +42,7 @@
     NSMutableDictionary *_accountInformation;
     NSMutableDictionary *_pathNameForContainerName;
     NSMutableDictionary *_pathForContainerName;
-    NSMutableArray *_containerNamesToWipe;
+    NSMutableSet *_containerNamesToWipe;
     NSWindow *_wipeAppContainerSheet;
     NSImageView *_wipeWarningImageWell;
     NSTextField *_wipeTitleTextField;
@@ -62,6 +60,9 @@
     NSLayoutConstraint *_wipeMultipleScrollViewSuperviewConstraint2;
 }
 
++ (BOOL)workspaceHasAssociatediCloudContainers:(id)arg1;
++ (void)_getContainersFromEntitlements:(id)arg1 into:(id)arg2 forBlueprint:(id)arg3 foriCloudController:(id)arg4;
++ (id)_resolveContainerNameAndUpdateProperties:(id)arg1 foriCloudController:(id)arg2;
 + (id)handlerForAction:(SEL)arg1 withSelectionSource:(id)arg2;
 + (BOOL)_isValidSelector:(SEL)arg1;
 + (id)controllerForDocumentLocation:(id)arg1;
@@ -85,7 +86,7 @@
 @property __weak NSTextField *wipeTitleTextField; // @synthesize wipeTitleTextField=_wipeTitleTextField;
 @property __weak NSImageView *wipeWarningImageWell; // @synthesize wipeWarningImageWell=_wipeWarningImageWell;
 @property(retain) NSWindow *wipeAppContainerSheet; // @synthesize wipeAppContainerSheet=_wipeAppContainerSheet;
-@property(readonly, nonatomic) NSMutableArray *containerNamesToWipe; // @synthesize containerNamesToWipe=_containerNamesToWipe;
+@property(readonly, nonatomic) NSMutableSet *containerNamesToWipe; // @synthesize containerNamesToWipe=_containerNamesToWipe;
 @property(retain, nonatomic) NSMutableDictionary *pathForContainerName; // @synthesize pathForContainerName=_pathForContainerName;
 @property(retain, nonatomic) NSMutableDictionary *pathNameForContainerName; // @synthesize pathNameForContainerName=_pathNameForContainerName;
 @property(retain, nonatomic) NSMutableDictionary *accountInformation; // @synthesize accountInformation=_accountInformation;
@@ -95,7 +96,6 @@
 @property(retain, nonatomic) NSMutableDictionary *items; // @synthesize items=_items;
 @property(retain, nonatomic) NSRecursiveLock *itemsLock; // @synthesize itemsLock=_itemsLock;
 @property(retain) NSMutableDictionary *progressForItemID; // @synthesize progressForItemID=_progressForItemID;
-@property(retain, nonatomic) iCloudDocumentLocation *contentDocumentLocation; // @synthesize contentDocumentLocation=_contentDocumentLocation;
 @property(nonatomic) BOOL firstLoginAttempt; // @synthesize firstLoginAttempt=_firstLoginAttempt;
 @property(retain, nonatomic) NSArray *logEntries; // @synthesize logEntries=_logEntries;
 @property(nonatomic) double lastUpdated; // @synthesize lastUpdated=_lastUpdated;
@@ -132,8 +132,6 @@
 - (void)updateDataIncludingBlueprints:(BOOL)arg1 forDevice:(id)arg2;
 - (void)fetchRootItemAndAllChildrenForDevice:(id)arg1;
 - (void)findBlueprints;
-- (void)_getContainersFromEntitlements:(id)arg1 into:(id)arg2 forBlueprint:(id)arg3;
-- (id)_resolveContainerName:(id)arg1;
 - (void)_getTransferMeasurementFromItem:(id)arg1 type:(BOOL)arg2;
 - (double)_progressDeltaForItem:(id)arg1 currentProgress:(double)arg2;
 - (void)_transferMeasurementsTimerFired:(id)arg1;
@@ -150,11 +148,16 @@
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 @property(retain, nonatomic) NSSet *devices;
 - (id)children;
+- (void)_waitForWorkspaceLoaded;
 - (id)initWithWorkspace:(id)arg1;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

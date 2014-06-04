@@ -18,6 +18,11 @@
 + (id)keyPathsForValuesAffectingAreProfilesLoaded;
 + (id)defaultManager;
 - (void).cxx_destruct;
+- (BOOL)installHostProfiles:(id)arg1 error:(id *)arg2;
+- (id)profileWithData:(id)arg1;
+- (id)profileWithURL:(id)arg1;
+- (id)profileWithData:(id)arg1 error:(id *)arg2;
+- (id)profileWithURL:(id)arg1 error:(id *)arg2;
 @property(readonly) id provider; // @synthesize provider=_provider;
 - (id)profilesMatchingApplicationID:(id)arg1;
 - (id)profileMatchingUUID:(id)arg1;

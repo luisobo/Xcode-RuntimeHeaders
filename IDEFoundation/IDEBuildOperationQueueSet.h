@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTDispatchLock, NSDate, NSOperationQueue, NSString;
+@class DVTDispatchLock, NSDate, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString;
 
 @interface IDEBuildOperationQueueSet : NSObject
 {
@@ -19,17 +19,19 @@
     DVTDispatchLock *_updateConcurrencyLock;
     NSDate *_lastCheckedResourcePressure;
     NSDate *_lastIncreasedConcurrency;
+    NSObject<OS_dispatch_queue> *_addOperationQueue;
 }
 
 + (id)sharedBuildTaskQueueSet;
 + (unsigned long long)maxNumberOfConcurrentCompileTasks;
 + (void)setMaxNumberOfConcurrentCompileTasks:(unsigned long long)arg1;
 + (void)initialize;
-@property(readonly) NSOperationQueue *linkTaskQueue; // @synthesize linkTaskQueue=_linkTaskQueue;
-@property(readonly) NSOperationQueue *compileTaskQueue; // @synthesize compileTaskQueue=_compileTaskQueue;
-@property(readonly) NSOperationQueue *copyTaskQueue; // @synthesize copyTaskQueue=_copyTaskQueue;
 @property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
+- (void)dealloc;
+- (void)addLinkTaskOperation:(id)arg1 forCommand:(id)arg2;
+- (void)addCopyTaskOperation:(id)arg1 forCommand:(id)arg2;
+- (void)addCompileTaskOperation:(id)arg1 forCommand:(id)arg2;
 - (void)changeMaximumOperationConcurrencyUsingThrottleFactor:(double)arg1;
 - (void)resetOperationConcurrency;
 - (void)updateOperationConcurrency;

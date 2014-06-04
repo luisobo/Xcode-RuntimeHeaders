@@ -9,7 +9,6 @@
 @class NSDate;
 
 @interface NSDatePickerCell (IBNSDatePickerCellIntegration)
-+ (id)keyPathsForValuesAffectingIbWidgetType;
 + (id)keyPathsForValuesAffectingIbInspectedHasMaxDate;
 + (id)keyPathsForValuesAffectingIbInspectedHasMinDate;
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;

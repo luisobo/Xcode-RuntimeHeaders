@@ -7,7 +7,6 @@
 #import "NSObject-Protocol.h"
 
 @protocol DVTSourceBufferProvider <NSObject>
-- (id)sourceModel;
 - (unsigned long long)leadingWhitespacePositionsForLine:(unsigned long long)arg1;
 - (struct _NSRange)lineRangeForCharacterRange:(struct _NSRange)arg1;
 - (unsigned long long)length;

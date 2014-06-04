@@ -8,7 +8,7 @@
 
 #import "NSUserNotificationCenterDelegate-Protocol.h"
 
-@class NSArray, NSMutableDictionary;
+@class NSArray, NSMutableDictionary, NSString;
 
 @interface DVTUserNotificationCenter : NSObject <NSUserNotificationCenterDelegate>
 {
@@ -31,6 +31,12 @@
 - (void)scheduleNotification:(id)arg1;
 @property(copy) NSArray *scheduledNotifications;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,17 +8,19 @@
 
 #import "NSFastEnumeration-Protocol.h"
 
-@class DVTMutableOrderedDictionary, DVTReaderWriterLock, DVTSearchPath;
+@class DVTDispatchLock, DVTMutableOrderedDictionary, DVTSearchPath, NSMutableDictionary;
 
 @interface DVTToolchainRegistry : NSObject <NSFastEnumeration>
 {
     DVTSearchPath *_searchPath;
     DVTMutableOrderedDictionary *_identsToToolchains;
-    DVTReaderWriterLock *_lock;
+    NSMutableDictionary *_aliasesToToolchains;
+    DVTDispatchLock *_lock;
 }
 
 + (id)defaultRegistry;
-@property(readonly) DVTReaderWriterLock *lock; // @synthesize lock=_lock;
+@property(readonly) DVTDispatchLock *lock; // @synthesize lock=_lock;
+@property(readonly) NSMutableDictionary *aliasesToToolchains; // @synthesize aliasesToToolchains=_aliasesToToolchains;
 @property(readonly) DVTMutableOrderedDictionary *identsToToolchains; // @synthesize identsToToolchains=_identsToToolchains;
 @property(readonly) DVTSearchPath *searchPath; // @synthesize searchPath=_searchPath;
 - (void).cxx_destruct;

@@ -6,13 +6,13 @@
 
 #import <IDEKit/IDESourceControlOperationInfo.h>
 
-@class DVTFilePath, IDEXcodeServer, NSString;
+@class DVTFilePath, NSString;
 
 @interface IDESourceControlCreateGitRepositoryOperationInfo : IDESourceControlOperationInfo
 {
     BOOL _shouldPush;
     DVTFilePath *_repositoryRoot;
-    IDEXcodeServer *_serverToPushTo;
+    id _serverToPushTo;
     NSString *_serverRepositoryName;
     NSString *_localRemoteName;
 }
@@ -20,7 +20,7 @@
 @property(copy) NSString *localRemoteName; // @synthesize localRemoteName=_localRemoteName;
 @property BOOL shouldPush; // @synthesize shouldPush=_shouldPush;
 @property(copy) NSString *serverRepositoryName; // @synthesize serverRepositoryName=_serverRepositoryName;
-@property IDEXcodeServer *serverToPushTo; // @synthesize serverToPushTo=_serverToPushTo;
+@property id serverToPushTo; // @synthesize serverToPushTo=_serverToPushTo;
 @property(retain) DVTFilePath *repositoryRoot; // @synthesize repositoryRoot=_repositoryRoot;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;

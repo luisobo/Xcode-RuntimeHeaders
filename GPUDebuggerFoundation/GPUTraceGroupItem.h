@@ -11,28 +11,28 @@
 @interface GPUTraceGroupItem : GPUTraceOutlineItem
 {
     NSString *_descText;
-    BOOL _isMarkerGroup;
-    BOOL _isContextGroup;
-    BOOL _isRelatedDraws;
+    unsigned int _groupType;
     int _functionIndex;
-    int _drawCallCount;
+    int _displayableCallCount;
     int _apiCallCount;
     BOOL _isExpanded;
+    int _maxIssueSeverity;
+    BOOL _isHidden;
 }
 
+@property(nonatomic) BOOL isHidden; // @synthesize isHidden=_isHidden;
 @property(nonatomic) BOOL isExpanded; // @synthesize isExpanded=_isExpanded;
 @property(readonly, nonatomic) NSString *descText; // @synthesize descText=_descText;
 @property(nonatomic) int apiCallCount; // @synthesize apiCallCount=_apiCallCount;
-@property(nonatomic) int drawCallCount; // @synthesize drawCallCount=_drawCallCount;
+@property(nonatomic) int displayableCallCount; // @synthesize displayableCallCount=_displayableCallCount;
+@property(readonly, nonatomic) unsigned int groupType; // @synthesize groupType=_groupType;
 @property(readonly, nonatomic) int functionIndex; // @synthesize functionIndex=_functionIndex;
-@property(readonly, nonatomic) BOOL isRelatedDraws; // @synthesize isRelatedDraws=_isRelatedDraws;
-@property(readonly, nonatomic) BOOL isContextGroup; // @synthesize isContextGroup=_isContextGroup;
-@property(readonly, nonatomic) BOOL isMarkerGroup; // @synthesize isMarkerGroup=_isMarkerGroup;
 - (void).cxx_destruct;
 - (id)UUIDSection;
-- (id)initWithController:(id)arg1 parent:(id)arg2 label:(id)arg3 contextDesc:(id)arg4 functionIndex:(int)arg5;
-- (id)initWithController:(id)arg1 parent:(id)arg2 isRelatedDraws:(BOOL)arg3 functionIndex:(int)arg4;
-- (id)initWithController:(id)arg1 parent:(id)arg2 label:(id)arg3 isMarkerType:(BOOL)arg4 functionIndex:(int)arg5;
+@property(readonly, nonatomic) BOOL automaticallyExpand;
+@property(readonly, nonatomic) BOOL showsDraws;
+@property(readonly, nonatomic) BOOL isSimpleGroup;
+- (id)initWithController:(id)arg1 parent:(id)arg2 label:(id)arg3 groupType:(unsigned int)arg4 functionIndex:(int)arg5 descText:(id)arg6;
 
 @end
 

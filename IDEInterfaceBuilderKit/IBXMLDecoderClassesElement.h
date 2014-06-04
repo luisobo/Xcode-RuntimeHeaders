@@ -10,13 +10,13 @@
 
 @interface IBXMLDecoderClassesElement : IBXMLDecoderElement
 {
-    NSMutableArray *classElements;
+    NSMutableArray *_classElements;
 }
 
 + (id)elementName;
 - (void).cxx_destruct;
 @property(readonly) NSArray *classElements;
-- (id)elements;
+- (void)enumerateElements:(id)arg1;
 - (BOOL)acceptClassElement:(id)arg1 error:(id *)arg2;
 - (BOOL)requestInsertionIntoParent:(id)arg1 error:(id *)arg2;
 

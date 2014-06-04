@@ -8,7 +8,7 @@
 
 #import "NSOutlineViewDataSource-Protocol.h"
 
-@class DVMainController, DVResultsOutlineView, NSArray, NSMutableArray, NSSortDescriptor;
+@class DVMainController, DVResultsOutlineView, NSArray, NSMutableArray, NSSortDescriptor, NSString;
 
 @interface DVResultsOutlineViewController : NSObject <NSOutlineViewDataSource>
 {
@@ -100,6 +100,12 @@
 - (double)preferredResultsListFontSize;
 - (void)resetSearchResultCollections;
 - (void)awakeFromNib;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

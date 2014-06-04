@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTExtension, DVTPerformanceMetric, DVTStackBacktrace, IDEEditorDocument, IDENavigableItemCoordinator, IDEWorkspace, IDEWorkspaceTabController, NSArray, NSSet;
+@class DVTExtension, DVTPerformanceMetric, DVTStackBacktrace, IDEEditorDocument, IDENavigableItemCoordinator, IDEWorkspace, IDEWorkspaceTabController, NSArray, NSSet, NSString;
 
 @interface IDEGeniusResultsFinder : NSObject <DVTInvalidation>
 {
@@ -27,7 +27,7 @@
 @property(retain) DVTPerformanceMetric *nonIdlePerformanceMetric; // @synthesize nonIdlePerformanceMetric=_nonIdlePerformanceMetric;
 @property(nonatomic) BOOL idle; // @synthesize idle=_idle;
 @property(copy) NSSet *geniusResults; // @synthesize geniusResults=_geniusResults;
-@property(readonly) NSArray *documentLocations; // @synthesize documentLocations=_documentLocations;
+@property(readonly, copy) NSArray *documentLocations; // @synthesize documentLocations=_documentLocations;
 @property(retain) IDEEditorDocument *editorDocument; // @synthesize editorDocument=_editorDocument;
 @property(retain) IDEWorkspaceTabController *workspaceTabController; // @synthesize workspaceTabController=_workspaceTabController;
 @property(retain) DVTExtension *extension; // @synthesize extension=_extension;
@@ -42,7 +42,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

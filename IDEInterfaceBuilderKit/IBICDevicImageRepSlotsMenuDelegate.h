@@ -8,6 +8,8 @@
 
 #import "NSMenuDelegate-Protocol.h"
 
+@class NSString;
+
 @interface IBICDevicImageRepSlotsMenuDelegate : NSObject <NSMenuDelegate>
 {
 }
@@ -15,6 +17,12 @@
 + (id)deviceSlotChoiceMenuItemsWithAction:(SEL)arg1 indent:(long long)arg2;
 + (id)menuItemsForRepSuggestionSets:(id)arg1 withAction:(SEL)arg2 indent:(long long)arg3;
 - (void)menuNeedsUpdate:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

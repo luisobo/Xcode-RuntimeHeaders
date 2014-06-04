@@ -7,6 +7,9 @@
 #import "NSMatrix.h"
 
 @interface NSMatrix (IBNSMatrixIntegration)
++ (id)keyPathsForValuesAffectingIbInspectedNumberOfColumns;
++ (id)keyPathsForValuesAffectingIbInspectedNumberOfRows;
++ (id)keyPathsForValuesAffectingCell;
 - (void)unarchiveCells:(id)arg1;
 - (void)archiveCells:(id)arg1;
 - (void)unarchiveCell:(id)arg1;
@@ -25,9 +28,7 @@
 - (void)setIbInspectedRefusesFirstResponder:(long long)arg1;
 - (long long)ibInspectedRefusesFirstResponder;
 - (long long)ibInspectedEnabled;
-- (id)ibDefaultFontKeyPath;
-- (void)setIbCellFontsForFontPanel:(id)arg1;
-- (id)ibCellFontsForFontPanel;
+- (void)ibPopulateObjectsForFloatingPanels:(id)arg1;
 - (id)ibAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 insertionContext:(id)arg3;
 - (BOOL)ibCanAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 targetChildRelation:(id *)arg3;
 - (id)ibLabelQualifierForChild:(id)arg1;

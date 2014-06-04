@@ -6,15 +6,15 @@
 
 #import "NSObject.h"
 
-@class NSMutableSet, NSOperationQueue, NSString;
+@class NSMutableSet, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString;
 
 @interface DVTModelObjectGraph : NSObject
 {
     NSString *_name;
     NSOperationQueue *_asyncQueue;
     NSOperationQueue *_changeQueue;
-    struct dispatch_queue_s *_asyncDispatchQueue;
-    struct dispatch_queue_s *_changeDispatchQueue;
+    NSObject<OS_dispatch_queue> *_asyncDispatchQueue;
+    NSObject<OS_dispatch_queue> *_changeDispatchQueue;
     NSMutableSet *_insertedObjects;
     NSMutableSet *_updatedObjects;
     NSMutableSet *_deletedObjects;
@@ -25,11 +25,11 @@
 }
 
 @property BOOL changeNotificationsAreSuspended; // @synthesize changeNotificationsAreSuspended=_changeNotificationsAreSuspended;
-@property(readonly) struct dispatch_queue_s *changeDispatchQueue; // @synthesize changeDispatchQueue=_changeDispatchQueue;
-@property(readonly) struct dispatch_queue_s *asyncDispatchQueue; // @synthesize asyncDispatchQueue=_asyncDispatchQueue;
+@property(readonly) NSObject<OS_dispatch_queue> *changeDispatchQueue; // @synthesize changeDispatchQueue=_changeDispatchQueue;
+@property(readonly) NSObject<OS_dispatch_queue> *asyncDispatchQueue; // @synthesize asyncDispatchQueue=_asyncDispatchQueue;
 @property(readonly) NSOperationQueue *changeQueue; // @synthesize changeQueue=_changeQueue;
 @property(readonly) NSOperationQueue *asyncQueue; // @synthesize asyncQueue=_asyncQueue;
-@property(readonly) NSString *name; // @synthesize name=_name;
+@property(readonly, copy) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (void)didDeleteModelObject:(id)arg1;
 - (void)didUpdateModelObject:(id)arg1;
@@ -41,7 +41,7 @@
 - (void)_disassociateModelObject:(id)arg1;
 - (void)_associateModelObject:(id)arg1;
 - (id)description;
-- (id)initWithName:(id)arg1 asyncDispatchQueue:(struct dispatch_queue_s *)arg2 changeDispatchQueue:(struct dispatch_queue_s *)arg3;
+- (id)initWithName:(id)arg1 asyncDispatchQueue:(id)arg2 changeDispatchQueue:(id)arg3;
 - (id)initWithName:(id)arg1 asyncQueue:(id)arg2 changeQueue:(id)arg3;
 
 @end

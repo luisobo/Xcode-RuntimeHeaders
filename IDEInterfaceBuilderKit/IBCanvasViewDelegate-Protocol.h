@@ -27,9 +27,7 @@
 - (void)canvasViewRunZoomTest:(id)arg1;
 - (void)canvasViewDidCompleteLayout:(id)arg1;
 - (void)canvasView:(id)arg1 willRemoveCanvasFrame:(id)arg2;
-- (id)canvasView:(id)arg1 lastKnownOriginValueForCanvasFrame:(id)arg2;
-- (void)canvasView:(id)arg1 didIncrementallyMoveCanvasFrames:(id)arg2;
-- (void)canvasView:(id)arg1 didMoveCanvasFrame:(id)arg2;
+- (id)canvasView:(id)arg1 lastKnownAnchorForCanvasFrame:(id)arg2;
 - (void)canvasView:(id)arg1 selectionDidChange:(id)arg2;
 - (void)canvasView:(id)arg1 gestureDidEndWithEvent:(id)arg2;
 - (void)canvasView:(id)arg1 gestureDidBeginWithEvent:(id)arg2;
@@ -38,10 +36,13 @@
 - (void)canvasView:(id)arg1 userDidClickInEmptyArea:(id)arg2;
 - (void)canvasView:(id)arg1 userDidBandSelectCanvasFrames:(id)arg2 bandSelectionRect:(struct CGRect)arg3;
 - (void)canvasView:(id)arg1 userDidSelectCanvasFrames:(id)arg2;
-- (void)canvasView:(id)arg1 canvasFrameDidResize:(id)arg2;
+- (void)canvasView:(id)arg1 canvasFrameDidChangeAnchor:(id)arg2;
+- (void)canvasView:(id)arg1 canvasFrameDidChangeLayout:(id)arg2;
 - (void)canvasView:(id)arg1 canvasFrameDidBecomeKey:(id)arg2;
 - (void)canvasView:(id)arg1 canvasFrameDidResignKey:(id)arg2;
 - (id)canvasView:(id)arg1 decoratorRectForCanvasFrame:(id)arg2;
 - (void)canvasView:(id)arg1 userDidAddSpaceWithArrowKeyEvent:(id)arg2;
+- (void)canvasView:(id)arg1 didAutopositionCanvasFrame:(id)arg2;
+- (void)canvasView:(id)arg1 willAutopositionCanvasFrame:(id)arg2;
 @end
 

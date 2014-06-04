@@ -22,6 +22,10 @@
 @property(readonly) IDETypeIdentifier *ideModelObjectTypeIdentifier;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSString *name; // @dynamic name;
+@property(readonly) Class superclass;
 @end
 

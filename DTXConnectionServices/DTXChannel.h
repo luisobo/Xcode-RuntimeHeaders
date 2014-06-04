@@ -8,15 +8,16 @@
 
 #import "DTXMessenger-Protocol.h"
 
-@class DTXConnection;
+@class DTXConnection, NSObject<OS_dispatch_queue>, NSString;
 
 @interface DTXChannel : NSObject <DTXMessenger>
 {
     DTXConnection *_connection;
-    struct dispatch_queue_s *_serialQueue;
-    struct dispatch_queue_s *_atomicHandlers;
+    NSObject<OS_dispatch_queue> *_serialQueue;
+    NSObject<OS_dispatch_queue> *_atomicHandlers;
     id <DTXAllowedRPC> _dispatchTarget;
     id _messageHandler;
+    id _dispatchValidator;
     BOOL _canceled;
     unsigned int _channelCode;
 }
@@ -26,17 +27,26 @@
 - (void)sendMessageSync:(id)arg1 replyHandler:(id)arg2;
 - (void)sendMessage:(id)arg1 replyHandler:(id)arg2;
 - (BOOL)sendMessageAsync:(id)arg1 replyHandler:(id)arg2;
-- (id)_callSyncMessage:(id)arg1;
 - (void)sendControlSync:(id)arg1 replyHandler:(id)arg2;
 - (void)sendControlAsync:(id)arg1 replyHandler:(id)arg2;
+- (void)_setTargetQueue:(id)arg1;
 - (void)resume;
 - (void)suspend;
 - (void)cancel;
+- (void)registerDisconnectHandler:(id)arg1;
+- (void)_setDispatchValidator:(id)arg1;
 @property(retain) id <DTXAllowedRPC> dispatchTarget;
 @property(copy) id messageHandler;
 - (void)_scheduleMessage:(id)arg1 tracker:(id)arg2 withHandler:(id)arg3;
+- (void)_scheduleBlock:(id)arg1;
 - (void)dealloc;
 - (id)initWithConnection:(id)arg1 channelIdentifier:(unsigned int)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

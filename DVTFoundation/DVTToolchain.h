@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class DVTFilePath, DVTMacroDefinitionTable, DVTSearchPath, NSString;
+@class DVTFilePath, DVTMacroDefinitionTable, DVTSearchPath, DVTVersion, NSArray, NSString;
 
 @interface DVTToolchain : NSObject
 {
-    BOOL _onlyUseDefaultMacrosIfTopToolchain;
     NSString *_identifier;
     DVTFilePath *_path;
+    DVTVersion *_version;
+    NSArray *_aliases;
     NSString *_displayName;
     NSString *_displayDescription;
     DVTMacroDefinitionTable *_defaultMacros;
@@ -25,11 +26,12 @@
 + (id)_macroDefinitionTableWithToolchainIdentifier:(id)arg1 buildSettingsDictionary:(id)arg2;
 @property(readonly) DVTSearchPath *librarySearchPath; // @synthesize librarySearchPath=_librarySearchPath;
 @property(readonly) DVTSearchPath *executableBinarySearchPath; // @synthesize executableBinarySearchPath=_executableBinarySearchPath;
-@property(readonly) BOOL onlyUseDefaultMacrosIfTopToolchain; // @synthesize onlyUseDefaultMacrosIfTopToolchain=_onlyUseDefaultMacrosIfTopToolchain;
 @property(readonly) DVTMacroDefinitionTable *additionalDefaultMacrosIfTopToolchain; // @synthesize additionalDefaultMacrosIfTopToolchain=_additionalDefaultMacrosIfTopToolchain;
 @property(readonly) DVTMacroDefinitionTable *defaultMacros; // @synthesize defaultMacros=_defaultMacros;
 @property(readonly) NSString *displayDescription; // @synthesize displayDescription=_displayDescription;
 @property(readonly) NSString *displayName; // @synthesize displayName=_displayName;
+@property(readonly) NSArray *aliases; // @synthesize aliases=_aliases;
+@property(readonly) DVTVersion *version; // @synthesize version=_version;
 @property(readonly) DVTFilePath *path; // @synthesize path=_path;
 @property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;

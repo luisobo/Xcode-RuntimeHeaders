@@ -32,7 +32,7 @@
 - (id)init;
 
 // Remaining properties
-@property(readonly) NSMutableArray *mutableSelectedTargets; // @dynamic mutableSelectedTargets;
+@property(readonly, copy) NSMutableArray *mutableSelectedTargets; // @dynamic mutableSelectedTargets;
 @property(copy) NSArray *selectedTargets; // @dynamic selectedTargets;
 
 @end

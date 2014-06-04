@@ -38,6 +38,7 @@
 - (void).cxx_destruct;
 - (void)parseDataOrGenerateErrorForTask:(id)arg1 operation:(id)arg2;
 - (void)setWaitToParseData:(BOOL)arg1;
+- (void)_real_main;
 - (void)main;
 - (id)readDataFromFileHandle:(id)arg1 intoBuffer:(id)arg2 runloopMode:(id)arg3 outstandingOperationCounter:(long long *)arg4 dataParsingBlock:(id)arg5;
 - (id)pipeToOperation;

@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary;
+@class NSMutableDictionary, NSSet;
 
 @interface IBConnectionManager : NSObject
 {
-    NSMutableDictionary *documentToEndPointProvidersRegisteredDuringDragSession;
+    NSMutableDictionary *_documentToEndPointProvidersRegisteredDuringDragSession;
+    NSSet *_endPointProviderExtensions;
 }
 
 + (id)mixedConnnectionStateImage;
@@ -29,6 +30,9 @@
 - (void)sendConnectionManagerWillStartConnectingToProvider:(id)arg1;
 - (void)unregisterProvidersRegisteredDuringDragSession;
 - (id)registeredEndPointProvidingViewForView:(id)arg1 inDocuments:(id)arg2 limitToInterfaceBuilder:(BOOL)arg3 registeredInDocument:(id *)arg4;
+- (id)endPointProviderExtensionForLanguage:(id)arg1;
+- (BOOL)endPointProviderExtension:(id)arg1 supportsLanguage:(id)arg2;
+- (BOOL)languageIdentifier:(id)arg1 identifiesLanguage:(id)arg2;
 - (id)hitViewForConnectionDrag:(struct CGPoint)arg1 ingoringWindows:(id)arg2;
 - (id)calculateConnectionEndPointInDocument:(id)arg1 forContext:(id)arg2 usingCandidatesBackToFront:(id)arg3 constraintAdditionValidationState:(id)arg4;
 - (BOOL)isCandidate:(id)arg1 validForContext:(id)arg2 inDocument:(id)arg3 constraintAdditionValidationState:(id)arg4;

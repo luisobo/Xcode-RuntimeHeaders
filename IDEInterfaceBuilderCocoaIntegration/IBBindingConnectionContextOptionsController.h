@@ -41,9 +41,9 @@
     IBBindingAutocompletingResizingTextFieldView *controlledObjectResizingFieldView;
 }
 
-@property(readonly) NSString *enteredControlledObjectClass; // @synthesize enteredControlledObjectClass;
-@property(readonly) NSString *enteredModelKeyPath; // @synthesize enteredModelKeyPath;
-@property(readonly) NSString *enteredControllerKeyPath; // @synthesize enteredControllerKeyPath;
+@property(readonly, copy) NSString *enteredControlledObjectClass; // @synthesize enteredControlledObjectClass;
+@property(readonly, copy) NSString *enteredModelKeyPath; // @synthesize enteredModelKeyPath;
+@property(readonly, copy) NSString *enteredControllerKeyPath; // @synthesize enteredControllerKeyPath;
 - (void).cxx_destruct;
 - (void)revertControllersToInitialState;
 - (void)menuWillOpen:(id)arg1;
@@ -59,7 +59,9 @@
 - (id)control:(id)arg1 textView:(id)arg2 completions:(id)arg3 forPartialWordRange:(struct _NSRange)arg4 indexOfSelectedItem:(long long *)arg5;
 - (void)controlledObjectClassDidChange;
 - (void)updateControllerLabel;
+- (long long)validationStatusIfNeededForEnteredControllerKeyPath:(id)arg1;
 - (long long)validationStatusForEnteredControllerKeyPath:(id)arg1;
+- (BOOL)shouldValidateStatusForEnteredControllerKeyPath:(id)arg1;
 - (BOOL)isResolvedClassDraggedToClass:(id)arg1;
 - (void)validateControllerKeyPath:(id)arg1;
 - (void)setValidationStatusForControllerKeyField:(long long)arg1 keyPath:(id)arg2;
@@ -74,7 +76,6 @@
 - (void)didCancelInsertingRepresentedConnectionContext;
 - (void)willInsertRepresentedConnectionContext;
 - (id)connectionContext;
-- (id)document;
 - (id)bestGuessForInitialControllerFromAvailableControllers:(id)arg1 bindingInfo:(id)arg2 bindingType:(id)arg3;
 - (BOOL)isDraggedToClassReachableFromController:(id)arg1 bindingType:(id)arg2;
 - (id)bestGuessForInitialBindingTypeFromBindingInfo:(id)arg1;
@@ -95,6 +96,12 @@
 - (void)viewWillUninstall;
 - (void)primitiveInvalidate;
 - (void)loadView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

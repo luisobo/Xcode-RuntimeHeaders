@@ -10,7 +10,7 @@
 #import "PBXTSCharacterStreamConsuming-Protocol.h"
 #import "XCDebuggerConsoleCompletion-Protocol.h"
 
-@class NSMutableArray, PBXTSCharacterStream, PBXTSUTF8BufferFilter, PBXTSUTF8EncoderFilter, PBXTtyText, XCIncrementalFinder;
+@class NSMutableArray, NSString, PBXTSCharacterStream, PBXTSUTF8BufferFilter, PBXTSUTF8EncoderFilter, PBXTtyText, XCIncrementalFinder;
 
 @interface PBXDebugCLIModule : PBXProjectModule <PBXIncrementalFindable, PBXTSCharacterStreamConsuming, XCDebuggerConsoleCompletion>
 {
@@ -89,9 +89,14 @@
 - (void)viewDidLoad;
 - (BOOL)moduleEnforcesViewMinSize;
 - (struct CGSize)viewMinSize;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)dealloc;
 - (id)initWithModuleNibName:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

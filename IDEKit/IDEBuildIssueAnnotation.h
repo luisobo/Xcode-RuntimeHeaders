@@ -10,8 +10,7 @@
 {
 }
 
-+ (BOOL)scrollbarMarkerHighlight;
-+ (BOOL)wantsScrollbarMarker;
++ (unsigned long long)scrollbarMarkerType;
 + (id)editedTheme;
 + (id)focusedTheme;
 + (id)normalTheme;

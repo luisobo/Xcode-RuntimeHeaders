@@ -20,7 +20,6 @@
     DVTSourceModelParser *_nativeParser;
 }
 
-+ (id)editorResponsivenessPerformanceLogAspect;
 + (void)initialize;
 @property BOOL isDoingBatchEdit; // @synthesize isDoingBatchEdit=_isDoingBatchEdit;
 @property long long batchDelta; // @synthesize batchDelta=_batchDelta;
@@ -80,7 +79,6 @@
 - (void)enumerateIdentifierItemsInRange:(struct _NSRange)arg1 usingBlock:(id)arg2;
 - (id)itemAtLocation:(unsigned long long)arg1 ofType:(id)arg2;
 - (id)itemAtLocation:(unsigned long long)arg1 inTypeList:(long long *)arg2;
-- (long long *)typeListForSpecNames:(id)arg1;
 - (id)builtUpNameForItem:(id)arg1 nameRanges:(id *)arg2;
 - (id)_builtUpNameForItem:(id)arg1 mutableNameRanges:(id)arg2;
 - (id)_builtUpNameForSubTree:(id)arg1 mutableNameRanges:(id)arg2;

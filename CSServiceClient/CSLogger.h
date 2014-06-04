@@ -55,10 +55,10 @@
 - (id)logfile;
 - (void)changeConfigInBlock:(id)arg1;
 - (id)init;
-- (struct __aslclient *)rollLogs:(struct __aslclient *)arg1;
+- (struct __asl_object_s *)rollLogs:(struct __asl_object_s *)arg1;
 - (void)loggerThread:(id)arg1;
-- (void)close:(struct __aslclient *)arg1;
-- (struct __aslclient *)open;
+- (void)close:(struct __asl_object_s *)arg1;
+- (struct __asl_object_s *)open;
 
 @end
 

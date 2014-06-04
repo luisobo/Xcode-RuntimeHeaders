@@ -6,16 +6,16 @@
 
 #import "NSTableCellView.h"
 
-@class DVTFilePathField, DVTScrubber;
+@class DVTFilePathField, DVTStepperTextField;
 
 @interface SKEMaterialPropertyDetailsCellView : NSTableCellView
 {
     DVTFilePathField *_fullPath;
     DVTFilePathField *_relativePath;
-    DVTScrubber *_scrubber;
+    DVTStepperTextField *_scrubber;
 }
 
-@property __weak DVTScrubber *scrubber; // @synthesize scrubber=_scrubber;
+@property __weak DVTStepperTextField *scrubber; // @synthesize scrubber=_scrubber;
 @property __weak DVTFilePathField *relativePath; // @synthesize relativePath=_relativePath;
 @property __weak DVTFilePathField *fullPath; // @synthesize fullPath=_fullPath;
 - (void).cxx_destruct;

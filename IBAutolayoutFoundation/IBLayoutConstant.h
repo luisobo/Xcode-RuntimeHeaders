@@ -19,11 +19,11 @@
 @property(readonly) double value; // @synthesize value=_value;
 - (id)constantBySettingValueToValue:(double)arg1;
 - (id)constantInCoordinateSpaceOfView:(id)arg1 fromCoordinateSpaceOfView:(id)arg2 forLayoutAttribute:(unsigned long long)arg3;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqualToConstant:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) NSString *shortDescription;
-- (id)description;
+@property(readonly, copy) NSString *description;
 @property(readonly) id symbolicValue;
 - (double)valueForView:(id)arg1 inCoordinateSpaceOfView:(id)arg2;
 - (void)encodeWithCoder:(id)arg1;
@@ -31,6 +31,10 @@
 - (id)initWithBinaryUnarchiver:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithValue:(double)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,7 +8,7 @@
 
 #import "IBImageCatalogFileManager-Protocol.h"
 
-@class IDEVersionedFileManager;
+@class IDEVersionedFileManager, NSString;
 
 @interface IBIDEImageCatalogFileManager : NSObject <IBImageCatalogFileManager>
 {
@@ -27,6 +27,12 @@
 - (BOOL)ib_createDirectoryAtPath:(id)arg1 withIntermediateDirectories:(BOOL)arg2 attributes:(id)arg3 error:(id *)arg4;
 - (id)filePathsForPaths:(id)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

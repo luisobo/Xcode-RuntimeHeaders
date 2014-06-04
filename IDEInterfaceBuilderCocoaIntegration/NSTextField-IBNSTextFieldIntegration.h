@@ -7,9 +7,15 @@
 #import "NSTextField.h"
 
 @interface NSTextField (IBNSTextFieldIntegration)
-+ (id)keyPathsForValuesAffectingIbQualifyingInfoForDefaultLabel;
+- (BOOL)ibInspectedCanInspectSetsMaxLayoutWidthAtFirstLayout;
+- (void)setIbInspectedSetsMaxLayoutWidthAtFirstLayout:(BOOL)arg1;
+- (void)ibCellDidChangeInspectedLineBreakMode:(id)arg1;
+- (void)setIbInspectedLineBreakMode:(long long)arg1;
+- (void)ibTextFieldCellDidChangeInspectorLayout:(id)arg1;
+- (void)_ibDidChangeTextFieldWrappingMode:(BOOL)arg1;
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
-- (void)ibBeginArchivingDocument:(id)arg1 withContext:(id)arg2;
+- (id)ibVerifyPreferredMaxLayoutWidthOnlyForMultilineLabelsInDocument:(id)arg1;
+- (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (void)ibPropagatePropertiesToCopyOfReceiver:(id)arg1 forLayoutEngine:(id)arg2;
 - (void)ibEnableAutolayoutInDocument:(id)arg1 context:(id)arg2;
 - (BOOL)ibIsWrappingStaticTextLabel;

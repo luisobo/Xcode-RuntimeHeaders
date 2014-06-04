@@ -8,7 +8,7 @@
 
 #import "IDEReviewFilesViewControllerDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTFilePath, DVTObservingToken, IDENavigableItemCoordinator, IDEReviewFilesViewController, IDESnapshotItem, IDESnapshotPreviewNavigatorDataSource, IDESnapshotRestorePreviewNavigatorDataSource, NSArray, NSButton, NSWindow;
+@class DVTBorderedView, DVTFilePath, DVTObservingToken, IDENavigableItemCoordinator, IDEReviewFilesViewController, IDESnapshotItem, IDESnapshotPreviewNavigatorDataSource, IDESnapshotRestorePreviewNavigatorDataSource, NSArray, NSButton, NSString, NSWindow;
 
 @interface IDESnapshotPreviewController : IDEViewController <IDEReviewFilesViewControllerDelegate>
 {
@@ -27,6 +27,7 @@
     DVTObservingToken *_comparisonEditorObservingToken;
     id _previewRestoreCompletionBlock;
     BOOL _showProgress;
+    id exportConfirmationDelegate;
 }
 
 + (id)defaultViewNibName;
@@ -57,6 +58,12 @@
 - (id)reviewFilesViewController;
 - (void)_changeActionAndCancelButtonEnabledStateTo:(BOOL)arg1;
 - (void)setWindowSizeWithHostWindow:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -5,6 +5,7 @@
  */
 
 @protocol DVTObserveXPCServicesProtocol
-- (void)observerServiceNamed:(id)arg1 parentPid:(int)arg2 args:(id)arg3 env:(id)arg4 startSuspended:(BOOL)arg5;
+- (void)stopObservingServicesForPid:(int)arg1;
+- (void)observerServiceNamed:(id)arg1 parentPid:(int)arg2 args:(id)arg3 env:(id)arg4 startSuspended:(BOOL)arg5 interposeBinaryAtPath:(id)arg6;
 @end
 

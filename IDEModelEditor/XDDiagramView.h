@@ -281,18 +281,8 @@
 - (void)_markAsDirtyToolTip;
 - (void)primitiveInvalidate;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (BOOL)dragSelectionWithEvent:(id)arg1 offset:(struct CGSize)arg2 slideBack:(BOOL)arg3;
-- (id)dragImageForSelectionWithEvent:(id)arg1 origin:(struct CGPoint *)arg2;
-- (unsigned long long)draggingSourceOperationMaskForLocal:(BOOL)arg1;
-- (void)concludeDragOperation:(id)arg1;
-- (BOOL)performDragOperation:(id)arg1;
-- (BOOL)prepareForDragOperation:(id)arg1;
-- (void)draggingExited:(id)arg1;
-- (unsigned long long)draggingUpdated:(id)arg1;
-- (unsigned long long)draggingEntered:(id)arg1;
-- (void)cleanUpAfterDragOperation;
-- (unsigned long long)dragOperationForDraggingInfo:(id)arg1 type:(id)arg2;
-- (id)acceptableDragTypes;
+- (struct CGRect)rectForPage:(long long)arg1;
+- (BOOL)knowsPageRange:(struct _NSRange *)arg1;
 - (BOOL)validateToolbarItem:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)toggleHiddenGraphicsShown:(id)arg1;
@@ -346,12 +336,15 @@
 - (void)keyDown:(id)arg1;
 - (void)doCommandBySelector:(SEL)arg1;
 - (void)insertText:(id)arg1;
-- (struct CGRect)rectForPage:(long long)arg1;
-- (BOOL)knowsPageRange:(struct _NSRange *)arg1;
+- (id)acceptableDragTypes;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -13,7 +13,7 @@
 }
 
 - (void).cxx_destruct;
-@property(retain) SKNode *maskNode;
+@property(retain, nonatomic) SKNode *maskNode;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;

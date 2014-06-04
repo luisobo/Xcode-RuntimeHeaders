@@ -8,7 +8,7 @@
 
 #import "IDEIndexQueryProvider-Protocol.h"
 
-@class DVTDispatchLock, IDEIndexDatabase, NSDictionary, NSMutableDictionary;
+@class DVTDispatchLock, IDEIndexDatabase, NSDictionary, NSMutableDictionary, NSString;
 
 @interface IDEIndexDatabaseQueryProvider : NSObject <IDEIndexQueryProvider>
 {
@@ -28,6 +28,7 @@
 - (id)completionStringForSymbol:(id)arg1;
 - (BOOL)isProjectSymbol:(id)arg1;
 - (id)timestampForFile:(id)arg1;
+- (id)symbolDumpForFile:(id)arg1;
 - (id)calleesForSymbolOccurrence:(id)arg1;
 - (id)locationForSymbolOccurrence:(id)arg1;
 - (id)containingSymbolForOccurrence:(id)arg1;
@@ -138,6 +139,12 @@
 - (void)didSave;
 - (void)purgeCaches;
 - (id)initWithSettings:(id)arg1 database:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

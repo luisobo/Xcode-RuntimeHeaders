@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTExtension, DVTStackBacktrace, IDEWorkspace, NSArray, NSImage, NSMutableArray;
+@class DVTExtension, DVTStackBacktrace, IDEWorkspace, NSArray, NSImage, NSMutableArray, NSString;
 
 @interface IDEActivityReporter : NSObject <DVTInvalidation>
 {
@@ -33,8 +33,12 @@
 // Remaining properties
 @property(readonly) NSArray *activityReports; // @dynamic activityReports;
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) NSMutableArray *mutableActivityReports; // @dynamic mutableActivityReports;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

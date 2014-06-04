@@ -29,12 +29,16 @@
     BOOL _hasLoggedActivityStreamError;
     BOOL _isAuthenticatedAsGuest;
     BOOL _enabled;
+    BOOL _connectedUserCanCreateAndDeleteBots;
+    BOOL _isCompatibleWithConnectedServer;
     BOOL _attemptGuestAuthentication;
     BOOL _connectionInFlight;
     BOOL _isFetchingBots;
     BOOL _isFetchingRepositories;
+    BOOL _didCheckServerCompatibility;
     BOOL _readyToConnect;
     NSString *_userName;
+    NSString *_serverCompatibilityErrorText;
     unsigned long long _botQueryGeneration;
     unsigned long long _repositoryQueryGeneration;
     unsigned long long _connectionRequestGeneration;
@@ -57,6 +61,7 @@
 + (id)_botServerInteractionLogAspect;
 + (void)initialize;
 @property(nonatomic) BOOL readyToConnect; // @synthesize readyToConnect=_readyToConnect;
+@property(nonatomic) BOOL didCheckServerCompatibility; // @synthesize didCheckServerCompatibility=_didCheckServerCompatibility;
 @property(retain, nonatomic) NSMutableDictionary *deferredRepositoryDeletes; // @synthesize deferredRepositoryDeletes=_deferredRepositoryDeletes;
 @property(retain, nonatomic) NSMutableDictionary *deferredRepositoryUpdates; // @synthesize deferredRepositoryUpdates=_deferredRepositoryUpdates;
 @property(nonatomic) BOOL isFetchingRepositories; // @synthesize isFetchingRepositories=_isFetchingRepositories;
@@ -67,9 +72,12 @@
 @property(nonatomic) unsigned long long connectionRequestGeneration; // @synthesize connectionRequestGeneration=_connectionRequestGeneration;
 @property(nonatomic) BOOL connectionInFlight; // @synthesize connectionInFlight=_connectionInFlight;
 @property(nonatomic) BOOL attemptGuestAuthentication; // @synthesize attemptGuestAuthentication=_attemptGuestAuthentication;
-@property(readonly, nonatomic) NSString *GUID; // @synthesize GUID=_GUID;
+@property(readonly, copy, nonatomic) NSString *GUID; // @synthesize GUID=_GUID;
 @property(nonatomic) unsigned long long repositoryQueryGeneration; // @synthesize repositoryQueryGeneration=_repositoryQueryGeneration;
 @property(nonatomic) unsigned long long botQueryGeneration; // @synthesize botQueryGeneration=_botQueryGeneration;
+@property(copy, nonatomic) NSString *serverCompatibilityErrorText; // @synthesize serverCompatibilityErrorText=_serverCompatibilityErrorText;
+@property(nonatomic) BOOL isCompatibleWithConnectedServer; // @synthesize isCompatibleWithConnectedServer=_isCompatibleWithConnectedServer;
+@property(nonatomic) BOOL connectedUserCanCreateAndDeleteBots; // @synthesize connectedUserCanCreateAndDeleteBots=_connectedUserCanCreateAndDeleteBots;
 @property(readonly, nonatomic) NSString *netServiceName; // @synthesize netServiceName=_netServiceName;
 @property(readonly, nonatomic) NSString *netServiceType; // @synthesize netServiceType=_netServiceType;
 @property(readonly, nonatomic) NSString *netServiceDomain; // @synthesize netServiceDomain=_netServiceDomain;
@@ -128,13 +136,14 @@
 @property(readonly, nonatomic) NSString *connectionErrorFullDescription;
 @property(readonly, nonatomic) NSString *connectionErrorShortDescription;
 @property(readonly, nonatomic) NSError *connectionError;
+- (long long)reachabilityComputeIfNeeded:(BOOL)arg1;
 @property(readonly, nonatomic) long long reachability;
 - (void)_didChange;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)propertyListRepresentation;
 - (void)_restoreBotFromCache:(id)arg1;
 - (void)ide_addPropertyListRepresentationToDictionary:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)initWithPropertyListRepresentation:(id)arg1;
@@ -143,7 +152,9 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

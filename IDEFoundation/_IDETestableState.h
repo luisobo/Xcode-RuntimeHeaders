@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, IDETestableIssueProvider, NSMutableDictionary, NSMutableSet;
+@class DVTStackBacktrace, IDETestableIssueProvider, NSMutableDictionary, NSMutableSet, NSString;
 
 @interface _IDETestableState : NSObject <DVTInvalidation>
 {
@@ -20,7 +20,7 @@
 
 + (void)initialize;
 @property(readonly) IDETestableIssueProvider *issueProvider; // @synthesize issueProvider=_issueProvider;
-@property(readonly) id <IDETestable> testable; // @synthesize testable=_testable;
+@property(readonly) __weak id <IDETestable> testable; // @synthesize testable=_testable;
 - (void).cxx_destruct;
 - (unsigned long long)_stateOfTest:(id)arg1;
 - (unsigned long long)_testableStateForTestable:(id)arg1;
@@ -39,7 +39,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

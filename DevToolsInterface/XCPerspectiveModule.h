@@ -10,7 +10,7 @@
 #import "NSWindowDelegate-Protocol.h"
 #import "PBXSelectionTarget-Protocol.h"
 
-@class NSBox, NSMutableArray, NSMutableDictionary, NSView, PBXModule, PBXProjectDocument, XCBarModule, XCControlView, XCExtendedSegmentedControl, XCExtendedTabView, XCPerspectivesSpecification;
+@class NSBox, NSMutableArray, NSMutableDictionary, NSString, NSView, PBXModule, PBXProjectDocument, XCBarModule, XCControlView, XCExtendedSegmentedControl, XCExtendedTabView, XCPerspectivesSpecification;
 
 @interface XCPerspectiveModule : PBXProjectModule <NSWindowDelegate, NSToolbarDelegate, PBXSelectionTarget>
 {
@@ -100,6 +100,12 @@
 - (void)dealloc;
 - (void)configureWithSpecification:(id)arg1;
 - (void)_loadProjectPerspective;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

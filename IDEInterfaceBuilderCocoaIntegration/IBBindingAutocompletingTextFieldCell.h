@@ -26,7 +26,7 @@
 - (void)drawInteriorWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)removeProgressIndicator;
 - (void)drawProgressIndicatorInBounds:(struct CGRect)arg1;
-- (void)drawImage:(id)arg1 adjustedInRect:(struct CGRect)arg2 fromRect:(struct CGRect)arg3 operation:(unsigned long long)arg4 fraction:(double)arg5;
+- (void)drawImage:(id)arg1 adjustedInRect:(struct CGRect)arg2 operation:(unsigned long long)arg3 fraction:(double)arg4;
 - (struct CGRect)validImageRectForBounds:(struct CGRect)arg1;
 - (struct CGRect)interiorRectForBounds:(struct CGRect)arg1;
 - (id)validIndicatorImage;

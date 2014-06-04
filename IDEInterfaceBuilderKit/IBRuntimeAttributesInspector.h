@@ -51,6 +51,8 @@
 - (id)tableView:(id)arg1 objectValueForTableColumn:(id)arg2 row:(long long)arg3;
 - (double)tableView:(id)arg1 heightOfRow:(long long)arg2;
 - (long long)numberOfRowsInTableView:(id)arg1;
+- (id)findIndicatorContentViewForInspectedKeyPath:(id)arg1 withContext:(id)arg2;
+- (void)editImageValue:(id)arg1;
 - (void)editColorValue:(id)arg1;
 - (void)editValue:(id)arg1;
 - (void)editType:(id)arg1;
@@ -70,6 +72,12 @@
 - (void)loadView;
 - (void)setupControlBarAfterLoading;
 - (void)primitiveInvalidate;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

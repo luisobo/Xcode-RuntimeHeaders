@@ -20,6 +20,7 @@
 + (id)imagePathForResult:(id)arg1;
 + (id)_imageForNode:(id)arg1;
 + (id)genericReferenceImage;
++ (id)playgroundImage;
 + (id)sampleCodeImage;
 + (id)bookmarkImage;
 + (id)genericBookImage;

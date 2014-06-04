@@ -18,8 +18,8 @@
 + (id)tokenTypeCategoryForKey:(id)arg1 forLocalization:(id)arg2;
 + (id)standardizedLanguageForKey:(id)arg1;
 - (id)URLString;
-@property(readonly, nonatomic) NSURL *URL;
-- (id)description;
+@property(readonly, copy, nonatomic) NSURL *URL;
+@property(readonly, copy) NSString *description;
 - (id)tokenTypeCategory;
 - (id)deprecationVersionStatementAsOfVersion:(id)arg1;
 - (id)deprecationVersionStatement;
@@ -59,11 +59,12 @@
 - (void)setRelatedGroups:(id)arg1;
 - (id)seeAlsoRelatedTokens;
 - (void)setSeeAlsoRelatedTokens:(id)arg1;
+- (id)tokenWithFixedUpLanguage:(id)arg1;
 - (id)XMLDescription;
 - (id)deprecationSummaryAsHTML;
 - (id)deprecationSummary;
 - (void)setDeprecationSummary:(id)arg1;
-@property(readonly) NSString *declaredInFrameworkName;
+@property(readonly, copy) NSString *declaredInFrameworkName;
 - (id)declaredInHeaderURL;
 - (id)declaredIn;
 - (void)setDeclaredIn:(id)arg1;
@@ -82,13 +83,19 @@
 - (void)setParentNode:(id)arg1;
 - (id)tokenName;
 - (void)setTokenName:(id)arg1;
-@property(readonly) NSString *scope;
-@property(readonly) NSString *type;
-@property(readonly) NSString *apiLanguage;
-@property(readonly) NSString *name;
+@property(readonly, copy) NSString *scope;
+@property(readonly, copy) NSString *type;
+@property(readonly, copy) NSString *apiLanguage;
+@property(readonly, copy) NSString *name;
+@property(readonly, copy) NSString *usr;
 - (id)_metainfoCreatingIfMissing:(BOOL)arg1;
 @property(readonly) DSADocSet *docSet;
 @property(readonly, getter=isDeprecated) BOOL deprecated;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

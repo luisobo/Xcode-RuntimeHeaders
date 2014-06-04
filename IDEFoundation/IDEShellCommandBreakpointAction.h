@@ -16,9 +16,9 @@
 }
 
 + (id)propertiesAffectingPersistenceState;
+@property BOOL waitUntilDone; // @synthesize waitUntilDone=_waitUntilDone;
 @property(copy, nonatomic) NSString *arguments; // @synthesize arguments=_arguments;
 @property(copy, nonatomic) NSString *command; // @synthesize command=_command;
-@property BOOL waitUntilDone; // @synthesize waitUntilDone=_waitUntilDone;
 - (void).cxx_destruct;
 - (void)setWaitUntilDoneFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)dvt_encodeAttributesWithXMLArchiver:(id)arg1 version:(id)arg2;

@@ -6,9 +6,12 @@
 
 #import "NSObject.h"
 
+#import "IBICPseudoXMLGeneration-Protocol.h"
+#import "NSCoding-Protocol.h"
+
 @class IBICMultipartImageRepSlot, NSString;
 
-@interface IBICMultipartImageRepSlotValidationRecord : NSObject
+@interface IBICMultipartImageRepSlotValidationRecord : NSObject <NSCoding, IBICPseudoXMLGeneration>
 {
     BOOL _required;
     IBICMultipartImageRepSlot *_slot;
@@ -18,15 +21,25 @@
     NSString *_obsoleteMessage;
 }
 
-@property(readonly) NSString *obsoleteMessage; // @synthesize obsoleteMessage=_obsoleteMessage;
-@property(readonly) NSString *missingRequiredMessage; // @synthesize missingRequiredMessage=_missingRequiredMessage;
-@property(readonly) NSString *versionOfObsolescence; // @synthesize versionOfObsolescence=_versionOfObsolescence;
-@property(readonly) NSString *versionOfIntroduction; // @synthesize versionOfIntroduction=_versionOfIntroduction;
+@property(readonly, copy) NSString *obsoleteMessage; // @synthesize obsoleteMessage=_obsoleteMessage;
+@property(readonly, copy) NSString *missingRequiredMessage; // @synthesize missingRequiredMessage=_missingRequiredMessage;
+@property(readonly, copy) NSString *versionOfObsolescence; // @synthesize versionOfObsolescence=_versionOfObsolescence;
+@property(readonly, copy) NSString *versionOfIntroduction; // @synthesize versionOfIntroduction=_versionOfIntroduction;
 @property(readonly, getter=isRequired) BOOL required; // @synthesize required=_required;
 @property(readonly) IBICMultipartImageRepSlot *slot; // @synthesize slot=_slot;
 - (void).cxx_destruct;
+- (id)ibic_pseudoXMLWithIndent:(unsigned long long)arg1;
+- (id)ibic_pseudoXML;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (BOOL)appliesToMinimumDeploymentTarget:(id)arg1;
 - (id)initWithSlot:(id)arg1 isRequired:(BOOL)arg2 versionOfIntroduction:(id)arg3 versionOfObsolescence:(id)arg4 missingRequiredMessage:(id)arg5 obsoleteMessage:(id)arg6;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,7 +8,7 @@
 
 #import "DVTTextlikeFindDescriptor-Protocol.h"
 
-@class NSAttributedString;
+@class NSAttributedString, NSString;
 
 @interface DVTFindPatternDescriptor : DVTFindRegularExpressionDescriptor <DVTTextlikeFindDescriptor>
 {
@@ -22,11 +22,16 @@
 - (void).cxx_destruct;
 - (id)displayAttributedString;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (id)initWithAttributedString:(id)arg1 ignoreCase:(BOOL)arg2 matchStyle:(int)arg3;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

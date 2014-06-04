@@ -8,7 +8,7 @@
 
 #import "SCNSceneRendererDelegate-Protocol.h"
 
-@class NSEvent, SCNNode, SCNRenderer;
+@class NSEvent, NSString, SCNNode, SCNRenderer;
 
 @interface SKESceneView : SCNView <SCNSceneRendererDelegate>
 {
@@ -23,13 +23,9 @@
     id <SKESceneViewDelegate> _selectionDelegate;
 }
 
-+ (id)noMultisamplingPixelFormat;
 @property __weak id <SKESceneViewDelegate> selectionDelegate; // @synthesize selectionDelegate=_selectionDelegate;
 @property(nonatomic) BOOL multisamplingEnabled; // @synthesize multisamplingEnabled=_multisamplingEnabled;
 - (void).cxx_destruct;
-- (void)renderer:(id)arg1 didRenderScene:(id)arg2 atTime:(double)arg3;
-- (void)_10_9_projectBoundingBoxForSelectedNode:(id)arg1 min:(CDStruct_39925896)arg2 max:(CDStruct_39925896)arg3 dst:(CDStruct_39925896 *)arg4;
-- (void)_10_8_projectBoundingBoxForSelectedNode:(id)arg1 min:(CDStruct_39925896)arg2 max:(CDStruct_39925896)arg3 dst:(CDStruct_39925896 *)arg4;
 - (void)keyUp:(id)arg1;
 - (void)keyDown:(id)arg1;
 - (void)mouseUp:(id)arg1;
@@ -43,6 +39,12 @@
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

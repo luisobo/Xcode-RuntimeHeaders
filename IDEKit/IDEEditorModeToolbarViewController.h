@@ -13,16 +13,10 @@
     DVTObservingToken *_editorModeObservingToken;
     DVTObservingToken *_editorSubmodeObservingToken;
     DVTBindingToken *_workspaceIsIdleToken;
+    id _segmentedControllVersionEditorEnabledToken;
     DVTRolloverTracker *_segmentedControllRolloverTracker;
 }
 
-+ (id)_alternateInactiveImages;
-+ (id)_inactiveImages;
-+ (id)_alternateImages;
-+ (id)_images;
-+ (id)_templateImages;
-+ (id)_imageWithDisclosureTriangle:(id)arg1;
-+ (id)_imagesForImageNames:(id)arg1;
 - (void).cxx_destruct;
 - (void)_showVersionLogMode:(id)arg1;
 - (void)_showVersionBlameMode:(id)arg1;
@@ -36,7 +30,15 @@
 - (id)_editorModeViewController;
 - (id)menuForMenuFormRepresentation;
 - (void)primitiveInvalidate;
+- (id)_create1010AndLaterControl;
+- (id)_createPre1010Control;
 - (id)initWithToolbarItemIdentifier:(id)arg1 window:(id)arg2;
+- (id)_imageFactoryForImageNamed:(id)arg1;
+- (id)_editorVersionLogsImageFactory;
+- (id)_editorVersionComparisonImageFactory;
+- (id)_editorVersionBlameImageFactory;
+- (id)_editorGeniusImageFactory;
+- (id)_editorBasicImageFactory;
 
 @end
 

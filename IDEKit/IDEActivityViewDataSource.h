@@ -37,10 +37,12 @@
 
 + (void)initialize;
 @property(copy) NSString *debugName; // @synthesize debugName=_debugName;
-@property(readonly) NSArray *botStatusCategories; // @synthesize botStatusCategories=_botStatusCategories;
+@property(readonly, copy) NSArray *botStatusCategories; // @synthesize botStatusCategories=_botStatusCategories;
 @property(copy) NSArray *issueCategories; // @synthesize issueCategories=_issueCategories;
 @property(readonly) IDEWorkspaceDocument *workspaceDocument; // @synthesize workspaceDocument=_workspaceDocument;
 - (void).cxx_destruct;
+- (void)openIssuesNavigator;
+- (void)openTestNavigator;
 - (void)stopObservingActivityReports;
 - (void)startObservingActivityReports;
 - (void)tearDown;
@@ -81,7 +83,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

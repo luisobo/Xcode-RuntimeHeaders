@@ -6,7 +6,7 @@
 
 #import <IDEInterfaceBuilderKit/IBXMLDecoderElement.h>
 
-@class NSData, NSNumber, NSString;
+@class NSData, NSString;
 
 @interface IBXMLDecoderAbstractValueElement : IBXMLDecoderElement
 {
@@ -16,16 +16,12 @@
 
 @property(readonly) NSString *key; // @synthesize key=_key;
 - (void).cxx_destruct;
-@property(readonly) NSString *interpretedStringValue;
-@property(readonly) NSNumber *interpretedBooleanValue;
-@property(readonly) NSNumber *interpretedRealValue;
-@property(readonly) NSNumber *interpretedIntegerValue;
-@property(readonly) NSData *interpretedBytesValue;
+- (id)interpretedBytesValue;
 @property(readonly) double interpretedDoubleValue;
 @property(readonly) float interpretedFloatValue;
 @property(readonly) long long interpretedLongLongValue;
 @property(readonly) BOOL interpretedBoolValue;
-- (id)initWithAttributes:(const char **)arg1 parser:(id)arg2 error:(id *)arg3;
+- (id)initWithAttributes:(const char **)arg1 stringTable:(id)arg2 error:(id *)arg3;
 
 @end
 

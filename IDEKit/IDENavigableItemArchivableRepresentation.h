@@ -40,8 +40,13 @@
 - (id)initWithCoder:(id)arg1;
 - (BOOL)isEqualToArchivableRepresentation:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)initWithNavigableItem:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

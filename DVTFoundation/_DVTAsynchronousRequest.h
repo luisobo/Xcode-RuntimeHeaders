@@ -8,6 +8,8 @@
 
 #import "DVTCancellable-Protocol.h"
 
+@class NSString;
+
 @interface _DVTAsynchronousRequest : NSObject <DVTCancellable>
 {
     long long _type;
@@ -22,6 +24,12 @@
 @property(readonly, getter=isCancelled) BOOL cancelled;
 - (void)_invokeBlock:(id)arg1;
 - (id)_initWithBlock:(id)arg1 type:(void)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

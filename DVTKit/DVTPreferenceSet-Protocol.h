@@ -22,8 +22,8 @@
 @property(readonly, getter=isBuiltIn) BOOL builtIn;
 @property(retain) DVTCustomDataSpecifier *customDataSpecifier;
 @property(retain) NSImage *image;
-@property(readonly) NSString *localizedName;
-@property(readonly) NSString *name;
+@property(readonly, copy) NSString *localizedName;
+@property(readonly, copy) NSString *name;
 - (id)dataRepresentationWithError:(id *)arg1;
 - (id)initWithCustomDataSpecifier:(id)arg1 basePreferenceSet:(id)arg2;
 - (id)initWithName:(id)arg1 dataURL:(id)arg2;

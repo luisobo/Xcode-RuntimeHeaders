@@ -8,17 +8,20 @@
 
 #import "DVTFontTextFieldCellDelegate-Protocol.h"
 
-@class DVTFontTextField, IDEInspectorKeyPath, NSStepper;
+@class DVTFontTextField, IDEInspectorKeyPath, NSStepper, NSString;
 
 @interface IDEInspectorFontProperty : IDEInspectorProperty <DVTFontTextFieldCellDelegate>
 {
-    DVTFontTextField *_textField;
-    NSStepper *_stepper;
     IDEInspectorKeyPath *_dataSourceKeyPath;
     IDEInspectorKeyPath *_valueKeyPath;
+    DVTFontTextField *_textField;
+    NSStepper *_stepper;
 }
 
+@property(retain, nonatomic) NSStepper *stepper; // @synthesize stepper=_stepper;
+@property(retain, nonatomic) DVTFontTextField *textField; // @synthesize textField=_textField;
 - (void).cxx_destruct;
+- (id)findIndicatorContentViewWithContext:(id)arg1;
 - (void)tearDownRefreshTriggers;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)fontTextFieldCell:(id)arg1 enumerateMultipleValues:(id)arg2;
@@ -27,6 +30,12 @@
 - (void)userDidChangeValue:(id)arg1;
 - (void)incrementSize:(id)arg1;
 - (double)baseline;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

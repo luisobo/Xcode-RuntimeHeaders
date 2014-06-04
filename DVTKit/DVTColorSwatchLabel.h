@@ -11,7 +11,6 @@
 @interface DVTColorSwatchLabel : NSView
 {
     NSColor *_color;
-    BOOL _circular;
     NSView *_colorSwatch;
     NSTextField *_labelTextField;
     NSTextField *_valueTextField;
@@ -27,7 +26,7 @@
 - (id)_createLabelTextField;
 - (void)_buildViewWithoutValueTextField;
 - (void)_buildViewWithValueTextField;
-- (id)initWithColor:(id)arg1 label:(id)arg2 value:(id)arg3 valueFormatter:(id)arg4 circular:(BOOL)arg5;
+- (id)initWithColor:(id)arg1 label:(id)arg2 value:(id)arg3 valueFormatter:(id)arg4;
 - (id)initWithColor:(id)arg1 label:(id)arg2 value:(id)arg3;
 - (id)initWithColor:(id)arg1 label:(id)arg2;
 

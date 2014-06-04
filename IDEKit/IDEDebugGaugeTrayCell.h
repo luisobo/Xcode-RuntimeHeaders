@@ -6,24 +6,23 @@
 
 #import "NSTextFieldCell.h"
 
-#import "DVTInvalidation-Protocol.h"
+@class NSByteCountFormatter, NSImage, NSMutableArray, NSNumberFormatter, NSString;
 
-@class DVTStackBacktrace, NSByteCountFormatter, NSImage, NSMutableArray, NSNumberFormatter, NSString, NSTimer;
-
-@interface IDEDebugGaugeTrayCell : NSTextFieldCell <DVTInvalidation>
+@interface IDEDebugGaugeTrayCell : NSTextFieldCell
 {
     double _maximumValue;
     NSMutableArray *_barValues;
     unsigned long long _numberOfValuesToKeep;
     double _maxValueFromValues;
     BOOL _maxValueIsSet;
-    NSTimer *_resetMaxValueTimer;
     double _lastDoubleValue;
     double _lastSuddenIncreaseInValue;
+    BOOL _haveRegisterdForHeartBeat;
     unsigned long long _lastCountOfDisplayableBars;
     double _beginAnimationTime;
     NSNumberFormatter *_noFloatFormatter;
     NSByteCountFormatter *_byteCountFormatter;
+    NSByteCountFormatter *_rateCountFormatter;
     BOOL _largerValueIsBetter;
     BOOL _suppressSuddenIncreases;
     BOOL _enableAnimation;
@@ -39,7 +38,10 @@
     NSString *_label;
 }
 
-+ (void)initialize;
++ (void)_notifyCellsWantingHeartBeatNotification;
++ (void)_unregisterForHeartBeatNotifications:(id)arg1;
++ (void)_registerForHeartBeatNotifications:(id)arg1;
++ (id)_cellsWantingHeartBeatNotification;
 @property(copy) NSString *label; // @synthesize label=_label;
 @property(readonly, nonatomic) BOOL enableAnimation; // @synthesize enableAnimation=_enableAnimation;
 @property(nonatomic) BOOL suppressSuddenIncreases; // @synthesize suppressSuddenIncreases=_suppressSuddenIncreases;
@@ -60,6 +62,7 @@
 - (double)_drawValueLabelAlignedRightInRect:(struct CGRect)arg1 inView:(id)arg2;
 - (void)_drawTitleAlignedLeftInRect:(struct CGRect)arg1;
 - (void)_drawIconInRect:(struct CGRect)arg1;
+- (id)_byteRateFormatter;
 - (id)_byteCountFormatter;
 - (id)_noFloatFormatter;
 - (id)_stringForLabelFromNumber:(id)arg1;
@@ -78,22 +81,16 @@
 - (BOOL)_showsValueLabel;
 - (id)barValues;
 - (double)_realMaxValue;
-- (void)_resetMaxValue:(id)arg1;
+- (void)_resetMaxValue;
 - (void)_setControlViewNeedsDisplayInChartArea;
 - (void)enqueueBarValue:(id)arg1;
 - (void)_recordBarValue:(id)arg1;
-- (void)primitiveInvalidate;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithLabel:(id)arg1;
 - (id)initTextCell:(id)arg1;
 - (void)_dvt_commonInit;
 - (id)_raisedEffectShadowHighlighted;
 - (id)_raisedEffectShadow;
-
-// Remaining properties
-@property(retain) DVTStackBacktrace *creationBacktrace;
-@property(readonly) DVTStackBacktrace *invalidationBacktrace;
-@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

@@ -7,7 +7,6 @@
 #import "NSTableColumn.h"
 
 @interface NSTableColumn (IBNSInspectorIntegration)
-+ (id)keyPathsForValuesAffectingIbQualifyingInfoForDefaultLabel;
 + (id)keyPathsForValuesAffectingIbInspectedToolTip;
 + (id)ibDefaultPrototypeTextCellView;
 + (id)keyPathsForValuesAffectingIbInspectedSortDescriptorAscending;
@@ -28,7 +27,7 @@
 - (id)ibBeginDesigningInDocument:(id)arg1;
 - (void)constrainWidthToMax;
 - (void)constrainWidthToMin;
-- (id)ibDefaultFontKeyPath;
+- (void)ibPopulateObjectsForFloatingPanels:(id)arg1;
 - (id)ibInitialConnectionLabelSearchTerm;
 - (id)ibAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 insertionContext:(id)arg3;
 - (BOOL)ibCanAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 targetChildRelation:(id *)arg3;
@@ -52,9 +51,9 @@
 - (BOOL)ibExternalIsInViewBasedMode;
 - (void)setIbExternalPrototypeCellViews:(id)arg1;
 - (id)ibExternalPrototypeCellViews;
+- (id)ibDefaultFontKeyPath;
 - (BOOL)ibIsContainedPrototypeCellView:(id)arg1;
-- (void)ibFinishArchivingDocument:(id)arg1 withContext:(id)arg2;
-- (void)ibBeginArchivingDocument:(id)arg1 withContext:(id)arg2;
+- (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (void)ibRemoveChildren:(id)arg1;
 - (void)setIbExternalUserInterfaceItemIdentifier:(id)arg1;
 - (id)ibExternalUserInterfaceItemIdentifier;

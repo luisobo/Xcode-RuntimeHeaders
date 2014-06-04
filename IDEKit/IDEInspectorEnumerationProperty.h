@@ -10,7 +10,7 @@
 
 @interface IDEInspectorEnumerationProperty : IDEInspectorProperty
 {
-    NSNumber *unusedEnumerationValue;
+    NSNumber *_unusedEnumerationValue;
 }
 
 + (Class)propertyClassForPropertyDefinition:(id)arg1;

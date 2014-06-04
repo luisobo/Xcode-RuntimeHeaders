@@ -6,28 +6,37 @@
 
 #import "NSObject.h"
 
-@class DBGDataValue, NSData, NSString;
+@class DBGDataValue, DBGNSDataForDataValueProviderOptions, DBGStackFrame, NSData, NSString;
 
 @interface DBGNSDataForDataValueProvider : NSObject
 {
-    DBGDataValue *_dataValue;
+    DBGStackFrame *_stackFrame;
     NSString *_expressionResultingInNSData;
     BOOL _hasDataBeenRetrieved;
     NSData *_data;
     BOOL _wasCancelled;
+    BOOL _retrievalStarted;
     id <DVTCancellable> _cancellableMemoryReadToken;
+    BOOL _autoHandleExceptions;
+    DBGNSDataForDataValueProviderOptions *_options;
+    DBGDataValue *_dataDataValue;
 }
 
+@property(readonly) BOOL autoHandleExceptions; // @synthesize autoHandleExceptions=_autoHandleExceptions;
+@property(retain) DBGDataValue *dataDataValue; // @synthesize dataDataValue=_dataDataValue;
+@property(retain) DBGNSDataForDataValueProviderOptions *options; // @synthesize options=_options;
 @property(readonly) NSData *data; // @synthesize data=_data;
 @property(readonly) BOOL hasDataBeenRetrieved; // @synthesize hasDataBeenRetrieved=_hasDataBeenRetrieved;
 - (void).cxx_destruct;
+- (id)safelyUnarchiveRootObjectFromData;
 - (void)_dataWasFetched:(id)arg1;
 - (void)_failedToGetData;
 - (void)_readArchivedData:(id)arg1;
 - (void)_startRetrieval;
 - (void)cancel;
-@property(readonly) NSString *blockStartAddress;
-- (id)initWithDataValue:(id)arg1 expressionResultingInNSData:(id)arg2;
+- (id)_initWithStackFrame:(id)arg1 expressionResultingInNSData:(id)arg2 options:(id)arg3;
+- (id)initWithStackFrame:(id)arg1 expressionResultingInNSData:(id)arg2 options:(id)arg3;
+- (id)initWithStackFrame:(id)arg1 expressionResultingInNSData:(id)arg2;
 - (id)initWithKeyedArchivableDataValue:(id)arg1;
 
 @end

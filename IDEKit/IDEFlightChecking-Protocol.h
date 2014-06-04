@@ -12,9 +12,11 @@
 @property(readonly, nonatomic) BOOL failed;
 @property(readonly, nonatomic) NSError *resolutionError;
 @property(readonly, nonatomic) int status;
-@property(readonly, nonatomic) NSString *pastTitle;
-@property(readonly, nonatomic) NSString *resolvingTitle;
-@property(readonly, nonatomic) NSString *title;
+@property(readonly, nonatomic, getter=isLongRunning) BOOL longRunning;
+@property(readonly, nonatomic) BOOL requiresAccountAndTeamSelection;
+@property(readonly, copy, nonatomic) NSString *pastTitle;
+@property(readonly, copy, nonatomic) NSString *resolvingTitle;
+@property(readonly, copy, nonatomic) NSString *title;
 - (void)revert;
 - (void)validate;
 - (void)unresolve;

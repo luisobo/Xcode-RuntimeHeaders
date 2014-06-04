@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSException, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, PBXCStringStorage, PBXIndexingEngine, PBXProject, PBXProjectIndexBTree, PBXProjectIndexBTreeEnumerator, PBXRecordVector;
+@class NSException, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, PBXCStringStorage, PBXIndexingEngine, PBXProject, PBXProjectIndexBTree, PBXProjectIndexBTreeEnumerator, PBXRecordVector;
 
 @interface PBXProjectIndex : NSObject
 {
@@ -59,9 +59,9 @@
     NSMutableSet *_indexedFiles;
     id <PBXProjectIndexStatusObserving> _statusObserver;
     unsigned long long _projectPathOffset;
-    struct dispatch_queue_s *_indexAccessQueue;
-    struct dispatch_queue_s *_indexLogicQueue;
-    struct dispatch_queue_s *_indexIOQueue;
+    NSObject<OS_dispatch_queue> *_indexAccessQueue;
+    NSObject<OS_dispatch_queue> *_indexLogicQueue;
+    NSObject<OS_dispatch_queue> *_indexIOQueue;
 }
 
 + (void)initialize;
@@ -72,7 +72,7 @@
 - (void)_processDeferredNotification;
 - (void)_deferNotificationWithInfo:(id)arg1;
 - (void)_doIndexing:(id)arg1;
-- (struct dispatch_queue_s *)accessQueue;
+- (id)accessQueue;
 - (id)project;
 - (BOOL)isIndexing;
 - (void)_stopIndexing;

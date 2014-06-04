@@ -8,36 +8,32 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTObservingToken, DVTStackBacktrace, DVTTabBarView, DVTTabButton, DVTViewController<DVTTabbedWindowTabContentControlling>, NSString;
+@class DVTBarBackground, DVTObservingToken, DVTStackBacktrace, DVTViewController<DVTTabbedWindowTabContentControlling>, NSButton, NSString;
 
 @interface DVTTabbedWindowTabViewItem : NSTabViewItem <DVTInvalidation>
 {
-    DVTTabBarView *_tabBarView;
-    DVTTabButton *_button;
-    NSString *_searchFieldText;
-    DVTViewController<DVTTabbedWindowTabContentControlling> *_tabContentController;
     DVTObservingToken *_tabLabelObservingToken;
     BOOL _isEditingTabName;
-    BOOL _firedOpenEvent;
-    BOOL _firedCloseEvent;
     BOOL _tabNameEditable;
+    DVTViewController<DVTTabbedWindowTabContentControlling> *_tabContentController;
+    DVTBarBackground *_tabBarView;
+    NSButton *_tabButton;
+    NSString *_searchFieldText;
 }
 
 + (void)initialize;
+@property(copy, nonatomic) NSString *searchFieldText; // @synthesize searchFieldText=_searchFieldText;
 @property(getter=isTabNameEditable) BOOL tabNameEditable; // @synthesize tabNameEditable=_tabNameEditable;
-@property(readonly) DVTTabBarView *tabBarView; // @synthesize tabBarView=_tabBarView;
-@property(readonly) BOOL isEditingTabName; // @synthesize isEditingTabName=_isEditingTabName;
+@property(nonatomic) BOOL isEditingTabName; // @synthesize isEditingTabName=_isEditingTabName;
+@property(nonatomic) __weak NSButton *tabButton; // @synthesize tabButton=_tabButton;
+@property(nonatomic) __weak DVTBarBackground *tabBarView; // @synthesize tabBarView=_tabBarView;
 @property(retain, nonatomic) DVTViewController<DVTTabbedWindowTabContentControlling> *tabContentController; // @synthesize tabContentController=_tabContentController;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (id)_computeTabLabel;
 - (void)updateLabelSoon;
 - (void)updateLabelNow;
-- (id)searchFieldText;
-- (void)setSearchFieldText:(id)arg1;
-- (BOOL)canBeClosed;
-- (id)button;
-- (void)setButton:(id)arg1;
+@property(readonly) BOOL canBeClosed;
 - (void)setLabel:(id)arg1;
 - (void)setView:(id)arg1;
 - (void)setEditingTabName:(BOOL)arg1;
@@ -45,7 +41,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

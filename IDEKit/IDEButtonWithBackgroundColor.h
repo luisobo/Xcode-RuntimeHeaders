@@ -6,12 +6,31 @@
 
 #import "NSButton.h"
 
-@interface IDEButtonWithBackgroundColor : NSButton
+#import "DVTWindowActivationStateObserver-Protocol.h"
+
+@class NSColor, NSString;
+
+@interface IDEButtonWithBackgroundColor : NSButton <DVTWindowActivationStateObserver>
 {
+    id <DVTCancellable> _windowActivationObservation;
+    NSColor *_backgroundColor;
+    NSColor *_inactiveBackgroundColor;
 }
 
+@property(retain) NSColor *inactiveBackgroundColor; // @synthesize inactiveBackgroundColor=_inactiveBackgroundColor;
+@property(retain) NSColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
+- (void).cxx_destruct;
+- (void)window:(id)arg1 didChangeActivationState:(long long)arg2;
+- (void)viewWillMoveToWindow:(id)arg1;
+- (BOOL)isOpaque;
+- (void)dealloc;
 - (void)drawRect:(struct CGRect)arg1;
-- (void)awakeFromNib;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

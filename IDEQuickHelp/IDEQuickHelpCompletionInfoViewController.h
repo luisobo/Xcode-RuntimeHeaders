@@ -8,7 +8,7 @@
 
 #import "NSTextViewDelegate-Protocol.h"
 
-@class IDEQuickHelpController, NSTextField;
+@class IDEQuickHelpController, NSString, NSTextField;
 
 @interface IDEQuickHelpCompletionInfoViewController : DVTViewController <NSTextViewDelegate>
 {
@@ -24,6 +24,12 @@
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)viewDidInstall;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

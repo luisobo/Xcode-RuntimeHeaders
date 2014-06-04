@@ -8,6 +8,8 @@
 
 #import "NSMenuDelegate-Protocol.h"
 
+@class NSString;
+
 @interface IDEApplication : DVTApplication <NSMenuDelegate>
 {
     id _ideEventDelegate;
@@ -21,7 +23,6 @@
 - (void)closeAll:(id)arg1;
 - (void)terminate:(id)arg1;
 - (void)sendEvent:(id)arg1;
-- (void)_errorAlert:(id)arg1 wasPresentedWithResult:(long long)arg2 inContext:(id)arg3;
 - (void)updateWindowsItem:(id)arg1;
 - (void)changeWindowsItem:(id)arg1 title:(id)arg2 filename:(BOOL)arg3;
 - (void)addWindowsItem:(id)arg1 title:(id)arg2 filename:(BOOL)arg3;
@@ -43,6 +44,12 @@
 - (id)sdefSupport_symbolicBreakpoints;
 - (id)sdefSupport_fileBreakpoints;
 - (id)sdefSupport_breakpoints;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

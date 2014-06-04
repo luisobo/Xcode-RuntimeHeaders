@@ -4,37 +4,25 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2011 by Steve Nygard.
  */
 
-#import "NSViewController.h"
+#import "DBGAbstractQuickLookProvider.h"
 
-#import "IDEVariablesViewQuickLookProvider-Protocol.h"
+@class DVTObservingToken, DVTPathView;
 
-@class DBGPathDrawingView, DVTObservingToken, NSLayoutConstraint, NSString, NSURL, NSView;
-
-@interface DBGPathQuickLookProvider : NSViewController <IDEVariablesViewQuickLookProvider>
+@interface DBGPathQuickLookProvider : DBGAbstractQuickLookProvider
 {
-    id <IDECGPathProvider> _cgPathProvider;
+    id <DBGCGPathProvider> _cgPathProvider;
     DVTObservingToken *_nsBezierPathProviderObserver;
     int _loadedState;
-    id <IDEDataValue> _dataValue;
-    DBGPathDrawingView *_pathDrawingView;
-    NSLayoutConstraint *_widthConstraint;
-    NSLayoutConstraint *_heightConstraint;
+    DVTPathView *_pathDrawingView;
 }
 
-@property(retain) NSLayoutConstraint *heightConstraint; // @synthesize heightConstraint=_heightConstraint;
-@property(retain) NSLayoutConstraint *widthConstraint; // @synthesize widthConstraint=_widthConstraint;
-@property(retain) DBGPathDrawingView *pathDrawingView; // @synthesize pathDrawingView=_pathDrawingView;
-@property int loadedState; // @synthesize loadedState=_loadedState;
+@property __weak DVTPathView *pathDrawingView; // @synthesize pathDrawingView=_pathDrawingView;
+- (void)setLoadedState:(int)arg1;
+- (int)loadedState;
 - (void).cxx_destruct;
 - (void)cancelLoading;
-@property(readonly) NSView *quickLookView;
-- (struct CGSize)_updateWidthAndHeightConstraintsFromPathBounds:(struct CGRect)arg1 lineWidth:(double)arg2;
 - (void)_updateFromCGPathProvider;
 - (id)initWithDataValue:(id)arg1 options:(id)arg2;
-
-// Remaining properties
-@property(readonly) NSURL *existingURLToOpen;
-@property(readonly) NSString *extensionForTemporaryFile;
 
 @end
 

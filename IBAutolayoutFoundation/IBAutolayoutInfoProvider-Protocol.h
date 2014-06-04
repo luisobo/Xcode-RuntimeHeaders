@@ -4,13 +4,11 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2011 by Steve Nygard.
  */
 
-#import "NSObject-Protocol.h"
+#import "IBAutolayoutConcreteConstraintProvider-Protocol.h"
 
-@protocol IBAutolayoutInfoProvider <NSObject>
+@protocol IBAutolayoutInfoProvider <IBAutolayoutConcreteConstraintProvider>
 @property(readonly, nonatomic) Class autolayoutFrameDecisionDriverClass;
 @property(readonly, nonatomic) Class symbolicLayoutConstantClass;
-@property(readonly, nonatomic) Class layoutConstantClass;
-@property(readonly, nonatomic) Class layoutConstraintClass;
 @property(readonly, nonatomic) Class autolayoutEngineClass;
 @property(readonly, nonatomic) Class arbitrationUnitClass;
 @property(readonly, nonatomic) long long userInterfaceLayoutDirection;
@@ -35,6 +33,7 @@
 - (id)containerWidgetTypeForView:(id)arg1;
 - (id)widgetTypeForView:(id)arg1;
 - (id)objectsFromAncestor:(id)arg1 toObject:(id)arg2;
+- (id)topLevelObjectForObject:(id)arg1;
 - (id)topLevelObjects;
 - (id)objects;
 - (id)orderedChildrenOfObject:(id)arg1;
@@ -43,7 +42,6 @@
 - (BOOL)containsObject:(id)arg1;
 
 @optional
-- (double)priorityForRunningLiveViewResizingFrameDecison;
 - (id)debugDescription;
 @end
 

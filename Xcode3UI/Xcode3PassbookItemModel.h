@@ -18,13 +18,11 @@
 - (void).cxx_destruct;
 - (void)_generateKnownPassTypes;
 - (BOOL)isEnabledUsingEducatedGuess;
-- (id)linkedFrameworksFlightCheck;
-- (id)portalFlightCheck;
+- (id)flightChecks;
 @property(readonly, nonatomic) NSDictionary *knownPassTypes;
 - (void)refreshKnownPassTypesWithWindow:(id)arg1 portalInfoDelegate:(id)arg2 completionHandler:(id)arg3;
 - (void)_setCustomPassTypes:(id)arg1 postAssignmentBlock:(id)arg2;
 - (void)targetCoordinatorChanged:(id)arg1;
-- (void)publishStateWithContext:(id)arg1;
 - (void)readCurrentState;
 - (id)initWithCapabilitiesContext:(id)arg1 item:(id)arg2;
 

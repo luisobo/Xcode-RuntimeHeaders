@@ -38,7 +38,7 @@
 - (id)_availablePreferenceSetWithLocalizedName:(id)arg1;
 @property(readonly) id <DVTCustomDataStoring> userPreferenceSetsDataStore;
 - (id)preferenceSetForName:(id)arg1;
-@property(readonly) NSArray *builtInPreferenceSets;
+@property(readonly, copy) NSArray *builtInPreferenceSets;
 @property(retain) id <DVTPreferenceSet> currentPreferenceSet;
 - (void)_rebuildAvailableandUserSetsList;
 - (void)dealloc;
@@ -46,8 +46,8 @@
 
 // Remaining properties
 @property(copy) NSArray *availablePreferenceSets; // @dynamic availablePreferenceSets;
-@property(readonly) NSMutableArray *mutableAvailablePreferenceSets; // @dynamic mutableAvailablePreferenceSets;
-@property(readonly) NSMutableArray *mutableUserPreferenceSets; // @dynamic mutableUserPreferenceSets;
+@property(readonly, copy) NSMutableArray *mutableAvailablePreferenceSets; // @dynamic mutableAvailablePreferenceSets;
+@property(readonly, copy) NSMutableArray *mutableUserPreferenceSets; // @dynamic mutableUserPreferenceSets;
 @property(copy) NSArray *userPreferenceSets; // @dynamic userPreferenceSets;
 
 @end

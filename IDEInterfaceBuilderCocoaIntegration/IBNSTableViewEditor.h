@@ -6,7 +6,11 @@
 
 #import <IDEInterfaceBuilderCocoaIntegration/IBNSViewEditor.h>
 
-@interface IBNSTableViewEditor : IBNSViewEditor
+#import "NSTableViewDelegate-Protocol.h"
+
+@class NSString;
+
+@interface IBNSTableViewEditor : IBNSViewEditor <NSTableViewDelegate>
 {
     id originalDelegate;
 }
@@ -19,7 +23,7 @@
 - (BOOL)interceptEvent:(id)arg1;
 - (BOOL)shouldChildHaveResizeKnobs:(id)arg1;
 - (BOOL)areKnobsLockedForObject:(id)arg1;
-- (CDStruct_648df176)activeKnobRectsForObject:(id)arg1;
+- (CDStruct_fa3e0eee)activeKnobRectsForObject:(id)arg1;
 - (id)viewForClippingToWhenDrawingSelectionKnobsForObject:(id)arg1;
 - (void)resizeChild:(id)arg1 fromKnob:(long long)arg2 withEvent:(id)arg3;
 - (void)tryToDragTableColumn:(id)arg1 withLeftMouseDown:(id)arg2 andLeftMouseDragged:(id)arg3;
@@ -40,6 +44,12 @@
 - (void)didActivate;
 - (void)willClose;
 - (void)didOpen;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,13 +6,13 @@
 
 #import "NSObject.h"
 
-@class PBXProjectIndexBTree;
+@class NSObject<OS_dispatch_queue>, PBXProjectIndexBTree;
 
 @interface PBXProjectIndexBTreeEnumerator : NSObject
 {
     PBXProjectIndexBTree *_btree;
     _pbxbtreecursor_23e470bf _cursor;
-    struct dispatch_queue_s *_treeAccessQueue;
+    NSObject<OS_dispatch_queue> *_treeAccessQueue;
 }
 
 - (unsigned int)previousValue;

@@ -9,6 +9,8 @@
 #import "IBBinaryArchiving-Protocol.h"
 #import "NSCoding-Protocol.h"
 
+@class NSString;
+
 @interface IBSparseInsetWrapper : NSObject <NSCoding, IBBinaryArchiving>
 {
     CDStruct_c519178c _inset;
@@ -20,6 +22,12 @@
 - (id)initWithBinaryUnarchiver:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithInset:(CDStruct_c519178c)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

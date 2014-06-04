@@ -8,7 +8,7 @@
 
 #import "DTDraggingInfo-Protocol.h"
 
-@class DTDraggedImageState, NSDictionary, NSImage, NSPasteboard, NSWindow;
+@class DTDraggedImageState, NSDictionary, NSImage, NSPasteboard, NSString, NSWindow;
 
 @interface DTDraggingContext : NSObject <DTDraggingInfo>
 {
@@ -60,6 +60,12 @@
 - (id)draggedImageState;
 - (void)dealloc;
 - (id)initWithSource:(id)arg1 andPasteboard:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

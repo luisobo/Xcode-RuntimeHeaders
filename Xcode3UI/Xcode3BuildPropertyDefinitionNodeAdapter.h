@@ -9,7 +9,7 @@
 #import "DVTInvalidation-Protocol.h"
 #import "XCEDataNodeAdapterP-Protocol.h"
 
-@class DVTStackBacktrace, NSCell, Xcode3BuildPropertyColumnContext, Xcode3BuildPropertyRowContext, Xcode3BuildSettingsEditor;
+@class DVTStackBacktrace, NSCell, NSString, Xcode3BuildPropertyColumnContext, Xcode3BuildPropertyRowContext, Xcode3BuildSettingsEditor;
 
 @interface Xcode3BuildPropertyDefinitionNodeAdapter : NSObject <XCEDataNodeAdapterP, DVTInvalidation>
 {
@@ -83,7 +83,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

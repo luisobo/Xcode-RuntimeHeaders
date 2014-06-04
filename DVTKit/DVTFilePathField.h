@@ -21,6 +21,7 @@
 - (void)didAddSubview:(id)arg1;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)setCell:(id)arg1;
+- (id)cell;
 
 @end
 

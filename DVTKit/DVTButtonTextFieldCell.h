@@ -13,28 +13,26 @@
 
 @interface DVTButtonTextFieldCell : NSTextFieldCell <NSCoding, NSCopying>
 {
-    id _buttonTarget;
-    SEL _buttonAction;
     struct CGRect _cellFrame;
-    NSImage *_image;
-    NSImage *_alternateImage;
-    NSImage *_highlightImage;
-    unsigned long long _imagePosition;
-    BOOL _buttonTracking;
     BOOL _inButton;
+    NSImage *_image;
     BOOL _alwaysShowButton;
     BOOL _useMetricsForAutolayout;
+    NSImage *_alternateImage;
+    NSImage *_highlightImage;
+    id _buttonTarget;
+    SEL _buttonAction;
+    unsigned long long _imagePosition;
 }
 
 + (BOOL)prefersTrackingUntilMouseUp;
 @property BOOL useMetricsForAutolayout; // @synthesize useMetricsForAutolayout=_useMetricsForAutolayout;
 @property unsigned long long imagePosition; // @synthesize imagePosition=_imagePosition;
-@property BOOL alwaysShowButton; // @synthesize alwaysShowButton=_alwaysShowButton;
-@property(retain) id buttonTarget; // @synthesize buttonTarget=_buttonTarget;
 @property SEL buttonAction; // @synthesize buttonAction=_buttonAction;
+@property __weak id buttonTarget; // @synthesize buttonTarget=_buttonTarget;
 @property(retain, nonatomic) NSImage *highlightImage; // @synthesize highlightImage=_highlightImage;
 @property(retain, nonatomic) NSImage *alternateImage; // @synthesize alternateImage=_alternateImage;
-@property(retain, nonatomic) NSImage *image; // @synthesize image=_image;
+@property BOOL alwaysShowButton; // @synthesize alwaysShowButton=_alwaysShowButton;
 - (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
@@ -56,6 +54,7 @@
 - (void)editWithFrame:(struct CGRect)arg1 inView:(id)arg2 editor:(id)arg3 delegate:(id)arg4 event:(id)arg5;
 - (id)_attributedStringValue;
 - (struct CGSize)imageSize;
+@property(retain, nonatomic) NSImage *image;
 - (id)_templateImageFromImage:(id)arg1 withColor:(id)arg2;
 
 @end

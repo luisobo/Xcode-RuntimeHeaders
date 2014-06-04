@@ -27,6 +27,8 @@
 - (unsigned long long)countByEnumeratingWithState:(CDStruct_70511ce9 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
 - (id)keyEnumerator;
 - (id)objectForKey:(id)arg1;
+- (id)keyAtIndex:(unsigned long long)arg1;
+- (unsigned long long)indexOfKey:(id)arg1;
 - (unsigned long long)count;
 - (Class)classForCoder;
 - (void)encodeWithCoder:(id)arg1;

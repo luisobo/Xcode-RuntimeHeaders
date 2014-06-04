@@ -8,7 +8,7 @@
 
 #import "NSAnimationDelegate-Protocol.h"
 
-@class DVTSourceTextView, DVTWeakInterposer, NSAnimation;
+@class DVTSourceTextView, DVTWeakInterposer, NSAnimation, NSString;
 
 @interface DVTTextVisualization : NSObject <NSAnimationDelegate>
 {
@@ -26,6 +26,12 @@
 - (void)fadeToOpacity:(double)arg1 completionBlock:(id)arg2;
 - (id)init;
 @property(retain) DVTSourceTextView *textView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

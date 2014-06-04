@@ -6,11 +6,12 @@
 
 #import <IDEKit/IDEInspectorProperty.h>
 
+#import "DVTFilePathFieldCellDelegate-Protocol.h"
+
 @class DVTFilePathField, IDEInspectorKeyPath, NSString;
 
-@interface IDEInspectorPathFieldProperty : IDEInspectorProperty
+@interface IDEInspectorPathFieldProperty : IDEInspectorProperty <DVTFilePathFieldCellDelegate>
 {
-    DVTFilePathField *_filePathField;
     IDEInspectorKeyPath *_valueKeyPath;
     IDEInspectorKeyPath *_placeholderKeyPath;
     NSString *_placeholder;
@@ -22,8 +23,10 @@
     IDEInspectorKeyPath *_shouldChooseDirKeyPath;
     BOOL _shouldChooseFile;
     BOOL _shouldChooseDir;
+    DVTFilePathField *_filePathField;
 }
 
+@property(retain, nonatomic) DVTFilePathField *filePathField; // @synthesize filePathField=_filePathField;
 - (void).cxx_destruct;
 - (void)DVTFilePathFieldCell:(id)arg1 chooserSelectedPath:(id)arg2;
 - (void)userDidChangeValue:(id)arg1;

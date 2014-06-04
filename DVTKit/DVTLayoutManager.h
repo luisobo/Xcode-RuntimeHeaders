@@ -8,10 +8,11 @@
 
 #import "DVTAnnotationManagerDelegate-Protocol.h"
 
-@class DVTMapTable, DVTPointerArray, NSArray, NSMutableArray, NSMutableSet, NSSet;
+@class DVTMapTable, DVTPointerArray, NSArray, NSMutableArray, NSMutableSet, NSSet, NSString;
 
 @interface DVTLayoutManager : DVTFoldingLayoutManager <DVTAnnotationManagerDelegate>
 {
+    NSArray *_temporaryLinkRanges;
     NSMutableArray *_annotations;
     DVTPointerArray *_lastDeletedAnnotations;
     DVTMapTable *_messageBubblesForAnnotations;
@@ -23,6 +24,7 @@
 + (void)initialize;
 @property(readonly) NSSet *accessoryAnnotations; // @synthesize accessoryAnnotations=_accessoryAnnotations;
 @property(readonly) NSArray *annotations; // @synthesize annotations=_annotations;
+@property(retain) NSArray *temporaryLinkRanges; // @synthesize temporaryLinkRanges=_temporaryLinkRanges;
 - (void).cxx_destruct;
 - (struct _NSRange)rangeForCharacterRange:(struct _NSRange)arg1 withContextLines:(long long)arg2 proposedHeight:(double *)arg3 contentLines:(unsigned long long *)arg4 totalLines:(unsigned long long *)arg5;
 - (void)drawUnderlineForGlyphRange:(struct _NSRange)arg1 underlineType:(long long)arg2 baselineOffset:(double)arg3 lineFragmentRect:(struct CGRect)arg4 lineFragmentGlyphRange:(struct _NSRange)arg5 containerOrigin:(struct CGPoint)arg6;
@@ -53,12 +55,21 @@
 - (void)_addBubbleViewToAnnotation:(id)arg1 annotationsInRange:(id)arg2;
 - (void)_assertAnnotationIntegrity;
 - (void)_updateMessageBubbleVisibilityForAnnotation:(id)arg1;
+@property BOOL temporaryLinkIsAlternate;
+- (void)clearTemporaryLinkRanges;
+- (void)setTemporaryLinkRanges:(id)arg1 isAlternate:(BOOL)arg2;
 - (void)invalidateDisplayForCharacterRange:(struct _NSRange)arg1;
 - (void)_invalidateLayoutForMessageBubblesInCharacterRange:(struct _NSRange)arg1;
 - (unsigned long long)layoutOptions;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
 - (void)_layoutManagerCommonInit;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,7 +8,7 @@
 
 #import "NSMenuDelegate-Protocol.h"
 
-@class NSWindow;
+@class NSString, NSWindow;
 
 @interface PBXExtendedApplication : NSApplication <NSMenuDelegate>
 {
@@ -59,6 +59,12 @@
 - (void)reportException:(id)arg1;
 - (void)sendEvent:(id)arg1;
 - (id)mainWindowAtBeginningOfSendEvent;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,7 +8,7 @@
 
 #import "XCEDataNodeAdapterP-Protocol.h"
 
-@class XCPropertyDomainSpecification, XCTestGlassBuildTableUnit, XCTestGlassTwoFlavorsCell;
+@class NSString, XCPropertyDomainSpecification, XCTestGlassBuildTableUnit, XCTestGlassTwoFlavorsCell;
 
 @interface TestGlassPropertyCategoryNodeAdapter : NSObject <XCEDataNodeAdapterP>
 {
@@ -31,6 +31,12 @@
 - (void)instantiateChildrenForDataNode:(id)arg1;
 - (id)dataNode:(id)arg1 objectValueForTableColumn:(id)arg2;
 - (id)nameForNode:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

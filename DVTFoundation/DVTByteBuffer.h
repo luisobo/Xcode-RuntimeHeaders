@@ -67,7 +67,7 @@
 - (id)initWithCapacity:(unsigned long long)arg1;
 - (id)initWithBytesNoCopy:(void *)arg1 length:(unsigned long long)arg2;
 - (id)initWithBytes:(const void *)arg1 length:(unsigned long long)arg2;
-- (id)initWithBytesNoCopy:(char *)arg1 length:(unsigned long long)arg2 capacity:(unsigned long long)arg3 ownsBytes:(unsigned long long)arg4;
+- (id)initWithBytesNoCopy:(char *)arg1 length:(unsigned long long)arg2 capacity:(unsigned long long)arg3 ownsBytes:(BOOL)arg4;
 
 @end
 

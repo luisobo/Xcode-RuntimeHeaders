@@ -10,7 +10,7 @@
 
 @interface IBAutolayoutArbiter : NSObject
 {
-    int _constraintBreakageStrategy;
+    unsigned long long _constraintBreakageStrategy;
     NSMutableSet *_viewsThatHaveHadCandidatesUnconditionallyGeneratedAtLeastOnce;
     NSMutableSet *_viewsWithAddedTemporaryExplicitConstraints;
     NSMutableSet *_viewsWithGeneratedCandidateConstraints;
@@ -24,9 +24,9 @@
     IBAutolayoutEngine *_engine;
 }
 
-+ (BOOL)attemptToSetLayoutFrame:(struct CGRect)arg1 ofView:(id)arg2 byModifyingLayoutEngine:(id)arg3 mutuallyExclusiveConstraintBreakageStrategy:(int)arg4 mutableConstraintsToAdd:(id *)arg5 mutableConstraintsToRemove:(id *)arg6;
-+ (BOOL)attemptToAddConstraint:(id)arg1 byModifyingLayoutEngine:(id)arg2 mutuallyExclusiveConstraintBreakageStrategy:(int)arg3 mutableConstraintsToAdd:(id *)arg4 mutableConstraintsToRemove:(id *)arg5;
-+ (int)effectiveMutuallyExclusiveConstraintBreakageStrategyForStrategy:(int)arg1;
++ (BOOL)attemptToSetLayoutFrame:(struct CGRect)arg1 ofView:(id)arg2 byModifyingLayoutEngine:(id)arg3 mutuallyExclusiveConstraintBreakageStrategy:(unsigned long long)arg4 mutableConstraintsToAdd:(id *)arg5 mutableConstraintsToRemove:(id *)arg6;
++ (BOOL)attemptToAddConstraint:(id)arg1 byModifyingLayoutEngine:(id)arg2 mutuallyExclusiveConstraintBreakageStrategy:(unsigned long long)arg3 mutableConstraintsToAdd:(id *)arg4 mutableConstraintsToRemove:(id *)arg5;
++ (unsigned long long)effectiveMutuallyExclusiveConstraintBreakageStrategyForStrategy:(unsigned long long)arg1;
 + (BOOL)canConsiderRemovalOfRedundantConstraint:(id)arg1;
 + (BOOL)canConsiderRemovalOfOverConstrainingConstraint:(id)arg1;
 + (id)arbitrateConstraintsByModifyingLayoutEngine:(id)arg1 options:(id)arg2;

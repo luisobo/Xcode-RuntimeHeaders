@@ -14,6 +14,7 @@
 - (void)popoverDidShow:(id)arg1;
 - (void)popoverWillShow:(id)arg1;
 - (id)detachableWindowForPopover:(id)arg1;
+- (BOOL)popoverShouldDetach:(id)arg1;
 - (BOOL)popoverShouldClose:(id)arg1;
 @end
 

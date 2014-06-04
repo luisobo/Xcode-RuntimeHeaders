@@ -22,11 +22,11 @@
 
 @property(readonly) id context; // @synthesize context=_context;
 @property(readonly) struct _NSRange expressionRange; // @synthesize expressionRange=_expressionRange;
-@property(readonly) NSDictionary *symbolDescription; // @synthesize symbolDescription=_symbolDescription;
+@property(readonly, copy) NSDictionary *symbolDescription; // @synthesize symbolDescription=_symbolDescription;
 @property(readonly) DVTTextDocumentLocation *textSelectionLocation; // @synthesize textSelectionLocation=_textSelectionLocation;
-@property(readonly) NSString *textSelectionString; // @synthesize textSelectionString=_textSelectionString;
-@property(readonly) NSString *symbolString; // @synthesize symbolString=_symbolString;
-@property(readonly) NSString *expressionString; // @synthesize expressionString=_expressionString;
+@property(readonly, copy) NSString *textSelectionString; // @synthesize textSelectionString=_textSelectionString;
+@property(readonly, copy) NSString *symbolString; // @synthesize symbolString=_symbolString;
+@property(readonly, copy) NSString *expressionString; // @synthesize expressionString=_expressionString;
 @property(readonly) DVTTextDocumentLocation *location; // @synthesize location=_location;
 - (void).cxx_destruct;
 - (id)description;

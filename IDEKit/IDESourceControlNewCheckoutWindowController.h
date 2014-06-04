@@ -8,7 +8,7 @@
 
 #import "NSOpenSavePanelDelegate-Protocol.h"
 
-@class DVTBindingToken, DVTBorderedView, DVTObservingToken, DVTReplacementView, DVTSearchField, DVTTabChooserView, DVTTableView, IDESourceControlCheckoutAuthenticationWindowController, IDESourceControlExtension, IDESourceControlFilePickerViewController, IDESourceControlMultipleStepInvalidationToken, IDESourceControlProject, IDESourceControlRepository, IDESourceControlRequest, IDESourceControlWorkingCopyConfiguration, IDEWorkspace, NSArray, NSButton, NSImageView, NSMapTable, NSMutableArray, NSOperationQueue, NSProgressIndicator, NSString, NSTextField, NSURL, NSView, NSWindow;
+@class DVTBindingToken, DVTBorderedView, DVTObservingToken, DVTReplacementView, DVTSearchField, DVTTabChooserView, DVTTableView, IDESourceControlCheckoutAuthenticationWindowController, IDESourceControlExtension, IDESourceControlFilePickerViewController, IDESourceControlMultipleStepInvalidationToken, IDESourceControlProject, IDESourceControlRepository, IDESourceControlRequest, IDESourceControlWorkingCopyConfiguration, IDEWorkspace, NSArray, NSButton, NSImageView, NSMapTable, NSMutableArray, NSOperationQueue, NSString, NSTextField, NSURL, NSView, NSWindow;
 
 @interface IDESourceControlNewCheckoutWindowController : NSWindowController <NSOpenSavePanelDelegate>
 {
@@ -38,7 +38,6 @@
     NSTextField *_userField;
     NSTextField *_passwordField;
     DVTSearchField *_filterField;
-    NSProgressIndicator *_serverLoadingSpinner;
     NSTextField *_choseAnItemTextField;
     NSTextField *_viewProgressTextField;
     NSTextField *_setupLocationField;
@@ -125,10 +124,12 @@
 - (void)ok:(id)arg1;
 - (void)doubleClickBranch:(id)arg1;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
+- (id)_loadingViewForTableView:(id)arg1;
 - (id)tableView:(id)arg1 objectValueForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
 - (BOOL)tableView:(id)arg1 doCommandBySelector:(SEL)arg2;
 - (void)tableViewSelectionDidChange:(id)arg1;
+- (BOOL)tableView:(id)arg1 shouldSelectRow:(long long)arg2;
 - (BOOL)tableView:(id)arg1 shouldTypeSelectForEvent:(id)arg2 withCurrentSearchString:(id)arg3;
 - (id)tableView:(id)arg1 typeSelectStringForTableColumn:(id)arg2 row:(long long)arg3;
 - (void)updateSavedData;
@@ -200,6 +201,12 @@
 - (void)loadWindow;
 - (id)branchesTableViewController;
 - (id)windowNibName;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -17,7 +17,7 @@
     NSTextField *_timeLabel;
 }
 
-@property(readonly) NSObject<SKETimeSliderDataSource> *dataSource; // @synthesize dataSource=_dataSource;
+@property(readonly) __weak NSObject<SKETimeSliderDataSource> *dataSource; // @synthesize dataSource=_dataSource;
 - (void).cxx_destruct;
 - (void)userScrubbed:(id)arg1;
 - (void)playPauseButtonClicked:(id)arg1;

@@ -6,20 +6,24 @@
 
 #import <DVTKit/DVTBarBackground.h>
 
-@class DVTClippedTabsIndicator, DVTSlidingAnimation, NSMutableArray;
+@class DVTClippedTabsIndicator, DVTSlidingAnimation, NSArray;
 
 @interface DVTSlidingViewsBar : DVTBarBackground
 {
-    DVTClippedTabsIndicator *_clipIndicator;
-    NSMutableArray *_buttons;
-    unsigned long long _dropIndex;
-    unsigned long long _dragSourceIndex;
     double _draggedItemWidth;
     DVTClippedTabsIndicator *_rightClipIndicator;
     DVTSlidingAnimation *_animation;
+    long long _dropIndex;
+    long long _dragSourceIndex;
 }
 
+@property(nonatomic) long long dragSourceIndex; // @synthesize dragSourceIndex=_dragSourceIndex;
+@property(nonatomic) long long dropIndex; // @synthesize dropIndex=_dropIndex;
+@property(readonly) DVTSlidingAnimation *animation; // @synthesize animation=_animation;
+@property(readonly) DVTClippedTabsIndicator *rightClipIndicator; // @synthesize rightClipIndicator=_rightClipIndicator;
 - (void).cxx_destruct;
+- (void)updateButtons;
+- (void)_ensureButtonIsInViewHierarchy:(id)arg1;
 - (void)viewWillBeginDragging:(id)arg1;
 - (id)viewPinnedToOverflowIndicator;
 - (void)moveSlidingViewToCurrentDropIndex:(id)arg1;
@@ -36,8 +40,6 @@
 - (BOOL)reorderSlidingView:(id)arg1 fromMouseDownEvent:(id)arg2;
 - (id)_lastDraggedOrUpEventFollowing:(id)arg1;
 - (id)_lastDraggedEventFollowing:(id)arg1;
-- (void)setDropIndex:(unsigned long long)arg1;
-- (unsigned long long)dropIndex;
 - (void)slideButtonsIntoPlace;
 - (unsigned long long)dropIndexFromLocalPoint:(struct CGPoint)arg1;
 - (unsigned long long)dropIndexFromDraggingInfo:(id)arg1;
@@ -53,9 +55,9 @@
 - (double)maxButtonXWithClipIndicator;
 - (double)maxButtonXWithoutClipIndicator;
 - (unsigned long long)lastNonSlidingViewIndex;
+@property(readonly) NSArray *buttons;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (void)_ensureButtonIsInViewHierarchy:(id)arg1;
 
 @end
 

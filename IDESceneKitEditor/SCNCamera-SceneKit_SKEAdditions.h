@@ -6,11 +6,13 @@
 
 #import "SCNCamera.h"
 
+@class NSImage, NSString;
+
 @interface SCNCamera (SceneKit_SKEAdditions)
-@property float ide_orthographicScale;
-- (id)ide_icon;
-- (id)camera;
-- (id)ske_displayNameForUndoKVOKeypath:(id)arg1;
++ (id)ske_displayNameForUndoKVOKeypath:(id)arg1;
++ (id)keyPathsForValuesAffectingIde_displayName;
+@property(readonly) NSImage *ide_icon;
 - (id)ske_undoKVOKeypaths;
+@property(readonly) NSString *ide_displayName;
 @end
 

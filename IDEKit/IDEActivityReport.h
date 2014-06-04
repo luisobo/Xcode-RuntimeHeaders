@@ -25,7 +25,7 @@
     unsigned long long _fileIOPriority;
     id _fileIOCoordinatorBlock;
     double _fileIOThrottleFactor;
-    DVTSystemActivityToken *_suspendThrottlingToken;
+    DVTSystemActivityToken *_systemActivityToken;
 }
 
 + (id)keyPathsForValuesAffectingPaused;
@@ -33,7 +33,7 @@
 + (id)keyPathsForValuesAffectingCompleted;
 + (void)initialize;
 @property(readonly) double fileIOThrottleFactor; // @synthesize fileIOThrottleFactor=_fileIOThrottleFactor;
-@property(readonly) id fileIOCoordinatorBlock; // @synthesize fileIOCoordinatorBlock=_fileIOCoordinatorBlock;
+@property(readonly, copy) id fileIOCoordinatorBlock; // @synthesize fileIOCoordinatorBlock=_fileIOCoordinatorBlock;
 @property unsigned long long fileIOPriority; // @synthesize fileIOPriority=_fileIOPriority;
 @property(copy) NSArray *completionSummaryStringSegments; // @synthesize completionSummaryStringSegments=_completionSummaryStringSegments;
 @property(copy) NSString *completionSummaryString; // @synthesize completionSummaryString=_completionSummaryString;
@@ -59,7 +59,7 @@
 @property(readonly, getter=isCompleted) BOOL completed;
 @property(readonly) int options; // @synthesize options=_options;
 @property(readonly) NSDictionary *dictionaryRepresentation;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)primitiveInvalidate;
 - (id)init;
 - (id)initWithDictionaryRepresentation:(id)arg1;
@@ -69,7 +69,10 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

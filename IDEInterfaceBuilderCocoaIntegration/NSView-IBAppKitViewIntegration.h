@@ -20,6 +20,7 @@
 + (id)keyPathsForValuesAffectingIbInspectedAllViewsForRenderTree;
 + (id)keyPathsForValuesAffectingIbInspectedControl;
 + (id)ibSwizzledNSViewLayoutMetrics;
++ (void)ibPopulateAdditionalCocoaInspectors:(id)arg1 forCategory:(id)arg2;
 - (id)ibViewsRelevantToPriorityOfKeyPath:(id)arg1 atIndex:(unsigned long long)arg2;
 - (id)ibDescriptiveTextOfCustomPriorityType:(id)arg1 withPriority:(long long)arg2;
 - (id)ibLabelForPriorityOfKeyPath:(id)arg1 atIndex:(unsigned long long)arg2;
@@ -28,10 +29,14 @@
 - (Class)ibSwizzledNSViewTrackerClass;
 - (Class)ibSwizzledNSViewEditorClass;
 - (id)ibSwizzledNSViewWindow:(SEL)arg1 forUpdatingConstraintsInDocument:(id *)arg2;
-- (void)ibSwizzledNSViewBeginArchivingDocument:(id)arg1 withContext:(id)arg2;
+- (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (id)ibSwizzledNSViewLastInspectedTranslatesAutoresizingMaskIntoConstraintsMetadataKeyInDocument:(id)arg1;
 - (id)ibSwizzledNSViewTranslatesAutoresizingMaskIntoConstraintsMetadataKeyInDocument:(id)arg1;
 - (id)ibSwizzledNSViewConstraintsMetadataKeyInDocument:(id)arg1;
+- (BOOL)ibWrapperViewForEditorCanvasFrameIsAffectedByChangeToProperty:(id)arg1;
+- (id)ibWrapperViewForEditorCanvasFrame:(id)arg1;
+- (void)setIbExternalNSViewSimulatedAppContext:(unsigned long long)arg1;
+- (unsigned long long)ibExternalNSViewSimulatedAppContext;
 - (void)setIbInspectedCompositingFilter:(id)arg1;
 - (id)ibInspectedCompositingFilter;
 - (void)setIbInspectedBackgroundFilters:(id)arg1;
@@ -58,18 +63,27 @@
 - (BOOL)ibInspectedIsTreeRenderingWithLayers;
 - (void)ibEnableWantsLayerForBestViewInHierarchy;
 - (id)ibInspectedAllViewsForRenderTree;
+- (void)ibCellDidChangeInspectedLineBreakMode:(id)arg1;
+- (void)ibTextFieldCellDidChangeInspectorLayout:(id)arg1;
 - (BOOL)ibCanSupportIdentifierProperty;
 - (void)ibSwizzledNSViewDidExtractObjects:(id)arg1 fromPasteboard:(id)arg2 intoDocument:(id)arg3 context:(id)arg4;
 - (void)ibSwizzledNSViewCustomizeForInsertionIntoNSView:(id)arg1 withObjects:(id)arg2 fromLibraryOrDifferentTargetRuntime:(BOOL)arg3 andInsertionContext:(id)arg4;
 - (void)ibSwizzledNSViewDidPutObjects:(id)arg1 onPasteboard:(id)arg2 fromDocument:(id)arg3 context:(id)arg4;
+- (BOOL)ibInspectedImplementsSetTag;
 - (id)ibInspectedControl;
-- (void)ibSwizzledNSViewDocument:(id)arg1 willStartSimulatorWithContext:(id)arg2;
 - (id)ibSwizzledNSViewViewFromPasteboardImage:(id)arg1;
 - (BOOL)ibCanBeBoundToFromObject:(id)arg1;
+- (void)setIbExternalGestureRecognizers:(id)arg1;
+- (id)ibExternalGestureRecognizers;
+- (void)ibSwizzledNSViewRemoveChildren:(id)arg1;
+- (void)ibSwizzledNSViewPopulateChildRelationOrder:(id)arg1;
+- (id)ibSwizzledNSViewAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 insertionContext:(id)arg3;
+- (BOOL)ibSwizzledNSViewCanAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 targetChildRelation:(id *)arg3;
 - (BOOL)ibSwizzledNSViewAcceptsPasteboardImageResourcesAsViews;
 - (void)ibSwizzledNSViewWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (BOOL)ibSwizzledNSViewShouldGenerateOverlappingViewsWarningsInDocument:(id)arg1;
 - (void)ibSwizzledNSViewIssueOverlappingViewWarning:(id)arg1 forSibling:(id)arg2 withParentView:(id)arg3 inDocument:(id)arg4 withComputationContext:(id)arg5;
 - (id)ibLocalAttributeKeyPaths;
+- (BOOL)ibIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;
 @end
 

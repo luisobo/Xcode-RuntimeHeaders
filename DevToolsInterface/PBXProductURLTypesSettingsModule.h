@@ -11,7 +11,7 @@
 #import "NSTextFieldDelegate-Protocol.h"
 #import "NSTextViewDelegate-Protocol.h"
 
-@class NSArray, NSButton, NSImageView, NSMutableArray, NSTextField, PBXExtendedTableView;
+@class NSArray, NSButton, NSImageView, NSMutableArray, NSString, NSTextField, PBXExtendedTableView;
 
 @interface PBXProductURLTypesSettingsModule : PBXAbstractProductSettingsModule <NSTextViewDelegate, NSTextFieldDelegate, NSTableViewDataSource, NSTableViewDelegate>
 {
@@ -59,6 +59,12 @@
 - (void)update;
 - (void)viewDidLoad;
 - (void)dealloc;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -9,7 +9,7 @@
 #import "IDECommandHandler-Protocol.h"
 #import "IDECommandHandlerVendor-Protocol.h"
 
-@class DBGTimerGroup;
+@class DBGTimerGroup, NSString;
 
 @interface DBGDebugMenuController : NSObject <IDECommandHandler, IDECommandHandlerVendor>
 {
@@ -20,6 +20,7 @@
 
 + (id)handlerForAction:(SEL)arg1 withSelectionSource:(id)arg2;
 - (void).cxx_destruct;
+- (void)toggleVariablesViewAutoModeIndexFailure:(id)arg1;
 - (void)debugSessionStressTest:(id)arg1;
 - (void)scheduleRunCommandsInTabController:(id)arg1 sender:(id)arg2;
 - (void)cancelScheduledRunCommands;
@@ -27,6 +28,12 @@
 - (BOOL)shouldCancelScheduledRunCommands;
 - (id)tabControllerForCurrentWorkspaceDocument;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

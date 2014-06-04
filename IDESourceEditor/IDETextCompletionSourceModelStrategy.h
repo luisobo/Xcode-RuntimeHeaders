@@ -16,7 +16,7 @@
 
 + (BOOL)shouldAutoCompleteClassForwardDeclarationAtLocation:(unsigned long long)arg1 inTextStorage:(id)arg2;
 - (void).cxx_destruct;
-- (id)completionItemsForDocumentLocation:(id)arg1 context:(id)arg2 areDefinitive:(char *)arg3;
+- (id)completionItemsForDocumentLocation:(id)arg1 context:(id)arg2 highlyLikelyCompletionItems:(id *)arg3 areDefinitive:(char *)arg4;
 - (id)_classCompletionItemsForDocumentLocation:(id)arg1 context:(id)arg2 areDefinitive:(char *)arg3;
 - (void)prepareForDocumentLocation:(id)arg1 context:(id)arg2;
 

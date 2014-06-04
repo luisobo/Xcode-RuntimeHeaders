@@ -13,7 +13,7 @@
 @property(readonly) BOOL productIsExecutable;
 @property(readonly) NSDictionary *productSettings;
 @property(readonly) NSString *iconPath;
-@property(readonly) DVTFileDataType *fileDataType;
+@property(readonly, copy) DVTFileDataType *fileDataType;
 @property(readonly) DVTFilePath *filePath;
 - (id)filePathForBuildParameters:(id)arg1;
 - (id)productTypeIdentifier;

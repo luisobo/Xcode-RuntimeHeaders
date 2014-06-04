@@ -8,7 +8,7 @@
 
 #import "DVTMessageBubbleAnnotationDelegate-Protocol.h"
 
-@class IDESourceCodeEditor, NSArray, NSMutableArray;
+@class IDESourceCodeEditor, NSArray, NSMutableArray, NSString;
 
 @interface IDENoteAnnotationExplorer : NSObject <DVTMessageBubbleAnnotationDelegate>
 {
@@ -29,6 +29,12 @@
 - (void)setCurrentNoteItem:(id)arg1;
 - (void)_clearAnnotations;
 - (id)initWithEditor:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

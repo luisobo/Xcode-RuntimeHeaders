@@ -13,6 +13,10 @@
 @property(readonly, nonatomic) double downloadProgress;
 @property(readonly, nonatomic, getter=isUploading) BOOL uploading;
 @property(readonly, nonatomic, getter=isDownloading) BOOL downloading;
+@property(nonatomic) BOOL wasUploading;
+@property(nonatomic) BOOL wasDownloading;
+@property(nonatomic) unsigned long long lastSizeDuringUploading;
+@property(nonatomic) unsigned long long lastSizeDuringDownloading;
 @property(readonly, nonatomic) NSString *localType;
 @property(readonly, nonatomic) NSImage *icon;
 @property(readonly, nonatomic) unsigned long long status;
@@ -35,7 +39,7 @@
 @property(readonly, nonatomic) NSNumber *itemID;
 @property(readonly, nonatomic) NSURL *iCloudURL;
 @property(readonly, nonatomic) NSURL *localURL;
-@property(readonly, nonatomic) id <iCloudItemProvider> itemProvider;
+@property(readonly, nonatomic) __weak id <iCloudItemProvider> itemProvider;
 - (id)ubiquityRootPath;
 - (id)ubiquityRoot;
 - (id)ubiquityRelativePath;

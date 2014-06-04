@@ -8,7 +8,7 @@
 
 #import "NSMenuDelegate-Protocol.h"
 
-@class NSMenu, NSMutableArray;
+@class NSMenu, NSMutableArray, NSString;
 
 @interface XCUserScriptGroup : XCUserScriptNode <NSMenuDelegate>
 {
@@ -34,7 +34,7 @@
 - (unsigned long long)countOfSubNodes;
 - (void)setSubNodesArray:(id)arg1;
 - (id)subNodesArray;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)propertyListRepresentationWithUUIDs:(BOOL)arg1;
 - (void)dealloc;
@@ -43,6 +43,11 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithPropertyListRepresentation:(id)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

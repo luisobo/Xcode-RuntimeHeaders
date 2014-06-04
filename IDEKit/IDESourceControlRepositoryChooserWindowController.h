@@ -9,7 +9,7 @@
 #import "IDESourceControlWindowController-Protocol.h"
 #import "NSUserInterfaceValidations-Protocol.h"
 
-@class DVTObservingToken, IDESourceControlOperationInfo, IDESourceControlRepositoryChooserItem, IDESourceControlWorkspaceUIHandler, IDEWorkspace, NSButton, NSPopUpButton, NSString, NSWindow;
+@class IDESourceControlOperationInfo, IDESourceControlRepositoryChooserItem, IDESourceControlWorkspaceUIHandler, IDEWorkspace, NSButton, NSPopUpButton, NSString, NSWindow;
 
 @interface IDESourceControlRepositoryChooserWindowController : NSWindowController <NSUserInterfaceValidations, IDESourceControlWindowController>
 {
@@ -24,7 +24,6 @@
     NSWindow *_parentWindow;
     id <DVTInvalidation> _operationToken;
     BOOL _inProgress;
-    DVTObservingToken *_selectedRemoteReachableToken;
     BOOL _disableFastForwards;
     IDEWorkspace *_workspace;
     IDESourceControlWorkspaceUIHandler *_workspaceUIHandler;
@@ -57,6 +56,12 @@
 - (void)beginSheetForWindow:(id)arg1;
 - (void)_populateSheet;
 - (id)windowNibName;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

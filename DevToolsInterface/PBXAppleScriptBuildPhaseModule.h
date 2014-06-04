@@ -9,7 +9,7 @@
 #import "NSTextFieldDelegate-Protocol.h"
 #import "NSTextViewDelegate-Protocol.h"
 
-@class NSPopUpButton, NSTextField;
+@class NSPopUpButton, NSString, NSTextField;
 
 @interface PBXAppleScriptBuildPhaseModule : PBXFileBuildPhaseModule <NSTextViewDelegate, NSTextFieldDelegate>
 {
@@ -23,6 +23,12 @@
 - (void)update;
 - (void)viewDidLoad;
 - (id)initWithBuildPhase:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

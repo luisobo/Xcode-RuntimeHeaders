@@ -7,14 +7,15 @@
 #import "NSObject.h"
 
 #import "IDEInspectorMatching-Protocol.h"
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 #import "SKEDocumentMemberMutationDelegate-Protocol.h"
 
-@class SKEDocument;
+@class DVTDocumentLocation, DVTFileDataType, IDEEditorDocument<SKEDocumentProtocol>, IDEFileReference, NSArray, NSImage, NSString, SKEDocumentLocation;
 
-@interface SKEDocumentMemberWrapper : NSObject <IDEInspectorMatching, SKEDocumentMemberMutationDelegate>
+@interface SKEDocumentMemberWrapper : NSObject <IDEInspectorMatching, SKEDocumentMemberMutationDelegate, IDEKeyDrivenNavigableItemRepresentedObject>
 {
     id _member;
-    SKEDocument *_document;
+    id <SKEDocumentProtocol> _document;
 }
 
 - (void).cxx_destruct;
@@ -24,19 +25,34 @@
 - (void)document:(id)arg1 willRemoveChildMember:(id)arg2 fromMember:(id)arg3;
 - (void)document:(id)arg1 didAddChildMember:(id)arg2 toMember:(id)arg3;
 - (void)document:(id)arg1 willAddChildMember:(id)arg2 toMember:(id)arg3;
+@property(readonly) NSString *navigableItem_name;
 - (id)applicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
-- (id)navigableDocumentLocation;
-- (id)childWrappers;
-- (id)image;
-- (id)name;
-- (id)identifier;
-- (id)document;
-- (id)member;
-- (id)documentType;
+@property(readonly) SKEDocumentLocation *navigableDocumentLocation;
+@property(readonly) NSArray *childWrappers;
+@property(readonly) NSImage *image;
+@property(readonly) NSString *name;
+@property(readonly) id identifier;
+@property(readonly) IDEEditorDocument<SKEDocumentProtocol> *document;
+@property(readonly) id member;
 - (id)initWithMember:(id)arg1 document:(id)arg2;
 - (BOOL)isGroup;
-- (BOOL)isMaterial;
-- (BOOL)isNode;
+@property(readonly) BOOL isParticleSystemMemberWrapper;
+@property(readonly) BOOL isMaterialMemberWrapper;
+@property(readonly) BOOL isNodeMemberWrapper;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

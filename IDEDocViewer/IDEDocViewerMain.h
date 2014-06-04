@@ -9,7 +9,7 @@
 #import "IDEInitialization-Protocol.h"
 #import "NSUserInterfaceItemSearching-Protocol.h"
 
-@class DVTObservingToken;
+@class DVTObservingToken, NSString;
 
 @interface IDEDocViewerMain : NSObject <NSUserInterfaceItemSearching, IDEInitialization>
 {
@@ -28,6 +28,12 @@
 - (void)applicationDidBecomeActive:(id)arg1;
 - (double)_docSetDownloadCheckDelay;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

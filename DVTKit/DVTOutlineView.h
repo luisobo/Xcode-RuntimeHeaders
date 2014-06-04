@@ -12,6 +12,7 @@
 
 @interface DVTOutlineView : NSOutlineView <DVTProgressIndicatorProvidingView>
 {
+    NSString *_delegateClassName;
     NSTextField *_emptyContentLabel;
     NSTextField *_emptyContentSublabel;
     NSIndexSet *_draggedRows;
@@ -38,12 +39,16 @@
     unsigned long long _gridLineStyleBeforeEmptyContentStringShown;
     BOOL _skipGridLinesOnLastRow;
     BOOL _skipGridLinesOnCollapsedGroupRows;
+    BOOL _drawsGridLinesForEmptyContent;
     int _emptyContentStringStyle;
     NSString *_emptyContentString;
     NSString *_emptyContentSubtitle;
+    double _gridLineInset;
 }
 
 @property(retain) NSEvent *event; // @synthesize event=_event;
+@property double gridLineInset; // @synthesize gridLineInset=_gridLineInset;
+@property BOOL drawsGridLinesForEmptyContent; // @synthesize drawsGridLinesForEmptyContent=_drawsGridLinesForEmptyContent;
 @property BOOL skipGridLinesOnCollapsedGroupRows; // @synthesize skipGridLinesOnCollapsedGroupRows=_skipGridLinesOnCollapsedGroupRows;
 @property BOOL skipGridLinesOnLastRow; // @synthesize skipGridLinesOnLastRow=_skipGridLinesOnLastRow;
 @property(retain) id itemUnderHoveredMouse; // @synthesize itemUnderHoveredMouse=_itemUnderHoveredMouse;
@@ -72,7 +77,6 @@
 - (void)setItemUnderMouseAndMarkForRedisplay:(id)arg1;
 - (void)updateTrackingAreas;
 @property BOOL revealsOutlineCellUnderHoveredMouseAfterDelay;
-- (void)viewWillMoveToWindow:(id)arg1;
 - (void)insertText:(id)arg1;
 - (void)doCommandBySelector:(SEL)arg1;
 - (void)keyDown:(id)arg1;
@@ -95,7 +99,7 @@
 - (struct CGRect)frameOfCellAtColumn:(long long)arg1 row:(long long)arg2;
 @property(readonly) NSArray *contextMenuSelectedItems;
 @property(retain) NSArray *selectedItems;
-- (id)_itemsAtIndexes:(id)arg1;
+- (id)itemsAtIndexes:(id)arg1;
 @property(readonly) NSIndexSet *contextMenuSelectedRowIndexes;
 @property(readonly) NSIndexSet *clickedRowIndexes;
 - (void)setSortDescriptors:(id)arg1;
@@ -108,6 +112,12 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)dvt_commonInit;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

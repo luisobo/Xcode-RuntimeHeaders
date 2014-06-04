@@ -10,7 +10,7 @@
 
 @interface IBRubyParser : IBTaskBasedParser
 {
-    IBMutableIdentityDictionary *descriptionsToRelationshipTypesToOrderedRelations;
+    IBMutableIdentityDictionary *_descriptionsToRelationshipTypesToOrderedRelations;
 }
 
 + (id)secondaryParsableFileTypeIdentifiers;

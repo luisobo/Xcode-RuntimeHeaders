@@ -22,8 +22,8 @@
 + (id)performGitCheckoutBranch:(id)arg1 destinationPath:(id)arg2 completionBlock:(id)arg3;
 + (id)performGitCloneRepositoryURL:(id)arg1 destinationPath:(id)arg2 username:(id)arg3 password:(id)arg4 completionBlock:(id)arg5;
 + (void)verifyIfSCMIsTrackingFileAtPath:(id)arg1 completionBlock:(id)arg2;
-@property(readonly, nonatomic) DVTFilePath *destinationPath; // @synthesize destinationPath=_destinationPath;
-@property(readonly, nonatomic) NSURL *repositoryURL; // @synthesize repositoryURL=_repositoryURL;
+@property(readonly, copy, nonatomic) DVTFilePath *destinationPath; // @synthesize destinationPath=_destinationPath;
+@property(readonly, copy, nonatomic) NSURL *repositoryURL; // @synthesize repositoryURL=_repositoryURL;
 - (void).cxx_destruct;
 - (void)_currentBranchForWorkingTree:(id)arg1 currentBranchNameCompletionBlock:(id)arg2;
 - (void)_remoteRepositoryURLForLocalRepositoryPath:(id)arg1 completionBlock:(id)arg2;

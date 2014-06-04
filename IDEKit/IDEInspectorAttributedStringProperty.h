@@ -15,6 +15,7 @@
 }
 
 - (void).cxx_destruct;
+- (id)findIndicatorContentViewWithContext:(id)arg1;
 - (double)baseline;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)awakeFromNib;

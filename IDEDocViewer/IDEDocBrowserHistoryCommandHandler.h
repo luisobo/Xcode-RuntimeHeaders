@@ -8,6 +8,8 @@
 
 #import "IDECommandHandler-Protocol.h"
 
+@class NSString;
+
 @interface IDEDocBrowserHistoryCommandHandler : NSObject <IDECommandHandler>
 {
 }
@@ -15,6 +17,12 @@
 + (id)handlerForAction:(SEL)arg1 withSelectionSource:(id)arg2;
 - (void)showBrowserHistory:(id)arg1;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -9,7 +9,7 @@
 #import "IBBinaryArchiving-Protocol.h"
 #import "NSCoding-Protocol.h"
 
-@class NSSet;
+@class NSSet, NSString;
 
 @interface IBAutolayoutStatusRepresentation : NSObject <IBBinaryArchiving, NSCoding>
 {
@@ -27,6 +27,12 @@
 - (id)initWithBinaryUnarchiver:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithRepresentedConflictingConstraintSets:(id)arg1 representedAmbiguityStatusGroups:(id)arg2 representedMisplacementStatuses:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,10 +8,10 @@
 
 @interface DVTPDFBlockCapturingView : NSView
 {
-    id drawingBlock;
+    id _drawingBlock;
 }
 
-@property(copy) id drawingBlock; // @synthesize drawingBlock;
+@property(copy) id drawingBlock; // @synthesize drawingBlock=_drawingBlock;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 

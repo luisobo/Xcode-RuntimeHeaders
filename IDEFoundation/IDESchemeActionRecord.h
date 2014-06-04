@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTFilePath, IDESchemeActionResult, IDESchemeCommand, NSDate, NSDictionary, NSString;
+@class DVTFilePath, IDESchemeActionResult, IDESchemeActionRunDestinationRecord, IDESchemeCommand, NSDate, NSString;
 
 @interface IDESchemeActionRecord : NSObject
 {
@@ -17,8 +17,8 @@
     NSDate *_endedTime;
     IDESchemeActionResult *_buildResult;
     IDESchemeActionResult *_actionResult;
+    IDESchemeActionRunDestinationRecord *_runDestinationRecord;
     DVTFilePath *_localRecordDirectoryFilePath;
-    NSDictionary *_runDestinationRecord;
     DVTFilePath *_creatingWorkspaceFilePath;
 }
 
@@ -31,15 +31,16 @@
 + (id)keyPathsForValuesAffectingErrorCount;
 + (id)keyPathsForValuesAffectingWarningCount;
 + (id)keyPathsForValuesAffectingStatus;
++ (BOOL)getSchemeTask:(int *)arg1 fromDictionaryRepresentation:(id)arg2;
 @property(retain, nonatomic) DVTFilePath *creatingWorkspaceFilePath; // @synthesize creatingWorkspaceFilePath=_creatingWorkspaceFilePath;
-@property(retain, nonatomic) NSDictionary *runDestinationRecord; // @synthesize runDestinationRecord=_runDestinationRecord;
 @property(retain, nonatomic) DVTFilePath *localRecordDirectoryFilePath; // @synthesize localRecordDirectoryFilePath=_localRecordDirectoryFilePath;
+@property(readonly, nonatomic) IDESchemeActionRunDestinationRecord *runDestinationRecord; // @synthesize runDestinationRecord=_runDestinationRecord;
 @property(retain, nonatomic) IDESchemeActionResult *actionResult; // @synthesize actionResult=_actionResult;
 @property(retain, nonatomic) IDESchemeActionResult *buildResult; // @synthesize buildResult=_buildResult;
 @property(copy, nonatomic) NSDate *endedTime; // @synthesize endedTime=_endedTime;
 @property(copy, nonatomic) NSDate *startedTime; // @synthesize startedTime=_startedTime;
 @property(copy, nonatomic) NSString *title; // @synthesize title=_title;
-@property(nonatomic) int schemeTask; // @synthesize schemeTask=_schemeTask;
+@property(readonly, nonatomic) int schemeTask; // @synthesize schemeTask=_schemeTask;
 @property(retain, nonatomic) IDESchemeCommand *schemeCommand; // @synthesize schemeCommand=_schemeCommand;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) unsigned long long testsFailedCount;
@@ -48,8 +49,6 @@
 @property(readonly, nonatomic) unsigned long long errorCount;
 @property(readonly, nonatomic) unsigned long long warningCount;
 @property(readonly, nonatomic) int status;
-- (id)makeActionResultWithLog:(id)arg1;
-- (id)makeBuildResultWithLog:(id)arg1;
 - (id)description;
 - (void)close;
 - (BOOL)updateWithDictionaryRepresentation:(id)arg1 forSchemeActionsInvocationRecord:(id)arg2;
@@ -57,7 +56,7 @@
 - (BOOL)saveReturningError:(id *)arg1;
 - (void)recordRunDestination:(id)arg1;
 - (id)init;
-- (id)initWithLocalRecordDirectoryFilePath:(id)arg1 creatingWorkspaceFilePath:(id)arg2;
+- (id)initWithLocalRecordDirectoryFilePath:(id)arg1 creatingWorkspaceFilePath:(id)arg2 schemeTask:(int)arg3;
 
 @end
 

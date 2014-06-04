@@ -14,6 +14,7 @@
 }
 
 @property IDETest *test; // @synthesize test=_test;
+- (void)_updateLocationForDocument:(id)arg1;
 - (void)_showHoverRunIcon;
 - (void)_updateTestStateWithTestManager:(id)arg1;
 - (id)initWithTest:(id)arg1;

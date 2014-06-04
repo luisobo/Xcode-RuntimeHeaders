@@ -20,7 +20,7 @@
 - (void)detachDraggedObjects:(id)arg1 dragContext:(id)arg2;
 - (void)dragSelectedViewsWithMouseDown:(id)arg1 andMouseDragged:(id)arg2;
 - (id)guideContextForDraggingInfo:(id)arg1;
-- (id)objectsInRect:(struct CGRect)arg1;
+- (id)installedChildViewsInRect:(struct CGRect)arg1;
 - (id)editedStackView;
 
 @end

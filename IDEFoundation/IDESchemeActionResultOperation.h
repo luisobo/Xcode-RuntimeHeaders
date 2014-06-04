@@ -6,30 +6,32 @@
 
 #import "DVTOperation.h"
 
-@class DVTDispatchLock, IDESchemeActionRecord;
+@class IDESchemeActionRecord;
 
 @interface IDESchemeActionResultOperation : DVTOperation
 {
     BOOL _isObservingIsExecuting;
-    BOOL _didCalculateResult;
+    BOOL _isFinished;
+    BOOL _isExecuting;
     DVTOperation *_trackingOperation;
     IDESchemeActionRecord *_schemeActionRecord;
     id _actionCallbackBlock;
     id _schemeActionResultComputationBlock;
-    DVTDispatchLock *_lock;
 }
 
 + (id)schemeActionResultOperationWithSchemeActionRecord:(id)arg1 trackingExecutionOfOperation:(id)arg2 actionCallbackBlock:(id)arg3 schemeActionResultComputationBlock:(void)arg4;
-@property BOOL didCalculateResult; // @synthesize didCalculateResult=_didCalculateResult;
-@property(retain) DVTDispatchLock *lock; // @synthesize lock=_lock;
+@property(nonatomic) BOOL isExecuting; // @synthesize isExecuting=_isExecuting;
+@property(nonatomic) BOOL isFinished; // @synthesize isFinished=_isFinished;
 @property BOOL isObservingIsExecuting; // @synthesize isObservingIsExecuting=_isObservingIsExecuting;
 @property(copy) id schemeActionResultComputationBlock; // @synthesize schemeActionResultComputationBlock=_schemeActionResultComputationBlock;
 @property(copy) id actionCallbackBlock; // @synthesize actionCallbackBlock=_actionCallbackBlock;
 @property(retain) IDESchemeActionRecord *schemeActionRecord; // @synthesize schemeActionRecord=_schemeActionRecord;
 @property(retain) DVTOperation *trackingOperation; // @synthesize trackingOperation=_trackingOperation;
 - (void).cxx_destruct;
-- (void)cancel;
+- (void)_doCancellationCleanup;
 - (void)main;
+- (void)start;
+- (BOOL)isConcurrent;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)dealloc;
 

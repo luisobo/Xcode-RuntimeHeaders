@@ -27,6 +27,8 @@
 - (struct CGRect)adjustedFrameForCascade:(struct CGRect)arg1 fromWindow:(id)arg2;
 - (struct CGRect)_adjustedFrameForSaving:(struct CGRect)arg1;
 - (void)toggleToolbarShown:(id)arg1;
+- (id)firstResponder;
+- (void)sendEvent:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 
 @end

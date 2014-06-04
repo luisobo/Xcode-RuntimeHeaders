@@ -6,26 +6,42 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSImage, NSString;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface IBClassesDebuggerItem : NSObject
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSArray, NSImage, NSString;
+
+@interface IBClassesDebuggerItem : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
-    NSArray *_childItems;
-    NSString *_subtitle;
-    NSString *_title;
-    NSImage *_image;
     BOOL _topLevel;
+    NSArray *_childItems;
+    NSString *_title;
+    NSString *_subtitle;
+    NSImage *_image;
 }
 
-@property(copy) NSString *subtitle; // @synthesize subtitle=_subtitle;
++ (id)itemForClassNamed:(id)arg1;
 @property(retain) NSImage *image; // @synthesize image=_image;
-@property(getter=isTopLevel) BOOL topLevel; // @synthesize topLevel=_topLevel;
-@property(retain) NSArray *childItems; // @synthesize childItems=_childItems;
+@property(copy) NSString *subtitle; // @synthesize subtitle=_subtitle;
 @property(readonly) NSString *title; // @synthesize title=_title;
+@property(retain) NSArray *childItems; // @synthesize childItems=_childItems;
+@property(getter=isTopLevel) BOOL topLevel; // @synthesize topLevel=_topLevel;
 - (void).cxx_destruct;
-- (id)navigableItem_image;
-- (id)navigableItem_name;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) NSString *navigableItem_name;
 - (id)initWithTitle:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

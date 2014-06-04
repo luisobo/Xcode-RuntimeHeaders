@@ -11,6 +11,8 @@
 - (BOOL)notRecommended;
 - (void)setPriority:(long long)arg1;
 - (long long)priority;
+- (unsigned long long)priorityComparatorKind;
+- (long long)priorityBucket;
 - (id)largeIcon;
 - (id)icon;
 - (id)descriptionText;

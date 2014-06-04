@@ -6,7 +6,9 @@
 
 #import <IBFoundation/IBICMultipartImageRepSlotComponent.h>
 
-@interface IBICSize : IBICMultipartImageRepSlotComponent
+#import "NSCopying-Protocol.h"
+
+@interface IBICSize : IBICMultipartImageRepSlotComponent <NSCopying>
 {
     struct CGSize _pointSize;
 }
@@ -14,6 +16,9 @@
 + (id)itemWithIdentifier:(id)arg1 fileNameComponent:(id)arg2 title:(id)arg3 pointSize:(struct CGSize)arg4 displayOrder:(double)arg5;
 + (id)contentsJSONKey;
 @property(readonly) struct CGSize pointSize; // @synthesize pointSize=_pointSize;
+- (void)ibic_appendAdditionalPseudoXMLAttrbutes:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (BOOL)isEqualToSchemaImageRepIDComponent:(id)arg1;
 - (BOOL)isEqualToSize:(id)arg1;
 - (id)initWithIdentifier:(id)arg1 fileNameComponent:(id)arg2 title:(id)arg3 pointSize:(struct CGSize)arg4 displayOrder:(double)arg5;

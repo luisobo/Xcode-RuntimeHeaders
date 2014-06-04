@@ -8,7 +8,7 @@
 
 #import "DVTCancellable-Protocol.h"
 
-@class IDESourceControlRequest;
+@class IDESourceControlRequest, NSString;
 
 @interface IDESourceControlMultipleStepInvalidationToken : NSObject <DVTCancellable>
 {
@@ -21,6 +21,12 @@
 - (void)cancel;
 @property(readonly, getter=isCancelled) BOOL cancelled;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -10,21 +10,17 @@
 #import "DVTWindowActivationStateObserver-Protocol.h"
 #import "IDEActivityViewDataConsumer-Protocol.h"
 
-@class CALayer, CAReplicatorLayer, DVTObservingToken, DVTStackBacktrace, IDEActivityMultiActionIndicatorLayer, IDEActivityPopUpWindowController, IDEActivityReport, IDEActivityReportLayer, IDEActivityStatusContainerLayer, IDEActivityViewDataSource, IDEWorkspaceWindowController, NSImage, NSMapTable;
+@class CALayer, DVTObservingToken, DVTStackBacktrace, IDEActivityMultiActionIndicatorLayer, IDEActivityPopUpWindowController, IDEActivityReport, IDEActivityReportLayer, IDEActivityStatusContainerLayer, IDEActivityViewDataSource, IDEWorkspaceWindowController, NSMapTable, NSString;
 
 @interface IDEActivityView : DVTLayerHostingView <IDEActivityViewDataConsumer, DVTWindowActivationStateObserver, DVTInvalidation>
 {
     IDEActivityMultiActionIndicatorLayer *_multiActionIndicatorLayer;
     IDEActivityStatusContainerLayer *_issuesContainerLayer;
     IDEActivityReportLayer *_currentActivityReportLayer;
-    CAReplicatorLayer *_reportLayerSeparatorsLayer;
-    NSImage *_cachedBackgroundBezelLayerContents;
     CALayer *_reportLayerContainerLayer;
     CALayer *_backgroundLayer;
-    CALayer *_backgroundImageLayer;
+    CALayer *_backgroundColorLayer;
     CALayer *_reportLayerTree;
-    CALayer *_glassLayer;
-    id <DVTCancellable> _botStatusUpdateToken;
     IDEActivityPopUpWindowController *_popUpController;
     DVTObservingToken *_popUpControllerIsValidToken;
     IDEWorkspaceWindowController *_workspaceWindowController;
@@ -52,7 +48,6 @@
 - (id)accessibilityAttributeNames;
 - (BOOL)accessibilityIsIgnored;
 - (void)openLogNavigator;
-- (void)openIssuesNavigator;
 - (void)openActivityPopUp;
 - (void)cancelDisplayedReport:(id)arg1;
 - (void)stopObservingActivityReports;
@@ -61,7 +56,6 @@
 - (void)activityReportListDidChangeForActivityViewDataSource:(id)arg1;
 - (void)updateActionIndicators;
 - (void)window:(id)arg1 didChangeActivationState:(long long)arg2;
-- (void)_disableScreenUpdatesUntilRunLoop;
 - (void)makeSureIssuesLayerIsVisible;
 - (void)viewDidMoveToSuperview;
 - (void)viewDidMoveToWindow;
@@ -77,9 +71,9 @@
 - (id)_backgroundLayer;
 - (void)_updateCurrentActivityReportForWindowActivationState;
 - (void)_updateHighlightColorForWindowActivationState;
-- (void)_updateBackgroundImageForWindowActivationState;
-- (id)_backgroundImageForView:(id)arg1;
-- (BOOL)_isActiveWindowState;
+- (void)_updateBackgroundColorForWindowActivationState;
+- (id)_highlightColor;
+- (id)_backgroundColor;
 - (struct CGRect)insetReportLayerBounds;
 - (struct CGRect)insetRootLayerBounds;
 @property struct CGSize contentSize;
@@ -115,7 +109,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

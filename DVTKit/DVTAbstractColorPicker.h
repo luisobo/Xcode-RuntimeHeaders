@@ -7,11 +7,12 @@
 #import "NSView.h"
 
 #import "DVTWindowActivationStateObserver-Protocol.h"
+#import "NSDraggingSource-Protocol.h"
 #import "NSMenuDelegate-Protocol.h"
 
 @class DVTMutableOrderedDictionary, DVTObservingToken, NSColor, NSMenu, NSString;
 
-@interface DVTAbstractColorPicker : NSView <DVTWindowActivationStateObserver, NSMenuDelegate>
+@interface DVTAbstractColorPicker : NSView <DVTWindowActivationStateObserver, NSMenuDelegate, NSDraggingSource>
 {
     NSMenu *_colorsMenu;
     id _colorValueBindingController;
@@ -54,6 +55,7 @@
 - (void)takeDrawnColorFrom:(id)arg1;
 - (void)takeDrawnColorFromPopUpMenu:(id)arg1;
 - (void)sendAction;
+- (unsigned long long)draggingSession:(id)arg1 sourceOperationMaskForDraggingContext:(long long)arg2;
 - (void)beginColorDragForEvent:(id)arg1;
 - (id)imageForDraggedColor:(id)arg1;
 - (BOOL)performDragOperation:(id)arg1;
@@ -90,7 +92,6 @@
 - (double)noColorStrokeWidth;
 - (id)titleFont;
 - (void)setSuggestedColorsUsingColorList:(id)arg1;
-- (BOOL)isOnActiveWindow;
 - (id)nameForColor:(id)arg1;
 - (BOOL)containsColor:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -98,6 +99,12 @@
 - (id)initWithFrame:(struct CGRect)arg1 colorList:(id)arg2 defaultColor:(id)arg3 defaultColorMode:(int)arg4;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)commonInit;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

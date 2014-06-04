@@ -8,7 +8,7 @@
 
 #import "NSMenuDelegate-Protocol.h"
 
-@class DVTDelayedInvocation, DVTDisclosureView, DVTObservingToken, IBBindingAutocompletingTextField, IBBindingInfo, IBBindingsInspector, IBButtonComboBox, IBCocoaDocument, NSArray, NSBox, NSMutableArray, NSObjectController, NSOperationQueue, NSString, NSTextField;
+@class DVTDisclosureView, DVTObservingToken, IBBindingAutocompletingTextField, IBBindingInfo, IBBindingsInspector, IBButtonComboBox, IBDocument, NSArray, NSBox, NSMutableArray, NSObjectController, NSOperationQueue, NSString, NSTextField;
 
 @interface IBBindingSlice : IDEViewController <NSMenuDelegate>
 {
@@ -21,24 +21,22 @@
     DVTObservingToken *_sliceViewDisclosedKVOToken;
     NSMutableArray *_optionSlivers;
     DVTDisclosureView *_sliceView;
-    IBBindingInfo *_bindingInfo;
     NSMutableArray *_objectEditors;
     BOOL _settingInfo;
     DVTObservingToken *_bindingInfoKVOToken;
     id _inspectedObject;
-    IBCocoaDocument *_inspectedDocument;
-    NSOperationQueue *_availableTransfomersQueue;
-    BOOL _lookingUpAvailableTransformers;
-    NSArray *_acceptableValueTransformerNames;
-    DVTDelayedInvocation *_valueTransformerNamesInvocation;
+    IBDocument *_inspectedDocument;
     id <DVTCancellable> _classDescriberObservingToken;
     NSOperationQueue *_modelKeyPathValidationQueue;
-    BOOL _bound;
     IBBindingsInspector *_inspector;
-    id _selectedController;
+    BOOL _bound;
+    BOOL _lookingUpAvailableTransformers;
+    IBBindingInfo *_bindingInfo;
     NSString *_selectedControllerKey;
     NSString *_selectedModelKeyPath;
+    id _selectedController;
     NSString *_selectedValueTransformerName;
+    NSArray *_acceptableValueTransformerNames;
     id <IBBindingSliceDelegate> _delegate;
 }
 
@@ -48,11 +46,11 @@
 @property __weak id <IBBindingSliceDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) NSArray *acceptableValueTransformerNames; // @synthesize acceptableValueTransformerNames=_acceptableValueTransformerNames;
 @property(nonatomic) BOOL lookingUpAvailableTransformers; // @synthesize lookingUpAvailableTransformers=_lookingUpAvailableTransformers;
-@property(retain, nonatomic) IBBindingInfo *bindingInfo; // @synthesize bindingInfo=_bindingInfo;
 @property(retain, nonatomic) NSString *selectedValueTransformerName; // @synthesize selectedValueTransformerName=_selectedValueTransformerName;
-@property(copy, nonatomic) NSString *selectedControllerKey; // @synthesize selectedControllerKey=_selectedControllerKey;
-@property(copy, nonatomic) NSString *selectedModelKeyPath; // @synthesize selectedModelKeyPath=_selectedModelKeyPath;
 @property(retain, nonatomic) id selectedController; // @synthesize selectedController=_selectedController;
+@property(copy, nonatomic) NSString *selectedModelKeyPath; // @synthesize selectedModelKeyPath=_selectedModelKeyPath;
+@property(copy, nonatomic) NSString *selectedControllerKey; // @synthesize selectedControllerKey=_selectedControllerKey;
+@property(retain, nonatomic) IBBindingInfo *bindingInfo; // @synthesize bindingInfo=_bindingInfo;
 @property(nonatomic) BOOL bound; // @synthesize bound=_bound;
 - (void).cxx_destruct;
 - (void)menuWillOpen:(id)arg1;
@@ -93,7 +91,6 @@
 - (id)controllerKeyForBindingInfo:(id)arg1;
 - (void)refreshSliceViewState;
 - (void)updateValueTransformerNames;
-- (void)invalidateValueTransformerNames;
 - (void)primitiveInvalidate;
 - (void)_reset;
 - (void)dropOptionSlivers;
@@ -103,6 +100,12 @@
 - (void)startObservingBindingInfo;
 - (void)loadView;
 - (id)initWithInspector:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

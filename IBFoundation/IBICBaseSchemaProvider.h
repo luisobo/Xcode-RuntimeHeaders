@@ -8,7 +8,7 @@
 
 #import "IBICSchemaProvider-Protocol.h"
 
-@class IBICIdiom, IBICPlatform, IBICScale;
+@class IBICFileType, IBICHeightClass, IBICIdiom, IBICPlatform, IBICScale, IBICSlotComponentClassCombinationAxis, IBICWidthClass, NSString;
 
 @interface IBICBaseSchemaProvider : NSObject <IBICSchemaProvider>
 {
@@ -16,6 +16,19 @@
     IBICIdiom *_universalIdiom;
     IBICScale *_oneXScale;
     IBICScale *_twoXScale;
+    IBICFileType *_pngFileType;
+    IBICFileType *_jpegFileType;
+    IBICFileType *_pdfFileType;
+    IBICWidthClass *_widthClassCompact;
+    IBICWidthClass *_widthClassRegular;
+    IBICHeightClass *_heightClassCompact;
+    IBICHeightClass *_heightClassRegular;
+    IBICSlotComponentClassCombinationAxis *_widthAxisAll;
+    IBICSlotComponentClassCombinationAxis *_widthAxisCompact;
+    IBICSlotComponentClassCombinationAxis *_widthAxisRegular;
+    IBICSlotComponentClassCombinationAxis *_heightAxisAll;
+    IBICSlotComponentClassCombinationAxis *_heightAxisCompact;
+    IBICSlotComponentClassCombinationAxis *_heightAxisRegular;
 }
 
 - (void).cxx_destruct;
@@ -23,6 +36,12 @@
 - (void)registerBaseSlotComponents:(id)arg1;
 - (void)registerSchemaComponents:(id)arg1;
 - (double)precedence;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

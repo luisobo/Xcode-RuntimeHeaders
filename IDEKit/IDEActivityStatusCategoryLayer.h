@@ -24,6 +24,7 @@
 - (id)accessibilityAttributeNames;
 @property(retain) NSImage *image;
 - (void)sizeToFit;
+- (double)_textLayerVerticalOffset;
 - (void)layoutSublayers;
 - (id)attributedCountString;
 - (id)textAttributes;

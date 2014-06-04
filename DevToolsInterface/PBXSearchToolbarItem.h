@@ -8,7 +8,7 @@
 
 #import "NSTextFieldDelegate-Protocol.h"
 
-@class NSMenu, PBXSearchTextField;
+@class NSMenu, NSString, PBXSearchTextField;
 
 @interface PBXSearchToolbarItem : NSToolbarItem <NSTextFieldDelegate>
 {
@@ -45,6 +45,12 @@
 - (void)dealloc;
 - (id)initWithDelegate:(id)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -12,5 +12,10 @@
 - (void)_dvt_clearSavedKeyEquivalent;
 - (id)_dvt_savedKeyEquivalent;
 - (void)_dvt_saveKeyEquivalent:(id)arg1;
+
+// Remaining properties
+@property(nonatomic, getter=isEnabled) BOOL enabled;
+@property(nonatomic, getter=isHidden) BOOL hidden;
+@property(readonly, nonatomic, getter=isHighlighted) BOOL highlighted;
 @end
 

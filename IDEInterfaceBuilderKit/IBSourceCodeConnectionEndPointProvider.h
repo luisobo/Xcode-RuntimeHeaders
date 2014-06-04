@@ -8,16 +8,16 @@
 
 #import "IBEndPointProvider-Protocol.h"
 
-@class DVTSourceModel, DVTSourceTextView, IBTargetIdentifier;
+@class DVTSourceTextView, IBTargetIdentifier, NSSet, NSString;
 
 @interface IBSourceCodeConnectionEndPointProvider : NSObject <IBEndPointProvider>
 {
-    IBTargetIdentifier *targetIdentifier;
-    DVTSourceTextView *sourceTextView;
-    DVTSourceModel *sourceModel;
+    IBTargetIdentifier *_targetIdentifier;
+    NSSet *_connectionContextExtensions;
+    DVTSourceTextView *_sourceTextView;
 }
 
-@property(readonly) DVTSourceTextView *sourceTextView; // @synthesize sourceTextView;
+@property(retain) DVTSourceTextView *sourceTextView; // @synthesize sourceTextView=_sourceTextView;
 - (void).cxx_destruct;
 - (BOOL)shouldFilterConstraintChoicesBasedUponAngleOfLine;
 - (void)indicateConnectionSuccessForTarget:(id)arg1;
@@ -28,13 +28,11 @@
 - (void)revealSpringLoadedObjectAndIndicateSuccess:(id)arg1;
 - (id)springLoadedObjectInfoAtPoint:(struct CGPoint)arg1 inView:(id)arg2 withContext:(id)arg3 forDocument:(id)arg4;
 - (id)endPointHandlerForPoint:(struct CGPoint)arg1 inView:(id)arg2 withContext:(id)arg3 forDocument:(id)arg4;
-- (BOOL)shouldIgnoreContainingSourceModelItemIfFolded:(id)arg1;
-- (long long)validatedRealLineNumberForRealInsertionCharacterIndex:(long long)arg1 inClassItem:(id)arg2;
-- (id)containingModelItemForSourceModelItem:(id)arg1 inClassItem:(id)arg2;
 - (struct _NSRange)lineRangeForModelItem:(id)arg1;
 - (void)endPointConsumerDidFinishConnecting;
 - (void)endPointConsumerWillStartConnecting;
-- (id)nearestInterestingConnectionHandlerFromItem:(id)arg1 inContainingClassNamed:(id)arg2 realSourceLineNumber:(unsigned long long)arg3 withContext:(id)arg4 forDocument:(id)arg5;
+- (id)nearestInterestingConnectionHandlerContainingClassNamed:(id)arg1 realSourceLineNumber:(unsigned long long)arg2 withContext:(id)arg3 forDocument:(id)arg4 prototypeConnectionContextsBlock:(id)arg5;
+- (void)determineValidMatchAndInsertionContextsForCompletingConnectionPrototype:(id)arg1 containingClassNamed:(id)arg2 realSourceLineNumber:(unsigned long long)arg3 withContext:(id)arg4 forDocument:(id)arg5 prototypeConnectionContextsBlock:(id)arg6 populatingValidMatchContexts:(void)arg7 validInsertionContexts:(id)arg8;
 - (void)uninstallTargetIdentifier;
 - (void)installTargetIdentifier;
 - (id)destinationWorkspaceDocument;
@@ -42,6 +40,12 @@
 - (id)editorForSourceTextView;
 - (id)textStorage;
 - (id)initWithSourceTextView:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

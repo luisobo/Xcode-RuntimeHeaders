@@ -9,7 +9,7 @@
 #import "IDESourceControlLogDetailDelegate-Protocol.h"
 #import "NSPopoverDelegate-Protocol.h"
 
-@class CALayer, IDEBlameAnnotationAgeBarView, IDEBlameAnnotationBorderedView, IDESourceCodeBlameController, IDESourceControlLogDetailViewController, NSButton, NSColor, NSNib, NSPopUpButton, NSPopover, NSTextField, NSView;
+@class CALayer, IDEBlameAnnotationAgeBarView, IDEBlameAnnotationBorderedView, IDESourceCodeBlameController, IDESourceControlLogDetailViewController, NSButton, NSColor, NSNib, NSPopUpButton, NSPopover, NSString, NSTextField, NSView;
 
 @interface IDEBlameAnnotationViewController : DVTViewController <NSPopoverDelegate, IDESourceControlLogDetailDelegate>
 {
@@ -84,6 +84,12 @@
 - (void)viewDidInstall;
 - (void)loadView;
 - (void)_updateFontAndTheme;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

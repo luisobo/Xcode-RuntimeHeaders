@@ -8,7 +8,7 @@
 
 #import "XCDiffComparatorViewDelegate-Protocol.h"
 
-@class XCDiffComparator;
+@class NSString, XCDiffComparator;
 
 @interface XCDiffFileEditor : PBXFileEditor <XCDiffComparatorViewDelegate>
 {
@@ -34,6 +34,12 @@
 - (void)addNotificationObservers;
 - (void)dealloc;
 - (id)initWithFileDocument:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

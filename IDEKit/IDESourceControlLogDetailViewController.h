@@ -50,5 +50,11 @@
 - (id)initWithLogItem:(id)arg1 filePath:(id)arg2 delegate:(id)arg3 popover:(id)arg4;
 - (id)initWithFilePath:(id)arg1 delegate:(id)arg2 popover:(id)arg3;
 
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
+
 @end
 

@@ -34,11 +34,13 @@
     BOOL _autoCompleteTimerExpired;
     BOOL _shownExplicitly;
     NSDictionary *_currentCompletionContext;
+    NSArray *_highlyLikelyCompletions;
 }
 
 + (void)_addToRecentCompletions:(id)arg1;
 + (void)initialize;
 + (id)keyPathsForValuesAffectingReadyToShowCompletions;
+@property(retain) NSArray *highlyLikelyCompletions; // @synthesize highlyLikelyCompletions=_highlyLikelyCompletions;
 @property(readonly, nonatomic) NSDictionary *currentCompletionContext; // @synthesize currentCompletionContext=_currentCompletionContext;
 @property BOOL autoCompleteTimerExpired; // @synthesize autoCompleteTimerExpired=_autoCompleteTimerExpired;
 @property(nonatomic) long long selectedCompletionIndex; // @synthesize selectedCompletionIndex=_selectedCompletionIndex;
@@ -57,10 +59,12 @@
 - (id)_prefixForCurrentLocation;
 - (struct _NSRange)rangeOfFirstWordInString:(id)arg1;
 - (void)completionsChangedForDataSource:(id)arg1;
-- (long long)_indexOfItem:(id)arg1 inAlphabeticalList:(id)arg2 mustBeThere:(BOOL)arg3;
+- (long long)_indexOfItem:(id)arg1 inAlphabeticalList:(id)arg2;
 - (id)_commonPrefixForItems:(id)arg1;
 - (id)_usefulPartialCompletionPrefixForItems:(id)arg1 selectedIndex:(unsigned long long)arg2 filteringPrefix:(id)arg3;
-- (unsigned long long)_bestMatchInSortedArray:(id)arg1 usingPrefix:(id)arg2;
+- (unsigned long long)_bestMatchInSortedArray:(id)arg1 usingPrefix:(id)arg2 highlyLikelyCompletions:(id)arg3;
+- (long long)_priorityBucketForItem:(id)arg1 usingPrefix:(id)arg2;
+- (double)_intrinsicPriorityForItem:(id)arg1 usingPrefix:(id)arg2;
 - (void)_setFilteringPrefix:(id)arg1 forceFilter:(BOOL)arg2;
 - (void)_ensureCompletionsUpToDate;
 - (void)_endCodeCompletionStatistic:(double)arg1;
@@ -106,7 +110,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -9,7 +9,7 @@
 #import "NSCoding-Protocol.h"
 #import "XDUMLElement-Protocol.h"
 
-@class NSMutableDictionary;
+@class NSMutableDictionary, NSString;
 
 @interface XDUMLElementImp : NSObject <XDUMLElement, NSCoding>
 {
@@ -52,6 +52,12 @@
 - (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

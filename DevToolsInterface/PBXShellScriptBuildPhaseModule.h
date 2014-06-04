@@ -8,7 +8,7 @@
 
 #import "NSTextViewDelegate-Protocol.h"
 
-@class NSButton, NSMatrix, NSTextField, NSTextView, NSUndoManager, PBXCompletionManager;
+@class NSButton, NSMatrix, NSString, NSTextField, NSTextView, NSUndoManager, PBXCompletionManager;
 
 @interface PBXShellScriptBuildPhaseModule : PBXBuildPhaseModule <NSTextViewDelegate>
 {
@@ -44,6 +44,12 @@
 - (BOOL)control:(id)arg1 textView:(id)arg2 doCommandBySelector:(SEL)arg3;
 - (void)dealloc;
 - (id)initWithBuildPhase:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

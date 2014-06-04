@@ -10,7 +10,7 @@
 {
 }
 
-- (id)parseData:(id)arg1 fromFile:(id)arg2 errors:(id *)arg3;
+- (id)parseData:(id)arg1 fromFile:(id)arg2 withContext:(id)arg3 errors:(id *)arg4;
 - (id)taskForParsingReturningError:(id *)arg1;
 - (id)processParserOutput:(id)arg1 fromFile:(id)arg2 errors:(id *)arg3;
 - (id)parserLaunchArguments;

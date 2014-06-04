@@ -10,7 +10,7 @@
 #import "NSOutlineViewDelegate-Protocol.h"
 #import "SKEContentsPickerPopUpButtonDataSource-Protocol.h"
 
-@class NSOutlineView;
+@class NSOutlineView, NSString;
 
 @interface SKEMaterialPropertiesInspector : IDEInspectorViewController <NSOutlineViewDataSource, NSOutlineViewDelegate, SKEContentsPickerPopUpButtonDataSource>
 {
@@ -36,6 +36,12 @@
 - (void)loadView;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)setContent:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,7 +8,7 @@
 
 #import "XCSelectionSource-Protocol.h"
 
-@class XCWindow;
+@class NSString, XCWindow;
 
 @interface XCWindowSelection : XCSelection <XCSelectionSource>
 {
@@ -40,6 +40,12 @@
 - (id)source;
 - (void)dealloc;
 - (id)initWithXCWindow:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

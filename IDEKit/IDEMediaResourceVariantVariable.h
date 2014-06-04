@@ -22,14 +22,16 @@
 }
 
 + (id)OSXImageScaleFactorVariantVariable;
++ (id)iOSHeightClassVariantVariable;
++ (id)iOSWidthClassVariantVariable;
 + (id)iOSIdiomVariantVariable;
 + (id)iOSImageScaleFactorVariantVariable;
 + (id)iOSImageResolutionVariantVariable;
-@property(readonly, nonatomic) NSSet *validValues; // @synthesize validValues=_validValues;
+@property(readonly, copy, nonatomic) NSSet *validValues; // @synthesize validValues=_validValues;
 @property(readonly, nonatomic) long long valueEndOffset; // @synthesize valueEndOffset=_valueEndOffset;
 @property(readonly, nonatomic) long long valueStartOffset; // @synthesize valueStartOffset=_valueStartOffset;
-@property(readonly, nonatomic) NSRegularExpression *expression; // @synthesize expression=_expression;
-@property(readonly, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
+@property(readonly, copy, nonatomic) NSRegularExpression *expression; // @synthesize expression=_expression;
+@property(readonly, copy, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
 - (void).cxx_destruct;
 - (id)description;
 - (id)searchValuesForValue:(id)arg1;

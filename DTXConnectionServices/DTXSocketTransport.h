@@ -6,11 +6,12 @@
 
 #import <DTXConnectionServices/DTXFileDescriptorTransport.h>
 
-@class NSArray;
+@class NSArray, NSObject<OS_dispatch_semaphore>, NSObject<OS_dispatch_source>;
 
 @interface DTXSocketTransport : DTXFileDescriptorTransport
 {
-    struct dispatch_semaphore_s *_socketAcceptedSem;
+    NSObject<OS_dispatch_semaphore> *_socketAcceptedSem;
+    NSObject<OS_dispatch_source> *_acceptSource;
     NSArray *_addresses;
     int _port;
 }
@@ -24,9 +25,9 @@
 - (id)initWithRemoteAddress:(id)arg1;
 - (void)dealloc;
 - (id)initWithLocalPort:(int)arg1;
-- (id)initWithConnectedSocket:(int)arg1 assumingOwnership:(BOOL)arg2;
+- (id)initWithConnectedSocket:(int)arg1 disconnectAction:(id)arg2;
 - (void)_commonSocketTransportInit;
-- (void)_setupChannelWithConnectedSocket:(int)arg1 assumingOwnership:(BOOL)arg2;
+- (void)_setupChannelWithConnectedSocket:(int)arg1 assumingOwnership:(BOOL)arg2 orDisconnectBlock:(id)arg3;
 - (id)initWithLocalAddress:(id)arg1;
 - (void)_setupWithLocalPort:(int)arg1;
 

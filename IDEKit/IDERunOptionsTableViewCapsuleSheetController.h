@@ -44,7 +44,7 @@
 @property(readonly) BOOL canRemove;
 - (void)removeItems:(id)arg1;
 - (void)addItems:(id)arg1;
-@property(readonly) NSString *titleForDisplay;
+@property(readonly, copy) NSString *titleForDisplay;
 - (void)_resizeView;
 @property(readonly) NSString *pasteBoardType;
 - (void)loadView;
@@ -54,9 +54,13 @@
 @property(readonly) BOOL canDrag;
 @property(readonly) BOOL canSelect;
 @property(readonly) BOOL canUndisclose;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) BOOL disclosedByDefault;
-@property(readonly) NSString *footerLabel;
+@property(readonly, copy) NSString *footerLabel;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSImage *icon;
+@property(readonly) Class superclass;
 
 @end
 

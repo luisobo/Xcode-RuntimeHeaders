@@ -11,7 +11,7 @@
 #import "NSOutlineViewDataSource-Protocol.h"
 #import "NSUserInterfaceValidations-Protocol.h"
 
-@class DVTNonLossyASCIIFormatter, DVTNotificationToken, DVTPlistComboBoxCell, DVTPlistDataFormatter, DVTPlistNode, DVTPlistOutlineView, DVTPlistSelection, DVTPlistTextFieldCell, DVTPlistTitledPopupCell, NSArray, NSButtonCell, NSDateFormatter, NSDictionary, NSDocument<DVTPlistDocumentProtocol>, NSMutableSet, NSPopUpButtonCell, NSScrollView, NSTableHeaderView;
+@class DVTNonLossyASCIIFormatter, DVTNotificationToken, DVTPlistComboBoxCell, DVTPlistDataFormatter, DVTPlistNode, DVTPlistOutlineView, DVTPlistSelection, DVTPlistTextFieldCell, DVTPlistTitledPopupCell, NSArray, NSButtonCell, NSDateFormatter, NSDictionary, NSDocument<DVTPlistDocumentProtocol>, NSMutableSet, NSPopUpButtonCell, NSScrollView, NSString, NSTableHeaderView;
 
 @interface DVTPlistViewController : DVTViewController <DVTPlistViewControllerProtocol, DVTPlistOutlineViewDelegate, NSOutlineViewDataSource, NSUserInterfaceValidations>
 {
@@ -133,10 +133,17 @@
 - (id)outlineView;
 - (id)scrollView;
 @property(retain) NSDocument<DVTPlistDocumentProtocol> *document;
+- (BOOL)outlineView:(id)arg1 shouldMouseHoverForTableColumn:(id)arg2 row:(long long)arg3;
 - (void)loadView;
 - (id)statusButtonCells;
 - (void)primitiveInvalidate;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

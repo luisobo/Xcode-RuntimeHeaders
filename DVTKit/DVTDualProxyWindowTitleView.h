@@ -17,23 +17,26 @@
     NSString *_secondaryName;
     NSImage *_secondaryImage;
     DVTNotificationToken *_frameChangeToken;
+    NSString *_titleSuffix;
 }
 
 + (id)_titleCell;
+@property(retain, nonatomic) NSString *titleSuffix; // @synthesize titleSuffix=_titleSuffix;
 - (void).cxx_destruct;
 - (BOOL)mouseDownCanMoveWindow;
 - (void)rightMouseDown:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)drawRect:(struct CGRect)arg1;
-- (void)_drawText:(id)arg1 inRect:(struct CGRect)arg2;
+- (void)_drawText:(id)arg1 inRect:(struct CGRect)arg2 isPrimary:(BOOL)arg3;
 - (void)_superViewFrameDidChange:(id)arg1;
 - (void)viewDidMoveToSuperview;
 - (void)viewWillMoveToSuperview:(id)arg1;
 - (void)_updateFrame;
 - (void)_updateDragButtons;
 - (struct CGRect)dvt_maxTitlebarTitleRect;
-- (void)_getTitlePrefixRect:(struct CGRect *)arg1 titlePrefixSeparatorRect:(struct CGRect *)arg2 primaryImageRect:(struct CGRect *)arg3 primaryTitleRect:(struct CGRect *)arg4 separatorRect:(struct CGRect *)arg5 secondaryImageRect:(struct CGRect *)arg6 secondaryTitleRect:(struct CGRect *)arg7;
+- (void)_getTitlePrefixRect:(struct CGRect *)arg1 titlePrefixSeparatorRect:(struct CGRect *)arg2 primaryImageRect:(struct CGRect *)arg3 primaryTitleRect:(struct CGRect *)arg4 separatorRect:(struct CGRect *)arg5 secondaryImageRect:(struct CGRect *)arg6 secondaryTitleRect:(struct CGRect *)arg7 titleSuffixSeparatorRect:(struct CGRect *)arg8 titleSuffixRect:(struct CGRect *)arg9;
 - (struct CGSize)_desiredSize;
+- (struct CGSize)_titleSuffixSize;
 - (struct CGSize)_titlePrefixSize;
 - (struct CGSize)_secondaryTitleSize;
 - (struct CGSize)_secondaryImageSize;
@@ -44,7 +47,8 @@
 @property(readonly) DVTWindowProxyDragButton *_secondaryDragButton;
 @property(readonly) DVTWindowProxyDragButton *_primaryDragButton;
 - (void)invalidateTitle;
-- (void)_getDocumentIcon:(id *)arg1 andDisplayName:(id *)arg2 forURL:(id)arg3;
+- (void)_getDocumentIcon:(id *)arg1 displayName:(id *)arg2 andDirty:(char *)arg3 forURL:(id)arg4;
+- (BOOL)_checkIfDirty:(id)arg1;
 @property(readonly) NSString *title;
 @property(readonly) NSString *titlePrefix;
 - (void)_setSecondaryName:(id)arg1 andImage:(id)arg2;

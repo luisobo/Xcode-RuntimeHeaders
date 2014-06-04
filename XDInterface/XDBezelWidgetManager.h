@@ -9,7 +9,7 @@
 #import "NSAnimationDelegate-Protocol.h"
 #import "NSWindowDelegate-Protocol.h"
 
-@class XDBezelWidgetPanel, XDBezelWidgetView;
+@class NSString, XDBezelWidgetPanel, XDBezelWidgetView;
 
 @interface XDBezelWidgetManager : NSObject <NSWindowDelegate, NSAnimationDelegate>
 {
@@ -33,6 +33,12 @@
 - (void)finalize;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

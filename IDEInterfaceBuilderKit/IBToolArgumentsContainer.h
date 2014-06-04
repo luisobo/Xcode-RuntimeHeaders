@@ -6,7 +6,7 @@
 
 #import <IDEInterfaceBuilderKit/IBArgumentsContainer.h>
 
-@class DVTMutableOrderedDictionary, NSArray, NSDictionary, NSMutableArray, NSString;
+@class DVTMutableOrderedDictionary, NSArray, NSDictionary, NSMutableArray, NSNumber, NSString;
 
 @interface IBToolArgumentsContainer : IBArgumentsContainer
 {
@@ -34,6 +34,8 @@
     BOOL _printMessageCategoryInfo;
     BOOL _printTargetRuntime;
     BOOL _printIndexingInformation;
+    BOOL _printSearchDescription;
+    BOOL _printStrippedTextContent;
     BOOL _makeEditableWhenCompiling;
     BOOL _shouldPrintVersion;
     BOOL _extractLocalizableGeometry;
@@ -42,6 +44,8 @@
     BOOL _extractLocalizableArrays;
     BOOL _enableAutoLayout;
     BOOL _printAutoLayoutEnabled;
+    BOOL _shouldUpdateAutoLayoutFrames;
+    BOOL _shouldUpdateAutoLayoutConstraints;
     NSString *_targetRuntimeIdentifier;
     NSDictionary *_refactorInfo;
     NSDictionary *_exportPropertiesDescription;
@@ -61,12 +65,20 @@
     NSString *_XLIFFImportPath;
     NSString *_XLIFFSourceLanguage;
     NSString *_XLIFFTargetLanguage;
+    NSArray *_targetDevices;
+    NSNumber *_launchScreen;
+    NSString *_module;
     NSString *_baseSDK;
 }
 
 @property(copy) NSString *baseSDK; // @synthesize baseSDK=_baseSDK;
+@property(copy) NSString *module; // @synthesize module=_module;
+@property(nonatomic) NSNumber *launchScreen; // @synthesize launchScreen=_launchScreen;
+@property BOOL shouldUpdateAutoLayoutConstraints; // @synthesize shouldUpdateAutoLayoutConstraints=_shouldUpdateAutoLayoutConstraints;
+@property BOOL shouldUpdateAutoLayoutFrames; // @synthesize shouldUpdateAutoLayoutFrames=_shouldUpdateAutoLayoutFrames;
 @property BOOL printAutoLayoutEnabled; // @synthesize printAutoLayoutEnabled=_printAutoLayoutEnabled;
 @property BOOL enableAutoLayout; // @synthesize enableAutoLayout=_enableAutoLayout;
+@property(copy) NSArray *targetDevices; // @synthesize targetDevices=_targetDevices;
 @property(copy) NSString *XLIFFTargetLanguage; // @synthesize XLIFFTargetLanguage=_XLIFFTargetLanguage;
 @property(copy) NSString *XLIFFSourceLanguage; // @synthesize XLIFFSourceLanguage=_XLIFFSourceLanguage;
 @property(copy) NSString *XLIFFImportPath; // @synthesize XLIFFImportPath=_XLIFFImportPath;
@@ -97,6 +109,8 @@
 @property(copy) NSDictionary *exportPropertiesDescription; // @synthesize exportPropertiesDescription=_exportPropertiesDescription;
 @property(copy) NSDictionary *refactorInfo; // @synthesize refactorInfo=_refactorInfo;
 @property(copy) NSString *targetRuntimeIdentifier; // @synthesize targetRuntimeIdentifier=_targetRuntimeIdentifier;
+@property BOOL printStrippedTextContent; // @synthesize printStrippedTextContent=_printStrippedTextContent;
+@property BOOL printSearchDescription; // @synthesize printSearchDescription=_printSearchDescription;
 @property BOOL printIndexingInformation; // @synthesize printIndexingInformation=_printIndexingInformation;
 @property BOOL printTargetRuntime; // @synthesize printTargetRuntime=_printTargetRuntime;
 @property BOOL printMessageCategoryInfo; // @synthesize printMessageCategoryInfo=_printMessageCategoryInfo;
@@ -120,7 +134,7 @@
 - (void)validateAfterInterpretingOptionsCollectingErrors:(id)arg1;
 - (void)interpretOption:(CDStruct_96d6799e)arg1 optionalParameter:(id)arg2 collectingErrors:(id)arg3;
 - (id)optionIndex;
-- (id)generateEquvalentArgumentArrayForIBToolVersion:(long long)arg1;
+- (id)generateEquivalentArgumentArrayForIBToolVersion:(long long)arg1;
 - (long long)outputFormatArgumentCode;
 - (BOOL)isMissingRequiredArgumentsForIncrementalLocalization;
 - (id)collectionOptionsThatRequireInputDocuments;

@@ -13,6 +13,7 @@
     PKPhysicsBody *_bodyA;
     PKPhysicsBody *_bodyB;
     struct CGPoint _contactPoint;
+    struct CGVector _contactNormal;
     double _impulse;
     BOOL _didBegin;
     BOOL _didEnd;
@@ -20,13 +21,15 @@
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-@property(readonly) double collisionImpulse;
-@property(readonly) struct CGPoint contactPoint;
-@property(readonly) PKPhysicsBody *bodyB;
-@property(readonly) PKPhysicsBody *bodyA;
+@property(readonly, nonatomic) double collisionImpulse;
+@property(readonly, nonatomic) struct CGVector contactNormal;
+@property(readonly, nonatomic) struct CGPoint contactPoint;
+@property(readonly, nonatomic) PKPhysicsBody *bodyB;
+@property(readonly, nonatomic) PKPhysicsBody *bodyA;
 - (void)setCollisionImpulse:(double)arg1;
 - (void)setBodyB:(id)arg1;
 - (void)setBodyA:(id)arg1;
+- (void)setContactNormal:(struct CGVector)arg1;
 - (void)setContactPoint:(struct CGPoint)arg1;
 @property BOOL didEnd;
 @property BOOL didBegin;

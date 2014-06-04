@@ -21,7 +21,6 @@
 - (void).cxx_destruct;
 - (void)takeVmmapSnapshotWithLogLevel:(int)arg1 logFormat:(id)arg2;
 - (void)_takeVmmapSnapshotWithLogLevel:(int)arg1 toFilePath:(id)arg2 logString:(id)arg3;
-- (void)cleanupBeforeTakingSnapshotsWithLogLevel:(int)arg1 logFormat:(id)arg2;
 - (unsigned long long)_newIncrementForSnapshotType:(id)arg1;
 - (id)initWithAspect:(id)arg1;
 

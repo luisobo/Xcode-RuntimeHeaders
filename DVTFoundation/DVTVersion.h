@@ -24,11 +24,12 @@
 + (void)initialize;
 @property(copy) NSString *buildNumber; // @synthesize buildNumber=_buildNumber;
 - (void).cxx_destruct;
+- (unsigned long long)availabilityFormIncludingUpdate:(BOOL)arg1 shortForm:(BOOL)arg2;
 - (id)initWithString:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isEqualToOrNewerThanVersion:(id)arg1;
 - (long long)compare:(id)arg1;
-@property(readonly) NSString *stringValue;
+@property(readonly, copy) NSString *stringValue;
 @property(readonly) unsigned long long updateComponent;
 @property(readonly) unsigned long long minorComponent;
 @property(readonly) unsigned long long majorComponent;

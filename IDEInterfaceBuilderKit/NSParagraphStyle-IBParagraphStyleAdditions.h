@@ -9,6 +9,7 @@
 @interface NSParagraphStyle (IBParagraphStyleAdditions)
 + (id)paragraphStyleWithAlignment:(unsigned long long)arg1 andLineBreakMode:(unsigned long long)arg2;
 + (id)paragraphStyleWithAlignment:(unsigned long long)arg1;
++ (id)paragraphStyleWithAlignment:(unsigned long long)arg1 paragraphSpacing:(double)arg2;
 + (id)paragraphStyleWithLineBreakMode:(unsigned long long)arg1;
 @end
 

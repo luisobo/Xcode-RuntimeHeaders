@@ -53,3 +53,25 @@ struct __va_list_tag {
     void *_field4;
 };
 
+struct _malloc_zone_t {
+    void *_field1;
+    void *_field2;
+    void *_field3;
+    void *_field4;
+    void *_field5;
+    void *_field6;
+    void *_field7;
+    void *_field8;
+    void *_field9;
+    char *_field10;
+    void *_field11;
+    void *_field12;
+    struct malloc_introspection_t *_field13;
+    unsigned int _field14;
+    void *_field15;
+    void *_field16;
+    void *_field17;
+};
+
+struct malloc_introspection_t;
+

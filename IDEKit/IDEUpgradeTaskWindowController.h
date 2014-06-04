@@ -10,7 +10,7 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class DVTStackBacktrace, DVTTableView, IDEContainer, IDENavigableItemCoordinator, IDENavigatorDataCell, IDEWorkspace, NSButton, NSImageCell, NSMutableArray;
+@class DVTStackBacktrace, DVTTableView, IDEContainer, IDENavigableItemCoordinator, IDENavigatorDataCell, IDEWorkspace, NSButton, NSImageCell, NSMutableArray, NSString;
 
 @interface IDEUpgradeTaskWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, DVTInvalidation>
 {
@@ -63,7 +63,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

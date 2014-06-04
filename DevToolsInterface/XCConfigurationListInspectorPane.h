@@ -8,7 +8,7 @@
 
 #import "NSTableViewDataSource-Protocol.h"
 
-@class NSButton, NSMutableArray, PBXExtendedTableView, PBXProject;
+@class NSButton, NSMutableArray, NSString, PBXExtendedTableView, PBXProject;
 
 @interface XCConfigurationListInspectorPane : PBXInspectorPaneModule <NSTableViewDataSource>
 {
@@ -64,6 +64,12 @@
 - (id)buildConfigurationNames;
 - (void)setProject:(id)arg1;
 - (id)project;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -24,7 +24,7 @@
 @property(copy) NSString *commandGroupIdentifier; // @synthesize commandGroupIdentifier=_commandGroupIdentifier;
 @property(copy) NSString *commandIdentifier; // @synthesize commandIdentifier=_commandIdentifier;
 - (void).cxx_destruct;
-@property(readonly) NSString *combinedIdentifier;
+@property(readonly, copy) NSString *combinedIdentifier;
 - (BOOL)isEqualToKeyBinding:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 

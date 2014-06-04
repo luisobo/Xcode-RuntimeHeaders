@@ -6,14 +6,14 @@
 
 #import "NSObject.h"
 
-@class ABAddressBook, NSMutableDictionary;
+@class ABAddressBook, NSMutableDictionary, NSObject<OS_dispatch_queue>;
 
 @interface IDESourceControlPersonManager : NSObject
 {
     ABAddressBook *_addressBook;
     NSMutableDictionary *_peopleByRepository;
     NSMutableDictionary *_savedABPeoplePairingsByRepository;
-    struct dispatch_queue_s *_addressBookDispatchQueue;
+    NSObject<OS_dispatch_queue> *_addressBookDispatchQueue;
 }
 
 + (id)logAspect;

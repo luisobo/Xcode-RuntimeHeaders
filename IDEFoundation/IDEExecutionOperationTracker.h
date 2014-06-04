@@ -6,20 +6,20 @@
 
 #import <IDEFoundation/IDEExecutionTracker.h>
 
-@class DVTOperation;
+@class DVTObservingToken, DVTOperation;
 
 @interface IDEExecutionOperationTracker : IDEExecutionTracker
 {
     DVTOperation *_operation;
+    DVTObservingToken *_isFinishedObservingToken;
     BOOL _operationFinished;
 }
 
 @property(nonatomic) BOOL operationFinished; // @synthesize operationFinished=_operationFinished;
 @property(retain) DVTOperation *operation; // @synthesize operation=_operation;
 - (void).cxx_destruct;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (BOOL)isFinished;
-- (void)cancel;
+- (void)cancelWithReason:(int)arg1;
 - (id)initWithOperation:(id)arg1;
 
 @end

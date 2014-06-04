@@ -24,13 +24,13 @@
     unsigned long long _hash;
 }
 
-@property(readonly) IDEOverridingBuildProperties *overridingProperties; // @synthesize overridingProperties=_overridingProperties;
-@property(readonly) NSString *activeArchitecture; // @synthesize activeArchitecture=_activeArchitecture;
+@property(readonly, copy) IDEOverridingBuildProperties *overridingProperties; // @synthesize overridingProperties=_overridingProperties;
+@property(readonly, copy) NSString *activeArchitecture; // @synthesize activeArchitecture=_activeArchitecture;
 @property(readonly) IDERunDestination *activeRunDestination; // @synthesize activeRunDestination=_activeRunDestination;
-@property(readonly) NSString *configurationName; // @synthesize configurationName=_configurationName;
+@property(readonly, copy) NSString *configurationName; // @synthesize configurationName=_configurationName;
 @property(readonly) IDESchemeCommand<IDEPrimitiveSchemeCommand> *schemeCommand; // @synthesize schemeCommand=_schemeCommand;
-@property(readonly) NSString *buildAction; // @synthesize buildAction=_buildAction;
-@property(readonly) IDEWorkspaceArenaSnapshot *workspaceArenaSnapshot; // @synthesize workspaceArenaSnapshot=_workspaceArenaSnapshot;
+@property(readonly, copy) NSString *buildAction; // @synthesize buildAction=_buildAction;
+@property(readonly, copy) IDEWorkspaceArenaSnapshot *workspaceArenaSnapshot; // @synthesize workspaceArenaSnapshot=_workspaceArenaSnapshot;
 - (void).cxx_destruct;
 - (id)dvt_detailedDebugDescription;
 - (id)description;
@@ -39,7 +39,7 @@
 - (id)_componentPropertyNames;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)_copyUsingTargetBuildParametersClass:(Class)arg1;
+- (id)_copyWithMutability:(BOOL)arg1;
 - (id)init;
 
 @end

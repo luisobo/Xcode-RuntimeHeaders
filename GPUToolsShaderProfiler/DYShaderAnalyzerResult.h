@@ -13,19 +13,21 @@
 
 @interface DYShaderAnalyzerResult : NSObject <NSCoding, NSCopying>
 {
-    float _totalCost;
     double _instructionCount;
     double _instructionCountMin;
     double _instructionCountMax;
+    double _totalCost;
     NSDictionary *_totalPerLineCost;
     NSDictionary *_drawCallCost;
     NSDictionary *_drawCallPerLineCost;
+    NSDictionary *_perFileCost;
 }
 
+@property(retain, nonatomic) NSDictionary *perFileCost; // @synthesize perFileCost=_perFileCost;
 @property(retain, nonatomic) NSDictionary *drawCallPerLineCost; // @synthesize drawCallPerLineCost=_drawCallPerLineCost;
 @property(retain, nonatomic) NSDictionary *drawCallCost; // @synthesize drawCallCost=_drawCallCost;
 @property(retain, nonatomic) NSDictionary *totalPerLineCost; // @synthesize totalPerLineCost=_totalPerLineCost;
-@property(nonatomic) float totalCost; // @synthesize totalCost=_totalCost;
+@property(nonatomic) double totalCost; // @synthesize totalCost=_totalCost;
 @property(nonatomic) double instructionCountMax; // @synthesize instructionCountMax=_instructionCountMax;
 @property(nonatomic) double instructionCountMin; // @synthesize instructionCountMin=_instructionCountMin;
 @property(nonatomic) double instructionCount; // @synthesize instructionCount=_instructionCount;

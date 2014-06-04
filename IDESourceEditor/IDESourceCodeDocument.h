@@ -11,12 +11,13 @@
 #import "DVTTextFindable-Protocol.h"
 #import "DVTTextReplacable-Protocol.h"
 #import "DVTTextStorageDelegate-Protocol.h"
+#import "IDEDiagnosticControllerDataSource-Protocol.h"
 #import "IDEDocumentStructureProviding-Protocol.h"
-#import "IDESourceCodeGenerationDestination-Protocol.h"
+#import "IDEObjectiveCSourceCodeGenerationDestination-Protocol.h"
 
-@class DVTDelayedInvocation, DVTFileDataType, DVTGeneratedContentProvider, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTSourceCodeLanguage, DVTTextStorage, IDEDiagnosticController, IDEGeneratedContentStatusContext, IDESourceCodeAdjustNodeTypesRequest, NSArray, NSMutableSet;
+@class DVTDelayedInvocation, DVTFileDataType, DVTGeneratedContentProvider, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTSourceCodeLanguage, DVTTextStorage, IDEDiagnosticController, IDEGeneratedContentStatusContext, IDESourceCodeAdjustNodeTypesRequest, NSArray, NSDictionary, NSMutableArray, NSMutableSet, NSString, NSURL;
 
-@interface IDESourceCodeDocument : IDEEditorDocument <IDEDocumentStructureProviding, DVTTextFindable, DVTTextReplacable, DVTTextStorageDelegate, IDESourceCodeGenerationDestination, DVTSourceLandmarkProvider, DVTSourceTextViewDelegate>
+@interface IDESourceCodeDocument : IDEEditorDocument <IDEDiagnosticControllerDataSource, IDEDocumentStructureProviding, DVTTextFindable, DVTTextReplacable, DVTTextStorageDelegate, IDEObjectiveCSourceCodeGenerationDestination, DVTSourceLandmarkProvider, DVTSourceTextViewDelegate>
 {
     DVTTextStorage *_textStorage;
     DVTSourceCodeLanguage *_language;
@@ -40,12 +41,18 @@
     BOOL _isUnicodeBE;
     BOOL _droppedRecomputableState;
     DVTDelayedInvocation *_dropRecomputableState;
+    DVTObservingToken *_firstEditorWorkspaceToken;
+    NSMutableArray *_registeredEditors;
     BOOL _notifiesWhenClosing;
+    NSDictionary *__firstEditorWorkspaceBuildSettings;
 }
 
++ (id)keyPathsForValuesAffecting_firstEditorWorkspace;
++ (id)keyPathsForValuesAffectingSourceLanguageServiceContext;
 + (id)syntaxColoringPrefetchLogAspect;
 + (id)topLevelStructureLogAspect;
 + (void)initialize;
+@property(copy) NSDictionary *_firstEditorWorkspaceBuildSettings; // @synthesize _firstEditorWorkspaceBuildSettings=__firstEditorWorkspaceBuildSettings;
 @property BOOL notifiesWhenClosing; // @synthesize notifiesWhenClosing=_notifiesWhenClosing;
 @property(retain) IDEGeneratedContentStatusContext *generatedContentStatusContext; // @synthesize generatedContentStatusContext=_generatedContentStatusContext;
 @property BOOL generatesContent; // @synthesize generatesContent=_generatesContent;
@@ -63,6 +70,8 @@
 - (void)_documentMovingToBackground:(BOOL)arg1;
 - (void)registerDocumentEditor:(id)arg1;
 - (void)unregisterDocumentEditor:(id)arg1;
+- (id)_firstEditorWorkspace;
+- (id)_firstEditor;
 - (id)sourceCodeGenerator:(id)arg1 commitInsertionOfSourceCodeForCompositeResult:(id)arg2 error:(id *)arg3;
 - (id)sourceCodeGenerator:(id)arg1 prepareToAddObjectiveCAtSynthesizeWithName:(id)arg2 inClassNamed:(id)arg3 options:(id)arg4 error:(id *)arg5;
 - (id)sourceCodeGenerator:(id)arg1 prepareToAddObjectiveCPropertyDeclarationWithName:(id)arg2 type:(id)arg3 inClassNamed:(id)arg4 options:(id)arg5 error:(id *)arg6;
@@ -94,14 +103,14 @@
 - (id)_insertSourceCode:(id)arg1 atEndOfContainingSourceModelItem:(id)arg2 insertOnNextLine:(BOOL)arg3 beforeItemMatchingPredicateBlock:(id)arg4;
 - (id)_insertSourceCode:(id)arg1 atBeginningOfContainingSourceModelItem:(id)arg2 insertOnNextLine:(BOOL)arg3 afterItemMatchingPredicateBlock:(id)arg4;
 - (id)_primitiveInsertSourceCode:(id)arg1 atBeginning:(BOOL)arg2 ofContainingSourceModelItem:(id)arg3 insertOnNextLine:(BOOL)arg4 afterOrBeforeItemMatchingPredicateBlock:(id)arg5;
-- (id)_textDocumentLocationForInsertingSourceCode:(id)arg1 atLocation:(unsigned long long)arg2;
+- (id)textDocumentLocationForInsertingSourceCode:(id)arg1 atLocation:(unsigned long long)arg2;
 - (id)_instanceVariableDeclarationBlockItemForClassItem:(id)arg1;
 - (id)_objCCategoryImplementationClassModelItemForClassNamed:(id)arg1 categoryName:(id)arg2 error:(id *)arg3;
 - (id)_objCCategoryInterfaceClassModelItemForClassNamed:(id)arg1 categoryName:(id)arg2 options:(id)arg3 error:(id *)arg4;
 - (id)_objCImplementationClassModelItemForClassNamed:(id)arg1 error:(id *)arg2;
 - (id)_objCInterfaceClassModelItemForClassNamed:(id)arg1 error:(id *)arg2;
 - (id)_classModelItemForClassNamed:(id)arg1 withConditionBlock:(id)arg2;
-- (id)_errorForNotFindingClassItemForClassNamed:(id)arg1 humanReadableClassItemType:(id)arg2;
+- (id)errorForNotFindingClassItemForClassNamed:(id)arg1 humanReadableClassItemType:(id)arg2;
 - (id)supportedSourceCodeLanguagesForSourceCodeGeneration;
 - (long long)defaultPropertyAccessControl;
 - (id)emptyPrivateCopy;
@@ -109,6 +118,7 @@
 - (id)diffDataSource;
 - (id)textViewWillReturnPrintJobTitle:(id)arg1;
 - (id)printOperationWithSettings:(id)arg1 error:(id *)arg2;
+- (void)sourceLanguageServiceAvailabilityNotification:(BOOL)arg1 message:(id)arg2;
 - (BOOL)textStorageShouldAllowEditing:(id)arg1;
 - (void)textStorageDidUpdateSourceLandmarks:(id)arg1;
 - (void)textStorageDidProcessEditing:(id)arg1;
@@ -121,6 +131,8 @@
 - (id)documentLocationFromCharacterRange:(struct _NSRange)arg1;
 - (struct _NSRange)characterRangeFromDocumentLocation:(id)arg1;
 - (id)updatedLocationFromLocation:(id)arg1 toTimestamp:(double)arg2;
+- (id)indexCompatibleLocationFromLocation:(id)arg1;
+- (id)editorCompatibleLocationFromLocation:(id)arg1;
 - (void)prefetchNodeTypesExtraLines:(unsigned long long)arg1 upDirection:(BOOL)arg2 withContext:(id)arg3;
 - (void)initialPrefetchNodeTypesForLineRange:(struct _NSRange)arg1 withContext:(id)arg2;
 - (void)_prefetchNodeTypesForLineRange:(struct _NSRange)arg1 withContext:(id)arg2;
@@ -138,7 +150,8 @@
 - (BOOL)canSave;
 @property(readonly) DVTPerformanceMetric *openingPerformanceMetric;
 - (id)editedContents;
-- (id)description;
+@property(readonly, copy) NSString *description;
+- (id)displayName;
 @property(readonly) NSArray *knownFileReferences;
 - (struct _NSRange)lineRangeOfSourceLandmark:(id)arg1;
 - (id)sourceLandmarkItemAtLineNumber:(unsigned long long)arg1;
@@ -149,6 +162,7 @@
 @property(retain) IDEDiagnosticController *diagnosticController; // @synthesize diagnosticController=_diagnosticController;
 - (id)printInfo;
 - (void)setTextEncoding:(unsigned long long)arg1 convertContents:(BOOL)arg2;
+@property(readonly, nonatomic) NSDictionary *sourceLanguageServiceContext;
 @property(readonly) DVTFileDataType *fileDataType;
 - (id)init;
 - (void)setSdefSupport_text:(id)arg1;
@@ -168,6 +182,10 @@
 - (id)objectSpecifier;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) NSURL *fileURL;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @property unsigned long long supportedMatchingOptions;
 
 @end

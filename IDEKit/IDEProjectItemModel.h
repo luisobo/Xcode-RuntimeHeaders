@@ -8,16 +8,11 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTDelayedInvocation, DVTStackBacktrace, NSArray, Xcode3TargetBuildSettingsCoordinator, Xcode3TargetEntitlementsCoordinator, Xcode3TargetInfoPlistCoordinator, Xcode3TargetLinkedFrameworksCoordinator, Xcode3TargetPortalEntitlementsCoordinator;
+@class DVTDelayedInvocation, DVTStackBacktrace, NSArray, NSString, Xcode3TargetBuildSettingsCoordinator, Xcode3TargetEntitlementsCoordinator, Xcode3TargetInfoPlistCoordinator, Xcode3TargetLinkedFrameworksCoordinator, Xcode3TargetPortalEntitlementsCoordinator;
 
 @interface IDEProjectItemModel : NSObject <DVTInvalidation>
 {
     NSArray *_flightChecks;
-    id <IDEFlightChecking> _portalFlightCheck;
-    id <IDEFlightChecking> _entitlementsFlightCheck;
-    id <IDEFlightChecking> _infoPlistFlightCheck;
-    id <IDEFlightChecking> _linkedFrameworksFlightCheck;
-    id <IDEFlightChecking> _buildSettingsFlightCheck;
     id <IDECapabilitiesContextProviding> _targetCapabilitiesContext;
     id <IDEProjectItem> _item;
     DVTDelayedInvocation *_delayedUpdateInvocation;
@@ -25,13 +20,9 @@
 
 + (void)initialize;
 @property(readonly) DVTDelayedInvocation *delayedUpdateInvocation; // @synthesize delayedUpdateInvocation=_delayedUpdateInvocation;
-@property(readonly) id <IDEFlightChecking> buildSettingsFlightCheck; // @synthesize buildSettingsFlightCheck=_buildSettingsFlightCheck;
-@property(readonly) id <IDEFlightChecking> linkedFrameworksFlightCheck; // @synthesize linkedFrameworksFlightCheck=_linkedFrameworksFlightCheck;
-@property(readonly) id <IDEFlightChecking> infoPlistFlightCheck; // @synthesize infoPlistFlightCheck=_infoPlistFlightCheck;
-@property(readonly) id <IDEFlightChecking> entitlementsFlightCheck; // @synthesize entitlementsFlightCheck=_entitlementsFlightCheck;
-@property(readonly) id <IDEFlightChecking> portalFlightCheck; // @synthesize portalFlightCheck=_portalFlightCheck;
 @property(readonly) id <IDEProjectItem> item; // @synthesize item=_item;
 @property(readonly) id <IDECapabilitiesContextProviding> targetCapabilitiesContext; // @synthesize targetCapabilitiesContext=_targetCapabilitiesContext;
+@property(readonly, nonatomic) NSArray *flightChecks; // @synthesize flightChecks=_flightChecks;
 - (void).cxx_destruct;
 @property(readonly) Xcode3TargetInfoPlistCoordinator *infoPlistCoordinator;
 @property(readonly) Xcode3TargetLinkedFrameworksCoordinator *linkedFrameworksCoordinator;
@@ -48,14 +39,17 @@
 - (void)modelWasEnabledWithContext:(id)arg1;
 - (void)updateWithContext:(id)arg1;
 - (void)targetCoordinatorChanged:(id)arg1;
-@property(readonly, nonatomic) NSArray *flightChecks;
 - (void)primitiveInvalidate;
 - (id)init;
 - (id)initWithCapabilitiesContext:(id)arg1 item:(id)arg2;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

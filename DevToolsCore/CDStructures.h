@@ -213,7 +213,7 @@ struct PBXIndexCParseActions {
     char _field10;
     id _field11;
     id _field12;
-    struct dispatch_queue_s *_field13;
+    id _field13;
     id _field14;
     char _field15[1024];
     id _field16;
@@ -234,7 +234,7 @@ struct PBXIndexCppActions {
     id _field4;
     id _field5;
     id _field6;
-    struct dispatch_queue_s *_field7;
+    id _field7;
 };
 
 struct Place;
@@ -489,8 +489,6 @@ struct _projInfo {
     char _field4;
     id _field5;
 };
-
-struct dispatch_queue_s;
 
 struct fsid {
     int _field1[2];

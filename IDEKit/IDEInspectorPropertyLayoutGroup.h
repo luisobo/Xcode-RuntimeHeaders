@@ -24,6 +24,8 @@
 - (void)inspectorContentViewWillMoveToWindow:(id)arg1;
 - (void)uninstallFromInspectorContentView;
 - (void)installIntoInspectorContentView:(id)arg1;
+- (void)pushFrameOriginsToViews;
+- (id)accessoryView;
 - (void)enumerateProperties:(id)arg1;
 - (void)layoutGroupsBottomUp;
 - (void)layoutGroupsTopDown;

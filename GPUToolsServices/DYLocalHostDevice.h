@@ -10,9 +10,11 @@
 {
 }
 
++ (Class)controlStrategyClass;
++ (Class)deferredLaunchStrategyClass;
++ (Class)launchStrategyClass;
 + (id)sharedLocalHostDevice;
-- (id)createDeferredLaunchGuestAppSession:(id)arg1;
-- (id)createGuestAppSession:(id)arg1;
+- (id)createTransport;
 - (id)iconDataForApplicationIdentifiers:(id)arg1;
 - (id)guestAppWithURL:(id)arg1;
 - (id)gputoolsServiceAvailabilityError;

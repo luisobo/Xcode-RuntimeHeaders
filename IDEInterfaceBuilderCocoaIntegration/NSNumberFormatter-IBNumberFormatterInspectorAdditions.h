@@ -7,10 +7,15 @@
 #import "NSNumberFormatter.h"
 
 @interface NSNumberFormatter (IBNumberFormatterInspectorAdditions)
++ (id)instantiateWithDocumentUnarchiver:(id)arg1;
 + (id)keyPathsForValuesAffectingIbInspectedTenOhMaximum;
 + (id)keyPathsForValuesAffectingIbInspectedTenOhMinimum;
 + (id)keyPathsForValuesAffectingIbInspectedStyle;
 + (id)keyPathsForValuesAffectingIbExternalSampleStringValue;
+- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
+- (void)archiveWithDocumentArchiver:(id)arg1;
+- (id)ibUnarchiveNilDefaultStringForKey:(id)arg1 withUnarchiver:(id)arg2 xcode5DefaultValue:(id)arg3;
+- (void)ibArchiveNilDefaultString:(id)arg1 forKey:(id)arg2 withArchiver:(id)arg3 xcode5DefaultValue:(id)arg4;
 - (id)ibMaximumDefaultValue;
 - (id)ibMinimumDefaultValue;
 - (void)setIbInspectedTenOhMaximum:(id)arg1;

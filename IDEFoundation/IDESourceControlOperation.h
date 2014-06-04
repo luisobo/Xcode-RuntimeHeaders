@@ -18,8 +18,10 @@
     unsigned int _scmPowerAssertion;
     BOOL _waitToParseData;
     BOOL _allowsSleep;
+    BOOL _userInitiated;
 }
 
+@property BOOL userInitiated; // @synthesize userInitiated=_userInitiated;
 @property BOOL allowsSleep; // @synthesize allowsSleep=_allowsSleep;
 @property BOOL waitToParseData; // @synthesize waitToParseData=_waitToParseData;
 @property(readonly) IDESourceControlRequest *request; // @synthesize request=_request;

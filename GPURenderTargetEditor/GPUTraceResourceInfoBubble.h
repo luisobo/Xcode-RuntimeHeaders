@@ -8,27 +8,34 @@
 
 #import "NSWindowDelegate-Protocol.h"
 
-@class DYResourceObject, NSView;
+@class DYRenderingAttributes, GPUTraceModelFactory, NSString, NSView;
 
-// Not exported
 @interface GPUTraceResourceInfoBubble : DVTPopoverContentViewController <NSWindowDelegate>
 {
     NSView *_parentView;
-    DYResourceObject *_resource;
-    id <GPUTraceResourceInfoDelegateProtocol> _infoDelegate;
+    id <DYResource> _resource;
     id <GPUTraceBubbleOwner> _owner;
+    GPUTraceModelFactory *_modelFactory;
+    DYRenderingAttributes *_renderingAttributes;
     BOOL _isVisible;
     unsigned long long _bubbleEdge;
 }
 
 @property(readonly) NSView *parentView; // @synthesize parentView=_parentView;
-@property(readonly) DYResourceObject *resource; // @synthesize resource=_resource;
+@property(readonly) id <DYResource> resource; // @synthesize resource=_resource;
 - (void).cxx_destruct;
 - (void)close;
 - (void)_cleanUpAfterClosingPopupWindow;
 - (void)showAtPoint:(struct CGPoint)arg1;
 - (void)viewDidInstall;
-- (id)initWithResource:(id)arg1 parentView:(id)arg2 nibName:(id)arg3 owner:(id)arg4 infoDelegate:(id)arg5;
+- (id)initWithResource:(id)arg1 parentView:(id)arg2 owner:(id)arg3 modelFactory:(id)arg4 renderingAttributes:(id)arg5;
+- (id)initWithResource:(id)arg1 parentView:(id)arg2 nibName:(id)arg3 owner:(id)arg4 modelFactory:(id)arg5 renderingAttributes:(id)arg6;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

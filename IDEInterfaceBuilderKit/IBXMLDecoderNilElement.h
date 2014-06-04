@@ -11,6 +11,7 @@
 }
 
 + (id)elementName;
+- (id)interpretedObjectValue:(char *)arg1;
 - (BOOL)requestInsertionIntoParent:(id)arg1 error:(id *)arg2;
 
 @end

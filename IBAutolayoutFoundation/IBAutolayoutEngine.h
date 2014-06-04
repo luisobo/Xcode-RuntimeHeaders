@@ -54,9 +54,9 @@
 - (void)setConstant:(double)arg1 ofConstraint:(id)arg2;
 - (void)removeConstraint:(id)arg1;
 - (void)addConstraint:(id)arg1 toView:(id)arg2;
-- (id)constraintAbstractionsMakingSystemOverConstrainedByAddingConstraint:(id)arg1 toView:(id)arg2;
-- (id)constraintsMakingSystemOverConstrainedByAddingConstraint:(id)arg1 toView:(id)arg2;
-- (id)_constraintOrConstraintAbstractionsMakingSystemOverConstrainedByAddingConstraint:(id)arg1 toView:(id)arg2 constraintsOrAbstractionsForRepresentedConstraintsBlock:(id)arg3;
+- (unsigned long long)attemptToAddConstraint:(id)arg1 toView:(id)arg2 returningConstraintAbstractionsMakingSystemOverConstrained:(id *)arg3;
+- (unsigned long long)attemptToAddConstraint:(id)arg1 toView:(id)arg2 returningConstraintsMakingSystemOverConstrained:(id *)arg3;
+- (unsigned long long)_attemptToAddConstraint:(id)arg1 toView:(id)arg2 returningConstraintsOrConstraintAbstractionsMakingSystemOverConstrained:(id *)arg3 constraintsOrAbstractionsForRepresentedConstraintsBlock:(id)arg4;
 - (BOOL)shouldIgnoreRepresentedConstraint:(id)arg1;
 - (void)updateTopLevelSystemRequiredConstraints;
 - (void)removeSystemRequiredWidthAndHeightConstraintsOnRepresentedWindowBorderView;

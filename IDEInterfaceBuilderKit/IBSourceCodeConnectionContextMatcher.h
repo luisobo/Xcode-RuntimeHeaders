@@ -6,26 +6,29 @@
 
 #import "NSObject.h"
 
-@class IBMutableIdentityDictionary, NSMutableSet;
+@class DVTSourceCodeLanguage, IBMutableIdentityDictionary, NSMutableSet;
 
 @interface IBSourceCodeConnectionContextMatcher : NSObject
 {
-    IBMutableIdentityDictionary *matchInclusionLanguageIdentifiersByContextClass;
-    IBMutableIdentityDictionary *insertInclusionLanguageIdentifiersByContextClass;
-    IBMutableIdentityDictionary *matchExclusionLanguageIdentifiersByContextClass;
-    IBMutableIdentityDictionary *insertExclusionLanguageIdentifiersByContextClass;
-    IBMutableIdentityDictionary *contextExtensionByContextClass;
-    NSMutableSet *allInclusionClasses;
+    IBMutableIdentityDictionary *_matchInclusionLanguageIdentifiersByContextClass;
+    IBMutableIdentityDictionary *_insertInclusionLanguageIdentifiersByContextClass;
+    IBMutableIdentityDictionary *_matchExclusionLanguageIdentifiersByContextClass;
+    IBMutableIdentityDictionary *_insertExclusionLanguageIdentifiersByContextClass;
+    IBMutableIdentityDictionary *_contextExtensionByContextClass;
+    NSMutableSet *_allInclusionClasses;
+    DVTSourceCodeLanguage *_language;
 }
 
-+ (id)sharedInstance;
++ (id)sharedInstanceForLanguage:(id)arg1;
+@property(retain) DVTSourceCodeLanguage *language; // @synthesize language=_language;
 - (void).cxx_destruct;
-- (id)prototypeInsertConnectionContextsForSourceItem:(id)arg1 sourceModel:(id)arg2 applicableContextClasses:(id)arg3;
-- (id)prototypeMatchConnectionContextsForSourceItem:(id)arg1 sourceModel:(id)arg2 applicableContextClasses:(id)arg3;
-- (id)connectionContextClassesForSourceItem:(id)arg1 applicableConnectionClasses:(id)arg2 inclusionDictionary:(id)arg3 exclusionDictionary:(id)arg4;
+- (id)contextExtensionForClass:(Class)arg1;
+- (id)prototypeConnectionContextsForAction:(long long)arg1 sourceItem:(id)arg2 sourceModel:(id)arg3 applicableContextClasses:(id)arg4;
+- (id)connectionContextClassesForSourceItemContexts:(id)arg1 applicableConnectionClasses:(id)arg2 inclusionDictionary:(id)arg3 exclusionDictionary:(id)arg4;
 - (id)inclusionClassesForApplicableContextClasses:(id)arg1;
 - (void)loadAllConnectionContextMetadata;
-- (id)init;
+- (void)loadConnectionContextMetadataForExtension:(id)arg1;
+- (id)initWithLanguage:(id)arg1;
 
 @end
 

@@ -10,7 +10,7 @@
 
 @interface NSDictionaryController (IBNSDictionaryControllerIntegration)
 + (id)ibSynthesizeControllerKeyPaths;
-- (id)ibApplicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
+- (BOOL)ibIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 
 // Remaining properties

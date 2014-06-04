@@ -6,7 +6,11 @@
 
 #import "SCNLight.h"
 
+@class NSImage, NSString;
+
 @interface SCNLight (SceneKit_SKEAdditions)
++ (id)ske_displayNameForUndoKVOKeypath:(id)arg1;
++ (id)keyPathsForValuesAffectingIde_displayName;
 @property float ide_shadowFarClipping;
 @property float ide_shadowNearClipping;
 - (BOOL)ide_cannotCastShadow;
@@ -16,13 +20,13 @@
 @property float ide_attenuationFalloffExponent;
 @property float ide_attenuationEnd;
 @property float ide_attenuationStart;
+- (BOOL)ide_supportsOrthographicScale;
 - (BOOL)ide_supportsIlluminationCone;
 - (BOOL)ide_supportsAttenuation;
-- (id)ide_icon;
+@property(readonly) NSImage *ide_icon;
 - (void)setIde_typeNumber:(long long)arg1;
 - (long long)ide_typeNumber;
-- (id)light;
-- (id)ske_displayNameForUndoKVOKeypath:(id)arg1;
 - (id)ske_undoKVOKeypaths;
+@property(readonly) NSString *ide_displayName;
 @end
 

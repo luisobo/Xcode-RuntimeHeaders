@@ -13,15 +13,16 @@
     SKEDocument *_document;
 }
 
-+ (void)unobserveContentsOfMaterialProperty:(id)arg1;
++ (id)missingMediaImage;
++ (void)endObservationOfFilePathForAssociatedObject:(id)arg1;
++ (void)beginObservationOfFilePath:(id)arg1 forAssociatedObject:(id)arg2 block:(id)arg3;
 + (void)observeContentsOfMaterialProperty:(id)arg1;
 + (id)contentsOfMaterialProperty:(id)arg1;
 + (void)setContents:(id)arg1 ofMaterialProperty:(id)arg2;
-+ (id)missingMediaImage;
-@property(readonly) SKEDocument *document; // @synthesize document=_document;
++ (void)refreshImageContentsOfMaterialProperty:(id)arg1;
 - (void).cxx_destruct;
-- (void)sanitizeMaterials;
-- (id)imageMediaResources;
+- (void)sanitizeAllMaterialsInDocument;
+- (void)performBlockBySettingAllMissingContentsToTheirWantedContents:(id)arg1;
 - (id)init;
 - (id)initWithDocument:(id)arg1;
 

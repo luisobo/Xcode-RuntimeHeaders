@@ -8,16 +8,28 @@
 
 #import "IDEFlightCheckingContext-Protocol.h"
 
-@class NSWindow;
+@class NSString, NSWindow;
 
 @interface IDEProjectItemModelFlightCheckContext : NSObject <IDEFlightCheckingContext>
 {
+    id <IDEPortalInfoDelegate> _portalInfoDelegate;
+    id <IDEProjectItem> _item;
     NSWindow *_window;
 }
 
 @property(retain, nonatomic) NSWindow *window; // @synthesize window=_window;
+@property(readonly, nonatomic) id <IDEProjectItem> item; // @synthesize item=_item;
+@property(readonly, nonatomic) id <IDEPortalInfoDelegate> portalInfoDelegate; // @synthesize portalInfoDelegate=_portalInfoDelegate;
 - (void).cxx_destruct;
 - (void)handleError:(id)arg1;
+- (void)performBlockRequiringAccountAndTeamSelection:(id)arg1;
+- (id)initWithPortalInfoDelegate:(id)arg1 item:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

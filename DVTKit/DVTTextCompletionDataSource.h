@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTSourceCodeLanguage, DVTWeakInterposer, NSArray, NSMutableArray, NSMutableSet, NSOperationQueue;
+@class DVTMapTable, DVTSourceCodeLanguage, DVTWeakInterposer, NSArray, NSMutableArray, NSMutableSet, NSOperationQueue;
 
 @interface DVTTextCompletionDataSource : NSObject
 {
@@ -15,11 +15,13 @@
     NSMutableArray *_strategies;
     NSMutableSet *_strategyObservers;
     NSOperationQueue *_completionsGeneratorQueue;
+    DVTMapTable *_lastGeneratedCompletionItemsPerStrategy;
 }
 
 @property(retain, nonatomic) DVTSourceCodeLanguage *language; // @synthesize language=_language;
 - (void).cxx_destruct;
 @property(readonly) NSArray *strategies;
+- (id)bestMatchForPrefix:(id)arg1 withContext:(id)arg2;
 - (void)generateCompletionsForDocumentLocation:(id)arg1 context:(id)arg2 completionBlock:(id)arg3;
 - (id)initWithLanguage:(id)arg1;
 - (id)init;

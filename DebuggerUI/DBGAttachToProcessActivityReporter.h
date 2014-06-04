@@ -17,6 +17,7 @@
 + (id)_titleForDebugSession:(id)arg1;
 + (void)initialize;
 - (void).cxx_destruct;
+- (void)primitiveInvalidate;
 - (void)_processControlStateChanged:(id)arg1;
 - (void)_handleLaunchSessionsDebugSessionIsGoingToAttach:(id)arg1;
 - (void)_cancelActivityReportForLaunchSession:(id)arg1;

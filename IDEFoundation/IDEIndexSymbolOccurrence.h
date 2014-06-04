@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTDocumentLocation, DVTFilePath, IDEIndexSymbol, NSObject<IDEIndexQueryProvider>;
+@class DVTDocumentLocation, DVTFilePath, IDEIndexSymbol, NSObject<IDEIndexQueryProvider>, NSURL;
 
 @interface IDEIndexSymbolOccurrence : NSObject
 {
@@ -16,6 +16,7 @@
     long long _lineNumber;
     long long _column;
     DVTFilePath *_file;
+    NSURL *_moduleURL;
     BOOL _lookedForCorrespondingSymbol;
     IDEIndexSymbol *_correspondingSymbol;
     NSObject<IDEIndexQueryProvider> *_queryProvider;
@@ -31,12 +32,14 @@
 - (void).cxx_destruct;
 - (id)callees;
 @property(readonly, nonatomic) DVTDocumentLocation *location;
+@property(readonly, nonatomic) NSURL *moduleURL;
 @property(readonly, nonatomic) DVTFilePath *file;
 - (id)occurrence;
 - (id)containingSymbol;
 - (id)description;
 - (void)setOccurrence:(id)arg1;
 - (void)setRole:(long long)arg1 location:(id)arg2;
+- (void)setObjectId:(long long)arg1 role:(long long)arg2 lineNumber:(long long)arg3 column:(long long)arg4 file:(id)arg5 moduleURL:(id)arg6;
 - (void)setObjectId:(long long)arg1 role:(long long)arg2 lineNumber:(long long)arg3 column:(long long)arg4 file:(id)arg5;
 - (id)correspondingSymbol;
 - (id)initWithCorrespondingSymbol:(id)arg1 forQueryProvider:(id)arg2;

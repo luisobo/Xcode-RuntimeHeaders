@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, IBViewEditorCanvasFrameController;
+@class DVTStackBacktrace, IBViewEditorCanvasFrameController, NSString;
 
 @interface IBEditorFrameLayoutGuideGeneratorDelegate : IBIDELayoutGuideGeneratorDelegate <DVTInvalidation>
 {
@@ -17,17 +17,21 @@
 
 + (void)initialize;
 - (void).cxx_destruct;
-- (BOOL)layoutGuideGenerator:(id)arg1 shouldConsiderSelectionEdge:(int)arg2 toSiblingEdge:(int)arg3 guideFromSelection:(id)arg4 toView:(id)arg5;
-- (BOOL)layoutGuideGenerator:(id)arg1 isEdge:(int)arg2 ofAncestor:(id)arg3 fixedDuringResizingOfSubviews:(id)arg4 fromKnob:(long long)arg5;
-- (BOOL)layoutGuideGenerator:(id)arg1 isEdge:(int)arg2 ofSubview:(id)arg3 fixedInPositionOnWindowDuringResizeFromKnob:(long long)arg4;
-- (BOOL)layoutGuideGenerator:(id)arg1 isDistanceFromSubviewEdge:(int)arg2 ofSubview:(id)arg3 toSameEdgeOfSuperviewChangingOneToOneWithKnob:(long long)arg4;
+- (BOOL)layoutGuideGenerator:(id)arg1 shouldConsiderSelectionEdge:(unsigned int)arg2 toSiblingEdge:(unsigned int)arg3 guideFromSelection:(id)arg4 toView:(id)arg5;
+- (BOOL)layoutGuideGenerator:(id)arg1 isEdge:(unsigned int)arg2 ofAncestor:(id)arg3 fixedDuringResizingOfSubviews:(id)arg4 fromKnob:(long long)arg5;
+- (BOOL)layoutGuideGenerator:(id)arg1 isEdge:(unsigned int)arg2 ofSubview:(id)arg3 fixedInPositionOnWindowDuringResizeFromKnob:(long long)arg4;
+- (BOOL)layoutGuideGenerator:(id)arg1 isDistanceFromSubviewEdge:(unsigned int)arg2 ofSubview:(id)arg3 toSameEdgeOfSuperviewChangingOneToOneWithKnob:(long long)arg4;
 - (id)userLayoutGuides;
 - (void)primitiveInvalidate;
 - (id)initWithViewEditorFrameController:(id)arg1;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

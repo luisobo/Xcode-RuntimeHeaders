@@ -54,10 +54,10 @@
 - (struct CGRect)boundingLayoutFrameForViewsNotNecessarilyInSuperview:(id)arg1 inCoordinateSpaceOfTargetSuperview:(id)arg2;
 - (id)siblingsForGeneratingGuidesForViews:(id)arg1;
 - (struct CGRect)boundingLayoutFrameForViews:(id)arg1;
-- (BOOL)isEdge:(int)arg1 ofAncestor:(id)arg2 fixedDuringResizingOfSubviews:(id)arg3 fromKnob:(long long)arg4;
+- (BOOL)isEdge:(unsigned int)arg1 ofAncestor:(id)arg2 fixedDuringResizingOfSubviews:(id)arg3 fromKnob:(long long)arg4;
 - (id)effectiveAncestorViewForEdgeMovementsRelativeToAncestorView:(id)arg1;
-- (BOOL)isEdge:(int)arg1 ofSubview:(id)arg2 fixedInPositionOnWindowDuringResizeFromKnob:(long long)arg3;
-- (BOOL)isDistanceFromSubviewEdge:(int)arg1 ofSubview:(id)arg2 toSameEdgeOfSuperviewChangingOneToOneWithKnob:(long long)arg3;
+- (BOOL)isEdge:(unsigned int)arg1 ofSubview:(id)arg2 fixedInPositionOnWindowDuringResizeFromKnob:(long long)arg3;
+- (BOOL)isDistanceFromSubviewEdge:(unsigned int)arg1 ofSubview:(id)arg2 toSameEdgeOfSuperviewChangingOneToOneWithKnob:(long long)arg3;
 - (BOOL)shouldViewHaveContainedSubviewGuides:(id)arg1;
 - (id)baselinesForViews:(id)arg1 withSuggestedLayoutFrame:(struct CGRect)arg2 andKnobPosition:(long long)arg3;
 - (BOOL)isViewVerticallyResizable:(id)arg1;

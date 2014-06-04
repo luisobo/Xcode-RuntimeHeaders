@@ -7,21 +7,30 @@
 #import "NSObject.h"
 
 #import "DVTInvalidation-Protocol.h"
+#import "DYShaderProfilerDelegate-Protocol.h"
 
-@class DVTObservingToken, DVTStackBacktrace, DYAnalyzerArchiveVisitor, DYCaptureSessionInfo, DYDeviceInfo, DYShaderProfilerResult, GPUExpertReportItem, GPUInferiorSession, GPUTraceOutline, GPUTraceSession, NSArray, NSError, NSImage, NSMutableArray, NSSet, NSString, NSURL;
+@class DVTObservingToken, DVTStackBacktrace, DYCaptureSessionInfo, DYDeviceInfo, DYInvestigatorCaseConfigData, DYShaderProfiler, DYShaderProfilerResult, GPUInferiorSession, GPUInvestigatorReportItem, GPUTraceModelFactory, GPUTraceSession, NSArray, NSDictionary, NSError, NSImage, NSMutableArray, NSObject<OS_dispatch_queue>, NSSet, NSString, NSURL;
 
-@interface GPUDebuggerController : NSObject <DVTInvalidation>
+@interface GPUDebuggerController : NSObject <DVTInvalidation, DYShaderProfilerDelegate>
 {
     DVTObservingToken *_extensionsObserver;
     NSMutableArray *_debugStateObservers;
     int _postCaptureDebugState;
     double _appFrameRate;
     double _appTargetFrameRate;
-    BOOL _isExpertReady;
+    NSDictionary *_maxIssueSeverity;
+    DYShaderProfiler *_shaderProfiler;
+    NSObject<OS_dispatch_queue> *_shaderProfilerReplyQueue;
+    DYShaderProfilerResult *_shaderProfilerResults;
+    DYShaderProfilerResult *_shaderProfilerResultsBase;
+    DYInvestigatorCaseConfigData *_investigatorCaseConfigData;
+    BOOL _isInvestigatorReady;
     BOOL _archiveHasPendingChanges;
     BOOL _shouldDisableCaptureFrameButton;
     int _debugState;
-    GPUExpertReportItem *_reportItem;
+    id <GPUResourceManager> _resourceManager;
+    GPUTraceModelFactory *_modelFactory;
+    GPUInvestigatorReportItem *_reportItem;
     DYCaptureSessionInfo *_captureSessionInfo;
     GPUTraceSession *_traceSession;
     GPUInferiorSession *_inferiorSession;
@@ -29,21 +38,25 @@
     NSError *_error;
     NSString *_appName;
     NSArray *_appArguments;
-    DYAnalyzerArchiveVisitor *_analyzerVisitor;
     NSArray *_analyzerFindings;
     NSArray *_extensions;
-    NSSet *_sharegroupFenumsWithErrors;
+    NSSet *_fenumsWithErrors;
     NSURL *_captureArchiveURL;
+    NSArray *_shaderProfilerErrors;
+    NSObject<OS_dispatch_queue> *_synchronousJobQueue;
 }
 
 + (void)initialize;
 + (id)logAspect;
+@property(readonly) NSObject<OS_dispatch_queue> *synchronousJobQueue; // @synthesize synchronousJobQueue=_synchronousJobQueue;
 @property BOOL shouldDisableCaptureFrameButton; // @synthesize shouldDisableCaptureFrameButton=_shouldDisableCaptureFrameButton;
+@property(readonly) NSArray *shaderProfilerErrors; // @synthesize shaderProfilerErrors=_shaderProfilerErrors;
+@property(readonly) DYShaderProfilerResult *shaderProfilerResultsBase; // @synthesize shaderProfilerResultsBase=_shaderProfilerResultsBase;
+@property(readonly) DYShaderProfilerResult *shaderProfilerResults; // @synthesize shaderProfilerResults=_shaderProfilerResults;
 @property(retain) NSURL *captureArchiveURL; // @synthesize captureArchiveURL=_captureArchiveURL;
-@property(retain) NSSet *sharegroupFenumsWithErrors; // @synthesize sharegroupFenumsWithErrors=_sharegroupFenumsWithErrors;
+@property(retain) NSSet *fenumsWithErrors; // @synthesize fenumsWithErrors=_fenumsWithErrors;
 @property(retain) NSArray *extensions; // @synthesize extensions=_extensions;
 @property(retain) NSArray *analyzerFindings; // @synthesize analyzerFindings=_analyzerFindings;
-@property(readonly) DYAnalyzerArchiveVisitor *analyzerVisitor; // @synthesize analyzerVisitor=_analyzerVisitor;
 @property(readonly) double appTargetFrameRate; // @synthesize appTargetFrameRate=_appTargetFrameRate;
 @property(readonly) double appFrameRate; // @synthesize appFrameRate=_appFrameRate;
 @property(retain) NSArray *appArguments; // @synthesize appArguments=_appArguments;
@@ -54,18 +67,27 @@
 @property(nonatomic) __weak GPUTraceSession *traceSession; // @synthesize traceSession=_traceSession;
 @property(retain) DYCaptureSessionInfo *captureSessionInfo; // @synthesize captureSessionInfo=_captureSessionInfo;
 @property BOOL archiveHasPendingChanges; // @synthesize archiveHasPendingChanges=_archiveHasPendingChanges;
-@property(retain, nonatomic) GPUExpertReportItem *reportItem; // @synthesize reportItem=_reportItem;
-@property BOOL isExpertReady; // @synthesize isExpertReady=_isExpertReady;
+@property(retain, nonatomic) GPUInvestigatorReportItem *reportItem; // @synthesize reportItem=_reportItem;
+@property BOOL isInvestigatorReady; // @synthesize isInvestigatorReady=_isInvestigatorReady;
 @property int debugState; // @synthesize debugState=_debugState;
+@property(retain) GPUTraceModelFactory *modelFactory; // @synthesize modelFactory=_modelFactory;
+@property(retain, nonatomic) id <GPUResourceManager> resourceManager; // @synthesize resourceManager=_resourceManager;
 - (void).cxx_destruct;
+- (id)createProgramPerformanceReportProvider;
+- (id)createInvestigatorReportProvider;
+- (void)handleDocumentSaved:(id)arg1 currentAPIItem:(id)arg2;
+- (id)runShaderProfiler;
+- (void)loadShaderProfilerResults;
+- (void)saveShaderProfilerResults;
 @property(readonly) BOOL isDisassemblerAvailable; // @dynamic isDisassemblerAvailable;
 @property(readonly) BOOL shaderProfilerResultsHaveBeenUpdated; // @dynamic shaderProfilerResultsHaveBeenUpdated;
-@property(readonly) DYShaderProfilerResult *shaderProfilerResultsBase; // @dynamic shaderProfilerResultsBase;
-@property(readonly) DYShaderProfilerResult *shaderProfilerResults; // @dynamic shaderProfilerResults;
 @property(readonly) BOOL isShaderProfilerAvailable; // @dynamic isShaderProfilerAvailable;
 @property(readonly) BOOL isRuntimeOSAppleInternal; // @dynamic isRuntimeOSAppleInternal;
+- (id)queryShaderInfoWithPayload:(id)arg1;
 - (void)createReportWithCompletionBlock:(id)arg1;
+- (void)resetResourceManagerWithResourceStreamer:(id)arg1;
 - (void)archiveReports;
+- (int)maxIssueSeverity:(int)arg1;
 - (BOOL)isDeviceBusy;
 - (void)touchDebugState;
 - (BOOL)relinquishAutomatedDebugState;
@@ -81,23 +103,31 @@
 - (BOOL)storeAdjunctData:(id)arg1 filename:(id)arg2 error:(id *)arg3;
 - (id)retrieveArchivedDataForKey:(id)arg1 error:(id *)arg2;
 - (BOOL)archiveData:(id)arg1 withKey:(id)arg2 replaceData:(BOOL)arg3 error:(id *)arg4;
+- (void)handleCaptureSessionTearDown;
 - (BOOL)handleCaptureSessionFinalization:(id)arg1;
 - (void)_handleExtensions;
 - (BOOL)analyzeStoredCaptureArchive;
+- (void)setupCaptureSessionInfoWithArchive:(id)arg1;
 - (void)setupCaptureSession:(id)arg1;
 - (void)setupGuestAppSession:(id)arg1;
-- (BOOL)archiveLastDrawRenderBufferImage;
+- (BOOL)archiveLastDisplayableRenderBufferImage;
 @property(readonly) NSImage *archivedRenderbufferImage; // @dynamic archivedRenderbufferImage;
 - (void)handleAppSessionTransportMessage:(id)arg1;
 - (void)cancelAnalysis;
 - (void)beginAnalysis;
-@property(readonly) GPUTraceOutline *outline; // @dynamic outline;
 - (id)captureArchive;
+- (id)newGuestAppSessionWithGuestApp:(id)arg1 device:(id)arg2 deferLaunch:(BOOL)arg3;
+- (void)createModelFactory;
 - (void)primitiveInvalidate;
+- (id)init;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "NSURLConnectionDataDelegate-Protocol.h"
 
-@class NSError, NSMutableData, NSURLCredential, NSURLRequest, NSURLResponse;
+@class NSError, NSMutableData, NSString, NSURLCredential, NSURLRequest, NSURLResponse;
 
 @interface DVTDeveloperPortalServiceConnection : NSObject <NSURLConnectionDataDelegate>
 {
@@ -37,6 +37,12 @@
 - (void)sendAsyncRequestWithCompletionHandler:(id)arg1;
 - (id)sendRequestWithResponse:(id *)arg1 error:(id *)arg2;
 - (id)initWithRequest:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

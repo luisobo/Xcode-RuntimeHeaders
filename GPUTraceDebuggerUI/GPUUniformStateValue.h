@@ -8,7 +8,6 @@
 
 @class NSArray;
 
-// Not exported
 @interface GPUUniformStateValue : GPUStateValue
 {
     BOOL _isRowMajor;

@@ -24,7 +24,7 @@
 - (int)compoundNodeFormatterModeForItem:(id)arg1 atRow:(long long)arg2;
 - (id)statusCellsDictionary;
 - (id)imageToUseInDefaultQuickLookForNode:(id)arg1;
-- (id)quickLookProviderForDataValue:(id)arg1;
+- (void)quickLookProviderForDataValue:(id)arg1 quickLookProviderHandler:(id)arg2;
 - (void)newRootFromChildrenWasInstalled;
 - (void)nodeWasDoubleClicked:(id)arg1 row:(long long)arg2 column:(long long)arg3;
 - (id)scopePopUpTitleForScopeItem:(long long)arg1;

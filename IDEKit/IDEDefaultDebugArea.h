@@ -10,7 +10,7 @@
 #import "DVTSplitViewDelegate-Protocol.h"
 #import "DVTStatefulObject-Protocol.h"
 
-@class DVTExtension, DVTObservingToken, IDEConsoleArea;
+@class DVTExtension, DVTObservingToken, IDEConsoleArea, NSString;
 
 @interface IDEDefaultDebugArea : IDESplitViewDebugArea <DVTReplacementViewDelegate, DVTSplitViewDelegate, DVTStatefulObject>
 {
@@ -43,6 +43,12 @@
 - (id)toolTipForHideLeftViewButton;
 - (id)toolTipForShowLeftViewButton;
 - (void)loadView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

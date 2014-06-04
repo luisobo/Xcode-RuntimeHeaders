@@ -6,16 +6,16 @@
 
 #import "NSObject.h"
 
-@class DTXResourceTracker, NSArray;
+@class DTXResourceTracker, NSArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>;
 
 @interface DTXTransport : NSObject
 {
-    struct dispatch_queue_s *_serializer;
-    struct dispatch_queue_s *_handlerGuard;
+    NSObject<OS_dispatch_queue> *_serializer;
+    NSObject<OS_dispatch_queue> *_handlerGuard;
     DTXResourceTracker *_tracker;
     id _dataReceivedHandler;
     int _status;
-    struct dispatch_semaphore_s *_waitForResume;
+    NSObject<OS_dispatch_semaphore> *_waitForResume;
     BOOL _resumed;
 }
 

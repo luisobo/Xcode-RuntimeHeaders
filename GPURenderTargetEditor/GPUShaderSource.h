@@ -10,7 +10,7 @@
 #import "DVTTextReplacable-Protocol.h"
 #import "DVTTextStorageDelegate-Protocol.h"
 
-@class DVTTextStorage, DVTUndoManager, GPUInferiorSession, GPUTraceResourceItem, NSString;
+@class DVTTextStorage, DVTUndoManager, GPUInferiorSession, GPUTraceResourceItem, NSDictionary, NSString;
 
 // Not exported
 @interface GPUShaderSource : NSObject <DVTTextFindable, DVTTextReplacable, DVTTextStorageDelegate>
@@ -44,6 +44,11 @@
 - (id)findableObject;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) NSDictionary *sourceLanguageServiceContext;
+@property(readonly) Class superclass;
 @property unsigned long long supportedMatchingOptions;
 
 @end

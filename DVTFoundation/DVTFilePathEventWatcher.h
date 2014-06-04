@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSMapTable, NSMutableSet;
+@class NSMapTable, NSMutableSet, NSObject<OS_dispatch_queue>;
 
 @interface DVTFilePathEventWatcher : NSObject
 {
     struct __FSEventStream *_streamRef;
-    struct dispatch_queue_s *_watcherQueue;
+    NSObject<OS_dispatch_queue> *_watcherQueue;
     double _latency;
     unsigned long long _lastEventHandled;
     NSMutableSet *_watchedFilePaths;

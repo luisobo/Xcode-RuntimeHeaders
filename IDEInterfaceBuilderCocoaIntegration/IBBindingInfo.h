@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
+#import "NSCopying-Protocol.h"
+
 @class NSDictionary, NSMutableArray, NSString;
 
-@interface IBBindingInfo : NSObject
+@interface IBBindingInfo : NSObject <NSCopying>
 {
     NSDictionary *_dictionary;
     NSString *_category;
@@ -32,6 +34,7 @@
 - (id)controller;
 - (id)binding;
 - (id)category;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (id)initWithDictionary:(id)arg1 category:(id)arg2;
 

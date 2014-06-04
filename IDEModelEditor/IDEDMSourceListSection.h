@@ -34,7 +34,7 @@
 - (id)valueForUndefinedKey:(id)arg1;
 - (id)representativeIcon;
 @property(readonly) NSArray *sectionItems;
-- (id)description;
+@property(readonly, copy) NSString *description;
 @property(retain) NSArray *sortDescriptors;
 - (void)primitiveInvalidate;
 - (id)initWithName:(id)arg1 modelRoot:(id)arg2 keyPath:(id)arg3 identifier:(id)arg4;
@@ -42,7 +42,10 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

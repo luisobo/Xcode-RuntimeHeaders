@@ -15,8 +15,10 @@
 {
     NSString *_vertexShaderKey;
     NSString *_fragmentShaderKey;
+    NSString *_computeKernelKey;
     struct DYShaderProfilerTiming _vertexTiming;
     struct DYShaderProfilerTiming _fragmentTiming;
+    struct DYShaderProfilerTiming _computeTiming;
     struct DYShaderProfilerTiming _timing;
     BOOL _fragmentShaderWriteDepth;
     BOOL _fragmentShaderUseDiscard;
@@ -38,6 +40,7 @@
 @property(nonatomic) BOOL fragmentShaderWriteDepth; // @synthesize fragmentShaderWriteDepth=_fragmentShaderWriteDepth;
 @property(nonatomic) double instanceCountPercentage; // @synthesize instanceCountPercentage=_instanceCountPercentage;
 @property(nonatomic) unsigned int instanceCount; // @synthesize instanceCount=_instanceCount;
+@property(readonly, nonatomic) struct DYShaderProfilerTiming computeTiming; // @synthesize computeTiming=_computeTiming;
 @property(readonly, nonatomic) struct DYShaderProfilerTiming fragmentTiming; // @synthesize fragmentTiming=_fragmentTiming;
 @property(nonatomic) double fragmentCountPercentage; // @synthesize fragmentCountPercentage=_fragmentCountPercentage;
 @property(nonatomic) unsigned int fragmentCount; // @synthesize fragmentCount=_fragmentCount;

@@ -8,6 +8,8 @@
 
 #import "CSDecoder-Protocol.h"
 
+@class NSString;
+
 @interface CSMsgPackDecoder : NSObject <CSDecoder>
 {
 }
@@ -19,6 +21,12 @@
 - (id)decodeObject:(id)arg1 remainingMutable:(BOOL)arg2;
 - (id)decodeObject:(id)arg1;
 - (id)decodeMsgPackObject:(struct msgpack_object *)arg1 remainingMutable:(BOOL)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

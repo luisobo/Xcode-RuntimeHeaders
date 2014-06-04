@@ -7,8 +7,7 @@
 #import "NSColor.h"
 
 @interface NSColor (NSColor)
-+ (id)colorWithComponentRGBA:(CDStruct_83984b6f)arg1;
-+ (id)colorWithRed:(double)arg1 green:(double)arg2 blue:(double)arg3 alpha:(double)arg4;
++ (id)colorWithComponentRGBA:(CDStruct_818bb265)arg1;
 - (double)alpha;
 - (double)blue;
 - (double)green;
@@ -16,6 +15,6 @@
 - (double)brightness;
 - (double)saturation;
 - (double)hue;
-- (CDStruct_83984b6f)componentRGBA;
+- (CDStruct_818bb265)componentRGBA;
 @end
 

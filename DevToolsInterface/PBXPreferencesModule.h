@@ -8,7 +8,7 @@
 
 #import "NSWindowDelegate-Protocol.h"
 
-@class NSBox, NSButtonCell, NSMatrix, NSMutableArray, NSMutableDictionary;
+@class NSBox, NSButtonCell, NSMatrix, NSMutableArray, NSMutableDictionary, NSString;
 
 @interface PBXPreferencesModule : PBXModule <NSWindowDelegate>
 {
@@ -57,6 +57,12 @@
 - (void)addPreferenceNamed:(id)arg1 owner:(id)arg2;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

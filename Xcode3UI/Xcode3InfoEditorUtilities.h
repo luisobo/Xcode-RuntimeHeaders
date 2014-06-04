@@ -23,9 +23,8 @@
 + (id)inspectorKeyForInfoKey:(id)arg1;
 + (id)displayNameForFilePath:(id)arg1;
 + (id)extensionForInfoEditorSliceWithIdentifier:(id)arg1;
-+ (id)extensionForInfoEditorTypeWithProductIdentifier:(id)arg1 platformIdentifier:(id)arg2 productTag:(id)arg3;
-+ (id)extensionsForInfoEditorTypeWithProductIdentifier:(id)arg1;
-+ (id)_allInfoEditorExtensions;
++ (id)extensionForInfoEditorTypeWithProductType:(id)arg1 platformIdentifier:(id)arg2 productTag:(id)arg3;
++ (id)_infoEditorExtensionPoint;
 
 @end
 

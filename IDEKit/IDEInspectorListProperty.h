@@ -10,12 +10,13 @@
 
 @interface IDEInspectorListProperty : IDEInspectorProperty
 {
-    NSComboBox *_comboBox;
     IDEInspectorKeyPath *_listContentKeyPath;
     IDEInspectorKeyPath *_valueKeyPath;
     NSString *_placeholder;
+    NSComboBox *_comboBox;
 }
 
+@property(retain, nonatomic) NSComboBox *comboBox; // @synthesize comboBox=_comboBox;
 - (void).cxx_destruct;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)refresh;

@@ -8,7 +8,7 @@
 
 #import "DVTTableViewDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTGradientImageButton, DVTTableView, IDEControlGroup, NSArray, NSArrayController, NSMutableArray;
+@class DVTBorderedView, DVTGradientImageButton, DVTTableView, IDEControlGroup, NSArray, NSArrayController, NSMutableArray, NSString;
 
 @interface Xcode3SourceTreesPrefsPaneController : DVTViewController <DVTTableViewDelegate>
 {
@@ -34,6 +34,12 @@
 - (void)viewDidInstall;
 - (void)loadView;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

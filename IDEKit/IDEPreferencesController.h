@@ -39,7 +39,6 @@
 - (void)revertStateWithDictionary:(id)arg1;
 - (void)replacementView:(id)arg1 willCloseViewController:(id)arg2;
 - (void)replacementView:(id)arg1 didInstallViewController:(id)arg2;
-- (void)replacementView:(id)arg1 willInstallViewController:(id)arg2;
 - (void)stateRepositoryDidChange:(id)arg1;
 - (void)selectPreviousTab:(id)arg1;
 - (void)selectNextTab:(id)arg1;
@@ -56,6 +55,12 @@
 - (void)windowDidLoad;
 - (id)initWithWindow:(id)arg1;
 - (void)_cachePreferencePaneExtensions;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

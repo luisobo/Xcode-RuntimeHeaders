@@ -8,7 +8,7 @@
 
 #import "IDEDebugProcess-Protocol.h"
 
-@class IDELaunchSession, NSString;
+@class IDELaunchSession, NSArray, NSString;
 
 @interface GPUTraceProcessItem : GPUTraceGroupItem <IDEDebugProcess>
 {
@@ -20,8 +20,13 @@
 - (id)initWithController:(id)arg1 label:(id)arg2;
 
 // Remaining properties
-@property(readonly) NSString *associatedProcessUUID;
+@property(readonly, copy) NSString *associatedProcessUUID;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) IDELaunchSession *launchSession;
+@property(readonly, nonatomic) NSArray *loadedCodeModules;
+@property(readonly) Class superclass;
 
 @end
 

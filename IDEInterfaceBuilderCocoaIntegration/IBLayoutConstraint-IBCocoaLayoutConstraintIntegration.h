@@ -7,6 +7,5 @@
 #import "IBLayoutConstraint.h"
 
 @interface IBLayoutConstraint (IBCocoaLayoutConstraintIntegration)
-- (BOOL)ibSwizzledCocoaLayoutConstraintNeedsToCompileWithCopyOfDocument:(id)arg1;
 @end
 

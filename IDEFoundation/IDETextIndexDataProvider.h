@@ -17,6 +17,8 @@
 @property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 @property(readonly) NSArray *fileDataTypes; // @synthesize fileDataTypes=_fileDataTypes;
 - (void).cxx_destruct;
+- (id)findableForFilePath:(id)arg1;
+- (BOOL)wantsIndexedFindResultsForFileDataType:(id)arg1;
 - (id)textRepresentationOfContentsAtPath:(id)arg1;
 - (id)initWithFileDataTypes:(id)arg1 workspace:(id)arg2;
 

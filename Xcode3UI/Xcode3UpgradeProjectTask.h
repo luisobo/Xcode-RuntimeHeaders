@@ -4,11 +4,11 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2011 by Steve Nygard.
  */
 
-#import "IDEUpgradeTask.h"
+#import <Xcode3UI/Xcode3UpgradeTask.h>
 
 @class Xcode3UpgradeProjectContext;
 
-@interface Xcode3UpgradeProjectTask : IDEUpgradeTask
+@interface Xcode3UpgradeProjectTask : Xcode3UpgradeTask
 {
 }
 

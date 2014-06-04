@@ -6,23 +6,21 @@
 
 #import "NSButton.h"
 
-@class NSImage, NSTrackingArea;
+@class NSView;
 
 @interface IDEWelcomeWindowHighlightButton : NSButton
 {
-    NSTrackingArea *_trackingArea;
+    NSView *_visualEffectView;
 }
 
 - (void).cxx_destruct;
-@property(retain, nonatomic) NSImage *pressedImage;
-@property(retain, nonatomic) NSImage *rolloverImage;
-- (id)hitTest:(struct CGPoint)arg1;
-- (void)mouseExited:(id)arg1;
-- (void)mouseEntered:(id)arg1;
 - (BOOL)isFlipped;
+- (void)_setVisualEffectViewHidden:(BOOL)arg1;
+- (void)setFrame:(struct CGRect)arg1;
+- (void)setImage:(id)arg1;
+- (void)_ideWelcomeWindowHighlightButtonCommonInit;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (void)updateTrackingAreas;
 
 @end
 

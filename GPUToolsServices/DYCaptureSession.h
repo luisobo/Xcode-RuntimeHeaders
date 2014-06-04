@@ -6,14 +6,14 @@
 
 #import "NSObject.h"
 
-@class DYCaptureArchive, DYContinuation, DYFuture, DYGuestAppSession, DYTransportSource, NSDictionary, NSError, NSMapTable, NSMutableDictionary;
+@class DYCaptureArchive, DYContinuation, DYFuture, DYGuestAppSession, DYTransportSource, NSError, NSMapTable, NSMutableDictionary;
 
 @interface DYCaptureSession : NSObject
 {
+    DYGuestAppSession *_session;
     DYCaptureArchive *_archive;
     struct dispatch_queue_s *_queue;
-    NSDictionary *_finalConfigurationDictionary;
-    DYGuestAppSession *_session;
+    NSMutableDictionary *_finalConfigurationDictionary;
     DYTransportSource *_source;
     DYContinuation *_invalidationCompletion;
     DYFuture *_iconFuture;
@@ -26,10 +26,10 @@
     unsigned int _serial;
     BOOL _automaticallyDeleteArchiveOnFailure;
     int _storeSymbolicatorSignature;
-    BOOL _triggerOnNextGLCommand;
+    BOOL _triggerOnNextGraphicsCommand;
+    BOOL _lockGraphicsAfterCompletion;
     BOOL _harvestStateAtEnd;
     BOOL _suspendAfterCompletion;
-    BOOL _lockOpenGLAfterCompletion;
     BOOL _complete;
     BOOL _clientDidSendAllData;
     BOOL _deviceSupportsSessionSerial;
@@ -40,20 +40,24 @@
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 @property(nonatomic) BOOL complete; // @synthesize complete=_complete;
 @property(nonatomic) int storeSymbolicatorSignature; // @synthesize storeSymbolicatorSignature=_storeSymbolicatorSignature;
-@property(nonatomic) BOOL lockOpenGLAfterCompletion; // @synthesize lockOpenGLAfterCompletion=_lockOpenGLAfterCompletion;
 @property(nonatomic) BOOL suspendAfterCompletion; // @synthesize suspendAfterCompletion=_suspendAfterCompletion;
 @property(nonatomic) BOOL harvestStateAtEnd; // @synthesize harvestStateAtEnd=_harvestStateAtEnd;
-@property(nonatomic) BOOL triggerOnNextGLCommand; // @synthesize triggerOnNextGLCommand=_triggerOnNextGLCommand;
+@property(nonatomic) BOOL lockGraphicsAfterCompletion; // @synthesize lockGraphicsAfterCompletion=_lockGraphicsAfterCompletion;
+@property(nonatomic) BOOL triggerOnNextGraphicsCommand; // @synthesize triggerOnNextGraphicsCommand=_triggerOnNextGraphicsCommand;
 @property(nonatomic) struct _NSRange frameRange; // @synthesize frameRange=_frameRange;
-@property(readonly, nonatomic) NSError *error; // @synthesize error=_error;
+@property(readonly, retain, nonatomic) NSError *error; // @synthesize error=_error;
 @property(nonatomic) BOOL automaticallyDeleteArchiveOnFailure; // @synthesize automaticallyDeleteArchiveOnFailure=_automaticallyDeleteArchiveOnFailure;
-@property(readonly, nonatomic) DYCaptureArchive *archive; // @synthesize archive=_archive;
+@property(readonly, retain, nonatomic) DYCaptureArchive *archive; // @synthesize archive=_archive;
 - (void).cxx_destruct;
+- (void)_postProcessArchive;
+- (void)_saveAPISpecificData:(id)arg1;
+- (void)_setupFinalConfigurationDictionary:(id)arg1;
 - (void)_receivedAllClientData:(id)arg1;
 - (void)_flushBuffers;
 - (BOOL)stopCapturing;
 - (BOOL)startCapturing;
 - (BOOL)_activateWithSession:(id)arg1 serial:(unsigned int)arg2 invalidationCompletion:(id)arg3;
+- (id)_allowedSessionInfoBaseClasses;
 - (BOOL)_sendActivationMessage;
 - (void)invalidate;
 - (void)_invalidate:(id)arg1;

@@ -12,7 +12,6 @@
 - (void)removeDuplicateConnectors;
 - (id)verifyNoObjectIsItsOwnParent;
 - (id)verifyAllObjectsHaveUniqueIDs;
-- (id)connectionErrorsForIncompatibileObject:(id)arg1 withClassName:(id)arg2;
 - (void)detachObject:(id)arg1;
 - (void)detachObject:(id)arg1 removedObjects:(id)arg2 removedConnectors:(id)arg3 addedConnectors:(id)arg4;
 - (void)attachConnector:(id)arg1 withObjectID:(long long)arg2;

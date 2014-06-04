@@ -9,39 +9,69 @@
 #import "DVTInvalidation-Protocol.h"
 #import "NSCoding-Protocol.h"
 
-@class DVTDelayedInvocation, DVTDispatchLock, DVTHashTable, DVTStackBacktrace, IBDocument, NSArray, NSSet;
+@class DVTDelayedInvocation, DVTHashTable, DVTStackBacktrace, IBDocument, IBMutableIdentityDictionary, NSArray, NSMutableDictionary, NSMutableSet, NSSet, NSString;
 
 @interface IBClassDescriber : NSObject <NSCoding, DVTInvalidation>
 {
-    DVTDelayedInvocation *classDataIsUpdatingDelayedInvocation;
-    NSSet *readonlyPartialsToIntegrateWhenClassProvidersAreFirstSet;
-    NSSet *classProviderObservingTokens;
-    DVTDispatchLock *ivarAccessLock;
-    DVTHashTable *weakObservers;
-    BOOL inIgnoreUpdatesBlock;
-    BOOL classDataIsUpdating;
-    NSArray *classProviders;
-    IBDocument *document;
+    int _retainCountMinusOne;
+    DVTDelayedInvocation *_classDataIsUpdatingDelayedInvocation;
+    NSSet *_readonlyPartialsToIntegrateWhenClassProvidersAreFirstSet;
+    IBMutableIdentityDictionary *_classProviderObservingTokens;
+    DVTHashTable *_weakObservers;
+    NSArray *_classProviders;
+    IBDocument *_document;
+    NSMutableDictionary *_compositeDescriptions;
+    NSMutableDictionary *_classNamesToSubclassNames;
+    BOOL _notificationIsScheduled;
+    double _timeOfLastObserverNotification;
+    NSMutableSet *_modifiedClassesForNextObserverNotification;
+    BOOL _classDataIsUpdating;
 }
 
 + (void)initialize;
-@property BOOL classDataIsUpdating; // @synthesize classDataIsUpdating;
+@property BOOL classDataIsUpdating; // @synthesize classDataIsUpdating=_classDataIsUpdating;
 - (void).cxx_destruct;
+- (id)collectionTypeForToManyOutlet:(id)arg1 forClassNamed:(id)arg2;
+- (id)relationshipInfoForToManyOutlet:(id)arg1 forClassNamed:(id)arg2 withLineage:(id)arg3 recursive:(BOOL)arg4;
+- (id)relationshipInfosOfRelationshipType:(long long)arg1 forClassNamed:(id)arg2 withLineage:(id)arg3 recursive:(BOOL)arg4;
+- (id)orderedRelationshipInfosOfRelationshipType:(long long)arg1 forClassNamed:(id)arg2 withLineage:(id)arg3 recursive:(BOOL)arg4;
+- (id)namedRelationsOfRelationshipType:(long long)arg1 forClassNamed:(id)arg2 withLineage:(id)arg3 recursive:(BOOL)arg4;
+- (id)relationshipInfosOfRelationshipType:(long long)arg1 forClassNamed:(id)arg2;
+- (id)namedRelationsOfRelationshipType:(long long)arg1 forClassNamed:(id)arg2;
+- (id)typeForNamedRelation:(id)arg1 ofRelationshipType:(long long)arg2 forClassNamed:(id)arg3;
+- (BOOL)integratePartialClassDescriptions:(id)arg1 error:(id *)arg2;
+- (void)removePartialDescriptionsWithSourceIdentifiers:(id)arg1;
+- (id)conflictingSourceIdentifierPreventingIntegrationOfClassDescriptionBecauseOfConflictingSuperClasses:(id)arg1;
+- (BOOL)wouldAddingClassNamed:(id)arg1 withSuperClassNamedIntroduceACycle:(id)arg2;
+- (void)undeclareClassNamed:(id)arg1;
+- (void)setCompositeDescription:(id)arg1 forClassNamed:(id)arg2;
+- (BOOL)isSystemClassName:(id)arg1;
+- (id)compositeDescriptionOfClassNamed:(id)arg1;
+- (id)compositeClassDescriptions;
+- (void)removeKnownSubclass:(id)arg1 fromClass:(id)arg2;
+- (void)addKnownSubclass:(id)arg1 toClass:(id)arg2;
+- (id)partialClassDescriptionsForEncodingClassNamed:(id)arg1;
 - (void)primitiveInvalidate;
+- (id)typeForInspectable:(id)arg1 forClassNamed:(id)arg2 recursive:(BOOL)arg3;
 - (id)collectionTypeForToManyOutlet:(id)arg1 forClassNamed:(id)arg2 recursive:(BOOL)arg3;
 - (id)memberTypeForToManyOutlet:(id)arg1 forClassNamed:(id)arg2 recursive:(BOOL)arg3;
 - (id)typeForToOneOutlet:(id)arg1 forClassNamed:(id)arg2 recursive:(BOOL)arg3;
 - (id)typeForAction:(id)arg1 forClassNamed:(id)arg2 recursive:(BOOL)arg3;
 - (id)typeForNamedRelation:(id)arg1 ofRelationshipType:(long long)arg2 forClassNamed:(id)arg3 recursive:(BOOL)arg4;
+- (id)inspectablesForClassNamed:(id)arg1 recursive:(BOOL)arg2;
 - (id)toManyOutletsForClassNamed:(id)arg1 recursive:(BOOL)arg2;
 - (id)toOneOutletsForClassNamed:(id)arg1 recursive:(BOOL)arg2;
 - (id)actionsForClassNamed:(id)arg1 recursive:(BOOL)arg2;
 - (id)namedRelationsOfRelationshipType:(long long)arg1 forClassNamed:(id)arg2 recursive:(BOOL)arg3;
 - (id)namedRelationsOfRelationshipType:(long long)arg1 forClassNamed:(id)arg2 matchingClassNamed:(id)arg3 recursive:(BOOL)arg4;
 - (id)namedRelationsOfRelationshipType:(long long)arg1;
+- (id)namesOfModulesContainingClassNamed:(id)arg1;
+- (id)formattedClassSymbolsWithClassName:(id)arg1;
+- (BOOL)isClassNameDesignable:(id)arg1 recursive:(BOOL)arg2;
 - (id)commonBaseClassOfClassesNamed:(id)arg1;
 - (id)suggestedSuperclassNameOfClassNamed:(id)arg1;
 - (id)lineageOfClassNamed:(id)arg1;
+- (BOOL)isClassNamed:(id)arg1 anAncestorOfClass:(id)arg2;
 - (BOOL)is:(id)arg1 aKindOf:(id)arg2;
 - (BOOL)isClassNameCompletelyDescribed:(id)arg1;
 - (id)classNamesReferencedByDocument;
@@ -53,35 +83,34 @@
 - (BOOL)hasDescriptionOfClassNamed:(id)arg1;
 - (id)subclassesOfClassNamed:(id)arg1;
 - (id)unionedProviderValuesForBlock:(id)arg1;
-- (id)firstNonNilStringFromProvidersForBlock:(id)arg1;
-- (BOOL)doesAnyProviderReturnYESForBlock:(id)arg1;
-- (void)notifyObserversOfModifiedClasses:(id)arg1;
+- (void)scheduleNotificationOfModifiedClass:(id)arg1;
+- (void)notifyObserversOfModifiedClasses;
 - (id)addObserver:(id)arg1;
 - (void)removeObserver:(id)arg1;
-- (void)ignoreUpdatesDuring:(id)arg1;
-- (void)recursivelyIgnoreUpdatesInClassProviders:(id)arg1 startingAtIndex:(unsigned long long)arg2 withBlock:(id)arg3;
-- (void)setInIgnoreUpdatesBlock:(BOOL)arg1;
-- (BOOL)inIgnoreUpdatesBlock;
-- (id)description;
+@property(readonly, copy) NSString *description;
 @property(copy) NSArray *classProviders;
-- (void)setClassProviderObservingTokens:(id)arg1;
-- (id)classProviderObservingTokens;
 @property(retain) IBDocument *document;
 - (void)clearDocumentReference;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)restoreIndexTimeout;
-- (void)overrideIndexTimeout:(unsigned long long)arg1;
 - (void)integratePartialClassDescriptions:(id)arg1;
 - (id)mergedPartialClassDescriptions;
 - (id)gatherPartialDescriptionsForArchiving;
 - (void)initializeClassDataIsUpdatingDelayedInvocation;
 - (id)initWithDocument:(id)arg1;
 - (id)init;
+- (BOOL)_isDeallocating;
+- (BOOL)_tryRetain;
+- (unsigned long long)retainCount;
+- (oneway void)release;
+- (id)retain;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

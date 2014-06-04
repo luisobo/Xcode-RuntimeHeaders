@@ -8,10 +8,11 @@
 
 #import "DVTInvalidation-Protocol.h"
 #import "DVTStatefulObject-Protocol.h"
+#import "NSDraggingSource-Protocol.h"
 
 @class DVTStackBacktrace, DVTStateToken, IDECapsuleView, NSColor, NSMutableSet, NSString, NSTimer;
 
-@interface IDECapsuleListView : DVTStackView_ML <DVTStatefulObject, DVTInvalidation>
+@interface IDECapsuleListView : DVTStackView_ML <NSDraggingSource, DVTStatefulObject, DVTInvalidation>
 {
     IDECapsuleView *_draggedView;
     id <IDECapsuleListViewDataSource> _dataSource;
@@ -31,11 +32,12 @@
         unsigned int viewControllerForRow:1;
         unsigned int acceptDrop:1;
         unsigned int validateDrop:1;
-        unsigned int writeRowWithIndex:1;
+        unsigned int pastboardTypesForRowWithIndex:1;
         unsigned int didCollapse:1;
         unsigned int didExpand:1;
         unsigned int didCompleteLayout:1;
     } _dataSourceRespondsTo;
+    BOOL _highlightingEnabled;
 }
 
 + (long long)version;
@@ -43,11 +45,12 @@
 + (id)_subviewTopShadow;
 + (id)_subviewBottomShadow;
 + (void)initialize;
-@property(retain, nonatomic) DVTStateToken *stateToken; // @synthesize stateToken=_stateToken;
+@property(nonatomic) BOOL highlightingEnabled; // @synthesize highlightingEnabled=_highlightingEnabled;
 @property long long selectedIndex; // @synthesize selectedIndex=_selectedIndex;
 @property(copy, nonatomic) NSString *emptyContentString; // @synthesize emptyContentString=_emptyContentString;
 @property(retain) NSColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
 @property(retain, nonatomic) id <IDECapsuleListViewDataSource> dataSource; // @synthesize dataSource=_dataSource;
+@property(retain, nonatomic) DVTStateToken *stateToken; // @synthesize stateToken=_stateToken;
 - (void).cxx_destruct;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
@@ -77,6 +80,7 @@
 - (void)scrollRowToVisible:(long long)arg1;
 - (id)capsuleViews;
 - (long long)numberOfRows;
+- (void)hightlightCapsuleView:(id)arg1;
 - (id)capsuleViewForCapsuleViewController:(id)arg1;
 - (long long)rowForCapsuleView:(id)arg1;
 - (id)capsuleViewAtRow:(long long)arg1;
@@ -84,7 +88,7 @@
 - (void)reloadData;
 - (void)layoutBottomUp;
 - (void)_layoutBottomUpWithAnimation:(BOOL)arg1;
-- (struct CGSize)sizeForPulledSubviewMagnitude:(double)arg1;
+- (struct CGSize)sizeForPulledStackMagnitude:(double)arg1;
 - (struct CGPoint)pushedOriginForSubview:(id)arg1 position:(double)arg2;
 - (struct CGSize)pushedSizeForSubview:(id)arg1;
 - (double)pulledSizeMagnitudeForSubview:(id)arg1;
@@ -100,6 +104,7 @@
 - (void)mouseUp:(id)arg1;
 - (void)_autoscrollTimerCallback:(id)arg1;
 - (void)mouseDragged:(id)arg1;
+- (unsigned long long)draggingSession:(id)arg1 sourceOperationMaskForDraggingContext:(long long)arg2;
 - (void)mouseDown:(id)arg1;
 - (BOOL)acceptsFirstResponder;
 - (void)doCommandBySelector:(SEL)arg1;
@@ -110,7 +115,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

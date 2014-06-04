@@ -12,7 +12,7 @@
 
 - (id)_sortedCompletionItemsFromStrings:(id)arg1 prefixToStripOff:(id)arg2 textAtPrompt:(id)arg3;
 - (id)_completionsFromDebugger:(id)arg1 textUpToWordStart:(id)arg2 debugSession:(id)arg3;
-- (id)completionItemsForDocumentLocation:(id)arg1 context:(id)arg2 areDefinitive:(char *)arg3;
+- (id)completionItemsForDocumentLocation:(id)arg1 context:(id)arg2 highlyLikelyCompletionItems:(id *)arg3 areDefinitive:(char *)arg4;
 
 @end
 

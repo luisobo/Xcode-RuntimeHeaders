@@ -10,20 +10,20 @@
 #import "IDESourceCodeBlameControllerDelegate-Protocol.h"
 #import "IDESourceEditorViewControllerHost-Protocol.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTSourceTextView, IDEEditor, IDESourceCodeBlameController, NSDictionary, NSProgressIndicator;
+@class DVTBorderedView, DVTNotificationToken, DVTObservingToken, DVTSourceTextView, IDEEditor, IDESourceCodeBlameController, NSDictionary, NSProgressIndicator, NSString;
 
 @interface IDESourceCodeVersionsBlameSubmode : IDEComparisonEditorSubmode <IDEComparisonEditorDelegate, IDESourceEditorViewControllerHost, IDESourceCodeBlameControllerDelegate>
 {
     DVTObservingToken *_loadingObserver;
-    DVTObservingToken *_themeObserver;
+    DVTNotificationToken *_themeObserver;
     IDESourceCodeBlameController *_blameController;
     NSDictionary *_previouslyRestoredStateDictionary;
     DVTBorderedView *_primaryLayoutView;
     IDEEditor *_primaryEditor;
-    id _primaryEditorSetupObservationToken;
+    DVTNotificationToken *_primaryEditorSetupObservationToken;
     DVTObservingToken *_internalComparisonEditorLocationObservingToken;
     DVTObservingToken *_blameAvailableToken;
-    id _textViewBoundsChangedObserverToken;
+    DVTNotificationToken *_textViewBoundsChangedObserverToken;
     NSProgressIndicator *_loadingProgressIndicator;
 }
 
@@ -65,6 +65,12 @@
 @property(retain) IDEEditor *primaryEditor; // @synthesize primaryEditor=_primaryEditor;
 @property(readonly) DVTSourceTextView *primaryTextView;
 - (id)keyEditor;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

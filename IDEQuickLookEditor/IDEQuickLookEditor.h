@@ -10,12 +10,15 @@
 #import "NSUserInterfaceValidations-Protocol.h"
 #import "QLPreviewViewDelegate-Protocol.h"
 
-@class IDEViewController, QLPreviewView;
+@class DVTNotificationToken, IDEViewController, NSString, QLPreviewView;
 
 @interface IDEQuickLookEditor : IDEEditor <QLPreviewViewDelegate, NSUserInterfaceValidations, IDEComparisonEditorHostContext>
 {
     QLPreviewView *_qlView;
     IDEViewController *_hostViewController;
+    DVTNotificationToken *_windowToolbarDidChangeVisibilityToken;
+    DVTNotificationToken *_windowDidEnterFullscreenToken;
+    DVTNotificationToken *_windowDidExitFullscreenToken;
 }
 
 + (long long)version;
@@ -42,10 +45,18 @@
 - (void)previousPage:(id)arg1;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (void)primitiveInvalidate;
+- (void)viewWillUninstall;
+- (void)viewDidInstall;
 - (BOOL)isPreviewHostedInWindowServer:(id)arg1;
 - (void)previewView:(id)arg1 didChangeDisplayStateForPreviewItem:(id)arg2;
 - (void)previewView:(id)arg1 willShowPreviewItem:(id)arg2;
 - (void)loadView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

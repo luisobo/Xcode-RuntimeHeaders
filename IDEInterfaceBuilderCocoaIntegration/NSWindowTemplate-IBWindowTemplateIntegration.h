@@ -6,9 +6,11 @@
 
 #import "NSWindowTemplate.h"
 
-@class NSValue, NSView;
+#import "IBCocoaCustomObject-Protocol.h"
 
-@interface NSWindowTemplate (IBWindowTemplateIntegration)
+@class NSString, NSValue, NSView, NSViewController;
+
+@interface NSWindowTemplate (IBWindowTemplateIntegration) <IBCocoaCustomObject>
 + (id)keyPathsForValuesAffectingIbInspectedDefaultContentMaxSize;
 + (id)keyPathsForValuesAffectingIbInspectedDefaultContentMinSize;
 + (id)keyPathsForValuesAffectingIbInspectedContentRectHeight;
@@ -40,10 +42,11 @@
 + (id)keyPathsForValuesAffectingIbShadowedCollectionBehavior;
 + (id)ibBorderedWindowTemplateWithClassName:(id)arg1;
 + (id)ibContentBorderThicknessKeyPaths;
++ (void)ibPopulateAdditionalInspectors:(id)arg1 forCategory:(id)arg2;
 + (BOOL)ibIsSupportedEditorWindowClass:(Class)arg1;
 + (void)ibAddSupportedEditorWindowClass:(Class)arg1;
-+ (id)keyPathsForValuesAffectingIbQualifyingInfoForDefaultLabel;
 + (id)keyPathsForValuesAffectingIbInheritedAppearance;
+@property(retain) NSViewController *shadowedContentViewController;
 - (BOOL)ibCanHaveDescendantViewHierarchy;
 - (void)ibUnarchiveContentBorderThickness:(id)arg1;
 - (void)ibArchiveContentBorderThickness:(id)arg1;
@@ -72,8 +75,7 @@
 - (BOOL)xmlCoder:(id)arg1 shouldEncodeRect:(struct CGRect *)arg2 forKey:(id)arg3 context:(id)arg4;
 - (id)xmlCoderEncodingCallbackContext:(id)arg1;
 - (void)ibAwakeInDocument:(id)arg1;
-- (void)ibFinishArchivingDocument:(id)arg1 withContext:(id)arg2;
-- (void)ibBeginArchivingDocument:(id)arg1 withContext:(id)arg2;
+- (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (void)ibPushSizeConstraintsFromContentToFrame:(id)arg1;
 - (void)ibUpgradeSizeContraintsToCurrentInMemoryFormat:(id)arg1;
 - (void)ibFixOldUnsetMinMaxSizeValuesIfNeeded:(id)arg1;
@@ -128,7 +130,7 @@
 - (BOOL)ibIsLegalArbitrationUnitRoot;
 - (id)ibWindow:(SEL)arg1 forUpdatingConstraintsInDocument:(id *)arg2;
 - (BOOL)ibChildView:(id)arg1 shouldUseConstraintsInsteadOfAutoresizingWhenAddedToDocument:(id)arg2;
-- (id)ibApplicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
+- (BOOL)ibIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;
 - (id)ibAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 insertionContext:(id)arg3;
 - (BOOL)ibCanAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 targetChildRelation:(id *)arg3;
 - (id)ibContainerWidgetTypeForChildView:(id)arg1;
@@ -143,10 +145,11 @@
 - (struct CGRect)ibRectForChild:(id)arg1 inFrameController:(id)arg2;
 - (id)ibDisplayNameForKeyPath:(id)arg1;
 - (BOOL)ibChildEditsWithSingleClick:(id)arg1;
-- (BOOL)ibMustEditInPersonalWindow;
+- (BOOL)ibCanBeBaseObjectOfEditorFrame;
 - (void)ibInvalidateWarningsAfterDescendant:(id)arg1 changedProperty:(id)arg2 inDocument:(id)arg3 fromValue:(id)arg4;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibPasteboardTypes;
+- (BOOL)ibShouldEncodeContentViewController;
 - (id)ibWindowFromTemplateUsingDocument:(id)arg1;
 - (Class)ibClassToUseWhenCreatingEditorInDocument:(id)arg1;
 - (id)ibQualifyingInfoForDefaultLabel;
@@ -161,11 +164,19 @@
 - (void)setIbExternalCustomClassName:(id)arg1;
 - (id)ibRuntimeClassName;
 - (BOOL)ibCanBeBoundToFromObject:(id)arg1;
-- (BOOL)ibIsCocoaCustomObject;
+- (BOOL)wantsCustomObjectDecodeBahavior;
 - (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
+- (id)ibLocalToOneRelationshipsKeyPaths;
 - (BOOL)ibIsNSAppearanceContainer;
 - (id)ibInheritedAppearance;
 - (Class)ibSwizzledWindowClassForNibInstantiate;
 - (id)ibSwizzledInitWithCoder:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

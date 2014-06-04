@@ -9,7 +9,7 @@
 #import "DVTInvalidation-Protocol.h"
 #import "IDEInspectorValueElement-Protocol.h"
 
-@class DVTDelayedInvocation, DVTStackBacktrace, NSBundle, NSMutableArray, NSMutableOrderedSet, NSObject<IDEBindableDeclarativeInspectorController>, NSXMLElement;
+@class DVTDelayedInvocation, DVTStackBacktrace, NSBundle, NSMutableArray, NSMutableOrderedSet, NSObject<IDEBindableDeclarativeInspectorController>, NSString, NSView, NSXMLElement;
 
 @interface IDEInspectorProperty : NSViewController <IDEInspectorValueElement, DVTInvalidation>
 {
@@ -24,6 +24,7 @@
     BOOL _settingUp;
     BOOL _calledThroughToBaseTeardownMethod;
     BOOL _tiled;
+    NSView *_accessoryView;
 }
 
 + (id)prefixObservedKeyPathWithConditionalControllerReference:(id)arg1;
@@ -33,10 +34,13 @@
 + (Class)propertyClassForPropertyDefinition:(id)arg1;
 + (id)inspectorPropertyExtensionForTypeIdentifier:(id)arg1;
 + (id)inspectorPropertyExtensionPoint;
+@property(readonly) NSView *accessoryView; // @synthesize accessoryView=_accessoryView;
 @property(retain) NSXMLElement *propertyDefinition; // @synthesize propertyDefinition=_propertyDefinition;
 @property(retain) NSObject<IDEBindableDeclarativeInspectorController> *inspectorController; // @synthesize inspectorController=_inspectorController;
 @property(getter=isTiled) BOOL tiled; // @synthesize tiled=_tiled;
 - (void).cxx_destruct;
+- (id)findIndicatorContentViewForInspectedKeyPath:(id)arg1 withContext:(id)arg2;
+- (id)findIndicatorContentViewWithContext:(id)arg1;
 - (id)toolTipManager:(id)arg1 toolTipForView:(id)arg2 location:(struct CGPoint)arg3 tipSourceRect:(struct CGRect *)arg4 maximumWidth:(double *)arg5;
 - (void)configureAccessibilityForUIElement:(id)arg1 forAttribute:(id)arg2 withAppendedString:(id)arg3;
 - (BOOL)shouldAppplyPendingAccessabilityConfigurations;
@@ -69,6 +73,7 @@
 - (id)singleValueForKeyPath:(id)arg1;
 - (id)singleValueForKeyPath:(id)arg1 state:(long long *)arg2;
 - (id)singleValueForKeyPath:(id)arg1 state:(long long *)arg2 transformer:(id)arg3;
+- (id)singleValueForKeyPath:(id)arg1 state:(long long *)arg2 perObjectTransformer:(id)arg3;
 - (id)allValuesForKeyPath:(id)arg1;
 - (id)allValuesForKeyPath:(id)arg1 transformer:(id)arg2;
 - (long long)valueStateForKeyPath:(id)arg1;
@@ -80,6 +85,7 @@
 - (void)enumerateContentAndValuesForKeyPath:(id)arg1 enumerator:(id)arg2;
 - (void)enumerateContentForKeyPath:(id)arg1 enumerator:(id)arg2;
 - (void)configureEnabledRefreshForControl:(id)arg1;
+- (void)configureEnabledRefreshForControl:(id)arg1 fromKeyPathFromAttributeNamed:(id)arg2;
 - (void)configureEnabledRefreshForControl:(id)arg1 fromKeyPath:(id)arg2;
 - (void)tearDownRefreshTriggers;
 - (void)setupRefreshTriggersAndConfigure;
@@ -99,6 +105,7 @@
 - (void)configureActionSelectorForControl:(id)arg1;
 - (void)configureActionFilterForTextField:(id)arg1;
 - (void)userDidChangeValue:(id)arg1;
+- (double)accessoryCenterAnchor;
 - (double)baseline;
 - (struct CGRect)frameForLabel:(id)arg1;
 - (BOOL)canTileIntoColumnsWithMinimumWidth:(double)arg1;
@@ -116,7 +123,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

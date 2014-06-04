@@ -24,6 +24,10 @@
 - (void)applicationWillHide:(id)arg1;
 - (void)applicationDidFinishLaunching:(id)arg1;
 - (void)applicationWillFinishLaunching:(id)arg1;
+- (void)application:(id)arg1 didUpdateUserActivity:(id)arg2;
+- (void)application:(id)arg1 didFailToContinueUserActivityWithType:(id)arg2 error:(id)arg3;
+- (BOOL)application:(id)arg1 continueUserActivity:(id)arg2 restorationHandler:(id)arg3;
+- (BOOL)application:(id)arg1 willContinueUserActivityWithType:(id)arg2;
 - (void)application:(id)arg1 didDecodeRestorableState:(id)arg2;
 - (void)application:(id)arg1 willEncodeRestorableState:(id)arg2;
 - (void)application:(id)arg1 didReceiveRemoteNotification:(id)arg2;

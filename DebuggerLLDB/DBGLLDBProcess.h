@@ -6,40 +6,48 @@
 
 #import "DBGProcess.h"
 
-@class NSMutableArray;
+@class DVTDispatchLock, NSArray, NSMutableDictionary;
 
 // Not exported
 @interface DBGLLDBProcess : DBGProcess
 {
     struct SBProcess _lldbProcess;
-    NSMutableArray *_previousDBGThreads;
-    BOOL _needSharedLibraryUpdate;
-    BOOL _isDoingAsyncAttach;
+    NSArray *_previousDBGThreads;
+    NSArray *_loadedCodeModules;
     unsigned long long _addressByteSize;
+    BOOL _needCodeModuleUpdate;
+    BOOL _pendingLazyCodeModuleUpdate;
+    DVTDispatchLock *_previousDBGThreadsLock;
+    NSMutableDictionary *_codeModuleForPathTable;
+    BOOL _isDoingAsyncAttach;
     BOOL _isCoreFile;
 }
 
 @property BOOL isCoreFile; // @synthesize isCoreFile=_isCoreFile;
-- (unsigned long long)addressByteSize;
 @property BOOL isDoingAsyncAttach; // @synthesize isDoingAsyncAttach=_isDoingAsyncAttach;
-@property BOOL needSharedLibraryUpdate; // @synthesize needSharedLibraryUpdate=_needSharedLibraryUpdate;
+@property(copy) NSArray *loadedCodeModules; // @synthesize loadedCodeModules=_loadedCodeModules;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (void)invalidateUnsuedThreadsAfterCallToSetThreads:(id)arg1;
 - (void)_assertIsLLDBSessionThread;
 - (void)reflectLLDBSelectedThreadAndFrame;
 - (BOOL)_isExceptionBreakpoint:(unsigned long long)arg1;
 - (void)_updateDBGThreadStateAndStopReason:(id)arg1 fromLLDBThread:(struct SBThread)arg2 isCurrentThread:(BOOL)arg3;
 - (BOOL)isLLDBExceptionFatal:(unsigned long long)arg1;
-- (void)clearThreadAndStackStates;
-- (id)currentThreadFromLLDB;
-- (void)_readMemoryAtAddress:(unsigned long long)arg1 numberOfBytes:(unsigned long long)arg2 dataToReadInto:(id)arg3 shouldCancel:(id)arg4 resultHandler:(id)arg5;
+- (void)clearQueueThreadStackStates;
+- (void)_readMemoryAtAddress:(unsigned long long)arg1 numberOfBytes:(unsigned long long)arg2 dataToReadInto:(id)arg3 shouldCancel:(id)arg4 progressHandler:(id)arg5 resultHandler:(void)arg6;
+- (id)readMemoryAtAddress:(unsigned long long)arg1 numberOfBytes:(unsigned long long)arg2 progressHandler:(id)arg3 resultHandler:(void)arg4;
 - (id)readMemoryAtAddress:(unsigned long long)arg1 numberOfBytes:(unsigned long long)arg2 resultHandler:(id)arg3;
 - (void)rawMemoryDataForAddressExpression:(id)arg1 numberOfBytes:(unsigned long long)arg2 resultHandler:(id)arg3;
-- (id)updateThreadListAndGetCurrentThread:(id *)arg1;
+- (BOOL)getQueues:(id *)arg1 threads:(id *)arg2 currentThread:(id *)arg3;
+- (void)_updateQueues:(id *)arg1 fromLLDBProcess:(struct SBProcess *)arg2 withComputedThreads:(id)arg3;
+- (void)_updateThreads:(id *)arg1 currentThread:(id *)arg2 fromLLDBProcess:(struct SBProcess *)arg3;
 - (struct SBThread)_currentLLDBThread;
-- (void)_updateSharedLibraries;
+- (void)_updateCodeModulesImmediatelyIfNecessary;
+- (void)_updateCodeModulesAfterDelay;
+@property BOOL needCodeModuleUpdate;
+- (unsigned long long)addressByteSize;
+- (struct SBProcess)lldbProcess;
 - (id)initWithDebugSession:(id)arg1 lldbProcess:(struct SBProcess)arg2;
 
 @end

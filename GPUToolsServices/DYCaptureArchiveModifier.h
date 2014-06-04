@@ -10,7 +10,6 @@
 
 @interface DYCaptureArchiveModifier : DYInOrderInstructionFilesVisitor
 {
-    StateMirrorManager_6a358214 _stateMirrorManager;
     DYCaptureArchive *_archive;
     DYCaptureArchive *_archiveOriginal;
     NSString *_fileSuffix;
@@ -30,7 +29,7 @@
     NSError *_error;
 }
 
-+ (BOOL)applyModifersToArchive:(id)arg1 modifiers:(id)arg2;
++ (BOOL)applyModifiersToArchive:(id)arg1 modifiers:(id)arg2;
 + (id)createTemporaryModifiedArchive:(id)arg1 modifiers:(id)arg2 copyDataFiles:(BOOL)arg3;
 @property(readonly, nonatomic) NSError *error; // @synthesize error=_error;
 @property(readonly, nonatomic) DYCaptureFile *currentFile; // @synthesize currentFile=_currentFile;
@@ -38,15 +37,17 @@
 @property(readonly, nonatomic) NSMutableArray *functionStreamModifiers; // @synthesize functionStreamModifiers=_functionStreamModifiers;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)_copyDataFiles:(id)arg1;
+- (void)_processFunction:(const struct Function *)arg1 functionIndex:(int)arg2;
+- (void)_restoreAPIState;
+- (void)_saveAPIState;
+- (void)_duplicateDataFiles:(id)arg1;
 - (id)copyDataForFilename:(id)arg1 error:(id *)arg2;
 - (id)addDataFileWithPrefix:(id)arg1 bytes:(const void *)arg2 size:(unsigned long long)arg3;
-- (StateMirrorManager_6a358214 *)stateMirrorManager;
 - (void)_incrementFunctionIndex:(struct Function *)arg1;
 - (id)_writeFunctionsToStreamWithFilename:(id)arg1;
 - (void)visitInternalFile:(id)arg1;
 - (void)visitDataFile:(id)arg1;
-- (void)_addCaptureFile:(id)arg1;
+- (void)_duplicateCaptureFile:(id)arg1;
 - (id)_modifyFunctionStream:(id)arg1 modifier:(id)arg2 filename:(id)arg3;
 - (void)visitFunctionStreamFile:(id)arg1;
 - (void)_processPass:(id)arg1;

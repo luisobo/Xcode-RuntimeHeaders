@@ -10,7 +10,7 @@
 @class NSString;
 
 @protocol IDEBlueprint <NSObject, IDEIntegrityLogDataSource>
-@property(readonly) NSString *blueprintIdentifier;
+@property(readonly, copy) NSString *blueprintIdentifier;
 @property(readonly) NSString *name;
 - (id)entitlementsFilePathForBuildConfiguration:(id)arg1;
 - (void)addFileReference:(id)arg1 toBuildablesContainingFileReference:(id)arg2;
@@ -25,8 +25,10 @@
 - (id)blueprintProvider;
 
 @optional
+@property(copy) NSString *developmentTeam;
 @property(readonly, getter=isUnitTest) BOOL unitTest;
-@property(retain) NSString *unitTestingBlueprintIdentifier;
+@property(retain) NSString *identifierOfBlueprintToBeTested;
+- (id)bundleBaselineRecordFilePathWithError:(id *)arg1;
 - (id)additionalOverridingCompilerArgumentsForSourceCodeBuildFileReference:(id)arg1;
 - (void)setOverridingAdditionalCompilerArguments:(id)arg1 forSourceCodeBuildFileReference:(id)arg2;
 - (id)additionalCompilerArgumentsForSourceCodeBuildFileReference:(id)arg1;
@@ -37,6 +39,14 @@
 - (id)allPublicHeaderFiles;
 - (id)allBuildFileReferences;
 - (id)sourceCodeBuildFileReferences;
+- (BOOL)configureToBuildMixedTargetWithDestinationGroup:(id)arg1 configureBridgingHeader:(BOOL)arg2 returningErrorString:(id *)arg3;
+- (BOOL)isConfiguredToBuildMixedTarget;
+- (BOOL)wouldBecomeMixedTargetAfterAddingTypes:(id)arg1;
+- (BOOL)wouldBecomeMixedTargetAfterAddingFiles:(id)arg1;
+- (BOOL)canUseBridgingHeader;
+- (BOOL)isMixedTarget;
+- (BOOL)configureToBuildWithOptimizationProfileReturningErrorString:(id *)arg1;
+- (BOOL)isConfiguredToBuildWithOptimizationProfile;
 - (void)convertToUseModernUnitTests;
 - (void)convertToUseModernObjCSyntax;
 - (void)convertToUseARC;
@@ -48,8 +58,10 @@
 - (id)specifiedBaseSDKForBuildConfigurationName:(id)arg1;
 - (id)baseSDKForBuildConfigurationName:(id)arg1;
 - (id)supportedPlatformsForConfiguration:(id)arg1 workspaceArenaSnapshot:(id)arg2;
+- (id)supportedPlatformsForBuildParameters:(id)arg1;
 - (id)compilerSpecificationIdentifier;
 - (id)availableArchitecturesForConfiguration:(id)arg1 workspaceArenaSnapshot:(id)arg2;
+- (id)availableArchitecturesForBuildParameters:(id)arg1;
 - (id)defaultConfigurationName;
 - (id)availableConfigurationNames;
 @end

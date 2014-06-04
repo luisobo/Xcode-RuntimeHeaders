@@ -13,6 +13,7 @@
 - (void)sendControlSync:(id)arg1 replyHandler:(id)arg2;
 - (void)sendControlAsync:(id)arg1 replyHandler:(id)arg2;
 - (void)cancel;
+- (void)registerDisconnectHandler:(id)arg1;
 - (void)setDispatchTarget:(id)arg1;
 - (void)setMessageHandler:(id)arg1;
 @end

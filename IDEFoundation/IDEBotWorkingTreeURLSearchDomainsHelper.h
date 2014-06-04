@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSArray;
+@class NSArray, NSObject<OS_dispatch_queue>;
 
 @interface IDEBotWorkingTreeURLSearchDomainsHelper : NSObject
 {
-    struct dispatch_queue_s *_queue;
+    NSObject<OS_dispatch_queue> *_queue;
     BOOL _hasQueuedUpdate;
     struct __SCDynamicStore *_dynamicStore;
     struct __SCPreferences *_preferences;

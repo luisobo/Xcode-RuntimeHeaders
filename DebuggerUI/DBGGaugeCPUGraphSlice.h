@@ -10,21 +10,26 @@
 
 @interface DBGGaugeCPUGraphSlice : DBGGaugeGraphSlice
 {
-    NSNumber *_threadID;
-    NSString *_threadName;
+    NSString *_threadDisplayName;
     IDEPlotGraph *_graph;
+    NSNumber *_threadID;
+    NSString *_qualityOfServiceValue;
 }
 
+@property(copy, nonatomic) NSString *qualityOfServiceValue; // @synthesize qualityOfServiceValue=_qualityOfServiceValue;
+@property(readonly, copy, nonatomic) NSNumber *threadID; // @synthesize threadID=_threadID;
 - (void).cxx_destruct;
 - (id)translateValue:(id)arg1 keypath:(id)arg2;
 - (id)colorForChartNamed:(id)arg1;
-- (id)threadID;
+- (void)_internalSetQoSValue:(id)arg1;
 - (id)graphTitle;
 - (id)graph;
 - (void)loadView;
+- (id)_qosUnavailableString;
+- (id)_qosUnavailableStringColor;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)initUsingDefaultNib;
-- (id)initWithThreadID:(id)arg1 threadName:(id)arg2;
+- (id)initWithThreadID:(id)arg1 threadDisplayName:(id)arg2 qualityOfServiceValue:(id)arg3;
 
 @end
 

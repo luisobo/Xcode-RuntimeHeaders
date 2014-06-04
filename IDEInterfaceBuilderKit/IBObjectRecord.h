@@ -14,8 +14,8 @@
 {
     IBMemberID *objectID;
     NSString *explicitLabel;
-    id parent;
-    id object;
+    NSObject *parent;
+    NSObject *object;
     NSMutableArray *children;
     IBGroup *group;
     IBObjectRecord *parentRecord;
@@ -24,8 +24,8 @@
 @property(retain) IBObjectRecord *parentRecord; // @synthesize parentRecord;
 @property(nonatomic) __weak IBGroup *group; // @synthesize group;
 @property(copy) NSString *explicitLabel; // @synthesize explicitLabel;
-@property(readonly) id object; // @synthesize object;
-@property(retain) id parent; // @synthesize parent;
+@property(readonly) NSObject *object; // @synthesize object;
+@property(retain) NSObject *parent; // @synthesize parent;
 @property(retain) IBMemberID *objectID; // @synthesize objectID;
 - (void).cxx_destruct;
 - (void)verifyNoDuplicateChildren;

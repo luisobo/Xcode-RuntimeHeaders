@@ -7,10 +7,11 @@
 #import "NSObject.h"
 
 #import "DVTInvalidation-Protocol.h"
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@class DVTMapTable, DVTStackBacktrace, IDEBreakpointBucket, NSArray, NSImage, NSMutableArray, NSString;
+@class DVTDocumentLocation, DVTFileDataType, DVTMapTable, DVTStackBacktrace, IDEBreakpointBucket, IDEFileReference, NSArray, NSImage, NSMutableArray, NSString;
 
-@interface IDEBreakpointGroup : NSObject <DVTInvalidation>
+@interface IDEBreakpointGroup : NSObject <IDEKeyDrivenNavigableItemRepresentedObject, DVTInvalidation>
 {
     IDEBreakpointBucket *_bucket;
     NSMutableArray *_subGroups;
@@ -29,7 +30,7 @@
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (id)ideModelObjectTypeIdentifier;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)_addFileGroupInSortedOrder:(id)arg1;
 - (id)_createAndAddFileBreakpointGroupForFilePathIfNecessary:(id)arg1;
@@ -47,9 +48,19 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(copy) NSMutableArray *mutableSubGroups; // @dynamic mutableSubGroups;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
 @property(copy) NSArray *subGroups; // @dynamic subGroups;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

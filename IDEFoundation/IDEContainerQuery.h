@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTObservingToken, DVTStackBacktrace, NSMutableSet, NSSet;
+@class DVTObservingToken, DVTStackBacktrace, NSMutableSet, NSSet, NSString;
 
 @interface IDEContainerQuery : NSObject <DVTInvalidation>
 {
@@ -33,7 +33,9 @@
 - (void)_updateWithInsertedMatches:(id)arg1 deletedMatches:(id)arg2;
 - (void)_traverseContainerGraphObjects:(id)arg1 forDeletion:(BOOL)arg2 insertedMatches:(id)arg3 deletedMatches:(id)arg4;
 - (BOOL)_isInterestedInContainerGraphObject:(id)arg1 forDeletion:(BOOL)arg2;
+- (BOOL)_workspaceVerified_isTrackingContainerItem:(id)arg1 checkedContainers:(id)arg2;
 - (BOOL)_isTrackingContainerItem:(id)arg1 checkedContainers:(id)arg2;
+- (BOOL)_workspaceVerified_isTrackingContainer:(id)arg1 checkedContainers:(id)arg2;
 - (BOOL)_isTrackingContainer:(id)arg1 checkedContainers:(id)arg2;
 - (void)_traverseContainerGraphObject:(id)arg1 forDeletion:(BOOL)arg2 checkedContainers:(id)arg3 insertedMatches:(id)arg4 deletedMatches:(id)arg5;
 - (void)_processContainerGraphObject:(id)arg1 insertedMatches:(id)arg2 deletedMatches:(id)arg3;
@@ -47,7 +49,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

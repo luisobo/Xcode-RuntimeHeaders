@@ -13,14 +13,16 @@
     NSString *_title;
     long long _count;
     NSImage *_image;
+    id _clickHandler;
 }
 
+@property(readonly) id clickHandler; // @synthesize clickHandler=_clickHandler;
 @property long long count; // @synthesize count=_count;
 @property(retain) NSString *title; // @synthesize title=_title;
 @property(retain) NSImage *image; // @synthesize image=_image;
 - (void).cxx_destruct;
 - (id)description;
-- (id)initWithTitle:(id)arg1 image:(id)arg2;
+- (id)initWithTitle:(id)arg1 image:(id)arg2 clickHandler:(id)arg3;
 
 @end
 

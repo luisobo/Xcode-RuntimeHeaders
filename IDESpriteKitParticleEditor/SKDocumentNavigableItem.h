@@ -13,7 +13,6 @@
 - (id)contentDocumentLocation;
 - (BOOL)isLeaf;
 - (id)documentType;
-- (id)childItemsKeyPath;
 - (id)representedDocument;
 - (id)representedNode;
 

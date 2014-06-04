@@ -26,12 +26,13 @@
 }
 
 + (id)labelNodeWithFontNamed:(id)arg1;
++ (id)labelNodeWithText:(id)arg1;
 + (id)_labelNodeWithFontTexture:(id)arg1 fontDataString:(id)arg2;
 + (id)_labelNodeWithFontNamed:(id)arg1;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)description;
-@property(copy) NSString *text;
+@property(copy, nonatomic) NSString *text;
 - (void)createSpritesForText;
 - (void)_scaleFactorChangedFrom:(float)arg1 to:(float)arg2;
 - (void)_flippedChangedFrom:(BOOL)arg1 to:(BOOL)arg2;
@@ -42,19 +43,20 @@
 - (id)childrenInRect:(struct CGRect)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)copy;
-@property long long blendMode;
-@property double colorBlendFactor;
-@property(retain) NSColor *color;
-@property(retain) NSColor *fontColor;
-@property double fontSize;
-@property(copy) NSString *fontName;
-@property long long horizontalAlignmentMode;
-@property long long verticalAlignmentMode;
+@property(nonatomic) long long blendMode;
+@property(nonatomic) double colorBlendFactor;
+@property(retain, nonatomic) NSColor *color;
+@property(retain, nonatomic) NSColor *fontColor;
+@property(nonatomic) double fontSize;
+@property(copy, nonatomic) NSString *fontName;
+@property(nonatomic) long long horizontalAlignmentMode;
+@property(nonatomic) long long verticalAlignmentMode;
 - (id)initWithFontNamed:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)_initialize;
 - (id)init;
+- (id)_getTextSprites;
 
 @end
 

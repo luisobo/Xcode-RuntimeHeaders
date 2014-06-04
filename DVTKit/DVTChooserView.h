@@ -39,7 +39,7 @@
 - (void).cxx_destruct;
 @property(readonly) NSArray *grabRects;
 @property(readonly) struct CGRect grabRect;
-@property(readonly) NSMutableArray *mutableChoices;
+@property(readonly, copy) NSMutableArray *mutableChoices;
 - (void)updateBoundContent;
 @property(copy) NSArray *choices;
 - (void)updateBoundSelectedObjects;

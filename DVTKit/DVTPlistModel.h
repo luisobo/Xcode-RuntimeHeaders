@@ -10,7 +10,7 @@
 #import "DVTTextFindable-Protocol.h"
 #import "DVTTextReplacable-Protocol.h"
 
-@class DVTPlistNode, DVTPlistStructureDefinition, DVTStackBacktrace, NSDocument<DVTPlistDocumentProtocol>;
+@class DVTPlistNode, DVTPlistStructureDefinition, DVTStackBacktrace, NSDocument<DVTPlistDocumentProtocol>, NSString;
 
 @interface DVTPlistModel : NSObject <DVTTextFindable, DVTTextReplacable, DVTInvalidation>
 {
@@ -63,7 +63,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property unsigned long long supportedMatchingOptions;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 

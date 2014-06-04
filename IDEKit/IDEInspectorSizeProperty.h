@@ -10,21 +10,29 @@
 
 @interface IDEInspectorSizeProperty : IDEInspectorProperty
 {
+    IDEInspectorKeyPath *_valueKeyPath;
+    IDEInspectorKeyPath *_nonNilValueKeyPath;
+    IDEInspectorKeyPath *_nonNilValueObjectKeyPath;
+    NSString *_nilPlaceholder;
+    BOOL _allowsNilValues;
     NSTextField *_widthTextField;
     NSTextField *_heightTextField;
     NSStepper *_widthStepper;
     NSStepper *_heightStepper;
+    NSTextField *_widthLabel;
+    NSTextField *_heightLabel;
     NSButton *_hasValueCheckBox;
-    IDEInspectorKeyPath *_valueKeyPath;
-    IDEInspectorKeyPath *_nonNilValueKeyPath;
-    IDEInspectorKeyPath *_nonNilValueObjectKeyPath;
-    NSString *_widthPlaceholder;
-    NSString *_heightPlaceholder;
 }
 
-@property(copy) NSString *heightPlaceholder; // @synthesize heightPlaceholder=_heightPlaceholder;
-@property(copy) NSString *widthPlaceholder; // @synthesize widthPlaceholder=_widthPlaceholder;
+@property(retain, nonatomic) NSButton *hasValueCheckBox; // @synthesize hasValueCheckBox=_hasValueCheckBox;
+@property(retain, nonatomic) NSTextField *heightLabel; // @synthesize heightLabel=_heightLabel;
+@property(retain, nonatomic) NSTextField *widthLabel; // @synthesize widthLabel=_widthLabel;
+@property(retain, nonatomic) NSStepper *heightStepper; // @synthesize heightStepper=_heightStepper;
+@property(retain, nonatomic) NSStepper *widthStepper; // @synthesize widthStepper=_widthStepper;
+@property(retain, nonatomic) NSTextField *heightTextField; // @synthesize heightTextField=_heightTextField;
+@property(retain, nonatomic) NSTextField *widthTextField; // @synthesize widthTextField=_widthTextField;
 - (void).cxx_destruct;
+- (id)findIndicatorContentViewWithContext:(id)arg1;
 - (void)refresh;
 - (void)toggleNilValue:(id)arg1;
 - (void)userDidEnterHeight:(id)arg1;
@@ -34,6 +42,7 @@
 - (void)applyUserSizeFromSender:(id)arg1 byMappingValues:(id)arg2;
 - (double)baseline;
 - (id)nibName;
+- (void)loadView;
 - (void)setupRefreshTriggersAndConfigure;
 - (BOOL)allowsNilValues;
 

@@ -6,15 +6,29 @@
 
 #import "NSArray.h"
 
-@interface NSArray (IBArrayAdditions)
+#import "IBOrderedCollection-Protocol.h"
+
+@class NSString;
+
+@interface NSArray (IBArrayAdditions) <IBOrderedCollection>
++ (id)ib_arrayWithCollection:(id)arg1;
 + (id)ib_arrayWithObjects:(id *)arg1 count:(long long)arg2 ignoringNil:(BOOL)arg3;
 + (id)ib_arrayWithOptionalObjects:(long long)arg1;
++ (id)ib_arrayWithOptionalObject:(id)arg1;
++ (id)ib_collectionWithObject:(id)arg1;
++ (id)ib_emptyCollection;
++ (Class)ib_mutableClass;
++ (id)ib_orderedCollectionWithOrderedCollection:(id)arg1;
+- (void)ib_removeObjectsInReceiverFromArray:(id)arg1;
+- (void)ib_removeObjectsInReceiverFromOrderedSet:(id)arg1;
+- (void)ib_removeObjectsInReceiverFromSet:(id)arg1;
 - (id)ib_objectAtIndexIfInBounds:(long long)arg1;
 - (void)ib_invokeWithAccessToObjects:(id)arg1;
 - (id)ib_maximumObjectUsingComparator:(id)arg1;
 - (id)ib_minimumObjectUsingComparator:(id)arg1;
 - (id)ib_objectAtIndexFromEnd:(long long)arg1;
 - (long long)ib_numberOfObjectsPassingTest:(id)arg1;
+- (id)ib_arrayBySortingUsingComparator:(id)arg1;
 - (BOOL)ib_isSortedWithComparator:(id)arg1;
 - (void)ib_enumerateCopyOfObjectsUsingBlock:(id)arg1;
 - (void)ib_enumerateObjectsUsingMutatingBlock:(id)arg1;
@@ -49,7 +63,18 @@
 - (id)ib_arrayByMappingBlockAndAssertingOnNilMappedValue:(id)arg1;
 - (id)ib_arrayByMappingBlock:(id)arg1;
 - (id)ib_arrayByMappingWithBehavior:(long long)arg1 andBlock:(id)arg2;
+- (id)ib_collectionByRemovingObject:(id)arg1;
+- (id)ib_collectionByAddingObject:(id)arg1;
+- (id)ib_collectionByReversingObjects;
+- (id)ib_collectionByKeepingObjectsInSet:(id)arg1;
+- (id)ib_collectionByRemovingObjectsInSet:(id)arg1;
+- (id)ib_collectionByRemovingObjectsFromCollection:(id)arg1;
+- (id)ib_collectionByAddingObjectsFromCollection:(id)arg1;
+- (id)ib_collectionByInsertingObjects:(id)arg1 atIndex:(long long)arg2;
+- (id)ib_collectionByInsertingObject:(id)arg1 atIndex:(long long)arg2;
+- (id)ib_collectionByMappingBlock:(id)arg1;
 - (id)ib_collectionByFilteringUsingBlock:(id)arg1;
+- (id)ib_setByFilteringUsingBlock:(id)arg1;
 - (id)ib_arrayByFilteringUsingBlock:(id)arg1;
 - (id)ib_arrayByRemovingObjectsInArray:(id)arg1;
 - (id)ib_arrayByKeepingObjectsInSet:(id)arg1;
@@ -58,8 +83,14 @@
 - (id)ib_arrayByUniquifyingOnKey:(id)arg1;
 - (id)ib_arrayByAppendingObjectsFromArrays:(id)arg1;
 - (id)ib_arrayByRemovingObject:(id)arg1;
+- (id)ib_arrayByReplacingObjectAtIndex:(unsigned long long)arg1 withObject:(id)arg2;
 - (id)ib_arrayByAppendingObjects:(id)arg1;
 - (id)ib_onlyObject;
-- (id)ib_firstObject;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

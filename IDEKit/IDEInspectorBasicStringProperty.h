@@ -10,7 +10,6 @@
 
 @interface IDEInspectorBasicStringProperty : IDEInspectorStringProperty
 {
-    NSTextField *_textField;
     NSString *_explicitPlaceholder;
     IDEInspectorKeyPath *_explicitPlaceholderKeyPath;
     IDEInspectorKeyPath *_valueKeyPath;
@@ -19,13 +18,15 @@
     BOOL _allowsNilValues;
     BOOL _editable;
     BOOL _textFieldIsConfiguredAsEditable;
+    NSTextField *_textField;
 }
 
+@property(retain, nonatomic) NSTextField *textField; // @synthesize textField=_textField;
 - (void).cxx_destruct;
+- (id)findIndicatorContentViewWithContext:(id)arg1;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)refresh;
 - (void)userDidChangeValue:(id)arg1;
-- (id)textField;
 - (double)baseline;
 - (id)view;
 

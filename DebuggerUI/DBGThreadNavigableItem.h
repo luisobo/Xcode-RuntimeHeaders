@@ -6,22 +6,28 @@
 
 #import "IDEKeyDrivenNavigableItem.h"
 
-@class NSArray, NSIndexSet;
+@class NSArray, NSString;
 
 @interface DBGThreadNavigableItem : IDEKeyDrivenNavigableItem
 {
+    NSString *_blockName;
     long long _compressionValue;
-    long long _maxCompressionValue;
     NSArray *_cachedChildRepresentedObjects;
-    NSIndexSet *_lastCompressedIndexSet;
+    BOOL _expanded;
+    BOOL _displayAsBlock;
+    unsigned long long _displayImageType;
 }
 
+@property(nonatomic) unsigned long long displayImageType; // @synthesize displayImageType=_displayImageType;
+@property(nonatomic) BOOL displayAsBlock; // @synthesize displayAsBlock=_displayAsBlock;
+@property(getter=isExpanded) BOOL expanded; // @synthesize expanded=_expanded;
 - (void).cxx_destruct;
-- (BOOL)setCompressionValue:(long long)arg1 maxCompressionValue:(long long)arg2;
+- (BOOL)setCompressionValue:(long long)arg1;
 - (void)invalidateChildItems;
-- (void)updateChildItemsForChangeKind:(unsigned long long)arg1 atIndexes:(id)arg2;
 - (id)childRepresentedObjects;
 - (id)image;
+- (BOOL)isLeaf;
+- (id)subtitle;
 - (id)name;
 - (void)primitiveInvalidate;
 - (id)initWithRepresentedObject:(id)arg1;

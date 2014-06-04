@@ -9,7 +9,7 @@
 #import "IDECapsuleListViewDataSource-Protocol.h"
 #import "IDEDataModelEditorController-Protocol.h"
 
-@class IDECapsuleListView, IDEDataModelEditor, NSArrayController, NSMutableArray;
+@class IDECapsuleListView, IDEDataModelEditor, NSArrayController, NSMutableArray, NSString;
 
 @interface IDEDataModelFetchRequestEditor : IDEDMEditorController <IDEDataModelEditorController, IDECapsuleListViewDataSource>
 {
@@ -39,6 +39,12 @@
 - (id)nibBundle;
 - (id)nibName;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

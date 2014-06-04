@@ -8,10 +8,12 @@
 
 @interface IBBorderlessEditorCanvasFrame : IBEditorCanvasFrame
 {
-    BOOL fortifiesShadow;
+    BOOL _fortifiesShadow;
+    BOOL _drawsShadow;
 }
 
-@property(nonatomic) BOOL fortifiesShadow; // @synthesize fortifiesShadow;
+@property(nonatomic) BOOL drawsShadow; // @synthesize drawsShadow=_drawsShadow;
+@property(nonatomic) BOOL fortifiesShadow; // @synthesize fortifiesShadow=_fortifiesShadow;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)hasKeyLookDidChange;
 - (struct CGRect)boundsForHitTesting;

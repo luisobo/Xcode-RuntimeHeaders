@@ -30,6 +30,7 @@
 
 + (id)defaultTitleFieldWithInterfaceStyle:(id)arg1;
 @property(nonatomic) __weak id <IBConnectionPrototypeViewDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly, nonatomic) NSTextField *titleField; // @synthesize titleField;
 @property(copy, nonatomic) NSString *warningMessage; // @synthesize warningMessage;
 @property(nonatomic) double titleWidthPercentage; // @synthesize titleWidthPercentage;
 @property(nonatomic) BOOL allowsNewConnections; // @synthesize allowsNewConnections;
@@ -72,6 +73,12 @@
 - (id)predecessorDisplayValues;
 @property(copy) NSString *title; // @dynamic title;
 - (id)initWithFrame:(struct CGRect)arg1 andInterfaceStyle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

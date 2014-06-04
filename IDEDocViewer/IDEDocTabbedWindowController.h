@@ -16,7 +16,7 @@
 #import "NSToolbarDelegate-Protocol.h"
 #import "NSWindowDelegate-Protocol.h"
 
-@class DVTDelayedInvocation, DVTObservingToken, DVTSegmentedControl, DVTStateRepository, DVTStateToken, DVTTabBarEnclosureView, DVTTabBarView, DVTTabSwitcher, IDEDocDocumentationTabViewController, IDEDocSearchController, IDEDocSearchResultsController, IDEDocToolbar, IDEDocToolbarItem, IDEDocWebHistoryMenu, NSArray, NSMapTable, NSMenu, NSMutableArray, NSSegmentedControl, NSString, NSTextField, NSToolbarItem, NSURL, NSView;
+@class DVTBarBackground, DVTDelayedInvocation, DVTObservingToken, DVTSegmentedControl, DVTStateRepository, DVTStateToken, DVTTabBarEnclosureView, IDEDocDocumentationTabViewController, IDEDocSearchController, IDEDocSearchResultsController, IDEDocToolbar, IDEDocToolbarItem, IDEDocWebHistoryMenu, NSArray, NSMapTable, NSMenu, NSMutableArray, NSSegmentedControl, NSString, NSTabView, NSTextField, NSToolbarItem, NSURL, NSView;
 
 @interface IDEDocTabbedWindowController : NSWindowController <DVTTabbedWindowControlling, NSTextFieldDelegate, NSWindowDelegate, IDEDocSearchField_FieldEditorProtocol, DVTStatefulObject, DVTStateRepositoryDelegate, NSToolbarDelegate, IDEDocTabbedWindowControllerProtocol, IDEEditorMenuContentProvider>
 {
@@ -49,11 +49,13 @@
     BOOL _keepTabBarHiddenWhenCreatingTab;
     BOOL _readyToUpdateKeyboardLoop;
     BOOL _canOpenPDF;
+    BOOL _canOpenIBook;
+    BOOL _canOpenPlayground;
     BOOL _createNewTabUponLoadIfNoTabsExist;
     IDEDocDocumentationTabViewController *_activeDocumentationTabController;
-    DVTTabSwitcher *_tabSwitcher;
+    DVTBarBackground *_tabBarView;
+    NSTabView *_tabView;
     DVTTabBarEnclosureView *_tabBarEnclosureView;
-    DVTTabBarView *_tabBarView;
     IDEDocToolbar *_toolbar;
     NSTextField *_toolbarSearchTextField;
     NSView *_toolbar_searchFieldContainerView;
@@ -78,6 +80,8 @@
 @property(retain) DVTDelayedInvocation *stateSavingInvocation; // @synthesize stateSavingInvocation=_stateSavingInvocation;
 @property(retain) DVTStateToken *stateToken; // @synthesize stateToken=_stateToken;
 @property BOOL createNewTabUponLoadIfNoTabsExist; // @synthesize createNewTabUponLoadIfNoTabsExist=_createNewTabUponLoadIfNoTabsExist;
+@property BOOL canOpenPlayground; // @synthesize canOpenPlayground=_canOpenPlayground;
+@property BOOL canOpenIBook; // @synthesize canOpenIBook=_canOpenIBook;
 @property BOOL canOpenPDF; // @synthesize canOpenPDF=_canOpenPDF;
 @property(copy) NSMapTable *viewHeightsForResizing; // @synthesize viewHeightsForResizing=_viewHeightsForResizing;
 @property(copy) NSArray *topLevelViewOrder; // @synthesize topLevelViewOrder=_topLevelViewOrder;
@@ -94,9 +98,9 @@
 @property NSView *toolbar_searchFieldContainerView; // @synthesize toolbar_searchFieldContainerView=_toolbar_searchFieldContainerView;
 @property NSTextField *toolbarSearchTextField; // @synthesize toolbarSearchTextField=_toolbarSearchTextField;
 @property IDEDocToolbar *toolbar; // @synthesize toolbar=_toolbar;
-@property DVTTabBarView *tabBarView; // @synthesize tabBarView=_tabBarView;
 @property DVTTabBarEnclosureView *tabBarEnclosureView; // @synthesize tabBarEnclosureView=_tabBarEnclosureView;
-@property DVTTabSwitcher *tabSwitcher; // @synthesize tabSwitcher=_tabSwitcher;
+@property NSTabView *tabView; // @synthesize tabView=_tabView;
+@property(retain, nonatomic) DVTBarBackground *tabBarView; // @synthesize tabBarView=_tabBarView;
 @property(retain) IDEDocDocumentationTabViewController *activeDocumentationTabController; // @synthesize activeDocumentationTabController=_activeDocumentationTabController;
 - (void).cxx_destruct;
 - (id)extensionForMenuContent;
@@ -107,7 +111,7 @@
 - (void)_shareSegmentStateDidChange:(id)arg1;
 - (void)_backForwardSegmentStateDidChange:(id)arg1;
 - (void)_sideBarsSegmentStateDidChange:(id)arg1;
-- (id)PDFURLForCurrentDocument;
+- (id)URLForCurrentDocumentOfDownloadableType:(unsigned long long)arg1 foundInNode:(id *)arg2;
 - (void)scrollWheel:(id)arg1;
 - (BOOL)wantsScrollEventsForSwipeTrackingOnAxis:(long long)arg1;
 - (void)swipeWithEvent:(id)arg1;
@@ -164,6 +168,8 @@
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)_updateCustomToolbarItems;
 - (BOOL)URLRepresentsSearchResultsPage:(id)arg1;
+- (void)shareButton_openPlayground:(id)arg1;
+- (void)shareButton_openIBook:(id)arg1;
 - (void)shareButton_openPDF:(id)arg1;
 - (void)shareButton_addBookmark:(id)arg1;
 - (void)shareButton_emailURL:(id)arg1;
@@ -215,7 +221,7 @@
 - (double)tabBarHeight;
 - (void)_collectViewInfoForResizing;
 - (double)_originalHeightForView:(id)arg1;
-- (void)moveTabFromOtherWindow:(id)arg1 toIndex:(unsigned long long)arg2 andShow:(BOOL)arg3;
+- (void)moveTabFromOtherWindow:(id)arg1 toIndex:(unsigned long long)arg2 andSelect:(BOOL)arg3;
 - (void)replaceEmptyTabWithTabs:(id)arg1;
 - (void)_closeOtherTabsWithoutConfirming:(id)arg1;
 - (void)closeOtherTabs:(id)arg1;
@@ -257,8 +263,8 @@
 - (void)setTabBarVisible:(BOOL)arg1;
 - (BOOL)isTabBarVisible;
 - (void)cancelUpdateTabTitlesSoon;
-- (void)tabBarViewUpdateTabTitlesNow:(id)arg1;
-- (void)tabBarViewUpdateTabTitlesSoon:(id)arg1;
+- (void)tabBarViewUpdateTabTitlesNow;
+- (void)tabBarViewUpdateTabTitlesSoon;
 - (struct CGRect)adjustedFrameForCascade:(struct CGRect)arg1 fromWindow:(id)arg2;
 - (struct CGRect)adjustedFrameForSaving:(struct CGRect)arg1;
 - (BOOL)canReceiveDragFromTabbedWindowControlling:(id)arg1;
@@ -282,6 +288,12 @@
 - (void)_setupFullScreenNotifications;
 - (BOOL)_windowIsFullHeight;
 - (void)_setUpTabBar;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -9,13 +9,11 @@
 #import "NSCoding-Protocol.h"
 #import "NSCopying-Protocol.h"
 
-@class NSArray, NSMutableArray, NSMutableDictionary, NSString, SKPhysicsBody, SKScene;
+@class NSArray, NSMutableArray, NSMutableDictionary, NSString, SKPhysicsBody, SKReachConstraints, SKScene;
 
 @interface SKNode : NSResponder <NSCopying, NSCoding>
 {
     BOOL _spritesNeedsRemove;
-    NSMutableArray *_actionsToRemove;
-    NSMutableArray *_spritesToRemove;
     void *csprite;
     SKNode *_parent;
     NSMutableArray *_children;
@@ -27,11 +25,14 @@
     NSMutableArray *_deleteList;
     NSString *_name;
     NSMutableDictionary *_userData;
+    NSArray *_constraints;
+    SKReachConstraints *_reachConstraints;
 }
 
 + (id)node;
-@property(retain) NSMutableDictionary *userData; // @synthesize userData=_userData;
-@property(copy) NSString *name; // @synthesize name=_name;
+@property(retain, nonatomic) NSMutableDictionary *userData; // @synthesize userData=_userData;
+@property(copy, nonatomic) SKReachConstraints *reachConstraints; // @synthesize reachConstraints=_reachConstraints;
+@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (void)dealloc;
 - (BOOL)hasUniformAlphaAndIsVisible;
@@ -45,19 +46,20 @@
 - (id)nodeAtPoint:(struct CGPoint)arg1 recursive:(BOOL)arg2;
 - (BOOL)containsPoint:(struct CGPoint)arg1 withRadius:(double)arg2;
 - (BOOL)containsPoint:(struct CGPoint)arg1;
-@property(getter=isUserInteractionEnabled) BOOL userInteractionEnabled;
-@property(getter=isPaused) BOOL paused;
-@property(getter=isHidden) BOOL hidden;
+@property(nonatomic, getter=isUserInteractionEnabled) BOOL userInteractionEnabled;
+@property(nonatomic, getter=isPaused) BOOL paused;
+@property(nonatomic, getter=isHidden) BOOL hidden;
 - (void)setScale:(double)arg1;
-@property double yScale;
-@property double xScale;
-@property double yRotation;
-@property double xRotation;
-@property double zRotation;
-@property double zPosition;
+@property(nonatomic) double yScale;
+@property(nonatomic) double xScale;
+@property(nonatomic) double yRotation;
+@property(nonatomic) double xRotation;
+@property(nonatomic) double zRotation;
+@property(nonatomic) double zPosition;
 - (struct CGRect)calculateAccumulatedFrame;
-@property struct CGPoint position;
-@property(retain) SKPhysicsBody *physicsBody;
+@property(nonatomic) struct CGPoint position;
+- (id)physicsField;
+@property(retain, nonatomic) SKPhysicsBody *physicsBody;
 - (id)description;
 - (BOOL)needsUpdate;
 - (BOOL)hasActions;
@@ -66,11 +68,11 @@
 - (void)removeActionForKey:(id)arg1;
 - (id)actionForKey:(id)arg1;
 - (void)runAction:(id)arg1 withKey:(id)arg2;
-@property double alpha;
-@property double speed;
+@property(nonatomic) double alpha;
+@property(nonatomic) double speed;
 - (void)runAction:(id)arg1 completion:(id)arg2;
 - (void)runAction:(id)arg1;
-@property(readonly) NSArray *children;
+@property(readonly, nonatomic) NSArray *children;
 - (BOOL)hasChildren;
 - (void)_enumerateChildNodesWithName:(id)arg1 usingBlock:(id)arg2 stopPointer:(void)arg3;
 - (void)enumerateChildNodesWithName:(id)arg1 usingBlock:(id)arg2;
@@ -78,17 +80,18 @@
 - (void)addChild:(id)arg1 withKey:(id)arg2;
 - (void)_flippedChangedFrom:(BOOL)arg1 to:(BOOL)arg2;
 - (void)_scaleFactorChangedFrom:(float)arg1 to:(float)arg2;
+@property(copy, nonatomic) NSArray *constraints;
 - (void)_performCleanup;
 - (void)removeAllChildren;
 - (void)removeChildrenInArray:(id)arg1;
 - (void)removeChild:(id)arg1;
 - (void)removeChildAtIndex:(long long)arg1;
-@property(readonly) struct CGRect frame;
+@property(readonly, nonatomic) struct CGRect frame;
 - (void)insertChild:(id)arg1 atIndex:(long long)arg2;
 - (void)addChild:(id)arg1;
 - (BOOL)inParentHierarchy:(id)arg1;
-@property(readonly) SKNode *parent;
-@property(readonly) SKScene *scene;
+@property(readonly, nonatomic) SKNode *parent;
+@property(readonly, nonatomic) SKScene *scene;
 - (void)_update:(double)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)copy;
@@ -98,14 +101,17 @@
 - (id)init;
 - (void)removeAction:(id)arg1;
 - (struct SKCSprite *)csprite;
+- (void)setPhysicsField:(id)arg1;
 - (id)allIntersectionsWithNode:(id)arg1 useAlphaTest:(BOOL)arg2;
 - (BOOL)intersectsNode:(id)arg1 useAlphaTest:(BOOL)arg2;
-@property(readonly) struct CGSize _size;
-@property struct CGPoint _anchorPoint;
-@property(readonly) struct CGRect _untransformedBounds;
-@property BOOL _showBounds;
-@property(retain) NSMutableDictionary *_info;
+@property(readonly, nonatomic) struct CGSize _size;
+@property(nonatomic) struct CGPoint _anchorPoint;
+@property(readonly, nonatomic) struct CGRect _untransformedBounds;
+@property(nonatomic) BOOL _showBounds;
+@property(retain, nonatomic) NSMutableDictionary *_info;
 - (id)childrenInRect:(struct CGRect)arg1;
+- (void)updatePhysicsPositionAndScaleFromSprite;
+- (void)_getWorldTransform:(float *)arg1 positionY:(float *)arg2 rotation:(float *)arg3 xScale:(float *)arg4 yScale:(float *)arg5;
 - (id)_parent;
 - (void)setParent:(id)arg1;
 

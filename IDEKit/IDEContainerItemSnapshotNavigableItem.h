@@ -8,7 +8,7 @@
 
 #import "IDENavigableItemFileReferenceProxy-Protocol.h"
 
-@class IDENavigableItem;
+@class IDENavigableItem, NSString;
 
 @interface IDEContainerItemSnapshotNavigableItem : IDEKeyDrivenNavigableItem <IDENavigableItemFileReferenceProxy>
 {
@@ -18,6 +18,12 @@
 @property(readonly) IDENavigableItem *primaryChildItem;
 - (BOOL)isLeaf;
 - (BOOL)isMajorGroup;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

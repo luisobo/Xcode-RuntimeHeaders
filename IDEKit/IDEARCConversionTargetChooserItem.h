@@ -22,15 +22,16 @@
 - (void)removeObjectFromChildItemsAtIndex:(unsigned long long)arg1;
 - (void)insertObject:(id)arg1 inChildItemsAtIndex:(unsigned long long)arg2;
 - (id)_childItems;
-@property(readonly) NSMutableArray *mutableChildItems;
-@property(readonly) NSArray *arrangedChildItems;
-@property(readonly) NSArray *childItems;
+@property(readonly, copy) NSMutableArray *mutableChildItems;
+@property(readonly, copy) NSArray *arrangedChildItems;
+@property(readonly, copy) NSArray *childItems;
 @property(readonly) double rowHeight;
-@property(readonly) NSString *warningMessage;
-@property(readonly) NSImage *iconImage;
+@property(readonly, copy) NSString *warningMessage;
+@property(readonly, copy) NSImage *iconImage;
 @property long long state;
 @property(readonly, getter=isEnabled) BOOL enabled;
-@property(readonly) NSString *title;
+@property(readonly, copy) NSString *subtitle;
+@property(readonly, copy) NSString *title;
 - (id)initWithRepresentedObject:(id)arg1;
 
 @end

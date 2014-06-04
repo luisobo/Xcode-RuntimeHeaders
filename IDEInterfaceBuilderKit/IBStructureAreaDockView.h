@@ -9,7 +9,7 @@
 #import "IBSelectionOwnerDelegate-Protocol.h"
 #import "IBStructureAreaDockItemViewDelegate-Protocol.h"
 
-@class IBDockObjectAndGroupPair, IBSelectionOwner, IBStructureAreaDockLabelContainer, NSArray, NSBezierPath, NSDictionary, NSImage, NSMutableDictionary, NSValue;
+@class IBDockObjectAndGroupPair, IBSelectionOwner, IBStructureAreaDockLabelContainer, NSArray, NSBezierPath, NSDictionary, NSImage, NSMutableDictionary, NSString, NSValue;
 
 @interface IBStructureAreaDockView : DVTLayoutView_ML <IBSelectionOwnerDelegate, IBStructureAreaDockItemViewDelegate>
 {
@@ -39,9 +39,13 @@
     int layoutDirection;
     unsigned long long labelArrowEdge;
     BOOL drawsGroupDividers;
+    BOOL _sizesToFitFixedDimension;
+    BOOL _drawsWithFlatStyle;
     id <IBStructureAreaDockViewDelegate> delegate;
 }
 
+@property(nonatomic) BOOL drawsWithFlatStyle; // @synthesize drawsWithFlatStyle=_drawsWithFlatStyle;
+@property(nonatomic) BOOL sizesToFitFixedDimension; // @synthesize sizesToFitFixedDimension=_sizesToFitFixedDimension;
 @property BOOL drawsGroupDividers; // @synthesize drawsGroupDividers;
 @property(copy, nonatomic) NSDictionary *targetIdentifiedRepresentedObjects; // @synthesize targetIdentifiedRepresentedObjects;
 @property(nonatomic) unsigned long long labelArrowEdge; // @synthesize labelArrowEdge;
@@ -134,6 +138,12 @@
 - (id)groupDividerRects;
 - (id)effectiveBackgroundColor;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

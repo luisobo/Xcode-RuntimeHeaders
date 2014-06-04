@@ -8,14 +8,12 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTMapTable, DVTStackBacktrace, NSArray, NSMutableArray, NSString;
+@class DVTStackBacktrace, NSArray, NSMutableArray, NSString;
 
 @interface IDEBatchFindManager : NSObject <DVTInvalidation>
 {
     NSMutableArray *_history;
     unsigned long long _maxHistoryCount;
-    DVTMapTable *_findContexts;
-    NSMutableArray *_validContexts;
     NSString *_archivePath;
 }
 
@@ -25,9 +23,6 @@
 - (void).cxx_destruct;
 - (void)loadHistory;
 - (void)saveHistory;
-- (id)batchFindContextForWorkspaceTabController:(id)arg1;
-- (void)setBatchFindContext:(id)arg1 forWorkspaceTabController:(id)arg2;
-- (void)invalidateContextObjects:(id)arg1;
 - (id)historyItemForDescription:(id)arg1;
 - (void)clearHistory;
 - (void)_removeHistoryFile;
@@ -38,7 +33,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

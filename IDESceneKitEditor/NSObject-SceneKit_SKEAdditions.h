@@ -7,8 +7,7 @@
 #import "NSObject.h"
 
 @interface NSObject (SceneKit_SKEAdditions)
-- (BOOL)ske_isRunningOn10_9OrLater;
-- (id)ske_displayNameForUndoKVOKeypath:(id)arg1;
++ (id)ske_displayNameForUndoKVOKeypath:(id)arg1;
 - (id)ske_undoKVOKeypaths;
 @end
 

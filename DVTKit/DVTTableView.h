@@ -26,8 +26,12 @@
     BOOL _showAlternatingRowBackgroundColorsWithContents;
     unsigned long long _gridLineStyleBeforeEmptyContentStringShown;
     BOOL _skipGridLinesOnLastRow;
+    BOOL _drawsGridLinesForEmptyContent;
+    double _gridLineInset;
 }
 
+@property double gridLineInset; // @synthesize gridLineInset=_gridLineInset;
+@property BOOL drawsGridLinesForEmptyContent; // @synthesize drawsGridLinesForEmptyContent=_drawsGridLinesForEmptyContent;
 @property BOOL skipGridLinesOnLastRow; // @synthesize skipGridLinesOnLastRow=_skipGridLinesOnLastRow;
 @property int emptyContentStringStyle; // @synthesize emptyContentStringStyle=_emptyContentStringStyle;
 @property(copy, nonatomic) NSString *emptyContentString; // @synthesize emptyContentString=_emptyContentString;
@@ -58,6 +62,12 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)dvt_commonInit;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

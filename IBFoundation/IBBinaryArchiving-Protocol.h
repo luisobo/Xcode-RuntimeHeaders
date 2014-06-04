@@ -10,7 +10,7 @@
 
 @optional
 + (id)decodeWithBinaryUnarchiver:(id)arg1;
-- (const char *)cStringClassNameForBinaryArchiver;
+- (const char *)cStringClassNameForBinaryArchiver:(id)arg1;
 - (void)encodeWithBinaryArchiver:(id)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;
 @end

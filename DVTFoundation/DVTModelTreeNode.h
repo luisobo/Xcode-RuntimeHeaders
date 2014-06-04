@@ -9,7 +9,7 @@
 #import "DVTInvalidation-Protocol.h"
 #import <DVTFoundation/DVTModelObject-Protocol.h>
 
-@class DVTModelObjectGraph, DVTModelTree, DVTStackBacktrace, NSArray, NSMutableArray;
+@class DVTModelObjectGraph, DVTModelTree, DVTStackBacktrace, NSArray, NSMutableArray, NSString;
 
 @interface DVTModelTreeNode : NSObject <DVTModelObject, DVTInvalidation>
 {
@@ -43,7 +43,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "XCTextSidebarViewBreakpointRangeDelegates-Protocol.h"
 
-@class NSURL, PBXProject, PBXTarget, XCFileLineRangeHolder;
+@class NSString, NSURL, PBXProject, PBXTarget, XCFileLineRangeHolder;
 
 @interface XCEditDocument : PBXSourceFileDocument <XCTextSidebarViewBreakpointRangeDelegates>
 {
@@ -65,6 +65,12 @@
 - (BOOL)_usesXCLanguage;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

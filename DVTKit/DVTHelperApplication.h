@@ -21,13 +21,13 @@
 + (id)_helperAppsContentForKey:(id)arg1;
 + (id)helperApplicationWithIdentifier:(id)arg1;
 + (void)initialize;
-@property(readonly) NSString *localizedName; // @synthesize localizedName=_localizedName;
+@property(readonly, copy) NSString *localizedName; // @synthesize localizedName=_localizedName;
 @property(copy) DVTFilePath *bundlePath; // @synthesize bundlePath=_bundlePath;
 - (void).cxx_destruct;
 - (BOOL)launchAndActivateHelperApplication:(id *)arg1;
 @property(readonly) NSRunningApplication *runningApplication;
 - (id)initWithBundlePath:(id)arg1;
-@property(readonly) NSURL *bundleURL;
+@property(readonly, copy) NSURL *bundleURL;
 
 @end
 

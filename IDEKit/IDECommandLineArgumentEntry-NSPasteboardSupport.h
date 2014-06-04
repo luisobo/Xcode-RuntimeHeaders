@@ -9,11 +9,19 @@
 #import "NSPasteboardReading-Protocol.h"
 #import "NSPasteboardWriting-Protocol.h"
 
+@class NSString;
+
 @interface IDECommandLineArgumentEntry (NSPasteboardSupport) <NSPasteboardReading, NSPasteboardWriting>
 + (unsigned long long)readingOptionsForType:(id)arg1 pasteboard:(id)arg2;
 + (id)readableTypesForPasteboard:(id)arg1;
 - (id)pasteboardPropertyListForType:(id)arg1;
 - (id)writableTypesForPasteboard:(id)arg1;
 - (id)initWithPasteboardPropertyList:(id)arg1 ofType:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

@@ -13,9 +13,7 @@
     NSMenuItem *_currentMenuItem;
     NSMenu *_trampolineMenu;
     id <DVTDelayedMenuButtonDelegate> _delegate;
-    NSImage *_inactiveImage;
     NSImage *_disabledImage;
-    NSImage *_disabledInactiveImage;
     NSImage *_arrowImage;
     struct CGSize _originalArrowSize;
     BOOL _ignoredAction;
@@ -23,14 +21,20 @@
     BOOL _delegateRespondsToWillSetCurrentMenuItem;
     BOOL _delegateRespondsToUpdatedMenu;
     BOOL _buttonWantsMenuHidden;
+    BOOL _showMenuImmediatleyWhenButtonPressed;
+    BOOL _lockImageToLeftEdge;
+    BOOL _useNSButtonImageDrawing;
+    struct CGPoint _menuIndicatorInset;
 }
 
+@property BOOL useNSButtonImageDrawing; // @synthesize useNSButtonImageDrawing=_useNSButtonImageDrawing;
+@property struct CGPoint menuIndicatorInset; // @synthesize menuIndicatorInset=_menuIndicatorInset;
+@property BOOL lockImageToLeftEdge; // @synthesize lockImageToLeftEdge=_lockImageToLeftEdge;
+@property BOOL showMenuImmediatleyWhenButtonPressed; // @synthesize showMenuImmediatleyWhenButtonPressed=_showMenuImmediatleyWhenButtonPressed;
 @property(nonatomic) BOOL buttonWantsMenuHidden; // @synthesize buttonWantsMenuHidden=_buttonWantsMenuHidden;
 @property(copy, nonatomic) NSImage *arrowImage; // @synthesize arrowImage=_arrowImage;
 @property BOOL senderOfButtonActionIsButton; // @synthesize senderOfButtonActionIsButton=_senderOfButtonActionIsButton;
-@property(copy, nonatomic) NSImage *disabledInactiveImage; // @synthesize disabledInactiveImage=_disabledInactiveImage;
 @property(copy, nonatomic) NSImage *disabledImage; // @synthesize disabledImage=_disabledImage;
-@property(copy, nonatomic) NSImage *inactiveImage; // @synthesize inactiveImage=_inactiveImage;
 @property(retain, nonatomic) id <DVTDelayedMenuButtonDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 @property(copy) NSImage *pressedImage;

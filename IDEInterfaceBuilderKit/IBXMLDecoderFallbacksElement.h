@@ -15,7 +15,7 @@
 
 + (id)elementName;
 - (void).cxx_destruct;
-- (id)elements;
+- (void)enumerateElements:(id)arg1;
 @property(readonly) NSArray *nameElements;
 - (BOOL)acceptNameElement:(id)arg1 error:(id *)arg2;
 - (BOOL)requestInsertionIntoParent:(id)arg1 error:(id *)arg2;

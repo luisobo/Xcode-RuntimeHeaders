@@ -6,30 +6,42 @@
 
 #import "IDEKeyDrivenNavigableItem.h"
 
-@class DBGMemoryDataProcessWrapper, NSArray;
+@class DBGMemoryDataProcessWrapper, DBGViewDebuggerAdditionUIController, DVTObservingToken, NSArray, NSString;
 
 @interface DBGProcessNavigableItem : IDEKeyDrivenNavigableItem
 {
     NSArray *_cachedChildRepresentedObjects;
-    NSArray *_threadOrQueue;
+    NSArray *_queueContentArray;
+    BOOL _hasFilterString;
     DBGMemoryDataProcessWrapper *_memoryDataGroup;
-    int _threadOrQueueMode;
-    BOOL _hideAncestorForNonInterestingFrames;
+    DVTObservingToken *_viewDebuggerObservingToken;
+    DVTObservingToken *_showOnlyInterestingViewObjectsObservingToken;
+    DVTObservingToken *_showOnlyVisibleViewObjectsObservingToken;
+    BOOL _showsCompressedStackFrames;
+    BOOL _showsOnlyAncestorWithInterestingFrames;
+    BOOL _showsPendingBlocks;
+    int _navigatorContentMode;
+    DBGViewDebuggerAdditionUIController *_viewDebuggingUIController;
+    NSString *_filterString;
 }
 
 + (id)keyPathsForValuesAffectingSubtitle;
 + (id)keyPathsForValuesAffectingImage;
 + (id)keyPathsForValuesAffectingName;
 + (id)_mainQueueName;
-@property BOOL hideAncestorForNonInterestingFrames; // @synthesize hideAncestorForNonInterestingFrames=_hideAncestorForNonInterestingFrames;
-@property(nonatomic) int threadOrQueueMode; // @synthesize threadOrQueueMode=_threadOrQueueMode;
-@property(retain) DBGMemoryDataProcessWrapper *memoryDataGroup; // @synthesize memoryDataGroup=_memoryDataGroup;
+@property(retain, nonatomic) DBGMemoryDataProcessWrapper *memoryDataGroup; // @synthesize memoryDataGroup=_memoryDataGroup;
+@property(copy, nonatomic) NSString *filterString; // @synthesize filterString=_filterString;
+@property(retain, nonatomic) DBGViewDebuggerAdditionUIController *viewDebuggingUIController; // @synthesize viewDebuggingUIController=_viewDebuggingUIController;
+@property(nonatomic) BOOL showsPendingBlocks; // @synthesize showsPendingBlocks=_showsPendingBlocks;
+@property(nonatomic) BOOL showsOnlyAncestorWithInterestingFrames; // @synthesize showsOnlyAncestorWithInterestingFrames=_showsOnlyAncestorWithInterestingFrames;
+@property(nonatomic) BOOL showsCompressedStackFrames; // @synthesize showsCompressedStackFrames=_showsCompressedStackFrames;
+@property(nonatomic) int navigatorContentMode; // @synthesize navigatorContentMode=_navigatorContentMode;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)invalidateChildItems;
 - (id)childRepresentedObjects;
-- (id)hideThreadsIfNeeded;
-- (id)_generateChildrenFromThreads:(id)arg1;
+- (void)findInterestingThreads:(id *)arg1 filteredInterestingThreads:(id *)arg2 fromThreads:(id)arg3;
+- (id)_generateQueueChildrenFromFilteredInterestingThreads:(id)arg1;
 - (BOOL)isLeaf;
 - (id)subtitle;
 - (id)image;

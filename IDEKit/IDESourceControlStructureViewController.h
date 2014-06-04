@@ -8,7 +8,7 @@
 
 #import "DVTReplacementViewDelegate-Protocol.h"
 
-@class DVTBindingToken, DVTImageAndTextCell, DVTReplacementView, IDENavigableItem, IDENavigableItemCoordinator, IDENavigatorOutlineView, IDESourceControlTree, NSArray, NSDateFormatter, NSPredicate, NSSplitView;
+@class DVTBindingToken, DVTImageAndTextCell, DVTReplacementView, IDENavigableItem, IDENavigableItemCoordinator, IDENavigatorOutlineView, IDESourceControlTree, NSArray, NSDateFormatter, NSObject<OS_dispatch_queue>, NSPredicate, NSSplitView, NSString;
 
 @interface IDESourceControlStructureViewController : IDEViewController <DVTReplacementViewDelegate>
 {
@@ -16,7 +16,7 @@
     IDENavigatorOutlineView *_sourceTreeItemOutlineView;
     NSDateFormatter *_sourceTreeItemModificationDateFormatter;
     DVTReplacementView *_logReplacementView;
-    struct dispatch_queue_s *_serial_queue;
+    NSObject<OS_dispatch_queue> *_serial_queue;
     id _branchSwitchObserver;
     int _scopeByStatus;
     BOOL _showIgnoredFiles;
@@ -75,6 +75,12 @@
 - (id)prototypeCell;
 - (void)configurePrototypCell:(id)arg1;
 - (id)dvtExtraBindings;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -31,6 +31,7 @@
 - (void).cxx_destruct;
 - (void)encodeObject:(id)arg1;
 - (void)encodeUTF8RepresentationOfString:(id)arg1;
+- (void)encodeRange:(struct _NSRange)arg1;
 - (void)encodeInset:(CDStruct_c519178c)arg1;
 - (void)encodeCGRect:(struct CGRect)arg1;
 - (void)encodeCGSize:(struct CGSize)arg1;
@@ -46,7 +47,6 @@
 - (void)encodeHeader;
 - (void)finishEncoding;
 - (void)dealloc;
-- (void)finalize;
 - (id)initWithVersion:(long long)arg1 context:(id)arg2;
 
 @end

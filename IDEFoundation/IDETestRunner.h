@@ -25,6 +25,8 @@
 - (void).cxx_destruct;
 - (void)willRunTest:(id)arg1;
 - (void)didRunTest:(id)arg1 withResult:(id)arg2;
+- (id)defaultTestArgumentsOperationForBuildParameters:(id)arg1 runDestination:(id)arg2 workspace:(id)arg3 error:(id *)arg4 completionBlock:(id)arg5;
+- (id)defaultTestEnvironmentVariablesForBuildParameters:(id)arg1 runDestination:(id)arg2 workspace:(id)arg3 error:(id *)arg4;
 - (id)testOperationsForExecutionEnvironment:(id)arg1 buildParameters:(id)arg2 runDestination:(id)arg3 workspace:(id)arg4 testOperationErrorBlock:(id)arg5 error:(void)arg6 launchParametersBlock:(id *)arg7;
 - (id)testOperationsForExecutionEnvironment:(id)arg1 buildParameters:(id)arg2 runDestination:(id)arg3 workspace:(id)arg4 error:(id *)arg5 launchParametersBlock:(id)arg6;
 - (id)init;

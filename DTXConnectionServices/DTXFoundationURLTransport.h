@@ -8,7 +8,7 @@
 
 #import "NSURLConnectionDataDelegate-Protocol.h"
 
-@class NSURLConnection;
+@class NSString, NSURLConnection;
 
 @interface DTXFoundationURLTransport : DTXTransport <NSURLConnectionDataDelegate>
 {
@@ -24,6 +24,12 @@
 - (id)connection:(id)arg1 willCacheResponse:(id)arg2;
 - (id)initWithRemoteAddress:(id)arg1;
 - (id)initWithLocalAddress:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

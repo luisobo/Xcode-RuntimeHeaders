@@ -58,12 +58,18 @@
 - (id)clipView;
 - (void)setBorderRect:(struct CGRect)arg1;
 @property(readonly) long long conclusion;
-@property(readonly) NSString *stringValue; // @dynamic stringValue;
+@property(readonly, copy) NSString *stringValue; // @dynamic stringValue;
 - (BOOL)shouldApplySideEffectsToEditedString;
 @property(readonly) BOOL madeExplicitAttributeChanges;
 @property(readonly) BOOL madeExplicitTextChanges;
 - (id)stringEditorCellForCurrentConfiguration;
 - (id)initWithConfiguration:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

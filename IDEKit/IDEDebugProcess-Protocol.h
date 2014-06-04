@@ -6,10 +6,13 @@
 
 #import "IDEDebugNavigableModel-Protocol.h"
 
-@class NSString;
+@class NSArray, NSString;
 
 @protocol IDEDebugProcess <IDEDebugNavigableModel>
 @property(copy, nonatomic) NSString *name;
 - (id)contentDelegateUIExtensionIdentifier;
+
+@optional
+@property(readonly, nonatomic) NSArray *loadedCodeModules;
 @end
 

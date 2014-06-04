@@ -14,7 +14,7 @@
     PBXTarget *_target;
 }
 
-@property(readonly) _Xcode3ProjectInfoProjectNode *projectNode; // @synthesize projectNode=_project;
+@property(readonly) __weak _Xcode3ProjectInfoProjectNode *projectNode; // @synthesize projectNode=_project;
 @property(readonly) PBXTarget *target; // @synthesize target=_target;
 - (void).cxx_destruct;
 - (id)basedOnFileColumnIcon;

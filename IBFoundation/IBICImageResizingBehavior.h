@@ -10,6 +10,8 @@
 #import "NSCoding-Protocol.h"
 #import "NSCopying-Protocol.h"
 
+@class NSString;
+
 @interface IBICImageResizingBehavior : NSObject <NSCopying, NSCoding, IBBinaryArchiving>
 {
     long long _resizingMode;
@@ -24,14 +26,14 @@
 @property(readonly) struct CGSize centerSize; // @synthesize centerSize=_centerSize;
 @property(readonly) long long centerFillMode; // @synthesize centerFillMode=_centerFillMode;
 @property(readonly) long long resizingMode; // @synthesize resizingMode=_resizingMode;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (BOOL)isResizable;
 - (BOOL)isPartBasedVertical;
 - (BOOL)isPartBasedHorizontal;
 - (BOOL)getValidatedCapInsets:(CDStruct_c519178c *)arg1 centerSize:(struct CGSize *)arg2 forSourceImageSize:(struct CGSize)arg3;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToImageResizingBehavior:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (id)JSONRepresentation;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
@@ -40,6 +42,10 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithResizingMode:(long long)arg1 capInsets:(CDStruct_c519178c)arg2 centerFillMode:(long long)arg3 centerSize:(struct CGSize)arg4;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

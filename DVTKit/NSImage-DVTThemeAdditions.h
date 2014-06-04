@@ -17,10 +17,12 @@
 + (id)dvt_archiveIcon;
 + (id)dvt_navToolIcon;
 + (id)dvt_navSDKIcon;
++ (id)dvt_navAppExtensionIcon;
 + (id)dvt_navXPCServiceIcon;
 + (id)dvt_navApplicationIcon;
 + (id)dvt_navFrameworkIcon;
 + (id)dvt_navGroupIcon;
++ (id)dvt_navModuleIcon;
 + (id)dvt_questionMarkIcon;
 + (id)dvt_blankDocumentIcon;
 + (id)dvt_unknownFSObjectIcon;

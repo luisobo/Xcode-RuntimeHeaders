@@ -9,6 +9,8 @@
 #import "IBNSToolbarConfigurationViewDelegate-Protocol.h"
 #import "IBNSToolbarItemsContainerViewDelegate-Protocol.h"
 
+@class NSString;
+
 @interface IBNSToolbarEditor : IBEditor <IBNSToolbarConfigurationViewDelegate, IBNSToolbarItemsContainerViewDelegate>
 {
 }
@@ -32,10 +34,16 @@
 - (void)toolbarItemsContainerView:(id)arg1 didFinishDragging:(unsigned long long)arg2;
 - (void)toolbarConfigurationView:(id)arg1 doneButtonWasClicked:(id)arg2;
 - (BOOL)isEditingStandaloneToolbar;
-- (id)designedToolbar;
+- (id)editedToolbar;
 - (id)toolbarView;
 - (id)allowedItemsView;
 - (id)configurationView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

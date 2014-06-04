@@ -7,10 +7,11 @@
 #import "NSObject.h"
 
 #import "DVTInvalidation-Protocol.h"
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@class DBGProcess, DVTStackBacktrace, NSArray;
+@class DBGProcess, DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, IDEFileReference, NSArray, NSImage, NSString;
 
-@interface DBGDisassemblyItemProcessWrapper : NSObject <DVTInvalidation>
+@interface DBGDisassemblyItemProcessWrapper : NSObject <DVTInvalidation, IDEKeyDrivenNavigableItemRepresentedObject>
 {
     DBGProcess *_process;
     NSArray *_threadWrappers;
@@ -23,15 +24,28 @@
 @property(readonly) DBGProcess *process; // @synthesize process=_process;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (id)navigableItem_image;
-- (id)navigableItem_name;
-- (id)disassemblyItemForStackFrame:(id)arg1;
-- (void)_handleThreadsChanged:(id)arg1;
+- (void)_invalidatePreviousThreadWrappers;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) NSString *navigableItem_name;
+- (id)geniusDisassemblyItemForStackFrame:(id)arg1;
+- (void)_handleDebugSessionCoalescedStateChange;
+- (void)_handleHasDisassembly;
 - (id)initWithProcess:(id)arg1;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

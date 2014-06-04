@@ -20,6 +20,8 @@
 + (id)prototypeConnectionsForObject:(id)arg1;
 + (BOOL)isObjectValidOutletDestination:(id)arg1;
 + (BOOL)isObjectValidOutletSource:(id)arg1;
+- (BOOL)canHaveDestinationSeparatedWithSeparationType:(int)arg1;
+- (BOOL)canHaveSourceSeparatedWithSeparationType:(int)arg1;
 - (id)connectionByCompletingWithConnectionContext:(id)arg1;
 - (id)archiveKeyForLabel;
 - (void)populateExternalConnectionRepresentation:(id)arg1 forContainer:(id)arg2 fromContainer:(id)arg3 otherExternalConnections:(id)arg4 context:(id)arg5;
@@ -31,7 +33,7 @@
 - (BOOL)refactorWithOutletRenameRefactoringOperation:(id)arg1 inDocument:(id)arg2 error:(id *)arg3;
 - (id)errorMessageForExistenceWithoutPrototypeInDocument:(id)arg1;
 - (id)displayGroupIdentifierFromReferenceEndPoint:(id)arg1;
-- (id)displayNameWithRespectToPredecessors:(id)arg1;
+- (id)explicitDisplayNameWithRespectToPredecessors:(id)arg1;
 - (id)supersedingEndPoints;
 - (id)supersedingDisplayValues;
 - (BOOL)isCatchAllPrototypeForDisplayGroup;

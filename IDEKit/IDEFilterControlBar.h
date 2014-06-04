@@ -8,22 +8,26 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTSearchField, DVTStackBacktrace, NSMenu, NSString;
+@class DVTSearchField, DVTStackBacktrace, NSMenu, NSMutableArray, NSString;
 
 @interface IDEFilterControlBar : DVTBorderedView <DVTInvalidation>
 {
+    id _filterLeftButton;
+    NSMutableArray *_toggleButtons;
+    BOOL _usesAutoLayout;
     DVTSearchField *_searchField;
     id <IDEFilterControlBarTarget> _filterTarget;
-    id _filterLeftButton;
     NSString *_filterDefinitionIdentifier;
 }
 
 + (void)initialize;
+@property(nonatomic) BOOL usesAutoLayout; // @synthesize usesAutoLayout=_usesAutoLayout;
 @property(copy, nonatomic) NSString *filterDefinitionIdentifier; // @synthesize filterDefinitionIdentifier=_filterDefinitionIdentifier;
 @property(retain, nonatomic) id <IDEFilterControlBarTarget> filterTarget; // @synthesize filterTarget=_filterTarget;
 @property(retain) DVTSearchField *searchField; // @synthesize searchField=_searchField;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
+- (id)toggleButtons;
 - (void)_didSetFilterTarget;
 - (void)_willSetFilterTarget;
 - (void)setUpFilterControls;
@@ -35,7 +39,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

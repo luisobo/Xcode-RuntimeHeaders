@@ -31,10 +31,6 @@
 @property(readonly) int type; // @synthesize type=_type;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (void)_legacyLogicOnUnarchivingArraysOfBreakpoints:(id)arg1;
-- (void)addExceptionBreakpoints:(id)arg1 fromXMLUnarchiver:(id)arg2;
-- (void)addSymbolicBreakpoints:(id)arg1 fromXMLUnarchiver:(id)arg2;
-- (void)addFileBreakpoints:(id)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)addBreakpoints:(id)arg1 fromXMLUnarchiver:(id)arg2;
 - (id)_breakpointArchivingProxiesArray;
 - (void)dvt_encodeRelationshipsWithXMLArchiver:(id)arg1 version:(id)arg2;
@@ -62,8 +58,12 @@
 // Remaining properties
 @property(readonly) NSArray *breakpoints; // @dynamic breakpoints;
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) NSMutableArray *mutableBreakpoints; // @dynamic mutableBreakpoints;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

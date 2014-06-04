@@ -9,7 +9,7 @@
 #import "IDECommandHandler-Protocol.h"
 #import "IDECommandHandlerVendor-Protocol.h"
 
-@class NSAlert;
+@class NSAlert, NSString;
 
 @interface IDESourceControlCommandHandler : NSObject <IDECommandHandlerVendor, IDECommandHandler>
 {
@@ -63,8 +63,6 @@
 - (void)presentNoWorkingCopiesError;
 - (BOOL)hasSelection;
 - (BOOL)hasBranchesConfigured;
-- (BOOL)hasReachableWorkingCopy;
-- (BOOL)hasReachableRepository;
 - (BOOL)hasValidWorkingCopy;
 - (BOOL)hasValidWorkspace;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
@@ -78,6 +76,12 @@
 - (id)workspace;
 - (id)workspaceDocument;
 - (id)_initWithSelectionSource:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

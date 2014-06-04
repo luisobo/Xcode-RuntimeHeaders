@@ -8,7 +8,7 @@
 
 #import "XCSelectionSource-Protocol.h"
 
-@class PBXProject, PBXProjectModule, PBXSmartGroup;
+@class NSString, PBXProject, PBXProjectModule, PBXSmartGroup;
 
 @interface PBXSmartGroupDataSource : NSObject <XCSelectionSource>
 {
@@ -54,6 +54,12 @@
 - (id)owningSmartGroup;
 - (id)initWithOwningModule:(id)arg1;
 - (id)initWithOwningModule:(id)arg1 smartGroup:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

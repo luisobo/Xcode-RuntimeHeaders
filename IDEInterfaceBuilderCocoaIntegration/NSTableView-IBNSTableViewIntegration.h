@@ -22,11 +22,9 @@
 - (BOOL)ibShouldUseConstraintsInsteadOfAutoresizingWhenChildOfClipView;
 - (BOOL)ibChildView:(id)arg1 shouldUseConstraintsInsteadOfAutoresizingWhenAddedToDocument:(id)arg2;
 - (BOOL)ibIsArbitrationUnitLeaf;
-- (void)ibFinishArchivingDocument:(id)arg1 withContext:(id)arg2;
-- (void)ibBeginArchivingDocument:(id)arg1 withContext:(id)arg2;
-- (BOOL)ibNeedsToCompileWithCopyOfDocument:(id)arg1;
+- (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (BOOL)isContainedTableColumn:(id)arg1;
-- (void)syncRowHeightWithContainedViewsIfNecessary;
+- (void)ibSyncRowHeightWithContainedViewsIfNecessary;
 - (void)setIbInspectedRowHeight:(id)arg1;
 - (id)ibInspectedRowHeight;
 - (void)setIbShadowedRowHeight:(double)arg1;
@@ -45,6 +43,7 @@
 - (void)setIbInspectedRefusesFirstResponder:(long long)arg1;
 - (long long)ibInspectedRefusesFirstResponder;
 - (long long)ibInspectedEnabled;
+- (void)awakeAfterUsingDocumentUnarchiver:(id)arg1;
 - (id)awakeAfterUsingCoder:(id)arg1;
 - (id)ibAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 insertionContext:(id)arg3;
 - (BOOL)ibCanAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 targetChildRelation:(id *)arg3;
@@ -80,9 +79,7 @@
 - (void)ibRemoveChildren:(id)arg1;
 - (void)ibPopulateEditorSelectionOrderRelationLists:(id)arg1;
 - (void)ibPopulateChildRelationOrder:(id)arg1;
-- (id)ibDefaultFontKeyPath;
-- (void)setIbTableColumnFontsForFontPanel:(id)arg1;
-- (id)ibTableColumnFontsForFontPanel;
+- (void)ibPopulateObjectsForFloatingPanels:(id)arg1;
 - (void)resizeSubviewsWithOldSize:(struct CGSize)arg1;
 - (void)ibSwizzledViewWillDraw;
 - (void)ibSyncSubviewsOfTableColumns;

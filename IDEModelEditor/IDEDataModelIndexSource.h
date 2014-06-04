@@ -8,6 +8,8 @@
 
 #import "NSFileManagerDelegate-Protocol.h"
 
+@class NSString;
+
 @interface IDEDataModelIndexSource : IDEIndexDataSource <NSFileManagerDelegate>
 {
 }
@@ -15,6 +17,12 @@
 + (id)dataSourceVersion;
 - (BOOL)generateDataForJob:(id)arg1;
 - (void)_indexEntity:(id)arg1 forFile:(id)arg2 index:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

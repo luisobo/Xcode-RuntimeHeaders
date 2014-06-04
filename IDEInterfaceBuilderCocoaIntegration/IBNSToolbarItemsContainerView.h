@@ -31,7 +31,6 @@
 - (void)mouseDragged:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)draggedImage:(id)arg1 endedAt:(struct CGPoint)arg2 operation:(unsigned long long)arg3;
-- (unsigned long long)draggingSourceOperationMaskForLocal:(BOOL)arg1;
 - (BOOL)performDragOperation:(id)arg1;
 - (BOOL)prepareForDragOperation:(id)arg1;
 - (void)draggingExited:(id)arg1;
@@ -40,7 +39,7 @@
 - (unsigned long long)draggingUpdated:(id)arg1;
 - (long long)dropIndexForPoint:(struct CGPoint)arg1 forItemAtIndex:(long long)arg2;
 - (unsigned long long)dragOperationForDragInfo:(id)arg1;
-- (void)dragItemView:(id)arg1 withEvent:(id)arg2;
+- (void)dragItemView:(id)arg1 withMouseDown:(id)arg2 mouseDragged:(id)arg3;
 - (id)toolbarItemFromPasteboardData:(id)arg1;
 - (id)dataForSerializingToolbarItem:(id)arg1;
 - (BOOL)supportsDragFromCounterpart;

@@ -12,7 +12,7 @@
 #import "IDEVersionedFileManagerDelegate-Protocol.h"
 #import "NSMenuDelegate-Protocol.h"
 
-@class NSArray, NSMapTable;
+@class NSArray, NSMapTable, NSString;
 
 @interface IDEDocumentController : NSDocumentController <IDEVersionedFileManagerDelegate, IDEContainerErrorPresenter, IDEContainerReloadingDelegate, IDEContainerUnlockingDelegate, NSMenuDelegate>
 {
@@ -72,11 +72,11 @@
 - (BOOL)attemptRecoveryFromError:(id)arg1 optionIndex:(unsigned long long)arg2;
 - (int)handleSaveError:(id)arg1 forContainer:(id)arg2 withAction:(int)arg3;
 - (void)moveItemAtFilePathToTrash:(id)arg1 completionBlock:(id)arg2;
-- (BOOL)canMoveItemsAtFilePaths:(id)arg1 toFilePaths:(id)arg2 completionBlockDispatchQueue:(struct dispatch_queue_s **)arg3 completionBlock:(id *)arg4;
+- (BOOL)canMoveItemsAtFilePaths:(id)arg1 toFilePaths:(id)arg2 completionBlockDispatchQueue:(id *)arg3 completionBlock:(id *)arg4;
 - (void)asyncRemoveItemsAtFilePaths:(id)arg1 completionBlock:(id)arg2;
 - (void)_asyncRemoveItemsAtFilePaths:(id)arg1 completionBlock:(id)arg2;
 - (void)willRemoveItemsAtFilePaths:(id)arg1 completionBlock:(id)arg2;
-- (BOOL)canRemoveItemsAtFilePaths:(id)arg1 completionBlockDispatchQueue:(struct dispatch_queue_s **)arg2 completionBlock:(id *)arg3;
+- (BOOL)canRemoveItemsAtFilePaths:(id)arg1 completionBlockDispatchQueue:(id *)arg2 completionBlock:(id *)arg3;
 - (id)_wrappedWorkspacesForContainers:(id)arg1;
 - (id)_retainedContainersForFilePaths:(id)arg1;
 - (id)_getEditorDocumentsForFilePaths:(id)arg1 editedDocuments:(id *)arg2;
@@ -93,6 +93,7 @@
 - (id)displayNameForType:(id)arg1;
 - (id)fileExtensionsFromType:(id)arg1;
 - (BOOL)_applicationShouldTerminate;
+- (void)_runOpenPanelWithURLsFromRunningOpenPanel:(id)arg1 completionBlock:(id)arg2;
 - (void)runOpenPanelWithCompletionBlock:(id)arg1;
 - (id)_setupOpenPanel;
 - (id)currentDirectory;
@@ -120,14 +121,20 @@
 - (Class)documentClassForType:(id)arg1;
 - (Class)_THREAD_documentClassForType:(id)arg1 extension:(id *)arg2;
 - (void)_editorDocument:(id)arg1 didPrint:(BOOL)arg2 contextInfo:(void *)arg3;
+- (void)_printDocumentsWithContentsOfUnprocessedURLs:(id)arg1 settings:(id)arg2 showPrintPanels:(BOOL)arg3 completionHandler:(id)arg4;
 - (void)_printDocumentsWithContentsOfURLs:(id)arg1 settings:(id)arg2 showPrintPanels:(BOOL)arg3 completionHandler:(id)arg4;
 - (id)openDocumentWithContentsOfURL:(id)arg1 display:(BOOL)arg2;
+- (void)asyncOpenDocumentsWithContentsOfURLs:(id)arg1 display:(BOOL)arg2 completionHandler:(id)arg3;
 - (id)openDocumentsWithContentsOfURLs:(id)arg1 display:(BOOL)arg2 error:(id *)arg3;
 - (id)openDocumentWithContentsOfURL:(id)arg1 display:(BOOL)arg2 error:(id *)arg3;
 - (void)openDocumentWithContentsOfURL:(id)arg1 display:(BOOL)arg2 completionHandler:(id)arg3;
+- (void)asyncOpenDocumentLocation:(id)arg1 display:(BOOL)arg2 completionHandler:(id)arg3;
 - (id)openDocumentLocation:(id)arg1 display:(BOOL)arg2 error:(id *)arg3;
 - (id)openDocumentLocation:(id)arg1 error:(id *)arg2;
+- (void)_openDocumentsForDocumentLocations:(id)arg1 display:(BOOL)arg2 completionHandler:(id)arg3;
 - (id)_openDocumentsForDocumentLocations:(id)arg1 display:(BOOL)arg2 error:(id *)arg3;
+- (void)_openProjectsAndWorkspaces:(id)arg1 display:(BOOL)arg2 openedDocuments:(id)arg3 simpleFileDocumentLocations:(id)arg4 completionHandler:(id)arg5;
+- (void)_openProjectsAndWorkspaces:(id)arg1 display:(BOOL)arg2 completionHandler:(id)arg3;
 - (BOOL)_openProjectsAndWorkspaces:(id)arg1 documents:(id *)arg2 simpleFileURLs:(id *)arg3 display:(BOOL)arg4 error:(id *)arg5;
 - (id)_workspaceOrProjectDocumentLocationsInFolderURL:(id)arg1;
 - (BOOL)_openSimpleFileDocumentLocations:(id)arg1 documents:(id *)arg2 display:(BOOL)arg3 error:(id *)arg4;
@@ -136,20 +143,28 @@
 - (void)_promptToOpenWorkspaceWithCompletionBlock:(id)arg1;
 - (void)_chooseWorkspaceWithCompletionBlock:(id)arg1;
 - (void)_openPatch:(id)arg1 displayDocument:(BOOL)arg2;
+- (void)_openProjectDocument:(id)arg1 displayDocument:(BOOL)arg2 completionHandler:(id)arg3;
 - (id)_openProjectDocument:(id)arg1 displayDocument:(BOOL)arg2 error:(id *)arg3;
 - (id)makeDocumentWithContentsOfURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
+- (void)_openWorkspaceDocumentForWorkspace:(id)arg1 display:(BOOL)arg2 completionHandler:(id)arg3;
 - (id)_openWorkspaceDocumentForWorkspace:(id)arg1 display:(BOOL)arg2 error:(id *)arg3;
 - (id)_addPath:(id)arg1 toChildrenOfWorkspace:(id)arg2;
 - (id)_frontmostWorkspaceWindowForWorkspaces:(id)arg1;
 - (BOOL)_isWorkspaceWindow:(id)arg1 forWorkspaces:(id)arg2;
 - (id)typeForContentsOfURL:(id)arg1 error:(id *)arg2;
 - (void)reopenDocumentForURL:(id)arg1 withContentsOfURL:(id)arg2 display:(BOOL)arg3 completionHandler:(id)arg4;
-- (BOOL)saveUntitledWorkspaceDocument:(id)arg1 forProjectDocument:(id)arg2 error:(id *)arg3;
+- (void)asyncSaveUntitledWorkspaceDocument:(id)arg1 forProjectDocument:(id)arg2 completionHandler:(id)arg3;
 - (id)openUntitledWorkspaceDocumentAndDisplay:(BOOL)arg1 error:(id *)arg2;
 - (id)_openUntitledWorkspaceDocumentAndDisplay:(BOOL)arg1 simpleFilesFocused:(BOOL)arg2 forSingleFile:(BOOL)arg3 editorDocumentURLOrNil:(id)arg4 error:(id *)arg5;
 - (id)documentForURL:(id)arg1;
 - (id)defaultType;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -11,14 +11,16 @@
 {
     struct ALCdevice_struct *_device;
     struct ALCcontext_struct *_context;
+    BOOL _suspended;
 }
 
 + (id)currentContext;
 + (id)context;
 - (void)dealloc;
-@property double gain;
-@property struct CGPoint listenerPosition;
+@property(nonatomic) double gain;
+@property(nonatomic) struct CGPoint listenerPosition;
 - (void)makeCurrentContext;
+@property(nonatomic) BOOL suspended;
 - (id)init;
 
 @end

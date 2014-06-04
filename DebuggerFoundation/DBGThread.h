@@ -9,69 +9,95 @@
 #import "DVTInvalidation-Protocol.h"
 #import "IDEDebugNavigableModel-Protocol.h"
 
-@class DBGProcess, DVTStackBacktrace, IDELaunchSession, NSArray, NSMutableArray, NSNumber, NSString;
+@class DBGProcess, DBGQueue, DVTStackBacktrace, IDELaunchSession, NSArray, NSCache, NSMutableArray, NSNumber, NSString;
 
 @interface DBGThread : NSObject <IDEDebugNavigableModel, DVTInvalidation>
 {
+    DBGThread *_leadingThread;
+    BOOL _staleThreadDisplayName;
+    long long _lastCompressionValue;
+    long long _secondLastCompressionValue;
+    NSCache *_compressedStackFramesCache;
+    NSMutableArray *_stackFrames;
+    BOOL _autoRefreshStackFramesWhenPaused;
+    BOOL _hasLatestStackFrames;
+    BOOL _recorded;
+    BOOL _userSuspended;
+    BOOL _recordedFramesUpdated;
+    BOOL _hasInitializedStackFrames;
+    int _state;
+    int _stopReason;
+    int _breakpointStackSelectionBehavior;
+    NSString *_threadDisplayName;
     DBGProcess *_parentProcess;
     NSNumber *_uniqueID;
     NSString *_threadName;
-    NSString *_queueName;
-    int _state;
-    int _stopReason;
+    DBGQueue *_queue;
+    DBGThread *_recordedThread;
+    unsigned long long _recordedThreadDepth;
     NSString *_lastReasonStopped;
-    NSString *_threadDisplayName;
-    BOOL _staleThreadDisplayName;
-    NSString *_queueDisplayName;
-    BOOL _staleQueueDisplayName;
-    NSMutableArray *_stackFrames;
-    BOOL _hasInitializedStackFrames;
-    BOOL _autoRefreshStackFramesWhenPaused;
-    BOOL _userSuspended;
-    int _breakpointStackSelectionBehavior;
+    NSString *_qualityOfServiceValue;
 }
 
 + (id)keyPathsForValuesAffectingStopped;
++ (id)displayNameForThreadName:(id)arg1 threadID:(id)arg2;
 + (void)initialize;
-@property int breakpointStackSelectionBehavior; // @synthesize breakpointStackSelectionBehavior=_breakpointStackSelectionBehavior;
-@property int stopReason; // @synthesize stopReason=_stopReason;
-@property(copy, nonatomic) NSString *lastReasonStopped; // @synthesize lastReasonStopped=_lastReasonStopped;
-@property BOOL userSuspended; // @synthesize userSuspended=_userSuspended;
-@property BOOL autoRefreshStackFramesWhenPaused; // @synthesize autoRefreshStackFramesWhenPaused=_autoRefreshStackFramesWhenPaused;
 @property BOOL hasInitializedStackFrames; // @synthesize hasInitializedStackFrames=_hasInitializedStackFrames;
+@property BOOL recordedFramesUpdated; // @synthesize recordedFramesUpdated=_recordedFramesUpdated;
+@property(readonly, copy, nonatomic) NSString *qualityOfServiceValue; // @synthesize qualityOfServiceValue=_qualityOfServiceValue;
+@property(nonatomic) BOOL userSuspended; // @synthesize userSuspended=_userSuspended;
+@property(nonatomic) int breakpointStackSelectionBehavior; // @synthesize breakpointStackSelectionBehavior=_breakpointStackSelectionBehavior;
+@property(copy, nonatomic) NSString *lastReasonStopped; // @synthesize lastReasonStopped=_lastReasonStopped;
+@property(nonatomic) unsigned long long recordedThreadDepth; // @synthesize recordedThreadDepth=_recordedThreadDepth;
+@property(nonatomic, getter=isRecorded) BOOL recorded; // @synthesize recorded=_recorded;
+@property(retain, nonatomic) DBGThread *recordedThread; // @synthesize recordedThread=_recordedThread;
+@property(nonatomic) BOOL hasLatestStackFrames; // @synthesize hasLatestStackFrames=_hasLatestStackFrames;
+@property(nonatomic) BOOL autoRefreshStackFramesWhenPaused; // @synthesize autoRefreshStackFramesWhenPaused=_autoRefreshStackFramesWhenPaused;
+@property(nonatomic) int stopReason; // @synthesize stopReason=_stopReason;
 @property(nonatomic) int state; // @synthesize state=_state;
-@property(copy, nonatomic) NSString *queueName; // @synthesize queueName=_queueName;
-@property(copy, nonatomic) NSString *threadName; // @synthesize threadName=_threadName;
-@property(readonly) NSNumber *uniqueID; // @synthesize uniqueID=_uniqueID;
-@property(readonly) DBGProcess *parentProcess; // @synthesize parentProcess=_parentProcess;
+@property(retain, nonatomic) DBGQueue *queue; // @synthesize queue=_queue;
+@property(readonly, copy, nonatomic) NSString *threadName; // @synthesize threadName=_threadName;
+@property(readonly, nonatomic) NSNumber *uniqueID; // @synthesize uniqueID=_uniqueID;
+@property(readonly, nonatomic) DBGProcess *parentProcess; // @synthesize parentProcess=_parentProcess;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)requestUnsuspend;
 - (void)requestSuspend;
-- (void)requestStackFrames:(unsigned long long)arg1 resultQueue:(struct dispatch_queue_s *)arg2 resultHandler:(id)arg3;
-- (BOOL)refreshStackFrames;
-- (unsigned long long)hash;
+- (void)setLeadingThread:(id)arg1 depth:(unsigned long long)arg2;
+- (id)leadingThread;
+- (void)setPrimitiveQueue:(id)arg1;
+- (id)compressedStackFramesIncludingRecorded:(long long)arg1;
+- (id)compressedStackFrames:(long long)arg1;
+- (BOOL)_shouldSkipRecordedFrames;
+- (void)requestStackFrames:(unsigned long long)arg1 handleOnMainQueueWithResultHandler:(id)arg2;
+- (void)refreshStackFrames;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)_inferStateFromStackFrames:(id)arg1;
 - (void)_inferState;
-- (void)getLocalStackFrames:(id *)arg1 range:(struct _NSRange)arg2;
-- (id)objectInLocalStackFramesAtIndex:(unsigned long long)arg1;
-- (unsigned long long)countOfLocalStackFrames;
-- (void)invalidateUnsuedStackFramesAfterCallToSetStackFrames:(id)arg1;
+- (void)_primitiveSetQualityOfServiceValue:(id)arg1;
+- (void)_primitiveSetThreadName:(id)arg1;
+- (void)invalidateUnusedStackFramesAfterCallToSetStackFrames:(id)arg1;
 - (id)primitiveStackFrames;
-@property(copy) NSArray *stackFrames; // @dynamic stackFrames;
+@property(copy, nonatomic) NSArray *stackFrames; // @dynamic stackFrames;
+- (void)_invalidateStackFrames:(id)arg1;
+- (void)willReuse;
+- (void)_resetQueueStackFramesAndRecordedStates:(BOOL)arg1;
 @property(readonly, getter=isStopped) BOOL stopped;
-@property(readonly) NSString *queueDisplayName; // @dynamic queueDisplayName;
-@property(readonly) NSString *threadDisplayName; // @dynamic threadDisplayName;
-- (id)description;
+@property(readonly, nonatomic) NSString *threadDisplayName; // @synthesize threadDisplayName=_threadDisplayName;
+- (void)setThreadName:(id)arg1;
+- (void)_resetCurrentStackFrameIfNecessary:(id)arg1;
+@property(readonly, copy) NSString *description;
 @property(readonly) IDELaunchSession *launchSession;
-@property(readonly) NSString *associatedProcessUUID;
+@property(readonly, copy) NSString *associatedProcessUUID;
 - (id)initWithParentProcess:(id)arg1 uniqueID:(id)arg2;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
-@property(readonly) NSMutableArray *mutableStackFrames; // @dynamic mutableStackFrames;
+@property(readonly, copy) NSMutableArray *mutableStackFrames; // @dynamic mutableStackFrames;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

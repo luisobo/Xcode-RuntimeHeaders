@@ -11,6 +11,7 @@
 }
 
 - (BOOL)canAcceptDragInfo:(id)arg1;
+- (id)editedMatrix;
 
 @end
 

@@ -8,20 +8,18 @@
 
 #import "IDEConsoleAdaptorDelegateProtocol-Protocol.h"
 
-@class DBGLLDBSession, DVTDispatchLock, NSFileHandle, NSString;
+@class DBGLLDBSession, DVTDispatchLock, NSObject<OS_dispatch_queue>, NSString;
 
 // Not exported
 @interface DBGLLDBLauncher : IDERunOperationPathWorker <IDEConsoleAdaptorDelegateProtocol>
 {
-    struct SBDebugger m_debugger;
-    NSFileHandle *_consoleAdaptorDebuggerInputFile;
+    struct SBDebugger _lldbDebugger;
     DBGLLDBSession *_debugSession;
-    struct auto_ptr<lldb::SBCommunication> m_lldb_comm_ap;
-    BOOL _terminateCalled;
-    struct SBInputReader m_console_reader;
-    NSString *m_prompt;
-    struct dispatch_queue_s *_executeLLDBCommandQueue;
+    NSString *_lastKnownDebuggerPrompt;
+    BOOL _ignorePromptOnce;
+    NSObject<OS_dispatch_queue> *_executeLLDBCommandQueue;
     DVTDispatchLock *_lifeCycleLock;
+    BOOL _terminateCalled;
 }
 
 + (void)initialize;
@@ -31,6 +29,11 @@
 - (void)primitiveInvalidate;
 - (void)terminate;
 - (void)start;
+- (id)_consumeEventAfterConnectToDebugServer:(struct SBProcess)arg1 lldbTarget:(struct SBTarget)arg2 launchParameters:(id)arg3;
+- (void)_setMiscHandleCommands:(id)arg1;
+- (void)_setPlatformForStart:(id)arg1;
+- (void)_messageTrace:(id)arg1;
+- (id)devicePathSubstitutionPairsString;
 - (struct SBTarget)_tryWithAnotherArchitectureOnBinaryPath:(id)arg1;
 - (struct SBProcess)_doRegularDebugWithTarget:(struct SBTarget)arg1 usingDebugServer:(BOOL)arg2 errTargetString:(id)arg3;
 - (void)_reportTarget:(id)arg1 failedToLaunchError:(struct SBError)arg2;
@@ -38,15 +41,12 @@
 - (id)executableArguments;
 - (id)parseConsoleOutputFromOriginalOutput:(id)arg1;
 - (id)parseConsoleInputFromOriginalInput:(id)arg1;
-- (void)sendSTDIN:(id)arg1;
 - (void)_executeLLDBCommands:(id)arg1;
-- (BOOL)consoleInputReaderIsActive;
-- (void)resetPrompt:(const char *)arg1;
-- (void)clearPrompt;
-- (void)refreshPrompt;
 - (void)_createDebuggerConsoleAdaptor;
+- (struct SBDebugger)lldbDebugger;
 - (void)setFinishedRunning;
 - (void)_logToConsoleForUserActions:(id)arg1;
+- (void)_logDebugStringFromLLDB:(const char *)arg1;
 - (id)initWithExtensionIdentifier:(id)arg1 launchSession:(id)arg2;
 
 @end

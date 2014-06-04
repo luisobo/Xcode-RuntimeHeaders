@@ -11,7 +11,7 @@
 #import "NSCoding-Protocol.h"
 #import "NSCopying-Protocol.h"
 
-@class IBLayoutConstant, NSString;
+@class IBLayoutConstant, IBLayoutConstraintMultiplier, NSString;
 
 @interface IBLayoutConstraintArchivableRepresentation : NSObject <NSCoding, NSCopying, IBLayoutConstraintRepresentation, IBBinaryArchiving>
 {
@@ -22,7 +22,7 @@
     NSString *_secondItemIdentifier;
     unsigned long long _secondAttribute;
     double _priority;
-    double _multiplier;
+    IBLayoutConstraintMultiplier *_multiplier;
     IBLayoutConstant *_constant;
     NSString *_containingViewIdentifier;
     double _scoringType;
@@ -36,7 +36,7 @@
 @property(readonly, nonatomic) NSString *containingViewIdentifier; // @synthesize containingViewIdentifier=_containingViewIdentifier;
 @property(readonly, nonatomic) IBLayoutConstant *constant; // @synthesize constant=_constant;
 @property(readonly, nonatomic, getter=isPlaceholder) BOOL placeholder; // @synthesize placeholder=_placeholder;
-@property(readonly, nonatomic) double multiplier; // @synthesize multiplier=_multiplier;
+@property(readonly, nonatomic) IBLayoutConstraintMultiplier *multiplier; // @synthesize multiplier=_multiplier;
 @property(readonly, nonatomic) double priority; // @synthesize priority=_priority;
 @property(readonly, nonatomic) unsigned long long secondAttribute; // @synthesize secondAttribute=_secondAttribute;
 @property(readonly, nonatomic) NSString *secondItemIdentifier; // @synthesize secondItemIdentifier=_secondItemIdentifier;
@@ -51,13 +51,18 @@
 @property(readonly, nonatomic) id containingViewRepresentation;
 @property(readonly, nonatomic) id secondItemRepresentation;
 @property(readonly, nonatomic) id firstItemRepresentation;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;
 - (void)encodeWithBinaryArchiver:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithLayoutConstraint:(id)arg1 withRepresentationForItemBlock:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

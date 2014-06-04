@@ -10,7 +10,7 @@
 #import "IDEGraphDelegate-Protocol.h"
 #import "iCloudMonitorLineProcessor-Protocol.h"
 
-@class DVTCapacitySegment, DVTMeterView, DVTStackView_AppKitAutolayout, IDEPlotGraph, NSButton, NSMutableArray, NSMutableString, NSTextField, NSView;
+@class DVTCapacitySegment, DVTMeterView, DVTStackView_AppKitAutolayout, IDEPlotGraph, NSButton, NSMutableArray, NSMutableString, NSString, NSTextField, NSView;
 
 @interface DBGGaugeCPUEditor : DBGGaugeEditor <IDEDebugGaugeReportTopSectionContentDelegate, IDEGraphDelegate, iCloudMonitorLineProcessor>
 {
@@ -61,10 +61,17 @@
 - (BOOL)hasDefaultTopSection;
 - (void)sample:(id)arg1;
 - (void)_updateThreadSlicesToView:(id)arg1;
+- (id)_graphSliceForThreadID:(id)arg1;
 - (id)instrumentsToolIdentifierForAnalysis;
 - (void)_setupTopSectionComponentViews;
 - (void)_setupSpeedometer;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 document:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -9,7 +9,7 @@
 #import "NSComboBoxCellDataSource-Protocol.h"
 #import "NSComboBoxDataSource-Protocol.h"
 
-@class NSArray;
+@class NSArray, NSString;
 
 @interface IBAutoCompletingComboBoxDataSource : NSObject <NSComboBoxDataSource, NSComboBoxCellDataSource>
 {
@@ -26,6 +26,12 @@
 - (id)comboBoxCell:(id)arg1 objectValueForItemAtIndex:(long long)arg2;
 - (long long)numberOfItemsInComboBoxCell:(id)arg1;
 - (void)takeContentFromStrings:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

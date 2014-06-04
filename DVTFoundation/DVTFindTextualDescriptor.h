@@ -23,14 +23,18 @@
 - (void).cxx_destruct;
 - (id)firstMatchingResultInString:(id)arg1 backwards:(BOOL)arg2 inRange:(struct _NSRange)arg3 withWordFindingBlock:(id)arg4 docLocationCreationBlock:(void)arg5;
 - (struct _NSRange)_wordBoundaryAtIndex:(unsigned long long)arg1 forString:(id)arg2;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)displayString;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (id)initWithString:(id)arg1 ignoreCase:(BOOL)arg2 matchStyle:(int)arg3;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

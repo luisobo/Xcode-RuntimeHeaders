@@ -7,7 +7,7 @@
 #import "DVTLocalComputer.h"
 
 @interface DVTLocalComputer (IDEFoundationAdditions)
-- (BOOL)canBeDefaultDeviceForBuildable:(id)arg1 withConfiguration:(id)arg2;
+- (BOOL)canBeDefaultDeviceForBuildable:(id)arg1 buildParameters:(id)arg2;
 - (id)displayNameWhenUsingArchitecture:(id)arg1 withSDK:(id)arg2;
 - (id)_displayNameForArchitecture:(id)arg1;
 @end

@@ -13,13 +13,10 @@
 #import "IDEEditorAreaContainer-Protocol.h"
 #import "NSWindowDelegate-Protocol.h"
 
-@class DVTObservingToken, DVTStackBacktrace, DVTStateToken, DVTTabBarEnclosureView, DVTTabBarView, DVTTabSwitcher, IDEEditorArea, IDESourceControlWorkspaceUIHandler, IDEToolbarDelegate, IDEWorkspace, IDEWorkspaceTabController, IDEWorkspaceWindow, NSMapTable, NSMutableArray, NSString, NSTimer, _IDEWindowFullScreenSavedDebuggerTransitionValues;
+@class DVTBarBackground, DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, DVTStateToken, DVTTabBarEnclosureView, DVTWeakInterposer, IDEEditorArea, IDEEditorDocument, IDEToolbarDelegate, IDEWorkspace, IDEWorkspaceTabController, IDEWorkspaceWindow, NSMapTable, NSMutableArray, NSString, NSTabView, NSTimer, _IDEWindowFullScreenSavedDebuggerTransitionValues;
 
 @interface IDEWorkspaceWindowController : NSWindowController <NSWindowDelegate, IDEEditorAreaContainer, DVTStatefulObject, DVTTabbedWindowControlling, DVTEditor, DVTInvalidation>
 {
-    DVTTabBarEnclosureView *tabBarEnclosureView;
-    DVTTabBarView *_tabBarView;
-    DVTTabSwitcher *tabSwitcher;
     NSTimer *_springToFrontTimer;
     NSString *_uniqueIdentifier;
     int _debugSessionState;
@@ -37,6 +34,7 @@
     NSMapTable *_viewHeightsForResizing;
     DVTStateToken *_stateToken;
     NSMutableArray *_stateChangeObservingTokens;
+    IDEEditorDocument *_lastObservedEditorDocument;
     IDEWorkspaceTabController *_activeWorkspaceTabController;
     DVTObservingToken *_toolbarVisibleToken;
     IDEToolbarDelegate *_toolbarDelegate;
@@ -44,10 +42,11 @@
     DVTObservingToken *_workspaceSimpleFilesFocusedObservingToken;
     DVTObservingToken *_workspaceRepresentingFilePathObservingToken;
     DVTObservingToken *_workspaceFinishedLoadingObservingToken;
-    DVTObservingToken *_activePrimaryEditorDocumentObservingToken;
+    DVTObservingToken *_navigationTargetedEditorDocumentObservingToken;
+    DVTNotificationToken *_editorDocumentHasEditsNotificationToken;
+    DVTNotificationToken *_editorDocumentIsEditedNotificationToken;
     DVTObservingToken *_userWantsMiniDebuggingConsoleObservingToken;
     DVTObservingToken *_userWantsAppFocusInMiniDebuggingObservingToken;
-    IDESourceControlWorkspaceUIHandler *_sourceControlWorkspaceUIHandler;
     IDEWorkspace *_workspace;
     _IDEWindowFullScreenSavedDebuggerTransitionValues *_fullScreenSavedDebuggerTransitionValues;
     unsigned int _coalescedUpdateMask;
@@ -73,6 +72,12 @@
     BOOL _enteringFullScreenMode;
     BOOL _exitingFullScreenMode;
     BOOL _fullScreenTabBarAlwaysVisible;
+    BOOL _didSetupFirstResponderInterposer;
+    BOOL _shouldPerformWindowClose;
+    DVTTabBarEnclosureView *_tabBarEnclosureView;
+    NSTabView *_tabView;
+    DVTWeakInterposer *_firstResponderInterposer;
+    DVTBarBackground *_tabBarView;
 }
 
 + (id)keyPathsForValuesAffectingUserWantsBreakpointsActivated;
@@ -81,14 +86,17 @@
 + (long long)version;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (id)workspaceWindowControllers;
-@property(retain) IDESourceControlWorkspaceUIHandler *sourceControlWorkspaceUIHandler; // @synthesize sourceControlWorkspaceUIHandler=_sourceControlWorkspaceUIHandler;
+@property BOOL shouldPerformWindowClose; // @synthesize shouldPerformWindowClose=_shouldPerformWindowClose;
+@property(retain, nonatomic) DVTBarBackground *tabBarView; // @synthesize tabBarView=_tabBarView;
+@property BOOL didSetupFirstResponderInterposer; // @synthesize didSetupFirstResponderInterposer=_didSetupFirstResponderInterposer;
+@property(retain) DVTWeakInterposer *firstResponderInterposer; // @synthesize firstResponderInterposer=_firstResponderInterposer;
 @property(nonatomic) BOOL showToolbar; // @synthesize showToolbar=_showToolbar;
+@property(retain, nonatomic) NSTabView *tabView; // @synthesize tabView=_tabView;
+@property(retain, nonatomic) DVTTabBarEnclosureView *tabBarEnclosureView; // @synthesize tabBarEnclosureView=_tabBarEnclosureView;
 @property BOOL createNewTabUponLoadIfNoTabsExist; // @synthesize createNewTabUponLoadIfNoTabsExist=_createNewTabUponLoadIfNoTabsExist;
 @property(copy, nonatomic) NSString *uniqueIdentifier; // @synthesize uniqueIdentifier=_uniqueIdentifier;
 @property(retain) DVTStateToken *stateToken; // @synthesize stateToken=_stateToken;
 @property(readonly, getter=isInMiniDebuggingMode) BOOL inMiniDebuggingMode; // @synthesize inMiniDebuggingMode=_inMiniDebuggingMode;
-@property(retain, nonatomic) DVTTabBarView *tabBarView; // @synthesize tabBarView=_tabBarView;
-@property(retain, nonatomic) DVTTabSwitcher *tabSwitcher; // @synthesize tabSwitcher;
 - (void).cxx_destruct;
 - (void)moveFocusToEditor:(id)arg1;
 - (void)dicardEditing;
@@ -98,6 +106,8 @@
 - (void)_userWantsAppFocusInMiniDebuggingChanged;
 - (void)_updateTitleRepresentedPath;
 @property BOOL userWantsBreakpointsActivated;
+- (void)_editorDocumentHasEditsStatusDidChange:(id)arg1;
+- (void)_editorDocumentDirtyStatusDidChange:(id)arg1;
 - (void)changeFromDebugSessionState:(int)arg1 to:(int)arg2 fromDebuggingWindowBehavior:(int)arg3 to:(int)arg4;
 - (void)_makeWindowLookKeyWhenKey;
 - (void)didExitFullScreenMode:(id)arg1;
@@ -147,9 +157,11 @@
 - (void)_prepareBarsToEnterFullScreen;
 - (BOOL)isInFullScreenMode;
 - (void)synchronizeWindowTitleWithDocumentName;
+- (void)_performCloseAll;
+- (BOOL)_shouldCloseWindowEvaluatingOtherWindows;
 - (void)_closeWindowIfNoTabs;
 - (double)tabBarHeight;
-- (void)moveTabFromOtherWindow:(id)arg1 toIndex:(unsigned long long)arg2 andShow:(BOOL)arg3;
+- (void)moveTabFromOtherWindow:(id)arg1 toIndex:(unsigned long long)arg2 andSelect:(BOOL)arg3;
 - (void)replaceEmptyTabWithTabs:(id)arg1;
 - (void)_closeOtherTabsWithoutConfirming:(id)arg1;
 - (void)closeTabOrWindow:(id)arg1;
@@ -188,8 +200,8 @@
 - (void)_performCoalescedUpdates;
 - (void)_cancelCoalescedUpdate:(int)arg1;
 - (void)_performCoalescedUpdateSoon:(int)arg1;
-- (void)tabBarViewUpdateTabTitlesNow:(id)arg1;
-- (void)tabBarViewUpdateTabTitlesSoon:(id)arg1;
+- (void)tabBarViewUpdateTabTitlesNow;
+- (void)tabBarViewUpdateTabTitlesSoon;
 - (BOOL)canCreateNewTab;
 - (void)_showTabBarIfNeeded;
 - (void)_automaticallyHideTabBarForTabDrag;
@@ -247,7 +259,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

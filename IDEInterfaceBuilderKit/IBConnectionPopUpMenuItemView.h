@@ -10,40 +10,39 @@
 
 @interface IBConnectionPopUpMenuItemView : NSView
 {
-    NSColor *textColor;
-    NSColor *backgroundColor;
-    NSColor *highlightedTextColor;
-    NSColor *highlightedBackgroundColor;
-    NSString *title;
-    NSFont *font;
-    NSImage *image;
-    struct CGSize imageSize;
-    BOOL highlighted;
-    BOOL drawsRoundedBackground;
-    long long indent;
-    unsigned long long lineBreakingMode;
-    unsigned long long textAlignment;
-    unsigned long long lineBreakMode;
+    BOOL _highlighted;
     BOOL _selected;
+    BOOL _drawsRoundedBackground;
+    NSString *_title;
+    NSFont *_font;
+    NSColor *_textColor;
+    NSColor *_backgroundColor;
+    NSColor *_highlightedTextColor;
+    NSColor *_highlightedBackgroundColor;
+    NSImage *_image;
     NSImage *_selectionImage;
+    long long _indent;
+    unsigned long long _lineBreakMode;
+    unsigned long long _textAlignment;
+    struct CGSize _imageSize;
 }
 
 + (id)separatorItem;
+@property(nonatomic) BOOL drawsRoundedBackground; // @synthesize drawsRoundedBackground=_drawsRoundedBackground;
+@property(nonatomic) unsigned long long textAlignment; // @synthesize textAlignment=_textAlignment;
+@property(nonatomic) unsigned long long lineBreakMode; // @synthesize lineBreakMode=_lineBreakMode;
 @property(nonatomic, getter=isSelected) BOOL selected; // @synthesize selected=_selected;
+@property(nonatomic, getter=isHighlighted) BOOL highlighted; // @synthesize highlighted=_highlighted;
+@property(nonatomic) long long indent; // @synthesize indent=_indent;
+@property(nonatomic) struct CGSize imageSize; // @synthesize imageSize=_imageSize;
 @property(copy, nonatomic) NSImage *selectionImage; // @synthesize selectionImage=_selectionImage;
-@property(nonatomic) BOOL drawsRoundedBackground; // @synthesize drawsRoundedBackground;
-@property(nonatomic) unsigned long long textAlignment; // @synthesize textAlignment;
-@property(nonatomic) unsigned long long lineBreakMode; // @synthesize lineBreakMode;
-@property(nonatomic, getter=isHighlighted) BOOL highlighted; // @synthesize highlighted;
-@property(nonatomic) long long indent; // @synthesize indent;
-@property(nonatomic) struct CGSize imageSize; // @synthesize imageSize;
-@property(copy, nonatomic) NSImage *image; // @synthesize image;
-@property(copy, nonatomic) NSColor *highlightedBackgroundColor; // @synthesize highlightedBackgroundColor;
-@property(copy, nonatomic) NSColor *highlightedTextColor; // @synthesize highlightedTextColor;
-@property(copy, nonatomic) NSColor *backgroundColor; // @synthesize backgroundColor;
-@property(copy, nonatomic) NSColor *textColor; // @synthesize textColor;
-@property(copy, nonatomic) NSFont *font; // @synthesize font;
-@property(copy, nonatomic) NSString *title; // @synthesize title;
+@property(copy, nonatomic) NSImage *image; // @synthesize image=_image;
+@property(copy, nonatomic) NSColor *highlightedBackgroundColor; // @synthesize highlightedBackgroundColor=_highlightedBackgroundColor;
+@property(copy, nonatomic) NSColor *highlightedTextColor; // @synthesize highlightedTextColor=_highlightedTextColor;
+@property(copy, nonatomic) NSColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
+@property(copy, nonatomic) NSColor *textColor; // @synthesize textColor=_textColor;
+@property(copy, nonatomic) NSFont *font; // @synthesize font=_font;
+@property(copy, nonatomic) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)effectiveMaskedImage;

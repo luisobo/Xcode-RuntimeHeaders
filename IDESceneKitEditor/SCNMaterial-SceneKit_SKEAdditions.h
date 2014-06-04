@@ -6,16 +6,17 @@
 
 #import "SCNMaterial.h"
 
-@class NSString;
+@class NSImage, NSString;
 
 @interface SCNMaterial (SceneKit_SKEAdditions)
++ (id)keyPathsForValuesAffectingIde_displayName;
++ (id)ske_displayNameForUndoKVOKeypath:(id)arg1;
 + (id)ide_slotNames;
 @property double ide_fresnelExponent;
 @property BOOL ide_readsFromDepthBuffer;
 @property long long ide_lightingModel;
 @property(readonly) NSString *ide_displayName;
-- (id)ide_icon;
-- (id)ske_displayNameForUndoKVOKeypath:(id)arg1;
+@property(readonly) NSImage *ide_icon;
 - (id)ske_undoKVOKeypaths;
 - (BOOL)ide_isShininessInvolvedInLightingModel;
 - (id)ide_namesOfSlotsInvolvedInLightingModel;

@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTGradientImageButton, DVTStackBacktrace, IDEComparisonEditor, IDEComparisonEditorChangesStepperView, IDEPathControl;
+@class DVTGradientImageButton, DVTStackBacktrace, IDEComparisonEditor, IDEComparisonEditorChangesStepperView, IDEPathControl, NSString;
 
 @interface IDEComparisonEditorTimelineNavBar : DVTBorderedView <DVTInvalidation>
 {
@@ -42,7 +42,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

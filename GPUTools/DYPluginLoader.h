@@ -15,7 +15,8 @@
 }
 
 + (void)loadPluginsWithProvider:(id)arg1 pathExtension:(id)arg2;
-+ (void)loadPluginsWithBundle:(id)arg1;
++ (void)loadPluginWithBundle:(id)arg1;
++ (void)loadGPUToolsPluginsInMainBundleOnly:(BOOL)arg1;
 + (void)loadGPUToolsPlugins;
 + (id)sharedPluginLoader;
 - (void)_loadPluginsWithProvider:(id)arg1 pathExtension:(id)arg2;

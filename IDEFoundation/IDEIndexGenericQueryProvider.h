@@ -8,13 +8,13 @@
 
 #import "IDEIndexQueryProvider-Protocol.h"
 
-@class IDEIndexDatabase, NSDictionary, NSString;
+@class DVTFilePath, IDEIndexDatabase, NSDictionary, NSString;
 
 @interface IDEIndexGenericQueryProvider : NSObject <IDEIndexQueryProvider>
 {
     IDEIndexDatabase *_db;
     NSDictionary *_settings;
-    NSString *_mainFile;
+    DVTFilePath *_mainFilePath;
     NSString *_target;
     NSDictionary *_coveredFiles;
     double _lastAccess;
@@ -24,7 +24,7 @@
 + (id)locationForURL:(id)arg1 locator:(id)arg2;
 @property(retain, nonatomic) NSDictionary *coveredFiles; // @synthesize coveredFiles=_coveredFiles;
 @property(copy, nonatomic) NSString *target; // @synthesize target=_target;
-@property(copy, nonatomic) NSString *mainFile; // @synthesize mainFile=_mainFile;
+@property(copy, nonatomic) DVTFilePath *mainFilePath; // @synthesize mainFilePath=_mainFilePath;
 @property double lastAccess; // @synthesize lastAccess=_lastAccess;
 @property(readonly, nonatomic) NSDictionary *settings; // @synthesize settings=_settings;
 @property(readonly, nonatomic) IDEIndexDatabase *database; // @synthesize database=_db;
@@ -132,8 +132,15 @@
 - (id)topLevelSymbolsInFile:(id)arg1 forIndex:(id)arg2;
 @property(readonly, nonatomic) BOOL hasAST; // @dynamic hasAST;
 @property(readonly, nonatomic) NSString *pchFile; // @dynamic pchFile;
+@property(readonly, nonatomic) NSString *mainFile;
 - (void)purgeCaches;
 - (id)initWithSettings:(id)arg1 database:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

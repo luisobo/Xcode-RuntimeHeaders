@@ -53,6 +53,7 @@
 - (void)_updateSearchButtonImages;
 - (void)drawFocusRingMaskWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (struct CGRect)searchTextRectForBounds:(struct CGRect)arg1;
+- (id)setUpFieldEditorAttributes:(id)arg1;
 - (void)_dvtFindBarSearchFieldCellCommonInit;
 - (id)copy;
 - (id)initWithCoder:(id)arg1;

@@ -9,14 +9,16 @@
 #import "NSCoding-Protocol.h"
 #import "NSCopying-Protocol.h"
 
-@class DVTRegularExpressionMatch;
+@class NSString, NSTextCheckingResult;
 
 @interface DVTFindRegularExpressionResult : DVTFindResult <NSCoding, NSCopying>
 {
-    DVTRegularExpressionMatch *_match;
+    NSTextCheckingResult *_match;
+    NSString *_wholeContextString;
 }
 
-@property(retain) DVTRegularExpressionMatch *match; // @synthesize match=_match;
+@property(retain, nonatomic) NSString *wholeContextString; // @synthesize wholeContextString=_wholeContextString;
+@property(retain) NSTextCheckingResult *match; // @synthesize match=_match;
 - (void).cxx_destruct;
 - (id)stringForReplacementString:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

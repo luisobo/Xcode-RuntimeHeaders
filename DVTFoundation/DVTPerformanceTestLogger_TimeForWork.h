@@ -12,6 +12,7 @@
 
 @interface DVTPerformanceTestLogger_TimeForWork : NSObject <DVTPerformanceTestParser>
 {
+    DVTRegularExpression *_newRegularExpression;
     DVTRegularExpression *_regularExpression;
 }
 

@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class DVTDeveloperAccount, DVTDeveloperAccountSession, DVTDeveloperPortalResponseWrapper, DVTPortalOperationToken, NSDictionary, NSError, NSMutableDictionary, NSMutableURLRequest;
+@class DVTDeveloperAccount, DVTDeveloperAccountSession, DVTDeveloperPortalResponseWrapper, DVTLogAspect, DVTPortalOperationToken, NSDictionary, NSError, NSMutableDictionary, NSMutableURLRequest;
 
 @interface DTDKDeveloperPortalService : NSObject
 {
     DVTDeveloperPortalResponseWrapper *_responseWrapper;
     _Bool _success;
     int _remainingLoginAttempts;
+    DVTLogAspect *_logAspect;
     DVTDeveloperAccountSession *_session;
     DVTPortalOperationToken *_token;
     NSMutableURLRequest *_request;
@@ -42,6 +43,7 @@
 @property(retain) DVTPortalOperationToken *token; // @synthesize token=_token;
 @property(retain) DVTDeveloperAccountSession *session; // @synthesize session=_session;
 - (void).cxx_destruct;
+@property(retain) DVTLogAspect *logAspect; // @synthesize logAspect=_logAspect;
 - (void)_success;
 - (void)_failure:(id)arg1;
 - (void)_callCallback;

@@ -8,7 +8,7 @@
 
 #import "NSTokenFieldDelegate-Protocol.h"
 
-@class NSButton, NSTokenField;
+@class NSButton, NSString, NSTokenField;
 
 @interface IDECreateBotNotificationsAssistant : IDEAssistant <NSTokenFieldDelegate>
 {
@@ -49,6 +49,12 @@
 - (id)createBotAssistantContext;
 - (void)onFailureCheckboxDidChange:(id)arg1;
 - (void)onSuccessCheckboxDidChange:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

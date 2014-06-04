@@ -6,7 +6,7 @@
 
 #import "IDEInspectorProperty.h"
 
-@class IBInspectorViewController, IDEInspectorKeyPath, NSStepper, NSTextField;
+@class IBInspectorViewController, IDEInspectorKeyPath, NSLayoutConstraint, NSStepper, NSTextField;
 
 @interface IBNSEdgeInsetsInspectorProperty : IDEInspectorProperty
 {
@@ -20,10 +20,14 @@
     NSTextField *_bottomEdgeTextField;
     NSStepper *_bottomEdgeStepper;
     NSTextField *_sectionTitle;
+    NSLayoutConstraint *_leftBaselineAlignmentConstraint;
+    NSLayoutConstraint *_rightBaselineAlignmentConstraint;
     double _minimumValue;
 }
 
 @property(nonatomic) double minimumValue; // @synthesize minimumValue=_minimumValue;
+@property(retain, nonatomic) NSLayoutConstraint *rightBaselineAlignmentConstraint; // @synthesize rightBaselineAlignmentConstraint=_rightBaselineAlignmentConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *leftBaselineAlignmentConstraint; // @synthesize leftBaselineAlignmentConstraint=_leftBaselineAlignmentConstraint;
 @property(nonatomic) NSTextField *sectionTitle; // @synthesize sectionTitle=_sectionTitle;
 @property(nonatomic) NSStepper *bottomEdgeStepper; // @synthesize bottomEdgeStepper=_bottomEdgeStepper;
 @property(nonatomic) NSTextField *bottomEdgeTextField; // @synthesize bottomEdgeTextField=_bottomEdgeTextField;
@@ -34,6 +38,7 @@
 @property(nonatomic) NSStepper *topEdgeStepper; // @synthesize topEdgeStepper=_topEdgeStepper;
 @property(nonatomic) NSTextField *topEdgeTextField; // @synthesize topEdgeTextField=_topEdgeTextField;
 - (void).cxx_destruct;
+- (id)findIndicatorContentViewWithContext:(id)arg1;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)loadView;
 - (void)refresh;

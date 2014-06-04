@@ -7,8 +7,25 @@
 #import "IBCollection-Protocol.h"
 
 @protocol IBOrderedCollection <IBCollection>
++ (id)ib_orderedCollectionWithOrderedCollection:(id)arg1;
 - (unsigned long long)indexOfObject:(id)arg1 inSortedRange:(struct _NSRange)arg2 options:(unsigned long long)arg3 usingComparator:(id)arg4;
-- (id)ib_firstObject;
+- (id)lastObject;
+- (id)firstObject;
 - (long long)indexOfObject:(id)arg1;
+- (id)ib_collectionByReversingObjects;
+- (id)ib_collectionByRemovingObject:(id)arg1;
+- (id)ib_collectionByInsertingObjects:(id)arg1 atIndex:(long long)arg2;
+- (id)ib_collectionByInsertingObject:(id)arg1 atIndex:(long long)arg2;
+- (id)ib_collectionByAddingObject:(id)arg1;
+- (id)ib_collectionByAddingObjectsFromCollection:(id)arg1;
+- (id)ib_collectionByKeepingObjectsInSet:(id)arg1;
+- (id)ib_collectionByRemovingObjectsInSet:(id)arg1;
+- (id)ib_collectionByRemovingObjectsFromCollection:(id)arg1;
+- (id)ib_collectionByMappingBlock:(id)arg1;
+- (id)ib_collectionByFilteringUsingBlock:(id)arg1;
+- (id)ib_collectionByRemovingNulls;
+- (id)ib_objectsConformingToProtocol:(id)arg1;
+- (id)ib_objectsOfClass:(Class)arg1;
+- (id)initWithObjects:(const id *)arg1 count:(unsigned long long)arg2;
 @end
 

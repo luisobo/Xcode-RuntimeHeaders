@@ -6,12 +6,10 @@
 
 #import <GPUTraceDebuggerUI/GPUDebugBarContentProvider.h>
 
-#import "IDEDebuggingAdditionUIControllerLifeCycleObserver-Protocol.h"
-
-@class DVTObservingToken, GPUDebuggingAdditionUIController, GPUSharedTabUIState, GPUTraceFramePlayheadSlider, GPUTraceFrameStepperButton;
+@class DVTObservingToken, GPUSharedTabUIState, GPUTraceFramePlayheadSlider, GPUTraceFrameStepperButton;
 
 // Not exported
-@interface GPUFrameScrubberDebugBarContentProvider : GPUDebugBarContentProvider <IDEDebuggingAdditionUIControllerLifeCycleObserver>
+@interface GPUFrameScrubberDebugBarContentProvider : GPUDebugBarContentProvider
 {
     GPUTraceFramePlayheadSlider *_frameScrubber;
     GPUTraceFrameStepperButton *_stepBackwardButton;
@@ -19,22 +17,21 @@
     DVTObservingToken *_debuggingAdditionObservation;
     DVTObservingToken *_uiModeObservation;
     DVTObservingToken *_debugStateObservation;
-    GPUDebuggingAdditionUIController *_debuggingAdditionUIController;
     GPUSharedTabUIState *_sharedUIStateObj;
     BOOL _newUpdateCycle;
     BOOL _stepperDidUpdate;
     BOOL _scrubberDidPostUpdate;
+    BOOL _haveRequestedUIController;
+    id <DVTCancellable> _uiControllerObserver;
 }
 
 + (id)iconImage_stepForward;
 + (id)iconImage_stepBack;
 + (id)assetBundle;
 - (void).cxx_destruct;
-- (void)debuggingAddtionUIControllerInvalidated:(id)arg1;
 - (void)updateControls;
 - (void)disableControls;
-- (void)debuggingAddtionUIControllerUpdated:(id)arg1;
-- (Class)classOfDebuggingAddtionUIControllerInterestedIn;
+- (void)_handleDebuggingAdditionUIControllerCreated:(id)arg1;
 - (void)willBeDetachedFromDebugBar:(id)arg1;
 - (void)wasAttachedToDebugBar:(id)arg1;
 - (void)takeScrubberInfoFromNotification:(id)arg1;

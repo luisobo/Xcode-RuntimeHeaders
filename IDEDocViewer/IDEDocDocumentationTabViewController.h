@@ -57,8 +57,8 @@
 - (void)makeSmaller:(id)arg1;
 - (void)goForward:(id)arg1;
 - (void)goBack:(id)arg1;
-@property(readonly) NSString *webViewBackForwardListForwardItemURLString;
-@property(readonly) NSString *webViewBackForwardListBackItemURLString;
+@property(readonly, copy) NSString *webViewBackForwardListForwardItemURLString;
+@property(readonly, copy) NSString *webViewBackForwardListBackItemURLString;
 - (void)makeTableOfContentsFirstResponder;
 @property(readonly, getter=isSidebarVisible) BOOL sidebarVisible;
 @property(readonly, nonatomic) double tableOfContentsSplitterPosition;
@@ -82,6 +82,12 @@
 - (id)initUsingDefaultNib;
 @property(readonly) NSString *tabLabel; // @synthesize tabLabel;
 @property(readonly) NSString *name;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

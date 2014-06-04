@@ -9,23 +9,14 @@
 #import "NSTextFieldDelegate-Protocol.h"
 #import "NSWindowDelegate-Protocol.h"
 
-@class DYRangeSlider, DYRenderingAttributes, DYResourceObject, NSBox, NSButton, NSSlider, NSTextField, NSView;
+@class DYRangeSlider, DYRenderingAttributes, NSBox, NSButton, NSSlider, NSString, NSTextField, NSView;
 
-// Not exported
 @interface GPUTraceResourceSettingsBubble : DVTPopoverContentViewController <NSWindowDelegate, NSTextFieldDelegate>
 {
     NSView *_parentView;
-    DYResourceObject *_resource;
+    id <DYResource> _resource;
     DYRenderingAttributes *_dispAttr;
-    BOOL _showDepth;
-    BOOL _isLuminance;
     id <GPUTraceBubbleOwner> _owner;
-    unsigned int _channelCount;
-    unsigned int _alphaChannelIndex;
-    BOOL _hasRed;
-    BOOL _hasGreen;
-    BOOL _hasBlue;
-    BOOL _hasAlpha;
     NSButton *_redButton;
     NSButton *_grnButton;
     NSButton *_bluButton;
@@ -35,9 +26,24 @@
     NSTextField *_rangeEditMin;
     NSTextField *_rangeEditMax;
     DYRangeSlider *_visibleRangeSlider;
+    BOOL _showDepth;
+    BOOL _isLuminance;
+    BOOL _hasRed;
+    BOOL _hasGreen;
+    BOOL _hasBlue;
+    BOOL _hasAlpha;
+    unsigned int _channelCount;
+    unsigned int _alphaChannelIndex;
 }
 
-+ (unsigned int)_internalFormatForResource:(id)arg1;
+@property(nonatomic) BOOL hasAlpha; // @synthesize hasAlpha=_hasAlpha;
+@property(nonatomic) BOOL hasBlue; // @synthesize hasBlue=_hasBlue;
+@property(nonatomic) BOOL hasGreen; // @synthesize hasGreen=_hasGreen;
+@property(nonatomic) BOOL hasRed; // @synthesize hasRed=_hasRed;
+@property(nonatomic) BOOL isLuminance; // @synthesize isLuminance=_isLuminance;
+@property(nonatomic) unsigned int alphaChannelIndex; // @synthesize alphaChannelIndex=_alphaChannelIndex;
+@property(nonatomic) unsigned int channelCount; // @synthesize channelCount=_channelCount;
+@property(readonly, nonatomic) BOOL showDepth; // @synthesize showDepth=_showDepth;
 - (void).cxx_destruct;
 - (void)updateToneMapRangeFields:(id)arg1;
 - (void)controlTextDidEndEditing:(id)arg1;
@@ -56,6 +62,12 @@
 - (id)getAlphaButton;
 - (id)initWithResource:(id)arg1 withDisplayAttributes:(id)arg2 withShowDepth:(BOOL)arg3 parentView:(id)arg4 owner:(id)arg5;
 - (int)numChannelsSelectedInImage;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

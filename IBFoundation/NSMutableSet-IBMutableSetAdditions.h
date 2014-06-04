@@ -6,13 +6,24 @@
 
 #import "NSMutableSet.h"
 
-@interface NSMutableSet (IBMutableSetAdditions)
+#import "IBMutableCollection-Protocol.h"
+
+@class NSString;
+
+@interface NSMutableSet (IBMutableSetAdditions) <IBMutableCollection>
 + (id)ib_setWithCollection:(id)arg1;
+- (void)ib_removeObjectsInCollection:(id)arg1;
 - (void)ib_addObjectIfNonNil:(id)arg1;
 - (void)ib_appendObjects:(id)arg1;
 - (id)ib_objectsOfClass:(Class)arg1;
 - (void)ib_addObjectsFromCollection:(id)arg1;
 - (void)ib_removeObjectsPassingTest:(id)arg1;
 - (void)ib_removeObjectsFromCollection:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

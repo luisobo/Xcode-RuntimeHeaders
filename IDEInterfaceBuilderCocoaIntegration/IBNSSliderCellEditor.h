@@ -11,6 +11,7 @@
 }
 
 - (BOOL)interceptEvent:(id)arg1;
+- (id)editedSliderCell;
 
 @end
 

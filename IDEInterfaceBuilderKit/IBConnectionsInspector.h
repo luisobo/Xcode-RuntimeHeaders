@@ -23,6 +23,7 @@
 }
 
 - (void).cxx_destruct;
+- (id)findIndicatorContentViewForInspectedKeyPath:(id)arg1 withContext:(id)arg2;
 - (void)setContent:(id)arg1;
 - (void)primitiveInvalidate;
 - (BOOL)automaticallyInvalidatesChildViewControllers;

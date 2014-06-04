@@ -23,6 +23,7 @@
     DVTObservingToken *_mergeDirectionObservationToken;
     DVTObservingToken *_descriptorResolvedObservationToken;
     DVTObservingToken *_conflictCountObservationToken;
+    DVTObservingToken *_checkedFilePathsObservationToken;
 }
 
 @property(copy) NSArray *operationInfo; // @synthesize operationInfo=_operationInfo;

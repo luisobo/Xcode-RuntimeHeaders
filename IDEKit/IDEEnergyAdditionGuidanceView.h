@@ -8,7 +8,7 @@
 
 #import "NSTableViewDataSource-Protocol.h"
 
-@class NSMutableOrderedSet, NSTableView;
+@class NSMutableOrderedSet, NSString, NSTableView;
 
 @interface IDEEnergyAdditionGuidanceView : NSView <NSTableViewDataSource>
 {
@@ -29,6 +29,12 @@
 - (BOOL)isFlipped;
 - (struct CGSize)intrinsicContentSize;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

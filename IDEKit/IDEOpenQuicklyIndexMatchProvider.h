@@ -17,7 +17,7 @@
     BOOL _idle;
 }
 
-+ (struct dispatch_queue_s *)sharedIndexQueryQueue;
++ (id)sharedIndexQueryQueue;
 @property(getter=isIdle) BOOL idle; // @synthesize idle=_idle;
 @property(retain) IDEOpenQuicklyPattern *originalPattern; // @synthesize originalPattern=_originalPattern;
 @property(retain) IDEOpenQuicklyPattern *previousPattern; // @synthesize previousPattern=_previousPattern;

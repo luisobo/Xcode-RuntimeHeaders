@@ -9,7 +9,7 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class NSArray, XCAPIAssistantConfigurationArrayController, XCAPIAssistantConfigurationTable;
+@class NSArray, NSString, XCAPIAssistantConfigurationArrayController, XCAPIAssistantConfigurationTable;
 
 @interface XCAPIAssistantConfigurationTableController : NSObject <NSTableViewDataSource, NSTableViewDelegate>
 {
@@ -34,6 +34,12 @@
 - (void)awakeFromNib;
 - (void)sortUserSlices;
 - (void)persistUserSlices;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

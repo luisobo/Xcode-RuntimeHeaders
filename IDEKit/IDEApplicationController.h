@@ -45,6 +45,8 @@
 @property BOOL applicationIsTerminatingDuringLaunch; // @synthesize applicationIsTerminatingDuringLaunch=_applicationIsTerminatingDuringLaunch;
 @property BOOL haveScannedForPlugins; // @synthesize haveScannedForPlugins=_haveScannedForPlugins;
 - (void).cxx_destruct;
+- (void)batchFind:(id)arg1 userData:(id)arg2 error:(id *)arg3;
+- (void)openQuickly:(id)arg1 userData:(id)arg2 error:(id *)arg3;
 - (void)_setTabStateContext:(id)arg1 forTabNamed:(id)arg2;
 - (id)_tabStateContextForTabNamed:(id)arg1;
 - (id)_tabStateContextForTabNameMapByInstantiatingIfNeeded;
@@ -87,7 +89,6 @@
 - (void)_updateGlobalHotKeyToEnableFloatingDebugger:(id)arg1;
 - (void)_currentPreferenceSetChanged;
 - (void)_adjustApplicationIconForEnvironment;
-- (void)_loadLLDBFramework:(id)arg1;
 - (void)applicationDidFinishLaunching:(id)arg1;
 - (void)applicationIsTerminating:(id)arg1;
 - (void)_incrementCountForKey:(id)arg1 in:(id)arg2;
@@ -98,9 +99,15 @@
 - (void)_setUpOpenDocumentAppleEventHandler;
 - (BOOL)application:(id)arg1 openFile:(id)arg2;
 - (void)application:(id)arg1 openFiles:(id)arg2;
-- (BOOL)_openFiles:(id)arg1;
+- (void)_openFiles:(id)arg1;
 - (void)_terminateDueToFailureDuringLaunch:(id)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

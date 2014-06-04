@@ -15,6 +15,7 @@
     DVTSourceTokens *_keywords;
     struct _NSRange _previousTokenRange;
     BOOL _caseSensitive;
+    BOOL _wordBreak;
     BOOL _isSimpleToken;
 }
 

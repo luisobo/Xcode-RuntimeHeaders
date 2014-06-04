@@ -9,7 +9,7 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class DVTBorderedView, NSArray, NSTableView;
+@class DVTBorderedView, NSArray, NSString, NSTableView;
 
 @interface IDEDocBookmarksListViewController : IDEDocNavigator <NSTableViewDataSource, NSTableViewDelegate>
 {
@@ -44,6 +44,12 @@
 - (void)viewDidInstall;
 - (void)loadView;
 - (id)idedocnavigator_identifier;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

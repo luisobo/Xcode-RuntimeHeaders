@@ -9,7 +9,7 @@
 #import "PBXSelectionTarget-Protocol.h"
 #import "XCSelectionSource-Protocol.h"
 
-@class PBXSmartGroupDataSource, XCBorderView;
+@class NSString, PBXSmartGroupDataSource, XCBorderView;
 
 @interface XCDetailModule : PBXProjectModule <PBXSelectionTarget, XCSelectionSource>
 {
@@ -51,6 +51,12 @@
 - (id)currentDataSource;
 - (void)moduleViewWillBeRemoved:(id)arg1;
 - (void)dealloc;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

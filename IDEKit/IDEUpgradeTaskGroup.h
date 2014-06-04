@@ -6,14 +6,17 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSString;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface IDEUpgradeTaskGroup : NSObject
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSArray, NSImage, NSString;
+
+@interface IDEUpgradeTaskGroup : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
-    NSString *_name;
-    NSArray *_upgradeTasks;
-    long long _selected;
+    NSArray *_upgradeTaskObservationTokens;
     BOOL _ignoreSelectionChanges;
+    NSString *_name;
+    long long _selected;
+    NSArray *_upgradeTasks;
 }
 
 @property(copy, nonatomic) NSArray *upgradeTasks; // @synthesize upgradeTasks=_upgradeTasks;
@@ -21,8 +24,23 @@
 @property(readonly) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (void)_updateSelected;
-- (id)navigableItem_name;
+@property(readonly) NSString *navigableItem_name;
+- (void)dealloc;
 - (id)initWithName:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

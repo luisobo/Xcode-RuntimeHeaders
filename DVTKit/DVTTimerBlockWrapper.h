@@ -8,7 +8,7 @@
 
 #import "DVTCancellable-Protocol.h"
 
-@class NSTimer;
+@class NSString, NSTimer;
 
 @interface DVTTimerBlockWrapper : NSObject <DVTCancellable>
 {
@@ -21,6 +21,12 @@
 - (void)cancel;
 @property(readonly, getter=isCancelled) BOOL cancelled;
 - (id)initWithTimeInterval:(double)arg1 repeats:(BOOL)arg2 handler:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

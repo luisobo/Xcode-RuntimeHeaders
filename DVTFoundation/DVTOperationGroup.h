@@ -22,7 +22,7 @@
 }
 
 + (id)operationGroupWithSuboperations:(id)arg1;
-@property(readonly) NSArray *suboperations; // @synthesize suboperations=_suboperations;
+@property(readonly, copy) NSArray *suboperations; // @synthesize suboperations=_suboperations;
 - (void).cxx_destruct;
 - (id)description;
 - (void)cancel;
@@ -30,6 +30,8 @@
 - (BOOL)isFinished;
 - (BOOL)isExecuting;
 - (void)enqueueSuboperations;
+- (void)enumerateUsingBlock:(id)arg1;
+- (void)_enumerateWithStop:(char *)arg1 usingBlock:(id)arg2;
 - (void)removeSuboperation:(id)arg1;
 - (void)addSuboperation:(id)arg1;
 - (void)addSuboperations:(id)arg1;

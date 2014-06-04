@@ -8,7 +8,7 @@
 
 #import "NSSplitViewDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTSplitView, IDEDMEditorController, IDEDMEditorSourceListController, IDEDMSubViewControllerStateManager, NSView;
+@class DVTBorderedView, DVTSplitView, IDEDMEditorController, IDEDMEditorSourceListController, IDEDMSubViewControllerStateManager, NSString, NSView;
 
 @interface IDEDMEditor : IDEEditor <NSSplitViewDelegate>
 {
@@ -54,6 +54,12 @@
 - (void)_mountSourceListView;
 - (void)selectModelObjects:(id)arg1;
 - (Class)documentLocationClass;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -24,7 +24,7 @@
 @property(copy) NSString *message; // @synthesize message=_message;
 @property(copy) NSDictionary *choices; // @synthesize choices=_choices;
 - (void).cxx_destruct;
-@property(readonly) NSSet *selectedIdentifiers;
+@property(readonly, copy) NSSet *selectedIdentifiers;
 - (void)cancelButtonAction:(id)arg1;
 - (void)okButtonAction:(id)arg1;
 - (void)beginSheetModalForWindow:(id)arg1 completionHandler:(id)arg2;

@@ -14,7 +14,7 @@
 }
 
 + (Class)cellClass;
-@property __weak XCDualStateToolbarItem *toolbarItem; // @synthesize toolbarItem=_toolbarItem;
+@property XCDualStateToolbarItem *toolbarItem; // @synthesize toolbarItem=_toolbarItem;
 - (BOOL)sendAction:(SEL)arg1 to:(id)arg2;
 
 @end

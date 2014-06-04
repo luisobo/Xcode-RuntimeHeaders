@@ -38,6 +38,7 @@
 - (id)tableView:(id)arg1 selectionIndexesForProposedSelection:(id)arg2;
 - (void)setSelectedBuildables:(id)arg1;
 - (id)selectedBuildables;
+- (id)selectedXcode3Targets;
 - (id)selectedTargets;
 - (void)rememberSelectedTargets;
 - (void)updateTargets;
@@ -45,6 +46,12 @@
 - (id)targetForGroup:(id)arg1 rootGroup:(id)arg2 targets:(id)arg3;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

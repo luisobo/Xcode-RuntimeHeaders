@@ -9,7 +9,7 @@
 #import "DVTInvalidation-Protocol.h"
 #import "IDEBindableDeclarativeInspectorController-Protocol.h"
 
-@class DVTStackBacktrace, IDEInspectorContentView, NSArray, NSArrayController, NSBundle;
+@class DVTStackBacktrace, IDEInspectorContentView, NSArray, NSArrayController, NSBundle, NSString;
 
 @interface IDEAttributedStringControlParagraphStylePopoverController : NSViewController <IDEBindableDeclarativeInspectorController, DVTInvalidation>
 {
@@ -34,7 +34,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -7,12 +7,12 @@
 #import "IBAbstractLayoutConstraintAbstraction.h"
 
 @interface IBAbstractLayoutConstraintAbstraction (IBAbstractLayoutConstraintAbstractionIntegration)
++ (id)ibDefaultImageForInstance:(id)arg1;
 - (long long)ibCompareForSortingForUserInterface:(id)arg1;
 @property(readonly, nonatomic) id ibMemberToHighlightInUI;
 - (BOOL)ibIsLikelyContributingToAmbiguityOfGroup:(id)arg1;
 - (BOOL)ibShouldBeIncludedInEqualNonRequiredPriorityConstraintsAmbiguityCategoryGivenContentSizeChanges:(id)arg1;
 - (id)ibBadgeLabelForDrawableAtIndex:(unsigned long long)arg1 stateMask:(unsigned long long)arg2;
 - (id)ibTintColorForDrawableAtIndex:(unsigned long long)arg1 stateMask:(unsigned long long)arg2;
-- (unsigned long long)ibNumberOfDrawableInstances;
 @end
 

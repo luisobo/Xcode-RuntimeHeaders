@@ -7,12 +7,11 @@
 #import "DBGStackFrame.h"
 
 #import "DBGLLDBInvalidation-Protocol.h"
-#import "DBGStackFrameDelegate-Protocol.h"
 
-@class NSArray, NSMutableSet;
+@class NSArray, NSMutableSet, NSString;
 
 // Not exported
-@interface DBGLLDBStackFrame : DBGStackFrame <DBGStackFrameDelegate, DBGLLDBInvalidation>
+@interface DBGLLDBStackFrame : DBGStackFrame <DBGLLDBInvalidation>
 {
     struct SBFrame _lldbFrame;
     struct SBValueList _lldbVariables;
@@ -24,6 +23,7 @@
     NSArray *_registers;
     NSMutableSet *_expressionDataValuesToInvalidate;
     BOOL _markedForInvalidationFromTheSessionThread;
+    BOOL _hasInitializedDisassembly;
 }
 
 @property BOOL markedForInvalidationFromTheSessionThread; // @synthesize markedForInvalidationFromTheSessionThread=_markedForInvalidationFromTheSessionThread;
@@ -34,27 +34,31 @@
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (void)stackFrame:(id)arg1 requestDisassembly:(id)arg2;
+- (id)disassembly;
 - (id)dataValuesToInvalidate;
 - (id)_lldbSession;
-- (id)disassemble;
 - (void)_getRegistersFromLLDBOnSessionThread;
 - (void)_getFileStaticsFromLLDBOnSessionThread;
 - (void)_getLocalsFromLLDBOnSessionThread;
 - (void)_getArgumentsFromLLDBOnSessionThread;
-- (id)_evaluateExpressionOnSessionThread:(id)arg1;
-- (void)_forceSummaryToLoadAndUpdateSummaryIfNecessary:(id)arg1;
-- (void)_getDataValueForExpressionOnSessionThread:(id)arg1 onQueue:(struct dispatch_queue_s *)arg2 withResultBlock:(id)arg3;
-- (void)requestDataValueForExpression:(id)arg1 atBlockStartAddress:(id)arg2 onQueue:(struct dispatch_queue_s *)arg3 withResultBlock:(id)arg4;
-- (void)requestDataValueForSymbol:(id)arg1 symbolKind:(id)arg2 atLocation:(id)arg3 onQueue:(struct dispatch_queue_s *)arg4 withResultBlock:(id)arg5;
+- (id)_evaluateExpressionOnSessionThread:(id)arg1 timeout:(unsigned long long)arg2 autoHandleExceptions:(BOOL)arg3;
+- (void)evaluateExpression:(id)arg1 timeout:(unsigned long long)arg2 callbackQueue:(id)arg3 autoHandleExceptions:(BOOL)arg4 withResultBlock:(id)arg5;
+- (void)requestDataValueForSymbol:(id)arg1 symbolKind:(id)arg2 atLocation:(id)arg3 onQueue:(id)arg4 withResultBlock:(id)arg5;
 - (id)_findSymbolWithName:(id)arg1 symbolKind:(id)arg2 atLocation:(id)arg3;
-- (void)getFrameVariables;
+- (void)_getAllFrameVariablesOnLLDBSessionThread;
 - (void)_addSessionThreadAction:(id)arg1;
 - (id)_weakSelf;
 - (BOOL)_isSessionThread;
 - (void)_assertNotMarkedForInvalidationAndOnSessionThread;
 - (void)_setReturnValueFromInitIfNecessary;
+- (struct SBFrame)lldbFrame;
 - (id)initWithParentThread:(id)arg1 frameNumber:(id)arg2 framePointer:(id)arg3 name:(id)arg4 lldbFrame:(struct SBFrame)arg5;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

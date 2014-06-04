@@ -28,18 +28,13 @@
 - (void)performTestAction:(id)arg1;
 - (void)performAnalyzeAction:(id)arg1;
 - (BOOL)menuItemRepresentsBuildOnly:(id)arg1;
-- (void)_setToolbarItem:(id)arg1;
+- (void)setToolbarItem:(id)arg1;
 - (id)_toolbarItem;
 - (void)_setButtonToBuildStyle:(id)arg1 menuItem:(id)arg2;
-- (void)_setCellImagesForBuild:(id)arg1;
 - (void)_setButtonToProfileStyle:(id)arg1 menuItem:(id)arg2;
-- (void)_setCellImagesForProfile:(id)arg1;
 - (void)_setButtonToTestStyle:(id)arg1 menuItem:(id)arg2;
-- (void)_setCellImagesForTest:(id)arg1;
 - (void)_setButtonToAnalyzeStyle:(id)arg1 menuItem:(id)arg2;
-- (void)_setCellImagesForAnalyze:(id)arg1;
 - (void)_setButtonToRunStyle:(id)arg1 menuItem:(id)arg2;
-- (void)_setCellImagesForRun:(id)arg1;
 - (void)_updateEnablement;
 - (void)_updateIcon;
 - (void)_updateToolbarItem;
@@ -57,7 +52,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -8,12 +8,20 @@
 
 #import "DVTDownloadableInstallationHelper-Protocol.h"
 
+@class NSString;
+
 @interface IDEDownloadableInstallationHelper : NSObject <DVTDownloadableInstallationHelper>
 {
 }
 
 - (void)downloadableNamed:(id)arg1 needsTerminationOfAppsWithBundleIdentifier:(id)arg2 completionBlock:(id)arg3;
 - (void)_didCompleteAlertWithReturnCode:(long long)arg1 bundleIdentifier:(id)arg2 completionBlock:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -11,7 +11,7 @@
 #import "IBICDetailDocumentViewDelegate-Protocol.h"
 #import "IBSelectionChannelApplicator-Protocol.h"
 
-@class DVTDelayedInvocation, DVTMainViewControllerDrawingStrategy, IBICCatalogDocument, IBICCatalogDocumentEditor, IBICDetailDocumentView, IBICDetailOverlay, IBICDetailPlaceholderView, IBICDetailScrollView, IBSelectionChannel, NSArray, NSSegmentedControl;
+@class DVTDelayedInvocation, DVTMainViewControllerDrawingStrategy, IBICCatalogDocument, IBICCatalogDocumentEditor, IBICDetailDocumentView, IBICDetailOverlay, IBICDetailPlaceholderView, IBICDetailScrollView, IBSelectionChannel, NSArray, NSSegmentedControl, NSString;
 
 @interface IBICAbstractCatalogDetailController : IDEViewController <DVTMainViewControllerDrawingStrategyDelegate, IBICDetailDocumentViewDelegate, IBICCatalogItemObserver, IBSelectionChannelApplicator>
 {
@@ -21,7 +21,7 @@
     id <IBInvalidation> _catalogObservation;
     id <DVTInvalidation> _scrollViewToken;
     DVTDelayedInvocation *_placeholderTextValidator;
-    NSSegmentedControl *_zoomButton;
+    NSSegmentedControl *_zoomSegmentedControl;
     NSSegmentedControl *_showSlicingButton;
     BOOL _drawsWithKeyAppearance;
     IBICCatalogDocumentEditor *_documentEditor;
@@ -81,6 +81,12 @@
 - (void)mainViewControllerDrawingStrategyActivationStateDidChange:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)initWithDocumentEditor:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

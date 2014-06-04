@@ -13,6 +13,8 @@
 + (BOOL)objectAggregatesAllActions:(id)arg1;
 + (id)normalizeDestination:(id)arg1 withParent:(id)arg2;
 + (BOOL)canObjectFireActions:(id)arg1 inDocument:(id)arg2;
+- (BOOL)canHaveSourceSeparatedWithSeparationType:(int)arg1;
+- (BOOL)canHaveDestinationSeparatedWithSeparationType:(int)arg1;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)archiveConnection;
 - (id)equivalentDestinationInDocument:(id)arg1;

@@ -9,20 +9,22 @@
 #import "IBDocumentArchiving-Protocol.h"
 #import "NSCoding-Protocol.h"
 
-@class IBLayoutGuideDrawingHandler, NSView;
+@class IBLayoutGuideDrawingHandler, NSString, NSView;
 
 @interface IBUserGuide : IBAbstractUserGuide <NSCoding, IBDocumentArchiving>
 {
-    NSView *view;
-    unsigned long long affinity;
-    double relativeLocation;
-    IBLayoutGuideDrawingHandler *layoutGuideDrawingHandler;
-    BOOL dragging;
+    BOOL _dragging;
+    IBLayoutGuideDrawingHandler *_layoutGuideDrawingHandler;
+    NSView *_view;
+    unsigned long long _affinity;
+    double _location;
 }
 
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
-@property(retain) NSView *view; // @synthesize view;
-@property(retain, nonatomic) IBLayoutGuideDrawingHandler *layoutGuideDrawingHandler; // @synthesize layoutGuideDrawingHandler;
+@property(nonatomic) double location; // @synthesize location=_location;
+@property(nonatomic) unsigned long long affinity; // @synthesize affinity=_affinity;
+@property(retain) NSView *view; // @synthesize view=_view;
+@property(retain, nonatomic) IBLayoutGuideDrawingHandler *layoutGuideDrawingHandler; // @synthesize layoutGuideDrawingHandler=_layoutGuideDrawingHandler;
 - (void).cxx_destruct;
 - (void)invalidate;
 - (void)drawOffsetIndicatorsView:(id)arg1;
@@ -37,16 +39,13 @@
 - (double)reportedDistanceFromMaxEdge;
 - (double)reportedDistanceFromMinEdge;
 - (void)trackWithLeftMouseDownEvent:(id)arg1 inDocument:(id)arg2;
-- (struct CGRect)drawignBoundsInView:(id)arg1;
 - (struct CGRect)hitTestingRectInView:(id)arg1;
-- (void)updateWithRelativeLocationFromPoint:(struct CGPoint)arg1 andAffinity:(unsigned long long)arg2 inView:(id)arg3 inDocument:(id)arg4;
-- (id)description;
-@property(readonly, getter=isVisible) BOOL visible;
+- (void)updateWithLocationFromPoint:(struct CGPoint)arg1 andAffinity:(unsigned long long)arg2 inView:(id)arg3 inDocument:(id)arg4;
+@property(readonly, copy) NSString *description;
+- (BOOL)isVisible;
 - (struct CGPoint)endInView:(id)arg1;
 - (struct CGPoint)startInView:(id)arg1;
 - (void)setDragging:(BOOL)arg1;
-- (void)setAffinity:(unsigned long long)arg1;
-- (void)setRelativeLocation:(double)arg1;
 - (CDStruct_f6143a38)lineInView:(id)arg1;
 - (id)document;
 - (BOOL)isVertical;
@@ -57,6 +56,11 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithView:(id)arg1 location:(double)arg2 andAffinity:(unsigned long long)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

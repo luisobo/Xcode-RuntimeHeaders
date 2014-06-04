@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class PBXProjectIndex;
+@class NSObject<OS_dispatch_queue>, PBXProjectIndex;
 
 @interface PBXIndexingEngine : NSObject
 {
     PBXProjectIndex *_projectIndex;
-    struct dispatch_queue_s *_indexAccessQueue;
+    NSObject<OS_dispatch_queue> *_indexAccessQueue;
 }
 
 + (id)fileListForFrameworkOrLibrary:(id)arg1;

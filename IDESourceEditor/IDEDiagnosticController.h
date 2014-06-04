@@ -8,11 +8,11 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, IDESourceCodeDocument, NSArray, NSMutableArray;
+@class DVTStackBacktrace, NSArray, NSMutableArray, NSString;
 
 @interface IDEDiagnosticController : NSObject <DVTInvalidation>
 {
-    IDESourceCodeDocument *_sourceCodeDocument;
+    id <IDEDiagnosticControllerDataSource> _dataSource;
     double _diagnosticsGenerationDelay;
     BOOL _hasScheduledDiagnosticsGeneration;
     BOOL _isDiagnosisEnabled;
@@ -25,20 +25,24 @@
 @property(nonatomic, getter=isDiagnosisEnabled) BOOL diagnosisEnabled; // @synthesize diagnosisEnabled=_isDiagnosisEnabled;
 @property BOOL hasScheduledDiagnosticsGeneration; // @synthesize hasScheduledDiagnosticsGeneration=_hasScheduledDiagnosticsGeneration;
 @property double diagnosticsGenerationDelay; // @synthesize diagnosticsGenerationDelay=_diagnosticsGenerationDelay;
-@property(readonly) IDESourceCodeDocument *sourceCodeDocument; // @synthesize sourceCodeDocument=_sourceCodeDocument;
+@property(readonly) id <IDEDiagnosticControllerDataSource> dataSource; // @synthesize dataSource=_dataSource;
 - (void).cxx_destruct;
 - (void)cancelDiagnosticsGeneration;
 - (void)scheduleDiagnosticsGeneration;
 - (void)scheduleDiagnosticsGenerationWithDelay:(double)arg1;
 - (void)diagnose;
-@property(readonly) NSMutableArray *mutableDiagnosticItems;
+@property(readonly, copy) NSMutableArray *mutableDiagnosticItems;
 @property(copy) NSArray *diagnosticItems;
 - (void)primitiveInvalidate;
-- (id)initWithSourceCodeDocument:(id)arg1;
+- (id)initWithDataSource:(id)arg1;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

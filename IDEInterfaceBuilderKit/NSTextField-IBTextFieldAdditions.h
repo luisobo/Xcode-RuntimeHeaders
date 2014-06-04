@@ -6,9 +6,23 @@
 
 #import "NSTextField.h"
 
-@interface NSTextField (IBTextFieldAdditions)
+#import "IBFindIndicatorProvider-Protocol.h"
+
+@class NSString;
+
+@interface NSTextField (IBTextFieldAdditions) <IBFindIndicatorProvider>
 + (id)ib_staticTextLabel;
+- (struct _NSRange)ib_findIndicatorRangeForSearchString:(id)arg1;
+- (id)ib_findableStringValue;
+- (id)ib_showFindIndicatorForTextRange:(struct _NSRange)arg1 takeFocus:(BOOL)arg2;
+- (void)ib_prepareFieldEditorBeforeShowingFindIndicator:(id)arg1;
 - (void)ib_sizeToFitAndCenterWithIntegralOriginAndSizeInRect:(struct CGRect)arg1;
 - (struct CGRect)ib_sizeToFitFrameCenteredWithIntegralOriginAndSizeInRect:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

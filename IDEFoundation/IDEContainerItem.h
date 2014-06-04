@@ -52,7 +52,7 @@
 @property(readonly) int sourceControlServerStatus;
 @property(readonly) int sourceControlLocalStatus;
 - (void)_setContainerItemEdited;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)debugPrintStructure;
 - (void)debugPrintInnerStructure;
 @property(copy) DVTSourceCodeLanguage *language;
@@ -102,7 +102,10 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

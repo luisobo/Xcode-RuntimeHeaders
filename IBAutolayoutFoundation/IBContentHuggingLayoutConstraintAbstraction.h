@@ -13,7 +13,7 @@
 
 @property(nonatomic) double huggingPriority; // @synthesize huggingPriority=_huggingPriority;
 - (double)priority;
-- (id)makeRepresentingConstraintWithLayoutInfo:(id)arg1;
+- (id)makeRepresentingConstraintWithProvider:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqualToAbstraction:(id)arg1;
 - (Class)representationClass;

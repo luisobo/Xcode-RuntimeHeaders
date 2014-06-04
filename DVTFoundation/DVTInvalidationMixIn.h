@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace;
+@class DVTStackBacktrace, NSString;
 
 @interface DVTInvalidationMixIn : DVTMixIn <DVTInvalidation>
 {
@@ -21,6 +21,12 @@
 @property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

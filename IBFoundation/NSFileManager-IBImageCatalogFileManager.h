@@ -8,6 +8,8 @@
 
 #import "IBImageCatalogFileManager-Protocol.h"
 
+@class NSString;
+
 @interface NSFileManager (IBImageCatalogFileManager) <IBImageCatalogFileManager>
 + (id)ib_defaultManager;
 - (void)ib_endBatchEdits;
@@ -17,5 +19,11 @@
 - (BOOL)ib_addItemsAtPaths:(id)arg1 force:(BOOL)arg2 error:(id *)arg3;
 - (BOOL)ib_removeItemsAtPaths:(id)arg1 moveToTrash:(BOOL)arg2 error:(id *)arg3;
 - (BOOL)ib_createDirectoryAtPath:(id)arg1 withIntermediateDirectories:(BOOL)arg2 attributes:(id)arg3 error:(id *)arg4;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

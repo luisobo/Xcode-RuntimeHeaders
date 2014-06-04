@@ -10,10 +10,9 @@
 {
 }
 
-- (id)portalFlightCheck;
-- (id)linkedFrameworksFlightCheck;
 - (BOOL)isEnabledUsingEducatedGuess;
-- (void)publishStateWithContext:(id)arg1;
+- (id)flightChecks;
+- (id)entitlementsFlightCheck;
 
 @end
 

@@ -6,26 +6,33 @@
 
 #import <IBFoundation/IBICMultipartImageRepSlot.h>
 
-@class IBICIdiom, IBICScale, IBICSubtype;
+@class IBICHeightClass, IBICIdiom, IBICScale, IBICSubtype, IBICWidthClass;
 
 @interface IBICImageSetRepSlot : IBICMultipartImageRepSlot
 {
     IBICIdiom *_idiom;
     IBICSubtype *_subtype;
     IBICScale *_scale;
+    IBICWidthClass *_widthClass;
+    IBICHeightClass *_heightClass;
 }
 
++ (void)setShouldShowVariantedSizeClasses:(BOOL)arg1;
++ (BOOL)shouldShowVariantedSizeClasses;
 + (id)defaultSlot;
-+ (id)slotWithIdiom:(id)arg1 subtype:(id)arg2 scale:(id)arg3;
++ (id)slotWithIdiom:(id)arg1 subtype:(id)arg2 scale:(id)arg3 widthClass:(id)arg4 heightClass:(id)arg5;
 + (id)orderedComponentClasses;
+@property(readonly) IBICHeightClass *heightClass; // @synthesize heightClass=_heightClass;
+@property(readonly) IBICWidthClass *widthClass; // @synthesize widthClass=_widthClass;
 @property(readonly) IBICScale *scale; // @synthesize scale=_scale;
 @property(readonly) IBICSubtype *subtype; // @synthesize subtype=_subtype;
 @property(readonly) IBICIdiom *idiom; // @synthesize idiom=_idiom;
 - (void).cxx_destruct;
+- (id)scaleKey;
 - (id)suggestedRepNameForMultipartImageSetName:(id)arg1;
 - (id)detailAreaKey;
 - (long long)compareDisplayOrder:(id)arg1;
-- (id)shortDisplayNameDefiningItem;
+- (id)shortDisplayName;
 - (void)captureComponents;
 
 @end

@@ -20,8 +20,8 @@
 @property(readonly) NSMutableArray *_mutableIssues; // @synthesize _mutableIssues=_issues;
 @property(readonly) IDEIssueProviderSession *session; // @synthesize session=_session;
 @property(copy) DVTMapTable *issueToGroupingObjectsMap; // @synthesize issueToGroupingObjectsMap=_issueToGroupingObjectsMap;
-@property(readonly) IDEContainer *container; // @synthesize container=_container;
-@property(readonly) id <IDEBlueprint> blueprint; // @synthesize blueprint=_blueprint;
+@property(readonly) __weak IDEContainer *container; // @synthesize container=_container;
+@property(readonly) __weak id <IDEBlueprint> blueprint; // @synthesize blueprint=_blueprint;
 - (void).cxx_destruct;
 - (void)removeIssues:(id)arg1;
 - (void)addIssues:(id)arg1;

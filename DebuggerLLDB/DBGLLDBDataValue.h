@@ -16,19 +16,24 @@
     DBGLLDBDataValue *_parent;
     DBGLLDBDataType *_dbgStaticType;
     struct SBValue _lldbValueObject;
+    struct SBValue _lldbValueObject_masked;
+    struct SBValue _lldbValueObject_masked2;
     NSMutableArray *_childValues;
     BOOL _childValuesCountValid;
     NSString *_name_str;
     NSString *_value_str;
+    NSString *_masked_value_str;
     NSString *_summary_str;
     NSString *_expr_path_str;
     BOOL _value_has_changed;
+    BOOL _uses_masked_value;
     BOOL _in_scope;
     BOOL _hasChildValues;
     BOOL _requested_children;
     BOOL _requestedSummary;
     BOOL _representsNilObjectiveCObject;
     BOOL _representsNullObjectPointer;
+    NSArray *_classNameHierarchy;
     BOOL _markedForInvalidationFromTheSessionThread;
     BOOL _isDictionarySynthesizedParent;
     BOOL _isSessionThread;
@@ -58,6 +63,8 @@
 - (void)_persistValueFormat:(id)arg1 stackFrame:(id)arg2;
 - (id)_contextNameForFormatsWithStackFrame:(id)arg1;
 - (id)_contextNameForStackFrame:(id)arg1;
+- (id)_classNameHierarchyStartingWithType:(struct SBType)arg1;
+- (void)classNameHierarchy:(id)arg1;
 - (void)ensureAllDisplayablePropertiesAreLoaded:(id)arg1;
 - (BOOL)_calculateRepresentsNullObjectPointer;
 - (BOOL)representsNullObjectPointer;
@@ -67,7 +74,7 @@
 - (id)realName;
 - (BOOL)wantsToProvideSummary;
 - (id)_createNSStringForCString:(const char *)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)_lldbValueObjectDescription;
 - (id)_lldbValueDescription;
 - (id)lldbDescription;
@@ -80,6 +87,9 @@
 - (void)_setChildValuesToArrayOfPlaceholders;
 - (void)_setChildValuesToArrayOfActualChildren;
 - (void)_fetchChildValuesFromLLDBOnSessionThreadIfNecessary;
+- (void)childWithName:(id)arg1 foundChild:(id)arg2;
+- (id)_calculateSummaryForDictionaryElement;
+- (id)_calculateSummary;
 - (void)_fetchSummaryFromLLDBOnSessionThreadIfNecessary;
 - (id)value;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name_str;
@@ -94,7 +104,13 @@
 - (BOOL)_isSessionThread;
 - (void)_assertNotMarkedForInvalidationAndOnSessionThread;
 @property(readonly) DBGLLDBStackFrame *lldbStackFrame;
+- (id)initWithLLDBValueObject:(struct SBValue)arg1 forStackFrame:(id)arg2 withParent:(id)arg3 updateSummary:(BOOL)arg4;
 - (id)initWithLLDBValueObject:(struct SBValue)arg1 forStackFrame:(id)arg2 withParent:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

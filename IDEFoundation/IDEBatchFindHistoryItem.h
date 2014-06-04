@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, NSAttributedString;
+@class DVTStackBacktrace, NSAttributedString, NSString;
 
 @interface IDEBatchFindHistoryItem : NSObject <DVTInvalidation>
 {
@@ -25,7 +25,7 @@
 @property(readonly) NSAttributedString *findAttributedString; // @synthesize findAttributedString=_findAttributedString;
 - (void).cxx_destruct;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (void)primitiveInvalidate;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
@@ -33,7 +33,10 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -10,24 +10,6 @@
 
 @interface IBSourceCodeConnectionContext : NSObject
 {
-    IDEWorkspaceDocument *destinationWorkspaceDocument;
-    IBConnection *connectionPrototypeToComplete;
-    long long action;
-    DVTExtension *representedExtension;
-    NSString *containingCategoryName;
-    NSArray *springLoadedTraversal;
-    NSString *containingClassName;
-    NSURL *sourceCodeDocumentURL;
-    unsigned long long sourceLineNumber;
-    NSError *insertionError;
-    IBDocument *document;
-    BOOL wasInserted;
-    NSArray *targets;
-    id activeTarget;
-    NSString *type;
-    NSString *name;
-    struct _NSRange range;
-    id source;
     struct {
         unsigned int didSetAction:1;
         unsigned int didSetDocument:1;
@@ -40,30 +22,48 @@
         unsigned int didSetWasInserted:1;
         unsigned int didSetSourceCodeDocumentURL:1;
         unsigned int _reserved:22;
-    } flags;
+    } _flags;
+    BOOL _wasInserted;
+    long long _action;
+    IBDocument *_document;
+    NSURL *_sourceCodeDocumentURL;
+    DVTExtension *_representedExtension;
+    NSString *_name;
+    NSArray *_springLoadedTraversal;
+    NSString *_type;
+    NSString *_containingClassName;
+    NSString *_containingCategoryName;
+    IBConnection *_connectionPrototypeToComplete;
+    NSArray *_targets;
+    id _activeTarget;
+    id _source;
+    IDEWorkspaceDocument *_destinationWorkspaceDocument;
+    unsigned long long _sourceLineNumber;
+    NSError *_insertionError;
+    struct _NSRange _range;
 }
 
 + (Class)sourceCodeGeneratorClass;
 + (id)targetCandidatesForContainingClassNamed:(id)arg1 toObject:(id)arg2 document:(id)arg3 preferredTarget:(id *)arg4;
 + (id)defaultType;
-@property(readonly) NSString *containingCategoryName; // @synthesize containingCategoryName;
-@property(copy, nonatomic) NSURL *sourceCodeDocumentURL; // @synthesize sourceCodeDocumentURL;
-@property(readonly) DVTExtension *representedExtension; // @synthesize representedExtension;
-@property(retain) NSError *insertionError; // @synthesize insertionError;
-@property(retain, nonatomic) IDEWorkspaceDocument *destinationWorkspaceDocument; // @synthesize destinationWorkspaceDocument;
-@property(retain, nonatomic) IBDocument *document; // @synthesize document;
-@property(retain, nonatomic) id source; // @synthesize source;
-@property(retain, nonatomic) id activeTarget; // @synthesize activeTarget;
-@property(copy, nonatomic) NSString *containingClassName; // @synthesize containingClassName;
-@property(copy, nonatomic) NSArray *targets; // @synthesize targets;
-@property(copy) NSArray *springLoadedTraversal; // @synthesize springLoadedTraversal;
-@property(nonatomic) BOOL wasInserted; // @synthesize wasInserted;
-@property(nonatomic) unsigned long long sourceLineNumber; // @synthesize sourceLineNumber;
-@property(copy, nonatomic) NSString *type; // @synthesize type;
-@property(retain, nonatomic) IBConnection *connectionPrototypeToComplete; // @synthesize connectionPrototypeToComplete;
-@property(nonatomic) long long action; // @synthesize action;
-@property struct _NSRange range; // @synthesize range;
-@property(copy, nonatomic) NSString *name; // @synthesize name;
+@property(retain) NSError *insertionError; // @synthesize insertionError=_insertionError;
+@property(nonatomic) BOOL wasInserted; // @synthesize wasInserted=_wasInserted;
+@property(nonatomic) unsigned long long sourceLineNumber; // @synthesize sourceLineNumber=_sourceLineNumber;
+@property(retain, nonatomic) IDEWorkspaceDocument *destinationWorkspaceDocument; // @synthesize destinationWorkspaceDocument=_destinationWorkspaceDocument;
+@property(retain, nonatomic) id source; // @synthesize source=_source;
+@property(retain, nonatomic) id activeTarget; // @synthesize activeTarget=_activeTarget;
+@property(copy, nonatomic) NSArray *targets; // @synthesize targets=_targets;
+@property(retain, nonatomic) IBConnection *connectionPrototypeToComplete; // @synthesize connectionPrototypeToComplete=_connectionPrototypeToComplete;
+@property(retain) NSString *containingCategoryName; // @synthesize containingCategoryName=_containingCategoryName;
+@property(copy, nonatomic) NSString *containingClassName; // @synthesize containingClassName=_containingClassName;
+@property struct _NSRange range; // @synthesize range=_range;
+@property(copy, nonatomic) NSString *type; // @synthesize type=_type;
+@property(copy) NSArray *springLoadedTraversal; // @synthesize springLoadedTraversal=_springLoadedTraversal;
+@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
+@property(retain) DVTExtension *representedExtension; // @synthesize representedExtension=_representedExtension;
+@property(copy, nonatomic) NSURL *sourceCodeDocumentURL; // @synthesize sourceCodeDocumentURL=_sourceCodeDocumentURL;
+@property(retain, nonatomic) IBDocument *document; // @synthesize document=_document;
+@property(nonatomic) long long action; // @synthesize action=_action;
 - (void).cxx_destruct;
 - (id)representativeCounterpart;
 - (id)counterpartsForIgnoringErrors;
@@ -72,6 +72,7 @@
 - (id)generateRepresentativeConnection;
 - (id)validatedSourceCodeConnectionTypeForType:(id)arg1 error:(id *)arg2;
 - (id)validatedSourceCodeConnectionNameForName:(id)arg1 error:(id *)arg2;
+- (BOOL)parseSourceLandmarkItem:(id)arg1;
 - (BOOL)parseSourceModelItem:(id)arg1 sourceModel:(id)arg2;
 - (id)traversedContexts;
 - (id)counterpartsToCustomLocations;
@@ -82,7 +83,6 @@
 - (BOOL)userCanConfigureTarget;
 - (BOOL)userCanConfigureType;
 - (BOOL)userCanConfigureName;
-@property(readonly) NSString *nameConcatenatedWithType;
 @property(readonly) NSString *qualifiedType;
 - (id)labelForCompletingConnectionPrototypeForInsertion;
 @property(readonly) NSString *effectiveLabelForCompletingPrototypeConnection;
@@ -91,8 +91,8 @@
 @property(readonly) BOOL isContainedInCategory;
 @property(readonly) BOOL isContainedInClassExtension;
 - (id)description;
-- (id)initForInsertionWithExtension:(id)arg1 sourceModelItem:(id)arg2 sourceModel:(id)arg3;
-- (id)initForMatchWithExtension:(id)arg1 sourceModelItem:(id)arg2 sourceModel:(id)arg3;
+- (id)initForAction:(long long)arg1 withExtension:(id)arg2 sourceLandmarkItem:(id)arg3;
+- (id)initForAction:(long long)arg1 withExtension:(id)arg2 sourceModelItem:(id)arg3 sourceModel:(id)arg4;
 - (id)initWithExtension:(id)arg1;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, IDEActivityView, IDEWorkspaceWindowController;
+@class DVTStackBacktrace, IDEActivityView, IDEWorkspaceWindowController, NSString;
 
 @interface IDEActivityPlaceholderView : NSView <DVTInvalidation>
 {
@@ -21,6 +21,8 @@
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (id)hitTest:(struct CGPoint)arg1;
+- (double)_offsetFromTopOfWindowInFullScreen;
+- (double)_offsetFromTopOfWindow;
 - (void)viewDidMoveToWindow;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)sizeAndPositionActivityView;
@@ -29,7 +31,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

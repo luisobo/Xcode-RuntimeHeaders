@@ -14,7 +14,7 @@
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (id)initWithPathString:(id)arg1 uuid:(id)arg2 lldbModule:(struct SBModule)arg3;
+- (id)initWithIdentifier:(id)arg1 pathString:(id)arg2 lldbModule:(struct SBModule)arg3;
 
 @end
 

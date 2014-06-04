@@ -6,23 +6,23 @@
 
 #import "NSObject.h"
 
-@class IBIndexClassProvider, NSSet;
+@class IBIndexClassDescriber, NSSet;
 
 @interface IBAnnotationIndexProvider : NSObject
 {
-    IBIndexClassProvider *indexClassProvider;
-    NSSet *classNames;
+    IBIndexClassDescriber *_indexClassDescriber;
+    NSSet *_classNames;
 }
 
-+ (id)annotationsForClassesNamed:(id)arg1 usingIndexClassProvider:(id)arg2;
++ (id)annotationsForClassesNamed:(id)arg1 usingIndexClassDescriber:(id)arg2;
 - (void).cxx_destruct;
 - (id)annotationsFromIndex;
 - (id)annotationsFromConnectionSymbols:(id)arg1 withConnectionNameToOccurrencesDictionary:(id)arg2 inClassNamed:(id)arg3;
-- (id)generateAnnotationUsingConnectionSymbol:(id)arg1 withOccurrences:(id)arg2 type:(long long)arg3 sourceModelContext:(unsigned long long)arg4 inClassNamed:(id)arg5;
-- (unsigned long long)sourceModelContextForConnectionSymbol:(id)arg1;
+- (id)generateAnnotationUsingConnectionSymbol:(id)arg1 withOccurrences:(id)arg2 type:(long long)arg3 kind:(unsigned long long)arg4 inClassNamed:(id)arg5;
+- (unsigned long long)annotationKindForConnectionSymbol:(id)arg1;
 - (long long)relationshipTypeForConnectionSymbol:(id)arg1;
 - (id)ibConnectionLocationsFromOccurrences:(id)arg1;
-- (id)initWithClassesNamed:(id)arg1 indexClassProvider:(id)arg2;
+- (id)initWithClassesNamed:(id)arg1 usingIndexClassDescriber:(id)arg2;
 
 @end
 

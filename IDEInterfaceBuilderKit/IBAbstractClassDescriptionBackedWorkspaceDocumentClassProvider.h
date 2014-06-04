@@ -6,33 +6,26 @@
 
 #import <IDEInterfaceBuilderKit/IBAbstractWorkspaceDocumentClassProvider.h>
 
-@class IBClassDescriptionBasedClassProvider, IBTargetRuntime;
+@class IBPlatform, NSMutableDictionary;
 
 @interface IBAbstractClassDescriptionBackedWorkspaceDocumentClassProvider : IBAbstractWorkspaceDocumentClassProvider
 {
-    IBClassDescriptionBasedClassProvider *backingClassProvider;
-    id <DVTCancellable> backingClassProviderObservingToken;
+    NSMutableDictionary *_partialDescriptionsBySourceIdentifier;
+    IBPlatform *_platform;
 }
 
-+ (id)retainedClassProviderForWorkspaceDocument:(id)arg1 targetRuntime:(id)arg2;
-@property(readonly) IBClassDescriptionBasedClassProvider *backingClassProvider; // @synthesize backingClassProvider;
++ (id)retainedClassProviderForWorkspaceDocument:(id)arg1 platform:(id)arg2;
+@property(retain) IBPlatform *platform; // @synthesize platform=_platform;
 - (void).cxx_destruct;
-- (id)collectionTypeForToManyOutlet:(id)arg1 forClassNamed:(id)arg2;
-- (id)typeForNamedRelation:(id)arg1 ofRelationshipType:(long long)arg2 forClassNamed:(id)arg3;
-- (id)namedRelationsOfRelationshipType:(long long)arg1 forClassNamed:(id)arg2 withLineage:(id)arg3 recursive:(BOOL)arg4;
-- (id)namedRelationsOfRelationshipType:(long long)arg1;
-- (id)classNamesForClassesWithActionsNamed:(id)arg1;
-- (id)classNames;
-- (id)descendantsOfClassesNamed:(id)arg1;
-- (id)subclassesOfClassNamed:(id)arg1;
-- (id)superclassOfClassNamed:(id)arg1;
-- (BOOL)hasDescriptionOfClassNamed:(id)arg1;
-- (id)partialClassDescriptionsForEncodingClassNamed:(id)arg1;
-@property(readonly) IBTargetRuntime *targetRuntime;
+- (id)partialClassDescriptions;
+- (id)partialClassDescriptionSourcesMarkedAsDesignable;
+- (void)integratePartialClassDescriptions:(id)arg1;
+- (void)removePartialDescriptionsWithSourceIdentifiers:(id)arg1;
+- (void)removePartialDescriptionsFromFrameworksNamed:(id)arg1;
+- (id)partialClassDescriptionSourcesFromFrameworksNamed:(id)arg1;
 - (id)referenceKey;
 - (id)description;
-- (void)primitiveInvalidate;
-- (id)initWithWorkspaceDocument:(id)arg1 targetRuntime:(id)arg2;
+- (id)initWithWorkspaceDocument:(id)arg1 platform:(id)arg2;
 
 @end
 

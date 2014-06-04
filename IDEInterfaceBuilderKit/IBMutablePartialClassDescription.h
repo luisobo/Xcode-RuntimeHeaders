@@ -14,18 +14,19 @@
 
 - (void)removeClassInformationExistingInPartialClassDescription:(id)arg1;
 - (void)mergeWithPartialDescription:(id)arg1;
-- (void)addRelationshipInfo:(id)arg1;
-- (void)setActionNames:(id)arg1;
 - (void)removeActionNamed:(id)arg1;
+- (void)removeInspectableNamed:(id)arg1;
 - (void)removeToOneOutletNamed:(id)arg1;
+- (void)setType:(id)arg1 forInspectable:(id)arg2;
 - (void)setType:(id)arg1 forAction:(id)arg2;
 - (void)setType:(id)arg1 forToOneOutlet:(id)arg2;
 - (void)removeNamedRelation:(id)arg1 ofRelationshipType:(long long)arg2;
 - (void)setType:(id)arg1 forNamedRelation:(id)arg2 ofRelationshipType:(long long)arg3;
-- (id)storageForRelationInformationOfType:(long long)arg1 creatingIfNecessary:(BOOL)arg2;
-@property(copy) IBClassDescriptionSource *sourceIdentifier; // @dynamic sourceIdentifier;
-@property(copy) NSString *superclassName; // @dynamic superclassName;
-@property(copy) NSString *className; // @dynamic className;
+- (void)addRelationshipInfo:(id)arg1;
+@property(nonatomic, getter=isDesignable) BOOL designable;
+@property(copy, nonatomic) IBClassDescriptionSource *sourceIdentifier; // @dynamic sourceIdentifier;
+@property(copy, nonatomic) NSString *superclassName; // @dynamic superclassName;
+@property(copy, nonatomic) NSString *className; // @dynamic className;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 
 @end

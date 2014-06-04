@@ -10,7 +10,7 @@
 #import "NSMenuDelegate-Protocol.h"
 #import "NSPathControlDelegate-Protocol.h"
 
-@class IDENavigableItem, IDENavigableItemCoordinator, IDEPathControl, NSToolbarItem;
+@class IDENavigableItem, IDENavigableItemCoordinator, IDEPathControl, NSString, NSToolbarItem;
 
 @interface IDESchemeToolbarController : DVTToolbarViewController <NSPathControlDelegate, IDEPathCellDelegate, NSMenuDelegate>
 {
@@ -52,6 +52,12 @@
 - (id)initWithToolbarItemIdentifier:(id)arg1 window:(id)arg2;
 - (id)_workspaceTabController;
 - (id)_workspace;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

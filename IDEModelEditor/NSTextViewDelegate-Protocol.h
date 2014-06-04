@@ -9,11 +9,11 @@
 @protocol NSTextViewDelegate <NSTextDelegate>
 
 @optional
-- (id)undoManagerForTextView:(id)arg1;
 - (void)textView:(id)arg1 draggedCell:(id)arg2 inRect:(struct CGRect)arg3 event:(id)arg4;
 - (void)textView:(id)arg1 doubleClickedOnCell:(id)arg2 inRect:(struct CGRect)arg3;
 - (void)textView:(id)arg1 clickedOnCell:(id)arg2 inRect:(struct CGRect)arg3;
 - (BOOL)textView:(id)arg1 clickedOnLink:(id)arg2;
+- (id)undoManagerForTextView:(id)arg1;
 - (id)textView:(id)arg1 willShowSharingServicePicker:(id)arg2 forItems:(id)arg3;
 - (id)textView:(id)arg1 URLForContentsOfTextAttachment:(id)arg2 atIndex:(unsigned long long)arg3;
 - (id)textView:(id)arg1 didCheckTextInRange:(struct _NSRange)arg2 types:(unsigned long long)arg3 options:(id)arg4 results:(id)arg5 orthography:(id)arg6 wordCount:(long long)arg7;

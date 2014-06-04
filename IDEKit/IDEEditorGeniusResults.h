@@ -38,12 +38,12 @@
 + (BOOL)validGeniusCategory:(id)arg1 forEditorDocumentIdentifier:(id)arg2;
 + (id)_geniusCategoriesForFinderExtensions:(id)arg1;
 + (id)_finderExtensionsForEditorDocumentIdentifier:(id)arg1 fileDataType:(id)arg2;
-+ (struct dispatch_queue_s *)indexRequestsQueue;
++ (id)indexRequestsQueue;
 + (void)initialize;
-@property(readonly) NSString *editorDocumentIdentifier; // @synthesize editorDocumentIdentifier=_editorDocumentIdentifier;
+@property(readonly, copy) NSString *editorDocumentIdentifier; // @synthesize editorDocumentIdentifier=_editorDocumentIdentifier;
 @property BOOL idle; // @synthesize idle=_idle;
 @property(readonly) unsigned long long numberOfGeniusResults; // @synthesize numberOfGeniusResults=_numberOfGeniusResults;
-@property(readonly) NSDictionary *geniusResults; // @synthesize geniusResults=_geniusResults;
+@property(readonly, copy) NSDictionary *geniusResults; // @synthesize geniusResults=_geniusResults;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (BOOL)_updateGeniusResults;
@@ -58,12 +58,15 @@
 - (void)_setForcedUpdateTimer;
 - (void)_clearForcedUpdateTimer;
 - (BOOL)_allGeniusFindersAreIdle;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)initWithWorkspaceTabController:(id)arg1 navigableItemCoordinator:(id)arg2;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

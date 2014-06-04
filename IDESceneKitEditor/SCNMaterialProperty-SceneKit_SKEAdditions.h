@@ -7,17 +7,13 @@
 #import "SCNMaterialProperty.h"
 
 @interface SCNMaterialProperty (SceneKit_SKEAdditions)
-+ (id)keyPathsForValuesAffectingIde_exportedPath;
-+ (unsigned long long)defaultPathExportMode;
++ (id)ske_displayNameForUndoKVOKeypath:(id)arg1;
 @property double ide_intensity;
 - (id)ide_displayImage;
 - (BOOL)ide_isColor;
 - (BOOL)ide_isImage;
-@property(readonly) id ide_exportedPath;
-@property unsigned long long ide_pathExportMode;
 @property(retain) id ide_contents;
 - (id)ide_slotName;
-- (id)ske_displayNameForUndoKVOKeypath:(id)arg1;
 - (id)ske_undoKVOKeypaths;
 @end
 

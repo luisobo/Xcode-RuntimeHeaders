@@ -11,7 +11,7 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTDelayedInvocation, DVTGradientImageButton, DVTNotificationToken, DVTScriptSourceTextView, DVTStackView_ML, DVTTableView, NSPopUpButton, NSScrollView, NSString, NSTextField, NSView;
+@class DVTBorderedView, DVTDelayedInvocation, DVTGradientImageButton, DVTNotificationToken, DVTScriptSourceTextView, DVTStackView_ML, DVTTableView, NSDictionary, NSPopUpButton, NSScrollView, NSString, NSTextField, NSView;
 
 @interface Xcode3CustomBuildRuleViewController : Xcode3BuildRuleViewController <DVTSourceTextViewDelegate, DVTTextStorageDelegate, NSTableViewDelegate, NSTableViewDataSource>
 {
@@ -65,6 +65,13 @@
 - (void)_rebuildOutputFilesLayout;
 - (void)_reallyRebuildLayout;
 - (void)_rebuildLayout;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) NSDictionary *sourceLanguageServiceContext;
+@property(readonly) Class superclass;
 
 @end
 

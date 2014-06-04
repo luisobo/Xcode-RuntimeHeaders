@@ -14,5 +14,6 @@
 - (BOOL)pathControl:(id)arg1 acceptDrop:(id)arg2;
 - (unsigned long long)pathControl:(id)arg1 validateDrop:(id)arg2;
 - (BOOL)pathControl:(id)arg1 shouldDragPathComponentCell:(id)arg2 withPasteboard:(id)arg3;
+- (BOOL)pathControl:(id)arg1 shouldDragItem:(id)arg2 withPasteboard:(id)arg3;
 @end
 

@@ -6,7 +6,7 @@
 
 #import <iCloudSupport/iCloudViewController.h>
 
-@class DVTHorizontalCapacityViewController, NSImageView, NSMutableSet, NSPopUpButton, NSTextField, NSView;
+@class DVTHorizontalCapacityViewController, NSBox, NSImageView, NSMutableSet, NSPopUpButton, NSTextField, NSView;
 
 @interface iCloudHeaderViewController : iCloudViewController
 {
@@ -18,6 +18,7 @@
     NSImageView *_imageView;
     NSTextField *_containerNameField;
     NSTextField *_utilizedField;
+    NSBox *_availableFieldBox;
     NSTextField *_availableField;
     NSTextField *_statusLabelField;
     NSTextField *_statusField;
@@ -38,6 +39,7 @@
 @property __weak NSTextField *statusField; // @synthesize statusField=_statusField;
 @property __weak NSTextField *statusLabelField; // @synthesize statusLabelField=_statusLabelField;
 @property __weak NSTextField *availableField; // @synthesize availableField=_availableField;
+@property __weak NSBox *availableFieldBox; // @synthesize availableFieldBox=_availableFieldBox;
 @property __weak NSTextField *utilizedField; // @synthesize utilizedField=_utilizedField;
 @property __weak NSTextField *containerNameField; // @synthesize containerNameField=_containerNameField;
 @property __weak NSImageView *imageView; // @synthesize imageView=_imageView;

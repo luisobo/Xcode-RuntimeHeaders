@@ -10,10 +10,10 @@
 
 @interface IDETemplateTextSubstitutionFactory : IDETemplateFactory
 {
-    NSOperationQueue *_queue;
     NSFileManager *_fileManager;
     IDEVersionedFileManager *_versionedFileManager;
     DVTObservingToken *_operationObservingToken;
+    NSOperationQueue *_queue;
 }
 
 @property(readonly) NSOperationQueue *queue; // @synthesize queue=_queue;

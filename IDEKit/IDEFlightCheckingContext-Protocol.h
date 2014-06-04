@@ -8,5 +8,6 @@
 
 @protocol IDEFlightCheckingContext <NSObject>
 - (void)handleError:(id)arg1;
+- (void)performBlockRequiringAccountAndTeamSelection:(id)arg1;
 @end
 

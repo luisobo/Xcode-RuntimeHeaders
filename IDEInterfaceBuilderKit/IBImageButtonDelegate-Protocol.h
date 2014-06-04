@@ -7,6 +7,9 @@
 #import "NSObject-Protocol.h"
 
 @protocol IBImageButtonDelegate <NSObject>
+
+@optional
+- (void)imageButton:(id)arg1 willShowMenu:(id)arg2;
 - (BOOL)imageButton:(id)arg1 interceptMouseDown:(id)arg2;
 @end
 

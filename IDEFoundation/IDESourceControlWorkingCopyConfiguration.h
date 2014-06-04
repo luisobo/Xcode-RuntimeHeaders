@@ -57,6 +57,7 @@
 - (unsigned long long)hash;
 - (id)dictionaryRepresentation;
 - (id)initWithDictionary:(id)arg1 sourceControlManager:(id)arg2;
+- (id)initWithName:(id)arg1 identifier:(id)arg2 sourceControlExtension:(id)arg3 relativeBranchesLocation:(id)arg4 relativeTrunkLocation:(id)arg5 relativeTagsLocation:(id)arg6 sourceControlManager:(id)arg7;
 - (id)init;
 
 @end

@@ -7,7 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @protocol IDEBlueprintProvider <NSObject>
-- (id)testableProdiver;
+- (id)testableProvider;
 - (id)blueprintForName:(id)arg1;
 - (id)blueprintForIdentifier:(id)arg1;
 - (id)classPrefix;

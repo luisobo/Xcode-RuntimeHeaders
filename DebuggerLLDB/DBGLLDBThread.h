@@ -8,12 +8,14 @@
 
 #import "DBGLLDBInvalidation-Protocol.h"
 
-@class DBGLLDBSession, DVTDispatchLock, NSMutableArray;
+@class DBGLLDBSession, DVTDispatchLock, NSMutableArray, NSString;
 
 // Not exported
 @interface DBGLLDBThread : DBGThread <DBGLLDBInvalidation>
 {
     struct SBThread _lldbThread;
+    struct SBQueueItem _lldbQueueItem;
+    BOOL _derivedRecordedThread;
     BOOL _hasFetchedFullListOfStackFrames;
     NSMutableArray *_backingStackFrames;
     unsigned long long _reuseGeneration;
@@ -21,25 +23,36 @@
     BOOL _markedForInvalidationFromTheSessionThread;
 }
 
++ (id)createPendingBlockThreadWithParentProcess:(id)arg1 queueItem:(struct SBQueueItem)arg2 name:(id)arg3;
++ (id)queryRecordedStackFramesForThread:(id)arg1 withParentProcess:(id)arg2 queue:(id)arg3 lldbThread:(struct SBThread)arg4;
++ (BOOL)_isLookingForNSOperationInStackFrames:(id)arg1;
 + (void)initialize;
 @property BOOL markedForInvalidationFromTheSessionThread; // @synthesize markedForInvalidationFromTheSessionThread=_markedForInvalidationFromTheSessionThread;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)_invalidateAndClearBackingListOfStackFramesAsNecessary;
+- (void)_invalidateAndClearBackingStackFrames:(id)arg1;
 - (void)primitiveInvalidate;
-- (void)invalidateUnsuedStackFramesAfterCallToSetStackFrames:(id)arg1;
+- (void)invalidateUnusedStackFramesAfterCallToSetStackFrames:(id)arg1;
 - (void)requestUnsuspend;
 - (void)requestSuspend;
-- (id)currentStackFrame;
-- (void)requestStackFrames:(unsigned long long)arg1 resultQueue:(struct dispatch_queue_s *)arg2 resultHandler:(id)arg3;
+- (void)requestStackFrames:(unsigned long long)arg1 handleOnMainQueueWithResultHandler:(id)arg2;
 - (void)_setStackFramesOnMainThread:(id)arg1;
-- (void)aboutToReuseThread;
-- (BOOL)refreshStackFrames;
+- (void)willReuse;
+- (void)refreshStackFrames;
 - (id)_frameNameForSBFrame:(struct SBFrame)arg1;
-- (id)_fetchBackingStackFramesIfNecessary:(unsigned long long)arg1;
+- (id)_fetchBackingStackFramesIfNecessary:(unsigned long long)arg1 markRecorded:(BOOL)arg2;
+- (id)recordedThread;
 @property(readonly) DBGLLDBSession *lldbSession;
 - (void)_assertNotMarkedForInvalidationAndOnSessionThread;
+- (void)_setLLDBQueueItem:(struct SBQueueItem)arg1;
+- (struct SBThread)lldbThread;
 - (id)initWithParentProcess:(id)arg1 uniqueID:(id)arg2 lldbThread:(struct SBThread)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

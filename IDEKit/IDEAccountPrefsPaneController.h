@@ -10,12 +10,13 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, DVTReplacementView, DVTTableView, IDEControlGroup, IDESourceControlManager, IDEXcodeServerManager, NSArray, NSArrayController, NSOperationQueue;
+@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, DVTReplacementView, DVTTableView, IDEControlGroup, IDESourceControlManager, IDEXcodeServerManager, NSArray, NSArrayController, NSOperationQueue, NSString;
 
 @interface IDEAccountPrefsPaneController : IDEViewController <NSTableViewDataSource, NSTableViewDelegate, DVTTableViewDelegate>
 {
     DVTObservingToken *_accountSelectionToken;
     NSOperationQueue *_multipeSelectionDeleteQueue;
+    DVTObservingToken *_serviceManagerServicesToken;
     DVTBorderedView *_accountListBorderView;
     DVTBorderedView *_accountGlassBarBorderView;
     IDEControlGroup *_accountControlGroup;
@@ -63,12 +64,20 @@
 @property(readonly) IDEXcodeServerManager *serverManager;
 - (id)accountTableViewContextMenu;
 - (void)_updateReplacementView;
+- (Class)xcsServiceClass;
+- (Class)xcsServiceDetailViewControllerClass;
 - (void)windowDidUpdate:(id)arg1;
 - (void)primitiveInvalidate;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (void)loadView;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

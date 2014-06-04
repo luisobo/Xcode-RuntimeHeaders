@@ -8,6 +8,5 @@
 
 @interface GPUDebuggerController (ScreenshotSaving)
 - (id)archivedRenderbufferImage;
-- (id)_renderedImage:(id)arg1 withAttachment:(id)arg2;
 @end
 

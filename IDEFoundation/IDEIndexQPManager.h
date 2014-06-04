@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class IDEIndex, NSMutableArray, NSTimer;
+@class IDEIndex, NSMutableArray, NSObject<OS_dispatch_queue>, NSTimer;
 
 @interface IDEIndexQPManager : NSObject
 {
     IDEIndex *_index;
-    struct dispatch_queue_s *_qp_queue;
+    NSObject<OS_dispatch_queue> *_qp_queue;
     NSMutableArray *_masterBlocks;
     NSMutableArray *_recentQueryProviders;
     NSTimer *_purgeTimer;

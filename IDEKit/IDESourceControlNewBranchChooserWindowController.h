@@ -8,7 +8,7 @@
 
 #import "IDESourceControlWindowController-Protocol.h"
 
-@class IDESourceControlBranch, IDESourceControlSwitchOperationInfo, IDESourceControlWorkspaceUIHandler, IDEWorkspace, NSWindow;
+@class IDESourceControlBranch, IDESourceControlSwitchOperationInfo, IDESourceControlWorkspaceUIHandler, IDEWorkspace, NSString, NSWindow;
 
 @interface IDESourceControlNewBranchChooserWindowController : IDESourceControlNewBranchWindowController <IDESourceControlWindowController>
 {
@@ -35,6 +35,12 @@
 - (void)branchChooserSheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)displayError:(id)arg1;
 - (void)beginSheetForWindow:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

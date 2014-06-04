@@ -24,8 +24,8 @@
 @property(readonly) XCClassNavigatorMenuItemInfo *baseClass; // @synthesize baseClass=_baseClass;
 @property(readonly) int symbolUsage; // @synthesize symbolUsage=_symbolUsage;
 @property(readonly) int symbolType; // @synthesize symbolType=_symbolType;
-@property(readonly) NSString *displayName; // @synthesize displayName=_displayName;
-@property(readonly) NSString *lookupName; // @synthesize lookupName=_lookupName;
+@property(readonly, retain) NSString *displayName; // @synthesize displayName=_displayName;
+@property(readonly, retain) NSString *lookupName; // @synthesize lookupName=_lookupName;
 @property(readonly) int type; // @synthesize type=_type;
 - (id)description;
 - (BOOL)isEqual:(id)arg1;

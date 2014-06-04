@@ -18,6 +18,7 @@
 - (id)presentationOrderForInspectors:(id)arg1;
 - (id)extensionMatchedInspectorsForInspectedNavigables:(id)arg1 withWorkspaceDocument:(id)arg2;
 - (id)documentExtensionIDsForInspectedNavigables:(id)arg1 withWorkspaceDocument:(id)arg2;
+- (BOOL)extension:(id)arg1 canInspecttNavigableItems:(id)arg2;
 - (BOOL)extension:(id)arg1 matchesFileDataTypes:(id)arg2;
 - (id)filterInspectors:(id)arg1 withDocumentExtensionIdentifier:(id)arg2;
 - (id)navigableItemsForInputNavigableItems:(id)arg1;

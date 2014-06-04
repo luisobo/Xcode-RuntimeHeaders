@@ -23,7 +23,7 @@
 - (void)addTrackingAreasForView:(id)arg1 inRect:(struct CGRect)arg2 withUserInfo:(id)arg3 mouseLocation:(struct CGPoint)arg4;
 - (id)subtitleTextColor;
 - (struct CGRect)subtitleRectForBounds:(struct CGRect)arg1;
-- (struct CGRect)subtitleBoundingRectWithSize:(struct CGSize)arg1 options:(long long)arg2;
+- (struct CGRect)subtitleBoundingRectWithSize:(struct CGSize)arg1 options:(unsigned long long)arg2;
 - (void)drawSubtitleWithCellFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)_enumerateSubtitlesWithCellFrame:(struct CGRect)arg1 inView:(id)arg2 applyingBlock:(id)arg3;
 

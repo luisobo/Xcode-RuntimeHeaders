@@ -9,6 +9,7 @@
 @protocol IDENavigableItemArchivableRepresentationSupport <NSObject>
 
 @optional
+- (id)navigableItem_archivingIdentifer;
 - (unsigned long long)navigableItem_indexOfRepresentedObjectForIdentifier:(id)arg1 inRelationshipKeyPath:(id)arg2;
 - (id)navigableItem_identifierForRepresentedObjectAtIndex:(unsigned long long)arg1 inRelationshipKeyPath:(id)arg2;
 @end

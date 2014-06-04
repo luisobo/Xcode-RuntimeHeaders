@@ -8,7 +8,7 @@
 
 #import "IDEExecutingOperationTrackable-Protocol.h"
 
-@class DVTDispatchLock, DVTDynamicLogController, DVTMapTable, IDEActivityLogSection, IDEBuildOperationDescription, IDEBuildOperationQueueSet, IDEBuildOperationStatus, IDEBuildParameters, IDEBuildStatisticsSection, IDEExecutionEnvironment, IDEExecutionOperationTracker, IDEOverridingBuildProperties, IDERunDestination, IDESchemeActionResult, IDESchemeIdentifier, NSArray, NSDate, NSMutableArray, NSMutableDictionary, NSMutableSet, NSOperationQueue, NSString;
+@class DVTDispatchLock, DVTDynamicLogController, DVTMapTable, IDEActivityLogSection, IDEBuildOperationDescription, IDEBuildOperationQueueSet, IDEBuildOperationStatus, IDEBuildParameters, IDEBuildStatisticsSection, IDEEntityIdentifier, IDEExecutionEnvironment, IDEExecutionOperationTracker, IDEOverridingBuildProperties, IDERunDestination, IDESchemeActionResult, NSArray, NSDate, NSMutableArray, NSMutableDictionary, NSMutableSet, NSOperationQueue, NSString;
 
 @interface IDEBuildOperation : DVTOperation <IDEExecutingOperationTrackable>
 {
@@ -22,15 +22,18 @@
     BOOL _buildImplicitDependencies;
     BOOL _restorePersistedBuildResults;
     BOOL _dontActuallyRunCommands;
+    unsigned long long _clangSessionTimestamp;
     int _state;
     int _result;
     IDEActivityLogSection *_buildLog;
     float _percentComplete;
     IDEBuildOperationStatus *_buildStatus;
+    BOOL _isFinished;
     DVTDispatchLock *_operationLock;
     NSOperationQueue *_builderQueue;
     IDEBuildOperationQueueSet *_buildTaskQueueSet;
     DVTMapTable *_buildablesToBuilders;
+    DVTMapTable *_buildableOperationManagers;
     unsigned long long _buildersBuilt;
     id <DVTCancellationBlockCompletion> _cancellationToken;
     NSMutableSet *_generatedFileInfo;
@@ -38,10 +41,9 @@
     NSMutableArray *_buildSetupErrorStrings;
     NSMutableArray *_buildSetupWarningStrings;
     NSMutableArray *_buildSetupNoticeStrings;
-    BOOL _isFinished;
     IDEExecutionOperationTracker *_mainExecutionTracker;
     IDEExecutionEnvironment *_executionEnvironment;
-    IDESchemeIdentifier *_schemeIdentifier;
+    IDEEntityIdentifier *_schemeIdentifier;
     IDESchemeActionResult *_schemeActionResult;
     NSDate *_startTime;
     NSDate *_stopTime;
@@ -68,7 +70,7 @@
 @property(readonly) int result; // @synthesize result=_result;
 @property(readonly) int state; // @synthesize state=_state;
 @property(retain, nonatomic) IDESchemeActionResult *schemeActionResult; // @synthesize schemeActionResult=_schemeActionResult;
-@property(readonly, nonatomic) IDESchemeIdentifier *schemeIdentifier; // @synthesize schemeIdentifier=_schemeIdentifier;
+@property(readonly, copy, nonatomic) IDEEntityIdentifier *schemeIdentifier; // @synthesize schemeIdentifier=_schemeIdentifier;
 @property(readonly) IDEExecutionEnvironment *executionEnvironment; // @synthesize executionEnvironment=_executionEnvironment;
 @property(readonly) IDEActivityLogSection *buildLog; // @synthesize buildLog=_buildLog;
 @property(readonly) BOOL restorePersistedBuildResults; // @synthesize restorePersistedBuildResults=_restorePersistedBuildResults;
@@ -81,6 +83,7 @@
 @property(readonly) int purpose; // @synthesize purpose=_purpose;
 - (void).cxx_destruct;
 - (void)registerTracker:(id)arg1;
+- (void)_postDistributedProgressNotification;
 - (void)stopWithResultCode:(int)arg1;
 - (void)lastBuilderDidFinish;
 - (void)_cancelAllBuilders;
@@ -104,13 +107,20 @@
 - (void)addGeneratedFileInfo:(id)arg1;
 @property(readonly) double duration;
 @property(retain) NSString *localizedStateDescription;
-@property(readonly) NSString *activeArchitecture;
+@property(readonly, copy) NSString *activeArchitecture;
 @property(readonly) IDERunDestination *activeRunDestination;
 @property(readonly) IDEOverridingBuildProperties *overridingProperties;
 @property(readonly) NSString *configurationName;
-- (id)buildParametersForBuildable:(id)arg1;
+- (id)_buildParametersForBuildable:(id)arg1;
 - (void)setBuildParameters:(id)arg1 forBuildable:(id)arg2;
-- (id)initWithBuildOperationDescription:(id)arg1 purpose:(int)arg2 buildCommand:(int)arg3 schemeCommand:(id)arg4 configurationName:(id)arg5 buildables:(id)arg6 buildLog:(id)arg7 executionEnvironment:(id)arg8 overridingProperties:(id)arg9 activeRunDestination:(id)arg10 activeArchitecture:(id)arg11 parallelizeBuildables:(BOOL)arg12 dontActuallyRunCommands:(BOOL)arg13 buildImplicitDependencies:(BOOL)arg14 restorePersistedBuildResults:(BOOL)arg15 schemeIdentifier:(id)arg16;
+- (id)harvestedInfoForBuildable:(id)arg1;
+- (id)initWithBuildOperationDescription:(id)arg1 purpose:(int)arg2 buildCommand:(int)arg3 schemeCommand:(id)arg4 configurationName:(id)arg5 buildables:(id)arg6 buildLog:(id)arg7 executionEnvironment:(id)arg8 overridingProperties:(id)arg9 activeRunDestination:(id)arg10 activeArchitecture:(id)arg11 parallelizeBuildables:(BOOL)arg12 dontActuallyRunCommands:(BOOL)arg13 buildImplicitDependencies:(BOOL)arg14 restorePersistedBuildResults:(BOOL)arg15 schemeIdentifier:(id)arg16 schemeActionRecord:(id)arg17;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

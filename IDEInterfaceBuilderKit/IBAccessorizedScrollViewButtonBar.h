@@ -6,30 +6,44 @@
 
 #import "DVTLayoutView_ML.h"
 
-@class DVTStackView_ML, NSArray;
+@class DVTStackView_ML, NSArray, NSColor;
 
 @interface IBAccessorizedScrollViewButtonBar : DVTLayoutView_ML
 {
     DVTStackView_ML *_leftStack;
+    DVTStackView_ML *_centerStack;
     DVTStackView_ML *_rightStack;
+    NSColor *_barBackgroundColor;
     double _barHeight;
 }
 
-+ (id)barButtonWithImageName:(id)arg1;
++ (id)barButtonWithTitle:(id)arg1;
 + (id)barButtonWithImage:(id)arg1;
-+ (id)barButtonWithImages:(id)arg1 titles:(id)arg2 tags:(id)arg3;
-+ (id)barButtonWithImageNames:(id)arg1 titles:(id)arg2 tags:(id)arg3;
++ (id)barSegmentWithSegments:(id)arg1;
++ (id)barPopUpButton;
++ (id)barButton;
 @property(nonatomic) double barHeight; // @synthesize barHeight=_barHeight;
+@property(copy) NSColor *barBackgroundColor; // @synthesize barBackgroundColor=_barBackgroundColor;
 - (void).cxx_destruct;
+- (void)drawRect:(struct CGRect)arg1;
+- (id)effectiveBarBackgroundColor;
 - (id)hitTest:(struct CGPoint)arg1;
 - (void)layoutBottomUp;
 - (void)layoutTopDown;
+- (void)removeCenterView:(id)arg1;
 - (void)removeRightView:(id)arg1;
 - (void)removeLeftView:(id)arg1;
+- (void)insertCenterView:(id)arg1 atIndex:(long long)arg2;
+- (void)addCenterView:(id)arg1;
+- (void)insertRightView:(id)arg1 atIndex:(long long)arg2;
 - (void)addRightView:(id)arg1;
+- (void)insertLeftView:(id)arg1 atIndex:(long long)arg2;
 - (void)addLeftView:(id)arg1;
+@property(copy) NSArray *centerViews;
 @property(copy) NSArray *rightViews;
 @property(copy) NSArray *leftViews;
+@property double rightInset;
+@property double leftInset;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

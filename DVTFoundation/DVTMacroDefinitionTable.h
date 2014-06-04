@@ -27,7 +27,7 @@
 }
 
 + (id)macroNameRegistry;
-+ (id)newWithLabelFormat:(id)arg1;
++ (id)newWithLabel:(id)arg1;
 @property BOOL postsChangeNotifications; // @synthesize postsChangeNotifications=_postsChangeNotifications;
 - (void).cxx_destruct;
 - (id)description;
@@ -46,8 +46,6 @@
 - (void)removeMacroName:(id)arg1;
 - (void)setMacroNamesAndValuesFromMacroDefinitionTable:(id)arg1;
 - (void)setMacroNamesAndValuesFromDictionary:(id)arg1;
-- (void)setMacroNamesAndValues:(id)arg1;
-- (void)setMacroNamesAndValues:(id)arg1 arguments:(struct __va_list_tag [1])arg2;
 - (id)allMacroNames;
 - (id)dictionaryRepresentation;
 - (void)enumerateMacroNamesAndValuesUsingBlock:(id)arg1;

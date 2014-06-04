@@ -9,7 +9,7 @@
 #import "IDENavigationHUDDisposableLayer-Protocol.h"
 #import "IDENavigationHUDSelectableLayer-Protocol.h"
 
-@class CAGradientLayer, CALayer, IDENavigationHUDSelection, IDENavigationHUDTabLayer, IDEWorkspaceWindowController;
+@class CAGradientLayer, CALayer, IDENavigationHUDSelection, IDENavigationHUDTabLayer, IDEWorkspaceWindowController, NSString;
 
 @interface IDENavigationHUDTabLayoutLayer : IDENavigationHUDBorderedGradientLayer <IDENavigationHUDSelectableLayer, IDENavigationHUDDisposableLayer>
 {
@@ -32,6 +32,12 @@
 - (void)dispose;
 - (id)initWithWorkspaceWindowController:(id)arg1 workspaceTabLayer:(id)arg2 image:(id)arg3;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

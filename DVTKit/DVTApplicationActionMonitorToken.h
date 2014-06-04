@@ -8,16 +8,24 @@
 
 #import "DVTCancellable-Protocol.h"
 
+@class NSString;
+
 @interface DVTApplicationActionMonitorToken : NSObject <DVTCancellable>
 {
     id _handlerBlock;
 }
 
-@property(readonly) id handlerBlock; // @synthesize handlerBlock=_handlerBlock;
+@property(readonly, copy) id handlerBlock; // @synthesize handlerBlock=_handlerBlock;
 - (void).cxx_destruct;
 @property(readonly, getter=isCancelled) BOOL cancelled;
 - (void)cancel;
 - (id)initWithHandlerBlock:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

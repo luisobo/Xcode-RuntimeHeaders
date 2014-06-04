@@ -21,6 +21,7 @@
     BOOL _canAddBottomToSuperviewSpacingConstraints;
     BOOL _canAddEqualHeightsConstraint;
     BOOL _canAddEqualWidthsConstraint;
+    BOOL _canAddAspectRatioConstraints;
     BOOL _canAddLeadingToNearestNeighborSpacingConstraints;
     BOOL _canAddTrailingToNearestNeighborSpacingConstraints;
     BOOL _canAddTopToNearestNeighborSpacingConstraints;
@@ -56,6 +57,7 @@
 @property(readonly) BOOL canAddTopToNearestNeighborSpacingConstraints; // @synthesize canAddTopToNearestNeighborSpacingConstraints=_canAddTopToNearestNeighborSpacingConstraints;
 @property(readonly) BOOL canAddTrailingToNearestNeighborSpacingConstraints; // @synthesize canAddTrailingToNearestNeighborSpacingConstraints=_canAddTrailingToNearestNeighborSpacingConstraints;
 @property(readonly) BOOL canAddLeadingToNearestNeighborSpacingConstraints; // @synthesize canAddLeadingToNearestNeighborSpacingConstraints=_canAddLeadingToNearestNeighborSpacingConstraints;
+@property(readonly) BOOL canAddAspectRatioConstraints; // @synthesize canAddAspectRatioConstraints=_canAddAspectRatioConstraints;
 @property(readonly) BOOL canAddEqualWidthsConstraint; // @synthesize canAddEqualWidthsConstraint=_canAddEqualWidthsConstraint;
 @property(readonly) BOOL canAddEqualHeightsConstraint; // @synthesize canAddEqualHeightsConstraint=_canAddEqualHeightsConstraint;
 @property(readonly) BOOL canAddBottomToSuperviewSpacingConstraints; // @synthesize canAddBottomToSuperviewSpacingConstraints=_canAddBottomToSuperviewSpacingConstraints;
@@ -67,7 +69,7 @@
 @property(readonly) BOOL canAddExplicitWidthConstraints; // @synthesize canAddExplicitWidthConstraints=_canAddExplicitWidthConstraints;
 @property(readonly) BOOL canAddExplicitHeightConstraints; // @synthesize canAddExplicitHeightConstraints=_canAddExplicitHeightConstraints;
 @property(readonly) unsigned long long context; // @synthesize context=_context;
-@property(readonly) NSSet *selectedItems; // @synthesize selectedItems=_selectedItems;
+@property(readonly, copy) NSSet *selectedItems; // @synthesize selectedItems=_selectedItems;
 @property(readonly) IBDocument *document; // @synthesize document=_document;
 @property(readonly) NSObject<IBIDEAutolayoutItem> *containingItem; // @synthesize containingItem=_containingItem;
 @property(copy, nonatomic) NSArray *selection; // @synthesize selection=_selection;
@@ -83,6 +85,8 @@
 - (void)_updateBaselineAlignmentConstraintsValidationState;
 - (id)edgeOrCenterAlignmentConstraintsForAttribute:(unsigned long long)arg1 useExistingConstant:(BOOL)arg2;
 - (void)_updateEdgeOrCenterAlignmentConstraintsValidationState;
+- (id)aspectRatioConstraints;
+- (void)_updateAspectRatioConstraintsValidationState;
 - (id)equalSizingConstraintsForAttribute:(unsigned long long)arg1 useExistingConstant:(BOOL)arg2;
 - (void)_updateEqualSizeConstraintsValidationState;
 - (id)edgeConstraintsForAttribute:(unsigned long long)arg1 useExistingConstant:(BOOL)arg2;

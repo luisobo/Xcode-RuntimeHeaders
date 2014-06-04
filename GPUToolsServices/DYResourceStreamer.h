@@ -20,9 +20,7 @@
 + (id)findDataForURL:(const char *)arg1 inCache:(id)arg2;
 - (void).cxx_destruct;
 - (id)updateResource:(id)arg1;
-- (id)fetchState;
 - (id)realizeResource:(id)arg1 functionIndex:(unsigned int)arg2;
-- (id)fetchResourceList:(unsigned int)arg1;
 - (void)dealloc;
 - (id)initWithTransport:(id)arg1;
 - (id)init;

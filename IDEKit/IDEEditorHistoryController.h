@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTDelayedMenuGradientImageButton, DVTStackBacktrace, NSArray, NSMutableArray;
+@class DVTDelayedMenuGradientImageButton, DVTStackBacktrace, NSArray, NSMutableArray, NSString;
 
 @interface IDEEditorHistoryController : NSObject <DVTInvalidation>
 {
@@ -63,11 +63,15 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) NSMutableArray *mutableNextHistoryItems; // @dynamic mutableNextHistoryItems;
 @property(readonly) NSMutableArray *mutablePreviousHistoryItems; // @dynamic mutablePreviousHistoryItems;
 @property(copy) NSArray *nextHistoryItems; // @dynamic nextHistoryItems;
 @property(copy) NSArray *previousHistoryItems; // @dynamic previousHistoryItems;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

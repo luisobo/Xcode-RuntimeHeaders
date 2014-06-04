@@ -8,7 +8,7 @@
 
 #import "NSAnimationDelegate-Protocol.h"
 
-@class DVTSplitViewItem, NSMutableArray, NSView;
+@class DVTSplitViewItem, NSMutableArray, NSString, NSView;
 
 @interface DVTSplitViewAnimation : NSAnimation <NSAnimationDelegate>
 {
@@ -36,6 +36,12 @@
 - (BOOL)private_animationShouldStart:(id)arg1;
 - (void)setCurrentProgress:(float)arg1;
 - (id)initWithSplitView:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

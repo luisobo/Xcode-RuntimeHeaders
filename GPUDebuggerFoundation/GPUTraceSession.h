@@ -7,10 +7,11 @@
 #import "NSObject.h"
 
 #import "DVTInvalidation-Protocol.h"
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@class DVTStackBacktrace, DYSymbolicator, GPUDebuggerController, GPUTraceGroupItem, GPUTraceOutline, GPUTraceProgramGroup, GPUTraceReplayController, IDELaunchSession, NSDictionary, NSObject<OS_dispatch_queue>, NSURL;
+@class DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, DYSymbolicator, GPUDebuggerController, GPUTraceGroupItem, GPUTraceProgramGroup, GPUTraceReplayController, IDEFileReference, IDELaunchSession, NSDictionary, NSImage, NSObject<OS_dispatch_queue>, NSString, NSURL;
 
-@interface GPUTraceSession : NSObject <DVTInvalidation>
+@interface GPUTraceSession : NSObject <IDEKeyDrivenNavigableItemRepresentedObject, DVTInvalidation>
 {
     NSObject<OS_dispatch_queue> *_queue;
     BOOL _debugReplayActive;
@@ -19,7 +20,6 @@
     int _state;
     float _wireframeLineWidth;
     IDELaunchSession *_launchSession;
-    GPUTraceOutline *_outline;
     GPUTraceReplayController *_replayController;
     DYSymbolicator *_symbolicator;
     NSDictionary *_updatedResourcesDict;
@@ -42,15 +42,13 @@
 @property(retain, nonatomic) DYSymbolicator *symbolicator; // @synthesize symbolicator=_symbolicator;
 @property(nonatomic) BOOL debugReplayActive; // @synthesize debugReplayActive=_debugReplayActive;
 @property(readonly, nonatomic) GPUTraceReplayController *replayController; // @synthesize replayController=_replayController;
-@property(readonly, nonatomic) GPUTraceOutline *outline; // @synthesize outline=_outline;
 @property(readonly, nonatomic) IDELaunchSession *launchSession; // @synthesize launchSession=_launchSession;
 - (void).cxx_destruct;
+@property(readonly) NSString *navigableItem_name;
 - (id)resetEmbeddedReplaySession;
 - (id)establishEmbeddedReplaySession;
 - (BOOL)_loadReplayControllerWithError:(id *)arg1;
 - (id)_setupReplaySession:(BOOL)arg1;
-- (id)updateResource:(id)arg1 sharegroupID:(unsigned long long)arg2;
-- (void)resetResourceManager;
 - (BOOL)_loadReplayControllerWithLastFunctionIndex:(unsigned int)arg1;
 - (BOOL)isInActiveState;
 - (void)primitiveInvalidate;
@@ -58,7 +56,19 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

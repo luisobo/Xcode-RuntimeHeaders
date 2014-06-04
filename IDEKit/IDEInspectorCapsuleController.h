@@ -8,7 +8,7 @@
 
 #import "IDEBindableDeclarativeInspectorController-Protocol.h"
 
-@class IDEInspectorContentView, NSArray, NSBundle, NSObject<IDEBindableDeclarativeInspectorController>;
+@class IDEInspectorContentView, NSArray, NSBundle, NSObject<IDEBindableDeclarativeInspectorController>, NSString;
 
 @interface IDEInspectorCapsuleController : NSObject <IDEBindableDeclarativeInspectorController>
 {
@@ -26,6 +26,12 @@
 @property(readonly) NSArray *inspectedObjects;
 @property(readonly) NSBundle *bundle;
 - (id)initWithRepresentedObject:(id)arg1 parentInspectorController:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

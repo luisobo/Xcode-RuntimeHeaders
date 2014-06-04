@@ -8,8 +8,10 @@
 #import "IBOrderedCollection-Protocol.h"
 
 @protocol IBMutableOrderedCollection <IBOrderedCollection, IBMutableCollection>
+- (void)sortUsingComparator:(id)arg1;
 - (void)ib_addObjectToSortedCollectionUsingBinarySearch:(id)arg1 comparisonSelector:(SEL)arg2;
 - (void)ib_addObjectToSortedCollectionUsingBinarySearch:(id)arg1 comparator:(id)arg2;
+- (void)ib_insertObjects:(id)arg1 atIndex:(long long)arg2;
 - (void)insertObject:(id)arg1 atIndex:(long long)arg2;
 @end
 

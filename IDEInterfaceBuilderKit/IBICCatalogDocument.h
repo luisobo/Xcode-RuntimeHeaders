@@ -11,7 +11,7 @@
 #import "IDEDocumentStructureProviding-Protocol.h"
 #import "IDENavigableItemArchivableRepresentationSupport-Protocol.h"
 
-@class DVTDelayedInvocation, IBFileBuildSettingsSnapshot, IBICCatalog, IBICCatalogMutator, IBICCatalogSynchronizer, IBICPasteboardManager, IBICTransientUIStateRepository, IBMutableIdentityDictionary, NSArray, NSMutableSet, NSSet;
+@class DVTDelayedInvocation, IBFileBuildSettingsSnapshot, IBICCatalog, IBICCatalogMutator, IBICCatalogSynchronizer, IBICPasteboardManager, IBICTransientUIStateRepository, IBMutableIdentityDictionary, NSArray, NSMutableSet, NSSet, NSString;
 
 @interface IBICCatalogDocument : IDEEditorDocument <IDEDocumentStructureProviding, IDENavigableItemArchivableRepresentationSupport, IBICCatalogItemObserver, IBICCatalogSynchronizerDelegate>
 {
@@ -79,6 +79,12 @@
 - (void)applyChange:(id)arg1;
 - (void)catalogSynchronizer:(id)arg1 didApplyMutationToModel:(id)arg2;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

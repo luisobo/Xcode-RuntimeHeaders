@@ -8,7 +8,7 @@
 
 #import "DVTRegistrable-Protocol.h"
 
-@class NSString;
+@class DVTVersion, NSArray, NSString;
 
 @interface DVTMacroNameRegistryRegistration : NSObject <DVTRegistrable>
 {
@@ -17,15 +17,20 @@
 }
 
 @property(readonly, getter=isListType) BOOL listType; // @synthesize listType=_listType;
-@property(readonly) NSString *macroName; // @synthesize macroName=_macroName;
+@property(readonly, copy) NSString *macroName; // @synthesize macroName=_macroName;
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 @property(readonly) NSString *identifier;
 - (id)initWithMacroName:(id)arg1 isListType:(BOOL)arg2;
 
 // Remaining properties
+@property(readonly) NSArray *aliases;
+@property(readonly, copy) NSString *debugDescription;
 @property(readonly) NSString *displayDescription;
 @property(readonly) NSString *displayName;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
+@property(readonly) DVTVersion *version;
 
 @end
 

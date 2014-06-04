@@ -30,8 +30,8 @@
 - (id)displayNameForIssueTypeIdentifier:(id)arg1;
 - (void)_updateOpenDocuments;
 - (void)_stopObservingDiagnosticItemsWithFilePath:(id)arg1 removeIssues:(BOOL)arg2;
-- (void)_startObservingDiagnosticItemsWithSourceDocument:(id)arg1;
-- (void)_rebuildIssuesForFilePath:(id)arg1 withDiagnosticItems:(id)arg2 sourceDocument:(id)arg3;
+- (void)_startObservingDiagnosticItemsWithEditorDocument:(id)arg1;
+- (void)_rebuildIssuesForFilePath:(id)arg1 withDiagnosticItems:(id)arg2 editorDocument:(id)arg3;
 - (void)primitiveInvalidate;
 - (id)initWithIssueManager:(id)arg1 extension:(id)arg2;
 - (void)_updatedLiveIssuePrefs;

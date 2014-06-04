@@ -13,7 +13,7 @@
     NSDictionary *_containerQueryMatches;
 }
 
-+ (struct dispatch_queue_s *)sharedIndexQueryQueue;
++ (id)sharedIndexQueryQueue;
 - (void).cxx_destruct;
 - (id)matchesFromCollectedData:(id)arg1;
 - (id)collectDataForInput:(id)arg1 index:(id)arg2 currentGeneration:(unsigned int *)arg3 localGeneration:(unsigned int)arg4;

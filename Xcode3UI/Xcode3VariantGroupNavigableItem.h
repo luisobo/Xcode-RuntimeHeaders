@@ -8,7 +8,7 @@
 
 #import "IDENavigableItemFileReferenceProxy-Protocol.h"
 
-@class DVTDocumentLocation, DVTFileDataType, IDENavigableItem;
+@class DVTDocumentLocation, DVTFileDataType, IDENavigableItem, NSString;
 
 @interface Xcode3VariantGroupNavigableItem : IDEKeyDrivenNavigableItem <IDENavigableItemFileReferenceProxy>
 {
@@ -16,8 +16,10 @@
     DVTFileDataType *_lastDocumentType;
 }
 
++ (id)keyPathsForValuesAffectingPrimaryChildItem;
 + (id)keyPathsForValuesAffectingToolTip;
 + (id)keyPathsForValuesAffectingFileReference;
++ (id)keyPathsForValuesAffectingDefaultReference;
 - (void).cxx_destruct;
 - (BOOL)showSubitems;
 @property(readonly) IDENavigableItem *primaryChildItem;
@@ -28,6 +30,12 @@
 - (id)fileReference;
 - (id)image;
 - (id)defaultReference;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

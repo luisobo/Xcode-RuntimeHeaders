@@ -8,12 +8,23 @@
 
 #import "IDEToolbarItemProvider-Protocol.h"
 
+@class NSString;
+
 @interface IDEWorkspaceToolbarItemProvider : NSObject <IDEToolbarItemProvider>
 {
 }
 
 + (id)_createRunPauseContinueButton:(id)arg1;
 + (id)itemForItemIdentifier:(id)arg1 forToolbarInWindow:(id)arg2;
++ (double)borderedSegmentedControlSegmentWidthOn1010;
++ (double)runAndStopButtonMinWidthOn10_10;
++ (double)runAndStopButtonWidthOn10_10;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

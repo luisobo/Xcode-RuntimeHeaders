@@ -19,10 +19,10 @@
 + (id)videoNodeWithAVPlayer:(id)arg1;
 + (id)videoNodeWithVideoURL:(id)arg1;
 + (id)videoNodeWithVideoFileNamed:(id)arg1;
-@property(retain) AVPlayer *_player; // @synthesize _player;
+@property(retain, nonatomic) AVPlayer *_player; // @synthesize _player;
 - (void).cxx_destruct;
-@property struct CGPoint anchorPoint;
-@property struct CGSize size;
+@property(nonatomic) struct CGPoint anchorPoint;
+@property(nonatomic) struct CGSize size;
 - (void)pause;
 - (void)play;
 - (void)setPaused:(BOOL)arg1;

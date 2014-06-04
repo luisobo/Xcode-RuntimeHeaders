@@ -9,7 +9,7 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class NSArray, NSCharacterSet, NSScrollView, NSTableView, NSTextField, NSView, NSWindow;
+@class NSArray, NSCharacterSet, NSScrollView, NSString, NSTableView, NSTextField, NSView, NSWindow;
 
 @interface IBBindingAutocompletingTextFieldEditor : NSTextView <NSTableViewDelegate, NSTableViewDataSource>
 {
@@ -43,6 +43,12 @@
 - (double)widthOfString:(id)arg1 withFont:(id)arg2;
 - (id)delegate;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -12,8 +12,6 @@
 
 + (void)registerLaunchServicesItemsIfNecessary:(BOOL)arg1;
 - (void)_registerPathWithLaunchServices:(id)arg1;
-- (id)_pathsToRegister;
-- (BOOL)_needsToRegisterLaunchServicesItems;
 - (void)_registerLaunchServicesItemsIfNecessary:(BOOL)arg1;
 
 @end

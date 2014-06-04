@@ -10,7 +10,7 @@
 
 @interface DVTDevice (IDEDeviceActivityReporterAdditions)
 @property(readonly) NSImage *activityImage;
-@property(readonly) NSString *activityTitle;
+@property(readonly, copy) NSString *activityTitle;
 @property(readonly) long long activityProgress;
 @end
 

@@ -9,7 +9,7 @@
 #import "IDEEditorContextDelegate-Protocol.h"
 #import "IDESourceControlMergeControllerContainer-Protocol.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTSplitView, IDEComparisonEditor, IDEEditorVersionsMode, IDEReviewFilesNavigator, IDESourceControlConflictResolutionController, IDESourceControlInteractiveCommitController;
+@class DVTBorderedView, DVTObservingToken, DVTSplitView, IDEComparisonEditor, IDEEditorVersionsMode, IDEReviewFilesNavigator, IDESourceControlConflictResolutionController, IDESourceControlInteractiveCommitController, NSString;
 
 @interface IDEReviewFilesViewController : IDEViewController <IDEEditorContextDelegate, IDESourceControlMergeControllerContainer>
 {
@@ -50,6 +50,12 @@
 - (void)viewDidInstall;
 - (void)loadView;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -35,6 +35,7 @@
 
 @property __weak id <DVTDisclosureHeaderViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property double preferredHeight; // @synthesize preferredHeight=_preferredHeight;
+@property(readonly) NSButton *closeButton; // @synthesize closeButton=_closeButton;
 @property(nonatomic, getter=isDisclosed) BOOL disclosed; // @synthesize disclosed=_disclosed;
 @property(getter=isDraggable) BOOL draggable; // @synthesize draggable=_draggable;
 @property(nonatomic, getter=isDisclosable) BOOL disclosable; // @synthesize disclosable=_disclosable;
@@ -74,6 +75,12 @@
 - (void)_configureActionButton;
 @property(retain) NSButton *disclosureButton;
 - (id)defaultDisclosureButton;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

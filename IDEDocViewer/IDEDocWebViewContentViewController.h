@@ -71,6 +71,7 @@
 - (void)webView:(id)arg1 didChangeLocationWithinPageForFrame:(id)arg2;
 - (void)_addBookmarkForLoadedURL:(id)arg1;
 - (id)bookNodeInFrame:(id)arg1;
+- (id)nodeInFrame:(id)arg1;
 - (void)webViewContextMenu_openLinkInNewTab:(id)arg1;
 - (void)webViewContextMenu_copyLink:(id)arg1;
 - (void)webViewContextMenu_findText:(id)arg1;
@@ -88,11 +89,11 @@
 - (void)updateContentOutlineViewForURLInFrame:(id)arg1;
 - (id)nodeInWebFrame:(id)arg1;
 - (void)showReferenceHeaderViewForToken:(id)arg1;
+- (void)fixupPlaygroundDownloadLinksForNode:(id)arg1;
 - (void)injectSampleCodeDownloadLinkForNode:(id)arg1;
 - (void)hideReferenceHeaderView;
 - (void)updateHeaderView;
 - (void)loadResolvedURL:(id)arg1;
-- (void)loadResolvedURLAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (id)docSetTokenForReferenceDocumentNode:(id)arg1;
 - (id)appleRefOfReferenceDocumentInWebView;
 - (void)primitiveInvalidate;
@@ -100,7 +101,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -6,17 +6,16 @@
 
 #import <DVTFoundation/DVTFindDescriptor.h>
 
-@class DVTRegularExpression;
+@class NSRegularExpression;
 
 @interface DVTFindRegularExpressionDescriptor : DVTFindDescriptor
 {
-    DVTRegularExpression *_regularExpression;
+    NSRegularExpression *_regularExpression;
 }
 
-@property(readonly) DVTRegularExpression *regularExpression; // @synthesize regularExpression=_regularExpression;
+@property(readonly) NSRegularExpression *regularExpression; // @synthesize regularExpression=_regularExpression;
 - (void).cxx_destruct;
 - (id)firstMatchingResultInString:(id)arg1 backwards:(BOOL)arg2 inRange:(struct _NSRange)arg3 withWordFindingBlock:(id)arg4 docLocationCreationBlock:(void)arg5;
-- (struct _NSRange)_first:(BOOL)arg1 matchOnLine:(id)arg2 withLineRange:(struct _NSRange)arg3 clippedByRange:(struct _NSRange)arg4 match:(id *)arg5;
 - (BOOL)caseSensitive;
 - (id)displayString;
 - (BOOL)isEqual:(id)arg1;

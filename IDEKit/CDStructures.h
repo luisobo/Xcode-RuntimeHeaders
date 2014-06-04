@@ -6,6 +6,11 @@
 
 #pragma mark Named Structures
 
+struct AEDesc {
+    unsigned int _field1;
+    struct OpaqueAEDataStorageType **_field2;
+};
+
 struct CAShapeLayer {
     Class _field1;
     struct _CALayerIvars _field2;
@@ -25,6 +30,12 @@ struct CGSize {
     double width;
     double height;
 };
+
+struct NSObject {
+    Class _field1;
+};
+
+struct OpaqueAEDataStorageType;
 
 struct _CALayerIvars {
     int _field1;
@@ -78,6 +89,21 @@ struct __va_list_tag {
 };
 
 #pragma mark Typedef'd Structures
+
+typedef struct {
+    Class _field1;
+    Class _field2;
+    unsigned long long _field3;
+    long long _field4;
+    unsigned long long _field5;
+} CDStruct_d659fc14;
+
+typedef struct {
+    unsigned long long _field1;
+    id *_field2;
+    unsigned long long *_field3;
+    unsigned long long _field4[5];
+} CDStruct_70511ce9;
 
 // Ambiguous groups
 typedef struct {

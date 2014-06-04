@@ -6,10 +6,11 @@
 
 #import <DVTKit/DTDKSelectionDialogController.h>
 
-@class NSArray, NSArrayController;
+@class DVTObservingToken, NSArray, NSArrayController;
 
 @interface DTDKSingleSelectionDialogController : DTDKSelectionDialogController
 {
+    DVTObservingToken *_observingToken;
     NSArray *_menuContents;
     NSArrayController *_arrayController;
 }
@@ -21,6 +22,7 @@
 @property(copy) NSArray *menuContents; // @synthesize menuContents=_menuContents;
 - (void)setChoices:(id)arg1;
 - (void)loadWindow;
+- (void)dealloc;
 
 @end
 

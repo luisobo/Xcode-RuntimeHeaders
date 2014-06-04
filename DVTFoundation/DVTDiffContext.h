@@ -55,7 +55,7 @@
 @property(readonly) NSIndexSet *commonDescriptorIndexes;
 - (void)setNeedsUpdateDiffDescriptors:(BOOL)arg1;
 - (void)_internalBuildDiffDescriptors;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (struct _DVTDiffContextFlags)dcFlags;
 - (void)setDcFlags:(struct _DVTDiffContextFlags)arg1;
 @property int defaultDiffMergeDirection;
@@ -82,9 +82,12 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
 @property(copy) NSArray *diffDescriptors; // @dynamic diffDescriptors;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
-@property(readonly) NSMutableArray *mutableDiffDescriptors; // @dynamic mutableDiffDescriptors;
+@property(readonly, copy) NSMutableArray *mutableDiffDescriptors; // @dynamic mutableDiffDescriptors;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

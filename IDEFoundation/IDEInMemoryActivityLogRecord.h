@@ -18,6 +18,7 @@
 + (id)keyPathsForValuesAffectingTimeStoppedRecording;
 + (id)keyPathsForValuesAffectingIsRecording;
 - (void).cxx_destruct;
+- (id)description;
 - (double)timeStoppedRecording;
 - (id)highLevelStatus;
 - (id)signature;
@@ -31,7 +32,7 @@
 - (id)fullLogWithError:(id *)arg1;
 - (void)removeSelfWithCompletionBlock:(id)arg1;
 - (BOOL)isRemoved;
-- (id)initWithLog:(id)arg1 schemeIdentifier:(id)arg2 store:(id)arg3;
+- (id)initWithLog:(id)arg1 entityIdentifier:(id)arg2 store:(id)arg3;
 
 @end
 

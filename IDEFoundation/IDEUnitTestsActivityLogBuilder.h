@@ -8,14 +8,12 @@
 
 #import "IDEUnitTestsObserver-Protocol.h"
 
-@class IDEActivityLogSection, IDETestManager, NSMutableArray, NSSet;
+@class IDEActivityLogSection, IDETestManager, NSMutableArray, NSString;
 
 @interface IDEUnitTestsActivityLogBuilder : NSObject <IDEUnitTestsObserver>
 {
     NSMutableArray *_subSectionRecorders;
     BOOL _aBundleDidNotFinishSuccessfully;
-    NSMutableArray *_failureLocationsForCurrentTest;
-    NSSet *_currentTestables;
     BOOL _testsFinishedSuccessfully;
     IDEActivityLogSection *_activityLogSection;
     IDETestManager *_testManager;
@@ -25,6 +23,7 @@
 @property(retain, nonatomic) IDETestManager *testManager; // @synthesize testManager=_testManager;
 @property(retain, nonatomic) IDEActivityLogSection *activityLogSection; // @synthesize activityLogSection=_activityLogSection;
 - (void).cxx_destruct;
+- (id)identifierForTestClass:(id)arg1 method:(id)arg2;
 - (void)testOperationGroupDidFinish;
 - (void)testOperation:(id)arg1 willFinishWithSuccess:(BOOL)arg2 withError:(id)arg3;
 - (void)_finishSubSectionRecorders:(id)arg1 error:(id)arg2;
@@ -33,6 +32,7 @@
 - (void)testCaseDidFinishForTestClass:(id)arg1 method:(id)arg2 withStatus:(id)arg3 duration:(double)arg4 rawOutput:(id)arg5;
 - (void)testDidOutput:(id)arg1;
 - (void)testCaseDidProducePerformanceOutput:(id)arg1 rawOutput:(id)arg2;
+- (void)testCaseDidMeasurePerformanceMetricForTestClass:(id)arg1 method:(id)arg2 performanceMetric:(id)arg3 rawOutput:(id)arg4;
 - (void)testCaseDidFailForTestClass:(id)arg1 method:(id)arg2 withMessage:(id)arg3 file:(id)arg4 line:(long long)arg5 rawOutput:(id)arg6;
 - (void)testCaseDidStartForTestClass:(id)arg1 method:(id)arg2 rawOutput:(id)arg3;
 - (void)testSuite:(id)arg1 didStartAt:(id)arg2 rawOutput:(id)arg3;
@@ -43,6 +43,12 @@
 - (void)_pushRecorder:(id)arg1;
 - (id)_currentSubSectionRecorder;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -55,11 +55,11 @@
 - (void)addSubmessage:(id)arg1;
 @property(readonly) NSArray *submessages;
 - (void)_setSupermessage:(id)arg1;
-@property(readonly) IDEActivityLogMessage *supermessage;
+@property(readonly) __weak IDEActivityLogMessage *supermessage;
 - (void)setSectionTextRange:(struct _NSRange)arg1;
 @property(readonly) struct _NSRange rangeInSectionText;
 - (void)_setSupersection:(id)arg1;
-@property(readonly) IDEActivityLogSection *supersection;
+@property(readonly) __weak IDEActivityLogSection *supersection;
 - (id)description;
 @property(readonly) double timeEmitted;
 @property(readonly) NSString *title;

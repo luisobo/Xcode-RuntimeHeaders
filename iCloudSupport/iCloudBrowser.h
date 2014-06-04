@@ -29,8 +29,8 @@
 @property(readonly, nonatomic) NSMutableSet *runLoopModesMutable; // @synthesize runLoopModesMutable=_runLoopModesMutable;
 @property(readonly, nonatomic) NSMutableSet *servicesMutable; // @synthesize servicesMutable=_servicesMutable;
 @property(nonatomic) id <iCloudBrowserDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly, nonatomic) NSString *type; // @synthesize type=_type;
-@property(readonly, nonatomic) NSString *domain; // @synthesize domain=_domain;
+@property(readonly, copy, nonatomic) NSString *type; // @synthesize type=_type;
+@property(readonly, copy, nonatomic) NSString *domain; // @synthesize domain=_domain;
 - (void).cxx_destruct;
 - (void)netServiceBrowser:(id)arg1 didNotSearch:(id)arg2;
 - (void)netServiceBrowserDidStopSearch:(id)arg1;
@@ -39,13 +39,19 @@
 - (void)stopWithError:(id)arg1;
 - (void)stop;
 - (void)start;
-@property(readonly, nonatomic) NSSet *runLoopModes;
+@property(readonly, copy, nonatomic) NSSet *runLoopModes;
 - (void)removeRunLoopMode:(id)arg1;
 - (void)addRunLoopMode:(id)arg1;
-@property(readonly, nonatomic) NSSet *services;
+@property(readonly, copy, nonatomic) NSSet *services;
 @property(readonly, nonatomic) BOOL isStarted;
 - (void)dealloc;
 - (id)initWithDomain:(id)arg1 type:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

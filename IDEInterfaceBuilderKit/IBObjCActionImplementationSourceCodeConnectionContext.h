@@ -12,7 +12,7 @@
 
 - (id)representativeCounterpart;
 - (id)counterpartsForInsertion;
-- (unsigned long long)methodContext;
+- (unsigned long long)methodKind;
 
 @end
 

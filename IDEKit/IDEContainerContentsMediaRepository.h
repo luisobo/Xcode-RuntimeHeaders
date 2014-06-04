@@ -8,7 +8,7 @@
 
 #import "IDEDefaultMediaLibrary-Protocol.h"
 
-@class IDEFileReferenceContainerObserver, IDETimedInvalidatableObjectCache, NSSet;
+@class IDEFileReferenceContainerObserver, IDETimedInvalidatableObjectCache, NSSet, NSString;
 
 @interface IDEContainerContentsMediaRepository : IDEMediaRepository <IDEDefaultMediaLibrary>
 {
@@ -36,6 +36,12 @@
 - (void)primitiveInvalidate;
 - (void)_startObserving;
 - (id)initWithContainerObserver:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

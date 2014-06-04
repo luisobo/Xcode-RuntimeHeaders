@@ -6,13 +6,12 @@
 
 #import "NSWindowController.h"
 
-@class IDESourceControlWorkspaceUIHandler, IDEWorkspace, NSMutableArray, NSMutableDictionary, NSOperationQueue, NSProgressIndicator, NSTextField;
+@class IDESourceControlWorkspaceUIHandler, IDEWorkspace, NSMutableDictionary, NSOperationQueue, NSProgressIndicator, NSTextField;
 
 @interface IDESourceControlUpgradeWindowController : NSWindowController
 {
     NSTextField *_titleField;
     NSProgressIndicator *_progressIndicator;
-    NSMutableArray *_operationInfos;
     NSOperationQueue *_operationQueue;
     NSMutableDictionary *_tokenDictionary;
     IDESourceControlWorkspaceUIHandler *_workspaceUIHandler;
@@ -22,7 +21,7 @@
 @property(retain) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 @property __weak IDESourceControlWorkspaceUIHandler *workspaceUIHandler; // @synthesize workspaceUIHandler=_workspaceUIHandler;
 - (void).cxx_destruct;
-- (void)upgradeWorkingTrees:(id)arg1;
+- (void)upgradeWorkingCopies:(id)arg1;
 - (void)alertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)displayError:(id)arg1;
 - (void)upgradeSheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;

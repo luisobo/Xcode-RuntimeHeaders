@@ -11,25 +11,24 @@
 @interface DBGDisassemblyGeneratedContentProvider : DVTGeneratedContentProvider
 {
     NSURL *_url;
-    NSString *_displayName;
-    NSURL *_temporaryFileURL;
     DVTObservingToken *_currentStackFrameToken;
+    DVTObservingToken *_currentStackFrameDisassemblyObservingToken;
     DVTObservingToken *_debugSessionCoalescedStateToken;
     DVTObservingToken *_launchSessionStateToken;
+    DVTObservingToken *_settingPCDisassemblyObservingToken;
+    NSString *_displayName;
+    NSURL *_temporaryFileURL;
 }
 
+@property(retain, nonatomic) NSURL *temporaryFileURL; // @synthesize temporaryFileURL=_temporaryFileURL;
 @property(copy) NSString *displayName; // @synthesize displayName=_displayName;
 - (void).cxx_destruct;
-- (id)_stackFrameForURLParts:(id)arg1 inLaunchSession:(id)arg2;
-- (id)_stackFrameForURLParts:(id)arg1 inWorkspace:(id)arg2;
-- (id)_stackFrameForURL:(id)arg1;
 - (void)_closeDocument;
-- (void)_requestDisassemblySettingDisassemblyPCIfNecessary:(id)arg1 resultHandler:(id)arg2;
+- (void)_getDisassemblyForSettingPC:(id)arg1 completionBlock:(id)arg2;
 - (void)_createLaunchSessionStateObserver:(id)arg1;
 - (void)_createDebugSessionStateObserver:(id)arg1;
 - (void)_createCurrentStackFrameObserver:(id)arg1;
 - (void)generateContentForURL:(id)arg1 waitingBlock:(id)arg2 completionBlock:(void)arg3;
-@property(readonly) NSURL *temporaryFileURL;
 - (void)primitiveInvalidate;
 
 @end

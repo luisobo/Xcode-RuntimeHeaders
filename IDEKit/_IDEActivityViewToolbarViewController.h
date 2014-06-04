@@ -6,14 +6,12 @@
 
 #import "DVTToolbarViewController.h"
 
-@class IDEActivityPlaceholderView;
-
 @interface _IDEActivityViewToolbarViewController : DVTToolbarViewController
 {
 }
 
 - (void)primitiveInvalidate;
-@property(readonly) IDEActivityPlaceholderView *placeholderView;
+- (id)invalidateableView;
 - (id)initWithToolbarItemIdentifier:(id)arg1 window:(id)arg2;
 
 @end

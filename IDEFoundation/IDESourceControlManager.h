@@ -33,6 +33,7 @@
     NSString *_pathOfWorkspaceJustCheckedOut;
 }
 
++ (id)keyPathsForValuesAffectingRepositories;
 + (id)sourceControlProfilingLogAspect;
 + (id)sourceControlAuthenticationLogAspect;
 + (id)sourceControlFileScanningLogAspect;
@@ -89,7 +90,6 @@
 - (id)arrayOfProjectDictionaries;
 - (id)arrayOfRepositoryDictionaries;
 @property(readonly) NSArray *repositories; // @synthesize repositories=_repositories;
-- (id)repositoryWithIdentifier:(id)arg1;
 - (id)repositoryWithRoot:(id)arg1 sourceControlExtension:(id)arg2;
 - (void)repositoryRootForRepository:(id)arg1 withCompletionBlock:(id)arg2;
 - (id)repositoryForURL:(id)arg1 sourceControlExtension:(id)arg2;
@@ -112,6 +112,12 @@
 - (void)loadExtensions;
 - (id)defaultExtension;
 - (id)initWithSavedRepositories:(BOOL)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

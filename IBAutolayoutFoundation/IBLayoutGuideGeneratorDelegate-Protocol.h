@@ -11,10 +11,10 @@
 - (Class)symbolicLayoutConstantClassForLayoutGuideGenerator:(id)arg1;
 - (Class)layoutConstantClassForLayoutGuideGenerator:(id)arg1;
 - (BOOL)layoutGuideGenerator:(id)arg1 shouldConsiderSiblingGuidesFromSelection:(id)arg2 toView:(id)arg3;
-- (BOOL)layoutGuideGenerator:(id)arg1 shouldConsiderSelectionEdge:(int)arg2 toSiblingEdge:(int)arg3 guideFromSelection:(id)arg4 toView:(id)arg5;
-- (BOOL)layoutGuideGenerator:(id)arg1 isEdge:(int)arg2 ofAncestor:(id)arg3 fixedDuringResizingOfSubviews:(id)arg4 fromKnob:(long long)arg5;
-- (BOOL)layoutGuideGenerator:(id)arg1 isEdge:(int)arg2 ofSubview:(id)arg3 fixedInPositionOnWindowDuringResizeFromKnob:(long long)arg4;
-- (BOOL)layoutGuideGenerator:(id)arg1 isDistanceFromSubviewEdge:(int)arg2 ofSubview:(id)arg3 toSameEdgeOfSuperviewChangingOneToOneWithKnob:(long long)arg4;
+- (BOOL)layoutGuideGenerator:(id)arg1 shouldConsiderSelectionEdge:(unsigned int)arg2 toSiblingEdge:(unsigned int)arg3 guideFromSelection:(id)arg4 toView:(id)arg5;
+- (BOOL)layoutGuideGenerator:(id)arg1 isEdge:(unsigned int)arg2 ofAncestor:(id)arg3 fixedDuringResizingOfSubviews:(id)arg4 fromKnob:(long long)arg5;
+- (BOOL)layoutGuideGenerator:(id)arg1 isEdge:(unsigned int)arg2 ofSubview:(id)arg3 fixedInPositionOnWindowDuringResizeFromKnob:(long long)arg4;
+- (BOOL)layoutGuideGenerator:(id)arg1 isDistanceFromSubviewEdge:(unsigned int)arg2 ofSubview:(id)arg3 toSameEdgeOfSuperviewChangingOneToOneWithKnob:(long long)arg4;
 - (BOOL)layoutGuideGenerator:(id)arg1 shouldViewHaveContainedSubviewGuides:(id)arg2;
 - (BOOL)layoutGuideGenerator:(id)arg1 isViewVerticallyResizable:(id)arg2;
 - (BOOL)layoutGuideGenerator:(id)arg1 isViewHorizontallyResizable:(id)arg2;

@@ -8,6 +8,8 @@
 
 #import "DVTGradientStyleButton-Protocol.h"
 
+@class NSString;
+
 @interface DVTGradientImagePopUpButton : NSPopUpButton <DVTGradientStyleButton>
 {
 }
@@ -22,6 +24,12 @@
 - (id)initWithFrame:(struct CGRect)arg1 pullsDown:(BOOL)arg2;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,23 +6,27 @@
 
 #import <GPUDebuggerFoundation/GPUTraceResourceItem.h>
 
-@class NSString;
+@class GPUFunctionInfo, NSString;
 
 @interface GPUTraceShaderItem : GPUTraceResourceItem
 {
-    unsigned int _shaderType;
+    unsigned long long _shaderType;
     NSString *_infoLog;
+    GPUFunctionInfo *_functionInfo;
 }
 
+@property(readonly, nonatomic) GPUFunctionInfo *functionInfo; // @synthesize functionInfo=_functionInfo;
 @property(readonly, nonatomic) NSString *infoLog; // @synthesize infoLog=_infoLog;
-@property(readonly, nonatomic) unsigned int shaderType; // @synthesize shaderType=_shaderType;
+@property(readonly, nonatomic) unsigned long long shaderType; // @synthesize shaderType=_shaderType;
 - (void).cxx_destruct;
 - (void)releaseRealizedResources;
 - (id)program;
 - (id)associatedTraceItem;
 - (id)parentResourceGroup;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)initWithParent:(id)arg1 shaderType:(unsigned int)arg2 infoLog:(const char *)arg3 label:(id)arg4;
+- (id)initFunctionWithParent:(id)arg1 shaderType:(unsigned long long)arg2 functionInfo:(id)arg3 label:(id)arg4;
+- (id)initShaderWithParent:(id)arg1 shaderType:(unsigned long long)arg2 infoLog:(const char *)arg3 label:(id)arg4;
+- (id)_initWithParent:(id)arg1 shaderType:(unsigned long long)arg2 infoLog:(const char *)arg3 functionInfo:(id)arg4 label:(id)arg5 type:(unsigned int)arg6;
 
 @end
 

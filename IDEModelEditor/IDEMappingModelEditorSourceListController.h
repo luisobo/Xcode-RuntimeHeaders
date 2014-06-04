@@ -15,6 +15,10 @@
 }
 
 - (void).cxx_destruct;
+- (id)outlineView:(id)arg1 objectValueForTableColumn:(id)arg2 byItem:(id)arg3;
+- (long long)outlineView:(id)arg1 numberOfChildrenOfItem:(id)arg2;
+- (BOOL)outlineView:(id)arg1 isItemExpandable:(id)arg2;
+- (id)outlineView:(id)arg1 child:(long long)arg2 ofItem:(id)arg3;
 - (BOOL)outlineView:(id)arg1 acceptDrop:(id)arg2 item:(id)arg3 childIndex:(long long)arg4;
 - (unsigned long long)outlineView:(id)arg1 draggingSourceOperationMaskForLocal:(BOOL)arg2;
 - (unsigned long long)outlineView:(id)arg1 validateDrop:(id)arg2 proposedItem:(id)arg3 proposedChildIndex:(long long)arg4;

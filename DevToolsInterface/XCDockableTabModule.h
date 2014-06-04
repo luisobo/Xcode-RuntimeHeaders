@@ -9,7 +9,7 @@
 #import "NSTabViewDelegate-Protocol.h"
 #import "XCDockableDragSource-Protocol.h"
 
-@class XCBorderView, XCExtendedTabView;
+@class NSString, XCBorderView, XCExtendedTabView;
 
 @interface XCDockableTabModule : PBXProjectModule <NSTabViewDelegate, XCDockableDragSource>
 {
@@ -50,6 +50,12 @@
 - (void)setupTabs;
 - (void)dealloc;
 - (id)initWithLayout:(id)arg1 forModule:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

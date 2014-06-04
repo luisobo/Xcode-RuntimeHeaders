@@ -16,7 +16,7 @@
 + (id)keyPathsForValuesAffectingIbShadowedCustomSpacing;
 + (id)keyPathsForValuesAffectingIbInspectedHorizontal;
 + (id)keyPathsForValuesAffectingIbInspectedVertical;
-+ (id)keyPathsForValuesAffectingIbDefaultImage;
++ (id)ibDefaultImageForInstance:(id)arg1;
 - (id)ibViewsRelevantToPriorityOfKeyPath:(id)arg1 atIndex:(unsigned long long)arg2;
 - (id)ibDescriptiveTextOfCustomPriorityType:(id)arg1 withPriority:(long long)arg2;
 - (id)ibLabelForPriorityOfKeyPath:(id)arg1 atIndex:(unsigned long long)arg2;
@@ -51,6 +51,7 @@
 - (id)ibSubgroupIdentifiers;
 - (id)ibAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 insertionContext:(id)arg3;
 - (BOOL)ibCanAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 targetChildRelation:(id *)arg3;
+- (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (Class)ibEditorClass;
 - (id)ibDesignableContentView;
 - (struct CGRect)frameForGravityArea:(long long)arg1 betweenGravityPadding:(double)arg2;
@@ -59,11 +60,10 @@
 - (BOOL)ibPropogatedTranslatesAutoresizingConstraintsOfChildView:(id)arg1 forCopyOfChildView:(id)arg2;
 - (void)ibMapCopyOfReceiver:(id)arg1 intoLayoutEngine:(id)arg2;
 - (BOOL)ibShouldArchiveAutolayoutPropertiesWithNSViewProperties;
-- (id)ibDefaultImage;
 - (BOOL)ibCanUnembedChildrenInDocument:(id)arg1;
 - (void)setIbShadowedSubviews:(id)arg1;
 - (id)ibShadowedSubviews;
-- (void)ibFinishArchivingDocument:(id)arg1 withContext:(id)arg2;
-- (void)ibBeginArchivingDocument:(id)arg1 withContext:(id)arg2;
+- (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
+- (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 @end
 

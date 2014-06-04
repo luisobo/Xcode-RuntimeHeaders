@@ -6,11 +6,11 @@
 
 #import "IDEActivityLogRecord.h"
 
-#import "IDENavigableItemRepresentation-Protocol.h"
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
 @class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString;
 
-@interface IDEActivityLogRecord (IDEKitActivityLogRecordPropertyAdditions) <IDENavigableItemRepresentation>
+@interface IDEActivityLogRecord (IDEKitActivityLogRecordPropertyAdditions) <IDEKeyDrivenNavigableItemRepresentedObject>
 + (id)keyPathsForValuesAffectingShortTitle;
 + (id)keyPathsForValuesAffectingNavigableItem_name;
 @property(readonly) NSString *shortTitle;
@@ -20,10 +20,15 @@
 @property(readonly) NSString *navigableItem_name;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 @end
 

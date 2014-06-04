@@ -12,7 +12,7 @@
 #import "IDEReviewFilesDataSource-Protocol.h"
 #import "NSAnimationDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTStackBacktrace, IDEIndexSymbol, IDENavigableItemCoordinator, IDENavigatorDataCell, IDERefactoringActionViewController, IDERefactoringRevealingView, IDERefactoringSession, IDERefactoringTransformationViewController, IDEReviewFilesViewController, IDEWorkspaceDocument, NSArray, NSMutableArray, NSMutableDictionary, NSMutableSet, NSOperationQueue, NSTextField, NSView, NSWindow;
+@class DVTBorderedView, DVTObservingToken, DVTStackBacktrace, IDEIndexSymbol, IDENavigableItemCoordinator, IDENavigatorDataCell, IDERefactoringActionViewController, IDERefactoringRevealingView, IDERefactoringSession, IDERefactoringTransformationViewController, IDEReviewFilesViewController, IDEWorkspaceDocument, NSArray, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_semaphore>, NSOperationQueue, NSString, NSTextField, NSView, NSWindow;
 
 @interface IDERefactoringWindowController : NSWindowController <IDERefactoringSessionDelegate, IDEReviewFilesDataSource, IDEComparisonEditorDataSource, NSAnimationDelegate, DVTInvalidation>
 {
@@ -53,9 +53,9 @@
     IDENavigableItemCoordinator *_issueNavItemCoordinator;
     NSOperationQueue *_queue;
     BOOL _hasFatalError;
-    struct dispatch_semaphore_s *_errorResponseWaiter;
-    struct dispatch_semaphore_s *_animationWaiter;
-    struct dispatch_semaphore_s *_saveWaiter;
+    NSObject<OS_dispatch_semaphore> *_errorResponseWaiter;
+    NSObject<OS_dispatch_semaphore> *_animationWaiter;
+    NSObject<OS_dispatch_semaphore> *_saveWaiter;
     NSMutableSet *_bindingTokens;
 }
 
@@ -68,6 +68,7 @@
 @property(retain) IDERefactoringTransformationViewController *transformationViewController; // @synthesize transformationViewController=_transformationViewController;
 @property(retain, nonatomic) IDERefactoringSession *session; // @synthesize session=_session;
 - (void).cxx_destruct;
+- (BOOL)primaryEditorShowsDocumentPreview;
 - (id)contentStringForSecondaryEmptyEditorWithDocumentLocation:(id)arg1;
 - (BOOL)shouldShowEmptyEditorForSecondaryDocumentLocation:(id)arg1 submodeType:(int)arg2;
 - (BOOL)shouldSelectFirstDiff;
@@ -115,7 +116,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

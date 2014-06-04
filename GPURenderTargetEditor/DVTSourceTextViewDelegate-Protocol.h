@@ -12,7 +12,7 @@
 - (id)textViewWillReturnPrintJobTitle:(id)arg1;
 - (void)textViewDidScroll:(id)arg1;
 - (void)setupGutterContextMenuWithMenu:(id)arg1;
-- (void)tokenizableItemsForItemAtRange:(struct _NSRange)arg1 completionBlock:(id)arg2;
+- (void)tokenizableRangesWithRange:(struct _NSRange)arg1 completionBlock:(id)arg2;
 - (void)textViewDidFinishAnimatingScroll:(id)arg1;
 - (void)textViewDidLoadAnnotationProviders:(id)arg1;
 - (void)textView:(id)arg1 didRemoveAnnotations:(id)arg2;

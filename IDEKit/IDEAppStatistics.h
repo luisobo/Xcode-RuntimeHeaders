@@ -17,7 +17,7 @@
 + (void)recordAppUsedGPUDebugger;
 + (void)performAppReportWithStartupDuration:(double)arg1;
 + (id)_diskTypes;
-+ (id)_diskTypeFor:(struct __DADisk *)arg1;
++ (id)_diskTypeFor:(struct __DADisk *)arg1 withDiskManager:(id)arg2;
 + (unsigned long long)memInUse;
 + (unsigned long long)_totalRam;
 

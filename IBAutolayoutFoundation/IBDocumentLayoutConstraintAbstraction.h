@@ -16,7 +16,7 @@
 @property(retain, nonatomic) IBLayoutConstraint *constraintInDocument; // @synthesize constraintInDocument=_constraintInDocument;
 - (void).cxx_destruct;
 - (double)priority;
-- (id)makeRepresentingConstraintWithLayoutInfo:(id)arg1;
+- (id)makeRepresentingConstraintWithProvider:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqualToAbstraction:(id)arg1;
 - (Class)representationClass;

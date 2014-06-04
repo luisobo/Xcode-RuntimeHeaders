@@ -20,9 +20,11 @@
 + (int)providerType;
 - (void).cxx_destruct;
 - (id)displayNameForIssueTypeIdentifier:(id)arg1;
-- (void)clearIssues;
-- (id)createIssueFromAnalyzerFinding:(id)arg1 outline:(id)arg2;
-- (void)setupAnalyzerFindings;
+- (void)_clearIssues;
+- (id)_createIssueFromAnalyzerFinding:(id)arg1;
+- (void)_recordNumIssues:(unsigned int)arg1;
+- (unsigned int)_createAnalyzerIssues;
+- (unsigned int)_createShaderProfilerErrorIssues:(id)arg1;
 - (id)initWithIssueManager:(id)arg1 extension:(id)arg2;
 - (void)setupController;
 - (void)primitiveInvalidate;

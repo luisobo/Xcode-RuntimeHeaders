@@ -22,14 +22,14 @@
 
 + (id)deviceTypeWithIdentifier:(id)arg1;
 + (void)initialize;
-@property(readonly) NSSet *requiredDeviceSpecifierOptions; // @synthesize requiredDeviceSpecifierOptions=_requiredDeviceSpecifierOptions;
-@property(readonly) NSSet *knownDeviceSpecifierOptions; // @synthesize knownDeviceSpecifierOptions=_knownDeviceSpecifierOptions;
-@property(readonly) NSDictionary *deviceSpecifierOptionDefaults; // @synthesize deviceSpecifierOptionDefaults=_deviceSpecifierOptionDefaults;
-@property(readonly) NSString *deviceSpecifierPrefix; // @synthesize deviceSpecifierPrefix=_deviceSpecifierPrefix;
-@property(readonly) NSOrderedSet *supportedArchitectures; // @synthesize supportedArchitectures=_supportedArchitectures;
-@property(readonly) NSString *UTI; // @synthesize UTI=_UTI;
-@property(readonly) NSString *name; // @synthesize name=_name;
-@property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
+@property(readonly, copy) NSSet *requiredDeviceSpecifierOptions; // @synthesize requiredDeviceSpecifierOptions=_requiredDeviceSpecifierOptions;
+@property(readonly, copy) NSSet *knownDeviceSpecifierOptions; // @synthesize knownDeviceSpecifierOptions=_knownDeviceSpecifierOptions;
+@property(readonly, copy) NSDictionary *deviceSpecifierOptionDefaults; // @synthesize deviceSpecifierOptionDefaults=_deviceSpecifierOptionDefaults;
+@property(readonly, copy) NSString *deviceSpecifierPrefix; // @synthesize deviceSpecifierPrefix=_deviceSpecifierPrefix;
+@property(readonly, copy) NSOrderedSet *supportedArchitectures; // @synthesize supportedArchitectures=_supportedArchitectures;
+@property(readonly, copy) NSString *UTI; // @synthesize UTI=_UTI;
+@property(readonly, copy) NSString *name; // @synthesize name=_name;
+@property(readonly, copy) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (id)description;
 - (id)initWithExtension:(id)arg1;

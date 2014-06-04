@@ -6,28 +6,37 @@
 
 #import "NSObject.h"
 
+#import "DVTPropertyListEncoding-Protocol.h"
+
 @class NSString;
 
-@interface DVTBloomFilter : NSObject
+@interface DVTBloomFilter : NSObject <DVTPropertyListEncoding>
 {
-    id hashProvider;
-    CDStruct_d703e233 specification;
+    CDStruct_d703e233 _specification;
     struct {
         char *bytes;
         unsigned long long byteCount;
-    } bitVector;
+    } _bitVector;
+    id _hashProvider;
 }
 
-@property(copy) id hashProvider; // @synthesize hashProvider;
+@property(copy) id hashProvider; // @synthesize hashProvider=_hashProvider;
 - (void).cxx_destruct;
 - (long long)indexSize;
 @property(readonly) NSString *usageDescription;
 - (BOOL)mightContainKey:(const CDStruct_f444e920 *)arg1;
 - (void)addKey:(const CDStruct_f444e920 *)arg1;
 - (void)dealloc;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
+- (void)awakeWithPropertyList:(id)arg1;
+- (void)encodeIntoPropertyList:(id)arg1;
+- (id)initWithPropertyList:(id)arg1 owner:(id)arg2;
 - (id)initWithSpecification:(CDStruct_d703e233)arg1 hashProvider:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

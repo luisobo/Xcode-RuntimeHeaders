@@ -8,7 +8,7 @@
 
 #import "NSPathControlDelegate-Protocol.h"
 
-@class IDENavigableItem, IDENavigableItemCoordinator, IDEPathControl, IDEWorkspace, NSArray;
+@class IDENavigableItem, IDENavigableItemCoordinator, IDEPathControl, IDEWorkspace, NSArray, NSString;
 
 @interface Xcode3TargetChooserViewController : IDEViewController <NSPathControlDelegate>
 {
@@ -32,6 +32,12 @@
 @property(retain, nonatomic) id <IDEBlueprint> selectedBlueprint;
 - (void)loadView;
 - (id)initWithWorkspace:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

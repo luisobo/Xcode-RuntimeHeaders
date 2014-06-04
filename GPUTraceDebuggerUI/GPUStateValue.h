@@ -10,7 +10,6 @@
 
 @class NSArray, NSMutableArray, NSString;
 
-// Not exported
 @interface GPUStateValue : NSObject <IDEDataValue>
 {
     NSString *_name;
@@ -43,16 +42,21 @@
 - (long long)compareName:(id)arg1;
 - (id)_contentDescription;
 - (id)_contentDescriptionWithChildValuesAtLevel:(unsigned long long)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 @property(readonly) BOOL childValuesCountValid;
 @property(readonly) BOOL hasChildValues;
 @property(readonly) BOOL inScope;
 @property(readonly) BOOL isValueEditable;
-@property(readonly) NSString *primitiveLogicalValue;
+@property(readonly, copy) NSString *primitiveLogicalValue;
 - (void)replaceChildValueAtIndex:(unsigned long long)arg1 withValue:(id)arg2;
 - (void)addChildValues:(id)arg1;
 - (void)addChildValue:(id)arg1;
 - (void)setStateValue:(id)arg1 withName:(id)arg2 withType:(id)arg3 withItemDescription:(id)arg4;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

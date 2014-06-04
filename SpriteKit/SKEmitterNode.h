@@ -6,7 +6,7 @@
 
 #import <SpriteKit/SKNode.h>
 
-@class NSColor, SKAction, SKKeyframeSequence, SKTexture;
+@class NSColor, SKAction, SKKeyframeSequence, SKShader, SKTexture;
 
 @interface SKEmitterNode : SKNode
 {
@@ -21,61 +21,70 @@
 }
 
 - (void).cxx_destruct;
+@property(retain, nonatomic) SKShader *shader;
 - (void)advanceSimulationTime:(double)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)setPaused:(BOOL)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
+@property(nonatomic) unsigned int fieldBitMask;
 - (void)resetSimulation;
-@property unsigned long long numParticlesToEmit;
-@property(copy) SKAction *particleAction;
-@property long long particleBlendMode;
-@property(retain) SKTexture *particleTexture;
-@property double emissionAngleRange;
-@property double emissionAngle;
-@property double particleSpeedRange;
-@property double particleSpeed;
-@property double particleAlphaSpeed;
-@property double particleAlphaRange;
-@property double particleAlpha;
-@property double particleScaleSpeed;
-@property double particleScaleRange;
-@property double particleScale;
-@property double particleRotationSpeed;
-@property double particleRotationRange;
-@property double particleRotation;
-@property double particleLifetimeRange;
-@property double particleLifetime;
-@property double particleColorBlendFactorSpeed;
-@property double particleColorBlendFactorRange;
-@property double particleColorBlendFactor;
-@property double particleBirthRate;
-@property double yAcceleration;
-@property double xAcceleration;
-@property struct CGVector particlePositionRange;
-@property struct CGPoint particlePosition;
-@property double particleColorAlphaSpeed;
-@property double particleColorBlueSpeed;
-@property double particleColorGreenSpeed;
-@property double particleColorRedSpeed;
-@property double particleColorAlphaRange;
-@property double particleColorBlueRange;
-@property double particleColorGreenRange;
-@property double particleColorRedRange;
-@property(retain) NSColor *particleColor;
-@property double particleZPositionRange;
-@property double particleZPosition;
-@property struct CGSize particleSize;
-@property __weak SKNode *targetNode;
+@property(nonatomic) unsigned long long numParticlesToEmit;
+@property(copy, nonatomic) SKAction *particleAction;
+@property(nonatomic) long long particleBlendMode;
+@property(retain, nonatomic) SKTexture *particleTexture;
+@property(nonatomic) double emissionAngleRange;
+@property(nonatomic) double emissionAngle;
+@property(nonatomic) double particleSpeedRange;
+@property(nonatomic) double particleSpeed;
+@property(nonatomic) double particleAlphaSpeed;
+@property(nonatomic) double particleAlphaRange;
+@property(nonatomic) double particleAlpha;
+@property(nonatomic) double particleScaleSpeed;
+@property(nonatomic) double particleScaleRange;
+@property(nonatomic) double particleScale;
+@property(nonatomic) double particleRotationSpeed;
+@property(nonatomic) double particleRotationRange;
+@property(nonatomic) double particleRotation;
+@property(nonatomic) double particleLifetimeRange;
+@property(nonatomic) double particleLifetime;
+@property(nonatomic) double particleColorBlendFactorSpeed;
+@property(nonatomic) double particleColorBlendFactorRange;
+@property(nonatomic) double particleColorBlendFactor;
+@property(nonatomic) double particleBirthRate;
+@property(nonatomic) double yAcceleration;
+@property(nonatomic) double xAcceleration;
+@property(nonatomic) struct CGVector particlePositionRange;
+@property(nonatomic) struct CGPoint particlePosition;
+@property(nonatomic) double particleColorAlphaSpeed;
+@property(nonatomic) double particleColorBlueSpeed;
+@property(nonatomic) double particleColorGreenSpeed;
+@property(nonatomic) double particleColorRedSpeed;
+@property(nonatomic) double particleColorAlphaRange;
+@property(nonatomic) double particleColorBlueRange;
+@property(nonatomic) double particleColorGreenRange;
+@property(nonatomic) double particleColorRedRange;
+@property(retain, nonatomic) NSColor *particleColor;
+@property(nonatomic) double particleZPositionRange;
+@property(nonatomic) double particleZPosition;
+@property(nonatomic) struct CGSize particleSize;
+@property(nonatomic) double particleZPositionSpeed;
+@property(nonatomic) __weak SKNode *targetNode;
+- (double)particleDensity;
+- (void)setParticleDensity:(double)arg1;
+- (BOOL)densityBased;
+- (void)setDensityBased:(BOOL)arg1;
 - (id)particleRotationSequence;
 - (void)setParticleRotationSequence:(id)arg1;
-@property(retain) SKKeyframeSequence *particleScaleSequence;
-@property(retain) SKKeyframeSequence *particleColorSequence;
-@property(retain) SKKeyframeSequence *particleColorBlendFactorSequence;
-@property(retain) SKKeyframeSequence *particleAlphaSequence;
+@property(retain, nonatomic) SKKeyframeSequence *particleScaleSequence;
+@property(retain, nonatomic) SKKeyframeSequence *particleColorSequence;
+@property(retain, nonatomic) SKKeyframeSequence *particleColorBlendFactorSequence;
+@property(retain, nonatomic) SKKeyframeSequence *particleAlphaSequence;
 - (BOOL)containsPoint:(struct CGPoint)arg1;
 - (id)description;
+- (void)setPhysicsWorld:(id)arg1;
+- (id)physicsWorld;
 
 @end
 

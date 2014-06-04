@@ -7,6 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @protocol GPUTraceBubbleOwner <NSObject>
+- (id)currentDisplayableItem;
 - (void)settingsToggleAlphaEnable;
 - (void)settingsToggleBlueEnable;
 - (void)settingsToggleGreenEnable;

@@ -7,8 +7,7 @@
 #import "NSObject-Protocol.h"
 
 @protocol IDEOpenRequest <NSObject>
+@property(readonly) int requestState;
 - (void)cancel;
-- (BOOL)isCancelled;
-- (BOOL)isFinished;
 @end
 

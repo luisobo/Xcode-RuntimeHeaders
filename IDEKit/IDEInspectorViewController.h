@@ -9,7 +9,7 @@
 #import "IDEBindableDeclarativeInspectorController-Protocol.h"
 #import "NSUserInterfaceValidations-Protocol.h"
 
-@class DVTDelayedInvocation, DVTMapTable, IDEInspectorCategoryController, IDEInspectorContentView, IDEUtilityArea, NSArray, NSArrayController, NSBundle, NSDictionary, NSMutableDictionary, NSView<DVTIssueDisplayingView>;
+@class DVTDelayedInvocation, DVTMapTable, IDEInspectorCategoryController, IDEInspectorContentView, IDEUtilityArea, IDEUtilitySlice, NSArray, NSArrayController, NSBundle, NSDictionary, NSMutableDictionary, NSString, NSView<DVTIssueDisplayingView>;
 
 @interface IDEInspectorViewController : IDEViewController <NSUserInterfaceValidations, IDEBindableDeclarativeInspectorController>
 {
@@ -18,6 +18,7 @@
     DVTMapTable *_documentObservations;
     NSArray *_content;
     IDEUtilityArea *_utilityArea;
+    IDEUtilitySlice *_utilitySlice;
     NSArray *_inspectedDocuments;
     NSDictionary *_issueInfoDictionary;
     NSView<DVTIssueDisplayingView> *_issueDisplayingView;
@@ -29,6 +30,7 @@
     IDEInspectorContentView *_generatedContentView;
 }
 
++ (BOOL)canInspectFileReferenceNavigableItems:(id)arg1;
 + (id)inspectorConfiguredDisclosureView;
 + (id)keyPathsForValuesAffectingInspectedObject;
 + (id)keyPathsForValuesAffectingInspectedObjects;
@@ -42,6 +44,7 @@
 @property(retain, nonatomic) NSView<DVTIssueDisplayingView> *issueDisplayingView; // @synthesize issueDisplayingView=_issueDisplayingView;
 @property(copy, nonatomic) NSDictionary *issueInfoDictionary; // @synthesize issueInfoDictionary=_issueInfoDictionary;
 @property(readonly) NSArray *inspectedDocuments; // @synthesize inspectedDocuments=_inspectedDocuments;
+@property(retain, nonatomic) IDEUtilitySlice *utilitySlice; // @synthesize utilitySlice=_utilitySlice;
 @property(retain, nonatomic) IDEUtilityArea *utilityArea; // @synthesize utilityArea=_utilityArea;
 @property(copy, nonatomic) NSArray *content; // @synthesize content=_content;
 @property(readonly) id <IDEInspectorContentController> inspectedDocumentsController; // @synthesize inspectedDocumentsController=_inspectedDocumentsController;
@@ -55,13 +58,18 @@
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (id)undoManager;
 - (BOOL)supportsDocumentUndo;
+- (id)findIndicatorContentViewForInspectedKeyPath:(id)arg1 withContext:(id)arg2;
+- (id)searchableAttributesForProperty:(id)arg1;
 @property(readonly) id inspectedObject;
 @property(readonly) NSArray *inspectedObjects;
 @property(readonly) NSBundle *bundle;
 - (id)dvtExtraBindings;
+- (void)didSetInspectedObjects:(id)arg1;
+- (id)willSetInspectedObjects:(id)arg1;
 - (void)setInspectedDocuments:(id)arg1;
 - (void)editorDocumentShouldCommitEditing:(id)arg1;
 - (BOOL)tracksDocuments;
+- (void)regenerateView;
 - (void)loadView;
 - (id)sliceElement;
 @property(readonly) IDEInspectorContentView *inspectorContentView;
@@ -71,6 +79,12 @@
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)selectedDocuments;
 - (id)selection;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

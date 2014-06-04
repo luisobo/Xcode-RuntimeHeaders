@@ -91,7 +91,7 @@
 + (void)_setupThreadTraceName;
 - (void)_2009_enqueueCommandsOntoWorkQueue:(id)arg1 startingAtNode:(id)arg2;
 - (id)nodesMatchingPattern:(id)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)debugOutputLog;
 - (void)finishLoggingDebugOutput;
 - (void)startLoggingDebugOutputIfAppropriate;
@@ -260,6 +260,11 @@
 - (void)handleFailureInFunction:(id)arg1 fileName:(id)arg2 lineNumber:(long long)arg3 messageFormat:(id)arg4 arguments:(struct __va_list_tag [1])arg5;
 - (void)handleFailureInMethod:(SEL)arg1 object:(id)arg2 fileName:(id)arg3 lineNumber:(long long)arg4 messageFormat:(id)arg5 arguments:(struct __va_list_tag [1])arg6;
 - (void)enqueueDependencyGraphEventInvocation:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

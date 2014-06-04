@@ -10,14 +10,14 @@
 #import "DVTEditor-Protocol.h"
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTExtension, DVTStackBacktrace, NSString;
+@class DVTControllerContentView, DVTExtension, DVTStackBacktrace, NSString;
 
 @interface DVTViewController : NSViewController <DVTControllerContentViewViewControllerAdditions, DVTEditor, DVTInvalidation>
 {
-    DVTExtension *_representedExtension;
-    BOOL _isViewLoaded;
     BOOL _didCallViewWillUninstall;
     void *_keepSelfAliveUntilCancellationRef;
+    BOOL _isViewLoaded;
+    DVTExtension *_representedExtension;
 }
 
 + (id)defaultViewNibBundle;
@@ -34,13 +34,12 @@
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (void)loadView;
-- (void)setView:(id)arg1;
+@property(retain) DVTControllerContentView *view;
 - (void)separateKeyViewLoops;
 - (BOOL)delegateFirstResponder;
 - (id)supplementalMainViewController;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (BOOL)becomeFirstResponder;
-- (id)view;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)initUsingDefaultNib;
@@ -49,8 +48,10 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
-@property(copy, nonatomic) NSString *title; // @dynamic title;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

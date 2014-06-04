@@ -19,7 +19,7 @@
 @property(readonly) BOOL canSelect;
 - (id)capsuleViewBackgroundColor:(id)arg1;
 @property(readonly) BOOL disclosedByDefault;
-@property(readonly) NSString *titleForDisplay;
+@property(readonly, copy) NSString *titleForDisplay;
 
 // Remaining properties
 @property BOOL canAddItems;
@@ -27,8 +27,12 @@
 @property BOOL canRemoveItems;
 @property(readonly) BOOL canRename;
 @property(readonly) BOOL canUndisclose;
-@property(readonly) NSString *footerLabel;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly, copy) NSString *footerLabel;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSImage *icon;
+@property(readonly) Class superclass;
 
 @end
 

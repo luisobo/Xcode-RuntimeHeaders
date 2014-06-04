@@ -11,6 +11,7 @@
 @interface IBICImageSetRep : IBICMultipartImageRep
 {
     IBICImageResizingBehavior *_resizingBehavior;
+    CDStruct_c519178c _alignmentInsets;
 }
 
 + (Class)multiplartImageClass;
@@ -18,9 +19,14 @@
 + (id)outputImageExtension;
 + (id)imageRepWithSlot:(id)arg1 fileName:(id)arg2 andUnassigned:(BOOL)arg3;
 + (id)imageRepWithRepIdentifier:(id)arg1;
+@property(nonatomic) CDStruct_c519178c alignmentInsets; // @synthesize alignmentInsets=_alignmentInsets;
 @property(copy, nonatomic) IBICImageResizingBehavior *resizingBehavior; // @synthesize resizingBehavior=_resizingBehavior;
 - (void).cxx_destruct;
+- (id)shortDisplayName;
+- (BOOL)shouldAppendSizeClassToDisplayName;
+- (void)enumerateDescriptionAttributeComponents:(id)arg1;
 @property(readonly) NSString *fullyQualifiedFileName;
+@property(readonly) NSString *preferredOutputExtension;
 - (id)descriptionShortClassName;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

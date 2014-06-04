@@ -30,7 +30,7 @@
 - (id)resultNewFileName;
 - (id)resultFilePath;
 - (BOOL)resultIsEditable;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (BOOL)applyChangesWithError:(id *)arg1;
 - (BOOL)willRenameFile;
 - (id)newFilePath;
@@ -38,6 +38,11 @@
 - (void)addChange:(id)arg1;
 - (long long)numberOfChanges;
 - (id)initWithFilePath:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

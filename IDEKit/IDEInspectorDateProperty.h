@@ -10,10 +10,11 @@
 
 @interface IDEInspectorDateProperty : IDEInspectorProperty
 {
-    NSDatePicker *_datePicker;
     IDEInspectorKeyPath *_valueKeyPath;
+    NSDatePicker *_datePicker;
 }
 
+@property(retain, nonatomic) NSDatePicker *datePicker; // @synthesize datePicker=_datePicker;
 - (void).cxx_destruct;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)refresh;

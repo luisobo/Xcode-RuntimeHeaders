@@ -10,13 +10,9 @@
 
 @interface IBAccessorizedScrollView : NSScrollView
 {
-    BOOL _insetsButtonBarWithScrollers;
     IBAccessorizedScrollViewButtonBar *_buttonBar;
-    double _buttonBarInset;
 }
 
-@property(nonatomic) BOOL insetsButtonBarWithScrollers; // @synthesize insetsButtonBarWithScrollers=_insetsButtonBarWithScrollers;
-@property(nonatomic) double buttonBarInset; // @synthesize buttonBarInset=_buttonBarInset;
 @property(readonly) IBAccessorizedScrollViewButtonBar *buttonBar; // @synthesize buttonBar=_buttonBar;
 - (void).cxx_destruct;
 - (void)bringButtonBarToFront;

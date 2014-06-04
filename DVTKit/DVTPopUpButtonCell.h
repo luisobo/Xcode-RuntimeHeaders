@@ -38,6 +38,7 @@
 - (id)statusItemCellsForCategory:(id)arg1;
 - (void)setStatusItemCells:(id)arg1 forCategory:(id)arg2;
 - (id)_statusCellsByCategoryName;
+- (void)selectItemWithRepresentedObject:(id)arg1;
 - (struct CGRect)_indicatorFrameForCellFrame:(struct CGRect)arg1 isFlipped:(BOOL)arg2;
 - (struct CGRect)titleRectForBounds:(struct CGRect)arg1;
 - (id)dvtExtraBindings;

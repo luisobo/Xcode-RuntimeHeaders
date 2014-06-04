@@ -40,7 +40,6 @@
 - (BOOL)isEqualToLineDashPattern:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
 - (id)initWithLineDash:(const double *)arg1 count:(long long)arg2 phase:(double)arg3;

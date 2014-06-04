@@ -21,23 +21,37 @@
     BOOL _concrete;
     BOOL _projectOnly;
     BOOL _targetOnly;
-    BOOL _testTarget;
+    BOOL _wantsAssociatedTarget;
+    BOOL _associatedTargetIsTargetToBeTested;
+    BOOL _associatedTargetIsDependent;
+    BOOL _associatedTargetNeedsProductBuildPhaseInjection;
     id <Xcode3ProjectTemplateUnitParent> _parent;
     NSString *_identifier;
     NSArray *_nodes;
     NSDictionary *_macros;
     NSDictionary *_project;
+    NSArray *_associatedTargetAllowableProductTypes;
+    NSString *_associatedTargetPopUpTitle;
+    NSString *_associatedTargetPopUpDescription;
+    NSArray *_optionConstraints;
     NSArray *_injectionTargetNames;
 }
 
 @property(readonly) NSArray *injectionTargetNames; // @synthesize injectionTargetNames=_injectionTargetNames;
-@property(readonly, getter=isTestTarget) BOOL testTarget; // @synthesize testTarget=_testTarget;
+@property(readonly) NSArray *optionConstraints; // @synthesize optionConstraints=_optionConstraints;
+@property(readonly) NSString *associatedTargetPopUpDescription; // @synthesize associatedTargetPopUpDescription=_associatedTargetPopUpDescription;
+@property(readonly) NSString *associatedTargetPopUpTitle; // @synthesize associatedTargetPopUpTitle=_associatedTargetPopUpTitle;
+@property(readonly) BOOL associatedTargetNeedsProductBuildPhaseInjection; // @synthesize associatedTargetNeedsProductBuildPhaseInjection=_associatedTargetNeedsProductBuildPhaseInjection;
+@property(readonly) BOOL associatedTargetIsDependent; // @synthesize associatedTargetIsDependent=_associatedTargetIsDependent;
+@property(readonly) BOOL associatedTargetIsTargetToBeTested; // @synthesize associatedTargetIsTargetToBeTested=_associatedTargetIsTargetToBeTested;
+@property(readonly) NSArray *associatedTargetAllowableProductTypes; // @synthesize associatedTargetAllowableProductTypes=_associatedTargetAllowableProductTypes;
+@property(readonly) BOOL wantsAssociatedTarget; // @synthesize wantsAssociatedTarget=_wantsAssociatedTarget;
 @property(readonly, getter=isTargetOnly) BOOL targetOnly; // @synthesize targetOnly=_targetOnly;
 @property(readonly, getter=isProjectOnly) BOOL projectOnly; // @synthesize projectOnly=_projectOnly;
 @property(readonly, getter=isConcrete) BOOL concrete; // @synthesize concrete=_concrete;
 @property(readonly) NSDictionary *project; // @synthesize project=_project;
-@property(readonly) NSDictionary *macros; // @synthesize macros=_macros;
-@property(readonly) NSArray *nodes; // @synthesize nodes=_nodes;
+@property(readonly, copy) NSDictionary *macros; // @synthesize macros=_macros;
+@property(readonly, copy) NSArray *nodes; // @synthesize nodes=_nodes;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
 @property __weak id <Xcode3ProjectTemplateUnitParent> parent; // @synthesize parent=_parent;
 - (void).cxx_destruct;
@@ -51,6 +65,12 @@
 - (id)fallbackTemplateIcon;
 - (Class)templateOptionClass;
 - (id)initWithTemplateInfo:(id)arg1 filePath:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

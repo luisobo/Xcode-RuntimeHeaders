@@ -13,7 +13,7 @@
     DVTRegularExpression *_matchRegex;
 }
 
-@property(readonly) DVTRegularExpression *matchRegex; // @synthesize matchRegex=_matchRegex;
+@property(readonly, copy) DVTRegularExpression *matchRegex; // @synthesize matchRegex=_matchRegex;
 - (void).cxx_destruct;
 - (BOOL)handleArgument:(id)arg1 remainingArguments:(id)arg2 options:(id)arg3 status:(char *)arg4 error:(id *)arg5;
 - (BOOL)matchesArgument:(id)arg1;

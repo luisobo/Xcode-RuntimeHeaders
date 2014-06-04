@@ -7,31 +7,35 @@
 #import "IDEEditorDocument.h"
 
 #import "IDEDocumentStructureProviding-Protocol.h"
+#import "NSKeyedUnarchiverDelegate-Protocol.h"
 
-@class NSArray, SKEditorScene, SKEmitterNode;
+@class NSArray, NSObject<OS_dispatch_queue>, NSString, SKDocumentViewController, SKEditorRoot, SKEditorScene;
 
-@interface SKDocument : IDEEditorDocument <IDEDocumentStructureProviding>
+@interface SKDocument : IDEEditorDocument <IDEDocumentStructureProviding, NSKeyedUnarchiverDelegate>
 {
+    SKEditorRoot *_pseudoRoot;
     BOOL _pauseAttrObserver;
-    struct dispatch_queue_s *_syncQueue;
+    NSObject<OS_dispatch_queue> *_syncQueue;
     SKEditorScene *_scene;
-    SKEmitterNode *_emitter;
-    id _inspectionDocumentController;
+    id _editingTarget;
+    SKDocumentViewController *_inspectionDocumentController;
 }
 
 + (id)documentForNode:(id)arg1;
 + (void)removeDocumentInstance:(id)arg1;
 + (void)addDocumentInstance:(id)arg1;
 + (id)documents;
-@property(nonatomic) id inspectionDocumentController; // @synthesize inspectionDocumentController=_inspectionDocumentController;
-@property(readonly) SKEmitterNode *emitter; // @synthesize emitter=_emitter;
+@property(nonatomic) __weak SKDocumentViewController *inspectionDocumentController; // @synthesize inspectionDocumentController=_inspectionDocumentController;
+@property(readonly) id editingTarget; // @synthesize editingTarget=_editingTarget;
 @property(readonly) SKEditorScene *scene; // @synthesize scene=_scene;
 - (void).cxx_destruct;
+- (void)setNewScene:(id)arg1;
 - (void)setSceneSize:(struct CGSize)arg1;
 - (BOOL)canSave;
 @property(readonly) NSArray *ideTopLevelStructureObjects;
 - (BOOL)writeToURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
 - (BOOL)readFromURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
+- (Class)unarchiver:(id)arg1 cannotDecodeObjectOfClassName:(id)arg2 originalClasses:(id)arg3;
 - (void)stopUndoObservationsOf:(id)arg1;
 - (void)startUndoObservationsOf:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
@@ -44,6 +48,12 @@
 - (void)prepareForDocumentClose;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

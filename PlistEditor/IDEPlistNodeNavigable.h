@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTPlistNode, IDEPlistDocument;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface IDEPlistNodeNavigable : NSObject
+@class DVTDocumentLocation, DVTFileDataType, DVTPlistNode, IDEFileReference, IDEPlistDocument, NSImage, NSString;
+
+@interface IDEPlistNodeNavigable : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     IDEPlistDocument *_document;
     DVTPlistNode *_node;
@@ -18,11 +20,21 @@
 @property(retain) IDEPlistDocument *document; // @synthesize document=_document;
 - (void).cxx_destruct;
 - (id)ideModelObjectTypeIdentifier;
-- (id)navigableItem_fileReference;
-- (id)navigableItem_documentType;
-- (id)navigableItem_image;
-- (id)navigableItem_name;
-- (id)navigableItem_contentDocumentLocation;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) NSString *navigableItem_name;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

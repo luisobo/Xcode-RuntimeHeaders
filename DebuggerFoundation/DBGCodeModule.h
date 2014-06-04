@@ -4,27 +4,26 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2011 by Steve Nygard.
  */
 
-#import "NSObject.h"
+#import "IDECodeModule.h"
 
-@class DVTFilePath, NSNumber, NSString;
+@class NSNumber, NSString;
 
-@interface DBGCodeModule : NSObject
+@interface DBGCodeModule : IDECodeModule
 {
-    DVTFilePath *_filePath;
-    NSString *_name;
+    NSString *_frameworkNameIncludingExtension;
     NSNumber *_timestamp;
 }
 
++ (id)keyPathsForValuesAffectingPath;
 + (id)logAspect;
 + (id)keyPathsForValuesAffectingTimestamp;
 + (id)keyPathsForValuesAffectingName;
-@property(readonly) DVTFilePath *filePath; // @synthesize filePath=_filePath;
+@property(retain, nonatomic) NSNumber *timestamp; // @synthesize timestamp=_timestamp;
 - (void).cxx_destruct;
-@property(readonly) NSNumber *timestamp;
-@property(readonly) NSString *name; // @synthesize name=_name;
-- (unsigned long long)hash;
-- (BOOL)isEqual:(id)arg1;
-- (id)initWithPathString:(id)arg1;
+- (id)path;
+- (id)displayAddress;
+- (id)frameworkNameIncludingExtension;
+- (id)name;
 
 @end
 

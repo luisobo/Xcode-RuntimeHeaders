@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTDelayedInvocation, DVTStackBacktrace, IDEOutlineViewGroupInfo, NSArray, NSHashTable, NSMutableIndexSet, NSPredicate, NSString, _IDENavigatorOutlineViewDataSource;
+@class DVTDelayedInvocation, DVTStackBacktrace, IDEOutlineViewGroupInfo, NSArray, NSHashTable, NSMutableArray, NSMutableIndexSet, NSPredicate, NSSet, NSString, _IDENavigatorOutlineViewDataSource;
 
 @interface IDENavigatorOutlineView : DVTOutlineView <DVTInvalidation>
 {
@@ -23,6 +23,12 @@
     SEL _keyAction;
     id <IDENavigatorOutlineViewLoadingDelegate> _loadingDelegate;
     IDEOutlineViewGroupInfo *_groupInfo;
+    _IDENavigatorOutlineViewDataSource *_interposedDelegate;
+    _IDENavigatorOutlineViewDataSource *_interposedDataSource;
+    void *_keepSelfAliveUntilCancellationRef;
+    BOOL _updatesDisplayOnlyInTrayCharts;
+    BOOL _calledFromSetsNeedsDisplayOnlyInTrayCharts;
+    NSMutableArray *_entriesToRestoreToVisibleRect;
     struct {
         unsigned int _needsToPushRowSelection:1;
         unsigned int _needsToRefreshBoundSelectedObjects:1;
@@ -39,21 +45,20 @@
         unsigned int _didRecieveKeyDownEvent:1;
         unsigned int _didPublishSelectedObjects:1;
         unsigned int _supportsTrackingAreasForCells:1;
-        unsigned int _extraFlags:17;
+        unsigned int _inSameRunloopForTrackingSelectionVisibleRect:1;
     } _idenovFlags;
-    BOOL _updatesDisplayOnlyInTrayCharts;
-    BOOL _calledFromSetsNeedsDisplayOnlyInTrayCharts;
-    _IDENavigatorOutlineViewDataSource *_interposedDelegate;
-    _IDENavigatorOutlineViewDataSource *_interposedDataSource;
-    void *_keepSelfAliveUntilCancellationRef;
     BOOL _supportsVariableHeightCells;
+    BOOL _tracksSelectionVisibleRect;
     BOOL _disableSourceListSelectionStyle;
+    NSSet *_editorSelectedNavigableItems;
     NSMutableIndexSet *_selectedIndexesToDrawAsUnselected;
 }
 
 + (void)initialize;
 @property(retain) NSMutableIndexSet *selectedIndexesToDrawAsUnselected; // @synthesize selectedIndexesToDrawAsUnselected=_selectedIndexesToDrawAsUnselected;
 @property(nonatomic) BOOL disableSourceListSelectionStyle; // @synthesize disableSourceListSelectionStyle=_disableSourceListSelectionStyle;
+@property BOOL tracksSelectionVisibleRect; // @synthesize tracksSelectionVisibleRect=_tracksSelectionVisibleRect;
+@property(retain, nonatomic) NSSet *editorSelectedNavigableItems; // @synthesize editorSelectedNavigableItems=_editorSelectedNavigableItems;
 @property BOOL supportsVariableHeightCells; // @synthesize supportsVariableHeightCells=_supportsVariableHeightCells;
 @property(retain) id <IDENavigatorOutlineViewLoadingDelegate> loadingDelegate; // @synthesize loadingDelegate=_loadingDelegate;
 @property(nonatomic) SEL keyAction; // @synthesize keyAction=_keyAction;
@@ -67,7 +72,6 @@
 - (void)scrollSelectionToVisible;
 - (BOOL)scrollRectToVisible:(struct CGRect)arg1;
 - (struct _NSRange)initialSelectionRangeForCell:(id)arg1 proposedRange:(struct _NSRange)arg2;
-- (void)drawBackgroundInClipRect:(struct CGRect)arg1;
 - (void)_drawGroupItemGradientInRect:(struct CGRect)arg1 borderSides:(int)arg2;
 - (struct CGRect)frameOfOutlineCellAtRow:(long long)arg1;
 - (struct CGRect)frameOfCellAtColumn:(long long)arg1 row:(long long)arg2;
@@ -79,11 +83,11 @@
 - (struct _NSRange)rowRangeForEnclosingGroupOfTreeNode:(id)arg1;
 - (id)enclosingGroupItemForItem:(id)arg1;
 - (id)enclosingGroupInfoForRow:(long long)arg1;
+- (void)selectRowIndexes:(id)arg1 byExtendingSelection:(BOOL)arg2;
 - (void)highlightSelectionInClipRect:(struct CGRect)arg1;
 - (void)_drawSelectionForGroupItemInRect:(struct CGRect)arg1;
 - (void)setNeedsDisplayInRect:(struct CGRect)arg1;
 - (void)setNeedsDisplayOnlyInTrayCharts:(BOOL)arg1;
-- (BOOL)_needsToClearAndDrawCell;
 - (BOOL)_hasExpandedGroups;
 - (BOOL)needsDisplayOnlyInTrayCharts;
 - (void)_setNeedsDisplayInSelectedRows;
@@ -105,6 +109,8 @@
 - (void)setDataSource:(id)arg1;
 - (void)reloadData;
 - (void)reloadItem:(id)arg1 reloadChildren:(BOOL)arg2;
+- (void)_restoreEntriesToVisibleRect;
+- (void)_rememberEntriesToRestoreToVisibleRect;
 - (void)item:(id)arg1 expandedAddingRows:(long long)arg2;
 - (void)registerGroupHeaderItem:(id)arg1 atRow:(unsigned long long)arg2;
 - (void)printGroupInfo;
@@ -138,6 +144,7 @@
 - (void)expandTrayItem:(id)arg1;
 - (void)collapseItem:(id)arg1;
 - (void)collapseItem:(id)arg1 collapseChildren:(BOOL)arg2;
+- (void)expandItemIncludingAncestors:(id)arg1 expandChildren:(BOOL)arg2;
 - (void)expandItem:(id)arg1;
 - (void)expandItem:(id)arg1 expandChildren:(BOOL)arg2;
 - (void)expandAncestorsForItem:(id)arg1;
@@ -156,7 +163,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

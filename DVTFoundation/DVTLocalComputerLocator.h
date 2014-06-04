@@ -16,7 +16,7 @@
 - (id)knownDeviceAtDeviceLocation:(id)arg1;
 - (void)stopLocating;
 - (void)startLocating;
-- (id)platform;
+- (id)platforms;
 - (id)deviceLocationScheme;
 
 @end

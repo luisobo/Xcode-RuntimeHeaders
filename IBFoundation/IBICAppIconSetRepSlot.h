@@ -27,7 +27,7 @@
 - (id)detailAreaKey;
 @property(readonly) NSValue *pixelSize;
 - (long long)compareDisplayOrder:(id)arg1;
-- (id)shortDisplayNameDefiningItem;
+- (id)shortDisplayName;
 - (void)captureComponents;
 
 @end

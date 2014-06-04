@@ -10,7 +10,7 @@
 #import "NSTableViewDelegate-Protocol.h"
 #import "NSWindowDelegate-Protocol.h"
 
-@class DVTSearchField, IDEOpenQuicklyQuery, IDEOpenQuicklyTableView, IDEWorkspaceTabController, NSArrayController, NSImageView, NSMutableArray;
+@class DVTSearchField, IDEOpenQuicklyQuery, IDEOpenQuicklyTableView, IDEWorkspaceTabController, NSArrayController, NSImageView, NSMutableArray, NSString;
 
 @interface IDEOpenQuicklyWindowController : NSWindowController <IDEOpenQuicklyQueryDelegate, NSTableViewDelegate, NSWindowDelegate>
 {
@@ -43,10 +43,12 @@
 - (void)_openSelectedMatch;
 - (void)windowDidResignKey:(id)arg1;
 - (void)_applicationWillDispatchAction:(SEL)arg1;
+- (void)beginOpeningQuicklyWithQueryString:(id)arg1;
 - (void)beginOpeningQuicklyScoped:(BOOL)arg1;
+- (void)_beginOpeningQuicklyWithQueryString:(id)arg1 scoped:(BOOL)arg2;
 - (void)_configureWindowForRunningScoped;
-- (BOOL)_openMatch:(id)arg1;
-- (BOOL)_openLocation:(id)arg1 forWorkspaceTabController:(id)arg2 scoped:(BOOL)arg3;
+- (void)_openMatch:(id)arg1;
+- (void)_openLocation:(id)arg1;
 - (BOOL)_workspace:(id)arg1 containsContainerWithFilePath:(id)arg2;
 - (BOOL)control:(id)arg1 textView:(id)arg2 doCommandBySelector:(SEL)arg3;
 - (void)_updateQueryString:(id)arg1 updateInterface:(BOOL)arg2;
@@ -58,6 +60,12 @@
 - (void)awakeFromNib;
 - (id)_activeWorkspaceWindowController;
 - (id)_openWindowTerminationDisablingReason;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

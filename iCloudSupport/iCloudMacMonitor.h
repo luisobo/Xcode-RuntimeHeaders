@@ -8,7 +8,7 @@
 
 #import "iCloudClientConnectionDelegate-Protocol.h"
 
-@class NSNetService, iCloudClientConnection;
+@class NSNetService, NSString, iCloudClientConnection;
 
 @interface iCloudMacMonitor : iCloudMonitor <iCloudClientConnectionDelegate>
 {
@@ -20,10 +20,8 @@
 + (void)netServiceBrowserDidStopSearch:(id)arg1;
 + (void)netServiceBrowser:(id)arg1 didRemoveService:(id)arg2 moreComing:(BOOL)arg3;
 + (void)netServiceBrowser:(id)arg1 didFindService:(id)arg2 moreComing:(BOOL)arg3;
-+ (BOOL)restartsServiceOnExit;
-+ (void)setRestartServiceOnExit:(BOOL)arg1;
-+ (BOOL)startDebugServiceOnHost:(id)arg1 error:(id *)arg2;
-+ (void)attemptDebugServiceRestart;
++ (BOOL)startMonitorServiceOnHost:(id)arg1 error:(id *)arg2;
++ (void)attemptMonitorServiceRestart;
 + (void)stopMonitorForNetService:(id)arg1;
 + (void)startMonitorForNetService:(id)arg1;
 + (void)initiateMonitorServerForServiceCenter:(id)arg1;
@@ -34,6 +32,12 @@
 - (void)stopConnection;
 - (void)startConnection;
 - (id)initWithNetService:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

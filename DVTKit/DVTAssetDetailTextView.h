@@ -8,7 +8,7 @@
 
 #import "DVTFirstResponderShowingView-Protocol.h"
 
-@class DVTFirstResponderDrawingStrategy;
+@class DVTFirstResponderDrawingStrategy, NSString;
 
 @interface DVTAssetDetailTextView : NSTextView <DVTFirstResponderShowingView>
 {
@@ -21,6 +21,12 @@
 - (void)viewWillMoveToWindow:(id)arg1;
 - (BOOL)resignFirstResponder;
 - (BOOL)becomeFirstResponder;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

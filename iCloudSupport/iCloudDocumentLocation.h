@@ -18,8 +18,7 @@
 - (id)navigableItem_image;
 - (id)navigableItem_name;
 @property(readonly, nonatomic) iCloudController *controller;
-- (id)initWithController:(id)arg1;
-- (id)initWithController:(id)arg1 launchSession:(id)arg2;
+- (id)initWithControllerUUID:(id)arg1 documentURL:(id)arg2;
 
 @end
 

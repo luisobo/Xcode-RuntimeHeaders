@@ -9,7 +9,7 @@
 #import "NSTextViewDelegate-Protocol.h"
 #import "PBXSourceLexerDelegate-Protocol.h"
 
-@class NSButton, NSTextField, NSTextView;
+@class NSButton, NSString, NSTextField, NSTextView;
 
 @interface XCCommentsInspectorPane : PBXInspectorPaneModule <NSTextViewDelegate, PBXSourceLexerDelegate>
 {
@@ -35,6 +35,12 @@
 - (void)viewDidLoad;
 - (void)dealloc;
 - (void)textDidChange:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

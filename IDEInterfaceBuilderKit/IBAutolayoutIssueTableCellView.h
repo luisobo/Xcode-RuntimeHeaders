@@ -6,11 +6,12 @@
 
 #import "NSTableCellView.h"
 
-@class NSButton, NSTrackingArea;
+@class NSButton, NSSet, NSTrackingArea;
 
 @interface IBAutolayoutIssueTableCellView : NSTableCellView
 {
     NSTrackingArea *_trackingArea;
+    NSSet *_secondaryTextFields;
     NSButton *_actionButton;
     id _clickHandler;
     id _memberInDocument;
@@ -22,6 +23,9 @@
 @property(copy, nonatomic) id clickHandler; // @synthesize clickHandler=_clickHandler;
 @property(retain, nonatomic) NSButton *actionButton; // @synthesize actionButton=_actionButton;
 - (void).cxx_destruct;
+- (void)setBackgroundStyle:(long long)arg1;
+@property(readonly, nonatomic) NSSet *secondaryTextFields; // @synthesize secondaryTextFields=_secondaryTextFields;
+- (void)populateSecondaryTextFields:(id)arg1;
 - (void)didClickActionButton:(id)arg1;
 - (void)mouseExited:(id)arg1;
 - (void)mouseEntered:(id)arg1;

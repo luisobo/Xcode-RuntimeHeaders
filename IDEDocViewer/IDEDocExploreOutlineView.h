@@ -18,6 +18,7 @@
 - (void)openClickedNavigableItemAction:(id)arg1;
 - (void)openSelectedNavigableItemsKeyAction:(id)arg1;
 - (BOOL)_shouldContinueExpandAtLevel:(long long)arg1 beganAtLevel:(long long)arg2;
+- (void)primitiveInvalidate;
 
 @end
 

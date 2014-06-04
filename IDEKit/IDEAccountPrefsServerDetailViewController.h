@@ -12,21 +12,21 @@
 {
     DVTObservingToken *_serverEnabledWatcher;
     DVTObservingToken *_serverReachabilityWatcher;
-    DVTObservingToken *_contentViewControllerLayoutWatcher;
+    DVTObservingToken *_serverCompatibilityWatcher;
     BOOL _authenticateAsRegisteredUser;
-    BOOL _readyForLayoutRefresh;
+    BOOL _showServerCompatibilityWarning;
     NSImageView *_connectionErrorImageView;
     unsigned long long _authenticationUserType;
     DVTToggleSwitch *_enableSwitch;
     NSTextField *_addressTextField;
     NSButton *_viewServerButton;
     DVTBorderedView *_borderedView;
-    double _addressFieldInitialLayoutWidth;
+    NSImageView *_compatibilityImageView;
 }
 
 + (id)keyPathsForValuesAffectingConnectionAddress;
-@property BOOL readyForLayoutRefresh; // @synthesize readyForLayoutRefresh=_readyForLayoutRefresh;
-@property double addressFieldInitialLayoutWidth; // @synthesize addressFieldInitialLayoutWidth=_addressFieldInitialLayoutWidth;
+@property __weak NSImageView *compatibilityImageView; // @synthesize compatibilityImageView=_compatibilityImageView;
+@property BOOL showServerCompatibilityWarning; // @synthesize showServerCompatibilityWarning=_showServerCompatibilityWarning;
 @property(retain) DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
 @property(retain) NSButton *viewServerButton; // @synthesize viewServerButton=_viewServerButton;
 @property __weak NSTextField *addressTextField; // @synthesize addressTextField=_addressTextField;

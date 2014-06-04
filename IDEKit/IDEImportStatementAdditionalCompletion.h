@@ -27,10 +27,16 @@
 @property(retain, nonatomic) id <IDEAutoImportable> autoImportable; // @synthesize autoImportable=_autoImportable;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) DVTFilePath *headerFilePath; // @synthesize headerFilePath=_headerFilePath;
-@property(readonly) NSString *completionText;
+@property(readonly, copy) NSString *completionText;
 - (id)importStatement;
 - (id)frameworkStyleImportStatementForHeaderAtFilePath:(id)arg1;
 - (id)initWithAutoImportable:(id)arg1 inContext:(id)arg2 headerVisibility:(unsigned long long)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

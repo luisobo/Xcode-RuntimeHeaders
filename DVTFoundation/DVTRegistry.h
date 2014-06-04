@@ -6,24 +6,24 @@
 
 #import "NSObject.h"
 
-@class DVTMutableOrderedDictionary, DVTReaderWriterLock, NSString;
+@class DVTDispatchLock, DVTMutableOrderedDictionary, NSMutableDictionary, NSString;
 
 @interface DVTRegistry : NSObject
 {
+    DVTDispatchLock *_lock;
+    DVTMutableOrderedDictionary *_identsToObjects;
+    NSMutableDictionary *_aliasesToObjects;
     NSString *_debugName;
-    DVTMutableOrderedDictionary *_identsToRegisteredObjects;
-    DVTReaderWriterLock *_lock;
 }
 
-@property(readonly) DVTReaderWriterLock *lock; // @synthesize lock=_lock;
-@property(readonly) DVTMutableOrderedDictionary *identsToRegisteredObjects; // @synthesize identsToRegisteredObjects=_identsToRegisteredObjects;
-@property(readonly) NSString *debugName; // @synthesize debugName=_debugName;
+@property(readonly) DVTDispatchLock *lock; // @synthesize lock=_lock;
 - (void).cxx_destruct;
 - (id)description;
 - (id)allRegisteredObjects;
 - (id)objectForIdentifier:(id)arg1;
 - (void)didRegisterObject:(id)arg1 replacingObject:(id)arg2;
 - (BOOL)registerObject:(id)arg1 collisionHandler:(id)arg2;
+@property(readonly) NSString *debugName;
 - (id)init;
 - (id)initWithDebugName:(id)arg1;
 

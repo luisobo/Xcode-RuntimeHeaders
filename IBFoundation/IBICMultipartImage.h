@@ -26,6 +26,7 @@
 + (id)multipartImageClassesInImportOrder;
 + (id)multipartImageClasses;
 + (id)allocWithZone:(struct _NSZone *)arg1;
+- (id)slotComponentMaskForChildren;
 - (void)populateMutatorsToAddRequiredChildCounterparts:(id)arg1;
 - (id)suggestedFileNameForImageRepInSlot:(id)arg1;
 - (void)populateIssues:(id)arg1 context:(id)arg2;

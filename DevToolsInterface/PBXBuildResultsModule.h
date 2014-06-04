@@ -8,7 +8,7 @@
 
 #import "XCSelectionSource-Protocol.h"
 
-@class NSBox, NSButton, NSMenu, NSMutableArray, NSPopUpButton, NSProgressIndicator, NSTextField, XCBuildOperation, XCBuildResultsOutlineLogic, XCBuildResultsOutlineView;
+@class NSBox, NSButton, NSMenu, NSMutableArray, NSPopUpButton, NSProgressIndicator, NSString, NSTextField, XCBuildOperation, XCBuildResultsOutlineLogic, XCBuildResultsOutlineView;
 
 @interface PBXBuildResultsModule : PBXProjectModule <XCSelectionSource>
 {
@@ -173,6 +173,12 @@
 - (id)buildLogItemContextualMenu;
 - (id)statusBar;
 - (id)initWithModuleNibName:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -47,7 +47,7 @@
 @property(setter=setNavigation:) BOOL isNavigation;
 @property(setter=setGroupedAlternate:) BOOL isGroupedAlternate;
 @property(setter=setAlternate:) BOOL isAlternate;
-@property(readonly) NSString *commandIdentifier;
+@property(readonly, copy) NSString *commandIdentifier;
 - (void)removePrefixFromKeyboardShortcut:(id)arg1;
 - (id)addPrefixKeyboardShortcut:(id)arg1 toKeyboardShortcut:(id)arg2;
 - (void)removeObjectFromKeyboardShortcutsAtIndex:(unsigned long long)arg1;

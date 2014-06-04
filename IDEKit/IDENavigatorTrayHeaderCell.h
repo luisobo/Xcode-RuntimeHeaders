@@ -8,7 +8,7 @@
 
 #import "IDENavigatorTrayHeaderCellProtocol-Protocol.h"
 
-@class NSArray, NSButtonCell, NSImage, NSIndexSet;
+@class NSArray, NSButtonCell, NSImage, NSIndexSet, NSString;
 
 @interface IDENavigatorTrayHeaderCell : IDENavigatorDataCell <IDENavigatorTrayHeaderCellProtocol>
 {
@@ -30,7 +30,7 @@
 - (BOOL)_mouseLocationForEventOverGaugeButton:(id)arg1 cellFrame:(struct CGRect)arg2 view:(id)arg3;
 - (BOOL)trackMouse:(id)arg1 inRect:(struct CGRect)arg2 ofView:(id)arg3 untilMouseUp:(BOOL)arg4;
 - (unsigned long long)hitTestForEvent:(id)arg1 inRect:(struct CGRect)arg2 ofView:(id)arg3;
-- (void)_drawTrayItemCell:(id)arg1 withFrame:(struct CGRect)arg2 inView:(id)arg3 isTopCell:(BOOL)arg4;
+- (void)_drawTrayItemCell:(id)arg1 withFrame:(struct CGRect)arg2 inView:(id)arg3;
 - (void)_drawLineBelowTrayCellRect:(struct CGRect)arg1;
 - (void)_drawInteriorTrayItemsWithFrame:(struct CGRect)arg1 controlView:(id)arg2 atPoint:(struct CGPoint)arg3;
 - (void)_drawInteriorHeaderBackgroundWithFrame:(struct CGRect)arg1 inView:(id)arg2 height:(double)arg3;
@@ -58,6 +58,12 @@
 - (void)setControlView:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initTextCell:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

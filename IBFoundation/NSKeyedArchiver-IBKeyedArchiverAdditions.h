@@ -7,6 +7,7 @@
 #import "NSKeyedArchiver.h"
 
 @interface NSKeyedArchiver (IBKeyedArchiverAdditions)
++ (id)ib_archiveDataFromRunningBlock:(id)arg1;
 + (id)ib_cloneObjectByArchiving:(id)arg1;
 @end
 

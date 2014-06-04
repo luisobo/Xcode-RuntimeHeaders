@@ -46,7 +46,7 @@
 - (void)suspend;
 - (void)run;
 - (void)_operationDidStop:(BOOL)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)filenames;
 - (void)setFilenames:(id)arg1;
 - (id)task;
@@ -65,6 +65,11 @@
 - (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

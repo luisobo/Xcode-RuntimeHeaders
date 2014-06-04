@@ -17,7 +17,7 @@
 - (void).cxx_destruct;
 - (BOOL)canEmbedObjects:(id)arg1 fromDocument:(id)arg2;
 - (id)embedObjects:(id)arg1 fromDocument:(id)arg2 context:(id)arg3;
-- (void)moveViews:(id)arg1 intoContentView:(id)arg2 ofContainer:(id)arg3 withParent:(id)arg4 forDocument:(id)arg5;
+- (void)moveViews:(id)arg1 intoDesignableContentView:(id)arg2 ofView:(id)arg3 withRootContainer:(id)arg4 forDocument:(id)arg5;
 - (id)initWithRepresentedExtension:(id)arg1;
 
 @end

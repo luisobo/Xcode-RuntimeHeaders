@@ -8,7 +8,7 @@
 
 #import "IDEReviewFilesViewControllerDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTObservingToken, IDESourceControlPatch, IDESourceControlPatchDataSource, NSArray, NSButton, NSSegmentedControl;
+@class DVTBorderedView, DVTObservingToken, IDESourceControlPatch, IDESourceControlPatchDataSource, NSArray, NSButton, NSSegmentedControl, NSString;
 
 @interface IDESourceControlApplyPatchWindowController : IDESourceControlReviewFilesWindowController <IDEReviewFilesViewControllerDelegate>
 {
@@ -20,6 +20,7 @@
     IDESourceControlPatchDataSource *_flatDataSource;
     IDESourceControlPatchDataSource *_fileSystemDataSource;
     NSArray *_operationInfos;
+    DVTObservingToken *_diffDescriptorsObservationToken;
     DVTObservingToken *_mergeDirectionObservationToken;
     DVTObservingToken *_descriptorResolvedObservationToken;
     DVTObservingToken *_conflictCountObservationToken;
@@ -54,6 +55,12 @@
 - (void)windowDidLoad;
 - (id)initWithWindow:(id)arg1;
 - (id)windowNibName;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

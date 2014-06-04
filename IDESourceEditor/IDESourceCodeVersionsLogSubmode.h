@@ -10,7 +10,7 @@
 #import "IDEComparisonEditorDelegate-Protocol.h"
 #import "IDESourceEditorViewControllerHost-Protocol.h"
 
-@class DVTBorderedView, DVTSourceTextView, IDEEditor, NSDictionary;
+@class DVTBorderedView, DVTSourceTextView, IDEEditor, NSDictionary, NSString;
 
 @interface IDESourceCodeVersionsLogSubmode : IDEComparisonEditorSubmode <IDEComparisonEditorDelegate, IDESourceEditorViewControllerHost, DVTSourceTextViewDelegate>
 {
@@ -44,6 +44,12 @@
 @property(retain) IDEEditor *primaryEditor; // @synthesize primaryEditor=_primaryEditor;
 @property(readonly) DVTSourceTextView *primaryTextView;
 - (id)keyEditor;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

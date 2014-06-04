@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTDispatchLock, DVTDownloadableManagerIOCache, DVTMacroDefinitionTable, DVTMacroExpansionScope, DVTStackBacktrace, NSDate, NSMutableDictionary, NSMutableSet, NSOperationQueue, NSSet, NSURL;
+@class DVTDispatchLock, DVTMacroDefinitionTable, DVTMacroExpansionScope, DVTStackBacktrace, NSDate, NSMutableDictionary, NSMutableSet, NSOperationQueue, NSSet, NSString, NSURL;
 
 @interface DVTDownloadableManager : NSObject <DVTInvalidation>
 {
@@ -21,14 +21,13 @@
     NSMutableDictionary *_downloadablesByIdentifier;
     NSOperationQueue *_downloadQueue;
     NSMutableSet *_operations;
-    NSURL *_cacheURL;
-    BOOL _automaticRefresh;
-    BOOL _automaticUpdate;
-    NSDate *_doNotPromptAboutUpdatesUntilDate;
     DVTMacroDefinitionTable *_macroDefinitionTable;
     DVTMacroExpansionScope *_macroExpansionScope;
     NSMutableDictionary *_predicateSubstitutionVariables;
-    DVTDownloadableManagerIOCache *_ioCache;
+    BOOL _automaticRefresh;
+    BOOL _automaticUpdate;
+    NSURL *_cacheURL;
+    NSDate *_doNotPromptAboutUpdatesUntilDate;
 }
 
 + (void)initialize;
@@ -63,9 +62,7 @@
 - (id)_downloadableForIdentifier:(id)arg1 version:(id)arg2;
 - (id)downloadablesForIdentifier:(id)arg1;
 - (id)_downloadablesForIdentifier:(id)arg1;
-- (void)_rebuildDownloadedDownloadables;
 - (void)_willInstallDownloadable:(id)arg1;
-- (void)_addDownloadable:(id)arg1;
 @property(readonly) NSSet *downloadedDownloadables;
 @property(readonly) NSSet *downloadables;
 - (void)addIndexAtURL:(id)arg1;
@@ -84,7 +81,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

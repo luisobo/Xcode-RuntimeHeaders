@@ -13,7 +13,9 @@
     NSArray *_docSetRecords;
 }
 
++ (void)scheduleLoadingTokenCacheForEnabledDocSetsIfNeeded;
 - (void).cxx_destruct;
+- (void)queryDocSetsWithUSR:(id)arg1 platform:(id)arg2 sdkVersion:(id)arg3 completionBlock:(id)arg4;
 - (void)queryDocSetsWithInfo:(id)arg1 completionBlock:(id)arg2;
 - (void)determineBestDocSetRecordsForQuery:(id)arg1;
 - (id)tokensForSymbol:(id)arg1 useFallbackNameSearch:(BOOL)arg2;

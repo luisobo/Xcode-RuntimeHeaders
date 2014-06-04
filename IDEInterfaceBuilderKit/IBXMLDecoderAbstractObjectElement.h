@@ -6,7 +6,7 @@
 
 #import <IDEInterfaceBuilderKit/IBXMLDecoderAbstractValueElement.h>
 
-@class NSArray, NSDictionary, NSMutableArray, NSString;
+@class NSDictionary, NSMutableArray, NSString;
 
 @interface IBXMLDecoderAbstractObjectElement : IBXMLDecoderAbstractValueElement
 {
@@ -16,7 +16,6 @@
     id _inlineAbstractValueElements[16];
     long long _inlineAbstractValueElementsCount;
     NSMutableArray *_mutableAbstractValueElements;
-    NSArray *_abstractValueElements;
     BOOL _finishedAddingSubelements;
     NSString *_className;
 }
@@ -25,12 +24,14 @@
 - (void).cxx_destruct;
 @property(readonly) NSString *identifier;
 - (id)resolvedAbstractObjectElement;
-- (id)abstractValueElements;
-- (id)elements;
+- (void)enumerateElements:(id)arg1;
+- (void)enumerateAbstractValueElements:(id)arg1;
 - (id)keyedAbstractValueElements;
 - (void)finishedAddingSubelements;
+- (long long)numberOfElements;
+- (BOOL)hasInlineValues;
 - (BOOL)acceptAbstractValueElement:(id)arg1 error:(id *)arg2;
-- (id)initWithAttributes:(const char **)arg1 parser:(id)arg2 error:(id *)arg3;
+- (id)initWithAttributes:(const char **)arg1 stringTable:(id)arg2 error:(id *)arg3;
 - (id)decodedObject;
 - (void)setDecodedObject:(id)arg1;
 

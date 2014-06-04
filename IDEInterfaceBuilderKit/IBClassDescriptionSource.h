@@ -14,29 +14,31 @@
 
 @interface IBClassDescriptionSource : NSObject <NSCoding, NSCopying, IBDocumentArchiving>
 {
-    long long sourceType;
-    NSString *qualifier;
+    int _retainCountMinusOne;
+    long long _sourceType;
+    NSString *_qualifier;
 }
 
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
 + (id)qualifierKeyForSourceType:(long long)arg1;
 + (id)frameworkSourceIdentifierForInterfaceFile:(id)arg1 inFramework:(id)arg2;
-+ (id)documentRelativeSourceIdentifierFromFile:(id)arg1 relativeTo:(id)arg2;
 + (id)documentLocalSourceIdentifier;
 + (id)systemSourceIdentifierForPluginWithBundleIdentifier:(id)arg1;
-+ (id)workspaceDocumentSourceIdentifierForInterfaceFile:(id)arg1 inWorkspaceDocument:(id)arg2;
++ (id)workspaceDocumentSourceIdentifierForInterfaceFile:(id)arg1 inWorkspaceDocumentInFolderAtPath:(id)arg2;
 + (id)workspaceDocumentSourceIdentifierForWorkspaceDocumentRelativeInterfaceFile:(id)arg1;
-@property(readonly) NSString *qualifier; // @synthesize qualifier;
-@property(readonly) long long sourceType; // @synthesize sourceType;
+@property(readonly) NSString *qualifier; // @synthesize qualifier=_qualifier;
+@property(readonly) long long sourceType; // @synthesize sourceType=_sourceType;
 - (void).cxx_destruct;
+- (id)iconForDisplayRelativeToDocument:(id)arg1;
 - (long long)compareForDefinitionContention:(id)arg1;
 - (long long)compare:(id)arg1;
 - (long long)compareLegacyMajorKeys:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToClassDescriptionSource:(id)arg1;
+- (id)absolutePathInTermsOfWorkspace:(id)arg1;
 - (id)absolutePathInTermsOfDocumentPath:(id)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)displayLabelInDocument:(id)arg1;
 - (id)frameworkName;
 - (id)pluginBundleIdentifier;
@@ -56,6 +58,15 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithSourceType:(long long)arg1 andQualifier:(id)arg2;
+- (BOOL)_isDeallocating;
+- (BOOL)_tryRetain;
+- (unsigned long long)retainCount;
+- (oneway void)release;
+- (id)retain;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

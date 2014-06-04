@@ -8,11 +8,11 @@
 
 #import "DTServiceQueueAuthorizedAPI-Protocol.h"
 
-@class NSMutableArray, NSString;
+@class NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
 
 @interface DTServiceQueue : DTXService <DTServiceQueueAuthorizedAPI>
 {
-    struct dispatch_queue_s *_undeliveredGuard;
+    NSObject<OS_dispatch_queue> *_undeliveredGuard;
     NSMutableArray *_undeliveredMessages;
     id <DTServiceQueueDelegate> _delegate;
     NSString *_identifier;
@@ -32,6 +32,12 @@
 - (void)disconnect;
 - (void)dealloc;
 - (id)initWithIdentifier:(id)arg1 channel:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

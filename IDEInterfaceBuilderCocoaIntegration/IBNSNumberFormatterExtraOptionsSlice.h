@@ -19,6 +19,9 @@
 - (void)setupRefreshTriggersAndConfigure;
 - (void)refresh;
 - (void)userDidChangeOverflowItem:(id)arg1;
+- (id)numberStyleKeyPath;
+- (id)formatterBehaviorKeyPath;
+- (id)placeholderKeyPathForOverflowItem:(id)arg1;
 - (id)keyPathForOverflowItem:(id)arg1;
 - (void)loadView;
 

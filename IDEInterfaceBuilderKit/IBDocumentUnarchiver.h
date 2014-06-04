@@ -31,6 +31,7 @@
 - (void).cxx_destruct;
 - (id)unarchiveTextWithBase64EncodingIndicatorAttributeName:(id)arg1;
 - (id)unarchiveWrappedInsetForKey:(id)arg1;
+- (id)unarchiveWrappedSizeForKey:(id)arg1;
 - (id)unarchiveWrappedBitmaskFromBitmask:(id)arg1 forKey:(id)arg2;
 - (id)unarchiveWrappedEnumeratedValueFromEnumeration:(id)arg1 forKey:(id)arg2;
 - (id)unarchiveWrappedDoubleForKey:(id)arg1;
@@ -45,7 +46,7 @@
 - (long long)unarchiveInt64ForKey:(id)arg1 defaultValue:(long long)arg2;
 - (long long)unarchiveIntegerForKey:(id)arg1 defaultValue:(long long)arg2;
 - (struct _NSRange)unarchiveRangeForKey:(id)arg1 defaultValue:(struct _NSRange)arg2;
-- (CDStruct_79f57be0)unarchiveOffsetForKey:(id)arg1 defaultValue:(CDStruct_79f57be0)arg2;
+- (CDStruct_c3b9c2ee)unarchiveOffsetForKey:(id)arg1 defaultValue:(CDStruct_c3b9c2ee)arg2;
 - (CDStruct_c519178c)unarchiveEdgeInsetsForKey:(id)arg1 defaultValue:(CDStruct_c519178c)arg2;
 - (CDStruct_c519178c)unarchiveInsetForKey:(id)arg1 defaultValue:(CDStruct_c519178c)arg2;
 - (struct CGRect)unarchiveRectForKey:(id)arg1 defaultValue:(struct CGRect)arg2;
@@ -53,18 +54,23 @@
 - (struct CGPoint)unarchivePointForKey:(id)arg1 defaultValue:(struct CGPoint)arg2;
 - (id)unarchiveStringForKey:(id)arg1 defaultValue:(id)arg2;
 - (id)unarchiveDictionaryWithName:(id)arg1 forOptionalKey:(id)arg2 defaultValue:(id)arg3;
+- (id)unarchiveObjectReferenceDictionaryWithName:(id)arg1 referenceType:(id)arg2 forOptionalKey:(id)arg3 defaultValue:(id)arg4;
 - (unsigned long long)numberOfElementsInArrayToUnarchiveWithName:(id)arg1 forOptionalKey:(id)arg2;
 - (id)unarchiveArrayWithName:(id)arg1 forOptionalKey:(id)arg2 defaultValue:(id)arg3;
 - (id)unarchiveObjectReferenceWithType:(id)arg1 forKey:(id)arg2 defaultValue:(id)arg3;
 - (id)unarchiveObjectForKey:(id)arg1 defaultValue:(id)arg2;
+- (id)unarchiveFormattedClassSymbolForClassKey:(id)arg1 moduleKey:(id)arg2 moduleProviderKey:(id)arg3;
+- (id)unarchiveCustomFormattedClassSymbol;
 - (BOOL)containsValueForKey:(id)arg1;
 - (id)softErrorMessages;
 - (void)addSoftErrorMessage:(id)arg1;
 - (void)enumerateObjectMembers:(id)arg1;
 - (void)enumerateGroupMembers:(id)arg1;
+- (void)unarchiveContentsOfGroupsWithName:(id)arg1 usingBlock:(id)arg2;
 - (BOOL)enterGroupWithName:(id)arg1 optionalKey:(id)arg2 usingBlock:(id)arg3;
 - (id)unarchiveObjectReferenceAssumingAlreadyUnarchivedWithType:(id)arg1 forKey:(id)arg2;
 - (id)unarchiveObjectReferenceWithType:(id)arg1 forKey:(id)arg2;
+- (id)unarchiveObjectReferenceDictionaryWithName:(id)arg1 referenceType:(id)arg2 forOptionalKey:(id)arg3;
 - (id)unarchiveDictionaryWithName:(id)arg1 forOptionalKey:(id)arg2;
 - (id)unarchiveArrayWithName:(id)arg1 forOptionalKey:(id)arg2;
 - (id)unarchiveObjectReferenceArrayWithName:(id)arg1 referenceType:(id)arg2 forOptionalKey:(id)arg3;
@@ -73,6 +79,7 @@
 - (void)raiseForUnexpectedChildElement:(id)arg1 expected:(id)arg2 key:(id)arg3;
 - (void)raiseForUnknownElement:(id)arg1;
 - (id)unarchiveDictionaryFromElement:(id)arg1;
+- (id)unarchiveDictionaryFromElement:(id)arg1 elementUnarchiver:(id)arg2;
 - (id)unarchiveArrayFromElement:(id)arg1;
 - (id)unarchiveReferenceFromElement:(id)arg1 referenceType:(id)arg2;
 - (id)unarchiveObjectFromElement:(id)arg1;

@@ -8,7 +8,7 @@
 
 #import "iCloudItemProvider-Protocol.h"
 
-@class DVTDevice, NSMutableData, NSMutableDictionary, NSMutableSet, NSRecursiveLock;
+@class DVTDevice, NSMutableData, NSMutableDictionary, NSMutableSet, NSRecursiveLock, NSString;
 
 @interface iCloudMonitor : NSObject <iCloudItemProvider>
 {
@@ -23,10 +23,12 @@
     NSMutableDictionary *_watchers;
     BOOL _authorized;
     DVTDevice *_device;
+    NSString *_deviceIdentifier;
 }
 
 + (void)terminateMonitorServerForServiceCenter:(id)arg1;
 + (void)initiateMonitorServerForServiceCenter:(id)arg1;
+@property(readonly, nonatomic) NSString *deviceIdentifier; // @synthesize deviceIdentifier=_deviceIdentifier;
 @property(readonly, nonatomic) DVTDevice *device; // @synthesize device=_device;
 @property(nonatomic, getter=isAuthorized) BOOL authorized; // @synthesize authorized=_authorized;
 - (void).cxx_destruct;
@@ -54,8 +56,14 @@
 - (id)nextToken;
 - (void)stopConnection;
 - (void)startConnection;
-- (void)setDevice:(id)arg1;
+- (void)_primitiveSetDevice:(id)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

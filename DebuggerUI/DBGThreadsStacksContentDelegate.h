@@ -9,7 +9,7 @@
 #import "DVTInvalidation-Protocol.h"
 #import "IDEDebugNavigableContentDelegate-Protocol.h"
 
-@class DBGDebugSession, DBGGaugeCPUTrayCell, DBGGaugeMemoryTrayCell, DBGNavigatorCompressedDataCell, DBGProcessNavigableItem, DBGStackFrame, DBGThread, DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, IDEDebugNavigator, IDENavigableItem, IDENavigatorDataCell, IDENavigatorOutlineView, IDEWorkspaceTabController, NSArray, NSMenuItem, NSString;
+@class DBGDebugSession, DBGGaugeCPUTrayCell, DBGGaugeMemoryTrayCell, DBGNavigatorCompressedDataCell, DBGProcessNavigableItem, DBGStackFrame, DBGStackFrameCell, DBGThread, DBGViewDebuggerAdditionUIController, DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, IDEDebugNavigator, IDENavigableItem, IDENavigatorDataCell, IDENavigatorFilterControlBar, IDENavigatorOutlineView, IDEWorkspaceTabController, NSArray, NSMenuItem, NSMutableSet, NSSet, NSString, NSView;
 
 @interface DBGThreadsStacksContentDelegate : NSObject <IDEDebugNavigableContentDelegate, DVTInvalidation>
 {
@@ -17,51 +17,77 @@
     NSString *_associatedProcessUUID;
     IDEDebugNavigator *_debugNavigator;
     IDENavigatorOutlineView *_outlineView;
+    DBGViewDebuggerAdditionUIController *_viewDebuggingUIController;
     IDENavigatorDataCell *_queueHeaderCell;
     IDENavigatorDataCell *_threadHeaderCell;
     IDENavigatorDataCell *_memoryDataGroupHeaderCell;
+    DBGStackFrameCell *_stackFrameCell;
     DBGNavigatorCompressedDataCell *_compressedCell;
     DBGGaugeCPUTrayCell *_cpuTrayCell;
     DBGGaugeMemoryTrayCell *_memTrayCell;
     NSArray *_trayCells;
-    int _threadOrQueueMode;
+    int _navigatorContentMode;
     NSMenuItem *_threadMenuItem;
     DBGThread *_currentThreadForFutureSelection;
     DBGStackFrame *_currentStackFrameForFutureSelection;
-    BOOL _isInShouldHideThreads;
-    BOOL _delegateIsInstalling;
+    unsigned long long _compressionValue;
+    BOOL _isInShouldInvalidateProcessItem;
+    BOOL _ignoreStateForDebugNavigator;
+    NSMutableSet *_expandedItemsForFilterString;
+    NSSet *_expandedItemTokensBeforeFiltering;
+    BOOL _hasFilterString;
+    BOOL _updatingForFilterString;
     DVTObservingToken *_threadsObservingToken;
+    DVTObservingToken *_childItemsObservingToken;
     DVTObservingToken *_autoRefreshStackFramesObservingToken;
     DVTObservingToken *_processControlStateObservingToken;
     DVTObservingToken *_currentStackFrameObservingToken;
+    DVTObservingToken *_recordedQueueObservingToken;
+    DVTNotificationToken *_pendingBlocksNotificationToken;
     DVTObservingToken *_processNavigableItemObservingToken;
     DVTObservingToken *_memoryDatasForProcessToken;
     DVTObservingToken *_cpuObservingToken;
     DVTObservingToken *_memoryObservingToken;
     DVTObservingToken *_profilingSupportedObservingToken;
-    DVTNotificationToken *_trayHideObservingToken;
-    DVTNotificationToken *_trayShowObservingToken;
+    DVTObservingToken *_userHasRequestedViewDebuggingObservingToken;
+    id <DVTCancellable> _viewDebuggerAdditionUIControllerObservingToken;
+    DVTNotificationToken *_trayHideNotificationToken;
+    DVTNotificationToken *_trayShowNotificationToken;
+    BOOL _showsCompressedStackFrames;
+    BOOL _showsOnlyInterestingContent;
+    BOOL _showsPendingBlocks;
+    NSView *_filterViewContainer;
+    NSView *_CPUDebugFilterView;
+    IDENavigatorFilterControlBar *_CPUDebugFilterControl;
+    NSView *_viewDebugFilterView;
+    IDENavigatorFilterControlBar *_viewDebugFilterControl;
 }
 
 + (id)keyPathsForValuesAffectingProcessNavigableItem;
-+ (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (void)initialize;
+@property(nonatomic) BOOL showsPendingBlocks; // @synthesize showsPendingBlocks=_showsPendingBlocks;
+@property(nonatomic) BOOL showsOnlyInterestingContent; // @synthesize showsOnlyInterestingContent=_showsOnlyInterestingContent;
+@property(nonatomic) BOOL showsCompressedStackFrames; // @synthesize showsCompressedStackFrames=_showsCompressedStackFrames;
+@property __weak IDENavigatorFilterControlBar *viewDebugFilterControl; // @synthesize viewDebugFilterControl=_viewDebugFilterControl;
+@property(retain) NSView *viewDebugFilterView; // @synthesize viewDebugFilterView=_viewDebugFilterView;
+@property __weak IDENavigatorFilterControlBar *CPUDebugFilterControl; // @synthesize CPUDebugFilterControl=_CPUDebugFilterControl;
+@property(retain) NSView *CPUDebugFilterView; // @synthesize CPUDebugFilterView=_CPUDebugFilterView;
+@property(retain) NSView *filterViewContainer; // @synthesize filterViewContainer=_filterViewContainer;
 @property(readonly) IDEDebugNavigator *debugNavigator; // @synthesize debugNavigator=_debugNavigator;
 @property(readonly) NSString *associatedProcessUUID; // @synthesize associatedProcessUUID=_associatedProcessUUID;
 @property(retain) DBGDebugSession *debugSession; // @synthesize debugSession=_debugSession;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (void)setStoredThreadOrQueueMode:(id)arg1;
-- (id)storedThreadOrQueueMode;
+- (void)setStoredNavigatorContentMode:(id)arg1;
+- (id)storedNavigatorContentMode;
+- (void)setStoredCompressionValue:(id)arg1;
+- (id)storedCompressionValue;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
+- (void)_updateForNewCompressionValue;
 - (void)_trayDidExpandOrCollapse:(BOOL)arg1 notification:(id)arg2;
 - (void)_suspendContexMenuSelectedItems;
 - (void)_resumeContexMenuSelectedItems;
-- (id)minCompressionButtonTooltip;
-- (id)compressionSliderTooltip;
-- (id)maxCompressionButtonTooltip;
-- (id)showOnlyInterestingContentButtonTooltip;
 - (void)contextualMenuNeedsUpdate:(id)arg1;
 - (BOOL)validateUserInterfaceAction:(SEL)arg1 forRepresentedObject:(id)arg2;
 - (BOOL)validateUserInterfaceAction:(SEL)arg1;
@@ -70,11 +96,16 @@
 - (void)handleUserDirectDeleteRepresentedObject:(id)arg1;
 - (BOOL)shouldHandleUserDirectMoveUpOrDown:(BOOL)arg1 forRepresentedObject:(id)arg2 newRow:(long long *)arg3;
 - (void)_appendDisplayStringForCopiedOrDraggedStackFrame:(id)arg1 toString:(id)arg2;
-- (void)updateForNewCompressionValue:(id)arg1;
-- (void)updateForNewShowOnlyInterestingContent:(id)arg1;
+- (void)_updateForNewShowsPendingBlocks;
+- (void)_updateForNewShowsOnlyInterestingContent;
 - (void)_recordPersistenceStateChangesIfNecesasry;
-- (void)_updateForNewThreadOrQueueMode:(id)arg1;
-- (void)_shouldHideThreads:(id)arg1 processItem:(id)arg2;
+- (void)_updateForNewNavigatorContentMode;
+- (void)_navigatorContentModeMenuItemSelected:(id)arg1;
+- (id)_currentTabController;
+- (void)_shouldInvalidateNowForProcessItem:(id)arg1 analyzingThreads:(id)arg2;
+- (void)_expandForFilterStringIfNecessary:(id)arg1;
+- (BOOL)_needToAnalyzeFramesInThreads;
+- (id)_allExpandableNavigableItemsForItem:(id)arg1;
 - (id)expandableItemsForProcessItem:(id)arg1;
 - (id)persistentNameForRepresentedObject:(id)arg1;
 - (id)tokenForExpandedRepresentedObject:(id)arg1;
@@ -83,6 +114,7 @@
 - (void)willExpandForItem:(id)arg1;
 - (BOOL)isGroupHeaderForRepresentedObject:(id)arg1 item:(id)arg2;
 - (id)launchSessionForSelectedRepresentedObject:(id)arg1;
+- (id)outputSelectionNavItemForSelectedNavItem:(id)arg1;
 - (void)openSelectedRepresentedObject:(id)arg1 withEventType:(unsigned long long)arg2;
 - (BOOL)shouldSelectItemForRepresentedObject:(id)arg1 withPrevious:(id)arg2 next:(id)arg3;
 - (double)heightOfRowForRepresentedObject:(id)arg1;
@@ -90,22 +122,34 @@
 - (BOOL)wantsTrayAreaForNavigationProcessHeader;
 - (void)configureMenuForProcessHeaderActionPopUpCell:(id)arg1;
 - (id)controllerForQueryingDescendantItem;
+- (id)_createProcessItemPredicate;
+- (id)_createViewObjectPredicate:(id)arg1;
+- (void)_updateFilterPredicate;
+- (void)updateForNewFilterString:(id)arg1;
+- (id)filterView;
 - (id)dataCellForRepresentedObject:(id)arg1;
 - (id)_compressedCell;
+- (id)_stackFrameCell;
 - (id)_memoryDataGroupHeaderCell;
 - (id)_threadHeaderCell;
 - (id)_queueHeaderCell;
 - (void)willDisplayCell:(id)arg1 forRepresentedObject:(id)arg2 item:(id)arg3;
-- (void)_handleThreadsChange;
+- (void)_expandItemsToDefaultStateStartingAt:(id)arg1;
+- (void)_handleProcessChildItemsChanged;
 - (void)debugNavigatorViewWillUninstall;
 - (void)_cancelObservingTokensAddedDuringInstall;
 - (void)debugNavigatorViewDidInstall;
+- (void)_delayedReactionToRecordedFramesUpdated;
 - (void)_memoryDatasForProcessDidChange:(id)arg1;
+- (BOOL)_supportsViewDebugging;
+- (id)_viewDebuggerAddition;
+- (BOOL)_isViewDebugging;
+- (BOOL)_isCPUDebugging;
 - (void)_handleCurrentStackFrameChange;
 - (BOOL)_handleSettingCurrentStackFrame;
 - (void)_handleThreadsAutoRefreshStackFramesDone;
 - (BOOL)_handleSettingCurrentStackFrame:(id)arg1 thread:(id)arg2;
-- (void)_ensureSelectionForParent:(id)arg1 scrollToSelection:(BOOL)arg2;
+- (void)_ensureItemAndAllChildrenExpandedAndRestoreSelection:(id)arg1 scrollToSelection:(BOOL)arg2;
 @property(readonly) IDEWorkspaceTabController *workspaceTabController;
 @property(readonly) DBGProcessNavigableItem *processNavigableItem;
 - (id)_allThreadItemsForProcessItem:(id)arg1;
@@ -114,7 +158,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

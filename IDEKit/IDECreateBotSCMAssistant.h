@@ -9,7 +9,7 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class DVTStackView_ML, IDECreateBotAssistantContext, NSImageView, NSMatrix, NSMutableArray, NSProgressIndicator, NSSecureTextField, NSTableColumn, NSTableView, NSTextField, NSTimer, NSView;
+@class DVTStackView_ML, IDECreateBotAssistantContext, NSImageView, NSMatrix, NSMutableArray, NSProgressIndicator, NSSecureTextField, NSString, NSTableColumn, NSTableView, NSTextField, NSTimer, NSView;
 
 @interface IDECreateBotSCMAssistant : IDEAssistant <NSTableViewDataSource, NSTableViewDelegate>
 {
@@ -110,6 +110,12 @@
 - (void)viewDidInstall;
 - (id)nextAssistantIdentifier;
 @property(readonly, nonatomic) IDECreateBotAssistantContext *createBotAssistantContext;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -11,8 +11,8 @@
 }
 
 - (void)deliverMessage:(SEL)arg1 toTarget:(id)arg2 withArguments:(id)arg3 context:(id)arg4 result:(id *)arg5;
-- (void)runBlockingReceiveLoopNotifyingQueue:(struct dispatch_queue_s *)arg1 notifyingTarget:(id)arg2 context:(id)arg3;
-- (void)notifyTarget:(id)arg1 onQueue:(struct dispatch_queue_s *)arg2 ofShutdownWithError:(id)arg3;
+- (void)runBlockingReceiveLoopNotifyingQueue:(id)arg1 notifyingTarget:(id)arg2 context:(id)arg3;
+- (void)notifyTarget:(id)arg1 onQueue:(id)arg2 ofShutdownWithError:(id)arg3;
 - (BOOL)startupReturningError:(id *)arg1;
 
 @end

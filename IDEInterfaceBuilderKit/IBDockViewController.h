@@ -98,7 +98,7 @@
 - (void)documentEditor:(id)arg1 deselectMembers:(id)arg2;
 - (void)documentEditor:(id)arg1 pullSelection:(id)arg2;
 @property(readonly, nonatomic) BOOL onlySupportsDocumentObjectMembers;
-- (void)documentEditor:(id)arg1 selectMembers:(id)arg2;
+- (void)documentEditor:(id)arg1 selectMembers:(id)arg2 takeFocus:(BOOL)arg3 zoomIfNeeded:(BOOL)arg4;
 @property(readonly) NSString *stateSavingIdentifier;
 - (void)becomeSelectionProvider;
 - (void)selectionDidChange;
@@ -120,7 +120,11 @@
 - (void)viewDidInstall;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(copy) NSString *filterString;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

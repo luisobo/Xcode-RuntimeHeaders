@@ -8,7 +8,7 @@
 
 #import "IDECapsuleListViewDataSource-Protocol.h"
 
-@class DVTBorderedView, DVTChoice, DVTFilePathFieldCell, DVTNotificationToken, DVTObservingToken, DVTStackView_ML, DVTTabChooserView, IDEArgumentsCapsuleSheetController, IDECapsuleListView, IDEEnvironmentVariablesCapsuleSheetController, IDEProfileSchemeAction, IDEScheme, IDEWorkspace, NSMutableArray, NSPopUpButton, NSTextField, NSView;
+@class DVTBorderedView, DVTChoice, DVTFilePathFieldCell, DVTNotificationToken, DVTObservingToken, DVTStackView_ML, DVTTabChooserView, IDEArgumentsCapsuleSheetController, IDECapsuleListView, IDEEnvironmentVariablesCapsuleSheetController, IDEProfileSchemeAction, IDEScheme, IDEWorkspace, NSMutableArray, NSPopUpButton, NSString, NSTextField, NSView;
 
 @interface IDEProfileActionSheetController : IDEViewController <IDECapsuleListViewDataSource>
 {
@@ -45,9 +45,9 @@
 
 + (id)defaultViewNibName;
 + (void)initialize;
-@property(retain) DVTTabChooserView *tabChooser; // @synthesize tabChooser=_tabChooser;
 @property(retain) IDEProfileSchemeAction *runPhase; // @synthesize runPhase=_runPhase;
 @property(retain) IDEScheme *runContext; // @synthesize runContext=_runContext;
+@property(retain) DVTTabChooserView *tabChooser; // @synthesize tabChooser=_tabChooser;
 - (void).cxx_destruct;
 - (id)capsuleListView:(id)arg1 viewControllerForRow:(long long)arg2;
 - (long long)numberOfObjectsInCapsuleListView:(id)arg1;
@@ -61,6 +61,7 @@
 - (void)_updateMacroExpansionRunnablePopUpSelection;
 - (void)_updateMacroExpansionRunnablePopUp;
 - (unsigned long long)_indexOfDebuggerFromScheme;
+- (void)clearHighlightsInCapsuleView;
 - (void)_updateRunnablePopUp;
 - (void)_runnableBuildableProductsDidChange;
 - (void)runnablePopUpAction:(id)arg1;
@@ -76,6 +77,12 @@
 - (void)updateBoundContent;
 - (void)updateBoundIDERunContextBinding;
 - (id)dvtExtraBindings;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

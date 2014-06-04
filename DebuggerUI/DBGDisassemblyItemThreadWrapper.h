@@ -7,30 +7,45 @@
 #import "NSObject.h"
 
 #import "DVTInvalidation-Protocol.h"
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@class DBGThread, DVTStackBacktrace, NSArray;
+@class DBGThread, DVTDocumentLocation, DVTFileDataType, DVTObservingToken, DVTStackBacktrace, IDEFileReference, NSArray, NSImage, NSString;
 
-@interface DBGDisassemblyItemThreadWrapper : NSObject <DVTInvalidation>
+@interface DBGDisassemblyItemThreadWrapper : NSObject <DVTInvalidation, IDEKeyDrivenNavigableItemRepresentedObject>
 {
+    DVTObservingToken *_stackFramesObservingToken;
+    BOOL _temporarilyCreatedForGeniusFinder;
     DBGThread *_thread;
     NSArray *_disassemblyItems;
 }
 
 + (void)initialize;
 + (id)keyPathsForValuesAffectingNavigableItem_name;
-@property(retain) NSArray *disassemblyItems; // @synthesize disassemblyItems=_disassemblyItems;
+@property(nonatomic) BOOL temporarilyCreatedForGeniusFinder; // @synthesize temporarilyCreatedForGeniusFinder=_temporarilyCreatedForGeniusFinder;
+@property(copy, nonatomic) NSArray *disassemblyItems; // @synthesize disassemblyItems=_disassemblyItems;
 @property(readonly) DBGThread *thread; // @synthesize thread=_thread;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (id)navigableItem_image;
-- (id)navigableItem_name;
-- (id)disassemblyItemForStackFrame:(id)arg1;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) NSString *navigableItem_name;
+- (id)geniusDisassemblyItemForStackFrame:(id)arg1;
 - (void)_handleStackFramesChanged;
-- (id)initWithThread:(id)arg1;
+- (id)initWithThread:(id)arg1 temporarilyCreatedForGeniusFinder:(BOOL)arg2;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

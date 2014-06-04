@@ -9,7 +9,7 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class DVTTableView, Xcode3TargetMembershipDataSource;
+@class DVTTableView, NSString, Xcode3TargetMembershipDataSource;
 
 @interface Xcode3SaveDestinationController : IDESaveDestinationController <NSTableViewDelegate, NSTableViewDataSource>
 {
@@ -24,6 +24,12 @@
 - (void)loadView;
 - (void)configureTargetsTableView;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

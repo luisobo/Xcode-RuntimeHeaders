@@ -16,11 +16,12 @@
 }
 
 + (id)buildOperationDescriptionForSchemeCommand:(id)arg1 buildPurpose:(int)arg2 buildCommand:(int)arg3 objectToBuildName:(id)arg4;
++ (id)buildOperationDescriptionForSchemeCommand:(id)arg1 buildPurpose:(int)arg2 buildCommand:(int)arg3 blueprintName:(id)arg4;
 + (id)buildOperationDescriptionForSchemeCommand:(id)arg1 buildPurpose:(int)arg2 buildCommand:(int)arg3 fileName:(id)arg4;
 + (id)buildOperationDescriptionForSchemeCommand:(id)arg1 buildPurpose:(int)arg2 buildCommand:(int)arg3 schemeName:(id)arg4;
-@property(readonly) NSString *actionInProgress; // @synthesize actionInProgress=_actionInProgress;
-@property(readonly) NSString *actionName; // @synthesize actionName=_actionName;
-@property(readonly) NSString *objectToBuildName; // @synthesize objectToBuildName=_objectToBuildName;
+@property(readonly, copy) NSString *actionInProgress; // @synthesize actionInProgress=_actionInProgress;
+@property(readonly, copy) NSString *actionName; // @synthesize actionName=_actionName;
+@property(readonly, copy) NSString *objectToBuildName; // @synthesize objectToBuildName=_objectToBuildName;
 - (void).cxx_destruct;
 - (id)initWithObjectToBuildName:(id)arg1 actionName:(id)arg2 actionInProgress:(id)arg3;
 

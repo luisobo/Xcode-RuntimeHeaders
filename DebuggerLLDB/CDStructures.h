@@ -10,6 +10,8 @@ struct Breakpoint;
 
 struct BreakpointLocation;
 
+struct Broadcaster;
+
 struct Debugger;
 
 struct Error;
@@ -18,11 +20,13 @@ struct Event;
 
 struct ExecutionContextRef;
 
-struct InputReader;
-
 struct Module;
 
 struct Process;
+
+struct QueueImpl;
+
+struct QueueItem;
 
 struct SBBreakpoint {
     struct shared_ptr<lldb_private::Breakpoint> _field1;
@@ -32,9 +36,10 @@ struct SBBreakpointLocation {
     struct shared_ptr<lldb_private::BreakpointLocation> _field1;
 };
 
-struct SBBroadcaster;
-
-struct SBCommunication;
+struct SBBroadcaster {
+    struct shared_ptr<lldb_private::Broadcaster> _field1;
+    struct Broadcaster *_field2;
+};
 
 struct SBDebugger {
     struct shared_ptr<lldb_private::Debugger> m_opaque_sp;
@@ -53,18 +58,20 @@ struct SBFrame {
     struct shared_ptr<lldb_private::ExecutionContextRef> m_opaque_sp;
 };
 
-struct SBInputReader {
-    struct shared_ptr<lldb_private::InputReader> m_opaque_sp;
-    void *m_callback_function;
-    void *m_callback_baton;
-};
-
 struct SBModule {
     struct shared_ptr<lldb_private::Module> m_opaque_sp;
 };
 
 struct SBProcess {
     struct weak_ptr<lldb_private::Process> m_opaque_wp;
+};
+
+struct SBQueue {
+    struct shared_ptr<lldb_private::QueueImpl> m_opaque_sp;
+};
+
+struct SBQueueItem {
+    struct shared_ptr<lldb_private::QueueItem> m_queue_item_sp;
 };
 
 struct SBTarget {
@@ -100,15 +107,11 @@ struct __shared_weak_count;
 struct _opaque_pthread_t {
     long long _field1;
     struct __darwin_pthread_handler_rec *_field2;
-    char _field3[1168];
+    char _field3[8176];
 };
 
 struct auto_ptr<lldb::SBBroadcaster> {
     struct SBBroadcaster *__ptr_;
-};
-
-struct auto_ptr<lldb::SBCommunication> {
-    struct SBCommunication *__ptr_;
 };
 
 struct shared_ptr<ValueImpl> {
@@ -123,6 +126,11 @@ struct shared_ptr<lldb_private::Breakpoint> {
 
 struct shared_ptr<lldb_private::BreakpointLocation> {
     struct BreakpointLocation *_field1;
+    struct __shared_weak_count *_field2;
+};
+
+struct shared_ptr<lldb_private::Broadcaster> {
+    struct Broadcaster *_field1;
     struct __shared_weak_count *_field2;
 };
 
@@ -141,13 +149,18 @@ struct shared_ptr<lldb_private::ExecutionContextRef> {
     struct __shared_weak_count *__cntrl_;
 };
 
-struct shared_ptr<lldb_private::InputReader> {
-    struct InputReader *__ptr_;
+struct shared_ptr<lldb_private::Module> {
+    struct Module *__ptr_;
     struct __shared_weak_count *__cntrl_;
 };
 
-struct shared_ptr<lldb_private::Module> {
-    struct Module *__ptr_;
+struct shared_ptr<lldb_private::QueueImpl> {
+    struct QueueImpl *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+};
+
+struct shared_ptr<lldb_private::QueueItem> {
+    struct QueueItem *__ptr_;
     struct __shared_weak_count *__cntrl_;
 };
 

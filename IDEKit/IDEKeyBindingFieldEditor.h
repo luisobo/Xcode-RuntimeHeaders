@@ -8,7 +8,7 @@
 
 #import "IDEApplicationEventDelegate-Protocol.h"
 
-@class DVTNotificationToken, IDEKeyBindingFieldCell, NSButton, NSColor;
+@class DVTNotificationToken, IDEKeyBindingFieldCell, NSButton, NSColor, NSString;
 
 @interface IDEKeyBindingFieldEditor : NSTextView <IDEApplicationEventDelegate>
 {
@@ -46,6 +46,12 @@
 - (void)_restoreHotKeyOperationMode;
 - (void)_disableHotKeyOperationMode;
 - (void)setFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

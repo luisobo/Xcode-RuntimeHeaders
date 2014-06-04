@@ -20,8 +20,7 @@
 - (BOOL)ibCanAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 targetChildRelation:(id *)arg3;
 - (BOOL)ibShouldAddItemWithIdentifier:(id)arg1;
 - (BOOL)ibContainsItemWithIdentifier:(id)arg1;
-- (void)ibFinishArchivingDocument:(id)arg1 withContext:(id)arg2;
-- (void)ibBeginArchivingDocument:(id)arg1 withContext:(id)arg2;
+- (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (void)ibInvalidateWarningsAfterDescendant:(id)arg1 changedProperty:(id)arg2 inDocument:(id)arg3 fromValue:(id)arg4;
 - (struct CGRect)ibRectForChild:(id)arg1 inFrameController:(id)arg2;
@@ -31,7 +30,7 @@
 @property(copy) NSArray *ibShadowedAllowedToolbarItems;
 @property(copy) NSString *ibShadowedToolbarIdentifier;
 - (BOOL)ibCanBeBoundToFromObject:(id)arg1;
-- (BOOL)ibMustEditInPersonalWindow;
+- (BOOL)ibMustBeBaseObjectOfEditorFrame;
 - (BOOL)ibAllowsClickPassthroughToParentEditorFrames;
 - (void)ibTakeDefaultItemsFromToolbar:(id)arg1;
 - (id)ibConfigurableCounterpartToolbar;
@@ -46,5 +45,11 @@
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (id)ibSwizzledInitWithCoder:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

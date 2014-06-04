@@ -13,6 +13,8 @@
 - (void)endUpdates;
 - (void)reloadItem:(id)arg1 reloadChildren:(BOOL)arg2;
 - (void)reloadData;
+- (void)viewDidUnhide;
+- (void)viewDidHide;
 
 @end
 

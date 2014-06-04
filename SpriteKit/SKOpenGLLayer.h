@@ -16,9 +16,8 @@
 }
 
 @property(retain) NSOpenGLContext *context; // @synthesize context=_context;
-@property(retain) SKView *skView; // @synthesize skView=_skView;
+@property(retain, nonatomic) SKView *skView; // @synthesize skView=_skView;
 - (void).cxx_destruct;
-- (BOOL)isOpaque;
 - (void)drawInOpenGLContext:(id)arg1 pixelFormat:(id)arg2 forLayerTime:(double)arg3 displayTime:(const CDStruct_e50ab651 *)arg4;
 - (id)openGLPixelFormatForDisplayMask:(unsigned int)arg1;
 - (id)openGLContextForPixelFormat:(id)arg1;

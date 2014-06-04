@@ -10,15 +10,17 @@
 
 @interface IBOverflowItemView : NSView
 {
-    NSTextField *inputTextField;
-    NSTextField *labelTextField;
-    NSString *key;
+    NSTextField *_labelTextField;
+    NSTextField *_inputTextField;
+    NSString *_key;
+    NSString *_placeholderKey;
 }
 
 + (id)overflowItemWithWidth:(double)arg1;
-@property(retain) NSTextField *inputTextField; // @synthesize inputTextField;
-@property(retain) NSTextField *labelTextField; // @synthesize labelTextField;
-@property(copy) NSString *key; // @synthesize key;
+@property(copy) NSString *placeholderKey; // @synthesize placeholderKey=_placeholderKey;
+@property(copy) NSString *key; // @synthesize key=_key;
+@property(retain) NSTextField *inputTextField; // @synthesize inputTextField=_inputTextField;
+@property(retain) NSTextField *labelTextField; // @synthesize labelTextField=_labelTextField;
 - (void).cxx_destruct;
 
 @end

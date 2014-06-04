@@ -8,7 +8,7 @@
 
 #import "IDECapsuleListViewDataSource-Protocol.h"
 
-@class DVTBorderedView, DVTChoice, DVTFilePathFieldCell, DVTNotificationToken, DVTObservingToken, DVTStackView_ML, DVTTabChooserView, IDEArgumentsCapsuleSheetController, IDECapsuleListView, IDEDebuggerSpecifier, IDEEnvironmentVariablesCapsuleSheetController, IDELaunchSchemeAction, IDEScheme, IDEWorkspace, NSArray, NSButtonCell, NSColor, NSMatrix, NSMutableArray, NSPopUpButton, NSTextField, NSTextView, NSView;
+@class DVTBorderedView, DVTChoice, DVTFilePathFieldCell, DVTNotificationToken, DVTObservingToken, DVTStackView_ML, DVTTabChooserView, IDEArgumentsCapsuleSheetController, IDECapsuleListView, IDEDebuggerSpecifier, IDEEnvironmentVariablesCapsuleSheetController, IDELaunchSchemeAction, IDEScheme, NSButton, NSButtonCell, NSColor, NSMatrix, NSMutableArray, NSPopUpButton, NSString, NSTextField, NSTextView, NSView;
 
 @interface IDELaunchRunPhaseSheetController : IDEViewController <IDECapsuleListViewDataSource>
 {
@@ -16,7 +16,6 @@
     IDECapsuleListView *_capsuleListView;
     DVTBorderedView *_optionsBorderedView;
     NSPopUpButton *_runnablePopUp;
-    NSPopUpButton *_debuggerSelectionControl;
     NSMatrix *_debugProcessAsMatrix;
     NSButtonCell *_debugProcessAsMeButtonCell;
     NSMatrix *_launchStyleMatrix;
@@ -28,14 +27,13 @@
     NSTextField *_macroExpansionDescription;
     DVTStackView_ML *_optionsStackView;
     NSTextView *_customLaunchCommandsTextView;
+    NSButton *_debugExecutableCheckbox;
+    NSButton *_extensionsAndServicesCheckbox;
     DVTChoice *_infoChoice;
     DVTChoice *_conditionsChoice;
     DVTChoice *_optionsChoice;
     DVTChoice *_diagnosticsChoice;
     DVTChoice *_debuggingChoice;
-    BOOL _executableHasBeenSelected;
-    BOOL _debuggerHasBeenSelected;
-    BOOL _supportsDebugAsDifferentUser;
     NSColor *_descriptionTextColor;
     NSColor *_debugAsRootDescriptionTextColor;
     IDEScheme *_runContext;
@@ -53,26 +51,29 @@
     DVTNotificationToken *_buildablesToken;
     IDEArgumentsCapsuleSheetController *_argumentsViewController;
     IDEEnvironmentVariablesCapsuleSheetController *_environmentVariablesViewController;
-    NSArray *_debuggerSpecifiers;
     unsigned long long _runnablePopUpRunnableBuildableProductsCount;
     BOOL _runnablePopUpHasCustomRunnable;
+    BOOL _executableHasBeenSelected;
+    BOOL _debuggerHasBeenSelected;
+    BOOL _supportsDebugAsDifferentUser;
 }
 
 + (id)keyPathsForValuesAffectingLaunchStyleIsCustomLaunchCommands;
++ (id)keyPathsForValuesAffectingExecutableHasBeenSelected;
++ (id)keyPathsForValuesAffectingDebuggerHasBeenSelected;
 + (void)initialize;
-@property(retain, nonatomic) NSArray *debuggerSpecifiers; // @synthesize debuggerSpecifiers=_debuggerSpecifiers;
-@property(retain) DVTTabChooserView *tabChooser; // @synthesize tabChooser=_tabChooser;
+@property(retain) IDELaunchSchemeAction *runPhase; // @synthesize runPhase=_runPhase;
+@property(retain) IDEScheme *runContext; // @synthesize runContext=_runContext;
 @property(copy) NSColor *debugAsRootDescriptionTextColor; // @synthesize debugAsRootDescriptionTextColor=_debugAsRootDescriptionTextColor;
 @property(copy) NSColor *descriptionTextColor; // @synthesize descriptionTextColor=_descriptionTextColor;
 @property BOOL supportsDebugAsDifferentUser; // @synthesize supportsDebugAsDifferentUser=_supportsDebugAsDifferentUser;
-@property BOOL debuggerHasBeenSelected; // @synthesize debuggerHasBeenSelected=_debuggerHasBeenSelected;
-@property BOOL executableHasBeenSelected; // @synthesize executableHasBeenSelected=_executableHasBeenSelected;
-@property(retain) IDELaunchSchemeAction *runPhase; // @synthesize runPhase=_runPhase;
-@property(retain) IDEScheme *runContext; // @synthesize runContext=_runContext;
+@property(nonatomic) BOOL debuggerHasBeenSelected; // @synthesize debuggerHasBeenSelected=_debuggerHasBeenSelected;
+@property(nonatomic) BOOL executableHasBeenSelected; // @synthesize executableHasBeenSelected=_executableHasBeenSelected;
+@property(retain) DVTTabChooserView *tabChooser; // @synthesize tabChooser=_tabChooser;
 - (void).cxx_destruct;
 - (id)capsuleListView:(id)arg1 viewControllerForRow:(long long)arg2;
 - (long long)numberOfObjectsInCapsuleListView:(id)arg1;
-@property(readonly) IDEWorkspace *workspace;
+- (id)workspace;
 - (id)DVTFilePathFieldCell:(id)arg1 resolvedPathForPath:(id)arg2;
 - (void)DVTFilePathFieldCell:(id)arg1 chooserSelectedPath:(id)arg2;
 - (void)_resetOptionsUpdatedFlag;
@@ -84,7 +85,7 @@
 - (void)_updateMacroExpansionRunnablePopUp;
 - (void)_updateRunnablePopUp;
 - (void)_runnableBuildableProductsDidChange;
-- (void)_runDestinationChanged;
+- (void)_updateDebuggerSpecifierAndOtherOptions;
 - (void)runnablePopUpAction:(id)arg1;
 - (id)customLaunchCommandsFont;
 - (BOOL)launchStyleIsCustomLaunchCommands;
@@ -92,17 +93,25 @@
 - (void)_runPhaseRunnableChanged;
 - (void)_runnableDidUpdate;
 @property(retain) IDEDebuggerSpecifier *selectedDebuggerSpecifier;
-- (void)_updateDebuggerPopUp:(id)arg1;
-- (id)debuggerSpecifiersForCurrentPlatform;
+- (void)_updateDebuggerFromOldDebugger:(id)arg1;
+- (void)extensionsAndServicesAction:(id)arg1;
+- (void)selectDebugExecutable:(id)arg1;
 - (void)_selectedSchemeChanged:(id)arg1;
 - (void)primitiveInvalidate;
 - (void)_invalidateOptionViews;
 - (void)loadView;
 - (void)_setupDebugOptions;
+- (void)_updateDebugCheckboxes;
 - (void)_updateDebugOptionsEnablement;
 - (void)updateBoundContent;
 - (void)updateBoundIDERunContextBinding;
 - (id)dvtExtraBindings;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

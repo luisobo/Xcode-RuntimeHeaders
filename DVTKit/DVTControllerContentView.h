@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, DVTViewController, NSArray, NSMutableArray, NSView, NSWindow;
+@class DVTStackBacktrace, DVTViewController, NSArray, NSMapTable, NSString, NSView, NSWindow;
 
 @interface DVTControllerContentView : DVTLayoutView_ML <DVTInvalidation>
 {
@@ -27,8 +27,10 @@
     BOOL _isReplacingSubview;
     BOOL _disablePaddingWarning;
     BOOL _isGrouped;
-    NSMutableArray *_frameChangeTokens;
+    NSMapTable *_subviewObservations;
     NSArray *_currentContentViewConstraints;
+    DVTStackBacktrace *_setFrameSizeBacktrace;
+    NSString *_frameSizeDimentionIsNaN;
     BOOL _constraintsCameFromNib;
 }
 
@@ -62,6 +64,7 @@
 - (void)addSubview:(id)arg1;
 - (void)layoutBottomUp;
 - (void)layoutTopDown;
+- (void)setFrameSize:(struct CGSize)arg1;
 - (void)setTranslatesAutoresizingMaskIntoConstraints:(BOOL)arg1;
 - (void)_syncContentViewTranslatesAutoresizingMaskIntoConstraintsValue;
 - (void)updateConstraints;
@@ -77,7 +80,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

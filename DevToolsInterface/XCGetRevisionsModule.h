@@ -8,7 +8,7 @@
 
 #import "NSTableViewDelegate-Protocol.h"
 
-@class NSButton, NSObjectController, NSProgressIndicator, NSTextField, NSTextView, PBXExtendedTableView, PBXFileReference, XCExtendedArrayController;
+@class NSButton, NSObjectController, NSProgressIndicator, NSString, NSTextField, NSTextView, PBXExtendedTableView, PBXFileReference, XCExtendedArrayController;
 
 @interface XCGetRevisionsModule : PBXModule <NSTableViewDelegate>
 {
@@ -52,6 +52,12 @@
 - (id)getRevisionsModule;
 - (Class)moduleWindowClass;
 - (id)loadModuleWindow;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

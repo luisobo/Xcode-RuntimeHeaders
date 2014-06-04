@@ -33,7 +33,7 @@
 - (void).cxx_destruct;
 @property(readonly) NSString *classificationDescription;
 @property(readonly) NSString *severityDescription;
-- (id)description;
+@property(readonly, copy) NSString *description;
 @property(readonly) NSArray *orderedCatalogItemIdentifiers;
 - (id)copyWithReplacedCatalogItems:(id)arg1;
 - (void)encodeWithBinaryArchiver:(id)arg1;
@@ -41,6 +41,11 @@
 - (id)initWithAffectedCatalogItem:(id)arg1 classification:(long long)arg2 severity:(long long)arg3 message:(id)arg4;
 - (id)initWithAffectedCatalogItems:(id)arg1 classification:(long long)arg2 severity:(long long)arg3 message:(id)arg4;
 - (id)initWithAffectedCatalogItemIdentifiers:(id)arg1 catalogPath:(id)arg2 classification:(long long)arg3 severity:(long long)arg4 message:(id)arg5;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

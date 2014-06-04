@@ -16,12 +16,10 @@
     NSString *_displayedText;
     struct CGSize _displayedTextSize;
     CATextLayer *_textLayer;
-    double _opacity;
     struct CGPoint _normalizedPosition;
 }
 
 @property(nonatomic) struct CGPoint normalizedPosition; // @synthesize normalizedPosition=_normalizedPosition;
-@property(nonatomic) double opacity; // @synthesize opacity=_opacity;
 @property(retain, nonatomic) NSString *displayedText; // @synthesize displayedText=_displayedText;
 - (id).cxx_construct;
 - (void).cxx_destruct;
@@ -34,6 +32,7 @@
 - (id)makeBackingLayer;
 - (void)_setupLayers;
 - (void)_buildLayerTree:(id)arg1;
+@property(nonatomic) double opacity; // @dynamic opacity;
 - (void)_applyNormalizedPosition;
 - (double)_saturate:(double)arg1;
 

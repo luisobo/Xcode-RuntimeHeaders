@@ -6,16 +6,18 @@
 
 #import <DVTFoundation/DVTWeakInterposer.h>
 
-@class _DVTWeakInterposerHelper;
+@class DVTStackBacktrace, _DVTWeakInterposerHelper;
 
 @interface DVTWeakInterposer_ProxyHelperReference : DVTWeakInterposer
 {
     _DVTWeakInterposerHelper *_helper;
+    DVTStackBacktrace *_representedObjectDeallocatedStackBacktrace;
 }
 
-@property _DVTWeakInterposerHelper *helper; // @synthesize helper=_helper;
 - (id)representedObject;
 - (void)dealloc;
+@property _DVTWeakInterposerHelper *helper; // @synthesize helper=_helper;
+- (id)representedObjectDeallocatedStackBacktrace;
 
 @end
 

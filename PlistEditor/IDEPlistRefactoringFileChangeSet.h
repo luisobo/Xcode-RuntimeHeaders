@@ -6,13 +6,13 @@
 
 #import "IDERefactoringFileChangeSet.h"
 
-@class NSArray, NSString;
+@class NSArray, NSObject<OS_dispatch_semaphore>, NSString;
 
 @interface IDEPlistRefactoringFileChangeSet : IDERefactoringFileChangeSet
 {
     NSArray *_findResults;
     NSString *_newClassName;
-    struct dispatch_semaphore_s *_saveWaiter;
+    NSObject<OS_dispatch_semaphore> *_saveWaiter;
 }
 
 + (id)changeSetForFileAtPath:(id)arg1 transformation:(id)arg2 error:(id *)arg3;

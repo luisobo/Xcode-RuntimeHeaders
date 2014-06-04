@@ -10,27 +10,25 @@
 
 @interface DVTMainStatusAwareButton : NSButton
 {
-    unsigned long long _lastMouseDownModifierFlags;
-    NSImage *_imageForNonMainWindow;
-    NSImage *_alternateImageForNonMainWindow;
     BOOL _ignoresFirstMouse;
     BOOL _superviewIsFocusRingClipAncestor;
     NSImage *_pressedImage;
     NSImage *_pressedAlternateImage;
+    NSImage *_imageForNonMainWindow;
+    NSImage *_alternateImageForNonMainWindow;
+    unsigned long long _lastMouseDownModifierFlags;
 }
 
-@property(retain) NSImage *pressedAlternateImage; // @synthesize pressedAlternateImage=_pressedAlternateImage;
-@property(retain) NSImage *pressedImage; // @synthesize pressedImage=_pressedImage;
+@property(nonatomic) BOOL superviewIsFocusRingClipAncestor; // @synthesize superviewIsFocusRingClipAncestor=_superviewIsFocusRingClipAncestor;
+@property(nonatomic) unsigned long long lastMouseDownModifierFlags; // @synthesize lastMouseDownModifierFlags=_lastMouseDownModifierFlags;
+@property(copy, nonatomic) NSImage *alternateImageForNonMainWindow; // @synthesize alternateImageForNonMainWindow=_alternateImageForNonMainWindow;
+@property(copy, nonatomic) NSImage *imageForNonMainWindow; // @synthesize imageForNonMainWindow=_imageForNonMainWindow;
+@property(copy, nonatomic) NSImage *pressedAlternateImage; // @synthesize pressedAlternateImage=_pressedAlternateImage;
+@property(copy, nonatomic) NSImage *pressedImage; // @synthesize pressedImage=_pressedImage;
 - (void).cxx_destruct;
 - (id)_focusRingClipAncestor;
-- (void)setSuperviewIsFocusRingClipAncestor:(BOOL)arg1;
-- (void)setAlternateImageForNonMainWindow:(id)arg1;
-- (void)setImageForNonMainWindow:(id)arg1;
-- (void)setAcceptsFirstMouse:(BOOL)arg1;
-- (unsigned long long)lastMouseDownModifierFlags;
-- (id)alternateImageForNonMainWindow;
-- (id)imageForNonMainWindow;
 - (void)drawRect:(struct CGRect)arg1;
+- (void)setAcceptsFirstMouse:(BOOL)arg1;
 - (BOOL)acceptsFirstMouse:(id)arg1;
 - (void)mouseDown:(id)arg1;
 

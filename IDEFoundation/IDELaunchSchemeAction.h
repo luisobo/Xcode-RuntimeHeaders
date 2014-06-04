@@ -8,7 +8,7 @@
 
 #import "DVTXMLUnarchiving-Protocol.h"
 
-@class DVTNotificationToken, IDEDeviceAppDataReference, IDELocationScenarioReference, IDERunnable, IDESchemeOptionReference, NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSNumber, NSString;
+@class DVTNotificationToken, DVTObservingToken, IDEDeviceAppDataReference, IDELocationScenarioReference, IDERunnable, IDESchemeOptionReference, NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSNumber, NSString;
 
 @interface IDELaunchSchemeAction : IDESchemeAction <DVTXMLUnarchiving>
 {
@@ -18,11 +18,15 @@
     NSMutableArray *_additionalDSYMEntries;
     DVTNotificationToken *_buildablesToken;
     NSMutableDictionary *_additionalSchemeSettings;
+    DVTObservingToken *_launchSessionObservingToken;
+    BOOL _askForAppToLaunch;
+    BOOL _debugXPCServices;
     BOOL _useCustomWorkingDirectory;
     BOOL _allowLocationSimulation;
+    BOOL _showNonLocalizedStrings;
     BOOL _ignoresPersistentStateOnLaunch;
     BOOL _debugDocumentVersioning;
-    BOOL _debugXPCServices;
+    BOOL _viewDebuggingEnabled;
     unsigned int _debugProcessAsUID;
     int _launchStyle;
     int _launchAutomaticallySubstyle;
@@ -32,19 +36,20 @@
     NSString *_selectedDebuggerIdentifier;
     NSString *_selectedLauncherIdentifier;
     IDERunnable *_runnable;
-    NSString *_debugAsWhichUser;
-    NSString *_customWorkingDirectory;
     NSString *_resolvedCustomWorkingDirectory;
     IDEDeviceAppDataReference *_deviceAppDataReference;
+    NSDictionary *_additionalOptionEntriesDict;
+    NSArray *_additionalXPCServicesToDebug;
+    NSString *_customWorkingDirectory;
+    NSString *_buildConfiguration;
+    NSString *_language;
+    NSString *_region;
     IDELocationScenarioReference *_locationScenarioReference;
     IDESchemeOptionReference *_routingCoverageFileReference;
     NSNumber *_simulatorIPhoneDisplay;
     NSNumber *_simulatorIPadDisplay;
-    NSString *_buildConfiguration;
-    NSArray *_additionalXPCServicesToDebug;
-    NSString *_customLaunchCommand;
-    NSDictionary *_additionalOptionEntriesDict;
     NSString *_internalIOSSubstitutionApp;
+    NSString *_debugAsWhichUser;
 }
 
 + (id)keyPathsForValuesAffectingDebugProcessAsUID;
@@ -53,29 +58,34 @@
 + (id)keyPathsForValuesAffectingDoesNonActionWork;
 + (id)keyPathsForValuesAffectingSubtitle;
 + (void)initialize;
+@property(copy) NSString *debugAsWhichUser; // @synthesize debugAsWhichUser=_debugAsWhichUser;
+@property BOOL viewDebuggingEnabled; // @synthesize viewDebuggingEnabled=_viewDebuggingEnabled;
 @property(copy) NSString *internalIOSSubstitutionApp; // @synthesize internalIOSSubstitutionApp=_internalIOSSubstitutionApp;
 @property int internalIOSLaunchStyle; // @synthesize internalIOSLaunchStyle=_internalIOSLaunchStyle;
 @property(retain) NSDictionary *additionalSchemeSettings; // @synthesize additionalSchemeSettings=_additionalSchemeSettings;
 @property int enableOpenGLPerformanceAnalysisMode; // @synthesize enableOpenGLPerformanceAnalysisMode=_enableOpenGLPerformanceAnalysisMode;
 @property int enableOpenGLFrameCaptureMode; // @synthesize enableOpenGLFrameCaptureMode=_enableOpenGLFrameCaptureMode;
-@property(readonly) NSDictionary *additionalOptionEntriesDict; // @synthesize additionalOptionEntriesDict=_additionalOptionEntriesDict;
-@property(copy) NSArray *additionalXPCServicesToDebug; // @synthesize additionalXPCServicesToDebug=_additionalXPCServicesToDebug;
-@property BOOL debugXPCServices; // @synthesize debugXPCServices=_debugXPCServices;
-@property(copy) NSString *buildConfiguration; // @synthesize buildConfiguration=_buildConfiguration;
 @property BOOL debugDocumentVersioning; // @synthesize debugDocumentVersioning=_debugDocumentVersioning;
 @property BOOL ignoresPersistentStateOnLaunch; // @synthesize ignoresPersistentStateOnLaunch=_ignoresPersistentStateOnLaunch;
 @property(retain) NSNumber *simulatorIPadDisplay; // @synthesize simulatorIPadDisplay=_simulatorIPadDisplay;
 @property(retain) NSNumber *simulatorIPhoneDisplay; // @synthesize simulatorIPhoneDisplay=_simulatorIPhoneDisplay;
 @property(retain) IDESchemeOptionReference *routingCoverageFileReference; // @synthesize routingCoverageFileReference=_routingCoverageFileReference;
 @property(retain) IDELocationScenarioReference *locationScenarioReference; // @synthesize locationScenarioReference=_locationScenarioReference;
+@property(copy, nonatomic) NSString *region; // @synthesize region=_region;
+@property(copy, nonatomic) NSString *language; // @synthesize language=_language;
+@property BOOL showNonLocalizedStrings; // @synthesize showNonLocalizedStrings=_showNonLocalizedStrings;
 @property BOOL allowLocationSimulation; // @synthesize allowLocationSimulation=_allowLocationSimulation;
-@property(retain) IDEDeviceAppDataReference *deviceAppDataReference; // @synthesize deviceAppDataReference=_deviceAppDataReference;
+@property(copy) NSString *buildConfiguration; // @synthesize buildConfiguration=_buildConfiguration;
 @property(copy, nonatomic) NSString *customWorkingDirectory; // @synthesize customWorkingDirectory=_customWorkingDirectory;
 @property BOOL useCustomWorkingDirectory; // @synthesize useCustomWorkingDirectory=_useCustomWorkingDirectory;
 @property(nonatomic) int launchAutomaticallySubstyle; // @synthesize launchAutomaticallySubstyle=_launchAutomaticallySubstyle;
 @property(nonatomic) int launchStyle; // @synthesize launchStyle=_launchStyle;
+@property(copy) NSArray *additionalXPCServicesToDebug; // @synthesize additionalXPCServicesToDebug=_additionalXPCServicesToDebug;
+@property BOOL debugXPCServices; // @synthesize debugXPCServices=_debugXPCServices;
 @property(nonatomic) unsigned int debugProcessAsUID; // @synthesize debugProcessAsUID=_debugProcessAsUID;
-@property(copy) NSString *debugAsWhichUser; // @synthesize debugAsWhichUser=_debugAsWhichUser;
+@property(readonly) NSDictionary *additionalOptionEntriesDict; // @synthesize additionalOptionEntriesDict=_additionalOptionEntriesDict;
+@property(retain) IDEDeviceAppDataReference *deviceAppDataReference; // @synthesize deviceAppDataReference=_deviceAppDataReference;
+@property BOOL askForAppToLaunch; // @synthesize askForAppToLaunch=_askForAppToLaunch;
 @property(copy) NSString *selectedLauncherIdentifier; // @synthesize selectedLauncherIdentifier=_selectedLauncherIdentifier;
 - (void).cxx_destruct;
 - (void)addRoutingCoverageFileReference:(id)arg1 fromXMLUnarchiver:(id)arg2;
@@ -93,6 +103,7 @@
 - (BOOL)needsNewSchemeVersionForInternalIOSLaunchStyleAndOthers;
 - (BOOL)needsNewSchemeVersionForLocationSimulation;
 - (BOOL)needsNewSchemeVersionForAppDataPackage;
+- (void)setAskForAppToLaunchFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setUseCustomWorkingDirectoryFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 @property(readonly) BOOL shouldAllowOpenGLESOptions;
 - (void)setLaunchAutomaticallySubstyleFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
@@ -100,6 +111,9 @@
 - (void)setInternalIOSSubstitutionAppFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setSimulatorIPadDisplayFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setSimulatorIPhoneDisplayFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
+- (void)setRegionFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
+- (void)setLanguageFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
+- (void)setShowNonLocalizedStringsFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setAllowLocationSimulationFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setEnableOpenGLPerformanceAnalysisModeFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setEnableOpenGLFrameCaptureModeFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
@@ -109,9 +123,11 @@
 - (void)setIgnoresPersistentStateOnLaunchFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)dvt_encodeAttributesWithXMLArchiver:(id)arg1 version:(id)arg2;
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
-- (id)runOperationForExecutionEnvironment:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 schemeActionRecord:(id)arg5 outError:(id *)arg6 actionCallbackBlock:(id)arg7;
+- (id)runOperationForExecutionEnvironment:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 schemeCommand:(id)arg5 schemeActionRecord:(id)arg6 outError:(id *)arg7 actionCallbackBlock:(id)arg8;
+- (id)_filePathsForContainersAndExtensions;
+- (void)_setupRecordedFramesInEnvironmentVariables:(id)arg1 runDestination:(id)arg2;
 - (id)_realAppNameForRunnablePath:(id)arg1;
-@property(retain) NSString *customLaunchCommand; // @synthesize customLaunchCommand=_customLaunchCommand;
+@property(retain) NSString *customLaunchCommand;
 - (id)customLaunchCommandMacroExpanded;
 - (void)setLaunchDueToFetchEvent:(BOOL)arg1;
 - (BOOL)launchDueToFetchEvent;
@@ -141,11 +157,15 @@
 @property(copy) NSArray *additionalDSYMEntries; // @dynamic additionalDSYMEntries;
 @property(copy) NSArray *additionalSourceCodeEntries; // @dynamic additionalSourceCodeEntries;
 @property(copy) NSArray *commandLineArgumentEntries; // @dynamic commandLineArgumentEntries;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(copy) NSArray *environmentVariableEntries; // @dynamic environmentVariableEntries;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSMutableArray *mutableAdditionalDSYMEntries; // @dynamic mutableAdditionalDSYMEntries;
 @property(readonly) NSMutableArray *mutableAdditionalSourceCodeEntries; // @dynamic mutableAdditionalSourceCodeEntries;
 @property(readonly) NSMutableArray *mutableCommandLineArgumentEntries; // @dynamic mutableCommandLineArgumentEntries;
 @property(readonly) NSMutableArray *mutableEnvironmentVariableEntries; // @dynamic mutableEnvironmentVariableEntries;
+@property(readonly) Class superclass;
 
 @end
 

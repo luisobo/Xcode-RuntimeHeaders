@@ -10,6 +10,6 @@
 @property(readonly) BOOL tracksInputHistoryForDebugger;
 - (void)showNextCommandFromHistory:(id)arg1;
 - (void)showPreviousCommandFromHistory:(id)arg1 currentStringAfterPrompt:(id)arg2;
-- (void)consoleView:(id)arg1 didEndText:(id)arg2 forDebugger:(BOOL)arg3;
+- (void)consoleView:(id)arg1 didEndText:(id)arg2 forDebugger:(BOOL)arg3 trackHistory:(BOOL)arg4;
 @end
 

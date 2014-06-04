@@ -14,7 +14,6 @@
 {
     NSMutableArray *_botExecutions;
     NSMutableDictionary *_botExecutionsByGUID;
-    BOOL _alwaysBuildFromClean;
     BOOL _performsAnalyzeAction;
     BOOL _performsTestAction;
     BOOL _performsArchiveAction;
@@ -31,6 +30,7 @@
     NSString *_botDescription;
     IDEBotSCMDefinition *_scmDefinition;
     NSString *_schemeName;
+    unsigned long long _buildsFromCleanSchedule;
     unsigned long long _scheduleType;
     unsigned long long _periodType;
     long long _dayOfWeek;
@@ -85,7 +85,7 @@
 @property(nonatomic) BOOL performsArchiveAction; // @synthesize performsArchiveAction=_performsArchiveAction;
 @property(nonatomic) BOOL performsTestAction; // @synthesize performsTestAction=_performsTestAction;
 @property(nonatomic) BOOL performsAnalyzeAction; // @synthesize performsAnalyzeAction=_performsAnalyzeAction;
-@property(nonatomic) BOOL alwaysBuildFromClean; // @synthesize alwaysBuildFromClean=_alwaysBuildFromClean;
+@property(nonatomic) unsigned long long buildsFromCleanSchedule; // @synthesize buildsFromCleanSchedule=_buildsFromCleanSchedule;
 @property(retain, nonatomic) NSString *schemeName; // @synthesize schemeName=_schemeName;
 @property(retain, nonatomic) IDEBotSCMDefinition *scmDefinition; // @synthesize scmDefinition=_scmDefinition;
 @property(retain, nonatomic) NSString *botDescription; // @synthesize botDescription=_botDescription;
@@ -110,7 +110,7 @@
 - (void)botRunModified:(id)arg1;
 - (id)fullDescription;
 - (id)_scheduleTypeDescriptionString;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)updateWithDictionary:(id)arg1 updateGeneration:(unsigned long long)arg2;
 - (id)propertyListRepresentation;
 - (void)primitiveInvalidate;
@@ -123,7 +123,10 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

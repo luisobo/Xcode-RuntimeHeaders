@@ -17,15 +17,19 @@ struct Argument {
 
 struct CoreFunction {
     unsigned int _field1;
-    unsigned short _field2;
+    unsigned int _field2;
     unsigned short _field3;
-    unsigned long long _field4;
-    struct Argument _field5;
-    struct Argument _field6[16];
-    unsigned int _field7;
+    unsigned short _field4;
+    union {
+        unsigned long long _field1;
+        unsigned long long _field2;
+    } _field5;
+    struct Argument _field6;
+    struct Argument _field7[16];
     unsigned int _field8;
-    void *_field9;
+    unsigned int _field9;
     void *_field10;
+    void *_field11;
 };
 
 struct Fbuf {
@@ -1049,9 +1053,11 @@ struct __GLIFunctionDispatchRec {
     void *_field974;
 };
 
-struct __hash_node<std::__1::pair<long long, id<NSObject>>, void *>;
+struct __hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>;
 
-struct __hash_node<unsigned int, void *>;
+struct array_iterator<const GPUTools::FD::Argument> {
+    struct Argument *_field1;
+};
 
 struct dy_transport_message_header {
     unsigned int _field1;
@@ -1087,60 +1093,32 @@ struct sm_region_header {
     unsigned int _field8;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::pair<long long, id<NSObject>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<long long, id<NSObject>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::pair<long long, id<NSObject>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<long long, id<NSObject>>, void *>*>>> {
-        struct __hash_node<std::__1::pair<long long, id<NSObject>>, void *> **_field1;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<long long, id<NSObject>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::pair<long long, id<NSObject>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>>> {
+    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>>> {
+        struct __hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>> {
                 unsigned long long _field1;
             } _field1;
         } _field2;
     } _field1;
 };
 
-struct unique_ptr<std::__1::__hash_node<unsigned int, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<unsigned int, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<unsigned int, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<unsigned int, void *>*>>> {
-        struct __hash_node<unsigned int, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<unsigned int, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<unsigned int, void *>*>> {
-                unsigned long long __first_;
-            } __data_;
-        } __second_;
-    } __ptr_;
-};
-
 struct unordered_map<long long, id<NSObject>, std::__1::hash<long long>, std::__1::equal_to<long long>, std::__1::allocator<std::__1::pair<const long long, id<NSObject>>>> {
-    struct __hash_table<std::__1::pair<long long, id<NSObject>>, std::__1::__unordered_map_hasher<long long, id<NSObject>, std::__1::hash<long long>, true>, std::__1::__unordered_map_equal<long long, id<NSObject>, std::__1::equal_to<long long>, true>, std::__1::allocator<std::__1::pair<long long, id<NSObject>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::pair<long long, id<NSObject>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<long long, id<NSObject>>, void *>*>>> _field1;
-        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::pair<long long, id<NSObject>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::pair<long long, id<NSObject>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::pair<long long, id<NSObject>>, void *>*> {
-                struct __hash_node<std::__1::pair<long long, id<NSObject>>, void *> *_field1;
+    struct __hash_table<std::__1::__hash_value_type<long long, id<NSObject>>, std::__1::__unordered_map_hasher<long long, std::__1::__hash_value_type<long long, id<NSObject>>, std::__1::hash<long long>, true>, std::__1::__unordered_map_equal<long long, std::__1::__hash_value_type<long long, id<NSObject>>, std::__1::equal_to<long long>, true>, std::__1::allocator<std::__1::__hash_value_type<long long, id<NSObject>>>> {
+        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>>> _field1;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*> {
+                struct __hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *> *_field1;
             } _field1;
         } _field2;
-        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<long long, id<NSObject>, std::__1::hash<long long>, true>> {
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<long long, std::__1::__hash_value_type<long long, id<NSObject>>, std::__1::hash<long long>, true>> {
             unsigned long long _field1;
         } _field3;
-        struct __compressed_pair<float, std::__1::__unordered_map_equal<long long, id<NSObject>, std::__1::equal_to<long long>, true>> {
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<long long, std::__1::__hash_value_type<long long, id<NSObject>>, std::__1::equal_to<long long>, true>> {
             float _field1;
         } _field4;
     } _field1;
-};
-
-struct unordered_set<unsigned int, std::__1::hash<unsigned int>, std::__1::equal_to<unsigned int>, std::__1::allocator<unsigned int>> {
-    struct __hash_table<unsigned int, std::__1::hash<unsigned int>, std::__1::equal_to<unsigned int>, std::__1::allocator<unsigned int>> {
-        struct unique_ptr<std::__1::__hash_node<unsigned int, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<unsigned int, void *>*>>> __bucket_list_;
-        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<unsigned int, void *>*>, std::__1::allocator<std::__1::__hash_node<unsigned int, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<unsigned int, void *>*> {
-                struct __hash_node<unsigned int, void *> *__next_;
-            } __first_;
-        } __p1_;
-        struct __compressed_pair<unsigned long, std::__1::hash<unsigned int>> {
-            unsigned long long __first_;
-        } __p2_;
-        struct __compressed_pair<float, std::__1::equal_to<unsigned int>> {
-            float __first_;
-        } __p3_;
-    } __table_;
 };
 
 #pragma mark Typedef'd Structures
@@ -1152,4 +1130,9 @@ typedef struct {
     unsigned int _field4;
     unsigned int _field5;
 } CDStruct_cc4e5495;
+
+// Template types
+typedef struct array_iterator<const GPUTools::FD::Argument> {
+    struct Argument *_field1;
+} array_iterator_bff672d3;
 

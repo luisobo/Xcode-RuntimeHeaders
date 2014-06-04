@@ -6,23 +6,31 @@
 
 #import "NSObject.h"
 
+#import "DVTPropertyListEncoding-Protocol.h"
+
 @class DVTBloomFilter, NSString;
 
-@interface DVTDocumentFragmentFilter : NSObject
+@interface DVTDocumentFragmentFilter : NSObject <DVTPropertyListEncoding>
 {
-    DVTBloomFilter *filter;
-    CDStruct_26ab8ed5 specification;
+    DVTBloomFilter *_filter;
+    CDStruct_92de0e9e _specification;
 }
 
 + (id)normalizedFoldedString:(id)arg1;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) double timestamp;
 @property(readonly) NSString *usageDescription;
 - (long long)indexSize;
 - (BOOL)mightContainFragment:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
-- (id)initWithDocument:(id)arg1 filterSpecification:(CDStruct_26ab8ed5)arg2;
+- (void)awakeWithPropertyList:(id)arg1;
+- (void)encodeIntoPropertyList:(id)arg1;
+- (id)initWithPropertyList:(id)arg1 owner:(id)arg2;
+- (id)initWithDocument:(id)arg1 filterSpecification:(CDStruct_92de0e9e)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

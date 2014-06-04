@@ -48,20 +48,20 @@
 - (BOOL)useAsyncWillExecute;
 - (BOOL)preflightExecutable:(id)arg1;
 - (BOOL)canExecute;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 @property BOOL deviceIsIgnored;
 @property(copy) NSString *deviceSoftwareVersion;
 @property(readonly) BOOL deviceHasUI;
 - (void)setDeviceArchitecture:(id)arg1;
-@property(readonly) NSString *deviceArchitecture;
+@property(readonly, copy) NSString *deviceArchitecture;
 @property(copy) NSString *deviceName;
 @property(copy) NSString *deviceIdentifier;
 - (void)setValue:(id)arg1 forKeyPath:(id)arg2;
 @property(readonly) BOOL deviceIsBusy;
 @property(readonly) BOOL deviceIsTransient;
 @property(readonly) XCPlatformSpecification *platform;
-@property(readonly) NSString *platformIdentifier;
+@property(readonly, copy) NSString *platformIdentifier;
 @property(readonly) NSString *cachePath;
 - (BOOL)shouldApplicationTerminate;
 - (void)invalidate;
@@ -69,6 +69,11 @@
 - (id)initWithPlistRepresentation:(id)arg1;
 - (id)init;
 - (id)plistRepresentation;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

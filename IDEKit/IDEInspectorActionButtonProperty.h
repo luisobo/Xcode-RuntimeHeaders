@@ -10,11 +10,12 @@
 
 @interface IDEInspectorActionButtonProperty : IDEInspectorAbstractActionProperty
 {
-    NSButton *_button;
     NSString *_titleKeyPath;
     NSString *_title;
+    NSButton *_button;
 }
 
+@property(retain, nonatomic) NSButton *button; // @synthesize button=_button;
 - (void).cxx_destruct;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)refreshTarget:(id)arg1;

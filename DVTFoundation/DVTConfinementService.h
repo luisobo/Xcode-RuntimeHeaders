@@ -15,11 +15,12 @@
 }
 
 + (void)initialize;
-@property(readonly) NSString *controlPath; // @synthesize controlPath=_controlPath;
+@property(readonly, copy) NSString *controlPath; // @synthesize controlPath=_controlPath;
 - (void).cxx_destruct;
-- (BOOL)startDebuggerService:(id)arg1 withPseudoTerminalMaster:(int)arg2 andSlavePath:(id)arg3 portNumber:(id *)arg4 connectedSocket:(int *)arg5 error:(id *)arg6;
+- (BOOL)acceptConnection:(int *)arg1 onListeningSocket:(int)arg2 error:(id *)arg3;
+- (BOOL)listenOnRandomPort:(unsigned short *)arg1 socket:(int *)arg2 error:(id *)arg3;
+- (BOOL)startDebuggerService:(id)arg1 withPseudoTerminalMaster:(int)arg2 andSlavePath:(id)arg3 connectedSocket:(int *)arg4 error:(id *)arg5;
 - (BOOL)synchronizeItemsFromLocalPaths:(id)arg1 toRemotePaths:(id)arg2 error:(id *)arg3;
-- (void)dealloc;
 - (id)initWithControlPath:(id)arg1;
 
 @end

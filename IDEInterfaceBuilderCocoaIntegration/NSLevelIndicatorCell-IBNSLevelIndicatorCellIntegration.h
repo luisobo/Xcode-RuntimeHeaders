@@ -7,7 +7,6 @@
 #import "NSLevelIndicatorCell.h"
 
 @interface NSLevelIndicatorCell (IBNSLevelIndicatorCellIntegration)
-+ (id)keyPathsForValuesAffectingIbWidgetType;
 - (long long)ibPreferredResizeDirection;
 - (Class)ibPreferredControlClass;
 - (unsigned long long)ibPreferredMatrixMode;

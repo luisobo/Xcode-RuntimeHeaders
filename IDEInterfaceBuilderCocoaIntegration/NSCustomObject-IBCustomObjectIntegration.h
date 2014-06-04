@@ -6,15 +6,26 @@
 
 #import "NSCustomObject.h"
 
-@interface NSCustomObject (IBCustomObjectIntegration)
+#import "IBCocoaCustomObject-Protocol.h"
+
+@class NSString;
+
+@interface NSCustomObject (IBCustomObjectIntegration) <IBCocoaCustomObject>
++ (void)ibPopulateAdditionalInspectors:(id)arg1 forCategory:(id)arg2;
 + (id)keyPathsForValuesAffectingIbExternalCustomClassName;
-- (id)ibApplicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
++ (id)ibDefaultImageForInstance:(id)arg1;
+- (BOOL)ibIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;
 - (id)ibRuntimeClassName;
 - (id)ibExternalCustomClassName;
 - (void)setIbExternalCustomClassName:(id)arg1;
 - (BOOL)ibIsPlaceholder;
-- (BOOL)ibIsCocoaCustomObject;
 - (id)ibTypeNameForDefaultLabel;
-- (id)ibDefaultImage;
+- (BOOL)wantsCustomObjectDecodeBahavior;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

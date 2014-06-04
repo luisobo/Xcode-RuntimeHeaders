@@ -11,7 +11,7 @@
 #import "NSDraggingSource-Protocol.h"
 #import "NSMenuDelegate-Protocol.h"
 
-@class DVTDelayedInvocation, DVTStackBacktrace, IDEPathCellNavigableItemObserver, IDEPathComponentCell, NSMenu, NSMutableArray, NSMutableSet;
+@class DVTDelayedInvocation, DVTStackBacktrace, IDEPathCellNavigableItemObserver, IDEPathComponentCell, NSMenu, NSMutableArray, NSMutableSet, NSString;
 
 @interface IDEPathCell : NSPathCell <DVTFilteringMenuDelegate, NSMenuDelegate, NSDraggingSource, DVTInvalidation>
 {
@@ -65,8 +65,10 @@
 - (unsigned long long)draggingSession:(id)arg1 sourceOperationMaskForDraggingContext:(long long)arg2;
 - (void)_performDragInComponentCell:(id)arg1 inRect:(struct CGRect)arg2 ofView:(id)arg3 event:(id)arg4;
 - (void)filterItems:(id)arg1 inMenu:(id)arg2 forSearchString:(id)arg3;
+- (void)_openURLInFinder:(id)arg1;
 - (void)popUpMenuForComponentCell:(id)arg1 inRect:(struct CGRect)arg2 ofView:(id)arg3;
-- (void)populatePopUpMenu:(id)arg1 withItems:(id)arg2;
+- (void)_populatePopUpMenuWithPath:(id)arg1 withURL:(id)arg2;
+- (void)_populatePopUpMenu:(id)arg1 withItems:(id)arg2;
 - (void)menuNeedsUpdate:(id)arg1;
 - (void)cancelMenuTracking;
 - (id)_menuItemWithNavigableItem:(id)arg1 additionalItems:(id *)arg2 currentGroupIdentifier:(id *)arg3;
@@ -109,7 +111,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

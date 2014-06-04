@@ -8,12 +8,13 @@
 
 #import "IDEIndexDatabaseDelegate-Protocol.h"
 
-@class DVTDispatchLock, DVTFilePath, IDEIndexDatabase, IDEIndexQPManager, IDEIndexingEngine, IDEWorkspace, NSDate, NSMutableDictionary, NSSet, NSString;
+@class DVTDispatchLock, DVTFilePath, IDEIndexDatabase, IDEIndexQPManager, IDEIndexingEngine, IDEIndexingPrebuildController, IDEWorkspace, NSDate, NSMutableDictionary, NSSet, NSString;
 
 @interface IDEIndex : NSObject <IDEIndexDatabaseDelegate>
 {
     IDEWorkspace *_workspace;
     DVTFilePath *_databaseFile;
+    IDEIndexingPrebuildController *_prebuildController;
     IDEIndexingEngine *_engine;
     IDEIndexQPManager *_qpManager;
     NSMutableDictionary *_identifiersToIndexables;
@@ -33,6 +34,7 @@
     BOOL _isInErrorRecoveryMode;
     BOOL _isReadOnly;
     BOOL _cleanedUpOldPCHs;
+    BOOL _didSetKeyPathObservers;
     id _indexableFileWasAddedNotificationObservingToken;
     id _indexableFileWillBeRemovedNotificationObservingToken;
     id _indexableDidRenameFileNotificationObservingToken;
@@ -45,19 +47,23 @@
 + (id)resolutionForName:(id)arg1 kind:(id)arg2 containerName:(id)arg3;
 + (id)pathToClang;
 + (id)_dataSourceExtensionForFile:(id)arg1 withLanguage:(id)arg2;
++ (void)createIndexForWorkspace:(id)arg1 withState:(id)arg2;
++ (id)_databaseFolderForWorkspace:(id)arg1;
 + (void)syncPerformBlockOnMainThread:(id)arg1;
 + (void)initialize;
 + (BOOL)includeAutoImportResults;
-+ (BOOL)indexFollowsActiveScheme;
 + (id)schedulingLogAspect;
 + (id)clangInvocationLogAspect;
 + (id)symbolAdditionLogAspect;
 + (id)deferredMetricLogAspect;
 + (id)metricLogAspect;
 + (id)logAspect;
+@property(readonly) IDEIndexingPrebuildController *prebuildController; // @synthesize prebuildController=_prebuildController;
 @property(readonly, nonatomic) DVTFilePath *databaseFile; // @synthesize databaseFile=_databaseFile;
 @property(readonly, nonatomic) IDEIndexDatabase *database; // @synthesize database=_workspaceDatabase;
+@property(readonly, nonatomic) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 - (void).cxx_destruct;
+- (id)symbolDumpForFile:(id)arg1;
 - (id)targetIdentifiersForFile:(id)arg1;
 - (id)mainFilesForFile:(id)arg1;
 - (id)sdkForFile:(id)arg1;
@@ -80,6 +86,7 @@
 - (id)originalPathsForPaths:(id)arg1;
 - (id)effectivePathForHeader:(id)arg1;
 - (void)_initCopiedHeaders;
+- (void)indexModuleIfNeeded:(id)arg1 settings:(id)arg2;
 - (void)indexModuleIfNeeded:(id)arg1;
 - (void)_cleanupOldPCHs;
 - (void)didCancelIndexingPCHFile:(id)arg1;
@@ -102,7 +109,7 @@
 - (id)settingsForFile:(id)arg1 indexable:(id)arg2;
 - (id)_waitForSettingsForFile:(id)arg1 object:(id)arg2;
 - (id)_waitForSettingsFromObject:(id)arg1;
-- (void)waitForBuildSystem:(struct dispatch_semaphore_s *)arg1;
+- (void)waitForBuildSystem:(id)arg1;
 - (id)workspaceHeadersForIndexable:(id)arg1;
 - (void)gatherProductHeadersForIndexable:(id)arg1;
 - (long long)purgeCount;
@@ -131,11 +138,11 @@
 @property(readonly) DVTFilePath *workspaceBuildProductsDirPath;
 @property(readonly) DVTFilePath *headerMapFilePath;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)setKeyPathObservers:(id)arg1;
 - (BOOL)isCurrentForWorkspace:(id)arg1;
 - (void)beginTextIndexing;
-- (id)initWithWorkspace:(id)arg1;
 - (id)initWithFolder:(id)arg1;
-- (id)initWithFolder:(id)arg1 forWorkspace:(id)arg2;
+- (id)initWithFolder:(id)arg1 forWorkspace:(id)arg2 withState:(id)arg3;
 - (void)_cleanupOldIndexFoldersForWorkspace:(id)arg1;
 - (double)_atime:(struct stat *)arg1;
 - (BOOL)_stat:(struct stat *)arg1 filePath:(id)arg2;
@@ -144,12 +151,6 @@
 - (BOOL)_reopenDatabaseWithRemoval:(BOOL)arg1;
 - (BOOL)_createDatabaseFolder;
 - (void)_setupObservers;
-- (id)mainFileForSelectionFilePath:(id)arg1 buildSettings:(id *)arg2;
-- (id)objCOrCCompilationUnitIndexablesForMainFile:(id)arg1 indexableObjects:(id)arg2;
-- (BOOL)isFileObjCCompilationUnitOrHeader:(id)arg1 error:(id *)arg2;
-- (id)_localizedPhraseForDependentObjCCompilationUnit:(id)arg1 errorLanguages:(id)arg2 sharedLanguageIdentifier:(id)arg3 sharedIndexableObject:(id)arg4;
-- (id)_localizedDescriptionForObjCCompilationUnit:(id)arg1 errorLanguages:(id)arg2;
-- (BOOL)_errorLanguages:(id *)arg1 forFilePath:(id)arg2 indexableObjects:(id)arg3;
 - (id)allAutoImportItemsMatchingKind:(id)arg1 symbolLanguage:(id)arg2;
 - (id)allAutoImportItemsMatchingKind:(id)arg1;
 - (id)filesWithSymbolOccurrencesMatchingName:(id)arg1 kind:(id)arg2;
@@ -198,6 +199,12 @@
 - (id)filesContaining:(id)arg1 anchorStart:(BOOL)arg2 anchorEnd:(BOOL)arg3 subsequence:(BOOL)arg4 ignoreCase:(BOOL)arg5 cancelWhen:(id)arg6;
 - (id)filesIncludedByFile:(id)arg1;
 - (id)filesIncludingFile:(id)arg1;
+- (id)mainFileForSelectionFilePath:(id)arg1 buildSettings:(id *)arg2;
+- (id)objCOrCCompilationUnitIndexablesForMainFile:(id)arg1 indexableObjects:(id)arg2;
+- (BOOL)isFileObjCCompilationUnitOrHeader:(id)arg1 error:(id *)arg2;
+- (id)_localizedPhraseForDependentObjCCompilationUnit:(id)arg1 errorLanguages:(id)arg2 sharedLanguageIdentifier:(id)arg3 sharedIndexableObject:(id)arg4;
+- (id)_localizedDescriptionForObjCCompilationUnit:(id)arg1 errorLanguages:(id)arg2;
+- (BOOL)_errorLanguages:(id *)arg1 forFilePath:(id)arg2 indexableObjects:(id)arg3;
 
 @end
 

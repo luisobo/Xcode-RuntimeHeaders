@@ -12,6 +12,7 @@
 - (Class)ibEditorClass;
 - (void)setIbInspectedTitle:(id)arg1;
 - (id)ibInspectedTitle;
+- (id)ibDefaultFontKeyPath;
 - (id)ibQualifyingInfoForDefaultLabel;
 @end
 

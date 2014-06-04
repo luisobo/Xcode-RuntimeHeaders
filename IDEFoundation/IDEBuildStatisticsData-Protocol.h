@@ -15,7 +15,7 @@
 @property(readonly) double endWallClockTime;
 @property(readonly) double startWallClockTime;
 @property(readonly) unsigned long long ordinal;
-@property(readonly) NSString *title;
+@property(readonly, copy) NSString *title;
 - (void)emitContentsForAspect:(id)arg1 logLevel:(int)arg2 indentLevel:(unsigned long long)arg3 withBlock:(id)arg4;
 - (id)defaultEmissionStringWithIndentLevel:(unsigned long long)arg1;
 @end

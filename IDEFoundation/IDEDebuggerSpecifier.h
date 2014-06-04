@@ -16,7 +16,7 @@
 
 + (BOOL)_isDefaultNonDebuggerLauncher:(id)arg1;
 + (id)_launcherExtensions;
-+ (BOOL)requiresDebuggerForPlatform:(id)arg1;
++ (BOOL)requiresDebuggerForDevice:(id)arg1;
 + (id)defaultDebuggerSpecifierForWorkspace:(id)arg1;
 + (id)_launcherPluginIdentifierForDebuggerPlugin:(id)arg1;
 + (id)allDebuggerSpecifiersIncludingNone;

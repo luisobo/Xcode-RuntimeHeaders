@@ -18,8 +18,12 @@
 @property(readonly) id <IDEDMSourceObject> sourceObject;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) IDETypeIdentifier *ideModelObjectTypeIdentifier; // @dynamic ideModelObjectTypeIdentifier;
 @property(readonly) NSString *name; // @dynamic name;
 @property(readonly) NSImage *representativeIcon; // @dynamic representativeIcon;
+@property(readonly) Class superclass;
 @end
 

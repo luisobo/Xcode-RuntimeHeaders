@@ -33,10 +33,14 @@
     BOOL _drawsEmphasizeMarker;
     BOOL _showsStatusItems;
     BOOL _alwaysReserveSpaceForStatusItems;
+    BOOL _showSecondarySelection;
+    int _secondarySelectionStyle;
     double _statusItemEdgeMargin;
 }
 
 + (void)initialize;
+@property(nonatomic) int secondarySelectionStyle; // @synthesize secondarySelectionStyle=_secondarySelectionStyle;
+@property(nonatomic) BOOL showSecondarySelection; // @synthesize showSecondarySelection=_showSecondarySelection;
 @property double statusItemEdgeMargin; // @synthesize statusItemEdgeMargin=_statusItemEdgeMargin;
 @property BOOL alwaysReserveSpaceForStatusItems; // @synthesize alwaysReserveSpaceForStatusItems=_alwaysReserveSpaceForStatusItems;
 @property long long titleAndSubTitleLeftEdgeSpacing; // @synthesize titleAndSubTitleLeftEdgeSpacing=_titleAndSubTitleLeftEdgeSpacing;
@@ -61,8 +65,8 @@
 - (void).cxx_destruct;
 - (id)accessibilityAttributeValue:(id)arg1;
 - (id)accessibilityAttributeNames;
-- (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)drawInteriorWithFrame:(struct CGRect)arg1 inView:(id)arg2;
+- (void)drawSecondarySelectionInCellFrame:(struct CGRect)arg1;
 - (void)drawSubtitleWithCellFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)drawEmphasizeMarkerWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)drawStatusWithFrame:(struct CGRect)arg1 inView:(id)arg2;
@@ -80,7 +84,7 @@
 - (struct CGRect)_statusCellsRectsForBounds:(struct CGRect)arg1 rects:(id)arg2;
 - (struct CGRect)progressIndicatorRectForBounds:(struct CGRect)arg1;
 - (struct CGRect)subtitleRectForBounds:(struct CGRect)arg1;
-- (struct CGRect)subtitleBoundingRectWithSize:(struct CGSize)arg1 options:(long long)arg2;
+- (struct CGRect)subtitleBoundingRectWithSize:(struct CGSize)arg1 options:(unsigned long long)arg2;
 - (struct CGRect)titleRectForBounds:(struct CGRect)arg1;
 - (struct CGRect)fullLineTitleRectForBounds:(struct CGRect)arg1;
 - (struct CGSize)_attributedStringValueSize;
@@ -106,7 +110,7 @@
 - (void)updateBoundTitle;
 @property(copy) NSString *title; // @dynamic title;
 - (void)setHighlighted:(BOOL)arg1;
-@property(readonly) NSColor *titleTextColor;
+@property(readonly, copy) NSColor *titleTextColor;
 - (BOOL)_controlViewHasFocusOrIsSourceList;
 - (void)setFont:(id)arg1;
 - (id)dvtExtraBindings;

@@ -6,10 +6,11 @@
 
 #import "NSObject.h"
 
-@class IDESourceControlWorkingCopyConfiguration, IDESourceControlWorkingTree, NSAttributedString, NSMenuItem, NSString;
+@class DVTSourceControlWorkingCopy, IDESourceControlWorkingCopyConfiguration, IDESourceControlWorkingTree, NSAttributedString, NSMenuItem, NSString;
 
 @interface IDESourceControlWorkingCopyMenuObject : NSObject
 {
+    DVTSourceControlWorkingCopy *_workingCopy;
     IDESourceControlWorkingTree *_workingTree;
     IDESourceControlWorkingCopyConfiguration *_wcc;
     NSMenuItem *_menuItem;
@@ -18,13 +19,16 @@
     NSAttributedString *_menuItemAttributedTitle;
 }
 
++ (id)titleForWorkingCopyName:(id)arg1 branchName:(id)arg2 dimmingIcons:(BOOL)arg3 warningIcon:(BOOL)arg4 includeIconInTitles:(BOOL)arg5;
 + (id)titleForWorkingCopyName:(id)arg1 branchName:(id)arg2 dimmingIcons:(BOOL)arg3 includeIconInTitles:(BOOL)arg4;
 + (id)_iconAsAttributedStringForImage:(id)arg1;
++ (id)_warningImage;
 + (id)_branchImage;
 + (id)_workingCopyConfigurationImage;
 + (id)_workingCopyImage;
 @property(readonly) IDESourceControlWorkingCopyConfiguration *wcc; // @synthesize wcc=_wcc;
 @property(readonly) IDESourceControlWorkingTree *workingTree; // @synthesize workingTree=_workingTree;
+@property(readonly) DVTSourceControlWorkingCopy *workingCopy; // @synthesize workingCopy=_workingCopy;
 - (void).cxx_destruct;
 - (void)dealloc;
 - (void)menuDidClose;
@@ -33,6 +37,8 @@
 - (void)loadMenuItem;
 - (id)initWithWorkingCopyConfiguration:(id)arg1;
 - (id)initWithWorkingTree:(id)arg1;
+- (id)initWithMissingRepository:(id)arg1 fromBlueprint:(id)arg2;
+- (id)initWithWorkingCopy:(id)arg1;
 
 @end
 

@@ -10,12 +10,11 @@
 + (BOOL)isTemplateName:(id)arg1;
 + (id)ibImageWithScaledDesktopPicture;
 + (id)imageWithRep:(id)arg1;
-- (id)ibASCIIDescription;
-- (id)ibASCIIDescriptionWithWidth:(long long)arg1 height:(long long)arg2;
+- (id)ib_cachedUninstalledVariantForSize:(struct CGSize)arg1;
 - (id)imageFromRect:(struct CGRect)arg1;
+- (struct CGRect)convertCanonicalRectToLocalSpace:(struct CGRect)arg1;
 - (id)bitmapImageRep;
 - (id)imageWithOpacity:(double)arg1;
-- (id)imageFocusedOnRect:(struct CGRect)arg1 horizontalBlur:(double)arg2 verticalBlur:(double)arg3;
 - (id)representationOfSize:(struct CGSize)arg1;
 - (struct CGImage *)cgImageRepresentation;
 - (id)imageByScalingToSize:(struct CGSize)arg1;

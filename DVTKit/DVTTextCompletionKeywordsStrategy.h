@@ -10,7 +10,7 @@
 {
 }
 
-- (id)completionItemsForDocumentLocation:(id)arg1 context:(id)arg2 areDefinitive:(char *)arg3;
+- (id)completionItemsForDocumentLocation:(id)arg1 context:(id)arg2 highlyLikelyCompletionItems:(id *)arg3 areDefinitive:(char *)arg4;
 - (void)prepareForDocumentLocation:(id)arg1 context:(id)arg2;
 - (id)_cachedKeywordCompletionsForLangSpecId:(id)arg1;
 - (id)_keywordCompletionsForLangSpecId:(id)arg1;

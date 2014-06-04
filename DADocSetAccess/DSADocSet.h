@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DSADocSet_FastTokenCache, DSANode, DSATermManager, DSATokenIndex, NSArray, NSDictionary, NSManagedObject, NSManagedObjectContext, NSMapTable, NSMutableDictionary, NSPersistentStoreCoordinator, NSString, NSURL;
+@class DSADocSet_FastTokenCache, DSANode, DSATermManager, DSATokenIndex, NSArray, NSDictionary, NSManagedObject, NSManagedObjectContext, NSMapTable, NSMutableDictionary, NSObject<OS_dispatch_group>, NSPersistentStoreCoordinator, NSString, NSURL;
 
 @interface DSADocSet : NSObject
 {
@@ -28,7 +28,7 @@
     NSMutableDictionary *_nodesByID;
     NSArray *_availabilityArchitectures;
     NSMutableDictionary *_nodeByUUID;
-    struct dispatch_group_s *_tocLoadGroup;
+    NSObject<OS_dispatch_group> *_tocLoadGroup;
     NSMapTable *_nodeTermLists;
     DSATermManager *_termManager;
     BOOL _searchTermsLoaded;
@@ -138,6 +138,8 @@
 - (id)initWithBundle:(struct __CFBundle *)arg1 withPersistentStoreURL:(id)arg2 modelVersion:(int)arg3 forLocalization:(id)arg4 error:(id *)arg5;
 - (id)initWithDocRootDirectory:(id)arg1 forLocalization:(id)arg2 error:(id *)arg3;
 - (id)initWithBundle:(struct __CFBundle *)arg1 withXML:(id)arg2 withPersistentStoreCoordinator:(id)arg3 modelVersion:(int)arg4 forLocalization:(id)arg5 error:(id *)arg6;
+- (id)lookupTokenWithUSR:(id)arg1;
+@property(readonly) BOOL supportsUSRLookup;
 - (id)searchForTokens:(id)arg1 inNodes:(id)arg2;
 - (BOOL)containsTokens:(id)arg1;
 - (void)cancelTextSearchForDelegate:(id)arg1 contextInfo:(void *)arg2;

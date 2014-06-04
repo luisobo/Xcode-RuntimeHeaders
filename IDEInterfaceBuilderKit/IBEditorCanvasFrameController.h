@@ -13,7 +13,7 @@
 #import "NSDraggingDestination-Protocol.h"
 #import "NSUserInterfaceValidations-Protocol.h"
 
-@class DVTStackBacktrace, IBAbstractDocumentEditor, IBActionForwardingResponder, IBCancellationToken, IBCanvasViewController, IBDelegatedCanvasOverlay, IBDocument, IBEditor, IBEditorCanvasFrame, IBFieldEditor, IBHitDetectionMap, IBInlineStringEditingContext, IBLayoutManager, IBNavigationMenuController, IBTargetIdentifier, NSDate, NSEvent, NSSet;
+@class DVTStackBacktrace, IBAbstractDocumentEditor, IBActionForwardingResponder, IBCancellationToken, IBCanvasViewController, IBDelegatedCanvasOverlay, IBDocument, IBEditor, IBEditorCanvasFrame, IBFieldEditor, IBHitDetectionMap, IBInlineStringEditingContext, IBLayoutManager, IBNavigationMenuController, IBTargetIdentifier, NSDate, NSEvent, NSSet, NSString;
 
 @interface IBEditorCanvasFrameController : NSObject <IBDelegatedCanvasOverlayDelegate, IBEndPointProvider, NSUserInterfaceValidations, NSDraggingDestination, IBDocumentArbitrationResponder, DVTInvalidation>
 {
@@ -24,7 +24,7 @@
     BOOL shouldPruneToSingleSelectionOnNextMouseUp;
     IBHitDetectionMap *decoratorActionMap;
     IBEditor *lastDragTarget;
-    id lastDragIdentifiedObject;
+    NSObject *lastDragIdentifiedObject;
     BOOL blockDragTillMove;
     BOOL blockDragTillHold;
     BOOL editorDidAcceptDragInfo;
@@ -45,7 +45,7 @@
     IBNavigationMenuController *navigationMenuController;
     IBCancellationToken *lastDragTargetHighlightCancellationToken;
     unsigned long long targetIdentifierUseCount;
-    id objectToMeasureSelectionSpeedFor;
+    NSObject *objectToMeasureSelectionSpeedFor;
     NSSet *objectsShowingTargetIdentifier;
     IBDelegatedCanvasOverlay *overlayView;
     id <DVTInvalidation> dragAndDropDrawingToken;
@@ -107,7 +107,8 @@
 - (void)copy:(id)arg1;
 - (void)cut:(id)arg1;
 - (void)delete:(id)arg1;
-- (BOOL)isObjectRemovalValid;
+- (BOOL)isObjectRemovalValidForMode:(unsigned long long)arg1;
+- (unsigned long long)objectRemovalModeForCurrentSelection;
 - (id)pasteTarget;
 - (id)cutCopyDeleteDuplicateTarget;
 - (BOOL)shouldForwardPasteboardActionsToCanvasView;
@@ -201,7 +202,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

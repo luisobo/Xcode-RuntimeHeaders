@@ -12,11 +12,11 @@
 {
     double _dividerThickness;
     BOOL _suppressFrameWarnings;
-    NSColor *_dividerColor;
+    NSColor *dividerColor;
 }
 
-@property(copy) NSColor *dividerColor; // @synthesize dividerColor=_dividerColor;
 @property BOOL suppressFrameWarnings; // @synthesize suppressFrameWarnings=_suppressFrameWarnings;
+@property(copy) NSColor *dividerColor; // @synthesize dividerColor;
 @property double dividerThickness; // @synthesize dividerThickness=_dividerThickness;
 - (void).cxx_destruct;
 - (BOOL)_validateSubviewFrames;

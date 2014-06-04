@@ -13,6 +13,8 @@
 }
 
 + (id)productTypeForIdentifier:(id)arg1 platform:(id)arg2;
+- (BOOL)isAppExtension;
+- (BOOL)isApplication;
 @property(readonly) IDEProductType *superType;
 @property(readonly) DVTPlatform *platform;
 @property(readonly) NSString *localizedDescription;

@@ -6,33 +6,40 @@
 
 #import "IDEProjectItemModel.h"
 
-@class NSArray, NSString;
+@class NSArray, NSString, Xcode3AppIDItemIdentifiersItemModelSet;
 
 @interface Xcode3iCloudItemModel : IDEProjectItemModel
 {
-    BOOL _needToPublishPortalState;
-    NSArray *_ubiquityContainerIDs;
+    id <IDEFlightChecking> _iCloudFlagPortalFlightCheck;
+    id <IDEFlightChecking> _entitlementsFlightCheck;
+    id <IDEFlightChecking> _cloudKitFrameworkFlightCheck;
     NSString *_keyValueStoreID;
+    NSArray *_serviceIDs;
+    Xcode3AppIDItemIdentifiersItemModelSet *_cloudContainers;
 }
 
++ (id)keyPathsForValuesAffectingUbiquityContainerIDs;
++ (id)keyPathsForValuesAffectingUnexpandedContainerIDs;
+@property(readonly) Xcode3AppIDItemIdentifiersItemModelSet *cloudContainers; // @synthesize cloudContainers=_cloudContainers;
+@property(copy, nonatomic) NSArray *serviceIDs; // @synthesize serviceIDs=_serviceIDs;
 @property(copy, nonatomic) NSString *keyValueStoreID; // @synthesize keyValueStoreID=_keyValueStoreID;
-@property(copy, nonatomic) NSArray *ubiquityContainerIDs; // @synthesize ubiquityContainerIDs=_ubiquityContainerIDs;
 - (void).cxx_destruct;
 - (BOOL)isEnabledUsingEducatedGuess;
+- (id)flightChecks;
+- (id)cloudKitFrameworkFlightCheck;
 - (id)entitlementsFlightCheck;
-- (id)portalFlightCheck;
-- (id)defaultKeyValueStoreIdentifier;
-- (id)defaultUbiquityContainerIDs;
-- (id)defaultUbiquityContainerID;
+- (id)iCloudFlagPortalFlightCheck;
+@property(readonly, nonatomic) NSString *defaultKeyValueStoreID;
+@property(readonly, nonatomic) NSString *defaultContainerID;
 - (void)_setKeyValueStoreID:(id)arg1 postAssignmentBlock:(id)arg2;
-- (void)addUbiquityContainerID;
-- (void)_setUbiquityContainerIDs:(id)arg1 postAssignmentBlock:(id)arg2;
+- (id)ubiquityContainerIDs;
+- (BOOL)_requiresUbiquityContainers;
+- (void)_setServiceIDs:(id)arg1 postAssignmentBlock:(id)arg2;
+- (void)_setProperty:(id)arg1 instanceVariable:(id *)arg2 value:(id)arg3 postAssignmentBlock:(id)arg4;
 - (void)modelWasDisabled;
 - (void)modelWasEnabledWithContext:(id)arg1;
 - (void)readValuesFromEntitlements;
-- (void)publishStateWithContext:(id)arg1;
 - (void)targetCoordinatorChanged:(id)arg1;
-- (void)primitiveInvalidate;
 - (id)initWithCapabilitiesContext:(id)arg1 item:(id)arg2;
 
 @end

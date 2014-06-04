@@ -14,6 +14,7 @@
     NSMutableArray *_selectedTargets;
     unsigned long long _currentConversionStage;
     DVTMapTable *_convertedFilePathForOriginalFilePathMapTable;
+    NSMutableArray *_modernizerBuildOptions;
 }
 
 + (BOOL)allowParallelBuild;
@@ -33,7 +34,9 @@
 - (id)init;
 
 // Remaining properties
-@property(readonly) NSMutableArray *mutableSelectedTargets; // @dynamic mutableSelectedTargets;
+@property(copy) NSArray *modernizerBuildOptions; // @dynamic modernizerBuildOptions;
+@property(readonly, copy) NSMutableArray *mutableModernizerBuildOptions; // @dynamic mutableModernizerBuildOptions;
+@property(readonly, copy) NSMutableArray *mutableSelectedTargets; // @dynamic mutableSelectedTargets;
 @property(copy) NSArray *selectedTargets; // @dynamic selectedTargets;
 
 @end

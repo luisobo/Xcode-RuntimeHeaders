@@ -10,12 +10,12 @@
 #import "IDEGPUAssistantEditorAdditions-Protocol.h"
 #import "NSCollectionViewDelegate-Protocol.h"
 
-@class DVTObservingToken, GPUResourceEditor, GPUSharedTabUIState, GPUTraceDocumentLocation, GPUTraceOutline, NSArrayController, NSCollectionView, NSDictionary, NSMutableArray, NSString;
+@class DVTObservingToken, GPUResourceEditor, GPUSharedTabUIState, GPUTraceDocumentLocation, GPUTraceModelFactory, NSArrayController, NSCollectionView, NSDictionary, NSMutableArray, NSScrollView, NSString;
 
 // Not exported
 @interface GPUTraceResourcesEditor : GPUMainEditor <NSCollectionViewDelegate, IDEGPUAssistantEditorAdditions, DVTFindBarFindable>
 {
-    GPUTraceOutline *_gpuTraceOutline;
+    GPUTraceModelFactory *_modelFactory;
     GPUTraceDocumentLocation *_currentLocation;
     NSDictionary *_previousEditorState;
     BOOL _loadingEditor;
@@ -27,12 +27,15 @@
     NSArrayController *_resourceArrayController;
     NSCollectionView *_resourceCollectionView;
     GPUResourceEditor *_currentSubViewController;
+    NSScrollView *_resourceCollectionViewEnclosure;
 }
 
 + (long long)version;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
++ (id)assetBundle;
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;
+@property(retain, nonatomic) NSScrollView *resourceCollectionViewEnclosure; // @synthesize resourceCollectionViewEnclosure=_resourceCollectionViewEnclosure;
 @property(nonatomic) __weak GPUResourceEditor *currentSubViewController; // @synthesize currentSubViewController=_currentSubViewController;
 @property(nonatomic) __weak NSCollectionView *resourceCollectionView; // @synthesize resourceCollectionView=_resourceCollectionView;
 @property(nonatomic) __weak NSArrayController *resourceArrayController; // @synthesize resourceArrayController=_resourceArrayController;
@@ -58,17 +61,24 @@
 - (id)currentSelectedItems;
 - (void)_setCurrentLocation:(id)arg1;
 - (void)_loadResourceEditorForNavItem:(id)arg1;
+- (id)_editorForResourceItem:(id)arg1;
 - (void)handleResourceItemThumbnailsInvalidation:(id)arg1;
 - (void)handleReloadResourceItem:(id)arg1;
 - (void)resetResourcesInTree:(id)arg1;
 - (void)_resetResource:(id)arg1;
-- (void)_loadRelevantDrawForProgramOrShaderItem:(id)arg1;
+- (void)_loadRelevantDisplayableForProgramOrShaderItem:(id)arg1;
 - (void)didSetupEditor;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (void)primitiveInvalidate;
 - (void)loadView;
 - (void)takeFocus;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

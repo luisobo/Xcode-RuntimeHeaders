@@ -6,9 +6,28 @@
 
 #import "IDEExecutionEnvironment.h"
 
-@class NSArray;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface IDEExecutionEnvironment (IDEKitExecutionEnvironmentNavigableAdditions)
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSArray, NSImage, NSString;
+
+@interface IDEExecutionEnvironment (IDEKitExecutionEnvironmentNavigableAdditions) <IDEKeyDrivenNavigableItemRepresentedObject>
 @property(readonly) NSArray *navigableDebugSessions;
+- (void)_observeLaunchSessionsAndAddToDebugSessions:(id)arg1;
+- (BOOL)_noMoreDebugSessions:(id)arg1;
+@property(readonly) NSString *navigableItem_name;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 @end
 

@@ -20,6 +20,7 @@
     BOOL _parallelizeTargets;
     BOOL _dontActuallyRunCommands;
     BOOL _skipUnavailableActions;
+    BOOL _forceImport;
     int _toolCommand;
     NSString *_name;
     NSArray *_arguments;
@@ -34,6 +35,8 @@
     NSString *_schemeName;
     NSString *_xcconfigPathFromOption;
     NSString *_xcconfigPathFromEnvVar;
+    NSString *_actionResultsBundlePathWithBaselineOverridesFromOption;
+    NSString *_automaticBaselineDescription;
     NSString *_nameOfFileToFind;
     NSString *_archivePath;
     NSString *_exportDestinationPath;
@@ -56,6 +59,8 @@
     NSArray *_destinationSpecifications;
     NSNumber *_destinationTimeout;
     NSNumber *_maxConcurrency;
+    NSString *_localizationPath;
+    NSArray *_exportLanguages;
     DVTMacroDefinitionTable *_synthesizedMacros;
     DVTMacroDefinitionTable *_macrosFromCommandLine;
     DVTMacroDefinitionTable *_macrosFromXcconfigOption;
@@ -78,6 +83,9 @@
 @property(retain) DVTMacroDefinitionTable *macrosFromXcconfigOption; // @synthesize macrosFromXcconfigOption=_macrosFromXcconfigOption;
 @property(retain) DVTMacroDefinitionTable *macrosFromCommandLine; // @synthesize macrosFromCommandLine=_macrosFromCommandLine;
 @property(retain) DVTMacroDefinitionTable *synthesizedMacros; // @synthesize synthesizedMacros=_synthesizedMacros;
+@property BOOL forceImport; // @synthesize forceImport=_forceImport;
+@property(retain) NSArray *exportLanguages; // @synthesize exportLanguages=_exportLanguages;
+@property(retain) NSString *localizationPath; // @synthesize localizationPath=_localizationPath;
 @property BOOL skipUnavailableActions; // @synthesize skipUnavailableActions=_skipUnavailableActions;
 @property BOOL dontActuallyRunCommands; // @synthesize dontActuallyRunCommands=_dontActuallyRunCommands;
 @property(copy) NSNumber *maxConcurrency; // @synthesize maxConcurrency=_maxConcurrency;
@@ -106,6 +114,8 @@
 @property(copy) NSString *exportDestinationPath; // @synthesize exportDestinationPath=_exportDestinationPath;
 @property(copy) NSString *archivePath; // @synthesize archivePath=_archivePath;
 @property(copy) NSString *nameOfFileToFind; // @synthesize nameOfFileToFind=_nameOfFileToFind;
+@property(copy) NSString *automaticBaselineDescription; // @synthesize automaticBaselineDescription=_automaticBaselineDescription;
+@property(copy) NSString *actionResultsBundlePathWithBaselineOverridesFromOption; // @synthesize actionResultsBundlePathWithBaselineOverridesFromOption=_actionResultsBundlePathWithBaselineOverridesFromOption;
 @property(copy) NSString *xcconfigPathFromEnvVar; // @synthesize xcconfigPathFromEnvVar=_xcconfigPathFromEnvVar;
 @property(copy) NSString *xcconfigPathFromOption; // @synthesize xcconfigPathFromOption=_xcconfigPathFromOption;
 @property(copy) NSString *schemeName; // @synthesize schemeName=_schemeName;
@@ -123,6 +133,8 @@
 @property(copy) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (void)run;
+- (void)_importLocalizationsAndExit;
+- (void)_exportLocalizationsAndExit;
 - (void)_exportArchiveAndExit;
 - (void)_printVerboseSDKListAndExit;
 - (void)_printVerboseInfoForSDK:(id)arg1 keysToEmit:(id)arg2;
@@ -144,7 +156,7 @@
 - (id)_stringByResolvingSymlinksInPath:(id)arg1;
 - (void)_parseOptions;
 - (id)_actionStringForBuildAction:(id)arg1;
-- (id)_schemeCommandForBuildAction:(id)arg1;
+- (id)_schemeCommandForBuildAction:(id)arg1 outSchemeTask:(int *)arg2;
 - (id)_supportedBuildActions;
 - (void)_printErrorString:(id)arg1 andFailWithCode:(long long)arg2;
 - (void)_printWarningString:(id)arg1;
@@ -152,6 +164,12 @@
 - (unsigned long long)_schemeLoadingTimeout;
 - (id)overridingProperties;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

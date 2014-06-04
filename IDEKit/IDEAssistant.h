@@ -6,25 +6,29 @@
 
 #import "DVTViewController.h"
 
-@class IDEAssistantContext, NSString, NSView;
+@class IDEAssistantContext, IDEFilterControlBar, NSString, NSView;
 
 @interface IDEAssistant : DVTViewController
 {
     IDEAssistantContext *_assistantContext;
     NSString *_nextAssistantIdentifier;
+    BOOL _expandsAssistantView;
+    BOOL _widthResizable;
 }
 
 + (BOOL)wantsOverlayEffect;
+@property(nonatomic) BOOL widthResizable; // @synthesize widthResizable=_widthResizable;
+@property(nonatomic) BOOL expandsAssistantView; // @synthesize expandsAssistantView=_expandsAssistantView;
 @property(retain) NSString *nextAssistantIdentifier; // @synthesize nextAssistantIdentifier=_nextAssistantIdentifier;
 @property(retain) IDEAssistantContext *assistantContext; // @synthesize assistantContext=_assistantContext;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)willGoNextOrFinish;
 - (void)willResignCurrentAssistantInAssistantWindowController:(id)arg1;
-@property(readonly) BOOL expandsAssistantView;
+@property(readonly) IDEFilterControlBar *filterControlBar;
 @property(readonly) NSView *sourceListView;
 - (id)finishButtonTitle;
-@property(readonly) NSString *assistantTitle;
+@property(readonly, copy) NSString *assistantTitle;
 - (void)finishWithCompletionBlock:(id)arg1;
 @property(readonly) BOOL alwaysShowFinish;
 @property(readonly) BOOL canCancel;

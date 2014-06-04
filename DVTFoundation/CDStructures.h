@@ -8,6 +8,13 @@
 
 #pragma mark Named Structures
 
+struct ArrayBuilder {
+    id _field1[62];
+    id *_field2;
+    unsigned int _field3;
+    unsigned int _field4;
+};
+
 struct CGPoint {
     double _field1;
     double _field2;
@@ -21,13 +28,6 @@ struct CGRect {
 struct CGSize {
     double _field1;
     double _field2;
-};
-
-struct DVTArrayBuilder {
-    void *_field1[64];
-    void **_field2;
-    unsigned long long _field3;
-    unsigned long long _field4;
 };
 
 struct DVTBitSet {
@@ -127,7 +127,7 @@ struct _NSRange {
     unsigned long long length;
 };
 
-struct __hash_node<std::__1::pair<DVTFuture *, long>, void *>;
+struct __hash_node<std::__1::__hash_value_type<DVTFuture *, long>, void *>;
 
 struct __sFILE {
     char *_field1;
@@ -164,13 +164,6 @@ struct __va_list_tag {
     void *_field4;
 };
 
-struct condition_variable {
-    struct _opaque_pthread_cond_t {
-        long long __sig;
-        char __opaque[40];
-    } __cv_;
-};
-
 struct fastsimplearray {
     unsigned long long _field1;
     unsigned long long _field2;
@@ -181,11 +174,18 @@ struct fsid {
     int _field1[2];
 };
 
-struct mutex {
-    struct _opaque_pthread_mutex_t {
-        long long __sig;
-        char __opaque[56];
-    } __m_;
+struct sockaddr {
+    unsigned char _field1;
+    unsigned char _field2;
+    char _field3[14];
+};
+
+struct sockaddr_storage {
+    unsigned char ss_len;
+    unsigned char ss_family;
+    char __ss_pad1[6];
+    long long __ss_align;
+    char __ss_pad2[112];
 };
 
 struct stat {
@@ -233,43 +233,32 @@ struct timespec {
     long long _field2;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::pair<DVTFuture *, long>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<DVTFuture *, long>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::pair<DVTFuture *, long>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<DVTFuture *, long>, void *>*>>> {
-        struct __hash_node<std::__1::pair<DVTFuture *, long>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<DVTFuture *, long>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::pair<DVTFuture *, long>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<DVTFuture *, long>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<DVTFuture *, long>, void *>*>>> {
+    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<DVTFuture *, long>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<DVTFuture *, long>, void *>*>>> {
+        struct __hash_node<std::__1::__hash_value_type<DVTFuture *, long>, void *> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<DVTFuture *, long>, void *>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<DVTFuture *, long>, void *>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
     } __ptr_;
 };
 
-struct unordered_map<DVTFuture *, long, objc_pointer_hasher, std::__1::equal_to<DVTFuture *>, std::__1::allocator<std::__1::pair<DVTFuture *const, long>>> {
-    struct __hash_table<std::__1::pair<DVTFuture *, long>, std::__1::__unordered_map_hasher<DVTFuture *, long, objc_pointer_hasher, true>, std::__1::__unordered_map_equal<DVTFuture *, long, std::__1::equal_to<DVTFuture *>, true>, std::__1::allocator<std::__1::pair<DVTFuture *, long>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::pair<DVTFuture *, long>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<DVTFuture *, long>, void *>*>>> __bucket_list_;
-        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::pair<DVTFuture *, long>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::pair<DVTFuture *, long>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::pair<DVTFuture *, long>, void *>*> {
-                struct __hash_node<std::__1::pair<DVTFuture *, long>, void *> *__next_;
+struct unordered_map<DVTFuture *, long, (null)<anonymous>::objc_pointer_hasher, std::__1::equal_to<DVTFuture *>, std::__1::allocator<std::__1::pair<DVTFuture *const, long>>> {
+    struct __hash_table<std::__1::__hash_value_type<DVTFuture *, long>, std::__1::__unordered_map_hasher<DVTFuture *, std::__1::__hash_value_type<DVTFuture *, long>, (null)<anonymous>::objc_pointer_hasher, true>, std::__1::__unordered_map_equal<DVTFuture *, std::__1::__hash_value_type<DVTFuture *, long>, std::__1::equal_to<DVTFuture *>, true>, std::__1::allocator<std::__1::__hash_value_type<DVTFuture *, long>>> {
+        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<DVTFuture *, long>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<DVTFuture *, long>, void *>*>>> __bucket_list_;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<DVTFuture *, long>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<DVTFuture *, long>, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<DVTFuture *, long>, void *>*> {
+                struct __hash_node<std::__1::__hash_value_type<DVTFuture *, long>, void *> *__next_;
             } __first_;
         } __p1_;
-        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<DVTFuture *, long, objc_pointer_hasher, true>> {
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<DVTFuture *, std::__1::__hash_value_type<DVTFuture *, long>, (null)<anonymous>::objc_pointer_hasher, true>> {
             unsigned long long __first_;
         } __p2_;
-        struct __compressed_pair<float, std::__1::__unordered_map_equal<DVTFuture *, long, std::__1::equal_to<DVTFuture *>, true>> {
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<DVTFuture *, std::__1::__hash_value_type<DVTFuture *, long>, std::__1::equal_to<DVTFuture *>, true>> {
             float __first_;
         } __p3_;
     } __table_;
-};
-
-struct vector<void (^)(), std::__1::allocator<void (^)()>> {
-    id *__begin_;
-    void _field1;
-    id *__end_;
-    void _field2;
-    struct __compressed_pair<void (^__strong *)(), std::__1::allocator<void (^)()>> {
-        id *__first_;
-        void _field1;
-    } __end_cap_;
 };
 
 struct vector<void (^)(DVTFutureState, id, NSError *), std::__1::allocator<void (^)(DVTFutureState, id, NSError *)>> {
@@ -278,28 +267,6 @@ struct vector<void (^)(DVTFutureState, id, NSError *), std::__1::allocator<void 
     id *__end_;
     void _field2;
     struct __compressed_pair<void (^__strong *)(DVTFutureState, id, NSError *), std::__1::allocator<void (^)(DVTFutureState, id, NSError *)>> {
-        id *__first_;
-        void _field1;
-    } __end_cap_;
-};
-
-struct vector<void (^)(NSError *), std::__1::allocator<void (^)(NSError *)>> {
-    id *__begin_;
-    void _field1;
-    id *__end_;
-    void _field2;
-    struct __compressed_pair<void (^__strong *)(NSError *), std::__1::allocator<void (^)(NSError *)>> {
-        id *__first_;
-        void _field1;
-    } __end_cap_;
-};
-
-struct vector<void (^)(id), std::__1::allocator<void (^)(id)>> {
-    id *__begin_;
-    void _field1;
-    id *__end_;
-    void _field2;
-    struct __compressed_pair<void (^__strong *)(id), std::__1::allocator<void (^)(id)>> {
         id *__first_;
         void _field1;
     } __end_cap_;
@@ -331,6 +298,13 @@ typedef struct {
 } CDStruct_f444e920;
 
 typedef struct {
+    double _field1;
+    double _field2;
+    double _field3;
+    double _field4;
+} CDStruct_d2b197d1;
+
+typedef struct {
     double loadFactor;
     long long numberOfHashFunctions;
     long long windowWidth;
@@ -359,8 +333,7 @@ typedef struct {
 typedef struct {
     CDStruct_d703e233 bloomFilterSpecification;
     long long windowWidth;
-    double timestamp;
-} CDStruct_26ab8ed5;
+} CDStruct_92de0e9e;
 
 #pragma mark Typedef'd Unions
 

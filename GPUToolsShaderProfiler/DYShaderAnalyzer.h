@@ -12,11 +12,10 @@
 
 + (BOOL)isDisassemblerAvailable;
 + (BOOL)supportRendererType:(int)arg1;
-- (id)analyzeFragmentBinary:(id)arg1;
-- (id)analyzeVertexBinary:(id)arg1;
 - (id)disassembleBinary:(id)arg1;
 - (id)analyzeFragmentBinary:(id)arg1 uscSamples:(id)arg2;
 - (id)analyzeVertexBinary:(id)arg1 uscSamples:(id)arg2;
+- (id)analyzeBinary:(id)arg1 uscSamples:(id)arg2;
 
 @end
 

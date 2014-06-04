@@ -17,8 +17,12 @@
 @property(nonatomic) double ibShadowedVerticalContentHuggingPriority;
 @property(nonatomic) double ibShadowedHorizontalContentHuggingPriority;
 @property(nonatomic) BOOL ibExternalTranslatesAutoresizingMaskIntoConstraints;
-@property(readonly, nonatomic) NSArray *ibExternalReferencingConstraints;
-@property(readonly, nonatomic) NSArray *ibExternalConstraints;
+@property(readonly, nonatomic) id <IBCollection> ibTurnedOnButPossiblyUninstalledReferencingConstraints;
+@property(readonly, nonatomic) id <IBCollection> ibInstalledReferencingConstraints;
+@property(readonly, nonatomic) id <IBCollection> ibCandidateReferencingConstraints;
+@property(retain, nonatomic) id <IBOrderedCollection> ibTurnedOnButPossiblyUninstalledConstraints;
+@property(retain, nonatomic) id <IBOrderedCollection> ibInstalledConstraints;
+@property(retain, nonatomic) id <IBOrderedCollection> ibCandidateConstraints;
 @property(readonly, nonatomic) struct CGRect ibLayoutFrameworkBounds;
 @property(nonatomic) struct CGRect ibLayoutFrame;
 @property(readonly, nonatomic) struct CGRect ibLayoutBounds;
@@ -39,8 +43,6 @@
 - (void)ibDidCreateRuntimeConstraint:(id)arg1 referencingItem:(id)arg2 context:(id)arg3;
 - (id)ibEffectiveItemForRuntimeConstraintAdjustingConstant:(double *)arg1 attribute:(unsigned long long *)arg2 orConstraintClassIfNeeded:(Class *)arg3 context:(id)arg4;
 - (unsigned long long)ibAmbiguityStatusInEngine:(id)arg1;
-- (void)ibPrimitiveRemoveConstraintsFromExternalConstraints:(id)arg1;
-- (void)ibPrimitiveAddConstraintsToExternalConstraints:(id)arg1;
 - (BOOL)ibShouldIgnoreScrollableContentHeightAmbiguity;
 - (BOOL)ibShouldIgnoreScrollableContentWidthAmbiguity;
 - (id)ibViewForAncestorViewEdgeMovementQuestionsOfSubview:(id)arg1;
@@ -60,8 +62,8 @@
 - (void)addConstraint:(id)arg1;
 - (long long)convertKnobPosition:(long long)arg1 fromView:(id)arg2;
 - (long long)convertKnobPosition:(long long)arg1 toView:(id)arg2;
-- (int)convertRectEdge:(int)arg1 fromView:(id)arg2;
-- (int)convertRectEdge:(int)arg1 toView:(id)arg2;
+- (unsigned int)convertRectEdge:(unsigned int)arg1 fromView:(id)arg2;
+- (unsigned int)convertRectEdge:(unsigned int)arg1 toView:(id)arg2;
 - (CDStruct_c519178c)convertInset:(CDStruct_c519178c)arg1 fromView:(id)arg2;
 - (CDStruct_c519178c)convertInset:(CDStruct_c519178c)arg1 toView:(id)arg2;
 - (struct CGRect)convertRect:(struct CGRect)arg1 toView:(id)arg2;

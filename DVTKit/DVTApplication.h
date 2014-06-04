@@ -13,7 +13,10 @@
     DVTHashTable *_actionMonitors;
 }
 
++ (void)initialize;
 - (void).cxx_destruct;
+- (void)endSheet:(id)arg1 returnCode:(long long)arg2;
+- (void)endSheet:(id)arg1;
 - (BOOL)presentError:(id)arg1;
 - (void)presentError:(id)arg1 modalForWindow:(id)arg2 delegate:(id)arg3 didPresentSelector:(SEL)arg4 contextInfo:(void *)arg5;
 - (id)massageErrorForInternalMessage:(id)arg1;
@@ -22,6 +25,8 @@
 - (id)addActionMonitorWithHandlerBlock:(id)arg1;
 - (void)_enableMainThreadLatencyCheckerWithMilliSecondsThreshholdBeforeSPOD:(unsigned long long)arg1 milliSecondsThreshholdBeforeUNSPOD:(unsigned long long)arg2 milliSecondsBetweenPings:(unsigned long long)arg3;
 - (void)_really_enableMainThreadLatencyCheckerWithMilliSecondsThreshholdBeforeSPOD:(unsigned long long)arg1 milliSecondsThreshholdBeforeUNSPOD:(unsigned long long)arg2 milliSecondsBetweenPings:(unsigned long long)arg3;
+- (id)nextEventMatchingMask:(unsigned long long)arg1 untilDate:(id)arg2 inMode:(id)arg3 dequeue:(BOOL)arg4;
+- (void)finishLaunching;
 
 @end
 

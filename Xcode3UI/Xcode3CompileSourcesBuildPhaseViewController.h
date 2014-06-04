@@ -17,7 +17,7 @@
 }
 
 - (void).cxx_destruct;
-- (id)_objectValueForRowColumnOfBuildFile:(id)arg1;
+- (id)_objectValueForRoleColumnOfBuildFile:(id)arg1;
 - (void)_setMigDefsFileRole:(id)arg1;
 - (id)_dataCellForRoleOfBuildFile:(id)arg1;
 - (id)_noRoleCell;

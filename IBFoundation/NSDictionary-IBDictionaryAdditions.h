@@ -8,11 +8,15 @@
 
 @interface NSDictionary (IBDictionaryAdditions)
 + (id)ib_dictionaryWithIntrinsicallyKeyedValues:(id)arg1 intrinsicKeyAccessor:(id)arg2;
-+ (id)ib_dictionaryFromXMLPlistData:(id)arg1;
 + (id)ib_strictDictionaryWithKeysAndObjects:(id)arg1;
-+ (id)ib_dictionaryOfMultiValuedObjects:(id)arg1 keyedByKeyPath:(id)arg2;
++ (id)ib_dictionaryOfObjects:(id)arg1 groupedIntoSetsByKeyPath:(id)arg2;
 + (id)ib_dictionaryOfObjects:(id)arg1 keyedByKeyPath:(id)arg2;
 + (Class)ib_mutableClass;
+- (id)ib_uniqueValues;
+- (id)ib_uniqueKeys;
+- (id)ib_onlyObject;
+- (id)ib_onlyKey;
+- (id)ib_keysSortedUsingComparator:(id)arg1;
 - (id)ib_objectForClassKey:(Class)arg1;
 - (long long)ib_integerForKey:(id)arg1;
 - (double)ib_doubleForKey:(id)arg1 defaultValue:(double)arg2;
@@ -20,13 +24,18 @@
 - (id)ib_objectArrayForKeyArray:(id)arg1;
 - (id)ib_allElementsOfValueCollections;
 - (id)ib_sortedKeysByComparingValuesWithSelector:(SEL)arg1;
-- (id)ib_invertedMultiValueDictionaryUsingMutableDictionaryClass:(Class)arg1;
-- (id)ib_invertedMultiValueDictionary;
+- (id)ib_sortedKeysUsingComparator:(id)arg1;
+- (id)ib_invertedDictionaryOfKeysGroupedByValueUsingMutableDictionaryClass:(Class)arg1;
+- (id)ib_invertedDictionaryOfKeysGroupedByValue;
 - (id)ib_invertedDictionaryUsingMutableDictionaryClass:(Class)arg1;
 - (id)ib_invertedDictionary;
 - (id)ib_dictionaryBySettingObject:(id)arg1 forKey:(id)arg2;
 - (id)ib_objectForKey:(id)arg1 inDictionaryForKey:(id)arg2;
-- (id)ib_dictionaryByMappingBlock:(id)arg1;
+- (id)ib_dictionaryByAddingEntriesFromDictionary:(id)arg1;
+- (id)ib_dictionaryByRemovingObjectsForKeys:(id)arg1;
+- (id)ib_dictionaryByApplyingFilterToKeys:(id)arg1;
+- (id)ib_dictionaryByMappingValuesWithBlock:(id)arg1;
+- (id)ib_dictionaryByMappingKeysWithBlock:(id)arg1;
 - (Class)ib_mutableClass;
 @end
 

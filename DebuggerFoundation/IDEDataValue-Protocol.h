@@ -14,15 +14,15 @@
 @property(readonly) BOOL hasChildValues;
 @property(readonly) BOOL inScope;
 @property(readonly) BOOL itemDescriptionHasChanged;
-@property(readonly) NSString *itemDescription;
+@property(readonly, copy) NSString *itemDescription;
 @property(readonly) BOOL typeHasChanged;
-@property(readonly) NSString *type;
-@property(readonly) NSString *primitiveLogicalValue;
+@property(readonly, copy) NSString *type;
+@property(readonly, copy) NSString *primitiveLogicalValue;
 @property(readonly) BOOL logicalValueHasChanged;
-@property(readonly) NSString *logicalValue;
+@property(readonly, copy) NSString *logicalValue;
 @property(readonly) BOOL valueHasChanged;
 @property(readonly) BOOL isValueEditable;
 @property(copy) NSString *value;
-@property(readonly) NSString *name;
+@property(readonly, copy) NSString *name;
 @end
 

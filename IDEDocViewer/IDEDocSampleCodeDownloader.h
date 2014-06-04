@@ -13,8 +13,10 @@
     unsigned long long _downloadStage;
     NSURL *_downloadDestinationDirectory;
     NSString *_sampleCodeProjectName;
+    long long _sampleCodeDownloadType;
 }
 
+@property long long sampleCodeDownloadType; // @synthesize sampleCodeDownloadType=_sampleCodeDownloadType;
 @property(copy) NSString *sampleCodeProjectName; // @synthesize sampleCodeProjectName=_sampleCodeProjectName;
 @property(copy) NSURL *downloadDestinationDirectory; // @synthesize downloadDestinationDirectory=_downloadDestinationDirectory;
 @property unsigned long long downloadStage; // @synthesize downloadStage=_downloadStage;
@@ -23,6 +25,8 @@
 - (id)_moveExtractedContentInPath:(id)arg1;
 - (id)_moveContentsOfDirectory:(id)arg1 toDirectory:(id)arg2;
 - (id)_fileNameFromPath:(id)arg1;
+- (void)_openExtractedSampleAtPath:(id)arg1;
+- (void)_openExtractedPlaygroundAtPath:(id)arg1;
 - (void)_openExtractedProjectInPath:(id)arg1;
 - (void)beginDownload;
 - (void)cleanUp;

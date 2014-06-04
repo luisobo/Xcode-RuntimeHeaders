@@ -8,7 +8,7 @@
 
 #import "NSDraggingInfo-Protocol.h"
 
-@class NSImage, NSPasteboard, NSWindow;
+@class NSImage, NSPasteboard, NSString, NSWindow;
 
 @interface _DVTMutableDraggingInfo : NSObject <NSDraggingInfo>
 {
@@ -44,6 +44,12 @@
 - (unsigned long long)draggingSourceOperationMask;
 - (void)setDraggingDestinationWindow:(id)arg1;
 - (id)draggingDestinationWindow;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

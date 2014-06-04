@@ -8,7 +8,7 @@
 
 #import "NSMenuDelegate-Protocol.h"
 
-@class DVTWeakInterposer;
+@class DVTWeakInterposer, NSString;
 
 @interface _IDEApplicationControllerMenuDelegateForwarder : NSObject <NSMenuDelegate>
 {
@@ -24,9 +24,14 @@
 - (void)menuDidClose:(id)arg1;
 - (void)menuWillOpen:(id)arg1;
 - (void)menuNeedsUpdate:(id)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)initWithMenuDelegate:(id)arg1;
 @property __weak id <NSMenuDelegate> menuDelegate;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -14,7 +14,7 @@
 #import "NSWindowDelegate-Protocol.h"
 #import "NSWindowRestoration-Protocol.h"
 
-@class DVTDelayedInvocation, DVTExtension, DVTReplacementView, DVTStateRepository, DVTStateToken, IDEEditorArea, NSArray, NSDictionary;
+@class DVTDelayedInvocation, DVTExtension, DVTReplacementView, DVTStateRepository, DVTStateToken, IDEEditorArea, NSArray, NSDictionary, NSString;
 
 @interface IDEOrganizerWindowController : NSWindowController <NSToolbarDelegate, NSWindowRestoration, NSWindowDelegate, IDEEditorAreaContainer, DVTStatefulObject, DVTStateRepositoryDelegate, DVTReplacementViewDelegate>
 {
@@ -64,6 +64,12 @@
 - (void)windowDidLoad;
 - (void)_cacheOrganizerSourceExtensions;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

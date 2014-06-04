@@ -6,10 +6,12 @@
 
 #import <DTXConnectionServices/DTXTransport.h>
 
+@class NSObject<OS_dispatch_queue>;
+
 @interface DTXSharedMemoryTransport : DTXTransport
 {
     struct DTXSharedMemory *_shm;
-    struct dispatch_queue_s *_listenQueue;
+    NSObject<OS_dispatch_queue> *_listenQueue;
     BOOL _creator;
 }
 
@@ -22,6 +24,7 @@
 - (unsigned long long)transmit:(const void *)arg1 ofLength:(unsigned long long)arg2;
 @property(nonatomic) int remotePid;
 - (void)dealloc;
+- (id)initWithMappedMemory:(struct DTXSharedMemory *)arg1;
 - (id)initWithMemoryAddress:(unsigned long long)arg1 inTask:(unsigned int)arg2;
 - (id)initWithRemoteAddress:(id)arg1;
 - (id)initWithLocalName:(id)arg1 size:(int)arg2;

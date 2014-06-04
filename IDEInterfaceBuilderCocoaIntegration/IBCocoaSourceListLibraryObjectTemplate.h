@@ -4,19 +4,13 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2011 by Steve Nygard.
  */
 
-#import "IBLibraryObjectTemplate.h"
+#import <IDEInterfaceBuilderCocoaIntegration/IBCocoaSourceListObjectLibraryAsset.h>
 
-@class NSView;
-
-@interface IBCocoaSourceListLibraryObjectTemplate : IBLibraryObjectTemplate
+@interface IBCocoaSourceListLibraryObjectTemplate : IBCocoaSourceListObjectLibraryAsset
 {
-    NSView *sourceListDataCell;
-    NSView *sourceListHeaderCell;
 }
 
-- (void).cxx_destruct;
-@property(readonly) NSView *sourceListHeaderCell;
-@property(readonly) NSView *sourceListDataCell;
+- (Class)classForCoder;
 
 @end
 

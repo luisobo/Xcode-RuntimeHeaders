@@ -8,7 +8,7 @@
 
 #import "XDErrorWarningCallback-Protocol.h"
 
-@class NSDictionary;
+@class NSDictionary, NSString;
 
 @interface XDGenericErrorCallback : NSObject <XDErrorWarningCallback>
 {
@@ -30,6 +30,12 @@
 - (void)createErrorForElement:(id)arg1 withMessage:(id)arg2 category:(int)arg3 documentURL:(id)arg4;
 - (void)dealloc;
 - (id)initWithCompilerFlags:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

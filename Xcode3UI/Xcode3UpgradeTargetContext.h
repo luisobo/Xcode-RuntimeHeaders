@@ -8,7 +8,7 @@
 
 #import "Xcode3UpgradeContext-Protocol.h"
 
-@class Xcode3BuildSettingsContext, Xcode3Target;
+@class NSString, Xcode3BuildSettingsContext, Xcode3Target;
 
 @interface Xcode3UpgradeTargetContext : IDEUpgradeBlueprintContext <Xcode3UpgradeContext>
 {
@@ -17,9 +17,14 @@
 
 @property(readonly) Xcode3BuildSettingsContext *buildSettings; // @synthesize buildSettings=_buildSettings;
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 @property(readonly) Xcode3Target *target;
 - (id)initWithBlueprint:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

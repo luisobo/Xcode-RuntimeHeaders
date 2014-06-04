@@ -8,6 +8,8 @@
 
 #import "CSEncoder-Protocol.h"
 
+@class NSString;
+
 @interface CSMsgPackEncoder : CSEncoderBase <CSEncoder>
 {
 }
@@ -16,6 +18,12 @@
 + (id)encodeObject:(id)arg1;
 - (id)encodeObject:(id)arg1;
 - (void)encodeObject:(id)arg1 toMsgBuffer:(struct msgpack_sbuffer *)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

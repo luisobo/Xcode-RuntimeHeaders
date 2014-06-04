@@ -8,7 +8,7 @@
 
 #import "IBICSchemaProvider-Protocol.h"
 
-@class IBICIdiom, IBICPlatform, IBICScale, IBICSize;
+@class IBICFileType, IBICIdiom, IBICPlatform, IBICScale, IBICSize, NSString;
 
 @interface IBICCocoaSchemaAdditions : NSObject <IBICSchemaProvider>
 {
@@ -23,6 +23,9 @@
     IBICSize *_size128;
     IBICSize *_size256;
     IBICSize *_size512;
+    IBICFileType *_pngFileType;
+    IBICFileType *_jpegFileType;
+    IBICFileType *_pdfFileType;
 }
 
 - (void).cxx_destruct;
@@ -33,6 +36,12 @@
 - (void)captureExistingComponents:(id)arg1;
 - (void)registerSchemaComponents:(id)arg1;
 - (double)precedence;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

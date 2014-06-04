@@ -8,7 +8,7 @@
 
 #import "XCElementDisplayDelegateP-Protocol.h"
 
-@class XCElementSpacings;
+@class NSString, XCElementSpacings;
 
 @interface XCElementDisplay : NSObject <XCElementDisplayDelegateP>
 {
@@ -57,6 +57,12 @@
 - (id)spacings;
 - (void)setSpacings:(id)arg1;
 - (void)configureForControlSize:(unsigned long long)arg1 font:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

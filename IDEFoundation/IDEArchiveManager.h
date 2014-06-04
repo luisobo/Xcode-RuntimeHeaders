@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTDispatchLock, NSArray, NSFileManager, NSMutableArray;
+@class DVTDispatchLock, DVTObservingToken, NSArray, NSFileManager, NSMutableArray;
 
 @interface IDEArchiveManager : NSObject
 {
@@ -14,6 +14,7 @@
     NSFileManager *_fileManager;
     NSMutableArray *_archives;
     _Bool _hasScanned;
+    DVTObservingToken *_distributionArchivesLocationObservingToken;
 }
 
 + (void)initialize;

@@ -12,9 +12,11 @@
 {
     NSString *_typeName;
     NSString *_typeNameWithoutQualifiers;
+    NSString *_pointeeTypeName;
 }
 
 + (BOOL)isZombie:(id)arg1;
+@property(readonly) NSString *pointeeTypeName; // @synthesize pointeeTypeName=_pointeeTypeName;
 @property(readonly) NSString *typeName; // @synthesize typeName=_typeName;
 - (void).cxx_destruct;
 - (id)description;

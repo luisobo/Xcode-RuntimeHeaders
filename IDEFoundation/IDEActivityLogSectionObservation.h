@@ -8,6 +8,8 @@
 
 #import "DVTCancellable-Protocol.h"
 
+@class NSString;
+
 // Not exported
 @interface IDEActivityLogSectionObservation : NSObject <DVTCancellable>
 {
@@ -16,12 +18,17 @@
 
 + (id)sharedNullObservation;
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)cancel;
 @property(readonly, getter=isCancelled) BOOL cancelled;
 - (id)block;
 - (id)init;
 - (id)initWithBlock:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

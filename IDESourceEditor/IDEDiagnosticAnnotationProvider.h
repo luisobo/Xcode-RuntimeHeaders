@@ -8,7 +8,7 @@
 
 #import "DVTMessageBubbleAnnotationDelegate-Protocol.h"
 
-@class DVTNotificationToken, DVTObservingToken, IDEAnnotationContext, IDEBuildOperation, NSPopover;
+@class DVTNotificationToken, DVTObservingToken, IDEAnnotationContext, IDEBuildOperation, NSPopover, NSString;
 
 @interface IDEDiagnosticAnnotationProvider : DVTAnnotationProvider <DVTMessageBubbleAnnotationDelegate>
 {
@@ -48,9 +48,15 @@
 - (id)initWithContext:(id)arg1;
 - (void)_liveIssuesPrefsChanged;
 - (void)_startObservingIssuesWithURL:(id)arg1;
-- (void)_startObservingDiagnosticItemsWithSourceDocument:(id)arg1;
+- (void)_startObservingDiagnosticItemsWithEditorDocument:(id)arg1;
 - (void)_rebuildAnnotations;
 - (void)_addAnnotation:(id)arg1 toLineRangeMap:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

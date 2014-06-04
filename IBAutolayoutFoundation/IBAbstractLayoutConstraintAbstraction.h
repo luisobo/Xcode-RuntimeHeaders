@@ -13,12 +13,13 @@
 }
 
 @property(readonly, nonatomic) double priority;
-- (id)makeRepresentingConstraintWithLayoutInfo:(id)arg1;
+- (id)makeRepresentingConstraintWithProvider:(id)arg1;
 @property(readonly, nonatomic) IBLayoutConstraint *constraintInDocument;
 - (BOOL)isEqualToAbstraction:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (Class)representationClass;
 - (id)representationWithObjectRepresentationForObjectBlock:(id)arg1;
+- (unsigned long long)numberOfDrawableInstances;
 
 @end
 

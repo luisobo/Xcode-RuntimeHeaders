@@ -24,12 +24,14 @@
     NSDictionary *_context;
 }
 
++ (id)unarchiveObjectWithData:(id)arg1 context:(id)arg2 minArchiveVersion:(long long)arg3;
 + (id)unarchiveObjectWithData:(id)arg1 context:(id)arg2;
 @property(readonly, nonatomic) NSDictionary *context; // @synthesize context=_context;
 @property(readonly, nonatomic) long long archiveVersion; // @synthesize archiveVersion;
 - (void).cxx_destruct;
 - (id)decodeUTF8String;
 - (id)decodeObject;
+- (struct _NSRange)decodeRange;
 - (CDStruct_c519178c)decodeInset;
 - (struct CGRect)decodeCGRect;
 - (struct CGSize)decodeCGSize;

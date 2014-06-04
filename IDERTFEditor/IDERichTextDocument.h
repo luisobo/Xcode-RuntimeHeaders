@@ -67,7 +67,6 @@
 - (void)_undoReplaceFindResults:(id)arg1;
 - (id)findStringMatchingDescriptor:(id)arg1 backwards:(BOOL)arg2 from:(id)arg3 to:(id)arg4;
 - (void)textStorageDidProcessEditing:(id)arg1;
-- (void)panelForPDFSaveDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (BOOL)revertToContentsOfURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
 - (void)encodingPopupChanged:(id)arg1;
 - (void)appendPlainTextExtensionChanged:(id)arg1;
@@ -112,6 +111,10 @@
 - (id)initForURL:(id)arg1 withContentsOfURL:(id)arg2 ofType:(id)arg3 error:(id *)arg4;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @property unsigned long long supportedMatchingOptions;
 
 @end

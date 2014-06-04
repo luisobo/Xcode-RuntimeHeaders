@@ -40,7 +40,7 @@
 - (id)initWithSliceIdentifier:(id)arg1 infoArray:(id)arg2 infoEditor:(id)arg3;
 
 // Remaining properties
-@property(readonly) NSMutableArray *mutableSliceControllers; // @dynamic mutableSliceControllers;
+@property(readonly, copy) NSMutableArray *mutableSliceControllers; // @dynamic mutableSliceControllers;
 
 @end
 

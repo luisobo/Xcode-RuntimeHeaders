@@ -4,12 +4,13 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2011 by Steve Nygard.
  */
 
-#import "DVTFindBarSegmentedControlCell.h"
+#import "DVTFlatSegmentedControlCell.h"
 
-@interface IBAccessorizedScrollViewSegmentedCell : DVTFindBarSegmentedControlCell
+@interface IBAccessorizedScrollViewSegmentedCell : DVTFlatSegmentedControlCell
 {
 }
 
+- (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (struct CGRect)boundsOfSegment:(unsigned long long)arg1;
 - (double)_menuDelayTimeForSegment:(long long)arg1;
 

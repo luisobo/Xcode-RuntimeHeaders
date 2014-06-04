@@ -9,7 +9,7 @@
 #import "IDECommandHandler-Protocol.h"
 #import "IDECommandHandlerVendor-Protocol.h"
 
-@class IDERefactoringSession, IDERefactoringWindowController, NSMutableDictionary;
+@class IDERefactoringSession, IDERefactoringWindowController, NSMutableDictionary, NSString;
 
 @interface IDERefactoringCommands : NSObject <IDECommandHandlerVendor, IDECommandHandler>
 {
@@ -47,6 +47,12 @@
 - (BOOL)_validateTransformation:(id)arg1 contextMenu:(BOOL)arg2 error:(id *)arg3;
 - (void)genericAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

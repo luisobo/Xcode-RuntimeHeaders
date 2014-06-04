@@ -8,7 +8,7 @@
 
 #import "IDERunOperationWorkerTracker-Protocol.h"
 
-@class IDERunOperationWorker;
+@class IDERunOperationWorker, NSString;
 
 @interface IDEExecutionRunnableTracker : IDEExecutionTracker <IDERunOperationWorkerTracker>
 {
@@ -21,6 +21,12 @@
 - (void)cancel;
 - (BOOL)isFinished;
 - (id)initWithWorker:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

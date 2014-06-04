@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, DVTStackView_ML, NSArray, NSButton, NSMapTable, NSSet, NSTextField;
+@class DVTStackBacktrace, DVTStackView_ML, NSArray, NSButton, NSMapTable, NSSet, NSString, NSTextField;
 
 @interface IDEFlightCheckListView : DVTLayoutView_ML <DVTInvalidation>
 {
@@ -44,7 +44,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

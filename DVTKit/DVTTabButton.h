@@ -52,8 +52,6 @@
 + (id)leftInactiveTabSeparatorImageForMainWindow;
 + (id)leftActiveTabSeparatorImageForNonMainWindow;
 + (id)leftActiveTabSeparatorImageForMainWindow;
-+ (BOOL)isTabDrag:(id)arg1;
-+ (BOOL)isMiniWindowDrag:(id)arg1;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (BOOL)_useRolloverAppearance;
@@ -143,7 +141,12 @@
 - (void)controlTextDidEndEditing:(id)arg1;
 - (void)_stopEditingAndUninstallEditor;
 - (void)mouseDown:(id)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

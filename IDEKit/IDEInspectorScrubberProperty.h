@@ -6,21 +6,24 @@
 
 #import <IDEKit/IDEInspectorProperty.h>
 
-@class DVTScrubber, IDEInspectorKeyPath, NSString, NSTextField;
+@class DVTStepperTextField, IDEInspectorKeyPath, NSString, NSTextField;
 
 @interface IDEInspectorScrubberProperty : IDEInspectorProperty
 {
     IDEInspectorKeyPath *_valueKeyPath;
     NSString *_nilPlaceholder;
-    DVTScrubber *_scrubber;
+    DVTStepperTextField *_scrubber;
     NSTextField *_label;
 }
 
+@property(retain, nonatomic) NSTextField *label; // @synthesize label=_label;
+@property(retain, nonatomic) DVTStepperTextField *scrubber; // @synthesize scrubber=_scrubber;
 - (void).cxx_destruct;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)refresh;
 - (BOOL)canTileIntoColumnsWithMinimumWidth:(double)arg1;
 - (void)userDidChangeValue:(id)arg1;
+- (float)incrementValue;
 - (float)maxValue;
 - (float)minValue;
 - (double)baseline;

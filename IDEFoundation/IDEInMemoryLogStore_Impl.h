@@ -13,7 +13,7 @@
 - (BOOL)preserveOldLogs;
 - (void)setPreserveOldLogs:(BOOL)arg1;
 - (void)_removeLogRecord:(id)arg1 completionBlock:(id)arg2;
-- (id)addLog:(id)arg1 schemeIdentifier:(id)arg2 completionBlock:(id)arg3;
+- (id)addLog:(id)arg1 entityIdentifier:(id)arg2 completionBlock:(id)arg3;
 
 @end
 

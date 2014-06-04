@@ -13,7 +13,7 @@
     NSString *_bundleIdentifier;
     NSString *_codesignIdentity;
     NSString *_profileUUID;
-    long long _platform;
+    NSString *_platformIdentifier;
     NSString *_teamID;
     DVTDeveloperAccount *_developerAccount;
     NSString *_deviceUUID;
@@ -24,7 +24,7 @@
 @property(copy, nonatomic) NSString *deviceUUID; // @synthesize deviceUUID=_deviceUUID;
 @property(retain, nonatomic) DVTDeveloperAccount *developerAccount; // @synthesize developerAccount=_developerAccount;
 @property(copy, nonatomic) NSString *teamID; // @synthesize teamID=_teamID;
-@property(nonatomic) long long platform; // @synthesize platform=_platform;
+@property(retain, nonatomic) NSString *platformIdentifier; // @synthesize platformIdentifier=_platformIdentifier;
 @property(copy, nonatomic) NSString *profileUUID; // @synthesize profileUUID=_profileUUID;
 @property(copy, nonatomic) NSString *codesignIdentity; // @synthesize codesignIdentity=_codesignIdentity;
 @property(copy, nonatomic) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;

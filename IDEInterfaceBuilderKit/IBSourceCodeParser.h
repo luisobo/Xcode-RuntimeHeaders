@@ -8,17 +8,15 @@
 
 @interface IBSourceCodeParser : NSObject
 {
-    BOOL usesStrictParsing;
 }
 
++ (void)populateContext:(id)arg1 forWorkItems:(id)arg2 inWorkspace:(id)arg3;
++ (BOOL)requiresContext;
 + (id)secondaryParsableFileTypeIdentifiers;
 + (id)primaryParsableFileTypeIdentifiers;
 + (id)supportedFileExtensions;
-- (id)parseData:(id)arg1 fromFile:(id)arg2 errors:(id *)arg3;
-- (id)parseFile:(id)arg1 errors:(id *)arg2;
-- (void)setUsesStrictParsing:(BOOL)arg1;
-- (BOOL)usesStrictParsing;
-- (id)init;
+- (id)parseData:(id)arg1 fromFile:(id)arg2 withContext:(id)arg3 errors:(id *)arg4;
+- (id)parseFile:(id)arg1 withContext:(id)arg2 errors:(id *)arg3;
 
 @end
 

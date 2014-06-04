@@ -21,12 +21,12 @@
 - (void)dealloc;
 - (id)description;
 - (void)purgeCompletedBuffers;
-@property(readonly) int queuedBufferCount;
-@property(readonly) int completedBufferCount;
-@property(readonly) BOOL isPlaying;
-@property struct CGPoint position;
-@property double gain;
-@property BOOL shouldLoop;
+@property(readonly, nonatomic) int queuedBufferCount;
+@property(readonly, nonatomic) int completedBufferCount;
+@property(readonly, nonatomic) BOOL isPlaying;
+@property(nonatomic) struct CGPoint position;
+@property(nonatomic) double gain;
+@property(nonatomic) BOOL shouldLoop;
 - (void)stop;
 - (void)pause;
 - (void)play;

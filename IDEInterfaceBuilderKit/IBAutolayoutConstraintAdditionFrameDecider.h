@@ -14,9 +14,9 @@
 + (void)decideAndSetFramesOfEntireViewHierarchyByAddingConstraints:(id)arg1 forAligningViews:(id)arg2 byEnforcingCurrentSizes:(BOOL)arg3 layoutInfo:(id)arg4 delegate:(id)arg5;
 + (void)decideAndSetFramesOfEntireViewHierarchyByReplacingConstraints:(id)arg1 withConstraints:(id)arg2 layoutInfo:(id)arg3 delegate:(id)arg4;
 + (void)decideAndSetFramesOfEntireViewHierarchyByAddingConstraints:(id)arg1 layoutInfo:(id)arg2 delegate:(id)arg3;
-+ (void)decideAndSetFramesOfEntireViewHierarchyByAddingConstraints:(id)arg1 mutuallyExclusiveConstraintBreakageStrategy:(int)arg2 replacingConstraints:(id)arg3 returningConstraintsAdded:(id *)arg4 returningConstraintsRemoved:(id *)arg5 layoutInfo:(id)arg6 delegate:(id)arg7;
++ (void)decideAndSetFramesOfEntireViewHierarchyByAddingConstraints:(id)arg1 mutuallyExclusiveConstraintBreakageStrategy:(unsigned long long)arg2 replacingConstraints:(id)arg3 returningConstraintsAdded:(id *)arg4 returningConstraintsRemoved:(id *)arg5 layoutInfo:(id)arg6 delegate:(id)arg7;
 + (id)frameDeciderForAddingConstraints:(id)arg1 andReplacingConstraints:(id)arg2 layoutInfo:(id)arg3 delegate:(id)arg4;
-- (void)decideAndSetFramesOfEntireViewHierarchyByAddingConstraints:(id)arg1 replacingConstraints:(id)arg2 enforcingCurrentSizeOfViews:(id)arg3 mutuallyExclusiveConstraintBreakageStrategy:(int)arg4 returningConstraintsAdded:(id *)arg5 returningConstraintsRemoved:(id *)arg6;
+- (void)decideAndSetFramesOfEntireViewHierarchyByAddingConstraints:(id)arg1 replacingConstraints:(id)arg2 enforcingCurrentSizeOfViews:(id)arg3 mutuallyExclusiveConstraintBreakageStrategy:(unsigned long long)arg4 returningConstraintsAdded:(id *)arg5 returningConstraintsRemoved:(id *)arg6;
 
 @end
 

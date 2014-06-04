@@ -15,7 +15,7 @@
 #import "IDEWorkspaceDocumentProvider-Protocol.h"
 #import "NSTextViewDelegate-Protocol.h"
 
-@class DVTFilePath, DVTMapTable, DVTMutableOrderedSet, DVTNotificationToken, DVTObservingToken, DVTReplacementView, DVTSplitView, DVTSplitViewItem, DVTStackBacktrace, IDEARCConversionAssistantContext, IDEBuildAlertMonitor, IDEEditorArea, IDELaunchSession, IDENavigatorArea, IDEObjCModernizationAssistantContext, IDERunAlertMonitor, IDEUnitTestsModernizationAssistantContext, IDEWorkspace, IDEWorkspaceDocument, IDEWorkspaceWindowController, NSAlert, NSDocument<DVTTabbedWindowCreation>, NSMutableArray, NSString;
+@class DVTFilePath, DVTMapTable, DVTMutableOrderedSet, DVTNotificationToken, DVTObservingToken, DVTReplacementView, DVTSplitView, DVTSplitViewItem, DVTStackBacktrace, IDEARCConversionAssistantContext, IDEAppChooserWindowController, IDEBuildAlertMonitor, IDEEditorArea, IDELaunchSession, IDENavigatorArea, IDEObjCModernizationAssistantContext, IDERunAlertMonitor, IDEUnitTestsModernizationAssistantContext, IDEWorkspace, IDEWorkspaceDocument, IDEWorkspaceWindowController, NSAlert, NSDocument<DVTTabbedWindowCreation>, NSMutableArray, NSString;
 
 @interface IDEWorkspaceTabController : IDEViewController <NSTextViewDelegate, DVTTabbedWindowTabContentControlling, DVTStatefulObject, DVTReplacementViewDelegate, IDEEditorAreaContainer, IDEStructureEditingWorkspaceTabContext, IDEWorkspaceDocumentProvider, DVTEditor>
 {
@@ -39,6 +39,8 @@
     NSString *_savedTabLabel;
     DVTFilePath *_savedTabFilePath;
     DVTMapTable *_observerTokenForLaunchSessionTable;
+    DVTMapTable *_observerTokenForLaunchSessionsDebuggingAdditionsTable;
+    NSMutableArray *_uiControllerObserverEntries;
     DVTObservingToken *_mainCurrentLaunchSessionObserverToken;
     DVTObservingToken *_currentLaunchSessionStateObserverToken;
     DVTObservingToken *_launchSessionAlertErrorObservingToken;
@@ -63,6 +65,7 @@
     BOOL _userWantsNavigatorVisible;
     BOOL _stateRestoreCompleted;
     BOOL _tabLoadingCompleted;
+    IDEAppChooserWindowController *_appChooserWindowController;
 }
 
 + (id)keyPathsForValuesAffectingTabLabel;
@@ -80,6 +83,7 @@
 + (void)setDefaultAssistantEditorsLayout:(int)arg1;
 + (BOOL)automaticallyNotifiesObserversOfSavedTabFilePath;
 + (BOOL)automaticallyNotifiesObserversOfSavedTabLabel;
+@property(retain) IDEAppChooserWindowController *appChooserWindowController; // @synthesize appChooserWindowController=_appChooserWindowController;
 @property(retain) DVTObservingToken *buildCompleteObservationToken; // @synthesize buildCompleteObservationToken=_buildCompleteObservationToken;
 @property(retain) DVTObservingToken *firstIssueObservationToken; // @synthesize firstIssueObservationToken=_firstIssueObservationToken;
 @property(retain) DVTObservingToken *documentLoadingObservationToken; // @synthesize documentLoadingObservationToken=_documentLoadingObservationToken;
@@ -112,6 +116,7 @@
 - (id)_currentFirstResponderArea;
 - (void)performCloseWorkspace:(id)arg1;
 - (void)_workspaceDocument:(id)arg1 shouldClose:(BOOL)arg2 contextInfo:(void *)arg3;
+- (void)setShowPendingBlocksWhenDebugging:(id)arg1;
 - (void)setShowDisassemblyWhenDebugging:(id)arg1;
 - (void)setDebuggingWindowBehaviorXcodeInFront:(id)arg1;
 - (void)setDebuggingWindowBehaviorXcodeBehind:(id)arg1;
@@ -146,6 +151,7 @@
 - (void)createSnapshot:(id)arg1;
 - (void)editWorkspaceUserSettings:(id)arg1;
 - (void)newRunContext:(id)arg1;
+- (void)takeScreenshot:(id)arg1;
 - (void)createBot:(id)arg1;
 - (void)manageRunContexts:(id)arg1;
 - (void)selectPreviousDestination:(id)arg1;
@@ -168,8 +174,11 @@
 - (void)editAndRunActiveRunContext:(id)arg1;
 - (void)_doCommandForEditAndSchemeCommand:(id)arg1;
 - (void)_doCommandForEditAndSchemeCommand:(id)arg1 schemeTask:(int)arg2;
+- (void)showAppChooserIfNecessaryForScheme:(id)arg1 runDestination:(id)arg2 command:(id)arg3 onCompletion:(id)arg4;
+- (BOOL)_shouldShowAppChooserForScheme:(id)arg1 command:(id)arg2;
+- (void)_showAppChooserForCurrentSchemeIfNecessaryForCommand:(id)arg1 launch:(id)arg2;
 - (void)showModalAlertForScheme:(id)arg1;
-- (void)revlock_runWithoutBuildingForSchemeIdentifier:(id)arg1 runDestination:(id)arg2 invocationRecord:(id)arg3;
+- (void)runWithoutBuildingForSchemeIdentifier:(id)arg1 runDestination:(id)arg2 invocationRecord:(id)arg3;
 - (void)compileFileAtPath:(id)arg1 forSchemeCommand:(id)arg2;
 - (void)analyzeFileAtPath:(id)arg1;
 - (void)generateAssemblyCodeForFilePath:(id)arg1 forSchemeCommand:(id)arg2;
@@ -179,12 +188,14 @@
 - (void)cleanActiveRunContext:(id)arg1;
 - (void)installActiveRunContext:(id)arg1;
 - (void)analyzeActiveRunContext:(id)arg1;
+- (void)buildAndRunToGenerateOptimizationProfileActiveRunContext:(id)arg1;
 - (void)buildForInstallActiveRunContext:(id)arg1;
 - (void)buildAndIntegrateActiveRunContext:(id)arg1;
 - (void)buildAndArchiveActiveRunContext:(id)arg1;
 - (void)buildActiveRunContext:(id)arg1;
 - (void)testActiveRunContextWithoutBuilding:(id)arg1;
 - (void)buildForTestActiveRunContext:(id)arg1;
+- (void)profileUsingActiveRunContextWithOverridingTestingSpecifiers:(id)arg1;
 - (void)testUsingActiveRunContextWithOverridingTestingSpecifiers:(id)arg1;
 - (void)testActiveRunContext:(id)arg1;
 - (void)profileActiveSchemeWithoutBuilding:(id)arg1;
@@ -201,7 +212,6 @@
 - (void)_runScheme:(id)arg1 runDestination:(id)arg2 invocationRecord:(id)arg3;
 - (BOOL)_needToSwitchSchemeActionToSwitchToLLDB:(id)arg1;
 - (BOOL)textView:(id)arg1 clickedOnLink:(id)arg2 atIndex:(unsigned long long)arg3;
-- (void)_forceSwitchToLLDBIfNecessary:(id)arg1 preAlertHandler:(id)arg2 completionHandler:(void)arg3;
 - (void)_performDebuggableSchemeTask:(int)arg1 onScheme:(id)arg2 runDestination:(id)arg3 command:(id)arg4 commandName:(id)arg5 buildCommand:(int)arg6 filePath:(id)arg7 overridingTestingSpecifiers:(id)arg8 invocationRecord:(id)arg9 completionBlock:(id)arg10;
 - (void)_debugSessionCoalescedStateChanged:(id)arg1;
 - (BOOL)isActiveWorkspaceTabController;
@@ -241,7 +251,7 @@
 - (void)changeToSymbolsNavigator:(id)arg1;
 - (void)changeToStructureNavigator:(id)arg1;
 - (void)showNavigatorWithIdentifier:(id)arg1;
-- (void)_changeToNavigatorWithIdentifier:(id)arg1 sender:(id)arg2;
+- (void)changeToNavigatorWithIdentifier:(id)arg1 sender:(id)arg2;
 - (void)_splitViewDidToggleClosed;
 - (BOOL)performKeyEquivalent:(id)arg1;
 - (id)_choiceWithKeyEquivalent:(id)arg1 modifierFlags:(unsigned long long)arg2 inUtilityArea:(id)arg3;
@@ -308,10 +318,10 @@
 @property BOOL showNavigator;
 @property BOOL showUtilities;
 - (id)workspace;
-- (void)removeDebuggingAdditionUIControllerLifeCycleObserver:(id)arg1;
-- (void)addDebuggingAdditionUIControllerLifeCycleObserver:(id)arg1;
-- (void)_notifyDebuggingAdditionUIControllerLifeCycleObserversOfInvalidated:(id)arg1;
-- (void)_notifyDebuggingAdditionUIControllerLifeCycleObserversOfUpdated:(id)arg1;
+- (void)_removePendingDebuggingAdditionUIControllerObserversForLaunchSession:(id)arg1;
+- (void)_notifyAndRemoveObserversForCreatedUIController:(id)arg1 inLaunchSession:(id)arg2;
+- (id)debuggingAdditionUIControllerMatchingID:(id)arg1 forLaunchSession:(id)arg2 handler:(id)arg3;
+- (id)_createDebuggingAdditionUIControllersForDebuggingAddition:(id)arg1;
 - (void)_createDebuggingAdditionUIControllersForLaunchSession:(id)arg1;
 - (void)showAlertModallyInWorkspaceForError:(id)arg1;
 - (void)replacementView:(id)arg1 willInstallViewController:(id)arg2;
@@ -329,6 +339,10 @@
 
 // Remaining properties
 @property(readonly) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -23,5 +23,11 @@
 @property(readonly) id <IDEDMModelObject> parentObject;
 @property(readonly) NSArray *structuralChildren;
 @property(readonly) NSArray *topLevelObjects;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

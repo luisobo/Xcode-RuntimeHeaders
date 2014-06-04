@@ -9,9 +9,9 @@
 @interface IDEMasterPtyFileHandle : NSFileHandle
 {
     NSFileHandle *_masterFileHandle;
-    NSFileHandle *_slaveFileHandle;
     BOOL _readObserverAdded;
     BOOL _isInGotData;
+    NSFileHandle *_slaveFileHandle;
 }
 
 @property(readonly) NSFileHandle *slaveFileHandle; // @synthesize slaveFileHandle=_slaveFileHandle;
@@ -37,7 +37,7 @@
 - (id)readDataToEndOfFile;
 - (id)availableData;
 - (void)dealloc;
-- (id)initWithFileDescriptor:(int)arg1 slaveFileDescriptor:(int)arg2;
+- (id)initWithFileDescriptor:(int)arg1 slaveFileDescriptor:(int)arg2 ownsSlaveFileDescriptor:(BOOL)arg3;
 
 @end
 

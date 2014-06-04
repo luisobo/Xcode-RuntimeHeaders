@@ -6,41 +6,56 @@
 
 #import "IDEProjectItemViewController.h"
 
-@class DVTBorderedView, DVTGradientImageButton, DVTObservingToken, DVTTableView, NSArrayController, NSTableView, Xcode3iCloudItemModel;
+#import "DVTTableViewDelegate-Protocol.h"
+#import "NSTableViewDataSource-Protocol.h"
 
-@interface Xcode3iCloudItemViewController : IDEProjectItemViewController
+@class NSButton, NSMatrix, NSMutableArray, NSString, NSView, Xcode3AppIDItemIdentifiersTableViewController, Xcode3iCloudItemModel;
+
+@interface Xcode3iCloudItemViewController : IDEProjectItemViewController <DVTTableViewDelegate, NSTableViewDataSource>
 {
-    DVTObservingToken *_itemObserver;
-    DVTBorderedView *_tableBorder;
-    DVTTableView *_containersTable;
-    DVTGradientImageButton *_addContainerButton;
-    DVTGradientImageButton *_deleteContainerButton;
-    NSTableView *_containerIDsTableView;
-    NSArrayController *_containerIDsController;
+    NSMutableArray *_cancellationTokens;
+    NSMatrix *_defaultOrCustomContainerIdentifiersRadioGroup;
+    NSView *_identifiersSlice;
+    Xcode3AppIDItemIdentifiersTableViewController *_identifiersTableViewController;
+    NSButton *_iCloudDashboardButton;
+    long long _containerIDsTypeTag;
 }
 
++ (id)keyPathsForValuesAffectingUsingCustomContainers;
++ (id)keyPathsForValuesAffectingContainerIdentifiersRadioGroupEnabled;
++ (id)keyPathsForValuesAffectingCloudKitEnabled;
++ (id)keyPathsForValuesAffectingCloudDocumentsEnabled;
 + (id)keyPathsForValuesAffectingKeyValueStoreEnabled;
-@property(retain) NSArrayController *containerIDsController; // @synthesize containerIDsController=_containerIDsController;
-@property(retain) NSTableView *containerIDsTableView; // @synthesize containerIDsTableView=_containerIDsTableView;
-@property(retain) DVTGradientImageButton *deleteContainerButton; // @synthesize deleteContainerButton=_deleteContainerButton;
-@property(retain) DVTGradientImageButton *addContainerButton; // @synthesize addContainerButton=_addContainerButton;
-@property(retain) DVTTableView *containersTable; // @synthesize containersTable=_containersTable;
-@property(retain) DVTBorderedView *tableBorder; // @synthesize tableBorder=_tableBorder;
++ (id)reorderingPasteboardType;
+@property(nonatomic) long long containerIDsTypeTag; // @synthesize containerIDsTypeTag=_containerIDsTypeTag;
+@property(retain) NSButton *iCloudDashboardButton; // @synthesize iCloudDashboardButton=_iCloudDashboardButton;
+@property(retain) Xcode3AppIDItemIdentifiersTableViewController *identifiersTableViewController; // @synthesize identifiersTableViewController=_identifiersTableViewController;
+@property(retain) NSView *identifiersSlice; // @synthesize identifiersSlice=_identifiersSlice;
+@property(retain) NSMatrix *defaultOrCustomContainerIdentifiersRadioGroup; // @synthesize defaultOrCustomContainerIdentifiersRadioGroup=_defaultOrCustomContainerIdentifiersRadioGroup;
 - (void).cxx_destruct;
-- (void)removeSelectedContainerIDs:(id)arg1;
-- (void)addContainerID:(id)arg1;
+- (void)iCloudDashboardAction:(id)arg1;
+@property(readonly, nonatomic, getter=isUsingCustomContainers) BOOL usingCustomContainers;
+- (long long)initialValueForDefaultOrCustomContainersRadioGroupSelectedTag;
+- (BOOL)isContainerIdentifiersRadioGroupEnabled;
+- (void)setCloudKitEnabled:(BOOL)arg1;
+- (BOOL)isCloudKitEnabled;
+- (void)setCloudDocumentsEnabled:(BOOL)arg1;
+- (BOOL)isCloudDocumentsEnabled;
 - (void)setKeyValueStoreEnabled:(BOOL)arg1;
 - (BOOL)isKeyValueStoreEnabled;
 - (void)primitiveInvalidate;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
-- (void)layout;
 - (void)loadView;
 - (id)headerColor;
 - (id)initWithEditorItemModel:(id)arg1 portalInfoDelegate:(id)arg2;
 
 // Remaining properties
-@property(retain, nonatomic) Xcode3iCloudItemModel *model;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) Xcode3iCloudItemModel *model;
+@property(readonly) Class superclass;
 
 @end
 

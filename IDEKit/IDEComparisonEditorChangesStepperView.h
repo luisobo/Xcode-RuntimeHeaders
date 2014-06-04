@@ -6,10 +6,12 @@
 
 #import <IDEKit/IDEEditorNumberStepperView.h>
 
-@class DVTDiffSession, DVTObservingToken, IDEComparisonEditorTimelineNavBar;
+@class DVTBindingToken, DVTDiffSession, DVTObservingToken, IDEComparisonEditorTimelineNavBar;
 
 @interface IDEComparisonEditorChangesStepperView : IDEEditorNumberStepperView
 {
+    DVTBindingToken *_leftArrowEnabledToken;
+    DVTBindingToken *_rightArrowEnabledToken;
     DVTObservingToken *_visibleModifiedDescriptorIndexesToken;
     DVTObservingToken *_selectedDiffDescriptorIndexToken;
     DVTDiffSession *_diffSession;

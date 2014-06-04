@@ -8,7 +8,7 @@
 
 #import "IDEDocumentStructureProviding-Protocol.h"
 
-@class NSArray, PDFDocument;
+@class NSArray, NSString, PDFDocument;
 
 @interface IDEPDFViewerDocument : IDEEditorDocument <IDEDocumentStructureProviding>
 {
@@ -22,6 +22,12 @@
 @property(readonly) NSArray *ideTopLevelStructureObjects;
 - (id)dataOfType:(id)arg1 error:(id *)arg2;
 - (BOOL)readFromURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

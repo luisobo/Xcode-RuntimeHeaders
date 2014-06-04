@@ -16,7 +16,10 @@
 @property(readonly) NSBundle *bundle;
 
 @optional
+- (id)attributedTitleForSliverElement:(id)arg1;
+- (id)accessoryViewForInspectorProperty:(id)arg1;
 - (id)aggregateReplacementBySettingValue:(id)arg1 forKeyPath:(id)arg2 onObject:(id)arg3 fromKeyPath:(id)arg4 ofObject:(id)arg5;
 - (id)toolTipContentFromKeyPath:(id)arg1 titleAttribute:(id)arg2 placeholderAttribute:(id)arg3;
+- (id)searchableAttributesForProperty:(id)arg1;
 @end
 

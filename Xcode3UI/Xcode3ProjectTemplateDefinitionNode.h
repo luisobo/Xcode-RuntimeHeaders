@@ -10,24 +10,30 @@
 
 @interface Xcode3ProjectTemplateDefinitionNode : NSObject
 {
-    NSString *_name;
-    NSArray *_children;
     Xcode3ProjectTemplateDefinitionNode *_wildcardNode;
+    NSArray *_children;
+    NSString *_name;
+    NSString *_expansionString;
 }
 
-@property(copy) NSArray *children; // @synthesize children=_children;
+@property(copy) NSString *expansionString; // @synthesize expansionString=_expansionString;
 @property(copy) NSString *name; // @synthesize name=_name;
+@property(copy) NSArray *children; // @synthesize children=_children;
 - (void).cxx_destruct;
 - (id)description;
 - (id)outputToFilePath:(id)arg1 withDefinitions:(id)arg2 indentString:(id)arg3 rootGroup:(id)arg4 targets:(id)arg5 basedOn:(id)arg6 targetName:(id)arg7 error:(id *)arg8 replacementHandler:(id)arg9;
 - (id)outputInDirectory:(id)arg1 withDefinitions:(id)arg2 indentString:(id)arg3 rootGroup:(id)arg4 targets:(id)arg5 basedOn:(id)arg6 error:(id *)arg7 replacementHandler:(id)arg8;
 - (BOOL)shouldProcessPath:(id)arg1;
 - (void)addToString:(id)arg1 withPrefixNames:(id)arg2 definitions:(id)arg3 indent:(long long *)arg4 indentString:(id)arg5;
-- (id)definitionForNames:(id)arg1 withDefinitions:(id)arg2 wildcardString:(id *)arg3;
+- (id)definitionForNames:(id)arg1 withDefinitions:(id)arg2;
 @property(readonly) NSMutableArray *mutableChildren;
 - (void)addNodeWithNames:(id)arg1;
 - (id)nodeWithName:(id)arg1;
 - (void)addChildNodes:(id)arg1;
+- (struct _NSRange)rangeOfNextSeparatorInString:(id)arg1 range:(struct _NSRange)arg2;
+- (struct _NSRange)rangeOfNextParenCloserInString:(id)arg1 range:(struct _NSRange)arg2;
+- (struct _NSRange)rangeOfNextMacroCloserInString:(id)arg1 range:(struct _NSRange)arg2;
+- (struct _NSRange)rangeOfNextSeparatorOrOpenerInString:(id)arg1 range:(struct _NSRange)arg2 foundScanType:(long long *)arg3;
 - (id)init;
 
 @end

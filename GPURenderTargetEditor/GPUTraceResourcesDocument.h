@@ -8,7 +8,7 @@
 
 #import "IDEDocumentStructureProviding-Protocol.h"
 
-@class DVTObservingToken, GPUSharedTabUIState, GPUTraceOutline, NSArray, NSString;
+@class DVTObservingToken, GPUSharedTabUIState, NSArray, NSString;
 
 // Not exported
 @interface GPUTraceResourcesDocument : IDEEditorDocument <IDEDocumentStructureProviding>
@@ -16,7 +16,6 @@
     DVTObservingToken *_uiModeObservation;
     NSArray *_topLevelObjects;
     GPUSharedTabUIState *_sharedTabUIState;
-    GPUTraceOutline *_outline;
     NSString *_resourceGroup;
     NSString *_resourceSubGroup;
 }
@@ -25,8 +24,7 @@
 + (id)keyPathsForValuesAffectingNavigableItem_name;
 @property(readonly) NSString *resourceSubGroup; // @synthesize resourceSubGroup=_resourceSubGroup;
 @property(readonly) NSString *resourceGroup; // @synthesize resourceGroup=_resourceGroup;
-@property(retain) GPUTraceOutline *outline; // @synthesize outline=_outline;
-@property(readonly) GPUSharedTabUIState *sharedTabUIState; // @synthesize sharedTabUIState=_sharedTabUIState;
+@property(readonly) __weak GPUSharedTabUIState *sharedTabUIState; // @synthesize sharedTabUIState=_sharedTabUIState;
 - (void).cxx_destruct;
 - (id)displayName;
 - (id)writableTypesForSaveOperation:(unsigned long long)arg1;
@@ -42,6 +40,12 @@
 - (id)_refresh_MainEditorTopLevelGroup;
 - (id)_refresh_AssistantTopLevelGroup;
 - (id)_topLevelGroupForItem:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,30 +6,51 @@
 
 #import <SpriteKit/SKNode.h>
 
-@class NSColor;
+@class NSColor, SKShader, SKTexture;
 
 @interface SKShapeNode : SKNode
 {
     struct SKCShapeSprite *ss;
 }
 
++ (id)shapeNodeWithSplinePoints:(struct CGPoint *)arg1 count:(unsigned long long)arg2;
++ (id)shapeNodeWithPoints:(struct CGPoint *)arg1 count:(unsigned long long)arg2;
++ (id)shapeNodeWithTriangleA:(struct CGPoint)arg1 B:(struct CGPoint)arg2 C:(struct CGPoint)arg3;
++ (id)shapeNodeWithRectOfSize:(struct CGSize)arg1 cornerRadius:(double)arg2;
++ (id)shapeNodeWithRect:(struct CGRect)arg1 cornerRadius:(double)arg2;
++ (id)shapeNodeWithRectOfSize:(struct CGSize)arg1;
++ (id)shapeNodeWithRect:(struct CGRect)arg1;
++ (id)shapeNodeWithCircleOfRadius:(double)arg1;
++ (id)shapeNodeWithEllipseOfSize:(struct CGSize)arg1;
++ (id)shapeNodeWithEllipseInRect:(struct CGRect)arg1;
++ (id)shapeNodeWithPath:(struct CGPath *)arg1 centered:(BOOL)arg2;
++ (id)shapeNodeWithPath:(struct CGPath *)arg1;
+- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-@property(retain) NSColor *strokeColor;
-@property(retain) NSColor *fillColor;
+@property(retain, nonatomic) NSColor *strokeColor;
+@property(retain, nonatomic) NSColor *fillColor;
 - (void)setFillPath:(BOOL)arg1;
 - (BOOL)fillPath;
-@property double lineWidth;
-@property(getter=isAntialiased) BOOL antialiased;
-@property long long blendMode;
-@property double renderQualityRatio;
-@property double glowWidth;
+@property(nonatomic) double lineWidth;
+@property(nonatomic, getter=isAntialiased) BOOL antialiased;
+@property(nonatomic) long long blendMode;
+@property(nonatomic) double renderQualityRatio;
+@property(retain, nonatomic) SKShader *strokeShader;
+@property(retain, nonatomic) SKTexture *strokeTexture;
+@property(retain, nonatomic) SKShader *fillShader;
+@property(retain, nonatomic) SKTexture *fillTexture;
+@property(nonatomic) double glowWidth;
+- (void)_scaleFactorChangedFrom:(float)arg1 to:(float)arg2;
+- (BOOL)containsPoint:(struct CGPoint)arg1;
 - (struct CGRect)calculateAccumulatedFrame;
 - (struct CGRect)frame;
-@property struct CGPath *path;
+@property(nonatomic) struct CGPath *path;
 - (id)description;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;
+- (void)_initialize;
+- (id)_copyImageData;
 
 @end
 

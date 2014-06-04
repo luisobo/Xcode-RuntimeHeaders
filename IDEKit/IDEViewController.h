@@ -9,7 +9,7 @@
 #import "DVTStatefulObject-Protocol.h"
 #import "IDESelectionSource-Protocol.h"
 
-@class DVTStateToken, IDESelection, IDEWorkspace, IDEWorkspaceDocument, IDEWorkspaceTabController;
+@class DVTStateToken, IDESelection, IDEWorkspace, IDEWorkspaceDocument, IDEWorkspaceTabController, NSString;
 
 @interface IDEViewController : DVTViewController <IDESelectionSource, DVTStatefulObject>
 {
@@ -22,6 +22,8 @@
 
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (long long)version;
++ (id)keyPathsForValuesAffectingWorkspace;
++ (id)keyPathsForValuesAffectingWorkspaceDocument;
 @property(readonly) DVTStateToken *stateToken; // @synthesize stateToken=_stateToken;
 @property(retain, nonatomic) IDEWorkspaceTabController *workspaceTabController; // @synthesize workspaceTabController=_workspaceTabController;
 @property(copy) IDESelection *contextMenuSelection; // @synthesize contextMenuSelection=_contextMenuSelection;
@@ -40,7 +42,16 @@
 @property(readonly) IDEWorkspace *workspace;
 @property(readonly) IDEWorkspaceDocument *workspaceDocument;
 - (id)workspaceDocumentProvider;
+- (void)_resolveWorkspaceDocumentProvider;
+- (void)_resolveWorkspaceTabController;
+- (void)viewDidInstall;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

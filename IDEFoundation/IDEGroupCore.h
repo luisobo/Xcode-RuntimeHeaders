@@ -24,8 +24,12 @@
 - (void).cxx_destruct;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(retain) id <IDEGroupCore> parentGroup;
 @property(copy) NSString *path;
+@property(readonly) Class superclass;
 
 @end
 

@@ -7,7 +7,6 @@
 #import "NSMenu.h"
 
 @interface NSMenu (IBMenuIntegration)
-+ (id)keyPathsForValuesAffectingIbQualifyingInfoForDefaultLabel;
 - (BOOL)ibCanSupportIdentifierProperty;
 @property long long ibArchivedSystemMenuType;
 - (id)ibAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 insertionContext:(id)arg3;
@@ -20,7 +19,7 @@
 - (void)setIbShadowedItemArray:(id)arg1;
 - (id)ibShadowedItemArray;
 - (id)ibPasteboardTypes;
-- (BOOL)ibMustEditInPersonalWindow;
+- (BOOL)ibMustBeBaseObjectOfEditorFrame;
 - (id)ibEditorCanvasFrameControllerForDocument:(id)arg1;
 - (BOOL)ibRepresentsMainMenuOrDescendantOfMainMenu;
 - (BOOL)ibRepresentsMainMenu;

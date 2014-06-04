@@ -4,24 +4,22 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2011 by Steve Nygard.
  */
 
-#import <IDEFoundation/IDETestRunner.h>
+#import <IDEFoundation/IDEStandardTestRunner.h>
 
 @class NSOperationQueue;
 
-@interface IDEOCUnitTestRunner : IDETestRunner
+@interface IDEOCUnitTestRunner : IDEStandardTestRunner
 {
     NSOperationQueue *_commandLineArgsQueue;
 }
 
 - (void).cxx_destruct;
+- (id)_scheduledTestArgumentsOperationForBuildParameters:(id)arg1 runDestination:(id)arg2 workspace:(id)arg3 testRunIdentifier:(id)arg4 testRunIdentifiers:(id)arg5 actionResultsBundleWithBaselineOverridesFilePath:(id)arg6 error:(id *)arg7 completionBlock:(id)arg8;
+- (id)defaultTestArgumentsOperationForBuildParameters:(id)arg1 runDestination:(id)arg2 workspace:(id)arg3 error:(id *)arg4 completionBlock:(id)arg5;
 - (id)testOperationsForExecutionEnvironment:(id)arg1 buildParameters:(id)arg2 runDestination:(id)arg3 workspace:(id)arg4 error:(id *)arg5 launchParametersBlock:(id)arg6;
-- (id)launchNameForBuildParameters:(id)arg1 runDestination:(id)arg2 testRunIdentifier:(id)arg3 testRunIdentifiers:(id)arg4;
-- (id)testRunIdentifiersForBuildParameters:(id)arg1 runDestination:(id)arg2;
-- (id)workingDirectoryForWorkspace:(id)arg1;
-- (id)architectureForBuildParameters:(id)arg1 runDestination:(id)arg2 testRunIdentifier:(id)arg3 testRunIdentifiers:(id)arg4;
-- (id)environmentVariablesForBuildParameters:(id)arg1 runDestination:(id)arg2 testRunIdentifier:(id)arg3 testRunIdentifiers:(id)arg4;
-- (id)testBundlePathForBuildParameters:(id)arg1 runDestination:(id)arg2 testRunIdentifier:(id)arg3 testRunIdentifiers:(id)arg4;
-- (id)stringRepresentationOfTestScopesWithWorkspace:(id)arg1 supportMultiple:(BOOL)arg2 supportInverse:(BOOL)arg3 invert:(char *)arg4;
+- (id)_writeTestInvocationScope:(id)arg1 forTestBundlePath:(id)arg2 inWorkspace:(id)arg3 invertScope:(BOOL)arg4;
+- (id)environmentVariablesForBuildParameters:(id)arg1 runDestination:(id)arg2 testRunIdentifier:(id)arg3 testRunIdentifiers:(id)arg4 error:(id *)arg5;
+- (id)testListWithWorkspace:(id)arg1 supportMultiple:(BOOL)arg2 supportInverse:(BOOL)arg3 invert:(char *)arg4;
 
 @end
 

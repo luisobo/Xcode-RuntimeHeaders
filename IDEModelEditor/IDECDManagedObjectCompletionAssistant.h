@@ -8,6 +8,8 @@
 
 #import "NSOpenSavePanelDelegate-Protocol.h"
 
+@class NSString;
+
 @interface IDECDManagedObjectCompletionAssistant : Xcode3FileTemplateCompletionAssistant <NSOpenSavePanelDelegate>
 {
     BOOL usePrimitiveDataTypes;
@@ -22,6 +24,12 @@
 - (id)configuredSavePanel;
 - (id)configuredOpenPanel;
 @property(readonly) BOOL allowPrimitiveDataTypes;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

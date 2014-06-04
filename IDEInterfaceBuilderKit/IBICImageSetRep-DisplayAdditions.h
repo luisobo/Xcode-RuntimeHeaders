@@ -7,6 +7,8 @@
 #import "IBICImageSetRep.h"
 
 @interface IBICImageSetRep (DisplayAdditions)
++ (id)keyPathsForValuesAffectingIbInspectedAlignmentInsets;
+@property(nonatomic) CDStruct_c519178c ibInspectedAlignmentInsets;
 - (id)applicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
 @end
 

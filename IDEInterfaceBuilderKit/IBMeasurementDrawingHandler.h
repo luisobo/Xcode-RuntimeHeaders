@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, IBCancellationToken, IBDelegatedCanvasOverlay, IBMutableIdentityDictionary, IBRelativeMeasurement, IBRelativeMeasurementDescriptor, IBTrackingIndicatorLayoutInfo, IBViewEditorCanvasFrameController, NSSet;
+@class DVTStackBacktrace, IBCancellationToken, IBDelegatedCanvasOverlay, IBMutableIdentityDictionary, IBRelativeMeasurement, IBRelativeMeasurementDescriptor, IBTrackingIndicatorLayoutInfo, IBViewEditorCanvasFrameController, NSSet, NSString;
 
 @interface IBMeasurementDrawingHandler : NSObject <DVTInvalidation>
 {
@@ -27,10 +27,12 @@
     BOOL _showingLayoutRectangles;
     BOOL _showingBoundsRectangles;
     BOOL _showingResizeKnobs;
+    NSSet *_viewsUnconditionallyDrawingLayoutRectangles;
 }
 
 + (id)calculateMeasurementLinesWithStartRect:(struct CGRect)arg1 andEndRect:(struct CGRect)arg2;
 + (void)initialize;
+@property(copy, nonatomic) NSSet *viewsUnconditionallyDrawingLayoutRectangles; // @synthesize viewsUnconditionallyDrawingLayoutRectangles=_viewsUnconditionallyDrawingLayoutRectangles;
 @property(nonatomic, getter=isShowingResizeKnobs) BOOL showingResizeKnobs; // @synthesize showingResizeKnobs=_showingResizeKnobs;
 @property(nonatomic, getter=isShowingBoundsRectangles) BOOL showingBoundsRectangles; // @synthesize showingBoundsRectangles=_showingBoundsRectangles;
 @property(nonatomic, getter=isShowingLayoutRectangles) BOOL showingLayoutRectangles; // @synthesize showingLayoutRectangles=_showingLayoutRectangles;
@@ -65,7 +67,7 @@
 - (void)setTrackedKnobRect:(struct CGRect)arg1;
 - (void)setTrackingIndicatorLayoutInfo:(id)arg1;
 - (void)setHintedTrackedViewRectangle:(struct CGRect)arg1;
-@property(retain, nonatomic) id relativeMeasurementDestination;
+@property(retain, nonatomic) NSObject *relativeMeasurementDestination;
 @property(copy, nonatomic) NSSet *relativeMeasurementSources;
 - (void)setRelativeMeasurementDescriptor:(id)arg1;
 - (id)relativeMeasurementDescriptor;
@@ -80,7 +82,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -10,7 +10,7 @@
 #import "NSCoding-Protocol.h"
 #import "XDGraphNode-Protocol.h"
 
-@class DVTMapTable, DVTStackBacktrace, NSMutableArray, XDDiagramStorage, XDGraphicContentsEditor, XDGraphicID;
+@class DVTMapTable, DVTStackBacktrace, NSMutableArray, NSString, XDDiagramStorage, XDGraphicContentsEditor, XDGraphicID;
 
 @interface XDGraphic : NSObject <NSCoding, XDGraphNode, DVTInvalidation>
 {
@@ -257,7 +257,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

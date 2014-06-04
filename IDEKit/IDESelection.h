@@ -17,7 +17,7 @@
 
 + (id)selectionWithNavigableItemArchivableRepresentations:(id)arg1;
 + (id)selectionWithNavigableItems:(id)arg1;
-@property(readonly) NSArray *navigableItemArchivableRepresentations; // @synthesize navigableItemArchivableRepresentations=_navigableItemArchivableRepresentations;
+@property(readonly, copy) NSArray *navigableItemArchivableRepresentations; // @synthesize navigableItemArchivableRepresentations=_navigableItemArchivableRepresentations;
 - (void).cxx_destruct;
 - (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;

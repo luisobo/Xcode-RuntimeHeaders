@@ -8,7 +8,7 @@
 
 #import "IDEDocumentStructureProviding-Protocol.h"
 
-@class NSArray, NSMutableArray, OSADictionary;
+@class NSArray, NSMutableArray, NSString, OSADictionary;
 
 @interface IDEScriptingDefinitionDocument : IDEEditorDocument <IDEDocumentStructureProviding>
 {
@@ -28,6 +28,12 @@
 - (id)dataOfType:(id)arg1 error:(id *)arg2;
 - (BOOL)prepareSavePanel:(id)arg1;
 - (BOOL)writeToURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

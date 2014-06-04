@@ -11,6 +11,13 @@
 }
 
 - (BOOL)canEmbedObjects:(id)arg1 fromDocument:(id)arg2;
+- (void)_moveViews:(id)arg1 intoSplitView:(id)arg2 document:(id)arg3;
+- (void)_removeViews:(id)arg1 fromCurrentParent:(id)arg2 inDocument:(id)arg3;
+- (void)_setFrame:(struct CGRect)arg1 forEmbeddingViews:(id)arg2 inSplitView:(id)arg3 document:(id)arg4;
+- (struct CGRect)_frameForSplitView:(id)arg1 enclosingEmbeddedObjects:(id)arg2;
+- (BOOL)_splitViewShouldHaveVerticalDividerForEmbeddingObjects:(id)arg1;
+- (void)_addSplitView:(id)arg1 toNewParent:(id)arg2 inDocument:(id)arg3;
+- (void)_setDividerStyleForSplitView:(id)arg1 basedUponDocumentSystemTarget:(id)arg2;
 - (id)embedObjects:(id)arg1 fromDocument:(id)arg2 context:(id)arg3;
 
 @end

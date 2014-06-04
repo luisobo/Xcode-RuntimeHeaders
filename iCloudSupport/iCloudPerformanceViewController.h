@@ -8,7 +8,7 @@
 
 #import "IDEGraphDelegate-Protocol.h"
 
-@class DVTNotificationToken, IDEBarGraph, NSByteCountFormatter, NSMutableDictionary;
+@class DVTNotificationToken, IDEBarGraph, NSByteCountFormatter, NSMutableDictionary, NSString;
 
 @interface iCloudPerformanceViewController : iCloudViewController <IDEGraphDelegate>
 {
@@ -28,6 +28,12 @@
 - (id)translateValue:(id)arg1 keypath:(id)arg2;
 - (id)colorForChartNamed:(id)arg1;
 - (void)awakeFromNib;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

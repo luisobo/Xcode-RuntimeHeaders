@@ -12,10 +12,10 @@
 
 @interface DVTDownloadableOperation : DVTOperation <DVTProgressReporting>
 {
-    long long _progress;
-    unsigned long long _progressWeight;
     BOOL _userRequested;
     BOOL _cancelable;
+    long long _progress;
+    unsigned long long _progressWeight;
     NSString *_title;
 }
 
@@ -30,6 +30,12 @@
 - (void)downloadableOperationMain;
 - (void)main;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

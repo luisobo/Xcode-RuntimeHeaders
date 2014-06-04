@@ -17,8 +17,9 @@
 }
 
 + (id)sliverForXMLElement:(id)arg1 boundTo:(id)arg2;
-+ (id)sliverWithProperties:(id)arg1 title:(id)arg2 fullWidth:(BOOL)arg3;
-+ (id)labelWithTitle:(id)arg1;
++ (id)sliverWithProperties:(id)arg1 title:(id)arg2 attributedTitle:(id)arg3 fullWidth:(BOOL)arg4;
++ (id)label;
++ (id)defaultLabelAttributes;
 - (void).cxx_destruct;
 - (void)pushFrameOriginsToViews;
 - (void)layoutGroupsBottomUp;
@@ -27,8 +28,8 @@
 - (void)installIntoInspectorContentView:(id)arg1;
 - (void)insertSubgroup:(id)arg1 atIndex:(long long)arg2;
 - (void)primitiveInvalidate;
-- (id)initWithTitle:(id)arg1 rightSubgroup:(id)arg2 rightSubgroupInset:(CDStruct_d2b197d1)arg3 fixedTitleOrigin:(id)arg4;
-- (id)initWithTitle:(id)arg1 titleOrigin:(struct CGPoint)arg2 rightSubgroup:(id)arg3 rightSubgroupInset:(CDStruct_d2b197d1)arg4;
+- (id)initWithTitle:(id)arg1 attributedTitle:(id)arg2 rightSubgroup:(id)arg3 rightSubgroupInset:(CDStruct_d2b197d1)arg4 fixedTitleOrigin:(id)arg5;
+- (id)initWithTitle:(id)arg1 attributedTitle:(id)arg2 titleOrigin:(struct CGPoint)arg3 rightSubgroup:(id)arg4 rightSubgroupInset:(CDStruct_d2b197d1)arg5;
 
 @end
 

@@ -42,10 +42,11 @@
 - (BOOL)isPrototypeFor:(id)arg1;
 - (BOOL)isEquivalentToPrototypeFor:(id)arg1 inDocument:(id)arg2;
 - (long long)previousConnectionStateIndicatorForDragFromObject:(id)arg1 toObject:(id)arg2 inDocument:(id)arg3;
-- (id)displayNameWithRespectToPredecessors:(id)arg1;
+- (id)explicitDisplayNameWithRespectToPredecessors:(id)arg1;
 - (long long)relationshipType;
 - (id)archiveKeyForEndPoint:(long long)arg1;
 - (long long)endPointToArchive;
+- (BOOL)useConnectionSourceForSearchLocation;
 - (id)archiveKeyForLabel;
 - (id)connectionDefinitionForObject:(id)arg1;
 

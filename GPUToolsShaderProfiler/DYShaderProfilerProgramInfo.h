@@ -9,31 +9,35 @@
 #import "NSCoding-Protocol.h"
 #import "NSCopying-Protocol.h"
 
-@class DYShaderProfilerShaderInfo, NSArray, NSMutableArray;
+@class DYShaderProfilerShaderInfo, NSMutableArray;
 
 @interface DYShaderProfilerProgramInfo : NSObject <NSCoding, NSCopying>
 {
-    NSMutableArray *_drawCallInfoIndices;
     struct DYShaderProfilerTiming _timing;
     BOOL _valid;
     BOOL _separable;
     unsigned int _programIndex;
-    unsigned int _programId;
     unsigned int _vertexCount;
     unsigned int _fragmentCount;
     unsigned int _instanceCount;
-    unsigned int _vertexProgramId;
-    unsigned int _fragmentProgramId;
+    unsigned long long _programId;
+    NSMutableArray *_drawCallInfoIndices;
     double _vertexCountPercentage;
     double _fragmentCountPercentage;
     double _instanceCountPercentage;
     DYShaderProfilerShaderInfo *_vertexShaderInfo;
     DYShaderProfilerShaderInfo *_fragmentShaderInfo;
+    DYShaderProfilerShaderInfo *_computeProgramInfo;
+    unsigned long long _vertexProgramId;
+    unsigned long long _fragmentProgramId;
+    unsigned long long _computeProgramId;
 }
 
-@property(nonatomic) unsigned int fragmentProgramId; // @synthesize fragmentProgramId=_fragmentProgramId;
-@property(nonatomic) unsigned int vertexProgramId; // @synthesize vertexProgramId=_vertexProgramId;
+@property(nonatomic) unsigned long long computeProgramId; // @synthesize computeProgramId=_computeProgramId;
+@property(nonatomic) unsigned long long fragmentProgramId; // @synthesize fragmentProgramId=_fragmentProgramId;
+@property(nonatomic) unsigned long long vertexProgramId; // @synthesize vertexProgramId=_vertexProgramId;
 @property(nonatomic) BOOL separable; // @synthesize separable=_separable;
+@property(retain, nonatomic) DYShaderProfilerShaderInfo *computeProgramInfo; // @synthesize computeProgramInfo=_computeProgramInfo;
 @property(retain, nonatomic) DYShaderProfilerShaderInfo *fragmentShaderInfo; // @synthesize fragmentShaderInfo=_fragmentShaderInfo;
 @property(retain, nonatomic) DYShaderProfilerShaderInfo *vertexShaderInfo; // @synthesize vertexShaderInfo=_vertexShaderInfo;
 @property(nonatomic) BOOL valid; // @synthesize valid=_valid;
@@ -44,12 +48,12 @@
 @property(nonatomic) unsigned int fragmentCount; // @synthesize fragmentCount=_fragmentCount;
 @property(nonatomic) double vertexCountPercentage; // @synthesize vertexCountPercentage=_vertexCountPercentage;
 @property(nonatomic) unsigned int vertexCount; // @synthesize vertexCount=_vertexCount;
-@property(readonly, nonatomic) NSArray *drawCallInfoIndices; // @synthesize drawCallInfoIndices=_drawCallInfoIndices;
-@property(nonatomic) unsigned int programId; // @synthesize programId=_programId;
+@property(retain, nonatomic) NSMutableArray *drawCallInfoIndices; // @synthesize drawCallInfoIndices=_drawCallInfoIndices;
+@property(nonatomic) unsigned long long programId; // @synthesize programId=_programId;
 @property(nonatomic) unsigned int programIndex; // @synthesize programIndex=_programIndex;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) BOOL isFragmentShaderMostExpensive; // @dynamic isFragmentShaderMostExpensive;
+@property(nonatomic) BOOL isFragmentShaderMostExpensive; // @dynamic isFragmentShaderMostExpensive;
 - (id)description;
 - (id)init;
 - (void)encodeWithCoder:(id)arg1;

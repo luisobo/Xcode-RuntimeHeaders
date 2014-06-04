@@ -17,6 +17,7 @@
 + (id)keyPathsForValuesAffectingIbInspectedRightExpressionType;
 + (id)keyPathsForValuesAffectingIbInspectedLeftExpressionType;
 + (id)keyPathsForValuesAffectingIbInspectedOperators;
++ (void)ibPopulateAdditionalInspectors:(id)arg1 forCategory:(id)arg2;
 - (void)setIbInspectedCompoundTypes:(long long)arg1;
 - (long long)ibInspectedCompoundTypes;
 - (void)setIbInspectedRightExpressionObjects:(id)arg1;
@@ -38,6 +39,6 @@
 - (long long)popupTagForExpressions:(id)arg1 attributeType:(unsigned long long)arg2;
 - (void)setIbInspectedOperators:(long long)arg1;
 - (long long)ibInspectedOperators;
-- (id)ibApplicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
+- (BOOL)ibIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;
 @end
 

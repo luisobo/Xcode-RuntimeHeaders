@@ -13,12 +13,14 @@
     IBDocument *_document;
 }
 
-@property(readonly, nonatomic) IBDocument *document; // @synthesize document=_document;
+@property(readonly, nonatomic) __weak IBDocument *document; // @synthesize document=_document;
 - (void).cxx_destruct;
+- (void)endUndoGrouping;
 - (void)removeAllActionsWithTarget:(id)arg1;
 - (void)removeAllActions;
 - (void)redo;
 - (void)undo;
+- (void)primitiveInvalidate;
 - (id)initWithDocument:(id)arg1;
 
 @end

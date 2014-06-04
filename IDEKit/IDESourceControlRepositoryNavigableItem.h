@@ -10,14 +10,10 @@
 {
 }
 
-+ (id)keyPathsForValuesAffectingReachable;
-+ (id)keyPathsForValuesAffectingReachableImage;
 + (id)keyPathsForValuesAffectingProgress;
 + (id)keyPathsForValuesAffectingURLString;
 + (id)keyPathsForValuesAffectingName;
 - (void)invalidateChildItems;
-- (long long)reachable;
-- (id)reachableImage;
 - (id)progress;
 - (id)URLString;
 - (id)name;

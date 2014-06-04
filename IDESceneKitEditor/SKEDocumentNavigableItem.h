@@ -6,16 +6,16 @@
 
 #import "IDEKeyDrivenNavigableItem.h"
 
-@class DVTObservingToken, SKEDocument, SKEDocumentMemberWrapper;
+@class DVTObservingToken, SKEDocumentMemberWrapper;
 
 @interface SKEDocumentNavigableItem : IDEKeyDrivenNavigableItem
 {
     DVTObservingToken *_childWrappersToken;
-    SKEDocument *_safeDocument;
 }
 
 + (id)keyPathsForValuesAffectingImage;
 + (id)keyPathsForValuesAffectingName;
++ (id)keyPathsForValuesAffectingRepresentedDocument;
 + (id)keyPathsForValuesAffectingRepresentedWrapper;
 - (void).cxx_destruct;
 - (id)contentDocumentLocation;
@@ -25,8 +25,8 @@
 - (id)identifierForChildItem:(id)arg1;
 - (id)image;
 - (id)name;
-@property(readonly) SKEDocument *representedDocument;
-@property(readonly) SKEDocumentMemberWrapper *representedWrapper;
+@property(readonly) __weak id <SKEDocumentProtocol> representedDocument;
+@property(readonly) __weak SKEDocumentMemberWrapper *representedWrapper;
 - (void)primitiveInvalidate;
 - (id)initWithRepresentedObject:(id)arg1;
 

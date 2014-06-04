@@ -6,7 +6,7 @@
 
 #import <SpriteKit/SKEffectNode.h>
 
-@class NSColor, NSMutableDictionary, PKPhysicsWorld, SKPhysicsWorld, SKView;
+@class NSColor, NSMutableArray, NSMutableDictionary, PKPhysicsWorld, SKPhysicsBody, SKPhysicsWorld, SKView;
 
 @interface SKScene : SKEffectNode
 {
@@ -15,28 +15,34 @@
     struct CGRect _visibleRect;
     long long _scaleMode;
     NSMutableDictionary *_touchMap;
+    NSMutableArray *_allChildenWithConstraints;
     struct CGRect _bounds;
     BOOL _isSetup;
     BOOL _usesExplicitUpdate;
     BOOL _usesExplicitRender;
+    SKPhysicsBody *_scenePinBody;
     id _view;
     BOOL __needsUpdate;
     BOOL __needsRender;
     SKPhysicsWorld *_physicsWorld;
+    id <SKSceneDelegate> _delegate;
     PKPhysicsWorld *__pkPhysicsWorld;
 }
 
 + (id)sceneWithContentsOfFile:(id)arg1 size:(struct CGSize)arg2;
 + (id)sceneWithContentsOfFile:(id)arg1;
 + (id)sceneWithSize:(struct CGSize)arg1;
-@property(retain) PKPhysicsWorld *_pkPhysicsWorld; // @synthesize _pkPhysicsWorld=__pkPhysicsWorld;
+@property(retain, nonatomic) PKPhysicsWorld *_pkPhysicsWorld; // @synthesize _pkPhysicsWorld=__pkPhysicsWorld;
 @property BOOL _needsRender; // @synthesize _needsRender=__needsRender;
 @property BOOL _needsUpdate; // @synthesize _needsUpdate=__needsUpdate;
-@property long long scaleMode; // @synthesize scaleMode=_scaleMode;
+@property(nonatomic) id <SKSceneDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) long long scaleMode; // @synthesize scaleMode=_scaleMode;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-@property(readonly) SKView *view;
+@property(readonly, nonatomic) __weak SKView *view;
 - (void)setPaused:(BOOL)arg1;
+- (void)didFinishUpdate;
+- (void)didApplyConstriants;
 - (void)didSimulatePhysics;
 - (void)didEvaluateActions;
 - (void)_update:(double)arg1;
@@ -45,11 +51,11 @@
 - (void)willMoveFromView:(id)arg1;
 - (void)didMoveToView:(id)arg1;
 - (void)_didMoveToView:(id)arg1;
-@property(readonly) SKPhysicsWorld *physicsWorld; // @synthesize physicsWorld=_physicsWorld;
-@property struct CGSize size;
-@property struct CGPoint visibleRectCenter;
-@property struct CGSize visibleRectSize;
-@property struct CGRect visibleRect; // @synthesize visibleRect=_visibleRect;
+@property(readonly, nonatomic) SKPhysicsWorld *physicsWorld; // @synthesize physicsWorld=_physicsWorld;
+@property(nonatomic) struct CGSize size;
+@property(nonatomic) struct CGPoint visibleRectCenter;
+@property(nonatomic) struct CGSize visibleRectSize;
+@property(nonatomic) struct CGRect visibleRect; // @synthesize visibleRect=_visibleRect;
 - (struct CGPoint)convertPointToView:(struct CGPoint)arg1;
 - (struct CGPoint)convertPointFromView:(struct CGPoint)arg1;
 - (id)description;
@@ -65,8 +71,11 @@
 - (void)setScale:(double)arg1;
 - (void)setPosition:(struct CGPoint)arg1;
 - (struct CGPoint)position;
-@property struct CGPoint anchorPoint;
-@property(retain) NSColor *backgroundColor;
+@property(nonatomic) struct CGPoint anchorPoint;
+@property(retain, nonatomic) NSColor *backgroundColor;
+- (void)_removeConstraintsForNode:(id)arg1;
+- (void)_registerConstraintsForNode:(id)arg1;
+- (BOOL)_hasConstraints;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithSize:(struct CGSize)arg1;
 - (id)init;

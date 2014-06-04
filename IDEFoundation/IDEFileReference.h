@@ -115,16 +115,16 @@
 - (void)_setContainer:(id)arg1;
 - (BOOL)_willSetContainer:(id)arg1;
 - (id)init;
-- (void)setAssignedFileDataTypeFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
-- (void)dvt_encodeRelationshipsWithXMLArchiver:(id)arg1 version:(id)arg2;
-- (void)dvt_encodeAttributesWithXMLArchiver:(id)arg1 version:(id)arg2;
-- (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
-- (id)ideModelObjectTypeIdentifier;
 @property(readonly) NSString *sourceControlRepositoryURLString;
 @property(readonly) NSString *sourceControlCurrentRevision;
 @property(readonly) NSString *sourceControlCurrentBranchString;
 @property(readonly) IDESourceControlExtension *sourceControlExtension;
 @property(readonly) IDESourceControlRepository *sourceControlRepository;
+- (id)ideModelObjectTypeIdentifier;
+- (void)setAssignedFileDataTypeFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
+- (void)dvt_encodeRelationshipsWithXMLArchiver:(id)arg1 version:(id)arg2;
+- (void)dvt_encodeAttributesWithXMLArchiver:(id)arg1 version:(id)arg2;
+- (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
 
 @end
 

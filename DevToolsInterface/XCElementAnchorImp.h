@@ -8,7 +8,7 @@
 
 #import "XCElementAnchorP-Protocol.h"
 
-@class NSMutableArray, NSMutableDictionary, NSObject, NSObject<XCElementAnchorDelegateP>, NSObject<XCElementP>;
+@class NSMutableArray, NSMutableDictionary, NSObject, NSObject<XCElementAnchorDelegateP>, NSObject<XCElementP>, NSString;
 
 @interface XCElementAnchorImp : XCElementImp <XCElementAnchorP>
 {
@@ -65,6 +65,12 @@
 - (void)initialRepresentedObject:(id)arg1;
 - (id)initInMain:(id)arg1;
 - (BOOL)isAnchor;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

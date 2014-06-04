@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTFilePath, NSDate, NSString;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface IDESnapshotProjectItem : NSObject
+@class DVTDocumentLocation, DVTFileDataType, DVTFilePath, IDEFileReference, NSDate, NSImage, NSString;
+
+@interface IDESnapshotProjectItem : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     DVTFilePath *_projectLocation;
     int _projectStatus;
@@ -28,16 +30,27 @@
 @property(retain, nonatomic) DVTFilePath *projectLocation; // @synthesize projectLocation=_projectLocation;
 - (void).cxx_destruct;
 - (id)detailedStatusString;
-- (id)navigableItem_image;
-- (id)navigableItem_name;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) NSString *navigableItem_name;
 @property(readonly) NSString *projectTypeString; // @synthesize projectTypeString=_projectTypeString;
 - (id)statusString;
 @property(readonly) NSDate *lastOpenedDate;
 - (void)_updateStatus;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)assignPropertiesFromAnotherProjectItem:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

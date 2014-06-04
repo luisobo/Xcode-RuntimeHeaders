@@ -15,7 +15,7 @@
     DVTOutlineView *_outlineView;
     DVTGradientImageButton *_addButton;
     DVTGradientImageButton *_deleteButton;
-    DVTBorderedView *_glassBar;
+    DVTBorderedView *_topBorderedView;
     DVTSearchField *_searchField;
     IDEScheme *_runContext;
     IDEWorkspace *_workspace;
@@ -25,9 +25,9 @@
 }
 
 + (void)initialize;
-@property(copy, nonatomic) NSString *filterString; // @synthesize filterString=_filterString;
 @property(retain) IDEBuildSchemeAction *runPhase; // @synthesize runPhase=_runPhase;
 @property(retain) IDEScheme *runContext; // @synthesize runContext=_runContext;
+@property(copy, nonatomic) NSString *filterString; // @synthesize filterString=_filterString;
 - (void).cxx_destruct;
 - (void)outlineViewSelectionDidChange:(id)arg1;
 - (BOOL)outlineView:(id)arg1 shouldEditTableColumn:(id)arg2 item:(id)arg3;
@@ -59,6 +59,12 @@
 - (void)updateBoundIDEWorkspaceBinding;
 - (void)updateBoundIDERunContextBinding;
 - (id)dvtExtraBindings;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

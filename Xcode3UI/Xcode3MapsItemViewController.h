@@ -15,7 +15,7 @@
 - (id)initWithEditorItemModel:(id)arg1 portalInfoDelegate:(id)arg2;
 
 // Remaining properties
-@property(retain, nonatomic) Xcode3MapsItemModel *model;
+@property(readonly, nonatomic) Xcode3MapsItemModel *model;
 
 @end
 

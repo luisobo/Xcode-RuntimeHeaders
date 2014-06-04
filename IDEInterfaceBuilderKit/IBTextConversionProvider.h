@@ -8,6 +8,8 @@
 
 #import "DVTDiffTextFilter-Protocol.h"
 
+@class NSString;
+
 @interface IBTextConversionProvider : NSObject <DVTDiffTextFilter>
 {
 }
@@ -17,6 +19,12 @@
 + (id)pathToTextFileFromInputFilePath:(id)arg1 error:(id *)arg2;
 + (id)textFileDataTypeForInputFilePath:(id)arg1;
 + (BOOL)pathRequiresFilter:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

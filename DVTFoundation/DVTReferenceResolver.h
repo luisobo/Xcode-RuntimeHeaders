@@ -22,7 +22,7 @@
 - (id)configureWithPersistentRepresentationsOfInput:(id)arg1;
 - (id)persistentRepresentationsOfInput:(id)arg1;
 - (id)resolveInput:(id)arg1 inContext:(id)arg2 error:(id *)arg3;
-@property(readonly) NSString *displayName;
+@property(readonly, copy) NSString *displayName;
 - (void)replaceStrategiesAtIndexes:(id)arg1 withObjects:(id)arg2;
 - (void)removeStrategiesAtIndexes:(id)arg1;
 - (void)insertStrategies:(id)arg1 atIndex:(id)arg2;

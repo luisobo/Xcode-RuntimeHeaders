@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTObservingToken, DVTOperation, DVTStackBacktrace, IDESourceControlRepository, IDESourceControlRequest, NSError, NSMutableData, NSURLAuthenticationChallenge, NSURLConnection;
+@class DVTOperation, DVTStackBacktrace, IDESourceControlRepository, IDESourceControlRequest, NSError, NSMutableData, NSString, NSURLAuthenticationChallenge, NSURLConnection;
 
 @interface IDESourceControlCredentialsValidator : NSObject <DVTInvalidation>
 {
@@ -17,22 +17,19 @@
     NSMutableData *m_receivedData;
     BOOL _testSSLCertificate;
     BOOL _wasOriginallyAuthenticationRequest;
-    DVTObservingToken *_reachabilityObservingToken;
     IDESourceControlRequest *_currentRequest;
     BOOL _canShowCertificatePanel;
     int _requestType;
     IDESourceControlRepository *_repository;
     DVTOperation *_completionOperation;
     NSError *_currentError;
-    DVTOperation *_reachabilityCompletionOperation;
 }
 
 + (void)initialize;
-@property(retain) DVTOperation *reachabilityCompletionOperation; // @synthesize reachabilityCompletionOperation=_reachabilityCompletionOperation;
 @property(retain) NSError *currentError; // @synthesize currentError=_currentError;
 @property int requestType; // @synthesize requestType=_requestType;
 @property(retain) DVTOperation *completionOperation; // @synthesize completionOperation=_completionOperation;
-@property(readonly) IDESourceControlRepository *repository; // @synthesize repository=_repository;
+@property(readonly) __weak IDESourceControlRepository *repository; // @synthesize repository=_repository;
 @property BOOL canShowCertificatePanel; // @synthesize canShowCertificatePanel=_canShowCertificatePanel;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
@@ -49,13 +46,16 @@
 - (void)connection:(id)arg1 willSendRequestForAuthenticationChallenge:(id)arg2;
 - (void)showCertificatePanelForChallenge:(id)arg1 completionBlock:(id)arg2;
 - (void)performTestOfType:(int)arg1 withCompletionBlock:(id)arg2;
-- (id)validateReachabilityWithCompletionBlock:(id)arg1;
 - (id)validateCredentialsWithCompletionBlock:(id)arg1;
 - (id)initWithRepository:(id)arg1;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

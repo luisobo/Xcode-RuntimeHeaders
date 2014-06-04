@@ -6,7 +6,7 @@
 
 #import <IDEKit/IDEViewController.h>
 
-@class DVTBorderedView, DVTDeveloperRecord, DVTObservingToken, IDERollOverTableView, NSArrayController, NSImageView, NSPredicate, NSSet;
+@class DVTBorderedView, DVTDeveloperRecord, DVTObservingToken, IDERollOverTableView, NSArrayController, NSError, NSImageView, NSPredicate, NSSet;
 
 @interface IDEAccountPrefsDeveloperAccountDetailViewController : IDEViewController
 {
@@ -16,6 +16,7 @@
     _Bool _loadingTeams;
     NSSet *_teams;
     DVTDeveloperRecord *_developer;
+    NSError *_teamLoadingError;
     NSArrayController *_teamsArrayController;
     IDERollOverTableView *_teamsTable;
     NSPredicate *_fetchPredicate;
@@ -31,6 +32,7 @@
 @property(readonly) NSPredicate *fetchPredicate; // @synthesize fetchPredicate=_fetchPredicate;
 @property(retain) IDERollOverTableView *teamsTable; // @synthesize teamsTable=_teamsTable;
 @property(retain) NSArrayController *teamsArrayController; // @synthesize teamsArrayController=_teamsArrayController;
+@property(retain) NSError *teamLoadingError; // @synthesize teamLoadingError=_teamLoadingError;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)viewDidInstall;

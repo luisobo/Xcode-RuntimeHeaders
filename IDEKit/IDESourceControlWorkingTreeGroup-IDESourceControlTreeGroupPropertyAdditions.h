@@ -6,9 +6,11 @@
 
 #import "IDESourceControlWorkingTreeGroup.h"
 
-@class DVTDocumentLocation, DVTFileDataType, NSImage, NSNumber, NSString;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface IDESourceControlWorkingTreeGroup (IDESourceControlTreeGroupPropertyAdditions)
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSNumber, NSString;
+
+@interface IDESourceControlWorkingTreeGroup (IDESourceControlTreeGroupPropertyAdditions) <IDEKeyDrivenNavigableItemRepresentedObject>
 + (id)keyPathsForValuesAffectingNavigableItem_sourceControlServerStatus;
 + (id)keyPathsForValuesAffectingNavigableItem_sourceControlLocalStatus;
 + (id)keyPathsForValuesAffectingProgress;
@@ -21,5 +23,16 @@
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) NSString *navigableItem_name;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 @end
 

@@ -24,7 +24,7 @@
 - (void)_setupObservingWithOptions:(unsigned long long)arg1;
 - (id)description;
 - (void)_primitiveCancelObservation;
-- (void)_cancelOnQueue:(struct dispatch_queue_s *)arg1;
+- (void)cancel;
 - (id)initWithObservedObject:(id)arg1 owner:(id)arg2;
 
 @end

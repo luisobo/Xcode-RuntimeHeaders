@@ -13,7 +13,7 @@
 - (id)initWithExtension:(id)arg1;
 
 @optional
-@property(readonly) NSArray *actionNames;
+@property(readonly, copy) NSArray *actionNames;
 - (void)performAction:(unsigned long long)arg1 onBuild:(id)arg2 onQueue:(id)arg3 withProgressCallback:(id)arg4;
 @end
 

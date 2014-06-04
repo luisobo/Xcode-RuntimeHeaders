@@ -8,7 +8,7 @@
 
 #import "Xcode3UpgradeContext-Protocol.h"
 
-@class IDEScheme, Xcode3BuildSettingsContext;
+@class IDEScheme, NSString, Xcode3BuildSettingsContext;
 
 @interface Xcode3UpgradeSchemeContext : IDEUpgradeSchemeContext <Xcode3UpgradeContext>
 {
@@ -17,9 +17,14 @@
 
 @property(readonly) Xcode3BuildSettingsContext *buildSettings; // @synthesize buildSettings=_buildSettings;
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 @property(readonly) IDEScheme *scheme;
 - (id)initWithScheme:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

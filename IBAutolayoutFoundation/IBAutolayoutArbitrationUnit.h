@@ -22,7 +22,7 @@
 + (id)arbitrationUnitsAtAndBelowObject:(id)arg1 withLayoutInfo:(id)arg2;
 + (id)arbitrationUnitsForObjects:(id)arg1 withLayoutInfo:(id)arg2;
 + (id)arbitrationUnitForObject:(id)arg1 withLayoutInfo:(id)arg2;
-@property(readonly) NSSet *objects; // @synthesize objects=_objects;
+@property(readonly, copy) NSSet *objects; // @synthesize objects=_objects;
 @property(readonly) id rootObject; // @synthesize rootObject=_rootObject;
 @property(readonly) id <IBAutolayoutInfoProvider> layoutInfo; // @synthesize layoutInfo=_layoutInfo;
 - (void).cxx_destruct;
@@ -52,13 +52,13 @@
 - (void)addObject:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-@property(readonly) NSArray *objectsOrderedBreadthFirst; // @synthesize objectsOrderedBreadthFirst=_objectsOrderedBreadthFirst;
+@property(readonly, copy) NSArray *objectsOrderedBreadthFirst; // @synthesize objectsOrderedBreadthFirst=_objectsOrderedBreadthFirst;
 - (void)updateObjectsOrderedBreadthFirst;
 - (id)firstAncestorOfObject:(id)arg1 conformingToProtocol:(id)arg2;
 - (id)firstAncestorOfObject:(id)arg1 ofClass:(Class)arg2;
 - (id)_firstAncestorOfObject:(id)arg1 passingPredicate:(id)arg2;
 - (BOOL)containsObject:(id)arg1;
-@property(readonly) NSString *debugDescription;
+@property(readonly, copy) NSString *debugDescription;
 - (id)description;
 - (id)representationWithRepresentationForObjectBlock:(id)arg1;
 - (id)initWithRepresentation:(id)arg1 layoutInfo:(id)arg2 objectForRepresentationBlock:(id)arg3;

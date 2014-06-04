@@ -46,9 +46,10 @@
 - (void)updateRenderedContentSizeForFrame:(id)arg1;
 - (void)generateContentForSourceExpression:(id)arg1 fromSource:(id)arg2;
 - (void)generateContentForSourceExpression:(id)arg1 container:(id)arg2 symbolKind:(id)arg3 context:(id)arg4;
+- (void)generateHTMLForDataContext:(id)arg1 inExpressionSource:(id)arg2;
 - (void)generateHTMLForSymbol:(id)arg1 fromQueryDictionary:(id)arg2 inExpressionSource:(id)arg3 context:(id)arg4;
 - (void)generateHTMLFromResult:(id)arg1;
-- (void)generateHTMLFromResult:(id)arg1 clangCommentBlock:(id)arg2 symbol:(id)arg3;
+- (void)generateHTMLFromResult:(id)arg1 xmlCommentBlock:(id)arg2 symbol:(id)arg3;
 - (id)contentCreator;
 - (id)mode;
 @property(readonly) NSString *declaredInHeaderFileName;
@@ -60,6 +61,7 @@
 - (void)showDocumentation:(id)arg1;
 - (void)closeQuickHelp;
 - (void)showQuickHelp;
+- (id)init;
 - (id)localizedDefaultDescriptionString;
 - (id)localizedMultipleResultsSearchInDocViewerString;
 - (id)localizedSearchForSelectionInDocViewerString;
@@ -75,7 +77,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 @property(readonly) DVTViewController *viewControllerWithContent; // @dynamic viewControllerWithContent;
 

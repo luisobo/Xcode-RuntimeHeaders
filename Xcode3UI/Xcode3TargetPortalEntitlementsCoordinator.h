@@ -6,19 +6,20 @@
 
 #import <Xcode3UI/Xcode3TargetCoordinator.h>
 
-@class DVTDelayedInvocation, DVTNotificationToken, DVTObservingToken, NSError, NSMapTable, NSMutableDictionary, Xcode3TargetBuildSettingsCoordinator, Xcode3TargetInfoPlistCoordinator;
+@class DVTAppIDFeatures, DVTDelayedInvocation, DVTNotificationToken, DVTObservingToken, NSError, NSMapTable, NSObject<OS_dispatch_queue>, Xcode3TargetBuildSettingsCoordinator, Xcode3TargetInfoPlistCoordinator;
 
 @interface Xcode3TargetPortalEntitlementsCoordinator : Xcode3TargetCoordinator
 {
-    NSMutableDictionary *_entitlements;
+    DVTAppIDFeatures *_appIDFeatures;
     DVTDelayedInvocation *_delayedReplaceValues;
-    struct dispatch_queue_s *_portalInteractionQueue;
+    NSObject<OS_dispatch_queue> *_portalInteractionQueue;
     unsigned int _currentReplaceBlockGeneration;
     NSMapTable *_clientCallbackToEnqueueGenerationMap;
     DVTNotificationToken *_certificateNotificationToken;
     DVTNotificationToken *_profilesToken;
     DVTObservingToken *_teamObserver;
     DVTObservingToken *_runDestinationObserver;
+    id <IDEPortalEntitlementsCoordinatorPlatform> _coordinatorPlatform;
     Xcode3TargetBuildSettingsCoordinator *_buildSettingsCoordinator;
     id <IDEPortalInfoDelegate> _portalInfoDelegate;
     NSError *_currentCodesigningError;
@@ -31,19 +32,17 @@
 @property(retain) Xcode3TargetBuildSettingsCoordinator *buildSettingsCoordinator; // @synthesize buildSettingsCoordinator=_buildSettingsCoordinator;
 - (void).cxx_destruct;
 - (id)instantiatePortalFlightCheckWithCapabilitiesContext:(id)arg1 key:(id)arg2 value:(id)arg3 valueForReset:(id)arg4 validValues:(id)arg5 humanReadableKey:(id)arg6;
-- (void)_replaceValuesWithEntitlements:(id)arg1 snapshot:(id)arg2 callback:(id)arg3;
+- (void)_writeFeatures:(id)arg1 snapshot:(id)arg2 callback:(id)arg3;
 - (id)capabilitiesContext;
 - (void)_readValues;
 - (id)codesignParameterSnapshot:(id *)arg1;
 - (void)_enqueueReplacementOfEntitlementsWithSnapshot:(id)arg1;
-- (long long)platform;
-- (id)_entitlements;
+- (id)combinedAppIDFeatures;
+- (id)coordinatorPlatform;
+- (id)certificateUtilities;
 @property(readonly, nonatomic) id <DVTProvisioningProfile> profile;
-- (BOOL)boolValueForEntitlement:(id)arg1;
-- (id)stringValueForEntitlement:(id)arg1;
-- (id)valueForEntitlement:(id)arg1;
-- (id)syncSetValue:(id)arg1 forEntitlement:(id)arg2;
-- (void)setValue:(id)arg1 forEntitlement:(id)arg2 callback:(id)arg3;
+- (id)setAppIDFeatures:(id)arg1;
+@property(readonly) DVTAppIDFeatures *appIDFeatures;
 - (void)primitiveInvalidate;
 - (id)initWithTarget:(id)arg1 portalInfoDelegate:(id)arg2;
 - (id)initWithTarget:(id)arg1;

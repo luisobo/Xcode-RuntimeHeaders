@@ -21,7 +21,6 @@
 @property(copy) NSColor *innerBorderColor; // @synthesize innerBorderColor=_innerBorderColor;
 @property(nonatomic) BOOL drawsInnerBorders; // @synthesize drawsInnerBorders=_drawsInnerBorders;
 - (void).cxx_destruct;
-- (BOOL)isOpaque;
 - (BOOL)isShowingShadow;
 - (void)setShadowSides:(int)arg1;
 - (void)setShadowColor:(id)arg1;

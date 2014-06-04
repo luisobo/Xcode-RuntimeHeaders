@@ -9,6 +9,8 @@
 #import "IBBinaryArchiving-Protocol.h"
 #import "NSCoding-Protocol.h"
 
+@class NSString;
+
 @interface IBAutolayoutContentSizePriorityChangeRepresentation : NSObject <IBBinaryArchiving, NSCoding>
 {
     id <IBBinaryArchiving><NSCoding> _viewRepresentation;
@@ -25,6 +27,12 @@
 - (id)initWithBinaryUnarchiver:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithViewRepresentation:(id)arg1 type:(unsigned long long)arg2 priority:(double)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

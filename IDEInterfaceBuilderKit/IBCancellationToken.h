@@ -8,16 +8,25 @@
 
 #import "DVTCancellable-Protocol.h"
 
+@class NSString;
+
 @interface IBCancellationToken : NSObject <DVTCancellable>
 {
     id cancellationBlock;
 }
 
++ (id)tokenWithCancellable:(id)arg1;
 + (id)aggregatedCancelationToken:(id)arg1;
 - (void).cxx_destruct;
 @property(readonly, getter=isCancelled) BOOL cancelled;
 - (void)cancel;
 - (id)initWithOptionalCancellationBlock:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

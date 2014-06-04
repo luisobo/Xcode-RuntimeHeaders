@@ -67,7 +67,7 @@
 - (double)contentOriginXOffsetForCapsuleView:(id)arg1;
 - (double)capsuleView:(id)arg1 preferredContentViewWidthForCapsuleWidth:(double)arg2;
 - (BOOL)shouldDrawBorderBelowHeaderForCapsuleView:(id)arg1;
-@property(readonly) NSString *titleForDisplay;
+@property(readonly, copy) NSString *titleForDisplay;
 @property(readonly) BOOL canRename;
 - (BOOL)canDelete;
 @property BOOL canRemoveItems;
@@ -95,9 +95,13 @@
 @property(readonly) BOOL canRemove;
 @property(readonly) BOOL canSelect;
 @property(readonly) BOOL canUndisclose;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) BOOL disclosedByDefault;
-@property(readonly) NSString *footerLabel;
+@property(readonly, copy) NSString *footerLabel;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSImage *icon;
+@property(readonly) Class superclass;
 
 @end
 

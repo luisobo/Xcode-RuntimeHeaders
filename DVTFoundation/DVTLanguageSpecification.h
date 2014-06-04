@@ -17,6 +17,7 @@
     BOOL _includeInMenu;
     BOOL _usesCLikeIndentation;
     DVTSourceModelParserProductionRule *_productionRule;
+    BOOL _preservesTrailingWhitespace;
 }
 
 + (id)identifierForUniqueId:(long long)arg1;
@@ -26,6 +27,7 @@
 + (id)localizedSpecificationTypeName;
 + (id)specificationType;
 + (Class)specificationTypeBaseClass;
+@property(readonly) BOOL preservesTrailingWhitespace; // @synthesize preservesTrailingWhitespace=_preservesTrailingWhitespace;
 @property(retain) DVTSourceModelParserProductionRule *productionRule; // @synthesize productionRule=_productionRule;
 @property(readonly) NSDictionary *syntaxRules; // @synthesize syntaxRules=_syntaxRules;
 @property(readonly) Class scannerClass; // @synthesize scannerClass=_scannerClass;

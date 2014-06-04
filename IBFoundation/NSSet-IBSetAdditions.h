@@ -6,13 +6,30 @@
 
 #import "NSSet.h"
 
-@interface NSSet (IBSetAdditions)
+#import "IBCollection-Protocol.h"
+
+@class NSString;
+
+@interface NSSet (IBSetAdditions) <IBCollection>
++ (id)ib_setByUnioningCollection:(id)arg1 withCollection:(id)arg2;
++ (id)ib_collectionWithObject:(id)arg1;
++ (id)ib_emptyCollection;
++ (Class)ib_mutableClass;
+- (void)ib_removeObjectsInReceiverFromArray:(id)arg1;
+- (void)ib_removeObjectsInReceiverFromOrderedSet:(id)arg1;
+- (void)ib_removeObjectsInReceiverFromSet:(id)arg1;
+- (long long)ib_numberOfObjectsIntersectingEnumerable:(id)arg1;
+- (BOOL)ib_isSupersetOfEnumerable:(id)arg1;
+- (BOOL)ib_intersectsEnumerable:(id)arg1;
+- (BOOL)ib_isSupersetOfCollection:(id)arg1;
+- (BOOL)ib_intersectsCollection:(id)arg1;
 - (id)ib_maximumObjectUsingComparator:(id)arg1;
 - (id)ib_minimumObjectUsingComparator:(id)arg1;
 - (long long)ib_numberOfObjectsPassingTest:(id)arg1;
 - (id)ib_arrayBySortingUsingSelector:(SEL)arg1 onKeyPath:(id)arg2;
 - (id)ib_arrayBySortingUsingSelector:(SEL)arg1;
 - (id)ib_arrayBySortingUsingComparator:(id)arg1;
+- (id)ib_setByIntersectingArray:(id)arg1;
 - (id)ib_setByIntersectingSet:(id)arg1;
 - (id)ib_setBySubtractingSet:(id)arg1;
 - (void)ib_enumerateCopyOfObjectsUsingBlock:(id)arg1;
@@ -36,12 +53,26 @@
 - (id)ib_setByApplyingBlock:(id)arg1;
 - (id)ib_setByMappingBlockAndAssertingOnNilMappedValue:(id)arg1;
 - (id)ib_setByMappingBlock:(id)arg1;
+- (id)ib_arrayByMappingBlock:(id)arg1;
 - (id)ib_setByMappingWithBehavior:(long long)arg1 andBlock:(id)arg2;
 - (id)ib_objectsOfClasses:(id)arg1;
 - (id)ib_objectsConformingToProtocol:(id)arg1;
 - (id)ib_objectsOfClass:(Class)arg1;
+- (id)ib_collectionByRemovingObject:(id)arg1;
+- (id)ib_collectionByAddingObject:(id)arg1;
+- (id)ib_collectionByKeepingObjectsInSet:(id)arg1;
+- (id)ib_collectionByRemovingObjectsInSet:(id)arg1;
+- (id)ib_collectionByRemovingObjectsFromCollection:(id)arg1;
+- (id)ib_collectionByAddingObjectsFromCollection:(id)arg1;
+- (id)ib_collectionByMappingBlock:(id)arg1;
 - (id)ib_collectionByFilteringUsingBlock:(id)arg1;
 - (id)ib_setByFilteringUsingBlock:(id)arg1;
 - (id)ib_uniqueObjects;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

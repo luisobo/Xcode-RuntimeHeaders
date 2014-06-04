@@ -13,7 +13,7 @@
 - (void)_closeTabWithoutConfirming:(id)arg1 andInvalidate:(BOOL)arg2;
 - (void)_closeTabWithoutConfirming:(id)arg1;
 - (double)tabBarHeight;
-- (void)moveTabFromOtherWindow:(id)arg1 toIndex:(unsigned long long)arg2 andShow:(BOOL)arg3;
+- (void)moveTabFromOtherWindow:(id)arg1 toIndex:(unsigned long long)arg2 andSelect:(BOOL)arg3;
 - (void)replaceEmptyTabWithTabs:(id)arg1;
 - (void)closeOtherTabs:(id)arg1;
 - (void)closeTabOrWindow:(id)arg1;
@@ -31,12 +31,11 @@
 - (unsigned long long)selectedTabIndex;
 - (id)selectedTab;
 - (id)orderedTabViewItems;
-- (id)tabBarView;
 - (void)setTabBarVisible:(BOOL)arg1;
 - (BOOL)isTabBarVisible;
 - (void)cancelUpdateTabTitlesSoon;
-- (void)tabBarViewUpdateTabTitlesNow:(id)arg1;
-- (void)tabBarViewUpdateTabTitlesSoon:(id)arg1;
+- (void)tabBarViewUpdateTabTitlesNow;
+- (void)tabBarViewUpdateTabTitlesSoon;
 - (struct CGRect)adjustedFrameForCascade:(struct CGRect)arg1 fromWindow:(id)arg2;
 - (struct CGRect)adjustedFrameForSaving:(struct CGRect)arg1;
 - (BOOL)canReceiveDragFromTabbedWindowControlling:(id)arg1;

@@ -16,6 +16,7 @@
 - (id)topSectionDescription;
 - (id)topSectionDescriptionEntries;
 - (id)topSectionShortDescription;
+- (id)topSectionCenterTitleAccessoryView;
 - (id)topSectionTitleAccessoryView;
 - (id)topSectionShortDescriptionTitle;
 - (id)topSectionImage;

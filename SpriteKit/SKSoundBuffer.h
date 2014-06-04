@@ -19,8 +19,8 @@
 + (id)bufferWithFileNamed:(id)arg1;
 - (void).cxx_destruct;
 - (void)dealloc;
-@property(readonly) double duration;
-@property(readonly) unsigned int bufferId;
+@property(readonly, nonatomic) double duration;
+@property(readonly, nonatomic) unsigned int bufferId;
 - (id)description;
 - (id)init;
 

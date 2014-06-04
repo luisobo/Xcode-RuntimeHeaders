@@ -22,12 +22,16 @@
     long long _rawLanguage;
     BOOL _haveModelOccurrence;
     BOOL _isVirtual;
+    NSString *_moduleName;
 }
 
++ (id)newSymbolOfKind:(id)arg1 language:(id)arg2 name:(id)arg3 moduleName:(id)arg4 resolution:(id)arg5 isVirtual:(BOOL)arg6 role:(long long)arg7 location:(id)arg8 forQueryProvider:(id)arg9;
++ (id)newSymbolOfKind:(id)arg1 language:(id)arg2 name:(id)arg3 resolution:(id)arg4 isVirtual:(BOOL)arg5 role:(long long)arg6 location:(id)arg7 forQueryProvider:(id)arg8;
 + (id)newSymbolOfKind:(id)arg1 language:(id)arg2 name:(id)arg3 resolution:(id)arg4 forQueryProvider:(id)arg5;
 + (id)newSymbolOfRawKind:(long long)arg1 rawLanguage:(long long)arg2 name:(id)arg3 resolution:(id)arg4 forQueryProvider:(id)arg5;
 + (id)newSymbolOfRawKind:(long long)arg1 kind:(id)arg2 rawLanguage:(long long)arg3 language:(id)arg4 name:(id)arg5 resolution:(id)arg6 forQueryProvider:(id)arg7;
 + (Class)classForSymbolKind:(id)arg1;
+@property(copy, nonatomic) NSString *moduleName; // @synthesize moduleName=_moduleName;
 @property(nonatomic) BOOL isVirtual; // @synthesize isVirtual=_isVirtual;
 @property(readonly, nonatomic) long long rawLanguage; // @synthesize rawLanguage=_rawLanguage;
 @property(readonly, nonatomic) DVTSourceCodeLanguage *symbolLanguage; // @synthesize symbolLanguage=_symbolLanguage;
@@ -40,9 +44,7 @@
 @property(readonly, nonatomic) DVTFilePath *filePathToHeaderToImport;
 @property(readonly, nonatomic) NSString *completionString;
 - (id)qualifiedDisplayName;
-- (id)_containerName;
 - (id)displayName;
-- (id)_nameFromFile;
 - (id)references;
 - (id)referencingFiles;
 - (id)containerSymbol;
@@ -65,12 +67,14 @@
 - (id)modelOccurrence;
 @property(readonly, nonatomic, getter=isInProject) BOOL inProject;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
-- (id)description;
+@property(readonly) unsigned long long hash;
+@property(readonly, copy) NSString *description;
 - (void)setRawKind:(long long)arg1 kind:(id)arg2 rawLanguage:(long long)arg3 language:(id)arg4 name:(id)arg5 resolution:(id)arg6;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
 @property(readonly, nonatomic) NSObject<IDEIndexQueryProvider> *queryProvider;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,31 +6,27 @@
 
 #import "SCNNode.h"
 
-@class NSString;
+@class NSImage, NSString, SCNParticleSystem;
 
 @interface SCNNode (SceneKit_SKEAdditions)
-+ (id)ide_attributeInfoNames;
 + (id)keyPathsForValuesAffectingIde_displayName;
++ (id)ske_displayNameForUndoKVOKeypath:(id)arg1;
 - (BOOL)ide_canBenefitFromFlattening;
 - (BOOL)ide_hasNodeAttributes;
 - (BOOL)hasPotentialPointOfView;
 - (BOOL)isPotentialPointOfView;
-- (id)ide_attributeInfo3;
-- (id)ide_attributeInfo2;
-- (id)ide_attributeInfo1;
-- (id)ide_attributeInfo0;
-- (id)ide_attributeInfos;
+- (id)statusInfo;
 - (unsigned long long)ide_attributesInfo;
 @property(readonly) BOOL ide_shouldAppearInSceneGraph;
 @property(readonly) BOOL ide_shouldBeRemovedFromSceneGraphUponSave;
-@property BOOL ide_showBoundingBox;
 @property double ide_rotationAngle;
-@property CDStruct_39925896 ide_rotationAxis;
-- (id)ide_icon;
-- (id)ide_attributes;
+@property struct SCNVector3 ide_rotationAxis;
+@property(readonly) NSImage *ide_icon;
+@property(retain) NSString *ide_visualizedParticleSystemFileName;
+@property(retain) SCNParticleSystem *ide_visualizedParticleSystem;
+@property(retain) SCNParticleSystem *ide_firstParticleSystem;
 - (long long)polygonCount;
 @property(readonly) NSString *ide_displayName;
-- (id)ske_displayNameForUndoKVOKeypath:(id)arg1;
 - (id)ske_undoKVOKeypaths;
 - (long long)ide_renderingOrder;
 - (void)setIde_renderingOrder:(long long)arg1;

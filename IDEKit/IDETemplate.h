@@ -10,10 +10,15 @@
 #import "NSPasteboardReading-Protocol.h"
 #import "NSPasteboardWriting-Protocol.h"
 
-@class DVTFilePath, IDETemplateKind, IDEWorkspace, NSArray, NSDictionary, NSImage, NSString;
+@class DVTFilePath, IDETemplateKind, IDETemplateOption, IDEWorkspace, NSArray, NSDictionary, NSImage, NSString;
 
 @interface IDETemplate : NSObject <NSPasteboardWriting, NSPasteboardReading, IDETemplateOptionParent>
 {
+    BOOL _chooserOnly;
+    NSString *_defaultCompletionName;
+    NSImage *_templateIcon;
+    NSString *_mainTemplateFile;
+    NSArray *_allowedTypes;
     NSDictionary *_templateInfo;
     DVTFilePath *_filePath;
     IDETemplateKind *_templateKind;
@@ -21,16 +26,13 @@
     NSString *_templateSummary;
     NSString *_templateDescription;
     NSString *_templateCategory;
-    long long _sortOrder;
-    NSString *_mainTemplateFile;
-    NSArray *_allowedTypes;
-    NSString *_defaultCompletionName;
     NSArray *_templatePlatforms;
     NSArray *_templateOptions;
-    NSImage *_templateIcon;
-    BOOL _chooserOnly;
     NSString *_buildableType;
+    long long _sortOrder;
     IDEWorkspace *_workspace;
+    IDETemplateOption *_optionWithMainTemplateFiles;
+    IDETemplateOption *_optionWithAllowedTypes;
 }
 
 + (unsigned long long)readingOptionsForType:(id)arg1 pasteboard:(id)arg2;
@@ -41,39 +43,46 @@
 + (void)_processChildrenOfFilePath:(id)arg1 enumerator:(id)arg2;
 + (void)initialize;
 + (id)_templateInfoForTemplateAtURL:(id)arg1 error:(id *)arg2;
+@property(retain) IDETemplateOption *optionWithAllowedTypes; // @synthesize optionWithAllowedTypes=_optionWithAllowedTypes;
+@property(retain) IDETemplateOption *optionWithMainTemplateFiles; // @synthesize optionWithMainTemplateFiles=_optionWithMainTemplateFiles;
 @property(retain, nonatomic) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
-@property(readonly) NSString *buildableType; // @synthesize buildableType=_buildableType;
-@property(readonly) BOOL chooserOnly; // @synthesize chooserOnly=_chooserOnly;
-@property(readonly) NSString *mainTemplateFile; // @synthesize mainTemplateFile=_mainTemplateFile;
-@property(readonly) NSArray *allowedTypes; // @synthesize allowedTypes=_allowedTypes;
-@property(readonly) NSArray *templateOptions; // @synthesize templateOptions=_templateOptions;
 @property long long sortOrder; // @synthesize sortOrder=_sortOrder;
+@property(readonly, copy) NSString *buildableType; // @synthesize buildableType=_buildableType;
+@property(readonly) BOOL chooserOnly; // @synthesize chooserOnly=_chooserOnly;
+@property(readonly, copy) NSArray *templateOptions; // @synthesize templateOptions=_templateOptions;
 @property(readonly) NSArray *templatePlatforms; // @synthesize templatePlatforms=_templatePlatforms;
-@property(readonly) NSString *templateCategory; // @synthesize templateCategory=_templateCategory;
+@property(readonly, copy) NSString *templateCategory; // @synthesize templateCategory=_templateCategory;
 @property(copy) NSString *templateDescription; // @synthesize templateDescription=_templateDescription;
-@property(readonly) NSString *templateSummary; // @synthesize templateSummary=_templateSummary;
-@property(readonly) NSString *templateName; // @synthesize templateName=_templateName;
+@property(readonly, copy) NSString *templateSummary; // @synthesize templateSummary=_templateSummary;
+@property(readonly, copy) NSString *templateName; // @synthesize templateName=_templateName;
 @property(readonly) IDETemplateKind *templateKind; // @synthesize templateKind=_templateKind;
 @property(readonly) DVTFilePath *filePath; // @synthesize filePath=_filePath;
-@property(readonly) NSDictionary *templateInfo; // @synthesize templateInfo=_templateInfo;
+@property(readonly, copy) NSDictionary *templateInfo; // @synthesize templateInfo=_templateInfo;
 - (void).cxx_destruct;
 - (id)initWithPasteboardPropertyList:(id)arg1 ofType:(id)arg2;
 - (id)pasteboardPropertyListForType:(id)arg1;
 - (id)writableTypesForPasteboard:(id)arg1;
+@property(readonly, copy) NSArray *allowedTypes; // @synthesize allowedTypes=_allowedTypes;
+@property(readonly, copy) NSString *mainTemplateFile; // @synthesize mainTemplateFile=_mainTemplateFile;
 - (void)valueDidChangeForOption:(id)arg1;
 - (id)currentOptionsIdentifierValue;
 - (id)productNameOption;
 - (id)currentCompletionName;
-@property(readonly) NSString *defaultCompletionName; // @synthesize defaultCompletionName=_defaultCompletionName;
+@property(readonly, copy) NSString *defaultCompletionName; // @synthesize defaultCompletionName=_defaultCompletionName;
 - (long long)templateCompare:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)identifier;
-@property(readonly) NSImage *templateIcon; // @dynamic templateIcon;
+@property(readonly, copy) NSImage *templateIcon; // @synthesize templateIcon=_templateIcon;
 - (id)fallbackTemplateIcon;
 - (id)imageAtTemplateSize:(id)arg1;
 - (Class)templateOptionClass;
 - (id)initWithTemplateInfo:(id)arg1 filePath:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

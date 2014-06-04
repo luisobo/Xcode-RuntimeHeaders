@@ -8,7 +8,7 @@
 
 #import "Xcode3SourceListItemEditor-Protocol.h"
 
-@class DVTSourceExpression, DVTStackView_ML, IDEContainerQuery, IDEViewController<IDECapsuleViewController>, NSArray, NSMutableDictionary, PBXNativeTarget, Xcode3CodesignTroubleshootingViewController, Xcode3ProjectEditor;
+@class DVTSourceExpression, DVTStackView_ML, IDEContainerQuery, NSArray, NSMutableDictionary, NSString, PBXNativeTarget, Xcode3CodesignTroubleshootingViewController, Xcode3ProjectEditor;
 
 @interface Xcode3TargetEditor : IDEViewController <Xcode3SourceListItemEditor>
 {
@@ -22,6 +22,7 @@
     NSMutableDictionary *_assetCatalogWrappersByImageType;
 }
 
++ (id)keyPathsForValuesAffectingTargetNibFiles;
 + (id)validValuesForBuildSetting:(id)arg1 inTarget:(id)arg2;
 + (void)setValue:(id)arg1 forBuildSetting:(id)arg2 inTarget:(id)arg3;
 + (id)valueForBuildSetting:(id)arg1 inTarget:(id)arg2;
@@ -29,8 +30,8 @@
 + (id)duplicateTarget:(id)arg1;
 + (id)_duplicateTarget:(id)arg1;
 + (BOOL)canInspectBlueprint:(id)arg1;
-+ (Class)targetSummaryEditorClassWithProductTypeIdentifier:(id)arg1 platformIdentifier:(id)arg2 productFileExtension:(id)arg3;
-+ (id)extensionForTargetSummaryEditorWithProductTypeIdentifier:(id)arg1 platformIdentifier:(id)arg2 productFileExtension:(id)arg3;
++ (Class)targetSummaryEditorClassWithProductType:(id)arg1 platformIdentifier:(id)arg2 productFileExtension:(id)arg3;
++ (id)extensionForTargetSummaryEditorWithProductType:(id)arg1 platformIdentifier:(id)arg2 productFileExtension:(id)arg3;
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;
 + (id)localizedSourceListItemEditorName;
@@ -74,6 +75,7 @@
 - (void)createImageSetNamed:(id)arg1 inAssetCatalogAtFilePath:(id)arg2 completionBlock:(id)arg3;
 - (void)createAssetCatalogWithSetName:(id)arg1 completionBlock:(id)arg2;
 - (id)targetAssetCatalogFilePaths;
+- (id)targetNibFiles;
 - (id)targetMainInterfaceFiles;
 - (id)validValuesForBuildSetting:(id)arg1;
 - (id)expandedValueForString:(id)arg1;
@@ -86,10 +88,14 @@
 - (void)setValue:(id)arg1 forPlistSetting:(id)arg2;
 - (id)valueForPlistSetting:(id)arg1 ofType:(Class)arg2;
 - (BOOL)plistSettingsAreValid;
+- (BOOL)isAFrameworkEditor;
+- (BOOL)isAnAppExtensionEditor;
+- (BOOL)isAnAppEditor;
 - (id)portalCoordinator;
 - (id)infoPlistCoordinator;
 @property(readonly) Xcode3CodesignTroubleshootingViewController *codesignTroubleViewController;
-@property(readonly) IDEViewController<IDECapsuleViewController> *frameworksViewController;
+- (id)frameworksViewController;
+- (id)embeddedBinariesViewController;
 - (void)loadView;
 - (void)_refreshEditor:(id)arg1;
 - (Class)targetSummaryEditorClass;
@@ -97,9 +103,13 @@
 
 // Remaining properties
 @property(readonly) struct CGRect currentSelectionFrame;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(copy, nonatomic) NSArray *inspectedBlueprints;
 @property(readonly, nonatomic) DVTSourceExpression *mouseOverExpression;
 @property(readonly, nonatomic) DVTSourceExpression *selectedExpression;
+@property(readonly) Class superclass;
 
 @end
 

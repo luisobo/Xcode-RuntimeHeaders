@@ -14,6 +14,8 @@
     NSArray *_childWrappers;
 }
 
++ (id)keyPathsForValuesAffectingImage;
++ (id)keyPathsForValuesAffectingExtendedName;
 + (id)keyPathsForValuesAffectingName;
 + (Class)validClassForMember:(id)arg1;
 + (id)validMemberClasses;
@@ -23,13 +25,26 @@
 - (id)ideModelObjectTypeIdentifier;
 - (id)humanReadableNameForInspectorKeyPath:(id)arg1;
 - (void)document:(id)arg1 didReplaceChildMember:(id)arg2 ofMember:(id)arg3 byChildMember:(id)arg4;
+- (void)document:(id)arg1 willReplaceChildMember:(id)arg2 ofMember:(id)arg3 byChildMember:(id)arg4;
 - (void)document:(id)arg1 didRemoveChildMember:(id)arg2 fromMember:(id)arg3;
+- (void)document:(id)arg1 willRemoveChildMember:(id)arg2 fromMember:(id)arg3;
 - (void)document:(id)arg1 didAddChildMember:(id)arg2 toMember:(id)arg3;
+- (void)document:(id)arg1 willAddChildMember:(id)arg2 toMember:(id)arg3;
 - (id)childWrappers;
 - (void)setChildWrappers:(id)arg1;
 - (void)rebuildChildWrappers;
+- (id)attributesWrappers;
+@property(readonly) SKEDocumentObjectMemberWrapper *particleSystemMemberWrapper;
+@property(readonly) SKEDocumentObjectMemberWrapper *materialMemberWrapper;
+@property(readonly) SKEDocumentObjectMemberWrapper *lightMemberWrapper;
+@property(readonly) SKEDocumentObjectMemberWrapper *geometryMemberWrapper;
+@property(readonly) SKEDocumentObjectMemberWrapper *cameraMemberWrapper;
+@property(readonly) SKEDocumentObjectMemberWrapper *animationMemberWrapper;
+@property(readonly) SKEDocumentObjectMemberWrapper *nodeMemberWrapper;
+@property(readonly) NSString *ide_entityIdentifier;
 - (id)navigableDocumentLocation;
 - (id)image;
+@property(readonly) NSString *extendedName;
 - (id)name;
 - (id)identifier;
 - (id)description;

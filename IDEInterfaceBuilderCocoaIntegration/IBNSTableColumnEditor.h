@@ -18,7 +18,7 @@
 - (void)dragTableCellView:(id)arg1 withLeftMouseDown:(id)arg2 andLeftMouseDragged:(id)arg3;
 - (void)reattachDraggedObjects:(id)arg1 dragContext:(id)arg2;
 - (BOOL)shouldChildHaveResizeKnobs:(id)arg1;
-- (CDStruct_648df176)activeKnobRectsForObject:(id)arg1;
+- (CDStruct_fa3e0eee)activeKnobRectsForObject:(id)arg1;
 - (id)viewForClippingToWhenDrawingSelectionKnobsForObject:(id)arg1;
 - (BOOL)isContainedPrototypeCellView:(id)arg1;
 - (void)drawSelectionHighlightForObject:(id)arg1;

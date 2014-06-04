@@ -10,7 +10,7 @@
 {
 }
 
-- (void)compileImageReps:(id)arg1 options:(id)arg2 queue:(struct dispatch_queue_s *)arg3 completionHandler:(id)arg4;
+- (void)compileImageReps:(id)arg1 options:(id)arg2 queue:(id)arg3 completionHandler:(id)arg4;
 
 @end
 

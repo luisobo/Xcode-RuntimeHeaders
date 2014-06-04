@@ -11,12 +11,14 @@
 @protocol DSAToken <NSObject>
 @property(readonly) DSADocSet *docSet;
 @property(readonly, getter=isDeprecated) BOOL deprecated;
-@property(readonly) NSString *declaredInFrameworkName;
-@property(readonly) NSString *type;
-@property(readonly) NSString *scope;
-@property(readonly, nonatomic) NSURL *URL;
-@property(readonly) NSString *apiLanguage;
-@property(readonly) NSString *name;
+@property(readonly, copy) NSString *declaredInFrameworkName;
+@property(readonly, copy) NSString *type;
+@property(readonly, copy) NSString *scope;
+@property(readonly, copy, nonatomic) NSURL *URL;
+@property(readonly, copy) NSString *apiLanguage;
+@property(readonly, copy) NSString *name;
+@property(readonly, copy) NSString *usr;
+- (id)tokenWithFixedUpLanguage:(id)arg1;
 - (id)XMLDescription;
 @end
 

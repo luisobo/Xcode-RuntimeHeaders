@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, IDEFileReference;
+@class DVTStackBacktrace, IDEFileReference, NSString;
 
 @interface IDEFileTextSettings : NSObject <DVTInvalidation>
 {
@@ -30,7 +30,7 @@
 @property unsigned long long lineEndings; // @synthesize lineEndings=_lineEndings;
 @property(retain, nonatomic) IDEFileReference *fileReference; // @synthesize fileReference=_fileReference;
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)updateWrapLines;
 - (void)updateIndentWidth;
 - (void)updateTabWidth;
@@ -46,7 +46,10 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

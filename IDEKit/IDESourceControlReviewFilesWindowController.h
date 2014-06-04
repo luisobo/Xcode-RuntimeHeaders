@@ -10,7 +10,7 @@
 #import "IDEReviewFilesViewControllerDelegate-Protocol.h"
 #import "NSMenuDelegate-Protocol.h"
 
-@class DVTObservingToken, IDENavigableItemCoordinator, IDEReviewFilesViewController, IDESourceControlRequest, IDEWorkspace, NSArray, NSMutableArray, NSWindow;
+@class DVTObservingToken, IDENavigableItemCoordinator, IDEReviewFilesViewController, IDESourceControlRequest, IDEWorkspace, NSArray, NSMutableArray, NSString, NSWindow;
 
 @interface IDESourceControlReviewFilesWindowController : NSWindowController <IDENavigableItemCoordinatorDelegate, IDEReviewFilesViewControllerDelegate, NSMenuDelegate>
 {
@@ -80,6 +80,12 @@
 - (void)windowDidLoad;
 - (id)windowNibName;
 - (id)initWithWindow:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

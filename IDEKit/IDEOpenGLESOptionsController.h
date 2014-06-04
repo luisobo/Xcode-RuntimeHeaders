@@ -11,11 +11,11 @@
 @interface IDEOpenGLESOptionsController : IDELaunchActionOptionViewController
 {
     DVTObservingToken *_frameCaptureModeObservingToken;
-    BOOL _enablePerformanceAnalysis;
+    BOOL _enableFrameDebugger;
 }
 
 + (BOOL)availableForScheme:(id)arg1;
-@property(nonatomic) BOOL enablePerformanceAnalysis; // @synthesize enablePerformanceAnalysis=_enablePerformanceAnalysis;
+@property(nonatomic) BOOL enableFrameDebugger; // @synthesize enableFrameDebugger=_enableFrameDebugger;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)viewWillUninstall;

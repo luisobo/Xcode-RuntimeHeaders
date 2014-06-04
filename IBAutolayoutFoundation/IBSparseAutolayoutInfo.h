@@ -10,7 +10,7 @@
 #import "IBBinaryArchiving-Protocol.h"
 #import "NSCoding-Protocol.h"
 
-@class IBMutableIdentityDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet;
+@class IBMutableIdentityDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
 
 @interface IBSparseAutolayoutInfo : NSObject <IBAutolayoutInfoProvider, NSCoding, IBBinaryArchiving>
 {
@@ -77,13 +77,14 @@
 - (void)setWidgetType:(id)arg1 forView:(id)arg2;
 - (id)widgetTypeForView:(id)arg1;
 - (id)objectsFromAncestor:(id)arg1 toObject:(id)arg2;
+- (id)topLevelObjectForObject:(id)arg1;
 - (id)topLevelObjects;
 - (id)orderedChildrenOfObject:(id)arg1;
 - (id)childrenOfObject:(id)arg1;
 - (id)parentOfObject:(id)arg1;
 - (id)parentOfObjectOrNSNull:(id)arg1;
 - (BOOL)containsObject:(id)arg1;
-- (id)debugDescription;
+@property(readonly, copy) NSString *debugDescription;
 - (void)trackObjectAsView:(id)arg1;
 - (BOOL)objectIsView:(id)arg1;
 - (id)objects;
@@ -96,6 +97,11 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithUserInterfaceLayoutDirection:(long long)arg1 layoutConstraintClass:(Class)arg2 layoutConstantClass:(Class)arg3 symbolicLayoutConstantClass:(Class)arg4 arbitrationUnitClass:(Class)arg5 autolayoutEngineClass:(Class)arg6 autolayoutFrameDecisionDriverClass:(Class)arg7 allowsIllegalAutolayoutStates:(BOOL)arg8;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

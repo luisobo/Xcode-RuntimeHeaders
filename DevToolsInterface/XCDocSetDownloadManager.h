@@ -9,7 +9,7 @@
 #import "DSMSubscriptionUpdateProtocol-Protocol.h"
 #import "PBXTrackableTask-Protocol.h"
 
-@class NSMutableArray, PBXTrackableTaskManager, XCTaskListModule;
+@class NSMutableArray, NSString, PBXTrackableTaskManager, XCTaskListModule;
 
 @interface XCDocSetDownloadManager : NSObject <DSMSubscriptionUpdateProtocol, PBXTrackableTask>
 {
@@ -73,6 +73,12 @@
 - (void)dealloc;
 - (id)init;
 - (void)allowDownloads;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

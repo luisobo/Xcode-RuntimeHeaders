@@ -7,11 +7,12 @@
 #import "IDEEditor.h"
 
 #import "DVTSourceExpressionSource-Protocol.h"
+#import "IDEFilterControlBarTarget-Protocol.h"
 #import "NSTextFieldDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTChoice, DVTGradientImageButton, DVTImageAndTextCell, DVTObservingToken, DVTOutlineView, DVTReplacementView, DVTSourceExpression, DVTSplitView, DVTStackBacktrace, DVTStateToken, DVTTabChooserView, IDENavigableItemCoordinator, IDEUpgradeTaskWindowController, NSArray, NSMutableArray, NSPopUpButton, NSString, NSTableColumn, NSTreeController, NSViewController, Xcode3ProjectEditorTopBarView, Xcode3TargetEditingGroup;
+@class DVTBorderedView, DVTChoice, DVTGradientImageButton, DVTImageAndTextCell, DVTObservingToken, DVTOutlineView, DVTReplacementView, DVTSDK, DVTSourceExpression, DVTSourceLanguageService, DVTSplitView, DVTStackBacktrace, DVTStateToken, DVTTabChooserView, IDEFilterControlBar, IDENavigableItemCoordinator, IDEUpgradeTaskWindowController, NSArray, NSMutableArray, NSPopUpButton, NSString, NSTableColumn, NSTreeController, NSViewController, Xcode3LocalizationExportController, Xcode3LocalizationImportController, Xcode3ProjectEditorTopBarView, Xcode3TargetEditingGroup;
 
-@interface Xcode3ProjectEditor : IDEEditor <NSTextFieldDelegate, DVTSourceExpressionSource>
+@interface Xcode3ProjectEditor : IDEEditor <NSTextFieldDelegate, DVTSourceExpressionSource, IDEFilterControlBarTarget>
 {
     DVTSplitView *_splitView;
     DVTTabChooserView *_tabChooserView;
@@ -21,6 +22,7 @@
     DVTOutlineView *_outlineView;
     NSTableColumn *_mainTableColumn;
     NSTreeController *_treeController;
+    IDEFilterControlBar *_filterBar;
     NSArray *_tabChoices;
     DVTChoice *_selectedChoice;
     Class _previousProjectEditorClass;
@@ -41,10 +43,17 @@
     BOOL _loadingView;
     NSArray *_previousSourceListSelection;
     long long _previousSourceListPopUpSelectedIndex;
+    NSMutableArray *_contentsBeforeFiltering;
+    Xcode3LocalizationExportController *_exporter;
+    Xcode3LocalizationImportController *_importer;
     BOOL _sourceListVisible;
+    BOOL _filtered;
     DVTGradientImageButton *_sourceListVisiblityToggleButton;
     NSPopUpButton *_sourceListPopUp;
     Xcode3ProjectEditorTopBarView *_topBarView;
+    DVTGradientImageButton *_addTargetButton;
+    DVTGradientImageButton *_removeTargetButton;
+    NSString *_filterString;
 }
 
 + (id)hideSourceListTemplateImage;
@@ -53,7 +62,11 @@
 + (long long)version;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (id)metricLogAspect;
+@property(getter=isFiltered) BOOL filtered; // @synthesize filtered=_filtered;
+@property(copy, nonatomic) NSString *filterString; // @synthesize filterString=_filterString;
 @property(nonatomic, getter=isSourceListVisible) BOOL sourceListVisible; // @synthesize sourceListVisible=_sourceListVisible;
+@property(retain) DVTGradientImageButton *removeTargetButton; // @synthesize removeTargetButton=_removeTargetButton;
+@property(retain) DVTGradientImageButton *addTargetButton; // @synthesize addTargetButton=_addTargetButton;
 @property(retain) Xcode3ProjectEditorTopBarView *topBarView; // @synthesize topBarView=_topBarView;
 @property(retain) NSPopUpButton *sourceListPopUp; // @synthesize sourceListPopUp=_sourceListPopUp;
 @property(retain) DVTGradientImageButton *sourceListVisiblityToggleButton; // @synthesize sourceListVisiblityToggleButton=_sourceListVisiblityToggleButton;
@@ -61,11 +74,16 @@
 @property(readonly) IDENavigableItemCoordinator *navigableItemCoordinator; // @synthesize navigableItemCoordinator=_navigableItemCoordinator;
 @property(copy) NSArray *draggingTreeNodes; // @synthesize draggingTreeNodes=_draggingTreeNodes;
 @property(retain, nonatomic) DVTChoice *selectedChoice; // @synthesize selectedChoice=_selectedChoice;
-@property(copy) NSMutableArray *contents; // @synthesize contents=_contents;
+@property(copy, nonatomic) NSMutableArray *contents; // @synthesize contents=_contents;
 - (void).cxx_destruct;
 - (BOOL)validateMenuItem:(id)arg1;
 - (id)supplementalTargetForAction:(SEL)arg1 sender:(id)arg2;
+- (void)localizationImport:(id)arg1;
+- (void)_invalidateImporter;
+- (void)localizationExport:(id)arg1;
+- (void)_invalidateExporter;
 - (void)addTargetToProject:(id)arg1;
+- (void)showUpgradeTestingSheet:(id)arg1;
 - (void)showUpgradeProjectSheet:(id)arg1;
 - (void)contextMenu_delete:(id)arg1;
 - (void)contextMenu_duplicate:(id)arg1;
@@ -119,6 +137,8 @@
 - (id)currentSelectedDocumentLocations;
 - (BOOL)canBecomeMainViewController;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 document:(id)arg3;
+- (id)filterButtonMenu;
+- (id)filterDefinitionIdentifier;
 - (void)_populateSourceList;
 - (void)_populateSourceListPopUp;
 - (void)_showMultipleSelectionSourceListPopUpItem:(BOOL)arg1;
@@ -128,9 +148,15 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly, nonatomic) DVTSourceLanguageService *languageService;
 @property(readonly) DVTSourceExpression *quickHelpExpression;
+@property(readonly) DVTSDK *sdk;
 @property(readonly, nonatomic) NSString *selectedText;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

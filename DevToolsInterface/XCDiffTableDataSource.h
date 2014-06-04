@@ -9,6 +9,8 @@
 #import "NSTableViewDelegate-Protocol.h"
 #import "PBXTableColumnProvider-Protocol.h"
 
+@class NSString;
+
 @interface XCDiffTableDataSource : XCDiffObjectDataSource <NSTableViewDelegate, PBXTableColumnProvider>
 {
 }
@@ -26,6 +28,12 @@
 - (struct _XCDiffToken)diffTokenInDiffDescriptor:(id)arg1 atIndex:(long long)arg2;
 - (id)arrangedContent;
 - (id)initWithContent:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

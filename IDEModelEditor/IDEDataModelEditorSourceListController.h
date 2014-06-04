@@ -8,7 +8,7 @@
 
 #import "IDEDataModelEditorController-Protocol.h"
 
-@class DVTNotificationToken, DVTObservingToken, IDEDMSourceListSection, IDENavigatorStatusCell;
+@class DVTNotificationToken, DVTObservingToken, IDEDMSourceListSection, IDENavigatorStatusCell, NSString;
 
 @interface IDEDataModelEditorSourceListController : IDEDMEditorSourceListController <IDEDataModelEditorController>
 {
@@ -57,6 +57,12 @@
 - (id)model;
 - (id)parentEditor;
 - (id)nibName;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

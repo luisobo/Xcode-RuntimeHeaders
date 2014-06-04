@@ -29,6 +29,7 @@
 - (id)lowercaseUTF8ByteForString:(id)arg1;
 - (id)createRelatedTokenGroupNamed:(id)arg1 withTokens:(id)arg2;
 - (id)createTokenWithIDInformation:(id)arg1;
+- (id)createTokenWithUSR:(id)arg1 iDInformation:(id)arg2;
 - (id)managedObjectsForContainer;
 - (id)managedObjectsForTokenType;
 - (id)managedObjectsForLanguage;
@@ -55,6 +56,7 @@
 - (id)managedObjectContext;
 - (id)docSet;
 - (id)initWithDocSet:(id)arg1 forBackgroundQueries:(BOOL)arg2;
+- (id)lookupTokenWithUSR:(id)arg1;
 - (id)tokensMatchingCriteria:(id)arg1 inNodes:(id)arg2 error:(id *)arg3;
 - (id)tokensMatchingCriteria:(id)arg1 error:(id *)arg2;
 - (BOOL)containsTokens:(id)arg1;

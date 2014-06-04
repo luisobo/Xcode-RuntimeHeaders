@@ -13,14 +13,12 @@
     NSMutableArray *_computedChildItems;
 }
 
-+ (id)keyPathsForValuesAffectingReachable;
 + (id)keyPathsForValuesAffectingProgress;
 + (id)keyPathsForValuesAffectingName;
 - (void).cxx_destruct;
 - (id)childRepresentedObjects;
 - (void)idesc_setChildRepresentedObjects:(id)arg1;
 - (BOOL)isLeaf;
-- (long long)reachable;
 - (id)progress;
 - (id)name;
 

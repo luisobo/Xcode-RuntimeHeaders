@@ -8,50 +8,35 @@
 
 #import "IDEVariablesViewQuickLookProvider-Protocol.h"
 
-@class DBGDataValue, DBGRoundedInnerShadowView, NSLayoutConstraint, NSMutableArray, NSNumberFormatter, NSString, NSURL, NSView;
+@class DBGDataValue, DBGNSColorProviderCGColorRefExpression, DVTColorSwatchWithComponentsView, DVTObservingToken, NSString, NSURL, NSView;
 
 @interface DBGColorQuickLookProvider : NSViewController <IDEVariablesViewQuickLookProvider>
 {
     DBGDataValue *_dataValue;
     BOOL _wasCancelled;
-    NSString *_colorSpaceName;
-    NSMutableArray *_colorComponents;
     NSString *_cgColorExpression;
+    DBGNSColorProviderCGColorRefExpression *_colorProvider;
+    DVTObservingToken *_colorProviderObserver;
     int _loadedState;
-    DBGRoundedInnerShadowView *_colorPresentationView;
-    NSNumberFormatter *_numberFormatter;
-    NSView *_colorComponentsView;
-    NSLayoutConstraint *_heightConstraintToRemoveAtRuntime;
+    DVTColorSwatchWithComponentsView *_colorSwatchWithComponentsView;
 }
 
-@property(retain) NSLayoutConstraint *heightConstraintToRemoveAtRuntime; // @synthesize heightConstraintToRemoveAtRuntime=_heightConstraintToRemoveAtRuntime;
-@property(retain) NSView *colorComponentsView; // @synthesize colorComponentsView=_colorComponentsView;
-@property(retain) NSNumberFormatter *numberFormatter; // @synthesize numberFormatter=_numberFormatter;
-@property(retain) DBGRoundedInnerShadowView *colorPresentationView; // @synthesize colorPresentationView=_colorPresentationView;
+@property __weak DVTColorSwatchWithComponentsView *colorSwatchWithComponentsView; // @synthesize colorSwatchWithComponentsView=_colorSwatchWithComponentsView;
 @property int loadedState; // @synthesize loadedState=_loadedState;
 - (void).cxx_destruct;
-- (id)blockStartAddress;
-- (void)_failedToGetData;
-- (id)_createLabel:(id)arg1 bold:(BOOL)arg2 selectable:(BOOL)arg3;
-- (id)_colorComponentNames;
-- (void)_updateColorComponentsView;
-- (void)_updateViewForStandardCGColor;
-- (void)_updateViewForPatternColor;
 - (void)_updateView;
-- (void)_fetchColorComponentAtIndex:(unsigned long long)arg1 completionHandler:(id)arg2;
-- (void)_fetchValueFromCGFunction:(id)arg1 completionHandler:(id)arg2;
-- (void)_releaseDataValue:(id)arg1;
-- (void)_fetchColorSpaceName:(id)arg1;
-- (void)_fetchColorComponentsAndUpdateView;
-- (void)_startRetrieval;
 - (void)cancelLoading;
 @property(readonly) NSView *quickLookView;
 - (void)loadView;
 - (id)initWithDataValue:(id)arg1 options:(id)arg2;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) NSURL *existingURLToOpen;
 @property(readonly) NSString *extensionForTemporaryFile;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

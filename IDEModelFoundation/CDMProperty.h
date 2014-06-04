@@ -9,10 +9,11 @@
 #import "CDMIdentification-Protocol.h"
 #import "DVTInvalidation-Protocol.h"
 #import "IDEInspectorAccessibilitySupport-Protocol.h"
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@class CDMEntity, CDMModel, DVTStackBacktrace, NSDictionary, NSMutableDictionary, NSNumber, NSString;
+@class CDMEntity, CDMModel, DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, IDEFileReference, NSDictionary, NSImage, NSMutableDictionary, NSNumber, NSString;
 
-@interface CDMProperty : NSObject <IDEInspectorAccessibilitySupport, CDMIdentification, DVTInvalidation>
+@interface CDMProperty : NSObject <IDEInspectorAccessibilitySupport, CDMIdentification, DVTInvalidation, IDEKeyDrivenNavigableItemRepresentedObject>
 {
     NSString *name;
     BOOL optional;
@@ -56,14 +57,14 @@
 - (id)secondaryXMLElementAttributes;
 - (id)primaryXMLElementAttributes;
 - (id)initWithXMLElementDescription:(id)arg1 belongingToModel:(id)arg2;
-- (id)navigableItem_name;
+@property(readonly) NSString *navigableItem_name;
 - (id)addKeysToDictionary:(id)arg1;
 - (id)initWithDictionary:(id)arg1 inModel:(id)arg2;
 - (void)generateErrorsAndWarningsWithCallback:(id)arg1 forDocumentAtURL:(id)arg2;
 - (id)undoManager;
 - (BOOL)mapsDirectlyTo:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (void)cascadeChangesToLegacyProperty:(id)arg1;
 - (id)userInfoDictionaryForExternalUse;
 - (BOOL)syncable;
@@ -83,7 +84,18 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

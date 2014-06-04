@@ -12,15 +12,19 @@
 {
     DVTWeakInterposer *_uncollectedObject_dvtWeakInterposer;
     NSString *_name;
+    NSString *_hierarchyIdentifier;
+    unsigned long long _invalidationDepth;
     unsigned long long _survivedCount;
 }
 
 @property unsigned long long survivedCount; // @synthesize survivedCount=_survivedCount;
-@property(readonly) NSString *name; // @synthesize name=_name;
+@property(readonly) unsigned long long invalidationDepth; // @synthesize invalidationDepth=_invalidationDepth;
+@property(readonly, copy) NSString *hierarchyIdentifier; // @synthesize hierarchyIdentifier=_hierarchyIdentifier;
+@property(readonly, copy) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (id)initWithUncollectedObject:(id)arg1;
 - (void)setUncollectedObject:(id)arg1;
-@property(readonly) id uncollectedObject;
+@property(readonly) __weak id uncollectedObject;
 
 @end
 

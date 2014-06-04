@@ -6,9 +6,12 @@
 
 #import "NSObject.h"
 
+#import "IBICPseudoXMLGeneration-Protocol.h"
+#import "NSCoding-Protocol.h"
+
 @class NSArray, NSSet, NSString;
 
-@interface IBICMultipartImageRepSlotSuggestionSet : NSObject
+@interface IBICMultipartImageRepSlotSuggestionSet : NSObject <NSCoding, IBICPseudoXMLGeneration>
 {
     Class _slotClass;
     NSString *_section;
@@ -20,9 +23,9 @@
     NSSet *_counterpartSuggestionSets;
 }
 
-+ (id)suggestionSetWithIdentifier:(id)arg1 imageRepSlots:(id)arg2 section:(id)arg3 group:(id)arg4 title:(id)arg5 displayOrder:(double)arg6;
-+ (id)suggestionSetWithIdentifier:(id)arg1 imageRepSlots:(id)arg2 title:(id)arg3 displayOrder:(double)arg4;
-@property(readonly) NSSet *counterpartSuggestionSets; // @synthesize counterpartSuggestionSets=_counterpartSuggestionSets;
++ (id)suggestionSetWithIdentifier:(id)arg1 imageRepSlots:(id)arg2 section:(id)arg3 group:(id)arg4 title:(id)arg5 displayOrder:(double)arg6 expander:(id)arg7;
++ (id)suggestionSetWithIdentifier:(id)arg1 imageRepSlots:(id)arg2 title:(id)arg3 displayOrder:(double)arg4 expander:(id)arg5;
+@property(readonly, copy) NSSet *counterpartSuggestionSets; // @synthesize counterpartSuggestionSets=_counterpartSuggestionSets;
 @property(readonly) double displayOrder; // @synthesize displayOrder=_displayOrder;
 @property(readonly) NSArray *imageRepSlots; // @synthesize imageRepSlots=_imageRepSlots;
 @property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
@@ -31,10 +34,20 @@
 @property(readonly) NSString *section; // @synthesize section=_section;
 @property(readonly) Class slotClass; // @synthesize slotClass=_slotClass;
 - (void).cxx_destruct;
+- (id)ibic_pseudoXMLWithIndent:(unsigned long long)arg1 emitted:(id)arg2;
+- (id)ibic_pseudoXMLWithIndent:(unsigned long long)arg1;
+- (id)ibic_pseudoXML;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (long long)compareDisplayOrder:(id)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)setCounterpartSuggestionSets:(id)arg1;
-- (id)initWithIdentifier:(id)arg1 imageRepSlots:(id)arg2 section:(id)arg3 group:(id)arg4 title:(id)arg5 displayOrder:(double)arg6;
+- (id)initWithIdentifier:(id)arg1 imageRepSlots:(id)arg2 section:(id)arg3 group:(id)arg4 title:(id)arg5 displayOrder:(double)arg6 expander:(id)arg7;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

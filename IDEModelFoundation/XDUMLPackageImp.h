@@ -8,7 +8,7 @@
 
 #import "XDUMLPackage-Protocol.h"
 
-@class XDModel;
+@class NSString, XDModel;
 
 @interface XDUMLPackageImp : XDUMLNamespaceImp <XDUMLPackage>
 {
@@ -16,7 +16,7 @@
 }
 
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)setModel:(id)arg1;
 - (id)model;
 - (id)packageForName:(id)arg1;
@@ -45,6 +45,11 @@
 - (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;
 - (id)initWithModel:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

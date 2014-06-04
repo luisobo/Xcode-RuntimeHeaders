@@ -74,7 +74,9 @@
 @property(readonly) NSArray *testBuildableReferences;
 @property(readonly) NSArray *hostBuildableReferences;
 - (void)testableDidChangeHost:(id)arg1;
-- (id)testOperationWithTestManager:(id)arg1 executionEnvironment:(id)arg2 withBuildOperation:(id)arg3 buildParameters:(id)arg4 actionRecord:(id)arg5 overridingTestingSpecifiers:(id)arg6 outError:(id *)arg7 actionCallbackBlock:(id)arg8;
+- (id)testOperationWithTestManager:(id)arg1 executionEnvironment:(id)arg2 withBuildOperation:(id)arg3 buildParameters:(id)arg4 schemeCommand:(id)arg5 actionRecord:(id)arg6 overridingTestingSpecifiers:(id)arg7 outError:(id *)arg8 actionCallbackBlock:(id)arg9;
+- (id)filePathForOptimizationProfileFileWithBuildParameters:(id)arg1 schemeCommand:(id)arg2;
+- (id)effectiveBlueprintForOptimizationProfileGenerationForSchemeCommand:(id)arg1;
 - (BOOL)doesNonActionWork;
 - (id)subtitle;
 - (id)name;

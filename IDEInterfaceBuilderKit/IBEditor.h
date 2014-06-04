@@ -10,7 +10,7 @@
 #import "IBSelectionOwnerDelegate-Protocol.h"
 #import "NSUserInterfaceValidations-Protocol.h"
 
-@class DVTNotificationToken, IBDecodedPasteboardContent, IBDelegatedCanvasOverlay, IBDocument, IBDragAndDropInsertionIndicator, IBDropTargetResolver, IBEditorCanvasFrameController, IBSelectionOwner, NSBezierPath, NSDictionary, NSMutableDictionary, NSSet, NSString;
+@class DVTNotificationToken, IBDecodedPasteboardContent, IBDelegatedCanvasOverlay, IBDocument, IBDragAndDropInsertionIndicator, IBDropTargetResolver, IBEditorCanvasFrameController, IBMutableIdentityDictionary, IBSelectionOwner, NSBezierPath, NSDictionary, NSSet, NSString;
 
 @interface IBEditor : NSObject <IBSelectionOwnerDelegate, IBDropTargetResolverDelegate, NSUserInterfaceValidations>
 {
@@ -23,8 +23,8 @@
     IBEditor *childEditor;
     id <DVTInvalidation> selctionDrawingToken;
     id <DVTInvalidation> activationDarkeningToken;
-    NSMutableDictionary *selectionMasks;
-    id editedObject;
+    IBMutableIdentityDictionary *selectionMasks;
+    NSObject *editedObject;
     NSBezierPath *activationHighlightPath;
     BOOL recalculateActivationPath;
     BOOL draggedObjectsAreInObjectModel;
@@ -33,13 +33,11 @@
     BOOL drawsActivationDarkening;
     IBDecodedPasteboardContent *decodedPasteboardContextCache;
     NSString *decodedPasteboardContextCacheID;
-    id orderedSelectionAnchor;
+    NSObject *orderedSelectionAnchor;
     NSSet *selectionPriorToEventRouting;
     BOOL closing;
     BOOL closed;
     DVTNotificationToken *frameChangeToken;
-    DVTNotificationToken *didSaveNotification;
-    DVTNotificationToken *willSaveNotification;
     DVTNotificationToken *showingSelectionHighlightsNotification;
     BOOL active;
     BOOL frameControllerDragAndDropInProgress;
@@ -80,6 +78,7 @@
 - (void)setDecorationsNeedDisplayForObject:(id)arg1;
 - (void)invalidateEditorContentOverlayArea;
 - (CDStruct_c519178c)decorationInsetForChild:(id)arg1;
+- (id)representativeChildViewInSameWindow:(id)arg1;
 - (BOOL)isChildViewInSameWindow:(id)arg1;
 - (id)calculateActivationHighlightPath;
 - (void)resetCursorRects;
@@ -91,6 +90,8 @@
 - (void)clearAndAddSuggestedConstraints:(id)arg1;
 - (void)addMissingConstraintsInArbitrationUnit:(id)arg1;
 - (void)addMissingConstraints:(id)arg1;
+- (void)clearConstraintsInAllConfigurationsInArbitrationUnit:(id)arg1;
+- (void)clearConstraintsInAllConfigurations:(id)arg1;
 - (void)clearConstraintsInArbitrationUnit:(id)arg1;
 - (void)clearConstraints:(id)arg1;
 - (void)updateConstraintConstantsInArbitrationUnit:(id)arg1;
@@ -98,18 +99,19 @@
 - (void)updateFramesToMatchConstraintsInArbitrationUnit:(id)arg1;
 - (void)updateFramesToMatchConstraints:(id)arg1;
 - (void)sizeSelectionToFit:(id)arg1;
-- (id)viewsForResolvingAmbiguity:(BOOL)arg1;
-- (id)viewsForResolvingMisplacementOrAmbiguity:(BOOL)arg1;
-- (id)viewsForResolvingMisplacement:(BOOL)arg1;
-- (BOOL)isViewMisplacedOrAmbgiuous:(id)arg1;
-- (BOOL)isViewAmbigiuous:(id)arg1;
-- (BOOL)isViewMisplaced:(id)arg1;
+- (id)itemsForResolvingAmbiguity:(BOOL)arg1;
+- (id)itemsForResolvingMisplacementOrAmbiguity:(BOOL)arg1;
+- (id)itemsForResolvingMisplacement:(BOOL)arg1;
+- (BOOL)isItemMisplacedOrAmbiguous:(id)arg1;
+- (BOOL)isItemAmbiguous:(id)arg1;
+- (BOOL)isItemMisplaced:(id)arg1;
 - (id)viewsForPerformingAutolayoutMenuCommand:(BOOL)arg1;
 - (id)objectsForPerformingMenuCommand;
 - (BOOL)canSizeObjectToFit:(id)arg1;
 - (void)positionChildEditorFrame;
 - (void)pasteAttributes:(id)arg1;
 - (void)performDuplicate:(id)arg1;
+- (void)performClear:(id)arg1;
 - (void)performDelete:(id)arg1;
 - (void)performPasteExcludingConnections:(id)arg1;
 - (void)performPaste:(id)arg1;
@@ -170,7 +172,7 @@
 - (void)selectNone:(id)arg1;
 - (void)selectAll:(id)arg1;
 - (id)objectsForSelectingAll;
-- (void)removeSelectedObjectsAndGuessNextSelection:(BOOL)arg1;
+- (void)removeSelectedObjectsAndGuessNextSelection:(BOOL)arg1 withMode:(unsigned long long)arg2;
 - (id)objectToSelectAfterDeletingObjects:(id)arg1;
 - (id)validatedOrderedSelectionAnchor;
 - (id)orderedSelectionCandiateLists;
@@ -236,6 +238,12 @@
 - (id)document;
 - (id)editedObject;
 - (id)initWithEditedObject:(id)arg1 parentEditor:(id)arg2 frameController:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

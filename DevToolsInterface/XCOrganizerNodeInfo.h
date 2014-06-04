@@ -14,10 +14,10 @@
 
 + (id)alloc;
 - (long long)compare:(id)arg1;
-@property(readonly) NSViewController *viewController;
-@property(readonly) NSImage *statusImage;
-@property(readonly) NSImage *iconImage;
-@property(readonly) NSString *name;
+@property(readonly, retain) NSViewController *viewController;
+@property(readonly, retain) NSImage *statusImage;
+@property(readonly, retain) NSImage *iconImage;
+@property(readonly, copy) NSString *name;
 - (void)invalidate;
 
 @end

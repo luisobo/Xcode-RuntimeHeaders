@@ -7,7 +7,6 @@
 #import "NSObject-Protocol.h"
 
 @protocol IDESourceControlNameTokenViewDelegate <NSObject>
-- (void)startChatWithToken:(id)arg1;
 - (id)menuForNameToken:(id)arg1;
 
 @optional

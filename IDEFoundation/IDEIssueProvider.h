@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTExtension, DVTStackBacktrace, IDEIssueManager, IDEIssueProviderSession;
+@class DVTExtension, DVTStackBacktrace, IDEIssueManager, IDEIssueProviderSession, NSString;
 
 @interface IDEIssueProvider : NSObject <DVTInvalidation>
 {
@@ -34,14 +34,17 @@
 - (void)removeIssues:(id)arg1 forProviderContext:(id)arg2;
 - (void)addIssues:(id)arg1 forProviderContext:(id)arg2 container:(id)arg3 blueprint:(id)arg4;
 - (void)setIssues:(id)arg1 forProviderContext:(id)arg2 container:(id)arg3 blueprint:(id)arg4;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)primitiveInvalidate;
 - (id)initWithIssueManager:(id)arg1 extension:(id)arg2;
 - (id)init;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

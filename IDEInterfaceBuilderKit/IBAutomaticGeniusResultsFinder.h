@@ -10,7 +10,7 @@
 
 @interface IBAutomaticGeniusResultsFinder : IDEIndexGeniusResultsFinder
 {
-    NSArray *observationTokens;
+    NSArray *_observationTokens;
 }
 
 + (Class)editorDocumentClass;

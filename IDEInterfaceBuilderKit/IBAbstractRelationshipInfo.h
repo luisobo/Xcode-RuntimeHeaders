@@ -14,8 +14,9 @@
 
 @interface IBAbstractRelationshipInfo : NSObject <NSCopying, NSCoding, IBDocumentArchiving>
 {
-    NSString *name;
-    NSString *candidateClassName;
+    int _retainCountMinusOne;
+    NSString *_name;
+    NSString *_candidateClassName;
 }
 
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
@@ -24,8 +25,8 @@
 + (id)relationshipInfoWithName:(id)arg1;
 + (id)relationshipInfoWithName:(id)arg1 andCandidateClassName:(id)arg2;
 - (void).cxx_destruct;
-- (id)description;
-- (unsigned long long)hash;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)relationshipInfoWithCandidateClassName:(id)arg1;
@@ -40,6 +41,15 @@
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithName:(id)arg1 andCandidateClassName:(id)arg2;
+- (BOOL)_isDeallocating;
+- (BOOL)_tryRetain;
+- (unsigned long long)retainCount;
+- (oneway void)release;
+- (id)retain;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

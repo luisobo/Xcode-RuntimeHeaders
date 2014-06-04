@@ -13,7 +13,7 @@
     iCloud *_iCloud;
 }
 
-@property(readonly, nonatomic) iCloud *iCloud; // @synthesize iCloud=_iCloud;
+@property(readonly, nonatomic) __weak iCloud *iCloud; // @synthesize iCloud=_iCloud;
 - (void).cxx_destruct;
 - (id)initWithOwner:(id)arg1;
 

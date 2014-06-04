@@ -16,7 +16,7 @@
     DVTOutlineView *_outlineView;
     DVTGradientImageButton *_addButton;
     DVTGradientImageButton *_deleteButton;
-    DVTBorderedView *_glassBar;
+    DVTBorderedView *_topBorderedView;
     DVTSearchField *_searchField;
     DVTTabChooserView *_tabChooser;
     DVTBorderedView *_useRunActionOptionsBorderedView;
@@ -45,11 +45,11 @@
 }
 
 + (void)initialize;
-@property(retain, nonatomic) NSArray *debuggerSpecifiers; // @synthesize debuggerSpecifiers=_debuggerSpecifiers;
-@property(copy, nonatomic) NSString *filterString; // @synthesize filterString=_filterString;
-@property(retain) DVTTabChooserView *tabChooser; // @synthesize tabChooser=_tabChooser;
 @property(retain) IDETestSchemeAction *runPhase; // @synthesize runPhase=_runPhase;
 @property(retain) IDEScheme *runContext; // @synthesize runContext=_runContext;
+@property(retain) DVTTabChooserView *tabChooser; // @synthesize tabChooser=_tabChooser;
+@property(copy, nonatomic) NSString *filterString; // @synthesize filterString=_filterString;
+@property(retain, nonatomic) NSArray *debuggerSpecifiers; // @synthesize debuggerSpecifiers=_debuggerSpecifiers;
 - (void).cxx_destruct;
 - (id)capsuleListView:(id)arg1 viewControllerForRow:(long long)arg2;
 - (long long)numberOfObjectsInCapsuleListView:(id)arg1;
@@ -92,6 +92,7 @@
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)deleteBlueprintsAction:(id)arg1;
 - (void)addBlueprintsAction:(id)arg1;
+- (void)clearHighlightsInCapsuleView;
 - (void)_updateDeleteButton;
 - (BOOL)_getItemsToDelete:(id *)arg1;
 - (void)toggleTests:(id)arg1;
@@ -110,6 +111,12 @@
 - (void)updateBoundIDEWorkspaceBinding;
 - (void)updateBoundIDERunContextBinding;
 - (id)dvtExtraBindings;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,7 +8,7 @@
 
 #import "IDEReadOnlyItem-Protocol.h"
 
-@class DVTFilePath, IDEContainer, NSURL;
+@class DVTFilePath, IDEContainer, NSString, NSURL;
 
 @interface IDEContainerReadOnlyItem : NSObject <IDEReadOnlyItem>
 {
@@ -24,8 +24,13 @@
 - (BOOL)makeWritableWithError:(id *)arg1;
 - (void)updateReadOnlyStatus;
 @property(readonly) NSURL *readOnlyItemURL;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)initWithFilePath:(id)arg1 container:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

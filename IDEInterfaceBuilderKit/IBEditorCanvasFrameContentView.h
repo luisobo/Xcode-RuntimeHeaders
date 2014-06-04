@@ -13,15 +13,17 @@
     NSView *documentView;
     int horizontalContentResizingMode;
     int verticalContentResizingMode;
+    NSView *_wrapperView;
 }
 
+@property(retain, nonatomic) NSView *wrapperView; // @synthesize wrapperView=_wrapperView;
 @property(nonatomic) int verticalContentResizingMode; // @synthesize verticalContentResizingMode;
 @property(nonatomic) int horizontalContentResizingMode; // @synthesize horizontalContentResizingMode;
 - (void).cxx_destruct;
 - (void)layoutBottomUp;
 - (void)layoutTopDown;
 - (struct CGSize)frameSizeForDocumentSize:(struct CGSize)arg1;
-@property(retain) NSView *documentView;
+@property(retain, nonatomic) NSView *documentView;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

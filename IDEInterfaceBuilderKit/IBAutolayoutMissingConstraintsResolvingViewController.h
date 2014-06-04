@@ -20,6 +20,7 @@
 @property(readonly, nonatomic) id <IBCollection> views; // @synthesize views=_views;
 - (void).cxx_destruct;
 - (void)confirmChanges;
+- (void)primitiveInvalidate;
 - (id)initWithViews:(id)arg1 document:(id)arg2;
 
 @end

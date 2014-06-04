@@ -6,13 +6,13 @@
 
 #import "IDEInspectorProperty.h"
 
-@class DVTScrubber, IDEInspectorKeyPath, NSString;
+@class DVTStepperTextField, IDEInspectorKeyPath, NSString;
 
 @interface SKEInspectorVector3Property : IDEInspectorProperty
 {
-    DVTScrubber *xLabel;
-    DVTScrubber *yLabel;
-    DVTScrubber *zLabel;
+    DVTStepperTextField *_xLabel;
+    DVTStepperTextField *_yLabel;
+    DVTStepperTextField *_zLabel;
     IDEInspectorKeyPath *_valueKeyPath;
     NSString *_nilPlaceholder;
 }

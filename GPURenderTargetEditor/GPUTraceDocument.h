@@ -8,15 +8,13 @@
 
 #import "IDEDocumentStructureProviding-Protocol.h"
 
-@class DYCaptureSessionInfo, GPUDebuggerController, GPUDebuggingAdditionUIController, GPUTraceOutline, GPUTraceSession, NSArray;
+@class DYGLCaptureSessionInfo, GPUDebuggingAdditionUIController, GPUTraceSession, NSArray, NSString;
 
 @interface GPUTraceDocument : IDEEditorDocument <IDEDocumentStructureProviding>
 {
-    GPUTraceOutline *_outline;
+    BOOL _editorWasInstalled;
     GPUTraceSession *_traceSession;
     GPUDebuggingAdditionUIController *_debuggingAdditionUIController;
-    GPUDebuggerController *_debuggerController;
-    BOOL _editorWasInstalled;
 }
 
 + (BOOL)preservesVersions;
@@ -24,7 +22,6 @@
 @property(nonatomic) BOOL editorWasInstalled; // @synthesize editorWasInstalled=_editorWasInstalled;
 @property(retain, nonatomic) GPUDebuggingAdditionUIController *debuggingAdditionUIController; // @synthesize debuggingAdditionUIController=_debuggingAdditionUIController;
 @property(retain, nonatomic) GPUTraceSession *traceSession; // @synthesize traceSession=_traceSession;
-@property(readonly, nonatomic) GPUTraceOutline *outline; // @synthesize outline=_outline;
 - (void).cxx_destruct;
 - (id)sourceLocationForDocumentLocation:(id)arg1;
 - (id)boundResourcesGeniusLocationsForDocumentLocation:(id)arg1;
@@ -39,10 +36,16 @@
 - (id)fileWrapperOfType:(id)arg1 error:(id *)arg2;
 - (BOOL)canExportDocument;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
-@property(readonly, nonatomic) DYCaptureSessionInfo *captureSessionInfo; // @dynamic captureSessionInfo;
+@property(readonly, nonatomic) DYGLCaptureSessionInfo *captureSessionInfo; // @dynamic captureSessionInfo;
 - (id)captureArchive;
 - (void)dealloc;
 - (BOOL)readFromURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

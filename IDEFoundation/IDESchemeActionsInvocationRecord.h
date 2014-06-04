@@ -45,6 +45,7 @@
 + (id)keyPathsForValuesAffectingStatus;
 + (BOOL)updateSummariesFromDictionaryRepresentations:(id)arg1 withSummaryOwner:(id)arg2 summaryPropertyName:(id)arg3 summaryiVarArrayRef:(id *)arg4 summariesAreTestFailures:(BOOL)arg5;
 + (BOOL)automaticallyNotifiesObserversOfActions;
++ (void)invocationRecordWithLocalActionResultFilePath:(id)arg1 completionBlock:(id)arg2;
 @property(nonatomic) BOOL remoteTestSummaryNeedsFetch; // @synthesize remoteTestSummaryNeedsFetch=_remoteTestSummaryNeedsFetch;
 @property(copy, nonatomic) id remoteTestSummaryIdentifier; // @synthesize remoteTestSummaryIdentifier=_remoteTestSummaryIdentifier;
 @property(nonatomic) BOOL shouldClearExistingFileOnSave; // @synthesize shouldClearExistingFileOnSave=_shouldClearExistingFileOnSave;
@@ -101,6 +102,7 @@
 - (void)updateWithArchiveData:(id)arg1 withCompletionBlock:(id)arg2;
 - (void)updateWithProductData:(id)arg1 withCompletionBlock:(id)arg2;
 - (void)saveWithCompletionBlock:(id)arg1;
+- (void)_saveWithActionResultsBundleWithBaselineOverridesFilePath:(id)arg1 automaticBaselineDescription:(id)arg2 completionBlock:(id)arg3;
 - (void)dealloc;
 - (id)initWithFilePath:(id)arg1 updateDelegate:(id)arg2 error:(id *)arg3;
 - (id)initLocalRecordWithWorkspace:(id)arg1;

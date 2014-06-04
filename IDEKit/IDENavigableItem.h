@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, IDENavigableItemCoordinator, NSArray, NSImage, NSPredicate, NSString;
+@class DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, IDEFileReference, IDENavigableItemCoordinator, NSArray, NSColor, NSImage, NSPredicate, NSString;
 
 @interface IDENavigableItem : NSObject <DVTInvalidation>
 {
@@ -49,9 +49,6 @@
 @property(readonly) IDENavigableItemCoordinator *navigableItemCoordinator; // @synthesize navigableItemCoordinator=_coordinator;
 @property(readonly) id representedObject; // @synthesize representedObject=_representedObject;
 - (void).cxx_destruct;
-- (id)groupIdentifier;
-- (id)fileReference;
-- (id)textColor;
 - (id)contextualValueForProperty:(id)arg1;
 - (id)descendantItemForRepresentedObject:(id)arg1 stopAtClass:(Class)arg2;
 - (id)descendantItemForRepresentedObject:(id)arg1;
@@ -59,9 +56,6 @@
 - (unsigned long long)indexOfChildItemForIdentifier:(id)arg1;
 - (id)identifierForChildItem:(id)arg1;
 - (id)archivableRepresentation;
-- (id)nearestDocumentFileReferenceProvidingAncestor;
-- (id)greatestDocumentAncestor;
-- (BOOL)isDocumentNavigableItem;
 - (void)didChangeArrangedChildItems;
 - (void)willChangeArrangedChildItems;
 - (unsigned long long)_currentNumberOfArrangedChildItems;
@@ -86,6 +80,7 @@
 - (void)willAccessChildItems;
 - (unsigned long long)countOfChildNavigableItems;
 - (void)getChildNavigableItems:(id *)arg1 range:(struct _NSRange)arg2;
+- (id)_childRepresentedObjects;
 - (id)childNavigableItemsAtIndexes:(id)arg1;
 - (id)objectInChildNavigableItemsAtIndex:(unsigned long long)arg1;
 - (id)childRepresentedObjects;
@@ -101,7 +96,7 @@
 - (void)addObserver:(id)arg1 forKeyPath:(id)arg2 options:(unsigned long long)arg3 context:(void *)arg4;
 - (id)observationInfo;
 - (void)setObservationInfo:(id)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)_removeFromNavigableItemByRepresentedObjectMap;
 - (void)_registerInNavigableItemByRepresentedObjectMap;
 - (void)cacheValue:(id)arg1 forProperty:(id)arg2;
@@ -113,6 +108,15 @@
 - (void)_setRepresentedObject:(id)arg1;
 - (id)initWithRepresentedObject:(id)arg1;
 @property(readonly) NSString *toolTip;
+- (id)nearestDocumentFileReferenceProvidingAncestor;
+- (id)greatestDocumentAncestor;
+@property(readonly) NSString *groupIdentifier;
+@property(readonly) IDEFileReference *fileReference;
+@property(readonly) NSColor *textColor;
+@property(readonly) DVTDocumentLocation *contentDocumentLocation;
+@property(readonly, getter=isMajorGroup) BOOL majorGroup;
+@property(readonly) DVTFileDataType *documentType;
+@property(readonly) BOOL isDocumentNavigableItem;
 - (id)navigableItemsForPersistentNameTree:(id)arg1;
 - (id)_legacyItemsForNameArrays:(id)arg1;
 - (void)_fillItems:(id)arg1 fromNameDictionary:(id)arg2 withParent:(id)arg3 andChildren:(id)arg4;
@@ -133,9 +137,12 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSImage *image; // @dynamic image;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) NSString *name; // @dynamic name;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

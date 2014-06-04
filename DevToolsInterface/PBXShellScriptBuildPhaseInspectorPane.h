@@ -10,7 +10,7 @@
 #import "NSTableViewDelegate-Protocol.h"
 #import "NSTextViewDelegate-Protocol.h"
 
-@class NSButton, NSTextField, NSTextView, NSUndoManager, PBXCompletionManager, PBXExtendedTableView, PBXShellScriptBuildPhase;
+@class NSButton, NSString, NSTextField, NSTextView, NSUndoManager, PBXCompletionManager, PBXExtendedTableView, PBXShellScriptBuildPhase;
 
 @interface PBXShellScriptBuildPhaseInspectorPane : PBXInspectorPaneModule <NSTextViewDelegate, NSTableViewDataSource, NSTableViewDelegate>
 {
@@ -64,6 +64,12 @@
 - (void)tableView:(id)arg1 didStartEditingColumn:(long long)arg2 row:(long long)arg3;
 - (BOOL)tableView:(id)arg1 shouldSelectRow:(long long)arg2;
 - (long long)numberOfRowsInTableView:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

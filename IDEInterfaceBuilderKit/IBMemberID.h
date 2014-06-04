@@ -6,11 +6,13 @@
 
 #import "NSObject.h"
 
+#import "IBBinaryArchiving-Protocol.h"
+#import "NSCoding-Protocol.h"
 #import "NSCopying-Protocol.h"
 
 @class NSString;
 
-@interface IBMemberID : NSObject <NSCopying>
+@interface IBMemberID : NSObject <NSCopying, NSCoding, IBBinaryArchiving>
 {
     NSString *_memberIdentifier;
     int _retainCountMinusOne;
@@ -22,26 +24,34 @@
 + (id)memberIDFromInteger:(long long)arg1;
 + (id)uncachedMemberIDFromInteger:(long long)arg1;
 + (id)memberID;
++ (id)decodeWithBinaryUnarchiver:(id)arg1;
 + (id)illegalMemberIdentifierCharacterSet;
 + (id)legalMemberIdentifierCharacterSet;
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (long long)compareMemberIdentifiers:(id)arg1;
 - (long long)integerID;
 - (BOOL)isIntegerID;
 - (id)memberIdentifier;
 - (id)repeatableChildID:(long long)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithBinaryArchiver:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithMemberIdentifier:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToMemberID:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)_isDeallocating;
 - (BOOL)_tryRetain;
 - (unsigned long long)retainCount;
 - (oneway void)release;
 - (id)retain;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

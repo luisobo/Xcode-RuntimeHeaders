@@ -28,6 +28,7 @@
 + (id)littleArrowPathInRect:(struct CGRect)arg1;
 + (id)littleArrowPath;
 + (id)minusPathInRect:(struct CGRect)arg1;
++ (id)minusPathInRect:(struct CGRect)arg1 withWeightRatio:(double)arg2;
 + (id)xPathInRect:(struct CGRect)arg1;
 + (id)xPathInRect:(struct CGRect)arg1 withWeightRatio:(double)arg2;
 + (id)plusPathInRect:(struct CGRect)arg1;

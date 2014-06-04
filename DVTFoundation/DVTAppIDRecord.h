@@ -6,7 +6,7 @@
 
 #import "NSManagedObject.h"
 
-@class DVTTeamRecord, NSDictionary, NSSet, NSString;
+@class DVTTeamRecord, NSSet, NSString;
 
 @interface DVTAppIDRecord : NSManagedObject
 {
@@ -19,12 +19,16 @@
 @property(readonly, nonatomic) _Bool isWildcard;
 @property(readonly, nonatomic) NSString *displayIdentifier;
 - (void)setFeatures:(id)arg1;
-@property(readonly, nonatomic) NSDictionary *features;
+- (id)features;
 
 // Remaining properties
 @property(retain, nonatomic) NSString *appIdId; // @dynamic appIdId;
 @property(retain, nonatomic) NSString *appIdPlatform; // @dynamic appIdPlatform;
+@property(nonatomic) BOOL applicationGroups; // @dynamic applicationGroups;
+@property(nonatomic) BOOL associatedDomains; // @dynamic associatedDomains;
+@property(retain, nonatomic) NSSet *cloudContainers; // @dynamic cloudContainers;
 @property(retain, nonatomic) NSString *dataProtection; // @dynamic dataProtection;
+@property(nonatomic) BOOL featureHK421J6T7P; // @dynamic featureHK421J6T7P;
 @property(nonatomic) BOOL gameCenter; // @dynamic gameCenter;
 @property(nonatomic) BOOL iCloud; // @dynamic iCloud;
 @property(retain, nonatomic) NSString *identifier; // @dynamic identifier;
@@ -37,6 +41,7 @@
 @property(retain, nonatomic) NSSet *provisioningProfiles; // @dynamic provisioningProfiles;
 @property(nonatomic) BOOL push; // @dynamic push;
 @property(retain, nonatomic) DVTTeamRecord *team; // @dynamic team;
+@property(nonatomic) BOOL vpnLite; // @dynamic vpnLite;
 
 @end
 

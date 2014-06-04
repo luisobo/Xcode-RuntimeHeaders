@@ -9,7 +9,7 @@
 #import "IDERunOperationWorkerDelegate-Protocol.h"
 #import "IDERunOperationWorkerTracker-Protocol.h"
 
-@class NSArray;
+@class NSArray, NSString;
 
 @interface IDERunOperationWorkerGroup : IDERunOperationWorker <IDERunOperationWorkerDelegate, IDERunOperationWorkerTracker>
 {
@@ -21,7 +21,7 @@
 
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)allSubworkersDidFinishWithError:(id)arg1;
 - (void)runningDidFinish:(id)arg1 withError:(id)arg2;
 - (void)workerDidComplete:(id)arg1 withError:(id)arg2;
@@ -30,6 +30,11 @@
 - (void)_startNextWorker;
 - (id)initWithExtensionIdentifier:(id)arg1 launchSession:(id)arg2;
 - (id)initWithWorkers:(id)arg1 launchSession:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

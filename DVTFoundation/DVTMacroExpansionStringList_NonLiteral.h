@@ -14,7 +14,7 @@
     NSString<DVTMacroExpansion> *_elements[0];
 }
 
-+ (id)newWithStringForm:(id)arg1 elements:(struct DVTArrayBuilder *)arg2;
++ (id)newWithStringForm:(id)arg1 elements:(struct ArrayBuilder *)arg2;
 - (void).cxx_destruct;
 - (id)dvt_debugDescription;
 - (void)dvt_assertInternalConsistency;
@@ -29,7 +29,7 @@
 - (id)dvt_stringForm;
 - (BOOL)dvt_isLiteral;
 - (void)dealloc;
-- (id)initWithStringForm:(id)arg1 elements:(struct DVTArrayBuilder *)arg2;
+- (id)initWithStringForm:(id)arg1 elements:(struct ArrayBuilder *)arg2;
 
 @end
 

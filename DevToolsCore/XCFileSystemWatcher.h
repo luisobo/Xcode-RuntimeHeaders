@@ -8,7 +8,7 @@
 
 #import "DTFileSystemEventStreamDelegate-Protocol.h"
 
-@class DTFileSystemEventStream, NSMapTable, NSMutableArray, NSMutableDictionary;
+@class DTFileSystemEventStream, NSMapTable, NSMutableArray, NSMutableDictionary, NSString;
 
 @interface XCFileSystemWatcher : NSObject <DTFileSystemEventStreamDelegate>
 {
@@ -41,6 +41,12 @@
 - (void)dealloc;
 - (void)close;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

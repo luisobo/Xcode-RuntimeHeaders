@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
+#import "IBICPseudoXMLGeneration-Protocol.h"
 #import "NSCoding-Protocol.h"
 #import "NSCopying-Protocol.h"
 
-@class NSDictionary;
+@class NSDictionary, NSString;
 
-@interface IBICMultipartImageRepSlot : NSObject <NSCopying, NSCoding>
+@interface IBICMultipartImageRepSlot : NSObject <NSCopying, NSCoding, IBICPseudoXMLGeneration>
 {
     NSDictionary *_componentsByClass;
 }
@@ -23,16 +24,19 @@
 + (id)slotWithComponents:(id)arg1;
 + (id)slotWithComponents:(id *)arg1 count:(unsigned long long)arg2;
 - (void).cxx_destruct;
+- (BOOL)matchesImageSlotsType:(long long)arg1;
 - (id)requiredPointSize;
 - (id)requiredPixelSize;
 - (id)suggestedRepNameForMultipartImageSetName:(id)arg1;
 - (id)detailAreaKey;
 - (id)requiredFileName;
 - (id)displayName;
-- (id)description;
+- (id)ibic_pseudoXMLWithIndent:(unsigned long long)arg1;
+- (id)ibic_pseudoXML;
+@property(readonly, copy) NSString *description;
 - (id)stringRepresentation;
-- (id)shortDisplayNameDefiningItem;
-- (unsigned long long)hash;
+- (id)shortDisplayName;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToMultipartImageRepSlot:(id)arg1;
 - (long long)compareDisplayOrder:(id)arg1;
@@ -44,6 +48,10 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithComponents:(id)arg1;
 - (void)captureComponents;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

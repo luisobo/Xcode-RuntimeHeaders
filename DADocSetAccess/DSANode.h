@@ -49,6 +49,7 @@
 - (long long)childCount;
 - (unsigned long long)domain;
 @property(readonly) unsigned long long documentType;
+@property(readonly) DSANode *documentTypeNode;
 - (unsigned long long)type;
 - (id)urlString;
 - (id)anchor;

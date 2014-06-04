@@ -9,7 +9,7 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class IDENavigatorDataCell, NSArray, NSPopUpButtonCell, NSTableView;
+@class IDENavigatorDataCell, NSArray, NSPopUpButtonCell, NSString, NSTableView;
 
 @interface Xcode3ProjectLocalizationLocaleAssistant : IDEAssistant <NSTableViewDelegate, NSTableViewDataSource>
 {
@@ -40,6 +40,12 @@
 - (id)context;
 - (void)primitiveInvalidate;
 - (void)loadView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

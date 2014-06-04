@@ -7,6 +7,7 @@
 #import "DVTFilePath.h"
 
 @interface DVTFilePath (DVTFileIconAdditions)
+- (id)dvt_fileIconUndecorated;
 - (id)dvt_fileIcon;
 @end
 

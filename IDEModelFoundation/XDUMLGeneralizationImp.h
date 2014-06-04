@@ -8,6 +8,8 @@
 
 #import "XDUMLGeneralization-Protocol.h"
 
+@class NSString;
+
 @interface XDUMLGeneralizationImp : XDUMLNamedElementImp <XDUMLGeneralization>
 {
     id <XDUMLClassifier> _general;
@@ -15,7 +17,7 @@
 }
 
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)setSpecific:(id)arg1;
 - (void)setGeneral:(id)arg1;
 - (void)remove;
@@ -28,6 +30,11 @@
 - (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

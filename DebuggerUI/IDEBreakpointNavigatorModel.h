@@ -7,15 +7,15 @@
 #import "NSObject.h"
 
 #import "DVTInvalidation-Protocol.h"
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@class DVTObservingToken, DVTStackBacktrace, IDEWorkspace, NSArray, NSMutableArray, NSMutableSet;
+@class DVTDocumentLocation, DVTFileDataType, DVTObservingToken, DVTStackBacktrace, IDEFileReference, IDEWorkspace, NSArray, NSImage, NSMutableArray, NSMutableSet, NSString;
 
-@interface IDEBreakpointNavigatorModel : NSObject <DVTInvalidation>
+@interface IDEBreakpointNavigatorModel : NSObject <IDEKeyDrivenNavigableItemRepresentedObject, DVTInvalidation>
 {
     NSMutableArray *_groups;
     IDEWorkspace *_workspace;
     DVTObservingToken *_breakpointsObserverToken;
-    DVTObservingToken *_breakpointsActivatedToken;
     NSMutableSet *_observers;
 }
 
@@ -24,9 +24,8 @@
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (id)ideModelObjectTypeIdentifier;
+@property(readonly) NSString *navigableItem_name;
 - (id)_findGroupForBreakpoint:(id)arg1;
-- (void)_notifyObserversOfBreakpointActivationStateChanged;
-- (void)_handleBreakpointsActivatedChanged;
 - (void)_notifyObserversOfBreakpointAdded:(id)arg1;
 - (void)_addBreakpoint:(id)arg1;
 - (void)_handleBreakpointsAdded:(id)arg1;
@@ -40,9 +39,21 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
-@property(readonly) NSArray *groups; // @dynamic groups;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly, copy) NSArray *groups; // @dynamic groups;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
-@property(readonly) NSMutableArray *mutableGroups; // @dynamic mutableGroups;
+@property(readonly, copy) NSMutableArray *mutableGroups; // @dynamic mutableGroups;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

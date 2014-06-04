@@ -10,7 +10,7 @@
 #import "NSSplitViewDelegate-Protocol.h"
 #import "NSTabViewDelegate-Protocol.h"
 
-@class DVTDelayedMenuButton, DVTMapTable, IDEDMDocumentLocation, IDEDataModelConfigurationEditor, IDEDataModelEntityContentsEditor, IDEDataModelFetchRequestEditor, NSSegmentedControl, NSTabView;
+@class DVTDelayedMenuButton, DVTMapTable, IDEDMDocumentLocation, IDEDataModelConfigurationEditor, IDEDataModelEntityContentsEditor, IDEDataModelFetchRequestEditor, NSSegmentedControl, NSString, NSTabView;
 
 @interface IDEDataModelEditor : IDEDMEditor <NSTabViewDelegate, NSSplitViewDelegate, DVTFindBarFindable>
 {
@@ -120,6 +120,12 @@
 - (void)_setupButtons;
 - (void)_setupSegmentedControls;
 - (id)modelRoot;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

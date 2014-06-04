@@ -10,13 +10,14 @@
 
 @interface IDEInspectorActionMenuProperty : IDEInspectorAbstractActionProperty
 {
-    NSPopUpButton *_pullDown;
     NSArray *_menuItems;
     IDEInspectorKeyPath *_menuItemsKeyPath;
     NSString *_title;
     IDEInspectorKeyPath *_titleKeyPath;
+    NSPopUpButton *_pullDown;
 }
 
+@property(retain, nonatomic) NSPopUpButton *pullDown; // @synthesize pullDown=_pullDown;
 - (void).cxx_destruct;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)refresh;

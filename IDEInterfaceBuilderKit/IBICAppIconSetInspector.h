@@ -11,7 +11,7 @@
 }
 
 + (Class)imageSetClass;
-- (void)addPostSuggestionSetContent:(id)arg1 pusherStorage:(void)arg2;
+- (void)addPostSuggestionSetContent:(id)arg1;
 
 @end
 

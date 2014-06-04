@@ -15,10 +15,10 @@
 }
 
 @property(retain, nonatomic) NSView *headerAccessory; // @synthesize headerAccessory=_headerAccessory;
-@property(readonly, nonatomic) iCloudActivityEditor *editor; // @synthesize editor=_editor;
+@property(readonly, nonatomic) __weak iCloudActivityEditor *editor; // @synthesize editor=_editor;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-@property(readonly, nonatomic) iCloudController *controller;
+@property(readonly, nonatomic) __weak iCloudController *controller;
 - (id)initWithEditor:(id)arg1;
 
 @end

@@ -16,7 +16,7 @@
 @property(retain, nonatomic) IBLayoutConstraint *layoutConstraintBetweenViewsInDocument; // @synthesize layoutConstraintBetweenViewsInDocument=_layoutConstraintBetweenViewsInDocument;
 - (void).cxx_destruct;
 - (double)priority;
-- (id)makeRepresentingConstraintWithLayoutInfo:(id)arg1;
+- (id)makeRepresentingConstraintWithProvider:(id)arg1;
 - (id)constraintInDocument;
 - (unsigned long long)hash;
 - (BOOL)isEqualToAbstraction:(id)arg1;

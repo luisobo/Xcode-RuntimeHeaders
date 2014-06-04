@@ -12,6 +12,7 @@
 {
 }
 
+- (_Bool)hasRoleOnTeam:(id)arg1 forPlatform:(id)arg2;
 - (_Bool)isMemberOfTeam:(id)arg1;
 @property(readonly, nonatomic) _Bool isAgent;
 @property(readonly, nonatomic) _Bool isMacTeamMember;

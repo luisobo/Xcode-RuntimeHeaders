@@ -17,6 +17,7 @@
     id _targetViewController;
     id _appIdentifierFieldNotificationObserver;
     IDEViewController<IDECapsuleViewController> *_frameworksViewController;
+    IDEViewController<IDECapsuleViewController> *_embeddedBinariesViewController;
     IDEViewController<IDECapsuleViewController> *_identityViewController;
     IDEViewController<IDECapsuleViewController> *_deploymentInfoViewController;
     IDEViewController<IDECapsuleViewController> *_appIconsViewController;
@@ -34,18 +35,26 @@
     NSMutableArray *_subviewControllers;
     Xcode3CodesignTroubleshootingViewController *_codesignTroubleController;
     DVTStackView_ML *_appIconStackView;
+    NSView *_appCategorySlice;
     NSView *_plistAppIconView;
     NSView *_assetCatalogAppIconView;
     NSPopUpButton *_assetCatalogPopUpButton;
     DVTGradientImageButton *_assetCatalogGoToButton;
+    DVTStackView_ML *_deploymentInfoStackView;
+    NSView *_mainInterfaceSlice;
+    NSView *_appExtensionAPISlice;
 }
 
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;
+@property(retain) NSView *appExtensionAPISlice; // @synthesize appExtensionAPISlice=_appExtensionAPISlice;
+@property(retain) NSView *mainInterfaceSlice; // @synthesize mainInterfaceSlice=_mainInterfaceSlice;
+@property(retain) DVTStackView_ML *deploymentInfoStackView; // @synthesize deploymentInfoStackView=_deploymentInfoStackView;
 @property(retain) DVTGradientImageButton *assetCatalogGoToButton; // @synthesize assetCatalogGoToButton=_assetCatalogGoToButton;
 @property(retain) NSPopUpButton *assetCatalogPopUpButton; // @synthesize assetCatalogPopUpButton=_assetCatalogPopUpButton;
 @property(retain) NSView *assetCatalogAppIconView; // @synthesize assetCatalogAppIconView=_assetCatalogAppIconView;
 @property(retain) NSView *plistAppIconView; // @synthesize plistAppIconView=_plistAppIconView;
+@property(retain) NSView *appCategorySlice; // @synthesize appCategorySlice=_appCategorySlice;
 @property(retain) DVTStackView_ML *appIconStackView; // @synthesize appIconStackView=_appIconStackView;
 @property(retain, nonatomic) id targetViewController; // @synthesize targetViewController=_targetViewController;
 - (void).cxx_destruct;
@@ -67,22 +76,33 @@
 - (id)imageView:(id)arg1 pathForImageNamed:(id)arg2;
 - (id)appImageName;
 @property(copy) NSString *selectedAppCategory;
+- (void)_setTargetAppExtensionInterface:(id)arg1;
+- (id)_targetAppExtensionInterface;
+- (void)_setTargetInterface:(id)arg1;
 @property(copy) NSString *targetMainNib;
 - (void)setTargetBuildVersion:(id)arg1;
 - (id)targetBuildVersion;
 @property(copy) NSString *targetVersion;
 @property(copy) NSString *targetIdentifier;
+@property BOOL allowAppExtensionAPIOnly;
 @property(copy) NSString *targetDeploymentOS;
 @property(copy) NSString *productName;
 - (id)target;
 - (void)_refreshAppIconStack;
 - (void)_refreshIdentityStack;
+- (void)_refreshDeploymentStack;
 - (void)_reloadCapsuleList;
 - (void)primitiveInvalidate;
 - (void)loadView;
 - (void)loadAppCategories;
 - (void)appIdentifierChanged:(id)arg1;
 - (void)refreshAppIdentifier;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

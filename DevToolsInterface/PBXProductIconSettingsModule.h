@@ -8,7 +8,7 @@
 
 #import "NSTextFieldDelegate-Protocol.h"
 
-@class NSImageView, PBXExtendedTextField;
+@class NSImageView, NSString, PBXExtendedTextField;
 
 @interface PBXProductIconSettingsModule : PBXAbstractProductSettingsModule <NSTextFieldDelegate>
 {
@@ -23,6 +23,12 @@
 - (void)takeStringValueFrom:(id)arg1;
 - (void)update;
 - (void)viewDidLoad;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

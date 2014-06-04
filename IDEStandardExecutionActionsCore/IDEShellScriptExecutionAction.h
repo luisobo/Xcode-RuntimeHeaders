@@ -32,6 +32,7 @@
 @property(readonly) NSString *defaultShell;
 - (id)operationForExecutionWithBuildParameters:(id)arg1 error:(id *)arg2;
 - (void)_updateBuildableReferenceToUseForBuildSettings;
+- (void)schemeObjectGraphSetupComplete;
 - (void)setRunContext:(id)arg1;
 - (void)setDefaultShell:(id)arg1;
 

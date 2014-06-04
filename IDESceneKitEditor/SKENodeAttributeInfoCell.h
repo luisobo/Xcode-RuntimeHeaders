@@ -6,13 +6,11 @@
 
 #import "NSButtonCell.h"
 
-@class NSImage, NSString;
+@class NSArray;
 
 @interface SKENodeAttributeInfoCell : NSButtonCell
 {
-    NSString *_nodeAttributeInfo;
-    NSImage *_image;
-    double _alpha;
+    NSArray *_imageNames;
     BOOL _hidden;
 }
 
@@ -21,8 +19,7 @@
 - (void).cxx_destruct;
 - (void)setControlViewWorkaround13788386:(id)arg1;
 - (void)setControlView:(id)arg1;
-@property(copy) NSString *nodeAttributeInfo;
-- (void)drawImage:(id)arg1 withFrame:(struct CGRect)arg2 inView:(id)arg3;
+@property(copy) NSArray *nodeAttributeInfo;
 - (void)drawInteriorWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)drawBezelWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (struct CGSize)cellSize;

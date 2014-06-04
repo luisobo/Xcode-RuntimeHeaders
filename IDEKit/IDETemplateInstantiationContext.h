@@ -33,8 +33,9 @@
 @property(retain) DVTFilePath *documentFilePath; // @synthesize documentFilePath=_documentFilePath;
 @property(retain, nonatomic) IDETemplate *documentTemplate; // @synthesize documentTemplate=_documentTemplate;
 - (void).cxx_destruct;
-- (void)finishTemplateInstantiation;
-@property(readonly) NSArray *targetWorkspaces;
+- (void)_asyncFinishTemplateInstantiationAfterCreatingWorkspaceDocumentWithCompletionHandler:(id)arg1;
+- (void)asyncFinishTemplateInstantiationWithCompletionHandler:(id)arg1;
+@property(readonly, copy) NSArray *targetWorkspaces;
 - (id)destinationBlueprintProvider;
 - (void)loadAvailableTemplatesOfKind:(id)arg1 navigableItemCoordinator:(id)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;

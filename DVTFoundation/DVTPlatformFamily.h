@@ -23,10 +23,10 @@
 + (id)allPlatformFamilies;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 + (void)initialize;
-@property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
+@property(readonly, copy) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
-@property(readonly) NSString *name; // @synthesize name=_name;
-@property(readonly) NSSet *platforms; // @synthesize platforms=_platforms;
+@property(readonly, copy) NSString *name; // @synthesize name=_name;
+@property(readonly, copy) NSSet *platforms; // @synthesize platforms=_platforms;
 - (void)addPlatform:(id)arg1;
 @property(readonly) NSArray *osVersions; // @synthesize osVersions=_osVersions;
 - (id)description;

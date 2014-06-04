@@ -8,7 +8,7 @@
 
 #import "DVTAssetDetailViewDelegate-Protocol.h"
 
-@class DVTAssetDetailView, DVTChoice, DVTDelayedInvocation, DVTLibraryAsset, DVTLibraryController, DVTLibraryDetailController, DVTLibraryDetailEditorController, DVTLibraryDetailPopUpController, NSArray;
+@class DVTAssetDetailView, DVTChoice, DVTDelayedInvocation, DVTLibraryAsset, DVTLibraryController, DVTLibraryDetailController, DVTLibraryDetailEditorController, DVTLibraryDetailPopUpController, NSArray, NSString;
 
 @interface DVTLibraryDetailPopUpContentController : DVTHUDPopUpContentViewController <DVTAssetDetailViewDelegate>
 {
@@ -69,6 +69,12 @@
 - (id)library;
 - (void)primitiveInvalidate;
 - (id)initWithLibraryController:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

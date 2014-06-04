@@ -7,7 +7,9 @@
 #import "NSObject.h"
 
 @interface NSObject (IBObjectAdditions)
++ (BOOL)ib_overridesClassMethod:(SEL)arg1;
 + (BOOL)ib_overridesInstanceMethod:(SEL)arg1;
+- (void)ib_cloneProperties:(id)arg1 toObject:(id)arg2;
 - (void)ib_didChangeValueForKeys:(id)arg1;
 - (void)ib_willChangeValueForKeys:(id)arg1;
 @end

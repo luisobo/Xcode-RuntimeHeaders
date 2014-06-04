@@ -8,13 +8,20 @@
 
 #import "XDUMLDataType-Protocol.h"
 
+@class NSString;
+
 @interface XDUMLDataTypeImp : XDUMLClassifierImp <XDUMLDataType>
 {
 }
 
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)ownedOperations;
 - (id)ownedAttributes;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

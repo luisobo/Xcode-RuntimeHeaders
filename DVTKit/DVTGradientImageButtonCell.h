@@ -6,7 +6,7 @@
 
 #import "NSButtonCell.h"
 
-@class NSImage, NSShadow;
+@class NSShadow;
 
 @interface DVTGradientImageButtonCell : NSButtonCell
 {
@@ -19,8 +19,6 @@
     BOOL _enableGradientStylBorderSuppression;
     BOOL _useButtonImageCenteringHack;
     BOOL _usedAsRadioButton;
-    NSImage *_imageBlueOnImageDerivedFrom;
-    NSImage *_blueOnImage;
     BOOL _alwaysShowColorPunchOut;
 }
 
@@ -37,7 +35,6 @@
 - (void).cxx_destruct;
 - (BOOL)_isTabStyleCell;
 - (BOOL)_shouldUseColorPunchOutStyleForGradientStyle;
-- (void)_updateImageIfNecessary;
 - (void)_setGradientStyle:(int)arg1;
 - (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)drawImage:(id)arg1 withFrame:(struct CGRect)arg2 inView:(id)arg3;

@@ -7,10 +7,11 @@
 #import "NSObject.h"
 
 #import "IDEGeniusResultNavigableRepresentedObject-Protocol.h"
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@class DVTDocumentLocation, DVTFileDataType, NSString, NSURL;
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString, NSURL;
 
-@interface IDESingleFileProcessingItem : NSObject <IDEGeniusResultNavigableRepresentedObject>
+@interface IDESingleFileProcessingItem : NSObject <IDEGeniusResultNavigableRepresentedObject, IDEKeyDrivenNavigableItemRepresentedObject>
 {
     NSString *_name;
     DVTDocumentLocation *_location;
@@ -24,11 +25,22 @@
 - (void).cxx_destruct;
 - (id)geniusResult_identifierForManualCategory;
 - (id)geniusResult_identifierForGeniusCategory;
-- (id)navigableItem_contentDocumentLocation;
-- (id)navigableItem_documentType;
-- (id)navigableItem_image;
-- (id)navigableItem_name;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) NSString *navigableItem_name;
 - (id)initWithName:(id)arg1 originalFileURL:(id)arg2 generatedContentLocation:(id)arg3 type:(id)arg4;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

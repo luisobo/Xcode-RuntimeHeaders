@@ -15,11 +15,6 @@
     DVTObservingToken *_utilitiesVisibilityObservationToken;
 }
 
-+ (id)_alternateInactiveImages;
-+ (id)_inactiveImages;
-+ (id)_alternateImages;
-+ (id)_images;
-+ (id)_templateImages;
 - (void).cxx_destruct;
 - (BOOL)validateMenuItem:(id)arg1;
 - (id)_menuItemTitleForSplitViewWithTag:(unsigned long long)arg1 state:(BOOL)arg2;
@@ -29,7 +24,13 @@
 - (id)_propertyNameForSplitViewWithTag:(unsigned long long)arg1;
 - (id)menuForMenuFormRepresentation;
 - (void)primitiveInvalidate;
+- (id)_create1010AndLaterControl;
+- (id)_createPre1010Control;
 - (id)initWithToolbarItemIdentifier:(id)arg1 window:(id)arg2;
+- (id)_imageFactoryForImageNamed:(id)arg1;
+- (id)_viewUtilitiesImageFactory;
+- (id)_viewDebugAreaImageFactory;
+- (id)_viewNavigatorsImageFactory;
 
 @end
 

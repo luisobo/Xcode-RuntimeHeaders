@@ -6,7 +6,7 @@
 
 #import "NSCoder.h"
 
-@class IBMutableIdentityDictionary, IBSelfCompressingDataWrapper, IBXMLCoderPerObjectState, NSHashTable, NSMapTable, NSMutableData, NSPointerArray, NSXMLElement;
+@class DVTMutableOrderedDictionary, IBMutableIdentityDictionary, IBSelfCompressingDataWrapper, NSDictionary, NSHashTable, NSMapTable, NSMutableData, NSPointerArray, NSXMLElement;
 
 @interface IBXMLCoder : NSCoder
 {
@@ -14,7 +14,7 @@
     NSMapTable *pointersToOids;
     NSMapTable *oidsToPointers;
     IBMutableIdentityDictionary *replacements;
-    IBMutableIdentityDictionary *objectsToXMLElements;
+    IBMutableIdentityDictionary *referencableObjectsToXMLElements;
     IBMutableIdentityDictionary *classNamesForClasses;
     NSHashTable *referenceNodes;
     NSHashTable *encodedClasses;
@@ -29,12 +29,19 @@
     BOOL finished;
     id <IBXMLCoderDelegate> delegate;
     long long depth;
-    IBXMLCoderPerObjectState *objectState;
     double minimumReadableVersion;
+    NSXMLElement *objectState_currentXMLNode;
+    long long objectState_nextGenericKey;
+    id objectState_encodedParent;
+    NSDictionary *objectState_encodingSpecialCaseContext;
+    BOOL objectState_processingDelayedEncoding;
+    DVTMutableOrderedDictionary *objectState_delayedObjects;
+    BOOL prettyPrintOutput;
 }
 
 + (id)archivedDataWithRootObject:(id)arg1;
 + (void)initialize;
+@property BOOL prettyPrintOutput; // @synthesize prettyPrintOutput;
 - (void).cxx_destruct;
 - (id)delegate;
 - (void)setDelegate:(id)arg1;
@@ -50,14 +57,13 @@
 - (BOOL)canEncodeObjectConditionally:(id)arg1;
 - (void)encodeObject:(id)arg1 forKey:(id)arg2;
 - (void)encodeReferenceToObject:(id)arg1 forKey:(id)arg2;
-- (id)xmlAttributesWithKey:(id)arg1;
 - (void)serializeObject:(id)arg1;
-- (BOOL)objectShouldUseCustomCoding:(id)arg1 sortDescriptorForUnorderedCollection:(id *)arg2;
+- (BOOL)objectShouldUseCustomCoding:(id)arg1 comparatorForUnorderedCollection:(id *)arg2;
 - (id)serializeString:(id)arg1;
 - (id)serializeNumber:(id)arg1;
-- (void)encodeDictionary:(id)arg1 withSortDescriptor:(id)arg2;
+- (void)encodeDictionary:(id)arg1 withComparator:(id)arg2;
 - (BOOL)shouldUseCompressedEncodingForDictionary:(id)arg1;
-- (void)encodeSet:(id)arg1 withSortDescriptor:(id)arg2;
+- (void)encodeSet:(id)arg1 withComparator:(id)arg2;
 - (void)encodeArray:(id)arg1;
 - (BOOL)shouldEncodeCollectionsWithSpecialElements;
 - (BOOL)object:(id)arg1 encodesAsMemberAndWithCoderOfClass:(Class)arg2;

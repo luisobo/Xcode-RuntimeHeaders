@@ -8,6 +8,8 @@
 
 #import "IBHighlightProvider-Protocol.h"
 
+@class NSString;
+
 @interface IBDockViewHighlightProvider : NSObject <IBHighlightProvider>
 {
     id <IBDockViewHighlightProviderDelegate> _delegate;
@@ -18,6 +20,12 @@
 - (id)documentEditor:(id)arg1 highlightObjects:(id)arg2 showLabels:(BOOL)arg3 successfulObjects:(id *)arg4;
 - (double)highlightPriorityInDocumentEditor:(id)arg1;
 - (id)initWithDelegate:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -7,8 +7,11 @@
 #import "NSMenu.h"
 
 @interface NSMenu (IBMenuAdditions)
++ (id)ib_menuWithDelegate:(id)arg1;
 + (id)ib_menuWithItemGroups:(id)arg1;
 + (id)ib_menuWithItems:(id)arg1;
+- (void)ib_addItemWithTitle:(id)arg1 representedObject:(id)arg2 target:(id)arg3 action:(SEL)arg4;
+- (void)ib_addItemWithTitle:(id)arg1 representedObject:(id)arg2;
 - (void)ib_scaleMenuItemImagesToSize:(struct CGSize)arg1;
 - (void)ib_setMenuItems:(id)arg1;
 - (void)ib_addMenuItems:(id)arg1;

@@ -27,7 +27,11 @@
 @property(copy) NSError *error; // @synthesize error=_error;
 @property(copy) id block; // @synthesize block=_block;
 - (void).cxx_destruct;
+- (void)trackFuture:(id)arg1;
+- (void)trackFuture:(id)arg1 cancel:(BOOL)arg2 error:(BOOL)arg3;
 - (id)stateString;
+- (void)enumerateUsingBlock:(id)arg1;
+- (void)_enumerateWithStop:(char *)arg1 usingBlock:(id)arg2;
 - (void)allowFinishForToken:(id)arg1;
 - (id)disallowFinishWithReason:(id)arg1;
 - (BOOL)isFinished;
@@ -38,7 +42,6 @@
 - (void)main;
 - (id)description;
 - (id)init;
-- (void)trackFuture:(id)arg1 cancel:(BOOL)arg2 error:(BOOL)arg3;
 
 @end
 

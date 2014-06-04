@@ -11,7 +11,7 @@
 #import "IDEGroupedSegmentedControlDelegate-Protocol.h"
 #import "IDEParagraphStylePopoverControllerDelegate-Protocol.h"
 
-@class DVTFontTextField, DVTSegmentColorWell, DVTStackBacktrace, IDEAttributedStringControlParagraphStylePopoverController, IDEAttributedStringControlTextView, IDEGroupedSegmentedControl, IDEGroupedSegmentedControlGroup, IDEGroupedSegmentedControlItem, NSAttributedString, NSPopover, NSScrollView, NSStepper, NSString;
+@class DVTFontTextField, DVTSegmentColorWell, DVTStackBacktrace, IDEAttributedStringControlParagraphStylePopoverController, IDEAttributedStringControlTextView, IDEGroupedSegmentedControl, IDEGroupedSegmentedControlGroup, IDEGroupedSegmentedControlItem, NSAttributedString, NSPopover, NSScrollView, NSStepper, NSString, NSTextView;
 
 @interface IDEAttributedStringControl : DVTLayoutView_ML <IDEGroupedSegmentedControlDelegate, IDEParagraphStylePopoverControllerDelegate, IDEAttributedStringControlTextViewDelegate, DVTInvalidation>
 {
@@ -52,6 +52,8 @@
 - (struct CGSize)updateContainerLayoutAndComputeBounds;
 - (struct CGSize)textContainerSize;
 - (double)textViewWidth;
+- (struct CGSize)scrollViewContentSizeForFrameSize:(struct CGSize)arg1;
+- (CDStruct_d659fc14)scrollViewConfiguration;
 - (BOOL)isFlipped;
 - (void)textDidEndEditing:(id)arg1;
 - (void)textViewDidCommitEditing:(id)arg1;
@@ -80,6 +82,7 @@
 @property(copy) NSAttributedString *attributedStringValue;
 - (id)defaultTypingAttributes;
 @property(copy) NSString *placeholder;
+@property(readonly) NSTextView *textView;
 - (void)awakeFromNib;
 - (void)setupPargraphStylePopUp;
 - (void)setupAttributesStrip;
@@ -89,7 +92,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

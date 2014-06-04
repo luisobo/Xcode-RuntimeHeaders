@@ -24,7 +24,7 @@
 - (void)_subcategoryDidChangeCount:(id)arg1;
 - (id)_findCategoryWithHighestPrecedence;
 - (void)dealloc;
-- (id)initWithCategories:(id)arg1;
+- (id)initWithCategories:(id)arg1 clickHandler:(id)arg2;
 
 @end
 

@@ -10,12 +10,12 @@
 
 @interface DVTLayoutView_ML : NSView
 {
-    NSMutableDictionary *invalidationTokens;
-    BOOL _layoutNeeded;
-    BOOL _implementsLayoutCompletionCallback;
     NSCountedSet *_frameChangeObservations;
     NSCountedSet *_boundsChangeObservations;
     BOOL _implementsDrawRect;
+    BOOL _implementsLayoutCompletionCallback;
+    BOOL _layoutNeeded;
+    NSMutableDictionary *_invalidationTokens;
     BOOL _needsSecondLayoutPass;
 }
 

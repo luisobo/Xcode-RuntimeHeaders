@@ -9,7 +9,7 @@
 #import "IDECapsuleListViewDataSource-Protocol.h"
 #import "IDECapsuleViewDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTDownloadableManager, DVTMapTable, IDECapsuleListView, IDEDownloadableCapsuleViewController, IDEDownloadableContentTypeGroup, NSArray, NSButton, NSProgressIndicator, NSTextField, NSTimer;
+@class DVTBorderedView, DVTDownloadableManager, DVTMapTable, IDECapsuleListView, IDEDownloadableCapsuleViewController, IDEDownloadableContentTypeGroup, NSArray, NSButton, NSProgressIndicator, NSString, NSTextField, NSTimer;
 
 @interface IDECombinedDownloadsPrefPaneController : IDEViewController <IDECapsuleListViewDataSource, IDECapsuleViewDelegate>
 {
@@ -57,6 +57,12 @@
 - (double)capsuleView:(id)arg1 preferredContentViewWidthForCapsuleWidth:(double)arg2;
 - (long long)numberOfObjectsInCapsuleListView:(id)arg1;
 - (void)loadView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

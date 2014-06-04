@@ -13,5 +13,6 @@
 @property(readonly) struct CGSize ib_sizeValue;
 @property(readonly) struct CGRect ib_rectValue;
 @property(readonly) struct CGPoint ib_pointValue;
+- (long long)ib_valueType;
 @end
 

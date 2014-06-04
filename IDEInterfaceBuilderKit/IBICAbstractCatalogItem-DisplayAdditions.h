@@ -8,7 +8,7 @@
 
 #import "IDEInspectorMatching-Protocol.h"
 
-@class IBICTransientUIStateRepository, NSImage;
+@class IBICTransientUIStateRepository, NSImage, NSString;
 
 @interface IBICAbstractCatalogItem (DisplayAdditions) <IDEInspectorMatching>
 + (id)pasteboardTypes;
@@ -37,5 +37,11 @@
 @property(readonly) BOOL displaysInOutlineView;
 @property(readonly) BOOL displaysChildrenInOutlineView;
 @property(readonly) NSImage *icon;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

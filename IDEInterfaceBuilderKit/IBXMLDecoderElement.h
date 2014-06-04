@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class IBXMLDecoderParser, NSArray, NSDictionary, NSString;
+@class IBXMLDecoderParserStringTable, NSDictionary, NSString;
 
 @interface IBXMLDecoderElement : NSObject
 {
@@ -19,7 +19,7 @@
     } _characterBuffer;
     BOOL _charactersCompleted;
     NSString *_uninterpretedStringValue;
-    IBXMLDecoderParser *_parser;
+    IBXMLDecoderParserStringTable *_stringTable;
 }
 
 + (id)elementName;
@@ -49,12 +49,14 @@
 - (BOOL)acceptDataElement:(id)arg1 error:(id *)arg2;
 - (BOOL)acceptArchiveElement:(id)arg1 error:(id *)arg2;
 - (BOOL)acceptElement:(id)arg1 error:(id *)arg2;
+- (id)interpretedObjectValue:(char *)arg1;
 - (void)finishedAddingSubelements;
 - (void)finishedInterpretingCharacters;
 - (BOOL)interpretDataReturningError:(id *)arg1;
 - (void)finishedAcceptingCharacters;
 - (void)acceptCharacters:(const char *)arg1 length:(long long)arg2;
 - (void)growCharacterBuffer:(long long)arg1;
+- (void)invokeWithAccessToUninterpretedCharacters:(id)arg1;
 @property(readonly) NSString *uninterpretedStringValue;
 - (BOOL)acceptsData;
 - (BOOL)requestInsertionIntoParent:(id)arg1 error:(id *)arg2;
@@ -63,9 +65,9 @@
 @property(readonly) NSString *referencedIdentifier;
 @property(readonly) NSString *identifier;
 @property(readonly) NSDictionary *keyedAbstractValueElements;
-@property(readonly) NSArray *elements;
+- (void)enumerateElements:(id)arg1;
 @property(readonly) NSString *elementName;
-- (id)initWithAttributes:(const char **)arg1 parser:(id)arg2 error:(id *)arg3;
+- (id)initWithAttributes:(const char **)arg1 stringTable:(id)arg2 error:(id *)arg3;
 - (Class)elementClassForElementName:(const char *)arg1;
 - (BOOL)_isDeallocating;
 - (BOOL)_tryRetain;

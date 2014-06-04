@@ -10,6 +10,7 @@
 
 @interface Xcode3SandboxItemModel : IDEProjectItemModel
 {
+    id <IDEFlightChecking> _entitlementsFlightCheck;
     NSMutableDictionary *_entitlements;
     NSMutableDictionary *_filesystemPermissions;
 }
@@ -23,6 +24,7 @@
 @property(retain) NSMutableDictionary *entitlements; // @synthesize entitlements=_entitlements;
 - (void).cxx_destruct;
 - (BOOL)isEnabledUsingEducatedGuess;
+- (id)flightChecks;
 - (id)entitlementsFlightCheck;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (id)valueForUndefinedKey:(id)arg1;

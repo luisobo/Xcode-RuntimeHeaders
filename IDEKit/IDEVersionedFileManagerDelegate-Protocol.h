@@ -6,8 +6,8 @@
 
 @protocol IDEVersionedFileManagerDelegate
 - (void)moveItemAtFilePathToTrash:(id)arg1 completionBlock:(id)arg2;
-- (BOOL)canMoveItemsAtFilePaths:(id)arg1 toFilePaths:(id)arg2 completionBlockDispatchQueue:(struct dispatch_queue_s **)arg3 completionBlock:(id *)arg4;
+- (BOOL)canMoveItemsAtFilePaths:(id)arg1 toFilePaths:(id)arg2 completionBlockDispatchQueue:(id *)arg3 completionBlock:(id *)arg4;
 - (void)willRemoveItemsAtFilePaths:(id)arg1 completionBlock:(id)arg2;
-- (BOOL)canRemoveItemsAtFilePaths:(id)arg1 completionBlockDispatchQueue:(struct dispatch_queue_s **)arg2 completionBlock:(id *)arg3;
+- (BOOL)canRemoveItemsAtFilePaths:(id)arg1 completionBlockDispatchQueue:(id *)arg2 completionBlock:(id *)arg3;
 @end
 

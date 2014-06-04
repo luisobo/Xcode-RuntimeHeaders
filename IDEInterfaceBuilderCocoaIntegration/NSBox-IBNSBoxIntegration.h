@@ -9,14 +9,11 @@
 @interface NSBox (IBNSBoxIntegration)
 + (id)keyPathsForValuesAffectingIbInspectedContentViewMarginsWidth;
 + (id)keyPathsForValuesAffectingIbInspectedContentViewMarginsHeight;
-+ (id)keyPathsForValuesAffectingIbWidgetType;
-+ (id)keyPathsForValuesAffectingIbQualifyingInfoForDefaultLabel;
-+ (id)keyPathsForValuesAffectingIbTypeNameForDefaultLabel;
 - (void)setIbInspectedContentViewMarginsWidth:(double)arg1;
 - (double)ibInspectedContentViewMarginsWidth;
 - (void)setIbInspectedContentViewMarginsHeight:(double)arg1;
 - (double)ibInspectedContentViewMarginsHeight;
-- (id)ibApplicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
+- (BOOL)ibIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;
 - (BOOL)ibVerifyFrameAndBoundsIntegrality;
 - (BOOL)ibChildView:(id)arg1 shouldUseConstraintsInsteadOfAutoresizingWhenAddedToDocument:(id)arg2;
 - (void)ibAwakeInDocument:(id)arg1;

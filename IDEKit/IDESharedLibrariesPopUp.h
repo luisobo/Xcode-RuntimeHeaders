@@ -6,31 +6,26 @@
 
 #import "DVTPopoverContentViewController.h"
 
-@class DVTBorderedView, IDEDebugSymbolsLoadedButtonCell, NSArray, NSArrayController, NSTableColumn, NSTableView, NSTextField, NSURL;
+@class DVTBorderedView, NSArray, NSArrayController, NSURL;
 
 @interface IDESharedLibrariesPopUp : DVTPopoverContentViewController
 {
-    id <IDEDebugSession> _debugSession;
-    NSURL *_url;
-    NSArray *_sharedLibraryEntries;
-    IDEDebugSymbolsLoadedButtonCell *_loadDebugSymbolsButtonCell;
+    id _modulesObservingToken;
     NSArrayController *_arrayController;
-    NSTextField *_loadedModulesLabel;
-    NSTableView *_tableView;
-    NSTableColumn *_nameColumn;
     DVTBorderedView *_glassBar;
+    NSArray *_sharedLibraryEntries;
+    id <IDEDebugSession> _debugSession;
+    NSURL *_URL;
 }
 
-+ (BOOL)_isDebugSymbolsLoadedTableColumn:(id)arg1;
 + (void)showPopUpAtPoint:(struct CGPoint)arg1 relativeToView:(id)arg2 debugSession:(id)arg3 executableURL:(id)arg4;
-@property(readonly) NSArray *sharedLibraryEntries; // @synthesize sharedLibraryEntries=_sharedLibraryEntries;
+@property(copy) NSURL *URL; // @synthesize URL=_URL;
+@property(retain) id <IDEDebugSession> debugSession; // @synthesize debugSession=_debugSession;
+@property(retain) NSArray *sharedLibraryEntries; // @synthesize sharedLibraryEntries=_sharedLibraryEntries;
 - (void).cxx_destruct;
 - (void)copy:(id)arg1;
-- (void)_loadDebugSymbols:(id)arg1;
-- (id)_loadDebugSymbolsButtonCell;
-- (id)tableView:(id)arg1 dataCellForTableColumn:(id)arg2 row:(long long)arg3;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
-- (BOOL)tableView:(id)arg1 shouldSelectRow:(long long)arg2;
+- (void)_handleCodeModulesChanged:(id)arg1;
 - (void)_handleDebugSessionStateChanged:(id)arg1;
 - (void)_cleanUpAfterClosingPopUpWindow;
 - (void)done:(id)arg1;

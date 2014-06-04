@@ -14,7 +14,7 @@
 - (void)capsuleListViewDidCompleteLayout:(id)arg1;
 - (void)capsuleListView:(id)arg1 didExpandRow:(long long)arg2;
 - (void)capsuleListView:(id)arg1 didCollapseRow:(long long)arg2;
-- (BOOL)capsuleListView:(id)arg1 writeRowWithIndex:(unsigned long long)arg2 toPasteboard:(id)arg3;
+- (id)capsuleListView:(id)arg1 pastboardTypesForRowWithIndex:(unsigned long long)arg2;
 - (unsigned long long)capsuleListView:(id)arg1 validateDrop:(id)arg2 proposedRow:(long long)arg3;
 - (BOOL)capsuleListView:(id)arg1 acceptDrop:(id)arg2 row:(long long)arg3;
 @end

@@ -9,7 +9,7 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "PBXLSViewControllerProtocol-Protocol.h"
 
-@class NSButton, NSPopUpButton, NSSearchField, NSTextField, PBXExecutable, PBXExtendedTableView, PBXLSDynamicLinkerImageController, XCExtendedArrayController;
+@class NSButton, NSPopUpButton, NSSearchField, NSString, NSTextField, PBXExecutable, PBXExtendedTableView, PBXLSDynamicLinkerImageController, XCExtendedArrayController;
 
 @interface PBXLSDynamicLinkerImageModule : PBXProjectModule <NSTableViewDataSource, PBXLSViewControllerProtocol>
 {
@@ -65,6 +65,12 @@
 - (id)tableView:(id)arg1 objectValueForTableColumn:(id)arg2 row:(long long)arg3;
 - (void)tableView:(id)arg1 deleteRows:(id)arg2;
 - (long long)numberOfRowsInTableView:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

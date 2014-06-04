@@ -8,6 +8,8 @@
 
 #import "TSOutputStreams-Protocol.h"
 
+@class NSString;
+
 @interface TSOutputStream : NSObject <TSOutputStreams>
 {
 }
@@ -16,6 +18,12 @@
 - (void)close;
 - (void)flush;
 - (void)writeBytes:(const void *)arg1 length:(unsigned long long)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

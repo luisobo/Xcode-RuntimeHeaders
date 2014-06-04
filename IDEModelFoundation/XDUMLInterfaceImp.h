@@ -8,12 +8,14 @@
 
 #import "XDUMLInterface-Protocol.h"
 
+@class NSString;
+
 @interface XDUMLInterfaceImp : XDUMLClassifierImp <XDUMLInterface>
 {
 }
 
 - (BOOL)lazyCreateBucketNamed:(id)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)implementorRemoved:(id)arg1;
 - (void)implementorAdded:(id)arg1;
 - (id)implementors;
@@ -25,6 +27,11 @@
 - (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

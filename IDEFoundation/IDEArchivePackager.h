@@ -25,13 +25,14 @@
 @property(copy) NSString *displayName; // @synthesize displayName=_displayName;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
-- (id)packagingOperationForArchive:(id)arg1 withCodesignIdentity:(id)arg2 installerIdentity:(id)arg3 extraEntitlements:(id)arg4 andError:(id *)arg5;
+- (id)packagingOperationForArchive:(id)arg1 withCodesignIdentity:(id)arg2 installerIdentity:(id)arg3 extraEntitlements:(id)arg4 includeSymbolCache:(BOOL)arg5 error:(id *)arg6;
 - (id)signingOperationForArchive:(id)arg1 withCodesignIdentity:(id)arg2 extraEntitlements:(id)arg3 andError:(id *)arg4;
 - (id)identitiesForBundleIdentifier:(id)arg1 andIdentityFilter:(id)arg2;
 - (id)tokenForProvisioningProfileNamed:(id)arg1;
 - (id)tokenForSigningIdentityNamed:(id)arg1;
 - (id)refreshIdentity;
 - (id)dontSignIdentity;
+@property(readonly) _Bool supportsSymbolUploads;
 @property(readonly) _Bool supportsInstallerSigning;
 @property(readonly) _Bool supportsCodeSigning;
 

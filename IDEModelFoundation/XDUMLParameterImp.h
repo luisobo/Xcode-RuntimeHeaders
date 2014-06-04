@@ -20,7 +20,7 @@
 }
 
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (long long)upper;
 - (long long)lower;
 - (BOOL)isUnique;
@@ -35,6 +35,11 @@
 - (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

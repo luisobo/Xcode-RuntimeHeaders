@@ -6,30 +6,30 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class DVTSigningCertificate, NSString;
 
 @interface DVTCodesignParameterSnapshot : NSObject
 {
     id <DVTProvisioningProfile> _provisioningProfile;
-    struct OpaqueSecCertificateRef *_identityCertificate;
+    DVTSigningCertificate *_signingCertificate;
     NSString *_identityHash;
 }
 
 + (id)snapshotForAdHocSigning;
 + (id)snapshotForNullSigning;
 + (id)snapshotWithProvisioningProfile:(id)arg1;
-+ (id)snapshotWithProvisioningProfile:(id)arg1 andIdentityCertificate:(struct OpaqueSecCertificateRef *)arg2;
-+ (id)snapshotWithIdentityCertificate:(struct OpaqueSecCertificateRef *)arg1;
++ (id)snapshotWithProvisioningProfile:(id)arg1 andSigningCertificate:(id)arg2;
++ (id)snapshotWithSigningCertificate:(id)arg1;
 + (id)snapshotWithIdentityHash:(id)arg1;
 @property(copy) NSString *identityHash; // @synthesize identityHash=_identityHash;
+@property(retain) DVTSigningCertificate *signingCertificate; // @synthesize signingCertificate=_signingCertificate;
 @property(retain) id <DVTProvisioningProfile> provisioningProfile; // @synthesize provisioningProfile=_provisioningProfile;
 - (void).cxx_destruct;
+@property(readonly) struct OpaqueSecCertificateRef *identityCertificate;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 @property(readonly) _Bool willSign;
 @property(readonly) _Bool isAdHocIdentity;
-@property struct OpaqueSecCertificateRef *identityCertificate; // @synthesize identityCertificate=_identityCertificate;
-- (void)dealloc;
 - (id)description;
 
 @end

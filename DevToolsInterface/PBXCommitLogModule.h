@@ -8,7 +8,7 @@
 
 #import "NSTextViewDelegate-Protocol.h"
 
-@class NSButton, NSMutableArray, NSTextField, NSTextView;
+@class NSButton, NSMutableArray, NSString, NSTextField, NSTextView;
 
 @interface PBXCommitLogModule : PBXModule <NSTextViewDelegate>
 {
@@ -40,6 +40,12 @@
 - (unsigned long long)moduleWindowStyleMask;
 - (Class)moduleWindowClass;
 - (id)loadModuleWindow;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

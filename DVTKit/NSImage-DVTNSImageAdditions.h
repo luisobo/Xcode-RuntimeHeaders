@@ -31,10 +31,15 @@
 - (id)dvt_deriveSubsidiaryImageOfSize:(struct CGSize)arg1;
 - (id)dvt_cachedWhiteImageFromTemplate;
 - (id)dvt_deriveWhiteImageFromTemplate;
+- (id)dvt_cachedInactiveAlternateImageFromTemplate;
+- (id)_dvt_deriveInactiveAlternateImageFromTemplate;
 - (id)dvt_cachedAlternateImageFromTemplate;
 - (id)_dvt_deriveAlternateImageFromTemplate;
 - (void)dvt_drawInnerShadow:(id)arg1 inRect:(struct CGRect)arg2;
 - (void)dvt_drawInRect:(struct CGRect)arg1 operation:(unsigned long long)arg2 fraction:(double)arg3 unflip:(BOOL)arg4;
 - (id)dvt_copyReferencingCachedOriginal;
+- (void)_dvt_associateOriginal:(id)arg1;
+- (id)_dvt_cachedOriginal;
+- (id)_debugAnnotation;
 @end
 

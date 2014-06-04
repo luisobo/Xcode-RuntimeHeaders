@@ -28,13 +28,18 @@
 - (void)netService:(id)arg1 didNotResolve:(id)arg2;
 - (void)netServiceDidResolveAddress:(id)arg1;
 - (void)ide_addPropertyListRepresentationToDictionary:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)init;
 - (id)initWithPropertyListRepresentation:(id)arg1;
 - (id)initWithNetServiceDomain:(id)arg1 type:(id)arg2 name:(id)arg3;
 - (void)_netServiceCommonInit;
 - (void)resolveService;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

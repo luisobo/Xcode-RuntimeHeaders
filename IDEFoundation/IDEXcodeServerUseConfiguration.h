@@ -19,9 +19,9 @@
 + (id)sharedServerUseConfiguration;
 + (void)initialize;
 @property(readonly) BOOL testInstallShouldCopyEntireBuiltProductsDir; // @synthesize testInstallShouldCopyEntireBuiltProductsDir=_testInstallShouldCopyEntireBuiltProductsDir;
-@property(readonly) DVTFilePath *testUserPath; // @synthesize testUserPath=_testUserPath;
-@property(readonly) NSString *testUserName; // @synthesize testUserName=_testUserName;
-@property(readonly) DVTFilePath *controlPath; // @synthesize controlPath=_controlPath;
+@property(readonly, copy) DVTFilePath *testUserPath; // @synthesize testUserPath=_testUserPath;
+@property(readonly, copy) NSString *testUserName; // @synthesize testUserName=_testUserName;
+@property(readonly, copy) DVTFilePath *controlPath; // @synthesize controlPath=_controlPath;
 - (void).cxx_destruct;
 - (id)initWithControlPath:(id)arg1 testUserName:(id)arg2 testUserPath:(id)arg3;
 

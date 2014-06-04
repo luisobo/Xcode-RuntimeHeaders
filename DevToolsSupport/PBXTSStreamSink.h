@@ -12,6 +12,8 @@
 #import "PBXTSStreamConsumerRetaining-Protocol.h"
 #import "PBXTSStreamConsuming-Protocol.h"
 
+@class NSString;
+
 @interface PBXTSStreamSink : NSObject <PBXTSStreamConsuming, PBXTSByteStreamConsuming, PBXTSCharacterStreamConsuming, PBXTSLineStreamConsuming, PBXTSStreamConsumerRetaining>
 {
 }
@@ -21,6 +23,12 @@
 - (void)stream:(id)arg1 processCharacters:(id)arg2;
 - (void)stream:(id)arg1 processBytes:(id)arg2;
 - (void)streamDidEnd:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

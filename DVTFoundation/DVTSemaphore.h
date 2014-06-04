@@ -6,12 +6,15 @@
 
 #import "NSObject.h"
 
+@class NSObject<OS_dispatch_semaphore>;
+
 @interface DVTSemaphore : NSObject
 {
-    struct dispatch_semaphore_s *_semaphore;
+    NSObject<OS_dispatch_semaphore> *_semaphore;
 }
 
 + (id)semaphoreWithCount:(long long)arg1;
+- (void).cxx_destruct;
 - (BOOL)waitWithTimeout:(double)arg1;
 - (void)wait;
 - (BOOL)signal;

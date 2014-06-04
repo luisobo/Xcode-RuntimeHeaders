@@ -41,6 +41,8 @@
 + (id)buildIntermediatesFolderPathForSettings:(id)arg1 usingPlaceholderOfType:(int *)arg2;
 + (id)buildProductsFolderPathForSettings:(id)arg1 usingPlaceholderOfType:(int *)arg2;
 + (id)keyPathsForValuesAffectingPrecompiledHeadersFolderPath;
++ (id)keyPathsForValuesAffectingIBLiveViewsBuildFolderPath;
++ (id)keyPathsForValuesAffectingPGOBuildFolderPath;
 + (id)keyPathsForValuesAffectingInstallingBuildFolderPath;
 + (id)keyPathsForValuesAffectingArchivingBuildFolderPath;
 + (id)keyPathsForValuesAffectingBuildIntermediatesFolderPath;
@@ -54,7 +56,7 @@
 @property BOOL hasWorkspaceRelativeDerivedDataLocation; // @synthesize hasWorkspaceRelativeDerivedDataLocation=_hasWorkspaceRelativeDerivedDataLocation;
 @property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)createWorkspaceArenaFolderIfNecessary;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
@@ -66,6 +68,8 @@
 @property(readonly) DVTFilePath *indexFolderPath;
 @property(readonly) DVTFilePath *textIndexFolderPath;
 @property(readonly) DVTFilePath *precompiledHeadersFolderPath;
+@property(readonly) DVTFilePath *IBLiveViewsBuildFolderPath;
+@property(readonly) DVTFilePath *pgoBuildFolderPath;
 @property(readonly) DVTFilePath *installingBuildFolderPath;
 @property(readonly) DVTFilePath *archivingBuildFolderPath;
 @property(readonly) DVTFilePath *buildIntermediatesFolderPath;
@@ -88,7 +92,10 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

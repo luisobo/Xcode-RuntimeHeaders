@@ -20,8 +20,8 @@
 + (id)_testingSystemForExtension:(id)arg1;
 + (void)initialize;
 @property(readonly) Class testableClass; // @synthesize testableClass=_testableClass;
-@property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
-@property(readonly) NSString *name; // @synthesize name=_name;
+@property(readonly, copy) NSString *identifier; // @synthesize identifier=_identifier;
+@property(readonly, copy) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (id)description;
 - (id)initWithTestingSystemExtension:(id)arg1;

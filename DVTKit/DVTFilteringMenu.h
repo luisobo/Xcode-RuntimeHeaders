@@ -10,13 +10,14 @@
 #import "NSMenuDelegate-Protocol.h"
 #import "NSTextFieldDelegate-Protocol.h"
 
-@class DVTFilteringMenuSearchView;
+@class DVTFilteringMenuSearchView, NSString;
 
 @interface DVTFilteringMenu : NSMenu <DVTFilteringMenuSearchViewDelegate, NSMenuDelegate, NSTextFieldDelegate>
 {
     id _dvtDelegate;
     DVTFilteringMenuSearchView *_newSearchView;
     BOOL _initiallyShowsSearch;
+    struct OpaqueMenuRef *_carbonMenu;
     struct {
         unsigned int _delegateRespondsToFilterItemsInMenuForSearchString:1;
         unsigned int _delegateRespondsToMenuHasKeyEquivalentForEventTargetAction:1;
@@ -49,11 +50,18 @@
 - (BOOL)_isSearchScrolledOutOfView:(id)arg1;
 - (void)_selectSearchItem:(id)arg1;
 - (id)_newSearchMenuItem;
+- (struct OpaqueMenuRef *)dvt_menuRef;
 - (id)dvt_delegate;
 - (id)delegate;
 - (void)setDelegate:(id)arg1;
 - (id)initWithTitle:(id)arg1 initiallyShowsSearch:(BOOL)arg2;
 - (id)initWithTitle:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

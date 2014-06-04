@@ -28,9 +28,9 @@
 @property(retain) DVTDeveloperAccount *account; // @synthesize account=_account;
 - (void).cxx_destruct;
 - (id)individualTeamTokens;
-@property(readonly) NSString *teamId;
+@property(readonly, copy) NSString *teamId;
 - (void)setTeam:(id)arg1;
-@property(readonly) NSDictionary *team;
+@property(readonly, copy) NSDictionary *team;
 @property(copy) NSArray *teams; // @synthesize teams=_teams;
 - (_Bool)filterTeamsUsingBlock:(id)arg1;
 - (_Bool)filterTeamsToSingleTeamId:(id)arg1;

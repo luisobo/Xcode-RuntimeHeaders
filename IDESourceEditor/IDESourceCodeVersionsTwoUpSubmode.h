@@ -9,12 +9,13 @@
 #import "DVTComparisonSplitViewDelegate-Protocol.h"
 #import "DVTDiffSessionDelegate-Protocol.h"
 #import "IDEComparisonEditorDelegate-Protocol.h"
+#import "IDEComparisonEditorSavableMergeState-Protocol.h"
 #import "IDESourceEditorViewControllerHost-Protocol.h"
 #import "NSSplitViewDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTComparisonScrollCoordinator, DVTComparisonSplitView, DVTDiffSession, DVTNotificationToken, DVTObservingToken, DVTSourceTextView, IDEEditor, IDESourceCodeDocument, IDESourceCodeVersionsLayoutView, IDESourceControlMergeData, NSDictionary;
+@class DVTBorderedView, DVTComparisonScrollCoordinator, DVTComparisonSplitView, DVTDiffSession, DVTObservingToken, DVTSourceTextView, IDEEditor, IDESourceCodeDocument, IDESourceCodeVersionsLayoutView, IDESourceControlMergeData, NSDictionary, NSString;
 
-@interface IDESourceCodeVersionsTwoUpSubmode : IDEComparisonEditorSubmode <IDEComparisonEditorDelegate, NSSplitViewDelegate, IDESourceEditorViewControllerHost, DVTDiffSessionDelegate, DVTComparisonSplitViewDelegate>
+@interface IDESourceCodeVersionsTwoUpSubmode : IDEComparisonEditorSubmode <IDEComparisonEditorDelegate, NSSplitViewDelegate, IDESourceEditorViewControllerHost, DVTDiffSessionDelegate, DVTComparisonSplitViewDelegate, IDEComparisonEditorSavableMergeState>
 {
     DVTBorderedView *_primaryLayoutView;
     DVTBorderedView *_secondaryLayoutView;
@@ -26,8 +27,6 @@
     IDEEditor *_primaryEditor;
     IDEEditor *_secondaryEditor;
     DVTObservingToken *_responderToken;
-    DVTNotificationToken *_conflictResolutionDidCompleteObserver;
-    DVTNotificationToken *_interactiveCommitDidCompleteObserver;
     id _resignKeyWindowNotificationObserver;
     id _becomeKeyWindowNotificationObserver;
     NSDictionary *_previouslyRestoredStateDictionary;
@@ -114,6 +113,7 @@
 - (id)_windowForError;
 - (BOOL)_documentIsTemporaryDocument;
 @property(readonly) IDESourceControlMergeData *previousMergeData;
+- (void)saveMergeState;
 - (id)mergeController;
 @property(retain) DVTDiffSession *diffSession;
 @property(retain) IDEEditor *secondaryEditor; // @synthesize secondaryEditor=_secondaryEditor;
@@ -126,6 +126,12 @@
 - (void)comparisonContextMenu_revertSelectedDiffDescriptor:(id)arg1;
 - (void)comparisonContextMenu_toggleIgnoreWhitespace:(id)arg1;
 - (void)comparisonContextMenu_copyDiff:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

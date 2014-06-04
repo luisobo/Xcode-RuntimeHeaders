@@ -16,29 +16,36 @@
     NSString *_localizedName;
     NSImage *_icon;
     double _priority;
+    long long _priorityBucket;
+    unsigned long long _priorityComparatorKind;
 }
 
+@property unsigned long long priorityComparatorKind; // @synthesize priorityComparatorKind=_priorityComparatorKind;
+@property long long priorityBucket; // @synthesize priorityBucket=_priorityBucket;
 @property(retain) NSImage *icon; // @synthesize icon=_icon;
 @property double priority; // @synthesize priority=_priority;
 @property(copy) NSString *localizedName; // @synthesize localizedName=_localizedName;
 @property(copy) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 @property(readonly) BOOL notRecommended;
-@property(readonly) NSAttributedString *descriptionText;
-@property(readonly) NSString *completionText;
-@property(readonly) NSString *parentText;
-@property(readonly) NSString *displayType;
-@property(readonly) NSString *displayText;
-- (unsigned long long)hash;
+@property(readonly, copy) NSAttributedString *descriptionText;
+@property(readonly, copy) NSString *completionText;
+@property(readonly, copy) NSString *parentText;
+@property(readonly, copy) NSString *displayType;
+@property(readonly, copy) NSString *displayText;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)initWithName:(id)arg1;
 
 // Remaining properties
-@property(readonly) NSArray *additionalCompletions;
+@property(readonly, copy) NSArray *additionalCompletions;
 @property(readonly) int completionItemStyle;
+@property(readonly, copy) NSString *debugDescription;
 @property(readonly) NSImage *highlightedStatusIcon;
+@property(readonly, copy) NSString *previewText;
 @property(readonly) NSImage *statusIcon;
+@property(readonly) Class superclass;
 
 @end
 

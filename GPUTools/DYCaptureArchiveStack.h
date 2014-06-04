@@ -8,6 +8,8 @@
 
 #import "DYCaptureStore-Protocol.h"
 
+@class NSString;
+
 @interface DYCaptureArchiveStack : NSObject <DYCaptureStore>
 {
     struct vector<GPUTools::objc_ref<DYCaptureArchive *>, std::__1::allocator<GPUTools::objc_ref<DYCaptureArchive *>>> _archives;
@@ -46,6 +48,12 @@
 - (void)clear;
 - (void)pop;
 - (void)push:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

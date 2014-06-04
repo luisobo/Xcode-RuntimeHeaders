@@ -9,7 +9,7 @@
 #import "IDEClientTracking-Protocol.h"
 #import "IDEIntegrityLogDataSource-Protocol.h"
 
-@class DVTFilePath, DVTHashTable, DVTMapTable, DVTObservingToken, DVTStackBacktrace, IDEActivityLogSection, IDEBatchFindManager, IDEBreakpointManager, IDEConcreteClientTracker, IDEContainer, IDEContainer<IDECustomDataStoring>, IDEContainerQuery, IDEDeviceInstallWorkspaceMonitor, IDEExecutionEnvironment, IDEIndex, IDEIssueManager, IDELogManager, IDERefactoring, IDERunContextManager, IDESourceControlWorkspaceMonitor, IDETestManager, IDETextIndex, IDEWorkspaceArena, IDEWorkspaceBotMonitor, IDEWorkspaceSharedSettings, IDEWorkspaceSnapshotManager, IDEWorkspaceUserSettings, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableOrderedSet, NSMutableSet, NSSet, NSString;
+@class DVTFilePath, DVTHashTable, DVTMapTable, DVTObservingToken, DVTStackBacktrace, IDEActivityLogSection, IDEBatchFindManager, IDEBreakpointManager, IDEConcreteClientTracker, IDEContainer, IDEContainer<IDECustomDataStoring>, IDEContainerQuery, IDEDeviceInstallWorkspaceMonitor, IDEExecutionEnvironment, IDEIndex, IDEIssueManager, IDELogManager, IDERefactoring, IDERunContextManager, IDESourceControlWorkspaceMonitor, IDETestManager, IDETextIndex, IDEWorkspaceArena, IDEWorkspaceBotMonitor, IDEWorkspaceSharedSettings, IDEWorkspaceSnapshotManager, IDEWorkspaceUpgradeTasksController, IDEWorkspaceUserSettings, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableOrderedSet, NSMutableSet, NSSet, NSString;
 
 @interface IDEWorkspace : IDEXMLPackageContainer <IDEClientTracking, IDEIntegrityLogDataSource>
 {
@@ -75,10 +75,15 @@
     BOOL _didProcessFileReferencesForProblem8727051;
     BOOL _isCleaningBuildFolder;
     BOOL _indexingAndRefactoringRestartScheduled;
+    BOOL _indexCreationInFlight;
     BOOL _sourceControlStatusUpdatePending;
     BOOL _didFinishBuildingInitialBlueprintProviderOrderedSet;
     NSMapTable *_pendingExecutionNotificationTokens;
+    BOOL _isPotentiallyClosing;
+    long long _indexGenerationCounter;
     IDEWorkspaceBotMonitor *_workspaceBotMonitor;
+    id <IDEContinuousIntegrationBotMonitor> _xcs2WorkspaceBotMonitor;
+    IDEWorkspaceUpgradeTasksController *_deferredUpgradeTasksController;
 }
 
 + (BOOL)_shouldTrackReadOnlyStatus;
@@ -97,10 +102,14 @@
 + (BOOL)_shouldLoadUISubsystems;
 + (BOOL)automaticallyNotifiesObserversOfFileRefsWithContainerLoadingIssues;
 + (void)initialize;
+@property(retain) IDEWorkspaceUpgradeTasksController *deferredUpgradeTasksController; // @synthesize deferredUpgradeTasksController=_deferredUpgradeTasksController;
+@property(nonatomic) BOOL isPotentiallyClosing; // @synthesize isPotentiallyClosing=_isPotentiallyClosing;
 @property(readonly, nonatomic) BOOL postLoadingPerformanceMetricsAllowed; // @synthesize postLoadingPerformanceMetricsAllowed=_postLoadingPerformanceMetricsAllowed;
 @property(retain, nonatomic) IDEWorkspaceSharedSettings *sharedSettings; // @synthesize sharedSettings=_sharedSettings;
 @property(retain, nonatomic) IDEWorkspaceUserSettings *userSettings; // @synthesize userSettings=_userSettings;
+@property(retain, nonatomic) id <IDEContinuousIntegrationBotMonitor> xcs2WorkspaceBotMonitor; // @synthesize xcs2WorkspaceBotMonitor=_xcs2WorkspaceBotMonitor;
 @property(retain, nonatomic) IDEWorkspaceBotMonitor *workspaceBotMonitor; // @synthesize workspaceBotMonitor=_workspaceBotMonitor;
+@property(readonly, nonatomic) long long indexGenerationCounter; // @synthesize indexGenerationCounter=_indexGenerationCounter;
 @property BOOL isCleaningBuildFolder; // @synthesize isCleaningBuildFolder=_isCleaningBuildFolder;
 @property(readonly) IDETextIndex *textIndex; // @synthesize textIndex=_textIndex;
 @property(nonatomic) BOOL finishedLoading; // @synthesize finishedLoading=_finishedLoading;
@@ -117,8 +126,12 @@
 - (id)buildableProductsForBaseName:(id)arg1;
 - (void)_handleIndexablesChange:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)didCreateIndex:(id)arg1;
 - (void)initializeIndexAndRefactoring:(id)arg1;
-- (void)_setupSourceControlWorkspaceMonitor;
+- (void)_scheduleWorkspaceUpgradeTasksController:(id)arg1;
+- (void)_setupWorkspaceUpgradeTasksController;
+- (void)_setupSourceControlWorkspaceMonitorIfNeeded;
+- (void)_initializeSourceControlWorkspaceMonitor;
 - (void)_setupDeviceInstallWorkspaceMonitor;
 - (void)beginTextIndexing;
 - (id)tearDownIndexAndRefactoring;
@@ -157,6 +170,7 @@
 - (void)_setupIssueManagerIfNeeded;
 @property(readonly) IDELogManager *logManager; // @synthesize logManager=_logManager;
 - (void)_setupLogManagerIfNeeded;
+- (id)blueprintsContainingFilePaths:(id)arg1;
 @property(readonly) NSSet *customDataStores;
 @property(readonly) NSSet *referencedRunnableBuildableProducts;
 @property(readonly) NSSet *referencedTestables;
@@ -241,6 +255,12 @@
 - (id)ideModelObjectTypeIdentifier;
 - (id)patchesDirectoryWrapper;
 - (id)patchesDirectory;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

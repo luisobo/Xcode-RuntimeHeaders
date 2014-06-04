@@ -16,7 +16,7 @@
         CDStruct_c519178c insetToGlass;
         CDStruct_c519178c glassToContentInset;
         double glassCornerRadius;
-        unsigned long long contentFrameStyle;
+        unsigned long long contentBorderStyle;
     } state;
     IBNinePartImage *image;
     id <IBGlassCanvasFrameBackgroundDelegate> _delegate;
@@ -27,7 +27,7 @@
 - (void)drawInRect:(struct CGRect)arg1 unflip:(BOOL)arg2 drawCenterComponent:(BOOL)arg3;
 @property(nonatomic) CDStruct_c519178c glassToContentInset;
 @property(nonatomic) CDStruct_c519178c insetToGlass;
-@property(nonatomic) unsigned long long contentFrameStyle;
+@property(nonatomic) unsigned long long contentBorderStyle;
 @property(nonatomic) double glassCornerRadius;
 @property(nonatomic) BOOL hasKeyLook;
 @property(nonatomic) BOOL showSelectionRing;

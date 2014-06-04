@@ -8,7 +8,7 @@
 
 #import "XCSelectionSource-Protocol.h"
 
-@class DVMainController;
+@class DVMainController, NSString;
 
 @interface XCDocSetAccessModule : PBXProjectModule <XCSelectionSource>
 {
@@ -81,6 +81,12 @@
 - (void)moduleViewWasInstalled:(id)arg1;
 - (void)viewDidLoad;
 - (id)initWithModuleNibName:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

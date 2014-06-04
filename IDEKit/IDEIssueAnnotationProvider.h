@@ -8,7 +8,7 @@
 
 #import "DVTMessageBubbleAnnotationDelegate-Protocol.h"
 
-@class IDEAnnotationContext;
+@class IDEAnnotationContext, NSString;
 
 @interface IDEIssueAnnotationProvider : DVTAnnotationProvider <DVTMessageBubbleAnnotationDelegate>
 {
@@ -30,6 +30,12 @@
 - (BOOL)shouldMoveCursorForAnnotation:(id)arg1;
 - (void)didClickAnnotation:(id)arg1 inTextSidebarView:(id)arg2 event:(id)arg3;
 - (void)didClickMessageBubbleForAnnotation:(id)arg1 onIcon:(BOOL)arg2 inTextView:(id)arg3 event:(id)arg4;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

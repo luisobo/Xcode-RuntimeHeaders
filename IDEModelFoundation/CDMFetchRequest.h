@@ -9,10 +9,11 @@
 #import "CDMIdentification-Protocol.h"
 #import "DVTInvalidation-Protocol.h"
 #import "IDEInspectorAccessibilitySupport-Protocol.h"
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@class CDMEntity, CDMModel, DVTStackBacktrace, NSNumber, NSString;
+@class CDMEntity, CDMModel, DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, IDEFileReference, NSImage, NSNumber, NSString;
 
-@interface CDMFetchRequest : NSObject <IDEInspectorAccessibilitySupport, CDMIdentification, DVTInvalidation>
+@interface CDMFetchRequest : NSObject <IDEInspectorAccessibilitySupport, CDMIdentification, DVTInvalidation, IDEKeyDrivenNavigableItemRepresentedObject>
 {
     NSString *name;
     CDMEntity *entity;
@@ -54,11 +55,11 @@
 - (id)xmlElementAttributes;
 - (void)stitchToRelatedModelElements;
 - (id)initWithXMLElementDescription:(id)arg1 belongingToModel:(id)arg2;
-- (id)navigableItem_name;
+@property(readonly) NSString *navigableItem_name;
 - (id)addKeysToDictionary:(id)arg1;
 - (id)initWithDictionary:(id)arg1 inModel:(id)arg2;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (id)undoManager;
 - (void)cascadeChangesToLegacyFetchRequest:(id)arg1 givenModernToLegacyEntityMapping:(id)arg2;
 - (id)initWithLegacyFetchRequest:(id)arg1 andEntityMapping:(id)arg2 belongingToModel:(id)arg3;
@@ -71,7 +72,18 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

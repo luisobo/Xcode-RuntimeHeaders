@@ -9,7 +9,7 @@
 #import "DVTInvalidation-Protocol.h"
 #import "IDEReviewFilesDataSource-Protocol.h"
 
-@class DVTStackBacktrace, IDENavigatorDataCell, IDESourceControlRepository, NSArray, NSMutableSet;
+@class DVTStackBacktrace, IDENavigatorDataCell, IDESourceControlRepository, NSArray, NSMutableSet, NSString;
 
 @interface IDESourceControlCommitViewerNavigatorDataSource : NSObject <IDEReviewFilesDataSource, DVTInvalidation>
 {
@@ -38,7 +38,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

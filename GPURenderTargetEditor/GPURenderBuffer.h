@@ -9,16 +9,13 @@
 #import "DVTInvalidation-Protocol.h"
 #import "GPUTraceBubbleOwner-Protocol.h"
 
-@class DVTStackBacktrace, DYRenderingAttributes, DYResourceObject, GPURenderBufferButton, GPURenderBufferView, GPURenderJob, GPUTraceEditor, GPUTraceResourceInfoBubble, GPUTraceResourceSettingsBubble, NSLayoutConstraint, NSMenu, NSString, NSTextField;
+@class DVTStackBacktrace, DYRenderingAttributes, GPURenderBufferButton, GPURenderBufferView, GPURenderJob, GPUTraceEditor, GPUTraceResourceInfoBubble, GPUTraceResourceSettingsBubble, NSLayoutConstraint, NSMenu, NSString, NSTextField;
 
-// Not exported
 @interface GPURenderBuffer : NSViewController <GPUTraceBubbleOwner, DVTInvalidation>
 {
-    id <GPUTraceResourceInfoDelegateProtocol> _infoDelegate;
     GPURenderBufferButton *_infoButton;
     GPURenderBufferButton *_settingsButton;
     NSLayoutConstraint *_labelConstraint;
-    NSString *_nameInitedWith;
     NSMenu *_contextMenuInitedWith;
     GPUTraceResourceInfoBubble *_infoBubble;
     GPUTraceResourceSettingsBubble *_settingsBubble;
@@ -26,7 +23,7 @@
     BOOL _showDepth;
     unsigned int _attachmentEnum;
     GPURenderJob *_renderJob;
-    DYResourceObject *_resource;
+    id <DYResource> _resource;
     DYRenderingAttributes *_displayAttributes;
     NSTextField *_bufferLabelProxyTextField;
 }
@@ -35,10 +32,11 @@
 + (id)assetBundle;
 @property __weak NSTextField *bufferLabelProxyTextField; // @synthesize bufferLabelProxyTextField=_bufferLabelProxyTextField;
 @property(readonly, nonatomic) DYRenderingAttributes *displayAttributes; // @synthesize displayAttributes=_displayAttributes;
-@property(retain, nonatomic) DYResourceObject *resource; // @synthesize resource=_resource;
+@property(retain, nonatomic) id <DYResource> resource; // @synthesize resource=_resource;
 @property(retain, nonatomic) GPURenderJob *renderJob; // @synthesize renderJob=_renderJob;
 - (void).cxx_destruct;
 - (id)accessibleChildren;
+- (id)currentDisplayableItem;
 - (void)settingsUpdate;
 - (void)settingsToggleAlphaEnable;
 - (void)settingsToggleBlueEnable;
@@ -53,17 +51,20 @@
 - (struct CGPoint)_popoverPointForParentButton:(id)arg1;
 - (void)hideButtons:(BOOL)arg1;
 @property(readonly, nonatomic) GPURenderBufferView *renderBufferView; // @dynamic renderBufferView;
-@property(copy, nonatomic) NSString *name;
+@property(readonly, nonatomic) NSString *name;
 @property(readonly) struct CGSize resourceImageSize;
 - (void)_updateConstraints;
 - (void)loadView;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)primitiveInvalidate;
-- (id)initWithName:(id)arg1 contextMenu:(id)arg2 traceEditor:(id)arg3 infoDelegate:(id)arg4 displayAttributes:(id)arg5 showDepth:(BOOL)arg6;
+- (id)initWithContextMenu:(id)arg1 traceEditor:(id)arg2 displayAttributes:(id)arg3 showDepth:(BOOL)arg4;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

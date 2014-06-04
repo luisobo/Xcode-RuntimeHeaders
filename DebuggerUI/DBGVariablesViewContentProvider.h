@@ -9,29 +9,19 @@
 #import "IDEVariablesViewContentProvider-Protocol.h"
 #import "IDEVariablesViewContextMenuDelegate-Protocol.h"
 
-@class DBGDebugSession, DBGStackFrame, DVTObservingToken, DVTStackBacktrace, IDEVariablesView, NSArray, NSButton, NSMutableArray, NSMutableDictionary, NSMutableSet, NSOrderedSet, NSString;
+@class DBGDebugSession, DBGStackFrame, DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, IDEVariablesView, NSButton, NSMutableArray, NSMutableDictionary, NSMutableSet, NSOrderedSet, NSString;
 
 @interface DBGVariablesViewContentProvider : NSObject <IDEVariablesViewContextMenuDelegate, IDEVariablesViewContentProvider>
 {
     IDEVariablesView *_variablesView;
     NSButton *_printDescriptionButton;
     BOOL _requestedAutos;
-    BOOL _loadingNewVariablesInBackground;
+    BOOL _autosIndexQueryFailed;
     unsigned long long _generation;
-    NSArray *_arguments;
-    NSArray *_locals;
-    NSArray *_fileStatics;
-    NSArray *_registers;
     NSMutableArray *_expressions;
     NSMutableDictionary *_variablesAskedForByNameToDataValue;
     NSMutableSet *_varialbesBeingAskedForByName;
     NSOrderedSet *_autosSymbols;
-    BOOL _showsLocals;
-    BOOL _showsArguments;
-    BOOL _showsFileStatics;
-    BOOL _showsRegisters;
-    DBGDebugSession *_debugSession;
-    DVTObservingToken *_debugSessionObserverToken;
     DVTObservingToken *_framePointerObserverToken;
     DVTObservingToken *_returnValueObserverToken;
     DVTObservingToken *_returnValueIsValidObserverToken;
@@ -39,30 +29,22 @@
     DVTObservingToken *_localsObserverToken;
     DVTObservingToken *_fileStaticsObserverToken;
     DVTObservingToken *_registersObserverToken;
-    DVTObservingToken *_selectedScopeTagObserverToken;
-    DVTObservingToken *_splitViewItemVisibleObserverToken;
-    DVTObservingToken *_showDebuggerAreaObserver;
-    DVTObservingToken *_debugSessionCoalescedStateObserverToken;
-    id _outlineViewSelectionObserver;
+    DVTNotificationToken *_outlineViewSelectionObserver;
+    DVTNotificationToken *_outlineViewDidHideObserver;
+    DVTNotificationToken *_outlineViewDidUnhideObserver;
+    BOOL _loadingNewVariablesInBackground;
+    DBGDebugSession *_debugSession;
 }
 
 + (id)_createOptionsDictionaryFromOptionsElement:(id)arg1;
-+ (id)dbgQuickLookProviderForDataValue:(id)arg1;
 + (void)initialize;
-@property(retain) NSArray *registers; // @synthesize registers=_registers;
-@property(retain) NSArray *fileStatics; // @synthesize fileStatics=_fileStatics;
-@property(retain) NSArray *locals; // @synthesize locals=_locals;
-@property(retain) NSArray *arguments; // @synthesize arguments=_arguments;
-@property(nonatomic) BOOL showsRegisters; // @synthesize showsRegisters=_showsRegisters;
-@property(nonatomic) BOOL showsFileStatics; // @synthesize showsFileStatics=_showsFileStatics;
-@property(nonatomic) BOOL showsArguments; // @synthesize showsArguments=_showsArguments;
-@property(nonatomic) BOOL showsLocals; // @synthesize showsLocals=_showsLocals;
 @property BOOL loadingNewVariablesInBackground; // @synthesize loadingNewVariablesInBackground=_loadingNewVariablesInBackground;
 @property(retain) DBGDebugSession *debugSession; // @synthesize debugSession=_debugSession;
 - (void).cxx_destruct;
+- (void)primitiveInvalidate;
 - (void)provideHelpMenuItem:(id)arg1;
 - (void)providePrimaryMenuItems:(id)arg1;
-- (id)quickLookProviderForDataValue:(id)arg1;
+- (void)quickLookProviderForDataValue:(id)arg1 quickLookProviderHandler:(id)arg2;
 - (void)newRootFromChildrenWasInstalled;
 - (void)nodeWasDoubleClicked:(id)arg1 row:(long long)arg2 column:(long long)arg3;
 - (id)scopePopUpTitleForScopeItem:(long long)arg1;
@@ -70,12 +52,9 @@
 - (id)contextNameForNode:(id)arg1;
 - (id)imageForNode:(id)arg1;
 - (BOOL)deleteNode:(id)arg1;
-- (void)primitiveInvalidate;
 - (id)_createPrintDescriptionButton;
 - (void)provideScopeChoices:(id)arg1;
 - (void)providerWasInstalledForVariablesView:(id)arg1;
-- (void)_resetVariablesObservation;
-- (void)_updateDueToVisibilityChange:(id)arg1;
 @property(readonly) BOOL supportsShowingRawValues;
 @property(readonly) id nodeSortComparator;
 @property(readonly) id <IDEVariablesViewContextMenuDelegate> contextMenuDelegate;
@@ -101,6 +80,8 @@
 - (id)_customExpressions;
 - (unsigned long long)_convertCurrentStackFramesLineNumberToEditorDocumentLineNumber:(id)arg1;
 - (id)_locationToUseForAutoSymbolsRequestInEditorDocument:(id)arg1;
+- (void)_handleAutosIndexQuerySucceeded:(id)arg1;
+- (void)_handleAutosIndexQueryFailed;
 - (void)_asyncronouslyQueryIndexForSymbolsStartingOnMainThread:(id)arg1 currentGeneration:(unsigned long long)arg2;
 - (BOOL)_updateAutoValues;
 - (void)_addReturnValueNodeIfNecessary:(id)arg1;
@@ -111,7 +92,7 @@
 - (id)_createNodeFromIndexSymbol:(id)arg1;
 - (id)_manualVariablesList;
 - (id)_autoVariablesList;
-- (void)_filteredListNeedsUpdatingImmediatley;
+- (void)_filteredListNeedsUpdatingImmediately;
 - (void)_filteredListNeedsUpdating;
 @property(readonly) NSString *contextNameForCurrentStackFrame;
 @property(readonly) NSString *globalContextName;
@@ -127,13 +108,21 @@
 - (void)viewValueAsCustomType:(id)arg1;
 - (void)printDescriptionFromButton:(id)arg1;
 - (void)printDescription:(id)arg1;
-- (void)_updateArrayValueForKey:(id)arg1 fromArray:(id)arg2;
+@property(readonly) BOOL showsRegisters;
+@property(readonly) BOOL showsFileStatics;
+@property(readonly) BOOL showsArguments;
+@property(readonly) BOOL showsLocals;
+@property(readonly) BOOL showsAutos;
 @property(readonly) DBGStackFrame *currentStackFrame;
 - (void)_handleCurrentStackFrameFramePointerChanged;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -11,7 +11,7 @@
 #import "NSPopoverDelegate-Protocol.h"
 #import "RVPeoplePickerDelegate-Protocol.h"
 
-@class DVTBindingToken, DVTBorderedView, DVTStackView_ML, IDESourceControlLogFilesChangedView, IDESourceControlLogItem, IDESourceControlLogViewController, IDESourceControlNameTokenView, IDESourceControlPerson, IDESourceControlPersonPopover, IDESourceControlTree, NSTextField;
+@class DVTBindingToken, DVTStackView_ML, IDESourceControlLogFilesChangedView, IDESourceControlLogItem, IDESourceControlLogViewController, IDESourceControlNameTokenView, IDESourceControlPerson, IDESourceControlPersonPopover, IDESourceControlTree, NSString, NSTextField;
 
 @interface IDESourceControlLogItemView : NSTableCellView <NSPopoverDelegate, RVPeoplePickerDelegate, IDESourceControlNameTokenViewDelegate, IDESourceControlLogFilesChangedViewDelegate>
 {
@@ -20,7 +20,6 @@
     IDESourceControlPersonPopover *_peoplePickerPopover;
     DVTBindingToken *_imageBindingToken;
     DVTBindingToken *_nameBindingToken;
-    DVTBindingToken *_chatBindingToken;
     DVTStackView_ML *_filesChangedStackView;
     long long _trackingTag;
     BOOL _isChangedFilesExpanded;
@@ -29,7 +28,6 @@
     IDESourceControlLogFilesChangedView *_filesChangedButton;
     NSTextField *_messageField;
     IDESourceControlNameTokenView *_nameTokenView;
-    DVTBorderedView *_borderedView;
     IDESourceControlLogViewController *_owningController;
     IDESourceControlTree *_sourceTree;
 }
@@ -42,7 +40,6 @@
 @property BOOL isChangedFilesExpanded; // @synthesize isChangedFilesExpanded=_isChangedFilesExpanded;
 @property __weak IDESourceControlTree *sourceTree; // @synthesize sourceTree=_sourceTree;
 @property __weak IDESourceControlLogViewController *owningController; // @synthesize owningController=_owningController;
-@property(retain) DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
 @property(retain) IDESourceControlNameTokenView *nameTokenView; // @synthesize nameTokenView=_nameTokenView;
 @property(retain) NSTextField *messageField; // @synthesize messageField=_messageField;
 @property(retain) IDESourceControlLogFilesChangedView *filesChangedButton; // @synthesize filesChangedButton=_filesChangedButton;
@@ -56,7 +53,6 @@
 - (void)clearAuthor;
 - (void)personSelected:(id)arg1;
 - (void)pair:(id)arg1;
-- (void)startChatWithToken:(id)arg1;
 - (id)menuForNameToken:(id)arg1;
 - (void)setDate:(id)arg1;
 - (void)setDescriptionWithDate:(id)arg1 revision:(id)arg2 workingCopyName:(id)arg3;
@@ -65,6 +61,12 @@
 @property(retain) IDESourceControlPerson *author;
 - (void)awakeFromNib;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

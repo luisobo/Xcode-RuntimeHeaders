@@ -8,7 +8,7 @@
 
 #import "NSPopoverDelegate-Protocol.h"
 
-@class DVTObservingToken, IDEQuickHelpOneShotWindowContentViewController, NSPopover;
+@class DVTObservingToken, IDEQuickHelpOneShotWindowContentViewController, NSPopover, NSString;
 
 @interface IDEQuickHelpOneShotController : IDEQuickHelpController <NSPopoverDelegate>
 {
@@ -30,6 +30,12 @@
 - (id)mode;
 - (id)contentCreator;
 - (id)sourceExpressionWindow;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

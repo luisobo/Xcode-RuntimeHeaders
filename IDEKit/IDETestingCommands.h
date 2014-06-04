@@ -9,6 +9,8 @@
 #import "IDECommandHandler-Protocol.h"
 #import "IDECommandHandlerVendor-Protocol.h"
 
+@class NSString;
+
 @interface IDETestingCommands : NSObject <IDECommandHandlerVendor, IDECommandHandler>
 {
     id <IDESelectionSource> _selectionSource;
@@ -18,12 +20,21 @@
 + (id)_sharedHandler;
 @property(retain) id <IDESelectionSource> selectionSource; // @synthesize selectionSource=_selectionSource;
 - (void).cxx_destruct;
+- (void)contextMenu_profileTest:(id)arg1;
 - (void)contextMenu_runTest:(id)arg1;
+- (void)profileAgain:(id)arg1;
+- (void)profileSelectedItems:(id)arg1;
 - (void)testAgain:(id)arg1;
 - (void)testSelectedItems:(id)arg1;
 - (id)_currentWorkspace;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (id)_localizedString:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

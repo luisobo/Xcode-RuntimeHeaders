@@ -7,12 +7,13 @@
 #import "IDEOutlineBasedNavigator.h"
 
 #import "IDEBreakpointNavigatorModelObserver-Protocol.h"
+#import "IDEBreakpointObserver-Protocol.h"
 #import "NSMenuDelegate-Protocol.h"
 #import "NSOutlineViewDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTMapTable, DVTNotificationToken, DVTObservingToken, IDEBreakpointCell, IDEBreakpointNavigatorModel, IDENavigatorDataCell, IDENavigatorFilterControlBar, NSArray, NSMenu, NSMutableSet, NSPasteboard, NSString;
+@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTNotificationToken, DVTObservingToken, IDEBreakpointCell, IDEBreakpointNavigatorModel, IDENavigatorDataCell, IDENavigatorFilterControlBar, NSArray, NSMenu, NSMutableSet, NSPasteboard, NSString;
 
-@interface IDEBreakpointNavigator : IDEOutlineBasedNavigator <IDEBreakpointNavigatorModelObserver, NSOutlineViewDelegate, NSMenuDelegate>
+@interface IDEBreakpointNavigator : IDEOutlineBasedNavigator <IDEBreakpointObserver, IDEBreakpointNavigatorModelObserver, NSOutlineViewDelegate, NSMenuDelegate>
 {
     DVTBorderedView *_glassBar;
     DVTGradientImagePopUpButton *_addButton;
@@ -29,10 +30,7 @@
     NSString *_filterString;
     BOOL _restoringState;
     DVTObservingToken *_selectedObjectsListToken;
-    DVTObservingToken *_outlineViewVisibleRectToken;
     DVTNotificationToken *_navigableItemsForgottenNotification;
-    DVTMapTable *_breakpointsToTokens;
-    DVTMapTable *_breakpointsToShouldBeEnabledTokens;
     NSArray *_draggedItems;
     NSPasteboard *_draggedPasteboard;
     NSMenu *_addBreakpointMenu;
@@ -91,9 +89,13 @@
 - (id)_nonWatchpointItems:(id)arg1;
 - (void)_moveBreakpointsForNavigableItems:(id)arg1 toBucket:(id)arg2;
 - (void)_moveRightClickedBreakpointsToBucket:(id)arg1;
-- (void)breakpointActivationStateChanged:(BOOL)arg1;
 - (void)breakpointWasRemoved:(id)arg1;
 - (void)breakpointWasAdded:(id)arg1;
+- (void)watchpointEnablementChanged:(id)arg1;
+- (void)breakpointLocationsAdded:(id)arg1 removed:(id)arg2;
+- (void)breakpointLocationEnablementChanged:(id)arg1;
+- (void)breakpointEnablementChanged:(id)arg1;
+- (void)breakpointsActivationStateChanged;
 - (void)_clearDraggedItems;
 - (void)_selectItemNearDeletedItemIndex:(long long)arg1 parentItem:(id)arg2;
 - (long long)_smallestRowIndexOfNavigableItemInArray:(id)arg1;
@@ -102,15 +104,10 @@
 - (void)_deleteRightClickedItems;
 - (void)_deleteSelectedItems;
 - (void)_repaintRowForBreakpoint:(id)arg1;
-- (void)_removeListenersFromBreakpoint:(id)arg1;
-- (void)_addListenersToBreakpoint:(id)arg1;
 - (BOOL)_isItemExpandedIncludingParents:(id)arg1;
 - (void)_expandNavigableItemForBreakpointIfItemAndAncestorsAreNotInCollapsedSet:(id)arg1;
-- (void)_handleBreakpointLocationsRemoved:(id)arg1;
-- (void)_handleBreakpointLocationsAdded:(id)arg1;
-- (void)_handleBreakpointLocationChanges:(id)arg1;
 - (void)_pushSelection;
-- (void)revealNavigableItems:(id)arg1;
+- (void)_revealNavigableItems:(id)arg1;
 - (id)_createEnablementFilterPredicate;
 - (id)_createFilterStringPredicate;
 - (void)_clearFilter;
@@ -121,10 +118,17 @@
 - (void)setRootNavigableItem:(id)arg1;
 - (void)primitiveInvalidate;
 - (void)viewWillUninstall;
+- (void)viewDidInstall;
 - (void)_setupAddBreakpointMenu;
 - (void)_buildGlassBar;
 - (id)domainIdentifier;
 - (void)loadView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,6 +8,8 @@
 
 #import "DVTGradientStyleButton-Protocol.h"
 
+@class NSString;
+
 @interface DVTGradientImageButton : NSButton <DVTGradientStyleButton>
 {
 }
@@ -17,6 +19,12 @@
 @property int borderSides;
 @property int gradientStyle;
 @property BOOL showsState;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

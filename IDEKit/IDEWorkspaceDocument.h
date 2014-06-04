@@ -13,7 +13,7 @@
 #import "IDEPreBuildSavingDelegate-Protocol.h"
 #import "IDEWorkspaceDelegate-Protocol.h"
 
-@class DVTDelayedInvocation, DVTMapTable, DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, DVTStateRepository, DVTStateToken, DVTSystemActivityToken, IDEActivityReportManager, IDEWorkspace, IDEWorkspaceWindowController, NSArray, NSDictionary, NSHashTable, NSMutableArray, NSMutableDictionary, NSMutableSet;
+@class DVTDelayedInvocation, DVTMapTable, DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, DVTStateRepository, DVTStateToken, DVTSystemActivityToken, IDEActivityReportManager, IDESourceControlWorkspaceUIHandler, IDEWorkspace, IDEWorkspaceWindowController, NSArray, NSDictionary, NSHashTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
 
 @interface IDEWorkspaceDocument : NSDocument <IDEWorkspaceDelegate, DVTTabbedWindowCreation, DVTStatefulObject, DVTStateRepositoryDelegate, IDEMustCloseOnQuitDocument, IDEPreBuildSavingDelegate>
 {
@@ -30,6 +30,7 @@
     DVTMapTable *_controllerForDebugSessionTable;
     DVTDelayedInvocation *_stateSavingDelayedInvocation;
     IDEActivityReportManager *_activityReportManager;
+    IDESourceControlWorkspaceUIHandler *_sourceControlWorkspaceUIHandler;
     DVTObservingToken *_runContextsObservingToken;
     DVTObservingToken *_isWorkspaceIdleToken;
     DVTObservingToken *_launchSessionsObservingToken;
@@ -54,6 +55,8 @@
     BOOL _isCheckingCanClose;
     id _openingPerformanceMetricIdentifier;
     DVTSystemActivityToken *_systemActivityToken;
+    DVTObservingToken *_executionTrackerIsFinishedObservingToken;
+    DVTObservingToken *_executionEnvironmentCurrentBuildOperationObservingToken;
 }
 
 + (id)keyPathsForValuesAffectingUserWantsBreakpointsActivated;
@@ -69,6 +72,7 @@
 + (BOOL)autosavesInPlace;
 + (BOOL)preservesVersions;
 + (void)initialize;
+@property(retain) IDESourceControlWorkspaceUIHandler *sourceControlWorkspaceUIHandler; // @synthesize sourceControlWorkspaceUIHandler=_sourceControlWorkspaceUIHandler;
 @property BOOL applicationIsTerminating; // @synthesize applicationIsTerminating=_applicationIsTerminating;
 @property(retain) NSMutableDictionary *tabStateContextForTabNameMap; // @synthesize tabStateContextForTabNameMap=_tabStateContextForTabNameMap;
 @property BOOL userWantsMiniDebuggingConsole; // @synthesize userWantsMiniDebuggingConsole=_userWantsMiniDebuggingConsole;
@@ -79,8 +83,8 @@
 - (void).cxx_destruct;
 - (void)_restoreActiveRunContextIfPossible;
 - (id)dvtExtraBindings;
-@property(readonly) NSDictionary *activeRunDestinationInfo;
-@property(readonly) NSDictionary *activeRunContextInfo;
+@property(readonly, copy) NSDictionary *activeRunDestinationInfo;
+@property(readonly, copy) NSDictionary *activeRunContextInfo;
 @property(copy) NSArray *orderedWindowControllerNames;
 @property BOOL userWantsBreakpointsActivated;
 @property(copy) NSDictionary *stateSavingDefaultEditorStatesForURLs;
@@ -169,13 +173,14 @@
 - (void)saveDocument:(id)arg1;
 - (void)revertDocumentToSaved:(id)arg1;
 - (void)canCloseDocumentWithDelegate:(id)arg1 shouldCloseSelector:(SEL)arg2 contextInfo:(void *)arg3;
+- (void)shouldCloseWindowController:(id)arg1 delegate:(id)arg2 shouldCloseSelector:(SEL)arg3 contextInfo:(void *)arg4;
 - (BOOL)canCloseDocumentAtQuit;
 - (BOOL)_canCloseWorkspaceDocument;
 - (id)_dirtyDocuments;
 - (BOOL)_closeAfterSavingDirtyEditorDocumentsWithCancelButton:(BOOL)arg1;
 - (void)close;
 - (void)writeStateIfNeeded;
-- (BOOL)hasBeenEditedSinceLastUserInitiatedSave;
+- (BOOL)dvt_hasBeenEditedSinceLastUserInitiatedSave;
 @property(readonly, getter=isClosed) BOOL closed;
 - (id)_openingPerformanceMetricIdentifier;
 - (void)dvt_shouldDeallocate;
@@ -214,6 +219,12 @@
 - (id)sdefSupport_intermediatesDirectory;
 - (void)setSdefSupport_breakpointsEnabled:(BOOL)arg1;
 - (BOOL)sdefSupport_breakpointsEnabled;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

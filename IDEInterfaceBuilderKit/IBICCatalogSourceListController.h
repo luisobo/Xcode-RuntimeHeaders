@@ -96,7 +96,6 @@
 - (unsigned long long)outlineView:(id)arg1 validateDrop:(id)arg2 proposedItem:(id)arg3 proposedChildIndex:(long long)arg4;
 - (unsigned long long)dragOperationForTargettingItem:(id)arg1 withDragInfo:(id)arg2;
 - (void)outlineViewDidBecomeFirstResponder:(id)arg1;
-- (BOOL)outlineView:(id)arg1 shouldMouseHoverForTableColumn:(id)arg2 row:(long long)arg3;
 - (void)outlineView:(id)arg1 setObjectValue:(id)arg2 forTableColumn:(id)arg3 byItem:(id)arg4;
 - (void)outlineView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 item:(id)arg4;
 - (BOOL)outlineView:(id)arg1 isGroupHeaderItem:(id)arg2;
@@ -140,6 +139,12 @@
 - (void)configureSearchField;
 - (void)primitiveInvalidate;
 - (id)initWithDocumentEditor:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

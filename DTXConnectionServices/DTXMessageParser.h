@@ -6,17 +6,17 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary;
+@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>;
 
 @interface DTXMessageParser : NSObject
 {
     const char *_parsingBuffer;
     unsigned long long _parsingBufferUsed;
     unsigned long long _parsingBufferSize;
-    struct dispatch_queue_s *_parsingQueue;
+    NSObject<OS_dispatch_queue> *_parsingQueue;
     NSMutableDictionary *_fragmentedBuffersByIdentifier;
-    struct dispatch_semaphore_s *_hasMoreDataSem;
-    struct dispatch_semaphore_s *_wantsMoreDataSem;
+    NSObject<OS_dispatch_semaphore> *_hasMoreDataSem;
+    NSObject<OS_dispatch_semaphore> *_wantsMoreDataSem;
     unsigned long long _desiredSize;
     BOOL _eof;
 }

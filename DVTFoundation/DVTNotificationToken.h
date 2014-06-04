@@ -8,13 +8,14 @@
 
 #import "DVTCancellable-Protocol.h"
 
-@class DVTStackBacktrace;
+@class DVTStackBacktrace, NSNotificationCenter, NSString, _DVTNotificationReceiver;
 
 @interface DVTNotificationToken : NSObject <DVTCancellable>
 {
-    id _observer;
+    NSNotificationCenter *_notificationCenter;
     id _observedObject;
-    id _cancellationBlock;
+    NSString *_name;
+    _DVTNotificationReceiver *_receiver;
     DVTStackBacktrace *_creationBacktrace;
     void *_keepSelfAliveUntilCancellationRef;
 }
@@ -24,8 +25,13 @@
 - (void)dealloc;
 - (void)cancel;
 @property(readonly, getter=isCancelled) BOOL cancelled;
-- (id)initWithObserver:(id)arg1 observedObject:(id)arg2 cancellationBlock:(id)arg3;
-- (void)setCancellationBlock:(id)arg1;
+- (id)initWithNotificationCenter:(id)arg1 receiver:(id)arg2 name:(id)arg3 observedObject:(id)arg4;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

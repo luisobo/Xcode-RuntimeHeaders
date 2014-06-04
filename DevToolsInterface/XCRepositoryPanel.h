@@ -12,7 +12,7 @@
 #import "NSSplitViewDelegate-Protocol.h"
 #import "NSTextViewDelegate-Protocol.h"
 
-@class NSArray, NSArrayController, NSBrowser, NSButton, NSColor, NSPanel, NSProgressIndicator, NSSplitView, NSTableView, NSTextField, NSTextView, NSTreeController, NSView, PBXControlScrollView, PBXExtendedOutlineView;
+@class NSArray, NSArrayController, NSBrowser, NSButton, NSColor, NSPanel, NSProgressIndicator, NSSplitView, NSString, NSTableView, NSTextField, NSTextView, NSTreeController, NSView, PBXControlScrollView, PBXExtendedOutlineView;
 
 @interface XCRepositoryPanel : NSObject <NSBrowserDelegate, NSOutlineViewDelegate, NSSplitViewDelegate, NSTextViewDelegate, NSOutlineViewDataSource>
 {
@@ -130,6 +130,12 @@
 - (void)awakeFromNib;
 - (id)init;
 - (id)scmManager;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -7,11 +7,13 @@
 #import "NSObject.h"
 
 #import "DVTInvalidation-Protocol.h"
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@class DVTObservingToken, DVTStackBacktrace, IDENavigableItem, NSArray, NSImage, NSString;
+@class DVTDocumentLocation, DVTFileDataType, DVTObservingToken, DVTStackBacktrace, IDEFileReference, IDENavigableItem, NSArray, NSImage, NSString;
 
-@interface IDEGeniusResultsGraphNode : NSObject <DVTInvalidation>
+@interface IDEGeniusResultsGraphNode : NSObject <IDEKeyDrivenNavigableItemRepresentedObject, DVTInvalidation>
 {
+    DVTObservingToken *_manualDomainRootChildItemsObservingToken;
     int _type;
     NSString *_identifier;
     NSImage *_image;
@@ -19,7 +21,6 @@
     NSArray *_subitems;
     NSString *_manualDomainIdentifier;
     IDENavigableItem *_manualDomainRootNavigableItem;
-    DVTObservingToken *_manualDomainRootChildItemsObservingToken;
 }
 
 + (id)_rootNodeForGeniusResultsWithJumpToCounterpartCategory:(id)arg1;
@@ -27,31 +28,38 @@
 + (id)_rootNodeForGeniusResults:(id)arg1 editorContext:(id)arg2 includeJumpToCounterpartCategory:(BOOL)arg3 includeManualCategory:(BOOL)arg4;
 + (void)initialize;
 @property(copy) IDENavigableItem *manualDomainRootNavigableItem; // @synthesize manualDomainRootNavigableItem=_manualDomainRootNavigableItem;
-@property(readonly) NSString *manualDomainIdentifier; // @synthesize manualDomainIdentifier=_manualDomainIdentifier;
+@property(readonly, copy) NSString *manualDomainIdentifier; // @synthesize manualDomainIdentifier=_manualDomainIdentifier;
 @property(copy, nonatomic) NSArray *subitems; // @synthesize subitems=_subitems;
 @property(copy) NSString *name; // @synthesize name=_name;
-@property(copy) NSImage *image; // @synthesize image=_image;
+@property(retain) NSImage *image; // @synthesize image=_image;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
 @property int type; // @synthesize type=_type;
 - (void).cxx_destruct;
 - (unsigned long long)navigableItem_indexOfRepresentedObjectForIdentifier:(id)arg1 inRelationshipKeyPath:(id)arg2;
 - (id)navigableItem_identifierForRepresentedObjectAtIndex:(unsigned long long)arg1 inRelationshipKeyPath:(id)arg2;
-- (id)navigableItem_contentDocumentLocation;
-- (id)navigableItem_documentType;
-- (id)navigableItem_fileReference;
-- (id)navigableItem_image;
-- (id)navigableItem_name;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) NSString *navigableItem_name;
 - (id)nameWithSubitemCount;
 - (id)ideModelObjectTypeIdentifier;
 - (void)setManualDomainIdentifier:(id)arg1 rootNavigableItem:(id)arg2;
 - (void)setChildrenToURL:(id)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)primitiveInvalidate;
 - (id)initWithType:(int)arg1 identifier:(id)arg2 image:(id)arg3 name:(id)arg4 subitems:(id)arg5;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

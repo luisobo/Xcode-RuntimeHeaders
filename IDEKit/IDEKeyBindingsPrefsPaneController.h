@@ -85,7 +85,7 @@
 - (void)_showConflictedKeyBindingsStatusForKeyBinding:(id)arg1;
 - (id)filterButtonMenu;
 - (id)filterDefinitionIdentifier;
-@property(readonly) NSArray *searchWords;
+@property(readonly, copy) NSArray *searchWords;
 - (void)updateKeyBindingsItems;
 - (BOOL)_keyBindingOutlineViewNeedsGroupItem;
 - (id)_keyBindingItemForItem:(id)arg1;
@@ -94,6 +94,12 @@
 - (void)loadView;
 - (void)primitiveInvalidate;
 @property(readonly) DVTPreferenceSetManager *preferenceSetManager;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

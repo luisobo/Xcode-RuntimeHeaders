@@ -13,8 +13,6 @@
 + (id)keyPathsForValuesAffectingIbInspectedBehavior;
 + (id)keyPathsForValuesAffectingIbInspectedKeyEquivalent;
 + (id)keyPathsForValuesAffectingIbInspectedTitle;
-+ (id)keyPathsForValuesAffectingIbQualifyingInfoForDefaultLabel;
-+ (id)keyPathsForValuesAffectingIbWidgetType;
 + (id)keyPathsForValuesAffectingIbInspectedAlternateImage;
 + (id)keyPathsForValuesAffectingIbShadowedAlternateImage;
 + (id)keyPathsForValuesAffectingIbInspectedImage;

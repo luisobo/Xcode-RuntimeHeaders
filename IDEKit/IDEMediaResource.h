@@ -31,8 +31,8 @@
 + (id)resourceWithName:(id)arg1 contentType:(id)arg2 icon:(id)arg3 content:(id)arg4;
 + (id)resourceWithName:(id)arg1 contentType:(id)arg2 icon:(id)arg3 content:(id)arg4 explicitNameForFolding:(id)arg5 applicableFoldingStrategies:(id)arg6;
 + (id)resourceWithPath:(id)arg1 contentType:(id)arg2 name:(id)arg3 icon:(id)arg4 explicitNameForFolding:(id)arg5 applicableFoldingStrategies:(id)arg6;
-@property(readonly, nonatomic) NSMutableSet *iconRequests; // @synthesize iconRequests=_iconRequests;
-@property(readonly, nonatomic) NSMutableSet *contentRequests; // @synthesize contentRequests=_contentRequests;
+@property(readonly, copy, nonatomic) NSMutableSet *iconRequests; // @synthesize iconRequests=_iconRequests;
+@property(readonly, copy, nonatomic) NSMutableSet *contentRequests; // @synthesize contentRequests=_contentRequests;
 @property(nonatomic, getter=isIconValid) BOOL iconValid; // @synthesize iconValid=_iconValid;
 @property(nonatomic, getter=isContentValid) BOOL contentValid; // @synthesize contentValid=_contentValid;
 @property(retain, nonatomic) id content; // @synthesize content=_content;
@@ -43,6 +43,10 @@
 @property(readonly, nonatomic) DVTFilePath *sourceFilePath; // @synthesize sourceFilePath=_sourceFilePath;
 @property(readonly, nonatomic) DVTFileDataType *contentType; // @synthesize contentType=_contentType;
 - (void).cxx_destruct;
+- (id)variantSetNameWithFoldingStrategy:(id)arg1;
+- (id)variantWithFoldingStrategy:(id)arg1;
+- (id)extractNonVariantNameFromString:(id)arg1 forMediaType:(id)arg2 usingVariables:(id)arg3 withFoldingStrategy:(id)arg4 returningVariant:(id *)arg5;
+- (id)extractNonVariantNameWithFoldingStrategy:(id)arg1 returningVariant:(id *)arg2;
 - (void)populateAdditionalTypesToPasteboard:(id)arg1;
 - (id)requestContentSynchronously;
 - (void)requestContentAsynchronously:(id)arg1;

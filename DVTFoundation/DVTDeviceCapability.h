@@ -14,7 +14,7 @@
 }
 
 + (id)deviceCapabilityWithProperties:(id)arg1;
-@property(readonly) NSDictionary *properties; // @synthesize properties=_properties;
+@property(readonly, copy) NSDictionary *properties; // @synthesize properties=_properties;
 - (void).cxx_destruct;
 - (id)description;
 - (BOOL)matchesCapability:(id)arg1;

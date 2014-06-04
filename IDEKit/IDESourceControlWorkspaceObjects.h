@@ -14,7 +14,7 @@
     NSString *_name;
 }
 
-@property(readonly) NSArray *childItems; // @synthesize childItems=_childItems;
+@property(readonly, copy) NSArray *childItems; // @synthesize childItems=_childItems;
 @property(copy) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (id)navigableItem_name;

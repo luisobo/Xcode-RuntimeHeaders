@@ -15,8 +15,10 @@
     BOOL _useMenuDelayForSelectedSegment;
     BOOL _useRadioDrawingStyle;
     DVTPointerArray *_segmentImages;
+    BOOL _useAnyDrawingStyle;
 }
 
+@property BOOL useAnyDrawingStyle; // @synthesize useAnyDrawingStyle=_useAnyDrawingStyle;
 @property BOOL useRadioDrawingStyle; // @synthesize useRadioDrawingStyle=_useRadioDrawingStyle;
 @property BOOL useMenuDelayForSelectedSegment; // @synthesize useMenuDelayForSelectedSegment=_useMenuDelayForSelectedSegment;
 @property BOOL useMenuDelay; // @synthesize useMenuDelay=_useMenuDelay;

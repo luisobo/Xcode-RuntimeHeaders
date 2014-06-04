@@ -4,14 +4,13 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2011 by Steve Nygard.
  */
 
+#import "IDEPortalInfoDelegate-Protocol.h"
 #import "NSObject-Protocol.h"
 
-@class NSArray, NSString, Xcode3TargetBuildSettingsCoordinator, Xcode3TargetInfoPlistCoordinator, Xcode3TargetLinkedFrameworksCoordinator, Xcode3TargetPortalEntitlementsCoordinator;
+@class NSString, Xcode3TargetBuildSettingsCoordinator, Xcode3TargetInfoPlistCoordinator, Xcode3TargetLinkedFrameworksCoordinator, Xcode3TargetPortalEntitlementsCoordinator;
 
-@protocol IDECapabilitiesContextProviding <NSObject>
+@protocol IDECapabilitiesContextProviding <NSObject, IDEPortalInfoDelegate>
 @property(readonly) id <IDEBlueprint> blueprint;
-@property(readonly) NSArray *explicitlyEnabledAppIDFeatures;
-@property(readonly) NSArray *enabledAppIDFeatures;
 @property(readonly, getter=isInternal) BOOL internal;
 @property(readonly) NSString *targetBundleIdentifier;
 @property(readonly) NSString *platformIdentifier;
@@ -20,6 +19,7 @@
 @property(readonly) Xcode3TargetBuildSettingsCoordinator *buildSettingsCoordinator;
 @property(readonly) Xcode3TargetInfoPlistCoordinator *infoPlistCoordinator;
 @property(readonly) id <IDEEntitlementsCoordination> entitlementsCoordinator;
+- (id)expandEntitlements:(id)arg1 error:(id *)arg2;
 - (id)appIDFeatureStateBasedOnCapabilitiesAndEntitlements;
 - (id)appIDFeatureStateBasedOnCapabilities;
 - (void)setEnabled:(BOOL)arg1 forCapabilityItemModel:(id)arg2;

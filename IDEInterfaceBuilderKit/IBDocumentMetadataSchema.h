@@ -6,16 +6,18 @@
 
 #import "NSObject.h"
 
-@class NSDictionary;
+@class NSDictionary, NSSet;
 
 @interface IBDocumentMetadataSchema : NSObject
 {
-    NSDictionary *keysToPersistenceValues;
-    NSDictionary *keysToArchiveKeys;
-    NSDictionary *archiveKeysToKeys;
+    NSDictionary *_keysToPersistenceValues;
+    NSDictionary *_keysToArchiveKeys;
+    NSDictionary *_archiveKeysToKeys;
+    NSSet *_copyableKeys;
 }
 
 + (id)sharedInstance;
+@property(readonly, nonatomic) NSSet *copyableKeys; // @synthesize copyableKeys=_copyableKeys;
 - (void).cxx_destruct;
 - (BOOL)shouldIncludeKey:(id)arg1 format:(long long)arg2;
 - (BOOL)isDeclaredKey:(id)arg1;

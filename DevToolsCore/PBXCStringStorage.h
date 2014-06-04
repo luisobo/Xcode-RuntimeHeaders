@@ -37,7 +37,7 @@
 - (void)applyFunction:(void *)arg1 context:(void *)arg2;
 - (unsigned long long *)offsetsOfStringsMatching:(const char *)arg1 ignoreCase:(BOOL)arg2 matchStyle:(int)arg3;
 - (id)description;
-- (BOOL)writeDataToFile:(id)arg1 queue:(struct dispatch_queue_s *)arg2;
+- (BOOL)writeDataToFile:(id)arg1 queue:(id)arg2;
 - (unsigned int)unsignedIntValueAtOffset:(unsigned long long)arg1;
 - (void)setUnsignedIntValue:(unsigned int)arg1 atOffset:(unsigned long long)arg2;
 - (unsigned char)byteValueAtOffset:(unsigned long long)arg1;

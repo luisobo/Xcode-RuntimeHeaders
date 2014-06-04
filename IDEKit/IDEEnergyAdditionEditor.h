@@ -10,7 +10,7 @@
 #import "IDEDebugGaugeReportTopSectionContentDelegate-Protocol.h"
 #import "IDEGraphDelegate-Protocol.h"
 
-@class DVTMeterView, IDEAppEnergyGraph, IDEEnergyAddition, IDEEnergyAdditionGuidance, NSImageView, NSTextField, NSView;
+@class DVTMeterView, IDEAppEnergyGraph, IDEEnergyAddition, IDEEnergyAdditionGuidance, NSImageView, NSString, NSTextField, NSView;
 
 @interface IDEEnergyAdditionEditor : IDEDebugGaugeReportEditor <IDEDebugGaugeReportContentDelegate, IDEDebugGaugeReportTopSectionContentDelegate, IDEGraphDelegate>
 {
@@ -32,6 +32,7 @@
     NSView *_idlePreventionGuidance;
     NSView *_wastedCPUGuidance;
     NSTextField *_lastSecondWakeCountField;
+    NSTextField *_lastSecondWakeCountLabel;
     NSTextField *_averageWakeCountField;
     NSTextField *_energyLogScoreField;
     NSTextField *_throttleStatusField;
@@ -42,6 +43,7 @@
 @property __weak NSTextField *throttleStatusField; // @synthesize throttleStatusField=_throttleStatusField;
 @property(nonatomic) __weak NSTextField *energyLogScoreField; // @synthesize energyLogScoreField=_energyLogScoreField;
 @property(nonatomic) __weak NSTextField *averageWakeCountField; // @synthesize averageWakeCountField=_averageWakeCountField;
+@property(nonatomic) __weak NSTextField *lastSecondWakeCountLabel; // @synthesize lastSecondWakeCountLabel=_lastSecondWakeCountLabel;
 @property(nonatomic) __weak NSTextField *lastSecondWakeCountField; // @synthesize lastSecondWakeCountField=_lastSecondWakeCountField;
 @property(retain, nonatomic) NSView *wastedCPUGuidance; // @synthesize wastedCPUGuidance=_wastedCPUGuidance;
 @property(retain, nonatomic) NSView *idlePreventionGuidance; // @synthesize idlePreventionGuidance=_idlePreventionGuidance;
@@ -73,6 +75,12 @@
 - (void)addSectionsToView:(id)arg1;
 - (BOOL)hasDefaultTopSection;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 document:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

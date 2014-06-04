@@ -11,7 +11,9 @@
 }
 
 - (void)keyDown:(id)arg1;
-- (void)mouseMoved:(id)arg1;
+- (void)_updateTransientControlVisibility;
+- (void)mouseExited:(id)arg1;
+- (void)mouseEntered:(id)arg1;
 - (void)drawRect:(struct CGRect)arg1;
 
 @end

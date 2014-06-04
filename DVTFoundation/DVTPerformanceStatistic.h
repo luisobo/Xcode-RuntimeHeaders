@@ -19,9 +19,9 @@
 + (id)allStatistics;
 + (id)registerStatisticWithName:(id)arg1 checkpointBlock:(id)arg2 logBlock:(void)arg3;
 + (void)initialize;
-@property(readonly) id logBlock; // @synthesize logBlock=_logBlock;
-@property(readonly) id checkpointBlock; // @synthesize checkpointBlock=_checkpointBlock;
-@property(readonly) NSString *name; // @synthesize name=_name;
+@property(readonly, copy) id logBlock; // @synthesize logBlock=_logBlock;
+@property(readonly, copy) id checkpointBlock; // @synthesize checkpointBlock=_checkpointBlock;
+@property(readonly, copy) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (id)initWithName:(id)arg1 checkpointBlock:(id)arg2 logBlock:(void)arg3;
 

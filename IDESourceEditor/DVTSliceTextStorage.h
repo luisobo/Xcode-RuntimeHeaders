@@ -8,7 +8,7 @@
 
 #import "NSLayoutManagerDelegate-Protocol.h"
 
-@class DVTTextStorage;
+@class DVTTextStorage, NSString;
 
 @interface DVTSliceTextStorage : NSTextStorage <NSLayoutManagerDelegate>
 {
@@ -24,6 +24,12 @@
 - (id)attributesAtIndex:(unsigned long long)arg1 effectiveRange:(struct _NSRange *)arg2;
 - (id)string;
 - (id)initWithRange:(struct _NSRange)arg1 inUnderlyingTextStorage:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

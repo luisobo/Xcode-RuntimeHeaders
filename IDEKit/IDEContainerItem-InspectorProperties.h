@@ -44,8 +44,14 @@
 @property(readonly) DVTFilePath *ideInspectedResolvedFilePath;
 @property(readonly) BOOL ideInspectedShowsFileTypePopUp;
 @property(readonly) BOOL ideInspectedIsNameEditable;
-@property(readonly) NSString *idePendingInspectedName;
+@property(readonly, copy) NSString *idePendingInspectedName;
 @property(copy) NSString *ideInspectedName;
 - (id)applicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

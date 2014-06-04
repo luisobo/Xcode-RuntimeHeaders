@@ -9,7 +9,7 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTTableView, Xcode3SandboxItemModel;
+@class DVTBorderedView, DVTTableView, NSString, Xcode3SandboxItemModel;
 
 @interface Xcode3SandboxItemViewController : IDEProjectItemViewController <NSTableViewDataSource, NSTableViewDelegate>
 {
@@ -27,7 +27,11 @@
 - (id)initWithEditorItemModel:(id)arg1 portalInfoDelegate:(id)arg2;
 
 // Remaining properties
-@property(retain, nonatomic) Xcode3SandboxItemModel *model;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) Xcode3SandboxItemModel *model;
+@property(readonly) Class superclass;
 
 @end
 

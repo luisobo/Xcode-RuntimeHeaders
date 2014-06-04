@@ -30,6 +30,8 @@
 - (void)removeAllObjects;
 - (void)removeObject:(id)arg1;
 - (unsigned long long)countByEnumeratingWithState:(CDStruct_70511ce9 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
+- (void)sortWithOptions:(unsigned long long)arg1 usingComparator:(id)arg2;
+- (void)sortUsingComparator:(id)arg1;
 - (id)reverseObjectEnumerator;
 - (id)objectEnumerator;
 - (id)allObjects;

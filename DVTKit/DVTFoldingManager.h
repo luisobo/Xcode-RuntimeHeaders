@@ -27,9 +27,9 @@
 - (BOOL)isCharacterRangeFolded:(struct _NSRange)arg1;
 - (BOOL)containsFoldWithRange:(struct _NSRange)arg1;
 - (BOOL)isCharacterFoldedAtIndex:(unsigned long long)arg1;
-- (void)foldRecursiveItem:(id)arg1;
-- (void)unfoldItems:(id)arg1;
-- (void)foldItems:(id)arg1;
+- (void)foldRangesRecursively:(id)arg1;
+- (void)unfoldRanges:(id)arg1;
+- (void)foldRanges:(id)arg1;
 - (void)unfoldRecursiveRange:(struct _NSRange)arg1;
 - (void)unfoldEnclosingRange:(struct _NSRange)arg1;
 - (void)unfoldRange:(struct _NSRange)arg1;

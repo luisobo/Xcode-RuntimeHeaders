@@ -17,14 +17,13 @@
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
 - (BOOL)ibShouldPropagateFramesDuringFrameDecision;
 - (BOOL)ibShouldUseConstraintsInsteadOfAutoresizingWhenChildOfClipView;
-- (void)ibBeginArchivingDocument:(id)arg1 withContext:(id)arg2;
+- (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (void)setIbInspectedAllowsOnlyRomanCharacters:(BOOL)arg1;
 - (BOOL)ibInspectedAllowsOnlyRomanCharacters;
 @property BOOL ibShadowedIncrementalSearchingEnabled;
 @property long long ibArchivedFindStyle;
 @property BOOL ibShadowedUsesFindBar;
 @property long long ibShadowedLayoutOrientation;
-- (BOOL)ibNeedsToCompileWithCopyOfDocument:(id)arg1;
 @property BOOL ibShadowedUsesInspectorBar;
 @property(copy) NSTextStorage *ibShadowedTextStorage;
 - (struct CGSize)ibNearestLegalBoundsSize;

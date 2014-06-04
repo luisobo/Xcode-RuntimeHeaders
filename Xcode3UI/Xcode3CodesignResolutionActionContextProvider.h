@@ -8,6 +8,8 @@
 
 #import "IDECodesignResolutionActionContextProvider-Protocol.h"
 
+@class NSString;
+
 @interface Xcode3CodesignResolutionActionContextProvider : NSObject <IDECodesignResolutionActionContextProvider>
 {
 }
@@ -15,6 +17,12 @@
 + (id)sharedProvider;
 - (id)codesignResolutionActionContextWithError:(id)arg1 window:(id)arg2 blueprint:(id)arg3;
 - (id)codesignResolutionActionContextWithError:(id)arg1 window:(id)arg2 workspace:(id)arg3 blueprintIdentifier:(id)arg4;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

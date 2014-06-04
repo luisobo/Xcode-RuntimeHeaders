@@ -10,7 +10,7 @@
 {
 }
 
-- (id)completionItemsForDocumentLocation:(id)arg1 context:(id)arg2 areDefinitive:(char *)arg3;
+- (id)completionItemsForDocumentLocation:(id)arg1 context:(id)arg2 highlyLikelyCompletionItems:(id *)arg3 areDefinitive:(char *)arg4;
 - (id)_completionItemsFromSubPath:(id)arg1 includerURL:(id)arg2 usingUserPaths:(BOOL)arg3 userHeaderSearchPaths:(id)arg4 systemHeaderSearchPaths:(id)arg5 headerMappedHeaders:(id)arg6 alwaysSearchUserPaths:(BOOL)arg7 context:(id)arg8;
 - (id)_uniqueCompletionItemsFromHeaderMappedHeaders:(id)arg1;
 - (id)_uniqueCompletionItemsAtPath:(id)arg1 withBasePriority:(long long)arg2;

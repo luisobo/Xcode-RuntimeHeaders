@@ -17,7 +17,7 @@
 - (id)queryInfoFromIndexSymbol:(id)arg1;
 - (id)_adoptedProtocolsForIndexSymbol:(id)arg1;
 - (id)_inheritanceHierarchyForIndexSymbol:(id)arg1;
-- (void)queryInfoFromIndexSymbol:(id)arg1 resultQueue:(struct dispatch_queue_s *)arg2 handlerBlock:(id)arg3;
+- (void)queryInfoFromIndexSymbol:(id)arg1 resultQueue:(id)arg2 handlerBlock:(id)arg3;
 
 @end
 

@@ -25,6 +25,7 @@
 - (void)invalidateChildItems;
 - (id)childRepresentedObjects;
 - (void)_filterGroup:(id)arg1;
+- (BOOL)_isNotHiddenStateItem:(id)arg1;
 - (id)subtitle;
 - (void)primitiveInvalidate;
 - (void)_clearCachedItems;

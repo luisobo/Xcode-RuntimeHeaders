@@ -8,7 +8,7 @@
 
 #import "NSSplitViewDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTSegmentedControl, IDEComparisonEditor;
+@class DVTBorderedView, DVTSegmentedControl, IDEComparisonEditor, NSString;
 
 @interface IDEComparisonToolbar : IDEViewController <NSSplitViewDelegate>
 {
@@ -31,6 +31,12 @@
 - (void)viewDidInstall;
 - (void)loadView;
 - (id)initWithComparisonEditor:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

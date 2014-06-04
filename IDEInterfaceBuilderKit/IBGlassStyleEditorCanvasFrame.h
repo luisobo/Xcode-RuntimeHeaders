@@ -9,57 +9,43 @@
 #import "IBGlassCanvasFrameBackgroundDelegate-Protocol.h"
 #import "IBImageButtonDelegate-Protocol.h"
 
-@class IBGlassCanvasFrameBackground, IBImageButton, NSSet;
+@class IBGlassCanvasFrameBackground, NSString;
 
 @interface IBGlassStyleEditorCanvasFrame : IBEditorCanvasFrame <IBGlassCanvasFrameBackgroundDelegate, IBImageButtonDelegate>
 {
-    IBImageButton *resizingGrips[8];
-    NSSet *resizingKnobSet;
-    long long disableDrawingCachingCount;
     IBGlassCanvasFrameBackground *background;
 }
 
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
-- (void)refreshImagesForResizingGripWithKnob:(long long)arg1;
-- (id)knobButtonImageForState:(unsigned long long)arg1 knob:(long long)arg2;
 - (id)closeButtonImageForState:(unsigned long long)arg1;
 - (id)closeButtonShadow:(BOOL)arg1;
 - (id)closeButtonGradientKey:(BOOL)arg1 pressed:(BOOL)arg2;
 - (id)closeButtonOuterColor:(BOOL)arg1 pressed:(BOOL)arg2;
 - (id)closeButtonBorderColor:(BOOL)arg1 pressed:(BOOL)arg2;
-- (void)hasKeyLookDidChange;
-- (BOOL)isSubviewHittable:(id)arg1;
-- (BOOL)imageButton:(id)arg1 interceptMouseDown:(id)arg2;
-- (void)dragKnob:(long long)arg1 withMouseDown:(id)arg2;
-- (void)canvasFrameResizingTest:(id)arg1;
+- (id)knobButtonImageForState:(unsigned long long)arg1 knob:(long long)arg2;
 - (BOOL)shouldDragFrameWithMouseDown:(id)arg1;
-- (void)layoutBottomUp;
+- (void)hasKeyLookDidChange;
+- (struct CGSize)sizeForKnob:(long long)arg1;
 - (id)boundingRectsForBandSelectionHitTesting;
 - (struct CGRect)boundsForHitTesting;
-- (struct CGRect)glassRectPlusSelectingRing;
+- (struct CGRect)glassRectPlusSelectionRing;
 - (CDStruct_c519178c)contentInset;
 - (struct CGRect)closeButtonRect;
 - (struct CGRect)glassRect;
 - (CDStruct_c519178c)insetToGlass;
-- (id)resizingGripViewForKnob:(long long)arg1;
-- (void)setShowingSelectionRing:(BOOL)arg1;
-- (BOOL)isDrawingCachingEnabled;
-- (void)enableDrawingCaching;
-- (void)disableDrawingCaching;
-- (void)setVerticallyResizable:(BOOL)arg1;
-- (void)setHorizontallyResizable:(BOOL)arg1;
-- (void)updateGrowKnobsVisibility;
-- (void)setAllGrowKnobsAreEnabled:(BOOL)arg1;
-- (void)setGrowKnob:(long long)arg1 isEnabled:(BOOL)arg2;
-- (BOOL)isGrowKnobEnabled:(long long)arg1;
-- (BOOL)isAxisForKnobResizable:(long long)arg1;
+- (void)setShowSelectionRing:(BOOL)arg1;
 @property(nonatomic) double glassCornerRadius;
 @property(nonatomic) CDStruct_c519178c glassToContentInset;
-@property unsigned long long contentFrameStyle;
+@property unsigned long long contentBorderStyle;
 - (void)glassCanvasFrameBackgroundDidChangeAppearance:(id)arg1;
-- (void)willRemoveFromCanvas;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

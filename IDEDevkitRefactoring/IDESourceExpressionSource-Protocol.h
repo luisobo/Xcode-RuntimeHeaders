@@ -14,7 +14,7 @@
 - (BOOL)isExpressionInFunctionOrMethodBody:(id)arg1;
 - (BOOL)isExpressionFunctionOrMethodDefinition:(id)arg1;
 - (BOOL)isExpressionInPlainCode:(id)arg1;
-- (void)symbolsForExpression:(id)arg1 inQueue:(struct dispatch_queue_s *)arg2 completionBlock:(id)arg3;
+- (void)symbolsForExpression:(id)arg1 inQueue:(id)arg2 completionBlock:(id)arg3;
 
 @optional
 - (BOOL)isLocationInFunctionOrMethodBody:(id)arg1;

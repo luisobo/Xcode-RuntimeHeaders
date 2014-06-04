@@ -13,7 +13,7 @@
     NSString *_debuggingAdditionIdentifier;
 }
 
-@property(retain) NSString *debuggingAdditionIdentifier; // @synthesize debuggingAdditionIdentifier=_debuggingAdditionIdentifier;
+@property(copy) NSString *debuggingAdditionIdentifier; // @synthesize debuggingAdditionIdentifier=_debuggingAdditionIdentifier;
 - (void).cxx_destruct;
 - (void)_didStart;
 - (BOOL)supportsDebugSession;

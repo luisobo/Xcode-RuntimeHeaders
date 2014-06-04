@@ -9,7 +9,7 @@
 #import "DVTInvalidation-Protocol.h"
 #import "NSAnimationDelegate-Protocol.h"
 
-@class DVTMapTable, DVTStackBacktrace, NSArray, NSMutableArray, NSViewAnimation;
+@class DVTMapTable, DVTStackBacktrace, NSArray, NSMutableArray, NSString, NSViewAnimation;
 
 @interface DVTScopeBarsManager : NSObject <DVTInvalidation, NSAnimationDelegate>
 {
@@ -22,7 +22,7 @@
 }
 
 + (void)initialize;
-@property(readonly, nonatomic) NSViewAnimation *currentAnimation; // @synthesize currentAnimation=_currentAnimation;
+@property(readonly, nonatomic) __weak NSViewAnimation *currentAnimation; // @synthesize currentAnimation=_currentAnimation;
 @property(nonatomic) int borderSides; // @synthesize borderSides=_borderSides;
 @property(readonly) NSArray *scopeBarControllers; // @synthesize scopeBarControllers=_scopeBarControllers;
 - (void).cxx_destruct;
@@ -39,7 +39,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

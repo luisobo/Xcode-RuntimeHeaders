@@ -8,7 +8,7 @@
 
 #import "XDSCClassifier-Protocol.h"
 
-@class XDElementReference;
+@class NSString, XDElementReference;
 
 @interface XDSCClass : XDUMLClassImp <XDSCClassifier>
 {
@@ -57,6 +57,12 @@
 - (id)ownedAttributes;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

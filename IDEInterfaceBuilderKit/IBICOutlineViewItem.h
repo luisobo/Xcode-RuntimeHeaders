@@ -22,7 +22,7 @@
 @property(getter=isExpanded) BOOL expanded; // @synthesize expanded=_expanded;
 @property(readonly) NSArray *filteredOrderedOutlineChildren; // @synthesize filteredOrderedOutlineChildren=_filteredOrderedOutlineChildren;
 @property(readonly) IBICAbstractCatalogItem *catalogItem; // @synthesize catalogItem=_catalogItem;
-@property(readonly) IBICOutlineViewItem *parent; // @synthesize parent=_parent;
+@property(readonly) __weak IBICOutlineViewItem *parent; // @synthesize parent=_parent;
 - (void).cxx_destruct;
 - (id)description;
 - (id)enclosingFolderIncludingReceiver;

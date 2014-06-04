@@ -11,7 +11,7 @@
 @interface DVTStackView_AppKitAutolayout : NSView
 {
     NSArray *_privateConstraints;
-    int _paddingMask;
+    unsigned long long _paddingMask;
     double _topPadding;
     double _rightPadding;
     double _bottomPadding;
@@ -29,7 +29,7 @@
 @property double bottomPadding; // @synthesize bottomPadding=_bottomPadding;
 @property double rightPadding; // @synthesize rightPadding=_rightPadding;
 @property double topPadding; // @synthesize topPadding=_topPadding;
-@property(nonatomic) int paddingMask; // @synthesize paddingMask=_paddingMask;
+@property(nonatomic) unsigned long long paddingMask; // @synthesize paddingMask=_paddingMask;
 - (void).cxx_destruct;
 - (void)willRemoveSubview:(id)arg1;
 - (void)didAddSubview:(id)arg1;

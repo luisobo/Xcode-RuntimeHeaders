@@ -8,6 +8,7 @@
 
 @interface IBICImageSet : IBICMappedMultipartImage
 {
+    long long _templateRenderingIntent;
 }
 
 + (id)pluralTypeNameForIssues;
@@ -19,6 +20,11 @@
 + (double)latestUnderstoodContentsJSONVersionNumber;
 + (double)earliestUnderstoodContentsJSONVersionNumber;
 + (Class)imageRepClass;
+@property(nonatomic) long long templateRenderingIntent; // @synthesize templateRenderingIntent=_templateRenderingIntent;
+- (id)infoDictionary;
+- (void)replaceChildrenFromFileSystemSnapshot:(id)arg1 results:(id)arg2;
+- (id)validatedContentsJSONInfoFromSnapshot:(id)arg1 results:(id)arg2;
+- (void)enumerateDescriptionAttributeComponents:(id)arg1;
 - (void)populateContentsJSONImageEntry:(id)arg1 forImageRep:(id)arg2;
 - (BOOL)shouldIncludeImageRepInContentsJSON:(id)arg1;
 - (id)suggestedFileNameForImageRepInSlot:(id)arg1;

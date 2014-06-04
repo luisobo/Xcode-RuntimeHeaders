@@ -16,8 +16,8 @@
     NSURL *_baseURL;
 }
 
-@property(readonly) NSString *architecture; // @synthesize architecture=_architecture;
-@property(readonly) NSURL *baseURL; // @synthesize baseURL=_baseURL;
+@property(readonly, retain) NSString *architecture; // @synthesize architecture=_architecture;
+@property(readonly, retain) NSURL *baseURL; // @synthesize baseURL=_baseURL;
 - (id)_lineTableForPath:(id)arg1;
 - (BOOL)_buildFileReferences;
 - (void)close;

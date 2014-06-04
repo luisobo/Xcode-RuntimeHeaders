@@ -8,7 +8,7 @@
 
 #import "IBMouseMovedObservingView-Protocol.h"
 
-@class NSArray, NSCursor, NSEvent, NSMutableDictionary, NSString;
+@class NSArray, NSColor, NSCursor, NSEvent, NSMutableDictionary, NSString;
 
 @interface IBImageButton : NSView <IBMouseMovedObservingView>
 {
@@ -27,15 +27,16 @@
     unsigned long long imageLayoutMode;
     NSArray *buttonsToShareRolloverWith;
     CDStruct_c519178c hitTestInset;
+    long long _tag;
     id target;
     NSEvent *trackedEvent;
     id <IBImageButtonDelegate> _delegate;
     id _representedObject;
-    long long _tag;
+    NSColor *_fillColor;
 }
 
 + (id)makeButtonsStartSharingRolloverState:(id)arg1;
-@property(nonatomic) long long tag; // @synthesize tag=_tag;
+@property(retain, nonatomic) NSColor *fillColor; // @synthesize fillColor=_fillColor;
 @property(retain, nonatomic) id representedObject; // @synthesize representedObject=_representedObject;
 @property(nonatomic) __weak id <IBImageButtonDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) NSEvent *trackedEvent; // @synthesize trackedEvent;
@@ -53,6 +54,7 @@
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)drawImage:(id)arg1 withOpacity:(double)arg2;
+- (struct CGSize)intrinsicContentSize;
 - (id)accessibilityAttributeNames;
 - (BOOL)accessibilityIsAttributeSettable:(id)arg1;
 - (id)accessibilityAttributeValue:(id)arg1;
@@ -67,7 +69,10 @@
 - (id)hitTest:(struct CGPoint)arg1;
 - (struct CGRect)hitTestVisibleRect;
 - (struct CGRect)hitTestBounds;
+- (void)setTag:(long long)arg1;
+- (long long)tag;
 @property(nonatomic, getter=isEnabled) BOOL enabled;
+- (void)setTarget:(id)arg1 andAction:(SEL)arg2;
 - (id)backgroundImageOpacityForState:(unsigned long long)arg1;
 - (void)setBackgroundImageOpacity:(id)arg1 forState:(unsigned long long)arg2;
 - (id)effectiveBackgroundImageOpacityForState:(unsigned long long)arg1;

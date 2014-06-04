@@ -6,27 +6,43 @@
 
 #import "IDEInspectorViewController.h"
 
-@class DVTDelayedInvocation, IBDocument, IBMutableIdentityDictionary, NSArray, NSSet;
+#import "IBConfigurablePropertyKeyPathAdapterDelegate-Protocol.h"
 
-@interface IBInspectorViewController : IDEInspectorViewController
+@class DVTDelayedInvocation, IBDocument, IBMutableIdentityDictionary, NSArray, NSArrayController, NSDictionary, NSSet, NSString, NSUserDefaultsController, NSXMLElement;
+
+@interface IBInspectorViewController : IDEInspectorViewController <IBConfigurablePropertyKeyPathAdapterDelegate>
 {
     IBMutableIdentityDictionary *_documentToObservingTokenMap;
     DVTDelayedInvocation *_imageNameInvocation;
     DVTDelayedInvocation *_soundNameInvocation;
     DVTDelayedInvocation *_nibNameInvocation;
+    NSSet *previousInspectedInterfaceBuilderDocuments;
+    NSArrayController *_configurablePropertyAdapterController;
+    NSXMLElement *_originalSlice;
+    NSDictionary *_perConfigurationElementTemplatesByIdentifier;
+    DVTDelayedInvocation *_viewRegenerationInvocation;
+    NSArray *_previousAdapters;
     BOOL _allInspectedDocumentsAreNotUsingAutolayout;
     BOOL _allInspectedDocumentsAreUsingAutolayout;
+    BOOL _anyInspectedDocumentsAreNotUsingConfigurations;
+    BOOL _allInspectedDocumentsAreUsingConfigurations;
     NSArray *_availableSoundNames;
     NSArray *_availableImageNames;
     NSArray *_availableNibNames;
     NSSet *_inspectedInterfaceBuilderDocuments;
     NSArray *_inspectedDocumentObjects;
+    NSUserDefaultsController *_userDefaultsController;
 }
 
 + (id)keyPathsForValuesAffectingInspectedDocumentObject;
 + (id)keyPathsForValuesAffectingInspectedDocument;
++ (id)inspectedArrayControllerKeyPaths;
+@property(readonly) id <IDEInspectorContentController> configurablePropertyAdapterController; // @synthesize configurablePropertyAdapterController=_configurablePropertyAdapterController;
+@property(readonly, nonatomic) NSUserDefaultsController *userDefaultsController; // @synthesize userDefaultsController=_userDefaultsController;
 @property(copy, nonatomic) NSArray *inspectedDocumentObjects; // @synthesize inspectedDocumentObjects=_inspectedDocumentObjects;
 @property(copy, nonatomic) NSSet *inspectedInterfaceBuilderDocuments; // @synthesize inspectedInterfaceBuilderDocuments=_inspectedInterfaceBuilderDocuments;
+@property(nonatomic) BOOL allInspectedDocumentsAreUsingConfigurations; // @synthesize allInspectedDocumentsAreUsingConfigurations=_allInspectedDocumentsAreUsingConfigurations;
+@property(nonatomic) BOOL anyInspectedDocumentsAreNotUsingConfigurations; // @synthesize anyInspectedDocumentsAreNotUsingConfigurations=_anyInspectedDocumentsAreNotUsingConfigurations;
 @property(nonatomic) BOOL allInspectedDocumentsAreUsingAutolayout; // @synthesize allInspectedDocumentsAreUsingAutolayout=_allInspectedDocumentsAreUsingAutolayout;
 @property(nonatomic) BOOL allInspectedDocumentsAreNotUsingAutolayout; // @synthesize allInspectedDocumentsAreNotUsingAutolayout=_allInspectedDocumentsAreNotUsingAutolayout;
 @property(copy, nonatomic) NSArray *availableNibNames; // @synthesize availableNibNames=_availableNibNames;
@@ -48,9 +64,12 @@
 - (id)docTokenKeyVariationsFromDocumentationPropertyInfo:(id)arg1;
 - (id)lastObjectInKeyPath:(id)arg1;
 - (id)toolTipTitleFromKeyPath:(id)arg1 titleAttribute:(id)arg2 placeholderAttribute:(id)arg3;
-- (void)setContent:(id)arg1;
+- (id)searchableAttributesForProperty:(id)arg1;
+- (void)didSetInspectedObjects:(id)arg1;
+- (id)willSetInspectedObjects:(id)arg1;
 - (void)stopObservingDocument:(id)arg1;
 - (void)startObservingDocument:(id)arg1;
+- (void)updateConfigurationsFlags;
 - (void)updateAutolayoutFlags;
 - (void)constrainBoundsOfSelectionToNearestLegalSize;
 - (id)createNameInvocationForComputationKeyPath:(id)arg1 withStorageKeyPath:(id)arg2;
@@ -58,9 +77,28 @@
 - (id)computeAvailableImageNames;
 - (id)computeResourceNamesForMediaType:(id)arg1;
 - (id)computeAvailableNibNames;
+- (id)sliceElement;
+- (id)attributedTitleForSliverElement:(id)arg1;
+- (id)accessoryViewForInspectorProperty:(id)arg1;
+- (id)perConfigurationPropertyTemplateForInspectorProperty:(id)arg1;
+- (id)configurationForInspectorProperty:(id)arg1;
+- (id)configurationForInspectorElement:(id)arg1;
+- (id)perConfigurationPropertyTemplateForInspectorElement:(id)arg1;
+- (void)setContent:(id)arg1;
+- (void)regenerateViewIfNeeded:(id)arg1;
+- (void)regenerateViewIfNeededWithObjects:(id)arg1;
+- (BOOL)regenerateSliceXMLWithObjects:(id)arg1;
+- (void)configurablePropertyKeyPathAdapterDidObserverMemberConfigurationChange:(id)arg1;
 @property(readonly, nonatomic) id inspectedDocumentObject;
 @property(readonly, nonatomic) IBDocument *inspectedDocument;
 - (void)primitiveInvalidate;
+- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

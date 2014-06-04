@@ -8,7 +8,7 @@
 
 #import "Xcode3BuildPhaseFiltering-Protocol.h"
 
-@class DVTStackView_ML, NSArray, NSButton, NSPopUpButton, NSString, NSTextField, NSView, PBXCopyFilesBuildPhase, Xcode3FileBuildPhaseViewController;
+@class DVTStackView_ML, NSArray, NSButton, NSPopUpButton, NSString, NSTextField, NSView, PBXCopyFilesBuildPhase, Xcode3CopyFilesInnerFileBuildPhaseViewController;
 
 @interface Xcode3CopyFilesBuildPhaseViewController : Xcode3BuildPhaseViewController <Xcode3BuildPhaseFiltering>
 {
@@ -17,7 +17,7 @@
     NSButton *_copyOnInstallCheckbox;
     DVTStackView_ML *_stackView;
     NSView *_settingsBox;
-    Xcode3FileBuildPhaseViewController *_fileViewController;
+    Xcode3CopyFilesInnerFileBuildPhaseViewController *_fileViewController;
     NSArray *_destinations;
     long long _destinationIndex;
 }
@@ -46,6 +46,12 @@
 - (id)_bestDestinationForUserData;
 - (void)primitiveInvalidate;
 - (id)initWithBuildPhase:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

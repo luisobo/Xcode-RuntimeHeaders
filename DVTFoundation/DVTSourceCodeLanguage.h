@@ -23,6 +23,9 @@
     NSArray *_conformedToLanguages;
     Class _nativeSourceModelParserClass;
     BOOL _supportsIndentation;
+    NSArray *_commentSyntaxes;
+    NSArray *_lineCommentPrefixes;
+    NSArray *_blockCommentCircumfixes;
 }
 
 + (id)sourceCodeLanguageForFileDataType:(id)arg1;
@@ -32,13 +35,15 @@
 + (void)initialize;
 @property(readonly) BOOL supportsIndentation; // @synthesize supportsIndentation=_supportsIndentation;
 @property(readonly) Class nativeSourceModelParserClass; // @synthesize nativeSourceModelParserClass=_nativeSourceModelParserClass;
-@property(readonly) NSString *documentationAbbreviation; // @synthesize documentationAbbreviation=_documentationAbbreviation;
-@property(readonly) NSString *languageName; // @synthesize languageName=_languageName;
-@property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
+@property(readonly, copy) NSString *documentationAbbreviation; // @synthesize documentationAbbreviation=_documentationAbbreviation;
+@property(readonly, copy) NSString *languageName; // @synthesize languageName=_languageName;
+@property(readonly, copy) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
+- (id)blockCommentCircumfixes;
+- (id)lineCommentPrefixes;
 - (BOOL)conformsToLanguage:(id)arg1;
-@property(readonly) NSArray *conformedToLanguages;
-@property(readonly) NSArray *fileDataTypes;
+@property(readonly, copy) NSArray *conformedToLanguages;
+@property(readonly, copy) NSArray *fileDataTypes;
 @property(readonly) DVTLanguageSpecification *languageSpecification;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;

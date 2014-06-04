@@ -45,10 +45,16 @@
 - (void)didCloseWithError:(id)arg1;
 - (void)willCloseWithError:(id)arg1;
 - (void)open;
-@property(readonly, nonatomic) NSSet *runLoopModes;
+@property(readonly, copy, nonatomic) NSSet *runLoopModes;
 - (void)removeRunLoopMode:(id)arg1;
 - (void)addRunLoopMode:(id)arg1;
 - (id)initWithInputStream:(id)arg1 outputStream:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

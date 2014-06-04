@@ -8,18 +8,16 @@
 
 #import "DVTSourceCodeComparisonAnnotationContext-Protocol.h"
 
-@class DVTDiffDescriptor, DVTDiffSession, NSURL;
+@class DVTDiffDescriptor, DVTDiffSession, NSString, NSURL;
 
 @interface IDESourceCodeComparisonAnnotationContext : IDEAnnotationContext <DVTSourceCodeComparisonAnnotationContext>
 {
-    NSURL *_documentURL;
     int _dataSourceType;
+    NSURL *_documentURL;
     DVTDiffDescriptor *_diffDescriptor;
     DVTDiffSession *_diffSession;
 }
 
-+ (BOOL)scrollbarMarkerHighlight;
-+ (BOOL)wantsScrollbarMarker;
 @property __weak DVTDiffSession *diffSession; // @synthesize diffSession=_diffSession;
 @property __weak DVTDiffDescriptor *diffDescriptor; // @synthesize diffDescriptor=_diffDescriptor;
 @property int dataSourceType; // @synthesize dataSourceType=_dataSourceType;
@@ -29,6 +27,12 @@
 - (id)initWithEditor:(id)arg1 document:(id)arg2 workspaceTabController:(id)arg3;
 - (id)initWithFileDataType:(id)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

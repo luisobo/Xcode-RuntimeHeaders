@@ -9,7 +9,7 @@
 #import "NSCopying-Protocol.h"
 #import "NSMutableCopying-Protocol.h"
 
-@class NSMutableData;
+@class NSMutableData, NSObject<OS_dispatch_queue>;
 
 @interface PBXProjectIndexBTree : NSObject <NSCopying, NSMutableCopying>
 {
@@ -17,12 +17,12 @@
     void *_compare;
     void *_printValue;
     const void *_context;
-    struct dispatch_queue_s *_treeAccessQueue;
+    NSObject<OS_dispatch_queue> *_treeAccessQueue;
     _pbxbtreeheader_01a06060 *_header;
     _pbxbtreecursor_23e470bf _cursor;
 }
 
-- (struct dispatch_queue_s *)accessQueue;
+- (id)accessQueue;
 - (unsigned int)valueForKey:(const void *)arg1;
 - (BOOL)containsValue:(unsigned int)arg1 forKey:(const void *)arg2;
 - (void)_deleteCurrentValue;
@@ -44,7 +44,7 @@
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (void)setPrintValueFunction:(void *)arg1;
 - (void *)printValueFunction;
-- (BOOL)writeDataToFile:(id)arg1 queue:(struct dispatch_queue_s *)arg2;
+- (BOOL)writeDataToFile:(id)arg1 queue:(id)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)dealloc;
 - (id)initWithContentsOfFile:(id)arg1 comparisonFunction:(void *)arg2 keyForValueFunction:(void *)arg3 context:(const void *)arg4;

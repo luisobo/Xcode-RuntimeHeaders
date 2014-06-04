@@ -32,7 +32,7 @@
 @property double progress;
 @property BOOL showDeterminateProgress;
 @property int statusState;
-- (id)_stringForReachabilityState:(id)arg1;
+- (id)_stringForAuthenticationState:(id)arg1;
 - (void)orderWindow:(long long)arg1 relativeTo:(long long)arg2;
 - (id)initWithContentRect:(struct CGRect)arg1 styleMask:(unsigned long long)arg2 backing:(unsigned long long)arg3 defer:(BOOL)arg4 screen:(id)arg5;
 - (id)initWithContentRect:(struct CGRect)arg1 styleMask:(unsigned long long)arg2 backing:(unsigned long long)arg3 defer:(BOOL)arg4;

@@ -36,7 +36,7 @@
 @property(copy, nonatomic) NSColor *borderColor; // @synthesize borderColor;
 @property(copy, nonatomic) NSColor *fillColor; // @synthesize fillColor;
 @property(nonatomic) double cornerRadius; // @synthesize cornerRadius;
-@property(nonatomic, getter=isFlipped) BOOL flipped; // @synthesize flipped;
+@property(getter=isFlipped) BOOL flipped; // @synthesize flipped;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (struct CGRect)destinationRectForContentWithSize:(struct CGSize)arg1 knob:(long long)arg2 offset:(struct CGPoint)arg3;
@@ -52,10 +52,12 @@
 - (id)initWithCoder:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (id)ibInspectedTextFont;
-- (void)setIbInspectedTextFont:(id)arg1;
-- (id)ibDefaultTextColor;
-- (id)ibDesignableContentView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

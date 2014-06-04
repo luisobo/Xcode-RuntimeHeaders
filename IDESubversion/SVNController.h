@@ -8,13 +8,20 @@
 
 #import "IDESourceControlProtocol-Protocol.h"
 
+@class NSString;
+
 @interface SVNController : NSObject <IDESourceControlProtocol>
 {
 }
 
 - (id)operationForRequest:(id)arg1;
 - (BOOL)authenticationRequiredForRequest:(id)arg1;
-- (BOOL)validateRequest:(id)arg1 error:(id *)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, NSImage, NSString, NSURL;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface IDEQuickLookPage : NSObject
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString, NSURL;
+
+@interface IDEQuickLookPage : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     NSURL *_documentURL;
     unsigned long long _pageNumber;
@@ -22,8 +24,18 @@
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 - (id)ideModelObjectTypeIdentifier;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)initWithDocumentURL:(id)arg1 pageNumber:(unsigned long long)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

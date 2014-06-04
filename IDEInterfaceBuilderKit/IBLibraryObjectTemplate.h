@@ -4,62 +4,25 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2011 by Steve Nygard.
  */
 
-#import "NSView.h"
+#import <IDEInterfaceBuilderKit/IBObjectLibraryAsset.h>
 
 #import "IBDocumentArchiving-Protocol.h"
-#import "NSCoding-Protocol.h"
 
-@class IBObjectLibraryTemplateController, NSArray, NSAttributedString, NSString;
+@class NSString;
 
-@interface IBLibraryObjectTemplate : NSView <IBDocumentArchiving, NSCoding>
+@interface IBLibraryObjectTemplate : IBObjectLibraryAsset <IBDocumentArchiving>
 {
-    NSString *nibName;
-    NSString *label;
-    NSString *subtitle;
-    NSString *briefDescription;
-    NSAttributedString *fullDescription;
-    NSString *initialCategoryPath;
-    long long animationScalingMode;
-    NSArray *filterableNames;
-    NSView *draggableView;
-    NSView *draggedView;
-    id representedObject;
-    BOOL hasLoadedNib;
-    NSArray *cachedPasteboardObjects;
-    IBObjectLibraryTemplateController *controller;
 }
 
-+ (id)keyPathsForValuesAffectingIbQualifyingInfoForDefaultLabel;
-+ (id)keyPathsForValuesAffectingIbTypeNameForDefaultLabel;
-@property(copy) NSString *nibName; // @synthesize nibName;
-@property(retain, nonatomic) NSView *draggableView; // @synthesize draggableView;
-@property long long animationScalingMode; // @synthesize animationScalingMode;
-@property(retain) IBObjectLibraryTemplateController *controller; // @synthesize controller;
-@property(copy) NSAttributedString *fullDescription; // @synthesize fullDescription;
-@property(copy) NSString *briefDescription; // @synthesize briefDescription;
-@property(copy) NSArray *filterableNames; // @synthesize filterableNames;
-@property(retain, nonatomic) NSView *draggedView; // @synthesize draggedView;
-@property(retain, nonatomic) id representedObject; // @synthesize representedObject;
-@property(copy) NSString *initialCategoryPath; // @synthesize initialCategoryPath;
-@property(copy) NSString *subtitle; // @synthesize subtitle;
-@property(copy) NSString *label; // @synthesize label;
-- (void).cxx_destruct;
-- (BOOL)isOpaque;
-- (void)drawRect:(struct CGRect)arg1;
-- (id)objectContainer;
-- (id)pasteboardObjects;
-@property(readonly) BOOL retrievingDataRequiresUserInteraction;
-- (id)description;
-- (void)loadNibIfNeeded;
-- (void)inferDraggedViewIfNeeded;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
-- (id)initWithFrame:(struct CGRect)arg1;
+- (Class)classForCoder;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (id)ibQualifyingInfoForDefaultLabel;
-- (id)ibTypeNameForDefaultLabel;
-- (id)ibDesignableContentView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

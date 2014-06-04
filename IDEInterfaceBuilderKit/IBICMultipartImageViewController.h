@@ -9,7 +9,7 @@
 #import "IBICCatalogItemObserver-Protocol.h"
 #import "IBICMultipartImageViewDelegate-Protocol.h"
 
-@class DVTDelayedInvocation, IBICCatalogDocument, IBICMultipartImage, IBICMultipartImageView, NSArray, NSSet;
+@class DVTDelayedInvocation, IBICCatalogDocument, IBICMultipartImage, IBICMultipartImageView, NSArray, NSSet, NSString;
 
 @interface IBICMultipartImageViewController : IDEViewController <IBICMultipartImageViewDelegate, IBICCatalogItemObserver>
 {
@@ -61,6 +61,12 @@
 - (void)batchedValidateUI:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)initWithDocument:(id)arg1 andMultipartImage:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

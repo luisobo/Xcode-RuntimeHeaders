@@ -8,7 +8,7 @@
 
 #import "NSCoding-Protocol.h"
 
-@class NSString;
+@class NSString, SKEDocumentObjectMemberWrapper;
 
 @interface SKEDocumentLocation : DVTDocumentLocation <NSCoding>
 {
@@ -22,7 +22,7 @@
 - (id)description;
 - (id)initWithDocumentURL:(id)arg1 identifier:(id)arg2;
 - (BOOL)isGroupLocation;
-- (id)locatedMemberWrapper;
+@property(readonly) SKEDocumentObjectMemberWrapper *locatedMemberWrapper;
 
 @end
 

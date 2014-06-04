@@ -13,7 +13,7 @@
 + (id)keyPathsForValuesAffectingIbInspectedBordered;
 + (id)keyPathsForValuesAffectingIbInspectedBezeled;
 + (id)keyPathsForValuesAffectingIbShadowedBorderStyle;
-+ (id)keyPathsForValuesAffectingIbWidgetType;
+- (id)ibLocalSearchableNumericAttributeKeyPaths;
 - (BOOL)ibCanSupportIdentifierProperty;
 - (BOOL)ibIdentifierPropertyCanConflictsWithObject:(id)arg1;
 - (void)ibConstrainBoundsToNearestLegalSize;
@@ -23,6 +23,7 @@
 @property long long ibInspectedUserInterfaceLayoutDirection;
 @property long long ibInspectedTruncatesLastVisibleLine;
 @property long long ibInspectedRefusesFirstResponder;
+- (BOOL)ibInspectedOverridesSetTag;
 - (void)setIbInspectedEnabled:(long long)arg1;
 - (long long)ibInspectedEnabled;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;

@@ -9,7 +9,7 @@
 #import "IBICCatalogItemObserver-Protocol.h"
 #import "IBICImageSlicingViewContainerDelegate-Protocol.h"
 
-@class DVTDelayedInvocation, IBMutableIdentityDictionary, NSMutableSet;
+@class DVTDelayedInvocation, IBMutableIdentityDictionary, NSMutableSet, NSString;
 
 @interface IBICCatalogSlicingController : IBICAbstractCatalogDetailController <IBICCatalogItemObserver, IBICImageSlicingViewContainerDelegate>
 {
@@ -44,6 +44,12 @@
 - (BOOL)canZoomCanvas;
 - (void)primitiveInvalidate;
 - (id)initWithDocumentEditor:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

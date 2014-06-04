@@ -26,5 +26,11 @@
 - (id)editorViewControllerForDataNode:(id)arg1;
 - (BOOL)dataNode:(id)arg1 shouldEditTableColumn:(id)arg2;
 
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
+
 @end
 

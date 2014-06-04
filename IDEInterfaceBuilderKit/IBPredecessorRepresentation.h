@@ -17,7 +17,7 @@
 
 @property(readonly) IBDocument *document; // @synthesize document;
 @property(readonly) id endPoint; // @synthesize endPoint;
-@property(readonly) NSArray *displayValues; // @synthesize displayValues;
+@property(readonly, copy) NSArray *displayValues; // @synthesize displayValues;
 - (void).cxx_destruct;
 - (void)disconnect;
 - (BOOL)canDisconnect;

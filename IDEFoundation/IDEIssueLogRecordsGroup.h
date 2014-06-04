@@ -21,7 +21,7 @@
 
 // Remaining properties
 @property(copy) NSArray *logRecords; // @dynamic logRecords;
-@property(readonly) NSMutableArray *mutableLogRecords; // @dynamic mutableLogRecords;
+@property(readonly, copy) NSMutableArray *mutableLogRecords; // @dynamic mutableLogRecords;
 
 @end
 

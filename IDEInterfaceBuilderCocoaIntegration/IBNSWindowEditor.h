@@ -8,7 +8,7 @@
 
 #import "NSAnimationDelegate-Protocol.h"
 
-@class NSView, NSViewAnimation;
+@class NSString, NSView, NSViewAnimation;
 
 @interface IBNSWindowEditor : IBEditor <NSAnimationDelegate>
 {
@@ -24,6 +24,7 @@
 - (void)resizeFrameViewWithEvent:(id)arg1 fromEditorCanvasFrameKnob:(long long)arg2;
 - (CDStruct_d2b197d1)canvasAlignmentInsetForEditorFrame;
 - (BOOL)childEditorShouldDrawActivationDarkening:(id)arg1;
+- (BOOL)isChildToolbarEditor:(id)arg1;
 - (BOOL)canSizeSelectionToFit;
 - (void)sizeSelectionToFit:(id)arg1;
 - (void)drawSelectionHighlightForObject:(id)arg1;
@@ -52,6 +53,12 @@
 - (id)windowTitleForDocumentDisplayName:(id)arg1;
 - (id)editedWindowTemplate;
 - (id)viewEditorFrameController;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

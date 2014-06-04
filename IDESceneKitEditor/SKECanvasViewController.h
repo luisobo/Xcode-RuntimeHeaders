@@ -8,39 +8,63 @@
 
 #import "SKETimeSliderDataSource-Protocol.h"
 
-@class NSArrayController, NSPopUpButton, SKECanvasIdentifierView, SKEDocumentViewController, SKESceneView, SKESceneViewNestView, SKEShadowBox, SKETimeSlider;
+@class NSArrayController, NSPopUpButton, NSSegmentedControl, NSString, SKEDocumentViewController, SKESceneView, SKESceneViewNestView, SKETimeSlider;
 
 @interface SKECanvasViewController : IDEViewController <SKETimeSliderDataSource>
 {
-    SKESceneView *sceneView;
-    SKESceneViewNestView *nestView;
-    SKECanvasIdentifierView *identifierView;
+    SKESceneView *_sceneView;
+    SKESceneViewNestView *_nestView;
     SKETimeSlider *timeSlider;
-    SKEShadowBox *_shadowBox;
-    NSPopUpButton *povPopUpButton;
-    NSArrayController *povArrayController;
-    BOOL _enableJittering;
+    NSSegmentedControl *_segmentedControl;
+    NSPopUpButton *_povPopUpButton;
+    NSArrayController *_povArrayController;
+    BOOL _showAuthoringEnvironment;
     BOOL _enableMultisampling;
+    BOOL _enableJittering;
     BOOL _enableAutomaticDefaultLighting;
+    unsigned char _cameraDisplayMode;
+    unsigned char _lightDisplayMode;
     SKEDocumentViewController *_documentEditorViewController;
 }
 
 @property(retain, nonatomic) SKEDocumentViewController *documentEditorViewController; // @synthesize documentEditorViewController=_documentEditorViewController;
-@property(nonatomic) BOOL enableAutomaticDefaultLighting; // @synthesize enableAutomaticDefaultLighting=_enableAutomaticDefaultLighting;
-@property(nonatomic) BOOL enableMultisampling; // @synthesize enableMultisampling=_enableMultisampling;
-@property(nonatomic) BOOL enableJittering; // @synthesize enableJittering=_enableJittering;
 - (void).cxx_destruct;
 @property double currentTime;
 @property(readonly) double endTime;
 @property(readonly) double startTime;
 @property BOOL playing;
-- (void)sceneViewLostSelectionAnchor:(id)arg1;
-- (void)sceneView:(id)arg1 didUpdateSelectionAnchor:(struct CGPoint)arg2;
+- (BOOL)validateUserInterfaceItem:(id)arg1;
+- (void)doShowNodeAttributesCameraNone:(id)arg1;
+- (void)doShowNodeAttributesCameraAll:(id)arg1;
+- (void)doShowNodeAttributesCameraEditedOnly:(id)arg1;
+- (void)doShowNodeAttributesLightNone:(id)arg1;
+- (void)doShowNodeAttributesLightAll:(id)arg1;
+- (void)doShowNodeAttributesLightEditedOnly:(id)arg1;
+- (void)toggleShowAuthoringEnvironment:(id)arg1;
+- (void)toggleDefaultLighting:(id)arg1;
+- (void)toggleMutlisampling:(id)arg1;
+- (void)toggleJittering:(id)arg1;
+- (void)_updateLightDisplay;
+- (void)setLightDisplayMode:(unsigned char)arg1;
+- (void)_updateCameraDisplay;
+- (void)setCameraDisplayMode:(unsigned char)arg1;
+- (void)_updateManipulation;
+- (void)setShowAuthoringEnvironment:(BOOL)arg1;
+- (void)setEnableAutomaticDefaultLighting:(BOOL)arg1;
+- (void)setEnableMultisampling:(BOOL)arg1;
+- (void)setEnableJittering:(BOOL)arg1;
+- (void)configureControlBar;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)primitiveInvalidate;
 - (void)takeFocus;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -7,6 +7,7 @@
 #import "NSFileWrapper.h"
 
 @interface NSFileWrapper (IBFileWrapperAdditions)
++ (id)ib_unnamedFileWrapperWithContentsOfPath:(id)arg1 error:(id *)arg2;
 + (id)wrapperByCopyingContentsAtPath:(id)arg1 error:(id *)arg2;
 @end
 

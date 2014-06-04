@@ -10,12 +10,12 @@
 
 @interface IBPartialDescriptionsForArchiving : NSObject
 {
-    NSSet *unmergedPartials;
-    NSSet *unmergablePartials;
+    NSSet *_unmergedPartials;
+    NSSet *_unmergablePartials;
 }
 
-@property(retain, nonatomic) NSSet *unmergablePartials; // @synthesize unmergablePartials;
-@property(retain, nonatomic) NSSet *unmergedPartials; // @synthesize unmergedPartials;
+@property(retain, nonatomic) NSSet *unmergablePartials; // @synthesize unmergablePartials=_unmergablePartials;
+@property(retain, nonatomic) NSSet *unmergedPartials; // @synthesize unmergedPartials=_unmergedPartials;
 - (void).cxx_destruct;
 
 @end

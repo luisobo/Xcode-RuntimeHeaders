@@ -8,7 +8,7 @@
 
 #import "NSMenuDelegate-Protocol.h"
 
-@class DVTButtonTextField, IBAutolayoutConstraintAdditionTypeConfig, IBAutolayoutConstraintAdditionValidationState, IBMutableIdentityDictionary, NSButton, NSMenu, NSMutableDictionary, NSPopUpButton, NSSet;
+@class DVTButtonTextField, IBAutolayoutConstraintAdditionTypeConfig, IBAutolayoutConstraintAdditionValidationState, IBMutableIdentityDictionary, NSButton, NSImageView, NSMenu, NSMutableDictionary, NSPopUpButton, NSSet, NSString;
 
 @interface IBAutolayoutConstraintAdditionViewController : IDEViewController <NSMenuDelegate>
 {
@@ -41,6 +41,7 @@
     DVTButtonTextField *_explicitHeightField;
     NSButton *_equalWidthsCheckBox;
     NSButton *_equalHeightsCheckBox;
+    NSButton *_aspectRatioCheckBox;
     NSButton *_topEdgesAlignmentCheckBox;
     NSButton *_bottomEdgesAlignmentCheckBox;
     NSButton *_leftEdgesAlignmentCheckBox;
@@ -62,10 +63,40 @@
     NSButton *_alignCheckBox;
     NSPopUpButton *_alignPopUp;
     NSMenu *_alignPopUpMenu;
+    NSImageView *_leadingEdgesImageView;
+    NSImageView *_trailingEdgesImageView;
+    NSImageView *_topEdgesImageView;
+    NSImageView *_bottomEdgesImageView;
+    NSImageView *_centerXImageView;
+    NSImageView *_centerYImageView;
+    NSImageView *_baselineImageView;
+    NSImageView *_centerXInContainerImageView;
+    NSImageView *_centerYInContainerImageView;
+    NSImageView *_explicitWidthImageView;
+    NSImageView *_explicitHeightImageView;
+    NSImageView *_equalWidthsImageView;
+    NSImageView *_equalHeightsImageView;
+    NSImageView *_aspectRatioImageView;
+    NSImageView *_generalAlignImageView;
     unsigned long long _alignmentType;
 }
 
 @property(nonatomic) unsigned long long alignmentType; // @synthesize alignmentType=_alignmentType;
+@property __weak NSImageView *generalAlignImageView; // @synthesize generalAlignImageView=_generalAlignImageView;
+@property __weak NSImageView *aspectRatioImageView; // @synthesize aspectRatioImageView=_aspectRatioImageView;
+@property __weak NSImageView *equalHeightsImageView; // @synthesize equalHeightsImageView=_equalHeightsImageView;
+@property __weak NSImageView *equalWidthsImageView; // @synthesize equalWidthsImageView=_equalWidthsImageView;
+@property __weak NSImageView *explicitHeightImageView; // @synthesize explicitHeightImageView=_explicitHeightImageView;
+@property __weak NSImageView *explicitWidthImageView; // @synthesize explicitWidthImageView=_explicitWidthImageView;
+@property __weak NSImageView *centerYInContainerImageView; // @synthesize centerYInContainerImageView=_centerYInContainerImageView;
+@property __weak NSImageView *centerXInContainerImageView; // @synthesize centerXInContainerImageView=_centerXInContainerImageView;
+@property __weak NSImageView *baselineImageView; // @synthesize baselineImageView=_baselineImageView;
+@property __weak NSImageView *centerYImageView; // @synthesize centerYImageView=_centerYImageView;
+@property __weak NSImageView *centerXImageView; // @synthesize centerXImageView=_centerXImageView;
+@property __weak NSImageView *bottomEdgesImageView; // @synthesize bottomEdgesImageView=_bottomEdgesImageView;
+@property __weak NSImageView *topEdgesImageView; // @synthesize topEdgesImageView=_topEdgesImageView;
+@property __weak NSImageView *trailingEdgesImageView; // @synthesize trailingEdgesImageView=_trailingEdgesImageView;
+@property __weak NSImageView *leadingEdgesImageView; // @synthesize leadingEdgesImageView=_leadingEdgesImageView;
 @property(retain, nonatomic) NSMenu *alignPopUpMenu; // @synthesize alignPopUpMenu=_alignPopUpMenu;
 @property(retain, nonatomic) NSPopUpButton *alignPopUp; // @synthesize alignPopUp=_alignPopUp;
 @property(retain, nonatomic) NSButton *alignCheckBox; // @synthesize alignCheckBox=_alignCheckBox;
@@ -87,6 +118,7 @@
 @property(retain, nonatomic) NSButton *leftEdgesAlignmentCheckBox; // @synthesize leftEdgesAlignmentCheckBox=_leftEdgesAlignmentCheckBox;
 @property(retain, nonatomic) NSButton *bottomEdgesAlignmentCheckBox; // @synthesize bottomEdgesAlignmentCheckBox=_bottomEdgesAlignmentCheckBox;
 @property(retain, nonatomic) NSButton *topEdgesAlignmentCheckBox; // @synthesize topEdgesAlignmentCheckBox=_topEdgesAlignmentCheckBox;
+@property(retain, nonatomic) NSButton *aspectRatioCheckBox; // @synthesize aspectRatioCheckBox=_aspectRatioCheckBox;
 @property(retain, nonatomic) NSButton *equalHeightsCheckBox; // @synthesize equalHeightsCheckBox=_equalHeightsCheckBox;
 @property(retain, nonatomic) NSButton *equalWidthsCheckBox; // @synthesize equalWidthsCheckBox=_equalWidthsCheckBox;
 @property(retain, nonatomic) DVTButtonTextField *explicitHeightField; // @synthesize explicitHeightField=_explicitHeightField;
@@ -129,12 +161,15 @@
 - (void)_openConstantMenu:(id)arg1;
 - (void)_openMenu:(id)arg1 underControl:(id)arg2;
 - (void)loadView;
+- (void)_setupImageViews;
+- (id)imageForContentType:(long long)arg1 attribute:(unsigned long long)arg2 scoringType:(double)arg3;
 - (void)_setupInputFields;
 - (void)_setupConstantMenu;
 - (void)_setupTypeConfigurations;
 - (void)_addCenterInContainerAlignmentTypeConfigurationsToSet:(id)arg1;
 - (void)_addBaselineAlignmentTypeConfigurationsToSet:(id)arg1;
 - (void)_addEdgeOrCenterAlignmentTypeConfigurationsToSet:(id)arg1;
+- (void)_addAspectRatioTypeConfigurationsToSet:(id)arg1;
 - (void)_addEqualSizeTypeConfigurationsToSet:(id)arg1;
 - (void)_addExplicitSizeTypeConfigurationsToSet:(id)arg1;
 - (void)_addSpacingTypeConfigurationsToSet:(id)arg1;
@@ -148,6 +183,12 @@
 - (void)primitiveInvalidate;
 - (id)initWithType:(long long)arg1 validationState:(id)arg2;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

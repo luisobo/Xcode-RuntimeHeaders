@@ -6,14 +6,29 @@
 
 #import "IDEBreakpoint.h"
 
-@class NSString;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface IDEBreakpoint (IDEBreakpointNavigatorSupport)
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString;
+
+@interface IDEBreakpoint (IDEBreakpointNavigatorSupport) <IDEKeyDrivenNavigableItemRepresentedObject>
 + (id)keyPathsForValuesAffectingNavigableItem_name;
 - (BOOL)shouldEditNewBreakpoints;
-- (id)navigableItem_contentDocumentLocation;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) NSString *popUpEditorDisplayName;
 - (id)navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_name;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 @end
 

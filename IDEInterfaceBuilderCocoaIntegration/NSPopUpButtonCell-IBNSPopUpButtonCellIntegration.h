@@ -9,7 +9,6 @@
 @interface NSPopUpButtonCell (IBNSPopUpButtonCellIntegration)
 + (id)keyPathsForValuesAffectingIbInspectedTitle;
 + (id)keyPathsForValuesAffectingIbInspectedImage;
-+ (id)keyPathsForValuesAffectingIbWidgetType;
 - (void)unarchiveMenu:(id)arg1;
 - (void)archiveMenu:(id)arg1;
 - (BOOL)ibShouldArchiveMenuItems;

@@ -7,7 +7,6 @@
 #import "NSTokenFieldCell.h"
 
 @interface NSTokenFieldCell (IBNSTokenFieldIntegration)
-+ (id)keyPathsForValuesAffectingIbWidgetType;
 + (id)keyPathsForValuesAffectingObjectValue;
 - (BOOL)xmlCoder:(id)arg1 shouldEncodeObject:(id *)arg2 forKey:(id)arg3 context:(id)arg4;
 - (id)xmlCoderEncodingCallbackContext:(id)arg1;

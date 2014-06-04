@@ -10,19 +10,16 @@
 
 @interface GPUTraceProgramGroup : GPUTraceProgramItem
 {
-    GPUTraceGroupItem *_relatedDrawsGroupItem;
+    GPUTraceGroupItem *_relatedDisplayablesGroupItem;
 }
 
-@property(readonly, nonatomic) GPUTraceGroupItem *relatedDrawsGroupItem; // @synthesize relatedDrawsGroupItem=_relatedDrawsGroupItem;
+@property(readonly, nonatomic) GPUTraceGroupItem *relatedDisplayablesGroupItem; // @synthesize relatedDisplayablesGroupItem=_relatedDisplayablesGroupItem;
 - (void).cxx_destruct;
 - (unsigned int)functionIndex;
-- (id)stateMirror;
-- (id)associatedDrawItem;
-- (id)associatedTraceItem;
+- (id)associatedDisplayableItem;
 - (void)primitiveInvalidate;
-- (void)addNewDrawItem:(id)arg1;
-- (id)relatedDrawItems;
-- (id)initWithController:(id)arg1 parent:(id)arg2 programID:(unsigned int)arg3 unrealizedResourceObject:(const void *)arg4 context:(unsigned long long)arg5 label:(id)arg6;
+- (void)addNewDisplayableItem:(id)arg1;
+- (id)relatedDisplayableItems;
 
 @end
 

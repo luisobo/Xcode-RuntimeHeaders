@@ -19,6 +19,9 @@
 }
 
 + (id)preferences;
++ (id)_userStatisticsValueForKey:(id)arg1;
++ (void)recordMessageTracerStatistics;
++ (id)_defaultDefaults;
 + (void)initialize;
 @property(nonatomic) int tabKeyIndentingBehavior; // @synthesize tabKeyIndentingBehavior=_tabKeyIndentingBehavior;
 @property BOOL beepOnNonMatchingBrace;

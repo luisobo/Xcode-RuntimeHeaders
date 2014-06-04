@@ -16,7 +16,7 @@
     DVTMacroExpansionOperator *_operators[0];
 }
 
-+ (id)newWithOriginalString:(id)arg1 macroNameExpression:(id)arg2 preserveOriginalStringIfUnresolved:(BOOL)arg3 operators:(struct DVTArrayBuilder *)arg4;
++ (id)newWithOriginalString:(id)arg1 macroNameExpression:(id)arg2 preserveOriginalStringIfUnresolved:(BOOL)arg3 operators:(struct ArrayBuilder *)arg4;
 - (void).cxx_destruct;
 - (id)dvt_debugDescription;
 - (void)dvt_assertInternalConsistency;
@@ -24,7 +24,7 @@
 - (id)dvt_evaluateAsStringInScope:(id)arg1 withState:(const struct DVTNestedMacroExpansionState *)arg2;
 - (BOOL)dvt_isLiteral;
 - (void)dealloc;
-- (id)initWithOriginalString:(id)arg1 macroNameExpression:(id)arg2 preserveOriginalStringIfUnresolved:(BOOL)arg3 operators:(struct DVTArrayBuilder *)arg4;
+- (id)initWithOriginalString:(id)arg1 macroNameExpression:(id)arg2 preserveOriginalStringIfUnresolved:(BOOL)arg3 operators:(struct ArrayBuilder *)arg4;
 
 @end
 

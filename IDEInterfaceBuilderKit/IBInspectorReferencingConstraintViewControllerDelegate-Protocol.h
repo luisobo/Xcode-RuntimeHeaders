@@ -9,8 +9,7 @@
 @protocol IBInspectorReferencingConstraintViewControllerDelegate <NSObject>
 - (void)referencingConstraintViewControllerStopHighlightingConstraint:(id)arg1;
 - (void)referencingConstraintViewControllerStartHighlightingConstraint:(id)arg1;
-- (void)referencingConstraintViewControllerPromoteConstraint:(id)arg1;
-- (void)referencingConstraintViewControllerDeleteConstraint:(id)arg1;
 - (void)referencingConstraintViewControllerSelectConstraint:(id)arg1;
+- (void)referencingConstraintViewControllerEditConstraint:(id)arg1;
 @end
 

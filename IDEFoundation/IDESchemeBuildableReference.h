@@ -21,25 +21,26 @@
     IDEContainer<IDEBlueprintProvider> *_referencedContainer;
     NSString *_lastArchivedReferencedContainerPath;
     IDEScheme *_scheme;
+    id <IDEBlueprint> _cachedResolvedBlueprint;
+    id <IDEBuildable> _cachedResolvedBuildable;
     DVTObservingToken *_referencedContainersObservingToken;
     DVTObservingToken *_schemeClosedToken;
     DVTObservingToken *_schemeValidToken;
     DVTObservingToken *_referencedContainerFilePathObservingToken;
+    DVTObservingToken *_referencedContainerBlueprintsObservingToken;
     DVTObservingToken *_referencedContainerIsValidObservingToken;
     DVTObservingToken *_resolvedBuildableNameObservingToken;
     DVTObservingToken *_resolvedBlueprintNameObservingToken;
     BOOL _resolvingBlueprint;
+    BOOL _willBeArchived;
 }
 
 + (id)resolvedBuildableForLegacyIdentifier:(id)arg1 inContainer:(id)arg2;
 + (id)keyPathsForValuesAffectingBlueprintName;
 + (id)keyPathsForValuesAffectingBuildableName;
-+ (id)keyPathsForValuesAffectingResolvedBuildable;
-+ (id)keyPathsForValuesAffectingResolvedBlueprint;
-@property(copy) NSString *cachedBlueprintName; // @synthesize cachedBlueprintName=_cachedBlueprintName;
+@property(readonly) BOOL willBeArchived; // @synthesize willBeArchived=_willBeArchived;
 @property(copy) NSString *cachedBuildableName; // @synthesize cachedBuildableName=_cachedBuildableName;
 @property(retain, nonatomic) IDEContainer<IDEBlueprintProvider> *referencedContainer; // @synthesize referencedContainer=_referencedContainer;
-@property(copy) NSString *buildableIdentifier; // @synthesize buildableIdentifier=_buildableIdentifier;
 @property(retain, nonatomic) IDEScheme *scheme; // @synthesize scheme=_scheme;
 - (void).cxx_destruct;
 - (void)dvt_encodeRelationshipsWithXMLArchiver:(id)arg1 version:(id)arg2;
@@ -54,6 +55,7 @@
 - (void)resolveBuildableFromImport;
 - (BOOL)referencesSameBuildableAsReference:(id)arg1;
 - (id)currentReferencedContainerPath;
+- (void)markSchemeDirty;
 - (id)referencedContainerFromSchemeForArchivedPath:(id)arg1;
 - (id)referenceResolutionContext;
 - (id)containerReferenceResolver;
@@ -62,13 +64,22 @@
 - (BOOL)updateCachedBuildableName;
 - (BOOL)updateCachedBlueprintName;
 @property(readonly) id <IDEBuildable> resolvedBuildable;
+- (void)_invalidateResolvedBuildable;
 @property(readonly) id <IDEBlueprint> resolvedBlueprint;
-- (void)setBlueprintIdentifierWithoutTriggeringResolvedBlueprintKVO:(id)arg1;
-@property(copy) NSString *blueprintIdentifier; // @synthesize blueprintIdentifier=_blueprintIdentifier;
-- (id)description;
+- (void)_invalidateResolvedBlueprint;
+- (void)setBlueprintIdentifierWithoutInvalidatingResolvedBlueprint:(id)arg1;
+@property(copy) NSString *blueprintIdentifier;
+@property(copy) NSString *cachedBlueprintName;
+@property(copy) NSString *buildableIdentifier;
+@property(readonly, copy) NSString *description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initFromXMLUnarchiver:(id)arg1 archiveVersion:(float)arg2;
-- (id)initWithBuildable:(id)arg1 scheme:(id)arg2;
+- (id)initWithBuildable:(id)arg1 scheme:(id)arg2 willBeArchived:(BOOL)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

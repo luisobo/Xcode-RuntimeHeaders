@@ -10,13 +10,13 @@
 
 @interface IBAccessibilityAttribute : IBAttributePlaceholder
 {
-    NSString *accessibilityValue;
+    NSString *_accessibilityValue;
 }
 
+@property(retain) NSString *accessibilityValue; // @synthesize accessibilityValue=_accessibilityValue;
 - (void).cxx_destruct;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)archiveConnection;
-- (id)accessibilityValue;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithObject:(id)arg1 name:(id)arg2 andValue:(id)arg3;

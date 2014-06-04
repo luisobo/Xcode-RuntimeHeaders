@@ -4,13 +4,13 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2011 by Steve Nygard.
  */
 
-#import "NSSplitView.h"
+#import <DVTKit/DVTSplitView.h>
 
 #import "NSMenuDelegate-Protocol.h"
 
-@class DVTNotificationToken, DVTObservingToken, DVTPointerArray, DVTSourceTextView, NSArray, NSIndexSet, NSMenu, NSTrackingArea;
+@class DVTNotificationToken, DVTObservingToken, DVTPointerArray, DVTSourceTextView, NSArray, NSIndexSet, NSMenu, NSString, NSTrackingArea;
 
-@interface DVTComparisonSplitView : NSSplitView <NSMenuDelegate>
+@interface DVTComparisonSplitView : DVTSplitView <NSMenuDelegate>
 {
     NSIndexSet *_depressedDiffDescriptorIndexes;
     NSTrackingArea *_trackingArea;
@@ -37,10 +37,12 @@
     BOOL _hasFocus;
     BOOL _isDragging;
     DVTObservingToken *_firstResponderToken;
+    DVTNotificationToken *_primaryLayoutCompleteToken;
     DVTNotificationToken *_primaryFrameChangeToken;
+    DVTNotificationToken *_secondaryLayoutCompleteToken;
     DVTNotificationToken *_secondaryFrameChangeToken;
     BOOL _enableDiffToggles;
-    id <DVTComparisonSplitViewDelegate> _delegate;
+    id <DVTComparisonSplitViewDelegate> _comparisonDelegate;
 }
 
 + (id)diffButtonMenuImage;
@@ -58,7 +60,7 @@
 + (id)splitterSelectedImage;
 + (double)defaultSplitterWidthForStyle:(int)arg1;
 + (void)initialize;
-@property(retain) id <DVTComparisonSplitViewDelegate> delegate; // @synthesize delegate=_delegate;
+@property __weak id <DVTComparisonSplitViewDelegate> comparisonDelegate; // @synthesize comparisonDelegate=_comparisonDelegate;
 @property(retain) NSMenu *diffMenu; // @synthesize diffMenu=_diffMenu;
 @property BOOL hasFocus; // @synthesize hasFocus=_hasFocus;
 @property BOOL enableDiffToggles; // @synthesize enableDiffToggles=_enableDiffToggles;
@@ -112,13 +114,19 @@
 - (unsigned long long)_hitTestSwoopLocation:(struct CGPoint)arg1;
 - (unsigned long long)_hitTestMenuLocation:(struct CGPoint)arg1;
 - (unsigned long long)_hitTestLocation:(struct CGPoint)arg1;
-- (void)removeFromSuperview;
+- (void)primitiveInvalidate;
 - (void)viewDidMoveToWindow;
 - (struct CGRect)_firstDividerFrame;
 - (void)dealloc;
 - (void)_dvtcomparisonsplitview_commonInit;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

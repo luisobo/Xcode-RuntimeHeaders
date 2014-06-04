@@ -6,6 +6,25 @@
 
 #pragma mark Named Structures
 
+struct CATransform3D {
+    double m11;
+    double m12;
+    double m13;
+    double m14;
+    double m21;
+    double m22;
+    double m23;
+    double m24;
+    double m31;
+    double m32;
+    double m33;
+    double m34;
+    double m41;
+    double m42;
+    double m43;
+    double m44;
+};
+
 struct CGPoint {
     double x;
     double y;
@@ -21,8 +40,28 @@ struct CGSize {
     double height;
 };
 
+struct SCNVector3 {
+    double x;
+    double y;
+    double z;
+};
+
 struct _NSRange {
     unsigned long long _field1;
     unsigned long long _field2;
 };
+
+#pragma mark Typedef'd Structures
+
+typedef struct {
+    double _field1;
+    double _field2;
+    double _field3;
+    double _field4;
+} CDStruct_d2b197d1;
+
+typedef struct {
+    struct CGPoint _field1;
+    struct CGPoint _field2;
+} CDStruct_e3b9714e;
 

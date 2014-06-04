@@ -13,26 +13,20 @@
 
 @interface DYExperimentOverrideEnable : DYExperiment <NSCoding, NSCopying>
 {
-    NSSet *_overrideTypeStrings;
     NSMutableDictionary *_properties;
-    unsigned int _prevFileFunctionIndex;
+    NSSet *_overrideTypeStrings;
     NSArray *_perFunctionProfilingData;
 }
 
-@property(readonly, nonatomic) NSSet *overrideTypeStrings; // @synthesize overrideTypeStrings=_overrideTypeStrings;
-@property(readonly, nonatomic) NSMutableDictionary *properties; // @synthesize properties=_properties;
-- (void)onPlatformFunctionEnd;
-- (void)onOpenGLFunctionEnd;
-- (void)onFrameEnd;
-- (void)onFrameStart;
+@property(readonly, retain, nonatomic) NSSet *overrideTypeStrings; // @synthesize overrideTypeStrings=_overrideTypeStrings;
+@property(readonly, retain, nonatomic) NSMutableDictionary *properties; // @synthesize properties=_properties;
 - (BOOL)isPresentFrameEnabled;
-- (void)end;
-- (void)begin;
 - (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithName:(id)arg1 captureArchivePath:(id)arg2 overrides:(id)arg3;
+- (id)initWithName:(id)arg1;
 
 @end
 

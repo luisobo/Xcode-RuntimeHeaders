@@ -10,8 +10,8 @@
 
 @interface IBDocumentSelectionGeniusResultsFinder : IDEIndexGeniusResultsFinder
 {
-    NSSet *interfaceBuilderObjectKVOObservations;
-    NSSet *documentNotificationTokens;
+    NSSet *_interfaceBuilderObjectKVOObservations;
+    NSSet *_documentNotificationTokens;
 }
 
 + (Class)editorDocumentClass;

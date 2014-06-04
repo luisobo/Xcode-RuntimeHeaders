@@ -9,7 +9,7 @@
 #import "IDESourceControlBranchTableDelegate-Protocol.h"
 #import "IDESourceControlWindowController-Protocol.h"
 
-@class DVTBindingToken, DVTReplacementView, DVTSearchField, IDESourceControlBranch, IDESourceControlMergeOperationInfo, IDESourceControlWorkspaceUIHandler, IDEWorkspace, NSButton, NSTextField, NSWindow;
+@class DVTBindingToken, DVTReplacementView, DVTSearchField, IDESourceControlBranch, IDESourceControlMergeOperationInfo, IDESourceControlWorkspaceUIHandler, IDEWorkspace, NSButton, NSString, NSTextField, NSWindow;
 
 @interface IDESourceControlMergeBranchChooserWindowController : NSWindowController <IDESourceControlWindowController, IDESourceControlBranchTableDelegate>
 {
@@ -33,7 +33,7 @@
 
 + (id)keyPathsForValuesAffectingCanContinue;
 + (id)_branchImage;
-@property(retain) IDESourceControlBranch *parentBranch; // @synthesize parentBranch=_parentBranch;
+@property(retain, nonatomic) IDESourceControlBranch *parentBranch; // @synthesize parentBranch=_parentBranch;
 @property(retain) IDESourceControlBranch *currentBranch; // @synthesize currentBranch=_currentBranch;
 @property __weak DVTReplacementView *replacementView; // @synthesize replacementView=_replacementView;
 @property BOOL inProgress; // @synthesize inProgress=_inProgress;
@@ -47,14 +47,21 @@
 - (void)cancel:(id)arg1;
 - (void)cancelSheet;
 - (void)choose:(id)arg1;
+- (void)doubleClickBranch:(id)arg1;
 @property(readonly) BOOL canContinue;
 - (void)branchChooserSheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)fetchBranches;
-- (void)selectedBranch:(id)arg1;
+- (void)setSelectedBranch:(id)arg1;
 - (void)displayError:(id)arg1;
 - (void)beginSheetForWindow:(id)arg1;
 - (id)windowNibName;
 - (id)tableViewController;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

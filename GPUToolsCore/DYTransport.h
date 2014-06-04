@@ -27,7 +27,7 @@
 
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(nonatomic) BOOL prioritizeOutgoingMessages; // @synthesize prioritizeOutgoingMessages=_prioritizeOutgoingMessages;
-@property(readonly, nonatomic) NSError *error; // @synthesize error=_error;
+@property(readonly, retain, nonatomic) NSError *error; // @synthesize error=_error;
 - (void)drainQueue;
 - (BOOL)relayMessage:(id)arg1 error:(id *)arg2;
 - (BOOL)sendNewMessage:(int)arg1 error:(id *)arg2;
@@ -52,7 +52,7 @@
 - (BOOL)_activateSource:(id)arg1;
 - (id)newSourceWithQueue:(struct dispatch_queue_s *)arg1;
 - (void)setTargetQueue:(struct dispatch_queue_s *)arg1;
-@property(readonly, nonatomic) NSURL *url; // @dynamic url;
+@property(readonly, retain, nonatomic) NSURL *url; // @dynamic url;
 - (id)debugDescription;
 - (id)description;
 - (void)dealloc;

@@ -7,10 +7,11 @@
 #import "NSManagedObject.h"
 
 #import "CDMIdentification-Protocol.h"
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@class IDEMappingModelDocument, NSDictionary, NSNumber, NSString;
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, IDEMappingModelDocument, NSDictionary, NSImage, NSNumber, NSString;
 
-@interface XDDevEntityMapping : NSManagedObject <CDMIdentification>
+@interface XDDevEntityMapping : NSManagedObject <CDMIdentification, IDEKeyDrivenNavigableItemRepresentedObject>
 {
     IDEMappingModelDocument *document;
     NSNumber *uniqueID;
@@ -21,6 +22,7 @@
 + (id)defaultEntityMappingUIStrings;
 + (id)keyPathsForValuesAffectingSortedRelationshipMappings;
 + (id)keyPathsForValuesAffectingSortedAttributeMappings;
++ (id)keyPathsForValuesAffectingNavigableItem_name;
 + (id)keyPathsForValuesAffectingUserInfoDictionary;
 + (id)keyPathsForValuesAffectingValueForKey:(id)arg1;
 @property(copy) NSNumber *uniqueID; // @synthesize uniqueID;
@@ -51,6 +53,7 @@
 - (void)setSourceExpression:(id)arg1;
 - (id)sourceExpression;
 @property(copy, nonatomic) NSString *name;
+@property(readonly) NSString *navigableItem_name;
 - (id)shortMappingTypeName;
 - (void)setMappingTypeName:(id)arg1;
 - (id)mappingTypeName;
@@ -74,6 +77,20 @@
 - (id)sourceName;
 - (void)setAutoGenerateExpression:(id)arg1;
 - (id)autoGenerateExpression;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

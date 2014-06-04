@@ -7,7 +7,7 @@
 #import "IDESourceControlRepository.h"
 
 @interface IDESourceControlRepository (UILevelActions)
-+ (id)keyPathsForValuesAffectingReachableImage;
-- (id)reachableImage;
++ (id)keyPathsForValuesAffectingAuthenticatedImage;
+- (id)authenticatedImage;
 @end
 

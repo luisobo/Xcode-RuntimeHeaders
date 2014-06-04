@@ -8,7 +8,7 @@
 
 #import "NSOutlineViewDelegate-Protocol.h"
 
-@class NSMutableDictionary, XCDocSetOutlineViewController;
+@class NSMutableDictionary, NSString, XCDocSetOutlineViewController;
 
 @interface XCDocSetOutlineView : NSOutlineView <NSOutlineViewDelegate>
 {
@@ -44,6 +44,12 @@
 - (void)dealloc;
 - (void)awakeFromNib;
 - (id)itemToDocSetCellDict;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

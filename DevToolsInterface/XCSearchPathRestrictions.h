@@ -14,7 +14,7 @@
 }
 
 + (id)sharedPathRestrictions;
-@property(readonly) NSArray *excludedDirectories; // @synthesize excludedDirectories;
+@property(readonly, retain) NSArray *excludedDirectories; // @synthesize excludedDirectories;
 - (void)_populateRestrictionLists;
 - (void)dealloc;
 - (id)init;

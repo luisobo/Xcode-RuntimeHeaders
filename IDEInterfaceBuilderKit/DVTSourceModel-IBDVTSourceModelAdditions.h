@@ -7,7 +7,7 @@
 #import "DVTSourceModel.h"
 
 @interface DVTSourceModel (IBDVTSourceModelAdditions)
-- (id)sourceModelInfoForSourceModelItem:(id)arg1 matchingSourceModelItemContextMask:(unsigned long long)arg2;
+- (id)sourceModelInfoForSourceModelItem:(id)arg1 matchingAnnotationKindMask:(unsigned long long)arg2;
 - (id)sourceModelInfoForBindingObjCPropertyContextItem:(id)arg1;
 - (id)sourceModelInfoForBindingObjCInstanceVariableContextItem:(id)arg1;
 - (id)firstSourceModelItemOccurringBeforeRange:(struct _NSRange)arg1 fromSourceModelItem:(id)arg2;

@@ -6,19 +6,19 @@
 
 #import "IDEInspectorProperty.h"
 
-#import "IBNSLayoutConstraintPrioritySliderDelegate-Protocol.h"
 #import "IBNSViewPriorityCellDelegate-Protocol.h"
+#import "IBNSViewPrioritySliderDelegate-Protocol.h"
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class IBCancellationToken, IBInspectorViewController, IBNSLayoutConstraintPriorityPopoverViewController, IBNSViewLongListInspectorLayoutView, IDEInspectorKeyPath, NSPopover, NSString, NSTableView, NSTextField;
+@class IBCancellationToken, IBInspectorViewController, IBNSViewLongListInspectorLayoutView, IBNSViewPriorityPopoverViewController, IDEInspectorKeyPath, NSPopover, NSString, NSTableView, NSTextField;
 
-@interface IBNSViewPriorityListInspectorProperty : IDEInspectorProperty <IBNSLayoutConstraintPrioritySliderDelegate, NSTableViewDelegate, NSTableViewDataSource, IBNSViewPriorityCellDelegate>
+@interface IBNSViewPriorityListInspectorProperty : IDEInspectorProperty <IBNSViewPrioritySliderDelegate, NSTableViewDelegate, NSTableViewDataSource, IBNSViewPriorityCellDelegate>
 {
     IDEInspectorKeyPath *_valueKeyPath;
     IBCancellationToken *_highlightToken;
     NSPopover *_popover;
-    IBNSLayoutConstraintPriorityPopoverViewController *_popoverViewController;
+    IBNSViewPriorityPopoverViewController *_popoverViewController;
     IBNSViewLongListInspectorLayoutView *_layoutContainerView;
     NSTableView *_tableView;
     NSTextField *_sectionTitle;
@@ -33,7 +33,7 @@
 @property(nonatomic) NSTextField *sectionTitle; // @synthesize sectionTitle=_sectionTitle;
 @property(nonatomic) NSTableView *tableView; // @synthesize tableView=_tableView;
 @property(nonatomic) IBNSViewLongListInspectorLayoutView *layoutContainerView; // @synthesize layoutContainerView=_layoutContainerView;
-@property(nonatomic) IBNSLayoutConstraintPriorityPopoverViewController *popoverViewController; // @synthesize popoverViewController=_popoverViewController;
+@property(nonatomic) IBNSViewPriorityPopoverViewController *popoverViewController; // @synthesize popoverViewController=_popoverViewController;
 @property(nonatomic) NSPopover *popover; // @synthesize popover=_popover;
 - (void).cxx_destruct;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
@@ -41,9 +41,9 @@
 - (void)mouseExitedTableViewCell:(id)arg1;
 - (id)interestingViewsForPriorityAtIndex:(long long)arg1;
 - (void)mouseEnteredTableViewCell:(id)arg1;
-- (void)constraintPrioritySlider:(id)arg1 didStopTrackingAtPoint:(struct CGPoint)arg2;
-- (void)constraintPrioritySlider:(id)arg1 didContinueTrackingAtPoint:(struct CGPoint)arg2;
-- (void)constraintPrioritySlider:(id)arg1 didStartTrackingAtPoint:(struct CGPoint)arg2;
+- (void)viewPrioritySlider:(id)arg1 didStopTrackingAtPoint:(struct CGPoint)arg2;
+- (void)viewPrioritySlider:(id)arg1 didContinueTrackingAtPoint:(struct CGPoint)arg2;
+- (void)viewPrioritySlider:(id)arg1 didStartTrackingAtPoint:(struct CGPoint)arg2;
 - (id)descriptiveTextForPriority:(long long)arg1;
 - (void)syncPopoverWithSliderKnobOfSlider:(id)arg1;
 - (id)labelForAdjusterAtRow:(long long)arg1;
@@ -58,6 +58,12 @@
 - (void)setInspectedConstraintPriorities:(id)arg1;
 - (id)inspectedConstraintPriorities;
 @property(readonly) IBInspectorViewController *inspectorController;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

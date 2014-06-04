@@ -8,7 +8,7 @@
 
 #import "IBBinaryArchiving-Protocol.h"
 
-@class NSArray, NSMutableArray, NSMutableDictionary;
+@class NSArray, NSMutableArray, NSMutableDictionary, NSString;
 
 @interface IBICCatalogCompilerResult : NSObject <IBBinaryArchiving>
 {
@@ -27,7 +27,7 @@
 @property BOOL success; // @synthesize success=_success;
 - (void).cxx_destruct;
 - (void)mergeResults:(id)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)addOutputFiles:(id)arg1;
 - (void)addOutputFile:(id)arg1;
 - (void)addIssues:(id)arg1;
@@ -38,6 +38,11 @@
 - (void)encodeWithBinaryArchiver:(id)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

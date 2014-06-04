@@ -10,7 +10,7 @@
 #import "QLPreviewPanelDataSource-Protocol.h"
 #import "QLPreviewPanelDelegate-Protocol.h"
 
-@class DVTStackBacktrace, NSArray, NSMutableDictionary, NSResponder, NSView;
+@class DVTStackBacktrace, NSArray, NSMutableDictionary, NSResponder, NSString, NSView;
 
 @interface IBICQuickLookController : NSObject <QLPreviewPanelDelegate, QLPreviewPanelDataSource, DVTInvalidation>
 {
@@ -44,7 +44,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

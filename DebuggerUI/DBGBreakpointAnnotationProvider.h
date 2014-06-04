@@ -8,7 +8,7 @@
 
 #import "DVTTextAnnotationDelegate-Protocol.h"
 
-@class DVTObservingToken, IDEAnnotationContext, IDEWorkspaceWindowController;
+@class DVTObservingToken, IDEAnnotationContext, IDEWorkspaceWindowController, NSString;
 
 @interface DBGBreakpointAnnotationProvider : DVTAnnotationProvider <DVTTextAnnotationDelegate>
 {
@@ -45,6 +45,12 @@
 - (void)_handleBreakpointsChanged:(id)arg1;
 - (id)initWithContext:(id)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

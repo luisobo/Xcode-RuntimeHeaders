@@ -6,14 +6,23 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class NSArray, NSString;
 
 @interface NSObject (IBAppKitObjectIntegration)
++ (id)ibStandInRuntimeClassName;
 + (id)keyPathsForValuesAffectingIbInspectedAppearanceType;
 + (id)keyPathsForValuesAffectingIbInspectedAppearancePopupDefaultTitles;
 + (id)keyPathsForValuesAffectingIbInspectedAppearancePopupDefaultValues;
 + (id)keyPathsForValuesAffectingIbShadowedAppearance;
 + (id)keyPathsForValuesAffectingIbInheritedAppearance;
++ (void)ibPopulateAdditionalCocoaSearchableAttributeKeyPaths:(id)arg1 forInspectorCategory:(id)arg2;
++ (void)ibPopulateAdditionalCocoaInspectors:(id)arg1 forCategory:(id)arg2;
+- (id)ibFallbackClassNameForClassSwapper;
+- (id)ibParentForFoldingDownstreamControllerFromRelationshipSegue:(id)arg1;
+- (BOOL)ibCanBeValidPopoverSegueDestination;
+- (BOOL)ibCanBeValidSheetSegueDestination;
+- (BOOL)ibCanBeValidSegueDestination;
+- (void)ibCaptureDownstreamStoryboardPlaceholderTable:(id)arg1;
 @property(copy) NSString *ibExternalAccessibilityDescription;
 - (id)ibAccessibilityDescriptionAttribute;
 @property(copy) NSString *ibExternalAccessibilityHelp;
@@ -21,7 +30,7 @@
 - (BOOL)ibSupportsAccessibility;
 - (id)ibSuggestedAutomaticUserInterfaceItemIdentifier;
 - (id)ibSuggestUserInterfaceItemIdentifierForObject:(id)arg1;
-- (void)ibSwizzledBeginArchivingDocument:(id)arg1 withContext:(id)arg2;
+- (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 @property(copy) NSString *ibExternalUserInterfaceItemIdentifier;
 - (id)ibEffectiveUserInterfaceItemIdentifier;
 - (BOOL)ibIdentifierPropertyCanConflictsWithObject:(id)arg1;
@@ -29,6 +38,8 @@
 - (void)ibUnarchiveAppearanceType:(id)arg1;
 - (void)ibArchiveAppearanceType:(id)arg1;
 @property(nonatomic) long long ibInspectedAppearanceType;
+- (id)ibInspectedAppearancePopupValues;
+- (id)ibInspectedAppearancePopupTitles;
 - (id)ibInspectedAppearancePopupDefaultTitles;
 - (id)ibInspectedAppearancePopupDefaultValues;
 - (void)setIbShadowedAppearance:(id)arg1;
@@ -39,17 +50,18 @@
 - (void)ibInheritedAppearanceWillChangeInDocument:(id)arg1;
 - (id)ibInheritedAppearance;
 - (BOOL)ibIsNSAppearanceContainer;
+- (id)ibSwizzledLocalNonreplaceableAttributeKeyPaths;
+- (id)ibSwizzledLocalSearchableConnectionArrayAttributeKeyPaths;
+@property(readonly) NSArray *ibSearchableBindingConnections;
 - (id)ibExpectedClassNameForBinding:(id)arg1;
 - (id)ibResolvedTypeNameForControllerKey:(id)arg1;
 - (id)ibControlledObjectClassKey;
 - (id)ibControlledObjectClassName;
 - (BOOL)ibCanBeBoundToFromObject:(id)arg1;
 - (id)ibControllerKeys;
-- (BOOL)ibIsCocoaCustomObject;
-- (id)ibSwizzledNSObjectApplicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
 - (void)ibSwizzledNSObjectWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (void)ibSwizzledNSObjectWarnings:(id)arg1 forUserDefinedRuntimeAttributes:(id)arg2 forDocument:(id)arg3 withComputationContext:(id)arg4;
-- (BOOL)ibSwizzledNSObjectCouldIssueWarningsForUserDefinedRuntimeAttirbutesForDocument:(id)arg1;
+- (BOOL)ibSwizzledNSObjectCouldIssueWarningsForUserDefinedRuntimeAttributesForDocument:(id)arg1;
 - (void)ibSwizzledNSObjectInvalidateWarningsAfterDescendant:(id)arg1 changedProperty:(id)arg2 inDocument:(id)arg3 fromValue:(id)arg4;
 - (id)ibSwizzledNSObjectLocalLocalizableStringsAttributeKeyPaths;
 - (id)ibSwizzledNSObjectLocalAttributeKeyPaths;

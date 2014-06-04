@@ -11,7 +11,7 @@
 #import "DVTTextReplacable-Protocol.h"
 #import "IDEDocumentStructureProviding-Protocol.h"
 
-@class DVTPlistModel, DVTPlistStructureDefinition, NSArray, NSMutableSet;
+@class DVTPlistModel, DVTPlistStructureDefinition, NSArray, NSMutableSet, NSString;
 
 @interface IDEPlistDocument : IDEEditorDocument <DVTPlistDocumentProtocol, DVTTextFindable, DVTTextReplacable, IDEDocumentStructureProviding>
 {
@@ -52,6 +52,10 @@
 - (void)editorDocumentWillClose;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @property unsigned long long supportedMatchingOptions;
 
 @end

@@ -25,7 +25,7 @@
 + (id)slotSuggestionSets;
 - (void).cxx_destruct;
 - (id)sliceElement;
-- (void)addPostSuggestionSetContent:(id)arg1 pusherStorage:(void)arg2;
+- (void)addPostSuggestionSetContent:(id)arg1;
 - (void)setContent:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 

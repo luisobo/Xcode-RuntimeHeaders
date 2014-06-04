@@ -14,24 +14,26 @@
 + (id)renewProvisioningProfileOperationForToken:(id)arg1 andProvisioningProfile:(id)arg2;
 + (void)renewProvisioningProfile:(id)arg1 withCallback:(id)arg2;
 + (void)createProvisioningProfileNamed:(id)arg1 withAppID:(id)arg2 devices:(id)arg3 certificates:(id)arg4 andPlatform:(id)arg5 toTeam:(id)arg6 withCallback:(id)arg7;
-+ (id)fetchDistributionProfileOperationForToken:(id)arg1 andPlatform:(id)arg2 forBundleIdentifier:(id)arg3 withFeatures:(id)arg4;
++ (id)fetchDistributionProfileOperationForToken:(id)arg1 andPlatform:(id)arg2 forBundleIdentifier:(id)arg3 withFeatures:(id)arg4 includeDevices:(BOOL)arg5;
 + (id)fetchTeamDistributionProfileOperationForToken:(id)arg1 andPlatform:(id)arg2 forBundleIdentifier:(id)arg3 withFeatures:(id)arg4;
 + (id)fetchTeamProfileOperationForToken:(id)arg1 andPlatform:(id)arg2 forBundleIdentifier:(id)arg3 withFeatures:(id)arg4;
-+ (id)_fetchTeamDistributionProfileOperationForSingleTeamToken:(id)arg1 andPlatform:(id)arg2 forBundleIdentifier:(id)arg3 withFeatures:(id)arg4;
++ (id)_fetchTeamDistributionProfileOperationForSingleTeamToken:(id)arg1 andPlatform:(id)arg2 forBundleIdentifier:(id)arg3 withFeatures:(id)arg4 includeDevices:(BOOL)arg5;
 + (id)_fetchTeamProfileOperationForSingleTeamToken:(id)arg1 andPlatform:(id)arg2 forBundleIdentifier:(id)arg3 withFeatures:(id)arg4;
 + (id)_fetchOrCreateAppIDForSingleTeamToken:(id)arg1 andPlatform:(id)arg2 forBundleIdentifier:(id)arg3 withFeatures:(id)arg4;
 + (id)fetchOrCreateAppIDOperationForSingleTeamToken:(id)arg1 andPlatform:(id)arg2 forBundleIdentifier:(id)arg3 withFeatures:(id)arg4;
++ (id)_updateAppIdId:(id)arg1 appIdName:(id)arg2 token:(id)arg3 andPlatform:(id)arg4 withFeatures:(id)arg5;
++ (id)_updatePortalIdentifiers:(id)arg1 appIdId:(id)arg2 token:(id)arg3 andPlatform:(id)arg4 listTeamItemsOpClass:(Class)arg5 teamItemsKeyPath:(id)arg6 itemIdentifierKeyPath:(id)arg7 itemPortalIdentifierKeyPath:(id)arg8 addTeamItemsOpClass:(Class)arg9 addAppItemsOpClass:(Class)arg10;
 + (id)addDeviceOperationForToken:(id)arg1 withUUID:(id)arg2 name:(id)arg3 andPlatform:(id)arg4;
 + (id)downloadProfilesOperationForToken:(id)arg1;
 + (id)downloadCertificatesOperationForToken:(id)arg1 developmentCertificatesOnly:(BOOL)arg2 restrictToPlatform:(id)arg3;
 + (id)lightweightSyncOperationForToken:(id)arg1;
 + (void)_refreshFromToken:(id)arg1 andTeamListResponse:(id)arg2;
-+ (void)_refreshFromToken:(id)arg1 andServiceResponses:(id)arg2;
-+ (void)_purgeOrphanedEntitiesInContext:(id)arg1;
-+ (_Bool)_purgeOrphanedEntitiesOfType:(id)arg1 inContext:(id)arg2;
-+ (void)_refreshFromServiceResponse:(id)arg1;
-+ (id)certificateFromPortalResponse:(id)arg1 updateIfFound:(_Bool)arg2;
-+ (id)certificatesFromPortalResponses:(id)arg1 updateIfFound:(_Bool)arg2;
++ (void)_refreshFromToken:(id)arg1 andServiceResponses:(id)arg2 logAspect:(id)arg3;
++ (void)_purgeOrphanedEntitiesInContext:(id)arg1 withLogAspect:(id)arg2;
++ (_Bool)_purgeOrphanedEntitiesOfType:(id)arg1 inContext:(id)arg2 withLogAspect:(id)arg3;
++ (void)_refreshFromServiceResponse:(id)arg1 logAspect:(id)arg2;
++ (id)certificateFromPortalResponse:(id)arg1 updateIfFound:(_Bool)arg2 logAspect:(id)arg3;
++ (id)certificatesFromPortalResponses:(id)arg1 updateIfFound:(_Bool)arg2 logAspect:(id)arg3;
 + (id)certificatesInContext:(id)arg1;
 + (id)certificateMatchingPredicate:(id)arg1 inContext:(id)arg2;
 + (id)certificatesMatchingPredicate:(id)arg1 inContext:(id)arg2;
@@ -40,8 +42,8 @@
 + (id)teamNameForProfile:(id)arg1 inContext:(id)arg2;
 + (id)teamIDForProfile:(id)arg1 inContext:(id)arg2;
 + (id)teamForProfile:(id)arg1 inContext:(id)arg2;
-+ (id)provisioningProfileFromPortalResponse:(id)arg1;
-+ (id)provisioningProfilesFromPortalResponses:(id)arg1;
++ (id)provisioningProfileFromPortalResponse:(id)arg1 logAspect:(id)arg2;
++ (id)provisioningProfilesFromPortalResponses:(id)arg1 logAspect:(id)arg2;
 + (id)provisioningProfileForUUID:(id)arg1 inContext:(id)arg2;
 + (id)provisioningProfileForPortalId:(id)arg1 inContext:(id)arg2;
 + (id)provisioningProfilesInContext:(id)arg1;
@@ -54,6 +56,18 @@
 + (id)devicesInContext:(id)arg1;
 + (id)deviceMatchingPredicate:(id)arg1 inContext:(id)arg2;
 + (id)devicesMatchingPredicate:(id)arg1 inContext:(id)arg2;
++ (id)applicationGroupFromPortalResponse:(id)arg1;
++ (id)applicationGroupsFromPortalResponses:(id)arg1;
++ (id)applicationGroupForPortalId:(id)arg1 inContext:(id)arg2;
++ (id)applicationGroupsInContext:(id)arg1;
++ (id)applicationGroupMatchingPredicate:(id)arg1 inContext:(id)arg2;
++ (id)applicationGroupsMatchingPredicate:(id)arg1 inContext:(id)arg2;
++ (id)cloudContainerFromPortalResponse:(id)arg1;
++ (id)cloudContainersFromPortalResponses:(id)arg1;
++ (id)cloudContainerForPortalId:(id)arg1 inContext:(id)arg2;
++ (id)cloudContainersInContext:(id)arg1;
++ (id)cloudContainerMatchingPredicate:(id)arg1 inContext:(id)arg2;
++ (id)cloudContainersMatchingPredicate:(id)arg1 inContext:(id)arg2;
 + (id)shoeboxIDFromPortalResponse:(id)arg1;
 + (id)shoeboxIDsFromPortalResponses:(id)arg1;
 + (id)shoeboxIDForPortalId:(id)arg1 inContext:(id)arg2;
@@ -91,6 +105,7 @@
 + (id)temporaryMoc;
 + (id)mainThreadMoc;
 + (id)moc;
++ (id)mocWithLogAspect:(id)arg1;
 
 @end
 

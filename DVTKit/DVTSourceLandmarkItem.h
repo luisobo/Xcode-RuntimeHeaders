@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTSourceModelItem, DVTStackBacktrace, NSArray, NSMutableArray, NSString;
+@class DVTStackBacktrace, NSArray, NSMutableArray, NSString;
 
 @interface DVTSourceLandmarkItem : NSObject
 {
@@ -16,12 +16,13 @@
     int _type;
     struct _NSRange _range;
     struct _NSRange _nameRange;
+    NSString *_typeName;
     long long _nestingLevel;
     long long _indentLevel;
     double _timestamp;
     DVTStackBacktrace *_pendingUpdateBacktrace;
     id <DVTSourceLandmarkItemDelegate> _delegate;
-    DVTSourceModelItem *_sourceModelItem;
+    void *_itemRef;
 }
 
 + (int)sourceLandmarkItemTypeForNodeType:(long long)arg1;
@@ -48,8 +49,10 @@
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)description;
+@property(readonly, copy, nonatomic) NSString *typeName; // @synthesize typeName=_typeName;
+- (void)_evaluateTypeName;
 - (void)_evaluateNameAndRange;
-- (id)initWithSourceModelItem:(id)arg1 type:(int)arg2 delegate:(id)arg3;
+- (id)initWithItemReference:(void *)arg1 type:(int)arg2 delegate:(id)arg3;
 - (id)initWithName:(id)arg1 type:(int)arg2;
 
 @end

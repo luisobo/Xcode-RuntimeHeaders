@@ -9,7 +9,7 @@
 #import "NSOutlineViewDataSource-Protocol.h"
 #import "NSOutlineViewDelegate-Protocol.h"
 
-@class NSMapTable, PBXExtendedOutlineView, PBXViewListView;
+@class NSMapTable, NSString, PBXExtendedOutlineView, PBXViewListView;
 
 @interface PBXTOCModule : PBXModule <NSOutlineViewDataSource, NSOutlineViewDelegate>
 {
@@ -53,6 +53,12 @@
 - (id)init;
 - (void)_createOrDestroySubmodulesToMatchOutlineSelection;
 - (void)_addItemTreeRootedAtItem:(id)arg1 toArray:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -10,12 +10,15 @@
 
 @interface IDEInspectorImageEnumerationProperty : IDEInspectorEnumerationProperty
 {
+    IDEInspectorKeyPath *_valueKeyPath;
     IDEInspectorResizableSegmentedControlView *_resizableSegmentedControlView;
     NSSegmentedControl *_segmentedControl;
     NSTextField *_label;
-    IDEInspectorKeyPath *_valueKeyPath;
 }
 
+@property(retain, nonatomic) NSTextField *label; // @synthesize label=_label;
+@property(retain, nonatomic) NSSegmentedControl *segmentedControl; // @synthesize segmentedControl=_segmentedControl;
+@property(retain, nonatomic) IDEInspectorResizableSegmentedControlView *resizableSegmentedControlView; // @synthesize resizableSegmentedControlView=_resizableSegmentedControlView;
 - (void).cxx_destruct;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)configureEnumeratedOptions;

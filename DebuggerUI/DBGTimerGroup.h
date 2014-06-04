@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray;
+@class NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>;
 
 @interface DBGTimerGroup : NSObject
 {
-    struct dispatch_semaphore_s *_outstandingTimersSemaphore;
-    struct dispatch_queue_s *_semaphoreQueue;
+    NSObject<OS_dispatch_semaphore> *_outstandingTimersSemaphore;
+    NSObject<OS_dispatch_queue> *_semaphoreQueue;
     NSMutableArray *_outstandingTimerTokens;
     BOOL _locked;
 }

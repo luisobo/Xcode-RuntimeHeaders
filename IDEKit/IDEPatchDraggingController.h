@@ -8,7 +8,7 @@
 
 #import "NSDraggingSource-Protocol.h"
 
-@class DVTComparisonDocumentLocation, DVTFilePath, IDEWorkspace, IDEWorkspaceTabController, NSArray;
+@class DVTComparisonDocumentLocation, DVTFilePath, IDEWorkspace, IDEWorkspaceTabController, NSArray, NSString;
 
 @interface IDEPatchDraggingController : NSObject <NSDraggingSource>
 {
@@ -29,6 +29,12 @@
 - (id)namesOfPromisedFilesDroppedAtDestination:(id)arg1;
 - (unsigned long long)draggingSession:(id)arg1 sourceOperationMaskForDraggingContext:(long long)arg2;
 - (id)initWithDiffDescriptors:(id)arg1 comparisonDocumentLocation:(id)arg2 inWorkspace:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -10,24 +10,23 @@
 
 @interface IBSourceModelItemInfo : NSObject
 {
-    DVTSourceModelItem *item;
-    NSString *name;
-    NSString *type;
-    NSString *collectionType;
-    long long relationshipType;
-    struct _NSRange range;
-    unsigned long long sourceModelItemContext;
+    DVTSourceModelItem *_item;
+    NSString *_type;
+    NSString *_name;
+    NSString *_collectionType;
+    long long _relationshipType;
+    unsigned long long _annotationKind;
+    struct _NSRange _range;
 }
 
-@property(readonly) unsigned long long sourceModelItemContext; // @synthesize sourceModelItemContext;
-@property(readonly) NSString *collectionType; // @synthesize collectionType;
-@property(readonly) long long relationshipType; // @synthesize relationshipType;
-@property(readonly) NSString *name; // @synthesize name;
-@property(readonly) NSString *type; // @synthesize type;
-@property(readonly) struct _NSRange range; // @synthesize range;
-@property(readonly) DVTSourceModelItem *item; // @synthesize item;
+@property unsigned long long annotationKind; // @synthesize annotationKind=_annotationKind;
+@property long long relationshipType; // @synthesize relationshipType=_relationshipType;
+@property(retain) NSString *collectionType; // @synthesize collectionType=_collectionType;
+@property(retain) NSString *name; // @synthesize name=_name;
+@property(retain) NSString *type; // @synthesize type=_type;
+@property struct _NSRange range; // @synthesize range=_range;
+@property(retain) DVTSourceModelItem *item; // @synthesize item=_item;
 - (void).cxx_destruct;
-- (void)setSourceModelItemContext:(unsigned long long)arg1;
 - (id)initWithSourceModelItem:(id)arg1 name:(id)arg2 type:(id)arg3 collectionType:(id)arg4 range:(struct _NSRange)arg5 relationshipType:(long long)arg6;
 
 @end

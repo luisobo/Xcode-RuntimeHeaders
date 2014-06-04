@@ -26,7 +26,6 @@
 - (BOOL)iconHitTest:(struct CGPoint)arg1 inFrame:(struct CGRect)arg2;
 - (double)_textOffsetForIcon:(id)arg1 inFrame:(struct CGRect)arg2 doDraw:(BOOL)arg3 isActive:(BOOL)arg4;
 - (void)_drawDividerForFrame:(struct CGRect)arg1 inControlView:(id)arg2;
-- (BOOL)_isActiveWindow:(id)arg1;
 - (void)_drawChevronDividerInFrame:(struct CGRect)arg1 isActive:(BOOL)arg2 isDemiSize:(BOOL)arg3;
 - (id)shadow;
 - (struct CGSize)cellSizeForBounds:(struct CGRect)arg1;

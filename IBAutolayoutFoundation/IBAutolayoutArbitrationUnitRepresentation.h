@@ -9,7 +9,7 @@
 #import "IBBinaryArchiving-Protocol.h"
 #import "NSCoding-Protocol.h"
 
-@class NSSet;
+@class NSSet, NSString;
 
 @interface IBAutolayoutArbitrationUnitRepresentation : NSObject <NSCoding, IBBinaryArchiving>
 {
@@ -25,6 +25,12 @@
 - (id)initWithBinaryUnarchiver:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithObjectRepresentations:(id)arg1 rootObject:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

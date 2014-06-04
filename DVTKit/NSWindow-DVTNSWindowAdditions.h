@@ -10,6 +10,9 @@
 
 @interface NSWindow (DVTNSWindowAdditions)
 + (id)dvt_visibleWindowsFromFrontToBack;
+@property(readonly) BOOL dvt_isTitleModeNSWindowTitleModeAlwaysHidden;
+- (struct CGPoint)dvt_convertPointFromScreen:(struct CGPoint)arg1;
+- (struct CGPoint)dvt_convertPointToScreen:(struct CGPoint)arg1;
 - (void)dvt_beginSheetModalForWindow:(id)arg1 allowSheetOverSheet:(BOOL)arg2 completionHandler:(id)arg3;
 - (void)dvt_beginSheetModalForWindow:(id)arg1 completionHandler:(id)arg2;
 - (void)dvt_sheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
@@ -18,7 +21,6 @@
 - (void)dvt_centerOnMainWindowScreen;
 - (void)dvt_centerOnMainMenuScreen;
 - (void)_dvt_centerOnScreen:(id)arg1;
-@property(readonly) BOOL dvt_isActive;
 @property(retain) NSString *dvt_frameAsString;
 @property(readonly) BOOL dvt_inFullScreenMode;
 @end

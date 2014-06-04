@@ -24,7 +24,7 @@
 @property(nonatomic) double width; // @synthesize width=_width;
 - (void).cxx_destruct;
 - (struct CGRect)draggableRectForSubtitleBounds:(struct CGRect)arg1;
-- (struct CGRect)boundingRectWithSize:(struct CGSize)arg1 options:(long long)arg2;
+- (struct CGRect)boundingRectWithSize:(struct CGSize)arg1 options:(unsigned long long)arg2;
 - (void)drawInRect:(struct CGRect)arg1;
 - (id)attributedText;
 

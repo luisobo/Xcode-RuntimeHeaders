@@ -6,49 +6,76 @@
 
 #import "NSObject.h"
 
+#import "DVTCancellable-Protocol.h"
 #import "DVTPromise-Protocol.h"
 
-@class NSError;
+@class DVTDispatchLock, DVTStackBacktrace, NSError, NSObject<OS_dispatch_group>, NSString;
 
-@interface DVTFuture : NSObject <DVTPromise>
+@interface DVTFuture : NSObject <DVTPromise, DVTCancellable>
 {
-    // Error parsing type: {spin_mutex="l"{atomic<bool>="__a_"AB}}, name: _mtx
-    struct mutex _cond_mtx;
-    struct condition_variable _cond_var;
-    int _state;
+    DVTDispatchLock *_lock;
+    NSObject<OS_dispatch_group> *_cond_group;
+    long long _state;
+    _Bool _hasTimeout;
+    _Bool _timedOut;
     long long _progress;
     NSError *_error;
     id _result;
+    DVTStackBacktrace *_initBacktrace;
+    DVTStackBacktrace *_finishBacktrace;
     struct vector<void (^)(long, signed char *), std::__1::allocator<void (^)(long, signed char *)>> _progressBlocks;
     struct vector<void (^)(DVTFutureState, id, NSError *), std::__1::allocator<void (^)(DVTFutureState, id, NSError *)>> _finishBlocks;
-    struct vector<void (^)(), std::__1::allocator<void (^)()>> _cancelledBlocks;
-    struct vector<void (^)(NSError *), std::__1::allocator<void (^)(NSError *)>> _failedBlocks;
-    struct vector<void (^)(id), std::__1::allocator<void (^)(id)>> _succeededBlocks;
-    struct unordered_map<DVTFuture *, long, objc_pointer_hasher, std::__1::equal_to<DVTFuture *>, std::__1::allocator<std::__1::pair<DVTFuture *const, long>>> _linkedSubFutures;
+    struct unordered_map<DVTFuture *, long, (null)<anonymous>::objc_pointer_hasher, std::__1::equal_to<DVTFuture *>, std::__1::allocator<std::__1::pair<DVTFuture *const, long>>> _linkedSubFutures;
 }
 
++ (id)futureWithOperation:(id)arg1;
++ (id)futureWithResult:(id)arg1;
++ (id)futureWithError:(id)arg1;
++ (id)futureWithBlock:(id)arg1;
++ (id)runOperation:(id)arg1;
++ (id)trackOperation:(id)arg1;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (id)description;
-- (id)_description;
-- (void)observeSuccess:(id)arg1;
-- (void)observeFailure:(id)arg1;
-- (void)observeCancellation:(id)arg1;
-- (void)observeFinish:(id)arg1;
-- (void)observeProgress:(id)arg1;
-- (void)cancel;
-- (int)waitUntilFinished;
-- (id)result;
-- (id)error;
-- (id)initWithBlock:(id)arg1;
 - (void)trackFuture:(id)arg1;
 - (void)trackFuture:(id)arg1 progress:(float)arg2 cancel:(BOOL)arg3 result:(BOOL)arg4 error:(BOOL)arg5;
 - (void)updateProgressFromReporters;
+- (void)failWithError:(id)arg1 afterTimeout:(double)arg2;
+- (void)succeedWithResult:(id)arg1 afterTimeout:(double)arg2;
+- (void)cancelAfterTimeout:(double)arg1;
+- (void)_setState:(long long)arg1 result:(id)arg2 error:(id)arg3 afterTimeout:(double)arg4;
 - (void)succeedWithResult:(id)arg1;
 - (void)failWithError:(id)arg1;
-- (void)setState:(int)arg1 result:(id)arg2 error:(id)arg3;
+- (void)cancel;
+- (void)setState:(long long)arg1 result:(id)arg2 error:(id)arg3;
+- (id)_internalSetState:(SEL)arg1 result:(long long)arg2 error:(id)arg3;
 - (id)future;
 - (void)setProgress:(long long)arg1;
+@property(readonly, copy) NSString *description;
+- (id)_description;
+- (void)observeFinishWithDispatchGroup:(id)arg1;
+- (void)observeSuccess:(id)arg1;
+- (void)observeFailure:(id)arg1;
+- (void)observeCancellation:(id)arg1;
+- (void)observeFinishOnQueue:(id)arg1 withBlock:(id)arg2;
+- (void)observeFinish:(id)arg1;
+- (void)observeProgress:(id)arg1;
+@property(readonly, getter=isCancelled) BOOL cancelled;
+- (long long)waitUntilFinished;
+- (id)result;
+- (id)error;
+- (void)_signalFinished;
+- (void)_waitUntilFinished;
+- (void)dealloc;
+- (id)initWithResult:(id)arg1;
+- (id)initWithError:(id)arg1;
+- (id)initWithBlock:(id)arg1;
+- (id)init;
+- (id)then:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -11,10 +11,7 @@
 }
 
 - (BOOL)isEnabledUsingEducatedGuess;
-- (id)portalFlightCheck;
-- (id)linkedFrameworksFlightCheck;
-- (void)modelWasDisabled;
-- (void)modelWasEnabledWithContext:(id)arg1;
+- (id)flightChecks;
 
 @end
 

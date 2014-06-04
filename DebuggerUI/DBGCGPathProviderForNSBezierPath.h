@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-#import "IDECGPathProvider-Protocol.h"
+#import "DBGCGPathProvider-Protocol.h"
 
-@class DBGNSDataForDataValueProvider, DVTObservingToken, NSArray;
+@class DBGNSDataForDataValueProvider, DVTObservingToken, NSArray, NSString;
 
-@interface DBGCGPathProviderForNSBezierPath : NSObject <IDECGPathProvider>
+@interface DBGCGPathProviderForNSBezierPath : NSObject <DBGCGPathProvider>
 {
     int _loadedState;
     id <IDEDataValue> _dataValue;
@@ -42,6 +42,12 @@
 - (void)cancel;
 - (void)_updateCGPathAndPropertiesFromNSData;
 - (id)initWithDataValue:(id)arg1 options:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

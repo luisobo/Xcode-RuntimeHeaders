@@ -36,6 +36,7 @@
 @property(readonly) NSArray *installedIfAllPathsArePresent;
 @property(readonly) NSPredicate *activationPredicate;
 @property(readonly) BOOL requiresADCAuthentication;
+- (id)sortKey;
 @property(readonly) NSString *installPrefix;
 @property(readonly, getter=isUserVisible) _Bool userVisible;
 - (id)propertyList;
@@ -44,6 +45,7 @@
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;
+- (long long)compare:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)initWithIdentifier:(id)arg1 version:(id)arg2 source:(id)arg3 fileSize:(unsigned long long)arg4 name:(id)arg5 dependencies:(id)arg6 userInfo:(id)arg7;

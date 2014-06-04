@@ -9,7 +9,7 @@
 #import "NSOutlineViewDataSource-Protocol.h"
 #import "NSOutlineViewDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, DVTTableView, IDEControlGroup, IDESourceControlCreateGitRepositoryOperationInfo, IDESourceControlOperationWindow, IDESourceControlWorkingCopyConfiguration, IDESourceControlWorkingTree, IDEXcodeServer, NSArray, NSButton, NSImage, NSMutableArray, NSOperationQueue, NSPopUpButton, NSTextField, NSWindow;
+@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, DVTTableView, IDEControlGroup, IDESourceControlCreateGitRepositoryOperationInfo, IDESourceControlOperationWindow, IDESourceControlWorkingCopyConfiguration, IDESourceControlWorkingTree, IDEXcodeServer, NSArray, NSButton, NSImage, NSMutableArray, NSOperationQueue, NSPopUpButton, NSString, NSTextField, NSWindow;
 
 @interface IDESourceControlGitConfigViewController : DVTViewController <NSOutlineViewDataSource, NSOutlineViewDelegate>
 {
@@ -85,6 +85,12 @@
 - (void)updateBoundWorkingTree;
 - (id)dvtExtraBindings;
 - (void)loadView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

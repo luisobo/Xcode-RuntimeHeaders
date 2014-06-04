@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, DVTTableView, Xcode3TargetMembershipInspector;
+@class DVTStackBacktrace, DVTTableView, NSString, Xcode3TargetMembershipInspector;
 
 @interface Xcode3TargetMembershipInspectorContentView : DVTLayoutView_ML <DVTInvalidation>
 {
@@ -25,7 +25,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

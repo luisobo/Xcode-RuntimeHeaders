@@ -19,6 +19,7 @@
 + (id)dvt_stringWithPotentiallyMalformedUTF8Bytes:(const char *)arg1 length:(unsigned long long)arg2 stopAtTrailingIncompleteUTF8Sequence:(BOOL)arg3 getUsedLength:(unsigned long long *)arg4 getNumberOfMalformedSequences:(unsigned long long *)arg5;
 + (id)dvt_stringWithFileSystemRepresentation:(const char *)arg1 length:(unsigned long long)arg2;
 + (id)dvt_stringWithFileSystemRepresentation:(const char *)arg1;
+- (BOOL)dvt_hasCaseInsensitivePrefix:(id)arg1;
 - (id)dvt_arrayByParsingAsStringList;
 - (void)dvt_enumerateWhitespaceSeparatedSubstringsInRange:(struct _NSRange)arg1 usingBlock:(id)arg2;
 - (void)dvt_enumerateOccurancesOfSubstring:(id)arg1 options:(unsigned long long)arg2 usingBlock:(id)arg3;
@@ -31,8 +32,10 @@
 - (id)dvt_capitalizedWordsFromString;
 - (id)dvt_wordsFromString;
 - (id)dvt_wordsFromStringWithLetterCasing:(unsigned long long)arg1;
+- (id)dvt_stringByManglingToLegalRFC1034Identifier;
 - (long long)dvt_versionNumberComparison:(id)arg1;
 - (id)dvt_dataForHexString;
+- (BOOL)dvt_isLegalCIdentifier;
 - (BOOL)dvt_isNonEmpty;
 - (id)dvt_stringByRemovingCStringEscapeSequences;
 - (id)dvt_stringByQuotingOnlyIfNeeded:(BOOL)arg1 quoteTabsAndEOLs:(BOOL)arg2 quoteHighBitUnichars:(BOOL)arg3;

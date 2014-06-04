@@ -6,19 +6,18 @@
 
 #import <GPUTraceDebuggerUI/GPUSharedUIState.h>
 
-#import "IDEDebuggingAdditionUIControllerLifeCycleObserver-Protocol.h"
+@class GPUDebuggingAdditionUIController, GPUInferiorSession, GPUInvestigatorReportItem, GPUTraceDocumentLocation, GPUTraceSession, IDEWorkspaceTabController, NSMutableDictionary, NSMutableSet, NSSet;
 
-@class GPUDebuggingAdditionUIController, GPUExpertReportItem, GPUInferiorSession, GPUTraceDocumentLocation, GPUTraceSession, IDEWorkspaceTabController, NSMutableDictionary, NSMutableSet, NSSet;
-
-@interface GPUSharedTabUIState : GPUSharedUIState <IDEDebuggingAdditionUIControllerLifeCycleObserver>
+@interface GPUSharedTabUIState : GPUSharedUIState
 {
     IDEWorkspaceTabController *_workspaceTabController;
     NSMutableDictionary *_displayedResourceForEditorIdentifierDict;
+    id <DVTCancellable> _uiControllerToken;
     BOOL _loadingNewResources;
     BOOL _displayWireframe;
     int _tabUIMode;
     GPUTraceSession *_currentTraceSession;
-    GPUExpertReportItem *_currentReport;
+    GPUInvestigatorReportItem *_currentReport;
     GPUTraceDocumentLocation *_currentMainEditorLocation;
     GPUTraceDocumentLocation *_currentMainEditorProgramLocation;
     GPUDebuggingAdditionUIController *_debuggingAdditionUIController;
@@ -36,27 +35,22 @@
 @property(readonly, nonatomic) BOOL loadingNewResources; // @synthesize loadingNewResources=_loadingNewResources;
 @property(retain, nonatomic) GPUTraceDocumentLocation *currentMainEditorProgramLocation; // @synthesize currentMainEditorProgramLocation=_currentMainEditorProgramLocation;
 @property(retain, nonatomic) GPUTraceDocumentLocation *currentMainEditorLocation; // @synthesize currentMainEditorLocation=_currentMainEditorLocation;
-@property(nonatomic) __weak GPUExpertReportItem *currentReport; // @synthesize currentReport=_currentReport;
-@property(readonly, nonatomic) GPUTraceSession *currentTraceSession; // @synthesize currentTraceSession=_currentTraceSession;
+@property(nonatomic) __weak GPUInvestigatorReportItem *currentReport; // @synthesize currentReport=_currentReport;
+@property(readonly, nonatomic) __weak GPUTraceSession *currentTraceSession; // @synthesize currentTraceSession=_currentTraceSession;
 - (void).cxx_destruct;
 - (BOOL)tabUIModeIsADebuggerMode;
 - (void)_unarchiveState;
 - (void)_archiveState;
 - (void)setNewTraceSession:(id)arg1;
 @property(readonly, nonatomic) GPUInferiorSession *inferiorSession;
-- (void)invalidateDeviceCache;
-@property(readonly, nonatomic) BOOL currentLocationIsDrawItem; // @dynamic currentLocationIsDrawItem;
+@property(readonly, nonatomic) BOOL currentLocationIsDisplayableItem; // @dynamic currentLocationIsDisplayableItem;
 - (void)redrawDebugBar;
 - (void)setNewMainEditorLocation:(id)arg1;
 - (void)_setNewMainEditorLocation:(id)arg1;
 - (void)setNewMainEditorProgramLocation:(id)arg1;
 - (void)_setNewMainEditorProgramLocation:(id)arg1;
-- (id)currentStateMirror;
 - (id)currentMainEditorProgramItem;
 - (id)currentMainEditorItem;
-- (void)debuggingAddtionUIControllerInvalidated:(id)arg1;
-- (void)debuggingAddtionUIControllerUpdated:(id)arg1;
-- (Class)classOfDebuggingAddtionUIControllerInterestedIn;
 - (void)removeResourceItemForIdentifier:(id)arg1;
 - (void)addCurrentResourceItem:(id)arg1 forIdentifier:(id)arg2;
 - (BOOL)_existingItemEquals:(id)arg1 forIdentifier:(id)arg2;
@@ -64,7 +58,6 @@
 - (BOOL)canExportDocument;
 - (void)primitiveInvalidate;
 - (id)initWithWorkspaceTabController:(id)arg1;
-- (void)_createObservers;
 
 @end
 

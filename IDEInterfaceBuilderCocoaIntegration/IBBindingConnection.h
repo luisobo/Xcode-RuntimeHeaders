@@ -31,6 +31,8 @@
 @property(retain) NSObject *controller; // @synthesize controller;
 @property(copy) NSString *binding; // @synthesize binding;
 - (void).cxx_destruct;
+- (BOOL)canHaveSourceSeparatedWithSeparationType:(int)arg1;
+- (BOOL)canHaveDestinationSeparatedWithSeparationType:(int)arg1;
 - (id)connectionByCompletingWithConnectionContext:(id)arg1;
 - (void)addToDocument:(id)arg1;
 - (void)populateExternalConnectionRepresentation:(id)arg1 forContainer:(id)arg2 fromContainer:(id)arg3 otherExternalConnections:(id)arg4 context:(id)arg5;
@@ -44,7 +46,7 @@
 - (id)onlySiblingBindingWithBindingName:(id)arg1 inContainerOrDocument:(id)arg2;
 - (BOOL)allowsEstablishingNewConnections;
 - (id)displayDescriptionInDocument:(id)arg1;
-- (id)displayNameWithRespectToPredecessors:(id)arg1;
+- (id)explicitDisplayNameWithRespectToPredecessors:(id)arg1;
 - (id)equivalentPrototypeWithRespectToEquivalentEndPoint:(id)arg1 inDocument:(id)arg2;
 - (id)displayValuesWithRespectToPrototype:(id)arg1 inDocument:(id)arg2;
 - (id)bindingDisplayName;
@@ -61,7 +63,8 @@
 - (id)archiveConnection;
 - (id)connector;
 - (void)encodeWithCoder:(id)arg1;
-- (id)copyWithSource:(id)arg1 destination:(id)arg2;
+- (void)copyInstanceStateToClone:(id)arg1 withContext:(id)arg2;
+- (id)_copyOfConnector:(id)arg1 context:(id)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibBinder:(id)arg1;

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTFilePath, DVTHashTable, DVTPlatformFamily, DVTVersion, NSArray, NSDictionary, NSSet, NSString;
+@class DVTExtendedPlatformInfo, DVTFilePath, DVTHashTable, DVTPlatformFamily, DVTVersion, NSArray, NSDictionary, NSSet, NSString;
 
 @interface DVTPlatform : NSObject
 {
@@ -44,28 +44,29 @@
 + (id)platformForName:(id)arg1;
 + (void)_mapPlatformName:(id)arg1 toPlatform:(id)arg2 isAlias:(BOOL)arg3;
 + (void)initialize;
-@property(readonly) NSString *platformVersion; // @synthesize platformVersion=_platformVersion;
-@property(readonly) NSDictionary *deviceProperties; // @synthesize deviceProperties=_deviceProperties;
+@property(readonly, copy) NSString *platformVersion; // @synthesize platformVersion=_platformVersion;
+@property(readonly, copy) NSDictionary *deviceProperties; // @synthesize deviceProperties=_deviceProperties;
 @property(readonly) DVTFilePath *iconPath; // @synthesize iconPath=_iconPath;
 @property(readonly) BOOL isDeploymentPlatform; // @synthesize isDeploymentPlatform=_isDeploymentPlatform;
-@property(readonly) NSString *userDescription; // @synthesize userDescription=_userDescription;
+@property(readonly, copy) NSString *userDescription; // @synthesize userDescription=_userDescription;
 @property(readonly) DVTFilePath *platformPath; // @synthesize platformPath=_platformPath;
-@property(readonly) NSString *platformDirectoryName; // @synthesize platformDirectoryName=_platformDirectoryName;
+@property(readonly, copy) NSString *platformDirectoryName; // @synthesize platformDirectoryName=_platformDirectoryName;
 @property(readonly) DVTVersion *minimumSDKVersion; // @synthesize minimumSDKVersion=_minimumSDKVersion;
 @property(readonly) DVTPlatformFamily *family; // @synthesize family=_family;
-@property(readonly) NSString *name; // @synthesize name=_name;
-@property(readonly) NSArray *alternateNames; // @synthesize alternateNames=_alternateNames;
-@property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
+@property(readonly, copy) NSString *name; // @synthesize name=_name;
+@property(readonly, copy) NSArray *alternateNames; // @synthesize alternateNames=_alternateNames;
+@property(readonly, copy) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;
-@property(readonly) NSSet *SDKs;
+@property(readonly, copy) NSSet *SDKs;
 - (void)addSDK:(id)arg1;
 - (id)internalPropertyListDictionary;
 - (id)propertyListDictionary;
 - (id)initWithPath:(id)arg1;
 - (id)initWithPropertyListDictionary:(id)arg1 path:(id)arg2;
+@property(readonly) DVTExtendedPlatformInfo *dvt_extendedInfo;
 
 @end
 

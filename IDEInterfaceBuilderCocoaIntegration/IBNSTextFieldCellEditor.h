@@ -11,6 +11,7 @@
 }
 
 - (struct CGRect)rectForTitleEditingInView:(id)arg1;
+- (id)editedTextFieldCell;
 
 @end
 

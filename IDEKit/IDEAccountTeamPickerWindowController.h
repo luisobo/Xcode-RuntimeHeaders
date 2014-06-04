@@ -13,6 +13,9 @@
     BOOL _wantsMultipleSelection;
     DVTTeamRecord *_previouslySelectedTeam;
     NSString *_userFacingReason;
+    NSString *_comprehensiveUserFacingReason;
+    id _teamFilter;
+    NSString *_noFilterResultsUserFacingReason;
     NSMapTable *_selectedAccountsToTeamsMap;
     NSError *_error;
     NSMapTable *_allAccountsToAllTeamDictionariesFromToken;
@@ -23,7 +26,10 @@
 @property(copy, nonatomic) NSMapTable *allAccountsToAllTeamDictionariesFromToken; // @synthesize allAccountsToAllTeamDictionariesFromToken=_allAccountsToAllTeamDictionariesFromToken;
 @property(retain, nonatomic) NSError *error; // @synthesize error=_error;
 @property(retain, nonatomic) NSMapTable *selectedAccountsToTeamsMap; // @synthesize selectedAccountsToTeamsMap=_selectedAccountsToTeamsMap;
+@property(retain, nonatomic) NSString *noFilterResultsUserFacingReason; // @synthesize noFilterResultsUserFacingReason=_noFilterResultsUserFacingReason;
+@property(copy, nonatomic) id teamFilter; // @synthesize teamFilter=_teamFilter;
 @property(nonatomic) BOOL wantsMultipleSelection; // @synthesize wantsMultipleSelection=_wantsMultipleSelection;
+@property(retain, nonatomic) NSString *comprehensiveUserFacingReason; // @synthesize comprehensiveUserFacingReason=_comprehensiveUserFacingReason;
 @property(retain, nonatomic) NSString *userFacingReason; // @synthesize userFacingReason=_userFacingReason;
 @property(retain, nonatomic) DVTTeamRecord *previouslySelectedTeam; // @synthesize previouslySelectedTeam=_previouslySelectedTeam;
 - (void).cxx_destruct;

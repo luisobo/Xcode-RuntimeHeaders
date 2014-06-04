@@ -28,7 +28,7 @@
 - (id)configurationColumnIcon;
 - (void)setBasedOnFile:(id)arg1;
 - (id)basedOnFile;
-@property(readonly) NSString *displayName;
+@property(readonly, copy) NSString *displayName;
 
 @end
 

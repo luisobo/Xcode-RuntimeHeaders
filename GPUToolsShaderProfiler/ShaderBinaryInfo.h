@@ -11,7 +11,6 @@
 
 @class DYShaderAnalyzerResult, NSData, NSMutableData, NSString;
 
-// Not exported
 @interface ShaderBinaryInfo : NSObject <NSCoding, NSCopying>
 {
     NSData *_binary;

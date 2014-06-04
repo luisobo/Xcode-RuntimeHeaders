@@ -23,18 +23,18 @@
 @property _Bool hasPlatformConflict; // @synthesize hasPlatformConflict=_hasPlatformConflict;
 @property(copy) NSString *platformIdentifier; // @synthesize platformIdentifier=_platformIdentifier;
 @property(copy) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
-@property(readonly) XCArchivedApplicationBuild *latestBuild;
+@property(readonly, retain) XCArchivedApplicationBuild *latestBuild;
 - (id)sortedApplicationBuilds;
-@property(readonly) NSString *applicationVersion;
-@property(readonly) NSString *applicationName;
-@property(readonly) NSString *platformDisplayName;
+@property(readonly, copy) NSString *applicationVersion;
+@property(readonly, copy) NSString *applicationName;
+@property(readonly, copy) NSString *platformDisplayName;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)mutableApplicationBuilds;
 - (void)removeApplicationBuildsObject:(id)arg1;
 - (void)addApplicationBuildsObject:(id)arg1;
 - (id)memberOfApplicationBuilds:(id)arg1;
-@property(readonly) NSSet *applicationBuilds;
+@property(readonly, copy) NSSet *applicationBuilds;
 - (id)description;
 - (id)init;
 

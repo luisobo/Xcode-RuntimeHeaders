@@ -12,9 +12,9 @@
 {
 }
 
-- (BOOL)layoutGuideGenerator:(id)arg1 isEdge:(int)arg2 ofAncestor:(id)arg3 fixedDuringResizingOfSubviews:(id)arg4 fromKnob:(long long)arg5;
-- (BOOL)layoutGuideGenerator:(id)arg1 isEdge:(int)arg2 ofSubview:(id)arg3 fixedInPositionOnWindowDuringResizeFromKnob:(long long)arg4;
-- (BOOL)layoutGuideGenerator:(id)arg1 isDistanceFromSubviewEdge:(int)arg2 ofSubview:(id)arg3 toSameEdgeOfSuperviewChangingOneToOneWithKnob:(long long)arg4;
+- (BOOL)layoutGuideGenerator:(id)arg1 isEdge:(unsigned int)arg2 ofAncestor:(id)arg3 fixedDuringResizingOfSubviews:(id)arg4 fromKnob:(long long)arg5;
+- (BOOL)layoutGuideGenerator:(id)arg1 isEdge:(unsigned int)arg2 ofSubview:(id)arg3 fixedInPositionOnWindowDuringResizeFromKnob:(long long)arg4;
+- (BOOL)layoutGuideGenerator:(id)arg1 isDistanceFromSubviewEdge:(unsigned int)arg2 ofSubview:(id)arg3 toSameEdgeOfSuperviewChangingOneToOneWithKnob:(long long)arg4;
 - (struct CGSize)layoutGuideGenerator:(id)arg1 preferredSizeForView:(id)arg2 suggestedSize:(struct CGSize)arg3 suggestedWidth:(char *)arg4 suggestedHeight:(char *)arg5 scaleAxesIndependently:(char *)arg6;
 - (void)addBaselinesForResizingSingleView:(id)arg1 toArray:(id)arg2 fromKnob:(long long)arg3 withUnalignedSelectionFrame:(struct CGRect)arg4 coordinateSpaceView:(id)arg5;
 @property(readonly) IBDocument *document;

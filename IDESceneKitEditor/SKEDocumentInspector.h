@@ -6,17 +6,18 @@
 
 #import "IDEInspectorViewController.h"
 
+@class NSString;
+
 @interface SKEDocumentInspector : IDEInspectorViewController
 {
 }
 
-- (id)uistring_authoringToolName;
-- (id)uistring_polygonCount;
-- (id)uistring_texturesMemory;
-- (id)uistring_geometryMemory;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)viewWillUninstall;
-- (void)viewDidInstall;
++ (id)keyPathsForValuesAffectingUistring_authoringToolName;
++ (id)keyPathsForValuesAffectingUistring_polygonCount;
++ (id)keyPathsForValuesAffectingUistring_geometryMemory;
+@property(readonly) NSString *uistring_authoringToolName;
+@property(readonly) NSString *uistring_polygonCount;
+@property(readonly) NSString *uistring_geometryMemory;
 - (void)setContent:(id)arg1;
 
 @end

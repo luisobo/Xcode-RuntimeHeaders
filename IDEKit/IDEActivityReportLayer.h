@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTObservingToken, DVTStackBacktrace, IDEActivityProgressIndicatorLayer, IDEActivityReport, IDEActivityScrollingTextLayer, NSMutableArray;
+@class DVTObservingToken, DVTStackBacktrace, IDEActivityProgressIndicatorLayer, IDEActivityReport, IDEActivityScrollingTextLayer, NSMutableArray, NSString;
 
 @interface IDEActivityReportLayer : CALayer <DVTInvalidation>
 {
@@ -58,13 +58,16 @@
 - (void)sizeToFit;
 - (void)layoutSublayers;
 - (void)updateConstraints;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)init;
 - (void)primitiveInvalidate;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

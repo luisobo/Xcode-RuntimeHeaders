@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTObservingToken, DVTPerformanceMetric, DVTStackBacktrace, DVTWeakInterposer, IDEIndex, IDESourceCodeDocument, IDESourceCodeEditor;
+@class DVTObservingToken, DVTPerformanceMetric, DVTStackBacktrace, DVTWeakInterposer, IDEIndex, IDESourceCodeDocument, IDESourceCodeEditor, NSString;
 
 @interface IDESourceCodeAdjustNodeTypesRequest : NSObject <DVTInvalidation>
 {
@@ -35,12 +35,15 @@
 - (void)_batchProcessDirtyRange;
 - (void)addSourceModelItem:(id)arg1;
 - (id)initWithDocument:(id)arg1 editor:(id)arg2 workspaceIndex:(id)arg3 completionBlock:(id)arg4;
-- (id)description;
+@property(readonly, copy) NSString *description;
 @property __weak IDESourceCodeEditor *editor;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

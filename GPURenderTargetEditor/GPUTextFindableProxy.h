@@ -9,6 +9,8 @@
 #import "DVTTextFindable-Protocol.h"
 #import "NSObject-Protocol.h"
 
+@class NSString;
+
 // Not exported
 @interface GPUTextFindableProxy : NSObject <NSObject, DVTTextFindable>
 {
@@ -20,6 +22,10 @@
 - (id)initWithFindable:(id)arg1;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @property unsigned long long supportedMatchingOptions;
 
 @end

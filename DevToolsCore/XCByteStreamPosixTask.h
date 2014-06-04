@@ -10,7 +10,7 @@
 #import "PBXTSCharacterStreamConsuming-Protocol.h"
 #import "PBXTSLineStreamConsuming-Protocol.h"
 
-@class NSLock, PBXTSByteStream, PBXTSStream;
+@class NSLock, NSString, PBXTSByteStream, PBXTSStream;
 
 @interface XCByteStreamPosixTask : XCPosixTask <PBXTSByteStreamConsuming, PBXTSCharacterStreamConsuming, PBXTSLineStreamConsuming>
 {
@@ -35,6 +35,12 @@
 - (void)_attachConsumerOnBackground;
 - (void)dealloc;
 - (id)initWithLaunchInfo:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

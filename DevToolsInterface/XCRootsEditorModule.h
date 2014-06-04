@@ -8,7 +8,7 @@
 
 #import "NSComboBoxDataSource-Protocol.h"
 
-@class NSButton, NSMutableDictionary, NSPopUpButton, PBXExtendedTableView, PBXProject, SCMRootToRepositoryMap;
+@class NSButton, NSMutableDictionary, NSPopUpButton, NSString, PBXExtendedTableView, PBXProject, SCMRootToRepositoryMap;
 
 @interface XCRootsEditorModule : PBXModule <NSComboBoxDataSource>
 {
@@ -60,6 +60,12 @@
 - (void)dealloc;
 - (id)initWithModuleNibName:(id)arg1;
 - (id)initWithProject:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

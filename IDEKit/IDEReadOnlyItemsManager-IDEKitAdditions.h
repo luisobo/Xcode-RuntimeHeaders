@@ -12,6 +12,6 @@
 - (void)_tryToUnlockItems:(id)arg1 itemName:(id)arg2 inWorkspace:(id)arg3 completionBlock:(id)arg4;
 - (void)startUnlockOperationForItems:(id)arg1 name:(id)arg2 inWorkspace:(id)arg3 window:(id)arg4 completionBlock:(id)arg5;
 - (void)warnAboutEditingLockedItems:(id)arg1 name:(id)arg2 forChangedObject:(id)arg3 inWorkspace:(id)arg4 window:(id)arg5 timeout:(unsigned long long)arg6 completionBlock:(id)arg7;
-- (BOOL)_shouldSkipWarningAboutUnlocking;
+- (BOOL)_shouldAutomaticallyUnlockFiles;
 @end
 

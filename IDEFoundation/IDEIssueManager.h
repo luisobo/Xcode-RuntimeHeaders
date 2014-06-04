@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTHashTable, DVTMapTable, DVTObservingToken, DVTStackBacktrace, IDEIssueLogRecordsGroup, IDEIssueProviderSession, IDEWorkspace, NSArray, NSMutableArray, NSMutableDictionary, NSMutableSet, NSSet;
+@class DVTHashTable, DVTMapTable, DVTObservingToken, DVTStackBacktrace, IDEIssueLogRecordsGroup, IDEIssueProviderSession, IDEWorkspace, NSArray, NSMutableArray, NSMutableDictionary, NSMutableSet, NSSet, NSString;
 
 @interface IDEIssueManager : NSObject <DVTInvalidation>
 {
@@ -100,9 +100,13 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) NSSet *lastSchemeActionIssues; // @dynamic lastSchemeActionIssues;
 @property(readonly) NSMutableSet *mutableLastSchemeActionIssues; // @dynamic mutableLastSchemeActionIssues;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

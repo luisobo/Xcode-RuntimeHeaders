@@ -6,7 +6,7 @@
 
 #import "NSRulerView.h"
 
-@class DVTTextAnnotation, NSColor, NSCursor, NSFont, NSMapTable, NSTimer, NSTrackingArea;
+@class DVTTextAnnotation, NSColor, NSCursor, NSFont, NSTimer, NSTrackingArea;
 
 @interface DVTTextSidebarView : NSRulerView
 {
@@ -23,7 +23,8 @@
     NSTimer *_foldingHoverTimer;
     struct CGPoint _mouseLocationForContextualMenu;
     unsigned long long _hitLineNumberForContextualMenu;
-    NSMapTable *_digitWidths;
+    unsigned short _lineNumberDigitGlyphs[10];
+    struct CGSize _lineNumberDigitGlyphAdvancements[10];
     NSTrackingArea *_trackingArea;
     unsigned long long _currentLineNumberReported;
     BOOL _showsSidebar;
@@ -72,6 +73,7 @@
 - (id)annotationAtSidebarPoint:(struct CGPoint)arg1;
 - (unsigned long long)lineNumberForPoint:(struct CGPoint)arg1;
 - (void)drawRect:(struct CGRect)arg1;
+- (void)prepareContentInRect:(struct CGRect)arg1;
 - (void)_scrollToMatchContentView;
 - (void)_drawLineNumbersInSidebarRect:(struct CGRect)arg1 foldedIndexes:(unsigned long long *)arg2 count:(unsigned long long)arg3 linesToInvert:(id)arg4 linesToReplace:(id)arg5 getParaRectBlock:(id)arg6;
 - (void)_drawSidebarMarkersForAnnotations:(id)arg1 atIndexes:(id)arg2 textView:(id)arg3 getParaRectBlock:(id)arg4;
@@ -79,6 +81,7 @@
 - (struct CGRect)foldbarRect;
 - (struct CGRect)sidebarRect;
 @property(readonly) NSCursor *sidebarCursor;
+- (void)setLineNumberFont:(id)arg1 size:(double)arg2;
 @property double foldbarWidth; // @synthesize foldbarWidth=_foldbarWidth;
 - (void)recalculateSidebarWidthToFit;
 - (void)_updateRulerThickness;
@@ -86,7 +89,7 @@
 - (BOOL)acceptsFirstResponder;
 - (void)updateTrackingAreas;
 - (void)setOrientation:(unsigned long long)arg1;
-- (void)_themeColorsChanged:(id)arg1;
+- (void)_fontAndColorSourceTextSettingsChanged:(id)arg1;
 - (void)dealloc;
 - (id)initWithScrollView:(id)arg1 orientation:(unsigned long long)arg2;
 - (void)_reloadColors;

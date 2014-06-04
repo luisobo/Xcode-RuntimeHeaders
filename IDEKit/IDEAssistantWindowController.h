@@ -6,34 +6,33 @@
 
 #import "NSWindowController.h"
 
-@class DVTBorderedView, DVTStackView_ML, IDEAssistant, IDEAssistantContext, NSBox, NSButton, NSImageView, NSMutableArray, NSString, NSTextField, NSView;
+@class DVTBorderedView, IDEAssistant, IDEAssistantContext, IDEFilterControlBar, NSBox, NSButton, NSMutableArray, NSString, NSTextField, NSView;
 
 @interface IDEAssistantWindowController : NSWindowController
 {
     NSBox *_box;
+    DVTBorderedView *_outerBorderedView;
     DVTBorderedView *_borderedView;
     DVTBorderedView *_sourceListBorderedView;
-    DVTStackView_ML *_buttonStackView;
-    NSMutableArray *_assistantHistory;
     NSButton *_nextButton;
     NSButton *_backButton;
     NSButton *_cancelButton;
     NSTextField *_titleField;
-    IDEAssistant *_currentAssistant;
+    IDEFilterControlBar *_filterControlBar;
     IDEAssistant *_installedAssistant;
     IDEAssistantContext *_assistantContext;
     id _currentCompletionBlock;
-    double _lastAnimationDirection;
-    NSImageView *_boxImageView;
-    NSImageView *_titleFieldImageView;
-    NSImageView *_cancelButtonImageView;
-    NSImageView *_sourceListImageView;
-    NSView *_nextKeyView;
+    NSMutableArray *_assistantHistory;
     NSMutableArray *_allAnimations;
+    NSView *_nextKeyView;
+    double _lastAnimationDirection;
     _Bool _backtrackingFromOverlayAssistant;
     _Bool _closing;
+    IDEAssistant *_currentAssistant;
     NSString *_nextButtonTitle;
     NSString *_finishButtonTitle;
+    NSMutableArray *_completionPreprocessors;
+    NSMutableArray *_completionPreprocessorExecutionStack;
 }
 
 + (id)keyPathsForValuesAffectingAssistantTitle;
@@ -41,20 +40,17 @@
 + (id)keyPathsForValuesAffectingCanCancel;
 + (id)keyPathsForValuesAffectingCanGoForwardOrFinish;
 + (id)keyPathsForValuesAffectingOnFirstAssistant;
+@property(retain, nonatomic) NSMutableArray *completionPreprocessorExecutionStack; // @synthesize completionPreprocessorExecutionStack=_completionPreprocessorExecutionStack;
+@property(retain, nonatomic) NSMutableArray *completionPreprocessors; // @synthesize completionPreprocessors=_completionPreprocessors;
 @property(retain, nonatomic) NSString *finishButtonTitle; // @synthesize finishButtonTitle=_finishButtonTitle;
 @property(retain, nonatomic) NSString *nextButtonTitle; // @synthesize nextButtonTitle=_nextButtonTitle;
 @property(readonly, nonatomic) IDEAssistant *currentAssistant; // @synthesize currentAssistant=_currentAssistant;
 - (void).cxx_destruct;
-- (void)animationDidStop:(id)arg1 finished:(BOOL)arg2;
-- (void)cleanUpAnimationForView:(id)arg1;
 - (void)configureAnimationImageViewWithDirection:(double)arg1 actionBlock:(id)arg2;
 - (void)setupAccessoriesForAssistant:(id)arg1 animated:(BOOL)arg2;
-- (id)imageForView:(id)arg1 bordered:(BOOL)arg2;
 - (void)setAnimationDuration;
 - (void)cancelSession;
 - (void)goBack:(id)arg1;
-- (void)ensureImageViewsConfigured;
-- (void)setUpOverlayForAssistantWithIdentifier:(id)arg1;
 - (void)_finishWithAction:(id)arg1;
 - (void)goNextOrFinish:(id)arg1;
 - (void)addAnimationForKey:(id)arg1 toView:(id)arg2;
@@ -70,13 +66,14 @@
 - (id)_popAssistantHistoryStack;
 - (void)_pushAssistantOntoHistoryStack:(id)arg1;
 - (void)_clearAssistantHistoryStack;
+- (void)drainPreprocessorOrContinueWithSender:(id)arg1;
+- (void)addGoForwardPreprocessor:(id)arg1;
 - (void)endAssistantSessionWithResult:(int)arg1 error:(id)arg2;
 - (void)beginSessionForWorkspaceWindow:(id)arg1;
 - (void)beginSessionWithAssistantIdentifier:(id)arg1 context:(id)arg2 completionBlock:(id)arg3;
 - (id)assistantWithIdentifier:(id)arg1;
 - (void)close;
 - (void)windowDidLoad;
-- (void)dealloc;
 - (id)init;
 - (void)setCurrentAssistant:(id)arg1 andInstallView:(BOOL)arg2;
 - (void)setCurrentAssistant:(id)arg1;

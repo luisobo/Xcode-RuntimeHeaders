@@ -10,7 +10,7 @@
 #import "IDEStructureEditingGroupingTarget-Protocol.h"
 #import "IDEStructureEditingRemoveSubitemsTarget-Protocol.h"
 
-@class DVTObservingToken, IDEGroup, IDENavigableItem;
+@class DVTObservingToken, IDEGroup, IDENavigableItem, NSString;
 
 @interface IDEContainerItemStructureEditingTarget : NSObject <IDEStructureEditingDropTarget, IDEStructureEditingGroupingTarget, IDEStructureEditingRemoveSubitemsTarget>
 {
@@ -47,12 +47,17 @@
 - (unsigned long long)_validateTemplateDropWithContext:(id)arg1 atIndex:(long long)arg2;
 - (id)structureEditingNaturalFilePathForDropTarget;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (id)actualNavigableItem;
 - (long long)actualChildIndex;
 - (void)dealloc;
 - (id)_initWithTargetGroup:(id)arg1 targetNavigableItem:(id)arg2 targetIndex:(long long)arg3;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

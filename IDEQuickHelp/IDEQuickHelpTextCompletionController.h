@@ -6,8 +6,6 @@
 
 #import <IDEQuickHelp/IDEQuickHelpController.h>
 
-@class IDEQuickHelpQueryResult, NSString;
-
 @interface IDEQuickHelpTextCompletionController : IDEQuickHelpController
 {
 }
@@ -16,10 +14,6 @@
 - (void)generateHTMLFromResult:(id)arg1;
 - (id)sourceExpressionWindow;
 - (void)closeQuickHelp;
-
-// Remaining properties
-@property(retain) IDEQuickHelpQueryResult *queryResult;
-@property(retain) NSString *quickHelpContent;
 
 @end
 

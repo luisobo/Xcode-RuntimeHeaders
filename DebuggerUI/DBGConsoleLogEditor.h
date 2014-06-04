@@ -10,7 +10,7 @@
 #import "DVTFindBarFindable-Protocol.h"
 #import "DVTTextFindable-Protocol.h"
 
-@class DVTObservingToken, IDEConsoleTextView;
+@class DVTObservingToken, IDEConsoleTextView, NSString;
 
 @interface DBGConsoleLogEditor : IDEEditor <DVTTextFindable, DVTFindBarFindable, DVTCompletingTextViewDelegate>
 {
@@ -34,6 +34,10 @@
 - (void)loadView;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @property unsigned long long supportedMatchingOptions;
 
 @end

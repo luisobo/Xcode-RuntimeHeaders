@@ -8,6 +8,8 @@
 
 #import "XCElementJustifierP-Protocol.h"
 
+@class NSString;
+
 @interface XCElementJustifierImp : XCElementImp <XCElementJustifierP>
 {
     double _hJustification;
@@ -26,6 +28,12 @@
 - (void)setVJustification:(double)arg1;
 - (double)hJustification;
 - (void)setHJustification:(double)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

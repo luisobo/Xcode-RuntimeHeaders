@@ -27,7 +27,6 @@
 }
 
 + (unsigned long long)digitsRequiredToDisplayLineNumber:(unsigned long long)arg1 inFormat:(unsigned long long)arg2;
-@property unsigned long long startingLineNumber; // @synthesize startingLineNumber=_startingLineNumber;
 - (id)representer;
 - (void)setRepresenter:(id)arg1;
 - (void)mouseDown:(id)arg1;
@@ -38,6 +37,7 @@
 - (void)setFont:(id)arg1;
 - (BOOL)canUseStringDrawingPathForFont:(id)arg1;
 - (unsigned long long)lineNumberFormat;
+@property unsigned long long startingLineNumber; // @synthesize startingLineNumber=_startingLineNumber;
 - (void)setLineNumberFormat:(unsigned long long)arg1;
 - (unsigned long long)bytesPerLine;
 - (void)setBytesPerLine:(unsigned long long)arg1;

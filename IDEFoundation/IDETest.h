@@ -7,51 +7,64 @@
 #import "NSObject.h"
 
 #import "DVTInvalidation-Protocol.h"
+#import "IDETestContainer-Protocol.h"
 
-@class DVTDocumentLocation, DVTStackBacktrace, NSArray, NSMutableArray, NSString;
+@class DVTDocumentLocation, DVTStackBacktrace, NSArray, NSMutableArray, NSMutableSet, NSSet, NSString;
 
-@interface IDETest : NSObject <DVTInvalidation>
+@interface IDETest : NSObject <IDETestContainer, DVTInvalidation>
 {
-    NSMutableArray *_subtests;
+    NSMutableSet *_subtests;
     NSArray *_cachedArrangedSubtests;
+    NSMutableArray *_performanceMetricsForPreviousRun;
     BOOL _canHaveSubtests;
-    BOOL _locationWasSet;
+    BOOL _indexLocationWasSet;
     id <IDETestable> _testable;
     NSString *_identifier;
     NSString *_name;
-    DVTDocumentLocation *_location;
     NSArray *_errorLocations;
     IDETest *_supertest;
+    DVTDocumentLocation *_indexLocation;
+    NSArray *_recentErrorLocations;
 }
 
 + (id)keyPathsForValuesAffectingArrangedSubtests;
++ (id)keyPathsForValuesAffectingLocation;
 + (id)keyPathsForValuesAffectingIsAdHocRunnable;
 + (void)initialize;
-@property(readonly) BOOL locationWasSet; // @synthesize locationWasSet=_locationWasSet;
-@property(readonly) BOOL canHaveSubtests; // @synthesize canHaveSubtests=_canHaveSubtests;
+@property BOOL indexLocationWasSet; // @synthesize indexLocationWasSet=_indexLocationWasSet;
+@property(copy) NSArray *recentErrorLocations; // @synthesize recentErrorLocations=_recentErrorLocations;
+@property(copy, nonatomic) DVTDocumentLocation *indexLocation; // @synthesize indexLocation=_indexLocation;
+@property BOOL canHaveSubtests; // @synthesize canHaveSubtests=_canHaveSubtests;
 @property(readonly) IDETest *supertest; // @synthesize supertest=_supertest;
-@property(copy) NSArray *errorLocations; // @synthesize errorLocations=_errorLocations;
-@property(copy, nonatomic) DVTDocumentLocation *location; // @synthesize location=_location;
-@property(readonly) NSString *name; // @synthesize name=_name;
-@property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
+@property(readonly, copy) NSArray *errorLocations; // @synthesize errorLocations=_errorLocations;
+@property(readonly, copy) NSString *name; // @synthesize name=_name;
+@property(readonly, copy) NSString *identifier; // @synthesize identifier=_identifier;
 @property(readonly) id <IDETestable> testable; // @synthesize testable=_testable;
 - (void).cxx_destruct;
-@property(readonly) NSArray *arrangedSubtests; // @dynamic arrangedSubtests;
+@property(copy) NSArray *arrangedSubtests; // @dynamic arrangedSubtests;
 - (void)_invalidateArrangedSubtests;
+- (void)_setErrorLocations:(id)arg1;
+- (void)_setIndexLocation:(id)arg1;
+- (void)setLocation:(id)arg1;
+@property(readonly, copy, nonatomic) DVTDocumentLocation *location; // @dynamic location;
+- (void)setPerformanceMetricsForPreviousRun:(id)arg1;
+- (id)performanceMetricsForPreviousRun;
 @property(readonly) BOOL isAdHocRunnable;
 - (long long)localizedStandardCompare:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)initWithTestable:(id)arg1 identifier:(id)arg2;
 - (void)primitiveInvalidate;
 - (BOOL)_isInFile:(id)arg1;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
-@property(readonly) NSMutableArray *mutableSubtests; // @dynamic mutableSubtests;
-@property(copy) NSArray *subtests; // @dynamic subtests;
+@property(readonly, copy) NSMutableSet *mutableSubtests; // @dynamic mutableSubtests;
+@property(readonly, copy) NSSet *subtests; // @dynamic subtests;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

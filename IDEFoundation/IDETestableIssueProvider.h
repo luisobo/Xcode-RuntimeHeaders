@@ -6,14 +6,17 @@
 
 #import <IDEFoundation/IDEIssueProvider.h>
 
-@class IDEWorkspace, NSMutableArray, NSMutableDictionary;
+#import "IDETestsInTestableObserver-Protocol.h"
 
-@interface IDETestableIssueProvider : IDEIssueProvider
+@class IDEWorkspace, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
+
+@interface IDETestableIssueProvider : IDEIssueProvider <IDETestsInTestableObserver>
 {
     IDEWorkspace *_workspace;
     NSMutableDictionary *_issuesByTestID;
     NSMutableArray *_genericIssues;
     unsigned long long _currentIssueGeneration;
+    NSMutableSet *_observedTestables;
 }
 
 - (void).cxx_destruct;
@@ -26,8 +29,18 @@
 - (void)_beginNewIssueGeneration;
 - (BOOL)_filterIssuesByActiveScheme;
 - (id)displayNameForIssueTypeIdentifier:(id)arg1;
+- (void)testsChanged:(id)arg1;
+- (void)testablesChanged:(id)arg1;
+- (void)workspaceReferencedTestablesChanged;
+- (void)_updateObservedTestablesForTest:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)_initWithWorkspace:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

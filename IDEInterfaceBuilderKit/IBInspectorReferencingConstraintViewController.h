@@ -8,25 +8,29 @@
 
 #import "IBInspectorReferencingConstraintViewDelegate-Protocol.h"
 
-@class DVTObservingToken, IBDocument, IBLayoutConstraint, NSArray, NSMenuItem, NSView<IBAutolayoutItem>;
+@class DVTObservingToken, IBDocument, IBDocumentMemberWrapper, IBLayoutConstraint, NSArray, NSMenuItem, NSString, NSView<IBAutolayoutItem>;
 
 @interface IBInspectorReferencingConstraintViewController : DVTViewController <IBInspectorReferencingConstraintViewDelegate>
 {
-    NSView<IBAutolayoutItem> *referencedView;
-    DVTObservingToken *documentUpdateToken;
-    NSArray *observationTokens;
-    IBDocument *document;
-    NSMenuItem *deleteMenuItem;
-    NSMenuItem *promoteMenuItem;
-    IBLayoutConstraint *constraint;
+    DVTObservingToken *_documentUpdateToken;
+    NSArray *_observationTokens;
+    IBLayoutConstraint *_constraint;
     id <IBInspectorReferencingConstraintViewControllerDelegate> _delegate;
+    NSMenuItem *_deleteMenuItem;
+    NSMenuItem *_promoteMenuItem;
+    NSView<IBAutolayoutItem> *_referencedView;
+    IBDocumentMemberWrapper *_memberWrapper;
+    IBDocument *_document;
 }
 
 + (id)viewControllerForConstraint:(id)arg1 referencingView:(id)arg2;
+@property(retain, nonatomic) IBDocument *document; // @synthesize document=_document;
+@property(retain, nonatomic) IBDocumentMemberWrapper *memberWrapper; // @synthesize memberWrapper=_memberWrapper;
+@property(retain, nonatomic) NSView<IBAutolayoutItem> *referencedView; // @synthesize referencedView=_referencedView;
+@property(retain, nonatomic) NSMenuItem *promoteMenuItem; // @synthesize promoteMenuItem=_promoteMenuItem;
+@property(retain, nonatomic) NSMenuItem *deleteMenuItem; // @synthesize deleteMenuItem=_deleteMenuItem;
 @property(nonatomic) __weak id <IBInspectorReferencingConstraintViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly, nonatomic) IBLayoutConstraint *constraint; // @synthesize constraint;
-@property(retain, nonatomic) NSMenuItem *promoteMenuItem; // @synthesize promoteMenuItem;
-@property(retain, nonatomic) NSMenuItem *deleteMenuItem; // @synthesize deleteMenuItem;
+@property(readonly, nonatomic) IBLayoutConstraint *constraint; // @synthesize constraint=_constraint;
 - (void).cxx_destruct;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
@@ -53,14 +57,20 @@
 - (id)textForLayoutRelation;
 - (long long)viewBorderAttributes;
 - (long long)viewLayoutType;
+- (BOOL)constraintIsInstalled;
 - (BOOL)constraintHasConstant;
 - (id)constraintView;
-- (void)promoteConstraint:(id)arg1;
-- (void)deleteConstraint:(id)arg1;
-- (void)selectConstraint:(id)arg1;
+- (void)constraintView:(id)arg1 didHandleDoubleMouseUpWithEvent:(id)arg2;
+- (void)constraintView:(id)arg1 didHandleSingleMouseUpWithEvent:(id)arg2;
 - (void)constraintViewWillChangeHighlighted:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)initWithConstraint:(id)arg1 referencingView:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -7,10 +7,11 @@
 #import "NSObject.h"
 
 #import "DVTInvalidation-Protocol.h"
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@class DVTStackBacktrace, IDERunSheetController, IDESchemeAction, NSArray, NSImage, NSString;
+@class DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, IDEFileReference, IDERunSheetController, IDESchemeAction, NSArray, NSImage, NSString;
 
-@interface IDERunSheetPhaseModel : NSObject <DVTInvalidation>
+@interface IDERunSheetPhaseModel : NSObject <DVTInvalidation, IDEKeyDrivenNavigableItemRepresentedObject>
 {
     IDERunSheetController *_controller;
     NSArray *_subphases;
@@ -36,7 +37,18 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

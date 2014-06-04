@@ -36,7 +36,6 @@
 @property int loadedState; // @synthesize loadedState=_loadedState;
 - (void).cxx_destruct;
 - (void)nextOrPreviousPage:(id)arg1;
-- (id)blockStartAddress;
 - (void)_failedToGetData;
 - (void)_pageOfByteDataWasFetched:(id)arg1 startingAddressOfPage:(unsigned long long)arg2;
 - (void)_retrievePage:(unsigned long long)arg1;
@@ -48,8 +47,12 @@
 - (id)initWithDataValue:(id)arg1 options:(id)arg2;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) NSURL *existingURLToOpen;
 @property(readonly) NSString *extensionForTemporaryFile;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

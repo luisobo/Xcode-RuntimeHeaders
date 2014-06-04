@@ -31,7 +31,7 @@
 @property(retain) NSImage *image; // @synthesize image=_image;
 @property(readonly) DVTLibrary *library; // @synthesize library=_library;
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)describeInto:(id)arg1 withDepth:(long long)arg2;
 - (BOOL)containsAsset:(id)arg1;
 - (void)removeAllAssets;
@@ -67,7 +67,10 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

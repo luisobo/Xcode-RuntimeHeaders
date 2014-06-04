@@ -8,7 +8,7 @@
 
 #import "DVTTextFindable-Protocol.h"
 
-@class Xcode3Project;
+@class NSString, Xcode3Project;
 
 @interface Xcode3ProjectDocument : IDEEditorContainerDocument <DVTTextFindable>
 {
@@ -25,6 +25,10 @@
 - (id)objectSpecifier;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @property unsigned long long supportedMatchingOptions;
 
 @end

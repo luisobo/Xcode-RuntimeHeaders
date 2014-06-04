@@ -8,7 +8,7 @@
 
 #import "IDEWorkspaceDocumentProvider-Protocol.h"
 
-@class DVTBorderedView, DVTDiffDescriptor, DVTObservingToken, IDESourceControlMergeDataSource, IDEWorkspaceDocument, NSArray, NSButton, NSPopUpButton, NSSegmentedControl;
+@class DVTBorderedView, DVTDiffDescriptor, DVTObservingToken, IDESourceControlMergeDataSource, IDEWorkspaceDocument, NSArray, NSButton, NSPopUpButton, NSSegmentedControl, NSString;
 
 @interface IDESourceControlMergeWindowController : IDESourceControlReviewFilesWindowController <IDEWorkspaceDocumentProvider>
 {
@@ -58,6 +58,12 @@
 - (void)windowDidLoad;
 - (id)windowNibName;
 - (id)initWithWindow:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

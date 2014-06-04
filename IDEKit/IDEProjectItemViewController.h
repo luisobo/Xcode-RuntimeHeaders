@@ -25,6 +25,7 @@
     NSDictionary *_cachedUserEnteredInfo;
 }
 
++ (id)keyPathsForValuesAffecting_longRunningFlightChecks;
 + (id)keyPathsForValuesAffectingEnabled;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 @property(copy, nonatomic) NSDictionary *cachedUserEnteredInfo; // @synthesize cachedUserEnteredInfo=_cachedUserEnteredInfo;
@@ -39,10 +40,11 @@
 @property(readonly) BOOL disclosedByDefault;
 - (id)headerContentViewForCapsuleView:(id)arg1;
 - (id)capsuleViewBackgroundColor:(id)arg1;
-@property(readonly) NSString *titleForDisplay;
+@property(readonly, copy) NSString *titleForDisplay;
 - (void)_presentTeamPickerIfNecessaryAndPerformBlock:(id)arg1;
 - (void)_resolveFlightChecks;
 - (id)_headerView;
+- (id)_longRunningFlightChecks;
 @property(nonatomic, getter=isDisclosed) BOOL disclosed;
 @property(nonatomic, getter=isEnabled) BOOL enabled;
 - (void)commitStateToDictionary:(id)arg1;
@@ -51,7 +53,7 @@
 @property(readonly, nonatomic) id <IDEProjectItem> item;
 - (id)projectItemView;
 - (void)primitiveInvalidate;
-- (void)portalFlightCheckStatusChanged;
+- (void)longRunningFlightCheckStatusChanged;
 - (void)flightCheckFailedChanged:(id)arg1;
 - (void)enabledChanged;
 - (void)onOffSwitchDidChange;
@@ -69,8 +71,12 @@
 @property BOOL canRemoveItems;
 @property(readonly) BOOL canRename;
 @property(readonly) BOOL canUndisclose;
-@property(readonly) NSString *footerLabel;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly, copy) NSString *footerLabel;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSImage *icon;
+@property(readonly) Class superclass;
 
 @end
 

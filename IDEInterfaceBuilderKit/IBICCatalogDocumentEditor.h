@@ -39,7 +39,7 @@
 @property(readonly, nonatomic) IBICAbstractCatalogDetailController *currentDetailController; // @synthesize currentDetailController=_currentDetailController;
 @property(retain, nonatomic) DVTSplitView *splitView; // @synthesize splitView=_splitView;
 @property(copy, nonatomic) NSArray *currentSelectedItems; // @synthesize currentSelectedItems=_currentSelectedItems;
-@property(readonly, nonatomic) NSArray *displayedMultipartImages; // @synthesize displayedMultipartImages=_displayedMultipartImages;
+@property(readonly, copy, nonatomic) NSArray *displayedMultipartImages; // @synthesize displayedMultipartImages=_displayedMultipartImages;
 @property(copy, nonatomic) NSSet *sourceItems; // @synthesize sourceItems=_sourceItems;
 @property(readonly, nonatomic) IBSelectionChannel *selectionChannel; // @synthesize selectionChannel=_selectionChannel;
 @property(copy, nonatomic) NSSet *selectedCatalogItems; // @synthesize selectedCatalogItems=_selectedCatalogItems;
@@ -131,6 +131,12 @@
 - (void)loadView;
 - (void)refreshDetailView;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 document:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

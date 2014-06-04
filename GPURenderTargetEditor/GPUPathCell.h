@@ -15,7 +15,6 @@
     NSMenu *_trackingMenu;
     GPUPathComponentCell *_firstCell;
     GPUPathComponentCell *_lastCell;
-    BOOL _hasData;
     int _gradientStyle;
     int _borderSides;
     unsigned int _chosenLayer;

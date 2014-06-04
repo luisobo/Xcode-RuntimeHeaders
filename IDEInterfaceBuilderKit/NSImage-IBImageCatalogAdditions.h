@@ -9,7 +9,6 @@
 @class IBICImageResizingBehavior;
 
 @interface NSImage (IBImageCatalogAdditions)
-- (void)setIbResizingBehavior:(id)arg1;
-@property(readonly) IBICImageResizingBehavior *ibResizingBehavior;
+@property(retain) IBICImageResizingBehavior *ibResizingBehavior;
 @end
 

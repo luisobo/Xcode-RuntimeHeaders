@@ -9,7 +9,7 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class DVMainController, NSArrayController, NSTableView, NSWindow;
+@class DVMainController, NSArrayController, NSString, NSTableView, NSWindow;
 
 @interface DVBookmarksOutlineViewController : NSObject <NSTableViewDelegate, NSTableViewDataSource>
 {
@@ -30,6 +30,12 @@
 - (void)saveChanges;
 - (id)bookmarkManager;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

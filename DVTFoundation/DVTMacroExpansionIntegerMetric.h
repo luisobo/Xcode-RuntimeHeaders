@@ -23,7 +23,6 @@
 - (id)longDescription;
 - (void)addValue:(unsigned long long)arg1;
 - (void)dealloc;
-- (void)finalize;
 - (id)initWithLabel:(id)arg1 valueRange:(struct _NSRange)arg2;
 
 @end

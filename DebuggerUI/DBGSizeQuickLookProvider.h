@@ -4,40 +4,33 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2011 by Steve Nygard.
  */
 
-#import "NSViewController.h"
+#import "NSObject.h"
 
 #import "IDEVariablesViewQuickLookProvider-Protocol.h"
 
-@class DBGDataValue, DBGSizeView, NSLayoutConstraint, NSString, NSTextField, NSURL, NSView;
+@class DBGDataValue, DVTSizeViewController, NSString, NSURL, NSView;
 
-@interface DBGSizeQuickLookProvider : NSViewController <IDEVariablesViewQuickLookProvider>
+@interface DBGSizeQuickLookProvider : NSObject <IDEVariablesViewQuickLookProvider>
 {
     DBGDataValue *_dataValue;
+    DVTSizeViewController *_sizeViewController;
     int _loadedState;
-    DBGSizeView *_sizeView;
-    NSLayoutConstraint *_widthConstraint;
-    NSLayoutConstraint *_heightConstraint;
-    NSTextField *_widthLabel;
-    NSTextField *_heightLabel;
 }
 
-@property __weak NSTextField *heightLabel; // @synthesize heightLabel=_heightLabel;
-@property __weak NSTextField *widthLabel; // @synthesize widthLabel=_widthLabel;
-@property __weak NSLayoutConstraint *heightConstraint; // @synthesize heightConstraint=_heightConstraint;
-@property __weak NSLayoutConstraint *widthConstraint; // @synthesize widthConstraint=_widthConstraint;
-@property __weak DBGSizeView *sizeView; // @synthesize sizeView=_sizeView;
 @property int loadedState; // @synthesize loadedState=_loadedState;
 - (void).cxx_destruct;
-- (id)blockStartAddress;
 - (void)cancelLoading;
 @property(readonly) NSView *quickLookView;
-- (void)_updateUsingSizeWidth:(id)arg1 height:(id)arg2;
 - (void)_startRetrieval;
 - (id)initWithDataValue:(id)arg1 options:(id)arg2;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) NSURL *existingURLToOpen;
 @property(readonly) NSString *extensionForTemporaryFile;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

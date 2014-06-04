@@ -6,7 +6,10 @@
 
 #import "CAAnimation.h"
 
+@class NSImage;
+
 @interface CAAnimation (SceneKit_SKEAdditions)
-- (id)ide_icon;
+- (id)ide_displayName;
+@property(readonly) NSImage *ide_icon;
 @end
 

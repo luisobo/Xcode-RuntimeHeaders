@@ -13,7 +13,7 @@
 
 @property(nonatomic) double compressionResistancePriority; // @synthesize compressionResistancePriority=_compressionResistancePriority;
 - (double)priority;
-- (id)makeRepresentingConstraintWithLayoutInfo:(id)arg1;
+- (id)makeRepresentingConstraintWithProvider:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqualToAbstraction:(id)arg1;
 - (Class)representationClass;

@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTFileDataType, DVTMapTable, NSArray, NSMutableArray, NSString;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface IDESingleFileProcessingItemGroup : NSObject
+@class DVTDocumentLocation, DVTFileDataType, DVTMapTable, IDEFileReference, NSArray, NSImage, NSMutableArray, NSString;
+
+@interface IDESingleFileProcessingItemGroup : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     NSMutableArray *_singleFileProcessingItems;
     DVTMapTable *_workspaceToItemMapTable;
@@ -23,11 +25,24 @@
 + (void)initialize;
 - (void).cxx_destruct;
 - (id)initWithName:(id)arg1 type:(id)arg2;
+@property(readonly) NSString *navigableItem_name;
 - (id)itemForFileURL:(id)arg1 inWorkspace:(id)arg2;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSMutableArray *mutableSingleFileProcessingItems; // @dynamic mutableSingleFileProcessingItems;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
 @property(copy) NSArray *singleFileProcessingItems; // @dynamic singleFileProcessingItems;
+@property(readonly) Class superclass;
 
 @end
 

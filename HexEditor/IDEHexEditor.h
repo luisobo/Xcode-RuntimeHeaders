@@ -9,7 +9,7 @@
 #import "DVTFindBarFindable-Protocol.h"
 #import "DVTTextFindable-Protocol.h"
 
-@class DVTReplacementView, IDEHexEditorViewController;
+@class DVTReplacementView, IDEHexEditorViewController, NSString;
 
 @interface IDEHexEditor : IDEEditor <DVTTextFindable, DVTFindBarFindable>
 {
@@ -41,6 +41,10 @@
 - (void)loadView;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @property unsigned long long supportedMatchingOptions;
 
 @end

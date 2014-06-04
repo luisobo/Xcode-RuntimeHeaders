@@ -8,12 +8,20 @@
 
 #import "IDECommandHandler-Protocol.h"
 
+@class NSString;
+
 @interface XcodeEmptyAppCachesCommandHandler : NSObject <IDECommandHandler>
 {
 }
 
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (void)emptyAppCaches:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

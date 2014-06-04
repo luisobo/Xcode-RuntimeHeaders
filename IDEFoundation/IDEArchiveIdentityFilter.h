@@ -20,9 +20,9 @@
 + (id)_identifiersToFiltersMapping;
 + (id)_extensionLock;
 + (id)_extensionPoint;
-@property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
+@property(readonly, copy) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
-@property(readonly) NSSet *allowedCertificateTypes;
+@property(readonly, copy) NSSet *allowedCertificateTypes;
 - (id)identityComparator;
 - (_Bool)shouldIncludeIdentity:(id)arg1;
 - (id)initWithExtension:(id)arg1;

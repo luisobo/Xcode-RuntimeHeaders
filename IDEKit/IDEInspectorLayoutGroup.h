@@ -49,7 +49,7 @@
 - (void)removeSubgroup:(id)arg1;
 - (void)insertSubgroup:(id)arg1 atIndex:(long long)arg2;
 - (void)addSubgroup:(id)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)descriptionWithIndent:(long long)arg1;
 - (id)brecciaAttributeDescription;
 - (id)attributeDescription;
@@ -59,7 +59,10 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

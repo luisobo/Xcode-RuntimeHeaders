@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTWeakInterposer, NSOperationQueue, NSString;
+@class DVTWeakInterposer, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString;
 
 @interface _DVTFilePathAssoc : NSObject
 {
@@ -15,7 +15,7 @@
     DVTWeakInterposer *_object_dvtWeakInterposer;
     BOOL recursiveObserver;
     id block;
-    struct dispatch_queue_s *dispatchQueue;
+    NSObject<OS_dispatch_queue> *dispatchQueue;
     NSOperationQueue *operationQueue;
 }
 
@@ -23,7 +23,7 @@
 - (id)description;
 - (void)dealloc;
 - (id)initWithRole:(id)arg1 object:(id)arg2 observingDidChangeRecursively:(BOOL)arg3 onOperationQueue:(id)arg4 block:(id)arg5;
-- (id)initWithRole:(id)arg1 object:(id)arg2 observingDidChangeRecursively:(BOOL)arg3 onDispatchQueue:(struct dispatch_queue_s *)arg4 block:(id)arg5;
+- (id)initWithRole:(id)arg1 object:(id)arg2 observingDidChangeRecursively:(BOOL)arg3 onDispatchQueue:(id)arg4 block:(id)arg5;
 @property __weak id object;
 
 @end

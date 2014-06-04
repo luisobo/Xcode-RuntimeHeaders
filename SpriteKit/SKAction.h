@@ -12,7 +12,6 @@
 @interface SKAction : NSObject <NSCopying, NSCoding>
 {
     struct SKCAction *_caction;
-    void *caction;
 }
 
 + (id)customActionWithDuration:(double)arg1 actionBlock:(id)arg2;
@@ -24,8 +23,16 @@
 + (id)removeFromParent;
 + (id)waitForDuration:(double)arg1 withRange:(double)arg2;
 + (id)waitForDuration:(double)arg1;
++ (id)reachToNode:(id)arg1 rootNode:(id)arg2 velocity:(double)arg3;
++ (id)reachToNode:(id)arg1 rootNode:(id)arg2 duration:(double)arg3;
++ (id)reachTo:(struct CGPoint)arg1 rootNode:(id)arg2 velocity:(double)arg3;
++ (id)reachTo:(struct CGPoint)arg1 rootNode:(id)arg2 duration:(double)arg3;
++ (id)strengthBy:(float)arg1 duration:(double)arg2;
++ (id)strengthTo:(float)arg1 duration:(double)arg2;
 + (id)speedTo:(double)arg1 duration:(double)arg2;
 + (id)speedBy:(double)arg1 duration:(double)arg2;
++ (id)followPath:(struct CGPath *)arg1 asOffset:(BOOL)arg2 orientToPath:(BOOL)arg3 speed:(double)arg4;
++ (id)followPath:(struct CGPath *)arg1 speed:(double)arg2;
 + (id)followPath:(struct CGPath *)arg1 asOffset:(BOOL)arg2 orientToPath:(BOOL)arg3 duration:(double)arg4;
 + (id)followPath:(struct CGPath *)arg1 duration:(double)arg2;
 + (id)colorizeWithColorBlendFactor:(double)arg1 duration:(double)arg2;
@@ -35,7 +42,10 @@
 + (id)playSoundFileNamed:(id)arg1;
 + (id)animateWithTextures:(id)arg1 timePerFrame:(double)arg2 resize:(BOOL)arg3 restore:(BOOL)arg4;
 + (id)animateWithTextures:(id)arg1 timePerFrame:(double)arg2;
++ (id)setTexture:(id)arg1 resize:(BOOL)arg2;
 + (id)setTexture:(id)arg1;
++ (id)unhide;
++ (id)hide;
 + (id)fadeAlphaTo:(double)arg1 duration:(double)arg2;
 + (id)fadeAlphaBy:(double)arg1 duration:(double)arg2;
 + (id)fadeOutWithDuration:(double)arg1;
@@ -61,24 +71,25 @@
 + (id)moveToX:(double)arg1 duration:(double)arg2;
 + (id)moveTo:(struct CGPoint)arg1 duration:(double)arg2;
 + (id)moveBY:(struct CGVector)arg1 duration:(double)arg2;
++ (id)moveBy:(struct CGVector)arg1 duration:(double)arg2;
 + (id)moveByX:(double)arg1 y:(double)arg2 duration:(double)arg3;
 - (void)dealloc;
 - (id)reversedAction;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)copy;
-@property double speed;
+@property(nonatomic) double speed;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
-@property long long timingMode;
-@property double duration;
+@property(nonatomic) long long timingMode;
+@property(nonatomic) double duration;
 - (struct SKCAction *)caction;
 - (void)updateWithTarget:(id)arg1 forTime:(double)arg2;
 - (void)willStartWithTarget:(id)arg1 atTime:(double)arg2;
 - (void)wasRemovedFromTarget:(id)arg1 atTime:(double)arg2;
 - (void)wasAddedToTarget:(id)arg1 atTime:(double)arg2;
 - (double)ratioForTime:(double)arg1;
-@property BOOL finished;
+@property(nonatomic) BOOL finished;
 - (void)willResumeWithTarget:(id)arg1 atTime:(double)arg2;
 - (void)wasPausedWithTarget:(id)arg1 atTime:(double)arg2;
 - (void)setCppAction:(void *)arg1;

@@ -12,7 +12,6 @@
 
 @interface IDESourceControlRepository : IDESourceControlTree <NSURLConnectionDelegate>
 {
-    struct __SCNetworkReachability *_reachabilityRef;
     NSURL *_URL;
     NSString *_user;
     NSString *_password;
@@ -25,25 +24,19 @@
     NSString *_remoteName;
     NSString *_root;
     BOOL _passwordIsBeingLoaded;
-    BOOL _avoidObservingReachability;
     BOOL _ignoreKeychain;
     IDESourceControlCredentialsValidator *_authenticator;
 }
 
 + (id)_keychainNameWithSubversionHTTPProtectionSpace:(id)arg1;
 + (id)keyPathsForValuesAffectingConnectionAddress;
-+ (id)keyPathsForValuesAffectingReachability;
 @property BOOL ignoreKeychain; // @synthesize ignoreKeychain=_ignoreKeychain;
-@property BOOL avoidObservingReachability; // @synthesize avoidObservingReachability=_avoidObservingReachability;
 @property(readonly) IDESourceControlCredentialsValidator *authenticator; // @synthesize authenticator=_authenticator;
 @property(readonly) NSString *root; // @synthesize root=_root;
 @property BOOL representsGitSVNBridge; // @synthesize representsGitSVNBridge=_representsGitSVNBridge;
 @property BOOL shouldRetryAuthentication; // @synthesize shouldRetryAuthentication=_shouldRetryAuthentication;
 @property(nonatomic) BOOL authenticated; // @synthesize authenticated=_authenticated;
 - (void).cxx_destruct;
-- (void)endObservingReachability;
-- (void)startObservingReachability;
-- (id)localURL;
 - (BOOL)removePasswordFromKeychain:(struct OpaqueSecKeychainRef *)arg1 error:(id *)arg2;
 - (void)maybeRemovePasswordFromKeychain;
 - (BOOL)canRemovePasswordFromKeychain;
@@ -79,6 +72,12 @@
 - (id)initWithDictionary:(id)arg1 sourceControlExtension:(id)arg2 sourceControlManager:(id)arg3;
 - (id)initWithLocation:(id)arg1 sourceControlManager:(id)arg2;
 - (id)_initWithLocation:(id)arg1 sourceControlManager:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

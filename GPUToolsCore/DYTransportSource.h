@@ -20,7 +20,7 @@
     int _state;
 }
 
-@property(readonly, nonatomic) DYTransport *transport; // @synthesize transport=_transport;
+@property(readonly, retain, nonatomic) DYTransport *transport; // @synthesize transport=_transport;
 - (void)_dispatch:(id)arg1;
 - (void)_cancel;
 - (void)_callCancellationHandler;

@@ -14,7 +14,7 @@
     NSArray *searchPaths;
 }
 
-@property(retain) NSArray *searchPaths; // @synthesize searchPaths;
+@property(retain, nonatomic) NSArray *searchPaths; // @synthesize searchPaths;
 - (void).cxx_destruct;
 
 @end

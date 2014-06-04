@@ -7,22 +7,19 @@
 #import <DVTKit/DVTSlidingViewsBar.h>
 
 #import "DVTMorphingDragImageDropTarget-Protocol.h"
-#import "DVTTabSwitcherDelegate-Protocol.h"
+#import "NSTabViewDelegate-Protocol.h"
 
-@class DVTNewTabButton, DVTTabButton, DVTTabSwitcher, DVTTabbedWindowTabViewItem, NSImage, NSLock;
+@class DVTNewTabButton, DVTTabButton, DVTTabbedWindowTabViewItem, NSImage, NSLock, NSString, NSTabViewItem;
 
-@interface DVTTabBarView : DVTSlidingViewsBar <DVTMorphingDragImageDropTarget, DVTTabSwitcherDelegate>
+@interface DVTTabBarView : DVTSlidingViewsBar <DVTMorphingDragImageDropTarget, NSTabViewDelegate>
 {
-    id <DVTTabbedWindowControlling> tabbedWindowController;
-    DVTTabSwitcher *tabSwitcher;
     NSImage *_windowBackgroundImage;
     NSLock *_windowBackgroundImageLock;
     DVTTabbedWindowTabViewItem *_tabViewItemForOverflowButton;
-    DVTTabButton *_draggedTab;
     DVTTabButton *_tabSelectedBeforeTabDrag;
     DVTNewTabButton *_newTabButton;
-    DVTTabbedWindowTabViewItem *_seperatorUpdateLastSelectedTabViewItem;
-    DVTTabbedWindowTabViewItem *_lastSelectedTabViewItem;
+    NSTabViewItem *_seperatorUpdateLastSelectedTabViewItem;
+    NSTabViewItem *_lastSelectedTabViewItem;
     int _modeOfSeparatorBeforeSpecialButtons;
     int _directionOfSeparatorBeforeSpecialButtons;
     BOOL _separatorBeforeSpecialButtonsUsesActiveTabColor;
@@ -37,8 +34,6 @@
 + (id)activeTabBackgroundForNonMainWindow;
 + (id)inactiveTabBackgroundForMainWindow;
 + (id)activeTabBackgroundForMainWindow;
-@property(retain, nonatomic) DVTTabSwitcher *tabSwitcher; // @synthesize tabSwitcher;
-@property(retain) id <DVTTabbedWindowControlling> tabbedWindowController; // @synthesize tabbedWindowController;
 - (void).cxx_destruct;
 - (void)_windowBackgroundDidChange;
 - (id)_windowBackgroundImage;
@@ -82,9 +77,9 @@
 - (unsigned long long)morphingDragImage:(id)arg1 draggingUpdated:(id)arg2;
 - (unsigned long long)morphingDragImage:(id)arg1 draggingEntered:(id)arg2;
 - (id)menuItemsForClippedItemsIndicator:(id)arg1;
-- (void)tabSwitcherDidChangeNumberOfTabViewItems:(id)arg1;
-- (void)tabSwitcher:(id)arg1 didSelectTabViewItem:(id)arg2;
-- (void)tabSwitcher:(id)arg1 willSelectTabViewItem:(id)arg2;
+- (void)tabViewDidChangeNumberOfTabViewItems:(id)arg1;
+- (void)tabView:(id)arg1 didSelectTabViewItem:(id)arg2;
+- (void)tabView:(id)arg1 willSelectTabViewItem:(id)arg2;
 - (void)animation:(id)arg1 didSlideView:(id)arg2;
 - (BOOL)performDragOperation:(id)arg1;
 - (void)updateLabelNowForTab:(id)arg1;
@@ -98,23 +93,18 @@
 - (void)detachTab:(id)arg1 event:(id)arg2;
 - (void)didDragTab:(id)arg1;
 - (void)willDragTab:(id)arg1;
-- (void)selectTabViewItem:(id)arg1;
-- (id)selectedTabViewItem;
 - (unsigned long long)numberOfTabs;
-- (void)moveTabViewItem:(id)arg1 toIndex:(unsigned long long)arg2;
-- (unsigned long long)indexOfTabViewItem:(id)arg1;
+- (void)moveTabViewItem:(id)arg1 toIndex:(long long)arg2;
 - (void)performDragOperationForTabViewItem:(id)arg1 draggingInfo:(id)arg2;
 - (struct CGRect)clipRectForSlidingButton:(id)arg1;
 - (id)windowBackgroundImage;
 - (void)setReadyToUse;
-- (void)replaceTabSwitcher:(id)arg1;
-- (struct CGRect)contentFrame;
 - (id)newTabButton;
 - (double)slidingWidthForView:(id)arg1;
 - (double)widthOfDraggingInfo:(id)arg1;
 - (id)viewPinnedToOverflowIndicator;
 - (unsigned long long)updateDropTarget:(id)arg1;
-- (void)setDropIndex:(unsigned long long)arg1;
+- (void)setDropIndex:(long long)arg1;
 - (void)refreshButtons;
 - (void)draggedSlidingView:(id)arg1;
 - (void)reorderedSlidingView:(id)arg1;
@@ -132,8 +122,14 @@
 - (BOOL)isOpaque;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (void)awakeFromNib;
 - (void)_installNewTabButton;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
+@property(retain) id <DVTTabbedWindowControlling> tabbedWindowController;
 
 @end
 

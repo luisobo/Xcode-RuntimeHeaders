@@ -45,6 +45,7 @@
 - (void)setBuildProductsPath:(id)arg1;
 - (void)setLocation:(id)arg1;
 - (id)operationWithCommandLineArgs:(id)arg1 environmentVariables:(id)arg2 workingDirectory:(id)arg3 workspaceFilePath:(id)arg4 projectFilePath:(id)arg5 outError:(id *)arg6;
+- (id)_operationBlockWithWorkingDirectory:(SEL)arg1 workspaceFilePath:(id)arg2 projectFilePath:(id)arg3;
 - (void)_launch:(id)arg1 WithConfigFile:(id)arg2;
 - (id)_analysisAppPathForType:(int)arg1;
 - (id)_instrumentsPath;
@@ -57,6 +58,12 @@
 - (id)_currentPlatformIdentifier;
 - (id)analysisToolsForPlatform:(id)arg1;
 - (id)initWithRunnableUTIType:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,7 +8,7 @@
 
 #import "NSPortDelegate-Protocol.h"
 
-@class NSCountedSet, NSMutableArray, NSMutableDictionary, NSPort;
+@class NSCountedSet, NSMutableArray, NSMutableDictionary, NSPort, NSString;
 
 @interface SCMManager : NSObject <NSPortDelegate>
 {
@@ -51,6 +51,12 @@
 - (void)dealloc;
 - (void)tearDown;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

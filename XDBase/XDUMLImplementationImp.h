@@ -8,12 +8,14 @@
 
 #import "XDUMLImplementation-Protocol.h"
 
+@class NSString;
+
 @interface XDUMLImplementationImp : XDUMLClassifierImp <XDUMLImplementation>
 {
     id <XDUMLInterface> _contract;
 }
 
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)setContract:(id)arg1;
 - (void)setOwner:(id)arg1;
 - (void)remove;
@@ -23,6 +25,11 @@
 - (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;
 - (id)tooltip;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -19,6 +19,8 @@
     BOOL _pending;
     BOOL _onlyEmbedded;
     BOOL _conflicted;
+    BOOL _wasDownloading;
+    BOOL _wasUploading;
     BOOL _uploading;
     BOOL _downloading;
     id <iCloudItemProvider> _itemProvider;
@@ -37,6 +39,8 @@
     NSArray *_losers;
     NSDate *_modified;
     NSImage *_icon;
+    unsigned long long _lastSizeDuringDownloading;
+    unsigned long long _lastSizeDuringUploading;
     double _downloadProgress;
     double _uploadProgress;
     NSString *_localType;
@@ -50,6 +54,10 @@
 @property(nonatomic, getter=isUploading) BOOL uploading; // @synthesize uploading=_uploading;
 @property(nonatomic) double uploadProgress; // @synthesize uploadProgress=_uploadProgress;
 @property(nonatomic) double downloadProgress; // @synthesize downloadProgress=_downloadProgress;
+@property(nonatomic) BOOL wasUploading; // @synthesize wasUploading=_wasUploading;
+@property(nonatomic) BOOL wasDownloading; // @synthesize wasDownloading=_wasDownloading;
+@property(nonatomic) unsigned long long lastSizeDuringUploading; // @synthesize lastSizeDuringUploading=_lastSizeDuringUploading;
+@property(nonatomic) unsigned long long lastSizeDuringDownloading; // @synthesize lastSizeDuringDownloading=_lastSizeDuringDownloading;
 @property(retain, nonatomic) NSImage *icon; // @synthesize icon=_icon;
 @property(retain, nonatomic) NSDate *modified; // @synthesize modified=_modified;
 @property(retain, nonatomic) NSArray *losers; // @synthesize losers=_losers;
@@ -69,9 +77,9 @@
 @property(retain, nonatomic) NSNumber *parentItemID; // @synthesize parentItemID=_parentItemID;
 @property(retain, nonatomic) NSNumber *itemID; // @synthesize itemID=_itemID;
 @property(retain, nonatomic) NSURL *localURL; // @synthesize localURL=_localURL;
-@property(readonly, nonatomic) id <iCloudItemProvider> itemProvider; // @synthesize itemProvider=_itemProvider;
+@property(readonly, nonatomic) __weak id <iCloudItemProvider> itemProvider; // @synthesize itemProvider=_itemProvider;
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 @property(readonly, nonatomic) NSURL *iCloudURL; // @synthesize iCloudURL=_iCloudURL;
 - (id)ubiquityRootPath;
 - (id)ubiquityRoot;
@@ -99,6 +107,11 @@
 - (void)_takeDataFromJSON:(id)arg1;
 @property(readonly, nonatomic) NSString *localType; // @synthesize localType=_localType;
 - (id)inputDateFormatter;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

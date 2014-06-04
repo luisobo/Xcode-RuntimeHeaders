@@ -8,12 +8,12 @@
 
 @interface IBCanvasBandSelectionView : NSView
 {
-    struct CGRect bandSelectionFrame;
-    id drawingCompletionBlock;
+    id _drawingCompletionBlock;
+    struct CGRect _bandSelectionFrame;
 }
 
-@property(copy, nonatomic) id drawingCompletionBlock; // @synthesize drawingCompletionBlock;
-@property(nonatomic) struct CGRect bandSelectionFrame; // @synthesize bandSelectionFrame;
+@property(copy, nonatomic) id drawingCompletionBlock; // @synthesize drawingCompletionBlock=_drawingCompletionBlock;
+@property(nonatomic) struct CGRect bandSelectionFrame; // @synthesize bandSelectionFrame=_bandSelectionFrame;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)hitTest:(struct CGPoint)arg1;

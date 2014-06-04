@@ -15,10 +15,12 @@
     IDELaunchSession *_launchSession;
     NSMutableArray *_subtrackers;
     BOOL _isFinished;
+    int _cancellationReason;
     NSError *_error;
 }
 
 + (void)initialize;
+@property int cancellationReason; // @synthesize cancellationReason=_cancellationReason;
 @property(retain) NSError *error; // @synthesize error=_error;
 @property(retain) IDELaunchSession *launchSession; // @synthesize launchSession=_launchSession;
 @property(retain) DVTFilePath *statusImageFilePath; // @synthesize statusImageFilePath=_statusImageFilePath;
@@ -30,6 +32,7 @@
 - (void)addSubtracker:(id)arg1;
 - (void)_updateIsFinished;
 - (void)cancel;
+- (void)cancelWithReason:(int)arg1;
 @property(readonly) BOOL statusChanged;
 - (id)init;
 

@@ -19,7 +19,7 @@
 @property(retain, nonatomic) DVTLibraryAsset *editedAsset; // @synthesize editedAsset=_editedAsset;
 @property(retain) NSResponder *initialResponder; // @synthesize initialResponder=_initialResponder;
 @property(retain) DVTLibraryDetailController *currentDetailController; // @synthesize currentDetailController=_currentDetailController;
-@property(readonly) id didEditHandlerBlock; // @synthesize didEditHandlerBlock=_didEditHandlerBlock;
+@property(readonly, copy) id didEditHandlerBlock; // @synthesize didEditHandlerBlock=_didEditHandlerBlock;
 - (void).cxx_destruct;
 - (void)didChangeCurrentDetailController;
 - (void)willChangeCurrentDetailController;

@@ -8,7 +8,7 @@
 
 #import "NSMenuDelegate-Protocol.h"
 
-@class DVMainController, DVQueryOptionsController, DVScopeBarMultiSelectionViewFactory, DVScopeMultiSelectionWindow, NSBox, NSButton, NSPopUpButton;
+@class DVMainController, DVQueryOptionsController, DVScopeBarMultiSelectionViewFactory, DVScopeMultiSelectionWindow, NSBox, NSButton, NSPopUpButton, NSString;
 
 @interface DVScopeBarController : NSObject <NSMenuDelegate>
 {
@@ -48,6 +48,12 @@
 - (void)setMatchTypeAndStartSearching:(unsigned long long)arg1;
 - (void)update;
 - (void)awakeFromNib;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

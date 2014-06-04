@@ -10,7 +10,6 @@
 
 @interface IBXMLDecoder : NSCoder
 {
-    IBXMLDecoderElement *currentElement;
     NSMutableArray *successfullyDecodedObjects;
     NSMapTable *objectsToElements;
     NSMutableDictionary *classFallbacks;
@@ -19,16 +18,17 @@
     NSMutableArray *decodedBytes;
     IBSelfCompressingDataWrapper *originalDocumentData;
     long long nextGenericKey;
-    id <IBXMLDecoderDelegate> delegate;
     NSSet *objectElementNamesWithPotentialObjectChildren;
     NSSet *specialCaseCollectionElementNames;
     NSDictionary *specialTypesToClasses;
+    id <IBXMLDecoderDelegate> _delegate;
+    IBXMLDecoderElement *_currentElement;
 }
 
 + (void)setDecodersShouldCompressPreviousXMLForHints:(BOOL)arg1;
 + (id)unarchiveObjectWithData:(id)arg1;
-@property(retain) id <IBXMLDecoderDelegate> delegate; // @synthesize delegate;
-@property(retain) IBXMLDecoderElement *currentElement; // @synthesize currentElement;
+@property(retain) IBXMLDecoderElement *currentElement; // @synthesize currentElement=_currentElement;
+@property(retain) id <IBXMLDecoderDelegate> delegate; // @synthesize delegate=_delegate;
 - (long long)versionForClassName:(id)arg1;
 - (unsigned int)systemVersion;
 - (void *)decodeBytesWithReturnedLength:(unsigned long long *)arg1;
@@ -50,13 +50,13 @@
 - (id)decodeObjectForKey:(id)arg1;
 - (id)objectForXMLElement:(id)arg1;
 - (void)invokeRestoringDecodingStack:(id)arg1;
-- (id)allocObjectForObjectElement:(id)arg1;
+- (Class)classForObjectElement:(id)arg1;
 - (Class)classForClassName:(id)arg1;
 - (id)hintsForFutureXMLCoder;
 - (void)replaceObject:(id)arg1 withObject:(id)arg2;
 - (void)mapElement:(id)arg1 toObject:(id)arg2;
 - (id)elementForObject:(id)arg1;
-- (id)deserializeObject:(id)arg1 fromElement:(id)arg2;
+- (id)deserializeObject:(id)arg1 fromXMLElement:(id)arg2;
 - (id)deserializeSet:(id)arg1 fromXMLElement:(id)arg2;
 - (id)deserializeDictionary:(id)arg1 fromXMLElement:(id)arg2;
 - (id)deserializeArray:(id)arg1 fromXMLElement:(id)arg2;

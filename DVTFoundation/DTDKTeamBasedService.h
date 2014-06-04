@@ -17,8 +17,8 @@
 + (id)_createRequestDictionaryForTeam:(id)arg1;
 - (void)_success;
 - (void)_failure:(id)arg1;
-@property(readonly) NSString *platform;
-@property(readonly) NSString *teamID;
+@property(readonly, copy) NSString *platform;
+@property(readonly, copy) NSString *teamID;
 
 @end
 

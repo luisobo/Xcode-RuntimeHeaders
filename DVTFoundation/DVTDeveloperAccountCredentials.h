@@ -16,6 +16,7 @@
 }
 
 + (id)URLProtectionSpace;
++ (id)accountCredentialsFromUsername:(id)arg1 password:(id)arg2 error:(id *)arg3;
 + (id)accountCredentialsFromUsername:(id)arg1 password:(id)arg2 keychain:(struct OpaqueSecKeychainRef *)arg3 successfullyPersisted:(char *)arg4 error:(id *)arg5;
 + (id)accountCredentialsForDefaultCredentials;
 + (id)accountCredentialsForUsername:(id)arg1 keychain:(struct OpaqueSecKeychainRef *)arg2 error:(id *)arg3;

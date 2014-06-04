@@ -50,18 +50,21 @@
 - (void)primitiveInvalidate;
 - (id)_contentDescription;
 - (id)_contentDescriptionWithChildValuesAtLevel:(unsigned long long)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)_paddingForLevel:(unsigned long long)arg1;
 - (id)primitiveChildValues;
 - (void)_handleChildValuesChanged;
 - (id)valueForKey:(id)arg1 forLazyDictionary:(id)arg2;
 - (id)_childWithName:(id)arg1;
+- (void)classNameHierarchy:(id)arg1;
 - (void)ensureAllDisplayablePropertiesAreLoaded:(id)arg1;
 @property(readonly) BOOL representsNullObjectPointer;
 @property(readonly) BOOL representsNilObjectiveCObject;
 - (void)watch;
 @property(readonly) NSString *realName;
+- (void)childWithName:(id)arg1 foundChild:(id)arg2;
 @property(readonly) BOOL childValuesCountValid;
+- (void)loadedChildValues:(id)arg1;
 @property(readonly) NSArray *childValues;
 @property(readonly) BOOL hasChildValues;
 @property(readonly) BOOL inScope;
@@ -71,21 +74,22 @@
 - (BOOL)wantsToProvideSummary;
 - (id)_attributedStringByEscapeNewlines:(id)arg1;
 @property(readonly) BOOL itemDescriptionHasChanged;
-@property(readonly) NSString *itemDescription;
+@property(readonly, copy) NSString *itemDescription;
 - (id)primitiveFormattedSummary;
 @property(readonly) NSAttributedString *formattedSummary;
 - (void)_summaryFormatterInvalidated:(id)arg1;
 @property(readonly) BOOL typeHasChanged;
-@property(readonly) NSString *type;
+@property(readonly, copy) NSString *type;
 @property(readonly) BOOL valueHasChanged;
 @property(readonly) BOOL isValueEditable;
 @property(copy) NSString *value;
-@property(readonly) NSString *primitiveLogicalValue;
+@property(readonly, copy) NSString *primitiveLogicalValue;
 @property(readonly) BOOL logicalValueHasChanged;
 - (BOOL)hasSummaryFormatter;
+- (BOOL)isNilPointer;
 - (BOOL)isPointer;
-@property(readonly) NSString *logicalValue;
-@property(readonly) NSString *name;
+@property(readonly, copy) NSString *logicalValue;
+@property(readonly, copy) NSString *name;
 @property(readonly) DBGDataValue *parent;
 @property(readonly) BOOL dynamicTypeHasChanged;
 @property(readonly) BOOL summaryHasChanged;
@@ -93,6 +97,7 @@
 @property(readonly) NSString *blockStartAddress;
 @property(readonly) NSString *summary;
 - (void)primitiveSetDynamicType:(id)arg1;
+- (id)simpleTypeName;
 - (void)setDynamicType:(id)arg1;
 @property(readonly) DBGDataType *staticType;
 @property(readonly) NSString *expressionPath;
@@ -102,7 +107,10 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

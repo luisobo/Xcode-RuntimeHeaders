@@ -8,7 +8,7 @@
 
 #import "DVTDraggingInfo-Protocol.h"
 
-@class DVTDraggedImageState, NSDictionary, NSImage, NSMutableArray, NSPasteboard, NSWindow;
+@class DVTDraggedImageState, NSDictionary, NSImage, NSMutableArray, NSPasteboard, NSString, NSWindow;
 
 @interface DVTDraggingContext : NSObject <DVTDraggingInfo>
 {
@@ -54,9 +54,16 @@
 - (struct CGPoint)draggingLocationOnScreen;
 - (id)namesOfPromisedFilesDroppedAtDestination:(id)arg1;
 - (void)slideDraggedImageTo:(struct CGPoint)arg1;
+- (void)_setOnDemandSpringLoadingEnabled:(BOOL)arg1;
+- (BOOL)_isOnDemandSpringLoadingActivated;
 - (unsigned long long)_lastDragDestinationOperation;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)initWithSource:(id)arg1 andPasteboard:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

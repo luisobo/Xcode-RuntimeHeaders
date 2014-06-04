@@ -41,7 +41,7 @@
 @property(readonly) DVTDocumentLocation *primaryDocumentLocation; // @synthesize primaryDocumentLocation=_primaryDocumentLocation;
 @property(readonly) int issueType; // @synthesize issueType=_issueType;
 @property BOOL wasFetchedFromCache; // @synthesize wasFetchedFromCache=_wasFetchedFromCache;
-@property(readonly) IDEIssue *parentIssue; // @synthesize parentIssue=_parentIssue;
+@property(readonly) __weak IDEIssue *parentIssue; // @synthesize parentIssue=_parentIssue;
 @property(readonly) IDEActivityLogRecord *originatingLogRecord; // @synthesize originatingLogRecord=_originatingLogRecord;
 @property(readonly) IDEActivityLogMessage *originatingMessage; // @synthesize originatingMessage=_originatingMessage;
 @property(retain, nonatomic) IDEActivityLogMessage *representedMessage; // @synthesize representedMessage=_representedMessage;
@@ -62,7 +62,7 @@
 @property(readonly) BOOL isLiveIssue;
 @property(retain) IDEIssue *_parentIssue;
 @property(readonly) NSString *formattedStringRepresentation;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)_severityString;
 - (void)_freeze;
 @property(readonly) NSArray *fixableDiagnosticItems;
@@ -74,6 +74,11 @@
 - (id)initWithIssueProvider:(id)arg1 message:(id)arg2 originatingLogRecord:(id)arg3 wasFetchedFromCache:(BOOL)arg4;
 - (id)initWithIssueProvider:(id)arg1 documentLocations:(id)arg2 issueTypeIdentifier:(id)arg3 fullMessage:(id)arg4 severity:(unsigned long long)arg5 representedMessage:(id)arg6;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

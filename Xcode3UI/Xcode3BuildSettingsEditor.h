@@ -13,7 +13,7 @@
 #import "XCEDataRootAdapterP-Protocol.h"
 #import "Xcode3SourceListItemEditor-Protocol.h"
 
-@class DVTBorderedView, DVTMacroDefinitionConditionSet, DVTPerformanceMetric, DVTSourceExpression, NSArray, NSButton, NSMenu, NSMutableArray, NSMutableDictionary, NSMutableSet, NSOutlineView, NSSearchField, NSString, PBXProject, XCPropertyDefinition, Xcode3BuildPropertyEditor, Xcode3BuildPropertyOutlineView, Xcode3ConfigurableDataSource, Xcode3ProjectEditor;
+@class DVTBorderedView, DVTGradientImagePopUpButton, DVTMacroDefinitionConditionSet, DVTPerformanceMetric, DVTSourceExpression, NSArray, NSButton, NSMenu, NSMutableArray, NSMutableDictionary, NSMutableSet, NSOutlineView, NSSearchField, NSString, PBXProject, XCPropertyDefinition, Xcode3BuildPropertyEditor, Xcode3BuildPropertyOutlineView, Xcode3ConfigurableDataSource, Xcode3ProjectEditor;
 
 @interface Xcode3BuildSettingsEditor : IDEViewController <Xcode3SourceListItemEditor, NSTableViewDataSource, NSTableViewDelegate, XCEDataRootAdapterP, XCEDataNodeAdapterP, DVTDelayedMenuButtonDelegate>
 {
@@ -53,6 +53,7 @@
     NSButton *_editorModeButton_all;
     NSButton *_displayModeButton_combined;
     NSButton *_displayModeButton_separated;
+    DVTGradientImagePopUpButton *_addButton;
     NSSearchField *_searchField;
     DVTBorderedView *_navigationBarBorderView;
     Xcode3BuildPropertyOutlineView *_buildPropertiesOutlineView;
@@ -198,8 +199,8 @@
 @property(readonly) NSString *buildPropertyNameColumnTitle;
 - (id)_buildPropertyValueColumnTitleForDisplayMode:(int)arg1;
 - (id)_buildPropertyNameColumnTitleForDisplayMode:(int)arg1;
-@property(readonly) NSString *buildPropertyValueDisplayModeToggleButtonTitle;
-@property(readonly) NSString *buildPropertyNameDisplayModeToggleButtonTitle;
+@property(readonly, copy) NSString *buildPropertyValueDisplayModeToggleButtonTitle;
+@property(readonly, copy) NSString *buildPropertyNameDisplayModeToggleButtonTitle;
 - (void)_displayModeButtonAction:(id)arg1;
 - (void)_editorModeButtonAction:(id)arg1;
 - (void)_updateDisplayModeButtons;
@@ -222,7 +223,11 @@
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(retain, nonatomic) id inspectedBlueprint;
+@property(readonly) Class superclass;
 
 @end
 

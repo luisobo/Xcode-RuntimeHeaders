@@ -16,7 +16,6 @@
     NSMutableDictionary *_repositoryAuthenticationType;
     NSMutableDictionary *_repositoryTemporaryAuthenticationStatus;
     NSMutableSet *_selectedDevices;
-    BOOL _buildsFromClean;
     BOOL _performsAnalyzeAction;
     BOOL _performsTestAction;
     BOOL _performsArchiveAction;
@@ -33,6 +32,7 @@
     NSString *_botDescription;
     IDEXcodeServer *_server;
     IDEScheme *_scheme;
+    unsigned long long _buildsFromCleanSchedule;
     unsigned long long _scheduleType;
     unsigned long long _periodType;
     long long _dayOfWeek;
@@ -85,7 +85,7 @@
 @property(nonatomic) BOOL performsArchiveAction; // @synthesize performsArchiveAction=_performsArchiveAction;
 @property(nonatomic) BOOL performsTestAction; // @synthesize performsTestAction=_performsTestAction;
 @property(nonatomic) BOOL performsAnalyzeAction; // @synthesize performsAnalyzeAction=_performsAnalyzeAction;
-@property(nonatomic) BOOL buildsFromClean; // @synthesize buildsFromClean=_buildsFromClean;
+@property(nonatomic) unsigned long long buildsFromCleanSchedule; // @synthesize buildsFromCleanSchedule=_buildsFromCleanSchedule;
 @property(retain, nonatomic) IDEScheme *scheme; // @synthesize scheme=_scheme;
 @property(retain, nonatomic) IDEXcodeServer *server; // @synthesize server=_server;
 @property(retain, nonatomic) NSString *botDescription; // @synthesize botDescription=_botDescription;

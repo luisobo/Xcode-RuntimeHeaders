@@ -11,17 +11,16 @@
     id <DVTFontTextFieldDataSource> fontDataSource;
 }
 
++ (id)sharedInstance;
 - (void).cxx_destruct;
-- (id)displayNameForPrimaryUserInterface;
-- (id)icon;
-- (id)operatingSystemName;
+- (id)displayNameForUserInterfaceStyle;
+- (Class)imageRequestProcessorClass;
+- (id)toolProxyManager;
+- (id)idiom;
 @property(readonly) id <DVTFontTextFieldDataSource> fontDataSource;
-- (Class)documentClass;
-- (id)windowPasteboardType;
-- (id)viewPasteboardType;
-- (id)objectPasteboardType;
 - (id)archiveIdentifier;
 - (id)identifier;
+- (id)platform;
 
 @end
 

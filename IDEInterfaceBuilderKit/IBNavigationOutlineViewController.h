@@ -11,7 +11,7 @@
 #import "IBHybridStructureSelectionProvider-Protocol.h"
 #import "IBOutlineViewControllerDelegate-Protocol.h"
 
-@class IBNavigationControllerItem, IBOutlineViewController, NSString;
+@class IBAbstractDocumentEditor, IBNavigationControllerItem, IBOutlineViewController, NSString;
 
 @interface IBNavigationOutlineViewController : IBNavigationController <IBAutolayoutSidebarViewControllerDelegate, IBHybridStructureSelectionProvider, IBOutlineViewControllerDelegate, IBHighlightProvider>
 {
@@ -27,30 +27,36 @@
 - (void)didPushNavigationItem:(id)arg1 previousItem:(id)arg2;
 - (void)autolayoutSidebar:(id)arg1 isFinishedWithResolvingViewController:(id)arg2;
 - (void)autolayoutSidebar:(id)arg1 wantsToShowResolvingViewController:(id)arg2;
+- (id)selectionProviderForOutlineViewController:(id)arg1;
 - (void)outlineViewController:(id)arg1 didSelectAutolayoutIssuesItemForObject:(id)arg2;
 - (id)documentEditor:(id)arg1 highlightObjects:(id)arg2 showLabels:(BOOL)arg3 successfulObjects:(id *)arg4;
 - (double)highlightPriorityInDocumentEditor:(id)arg1;
 @property(copy) NSString *filterString;
-@property(readonly) BOOL wantsFilterField;
 - (void)topLevelObjectsChanged;
 - (void)owningEditorInstalled;
 @property(nonatomic) BOOL drawsWithActiveLook;
 - (id)_selectionProviderViewControllers;
-- (id)stateSavingIdentifier;
+@property(readonly) NSString *stateSavingIdentifier;
 - (void)willResignAsSelectionProviderForDocumentEditor:(id)arg1;
 - (void)didBecomeSelectionProviderForDocumentEditor:(id)arg1;
 - (BOOL)documentEditor:(id)arg1 canSelectMembers:(id)arg2;
 - (void)documentEditor:(id)arg1 deselectMembers:(id)arg2;
 - (void)documentEditor:(id)arg1 pullSelection:(id)arg2;
-- (void)documentEditor:(id)arg1 selectMembers:(id)arg2;
-- (id)selectionProviderSwitcherTitle;
-- (BOOL)onlySupportsDocumentObjectMembers;
+- (void)documentEditor:(id)arg1 selectMembers:(id)arg2 takeFocus:(BOOL)arg3 zoomIfNeeded:(BOOL)arg4;
+@property(readonly, nonatomic) NSString *selectionProviderSwitcherTitle;
+@property(readonly, nonatomic) BOOL onlySupportsDocumentObjectMembers;
+@property(readonly) BOOL wantsFilterField;
 - (void)registerWithDocumentEditor;
-- (void)setDocumentEditor:(id)arg1;
-- (id)documentEditor;
+@property(nonatomic) __weak IBAbstractDocumentEditor *documentEditor;
 - (void)primitiveInvalidate;
 - (void)loadView;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

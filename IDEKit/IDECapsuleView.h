@@ -9,7 +9,7 @@
 #import "DVTInvalidation-Protocol.h"
 #import "NSTextFieldDelegate-Protocol.h"
 
-@class DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, IDECapsuleFooterView, IDEViewController<IDECapsuleViewController>, NSButton, NSTrackingArea;
+@class DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, IDECapsuleFooterView, IDECapsuleListView, IDEViewController<IDECapsuleViewController>, NSButton, NSString, NSTrackingArea;
 
 @interface IDECapsuleView : DVTDisclosureView <NSTextFieldDelegate, DVTInvalidation>
 {
@@ -33,18 +33,29 @@
         unsigned int titleForEditing:1;
         unsigned int setTitle:1;
         unsigned int backgroundColor:1;
+        unsigned int borderColor:1;
         unsigned int headerContentView:1;
         unsigned int preferredContentWidth:1;
         unsigned int contentXOffset:1;
         unsigned int capsuleViewWasDisclosed:1;
+        unsigned int capsuleViewSidePadding:1;
+        unsigned int allowCustomContentHeaderViewToDriveHeaderHeight:1;
     } _delegateRespondsTo;
     BOOL _selected;
+    BOOL _highlighted;
+    BOOL _highlightingEnabled;
+    BOOL _active;
+    IDECapsuleListView *_listView;
     IDEViewController<IDECapsuleViewController> *_capsuleViewController;
 }
 
 + (void)initialize;
 @property(retain) IDEViewController<IDECapsuleViewController> *capsuleViewController; // @synthesize capsuleViewController=_capsuleViewController;
 @property(retain, nonatomic) id <IDECapsuleViewDelegate> delegate; // @synthesize delegate=_delegate;
+@property(retain, nonatomic) IDECapsuleListView *listView; // @synthesize listView=_listView;
+@property(nonatomic) BOOL active; // @synthesize active=_active;
+@property(nonatomic) BOOL highlightingEnabled; // @synthesize highlightingEnabled=_highlightingEnabled;
+@property(nonatomic) BOOL highlighted; // @synthesize highlighted=_highlighted;
 @property(nonatomic) BOOL selected; // @synthesize selected=_selected;
 @property(retain, nonatomic) IDECapsuleFooterView *footerView; // @synthesize footerView=_footerView;
 - (void).cxx_destruct;
@@ -64,6 +75,9 @@
 - (id)initWithCapsuleViewController:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;
+- (BOOL)allowCustomContentHeaderViewToDriveHeaderHeight;
+- (double)sidePadding;
+- (id)borderColor;
 - (id)backgroundColor;
 @property(readonly) BOOL _renamable;
 @property(readonly) BOOL _removable;
@@ -87,7 +101,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

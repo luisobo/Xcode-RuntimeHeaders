@@ -8,7 +8,7 @@
 
 #import "NSMenuDelegate-Protocol.h"
 
-@class NSMenu, NSMutableArray, NSMutableDictionary;
+@class NSMenu, NSMutableArray, NSMutableDictionary, NSString;
 
 @interface XCActionManager : NSResponder <NSMenuDelegate>
 {
@@ -86,6 +86,12 @@
 - (void)removeSelectionAtLevel:(id)arg1;
 - (void)replaceOrSetSelection:(id)arg1 atLevel:(id)arg2;
 - (id)selectionDictionary;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

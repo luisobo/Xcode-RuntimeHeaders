@@ -7,6 +7,7 @@
 #import "NSScreen.h"
 
 @interface NSScreen (DVTNSScreenExtras)
++ (struct CGPoint)coreGraphicsScreenPointForAppKitScreenPoint:(struct CGPoint)arg1;
 + (id)screenForMouseLocation;
 @end
 

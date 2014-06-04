@@ -6,14 +6,11 @@
 
 #import <GPUDebuggerFoundation/GPUTraceOutlineItem.h>
 
-#import "DYFunctionTracerDelegate-Protocol.h"
+@class GPUTraceDisplayableItem, GPUTraceResources, NSArray, NSMutableArray, NSObject<OS_dispatch_queue>;
 
-@class GPUStateMirror, GPUTraceDrawItem, GPUTraceResources, NSArray, NSMutableArray, NSObject<OS_dispatch_queue>;
-
-@interface GPUTraceAPIItem : GPUTraceOutlineItem <DYFunctionTracerDelegate>
+@interface GPUTraceAPIItem : GPUTraceOutlineItem
 {
     NSObject<OS_dispatch_queue> *_queue;
-    GPUStateMirror *_stateMirror;
     NSArray *_boundResources;
     NSArray *_allResources;
     int _functionIndex;
@@ -23,33 +20,27 @@
     BOOL _loadingResourceTree;
     BOOL _hasResourceTree;
     BOOL _hasStateMirror;
-    GPUTraceDrawItem *_previousDrawItem;
+    int _maxIssueSeverity;
+    GPUTraceDisplayableItem *_previousDisplayableItem;
 }
 
-@property(readonly) BOOL hasStateMirror; // @synthesize hasStateMirror=_hasStateMirror;
-@property(retain) GPUTraceDrawItem *previousDrawItem; // @synthesize previousDrawItem=_previousDrawItem;
+@property(retain) GPUTraceDisplayableItem *previousDisplayableItem; // @synthesize previousDisplayableItem=_previousDisplayableItem;
 @property BOOL loadingResourceTree; // @synthesize loadingResourceTree=_loadingResourceTree;
 @property BOOL hasResourceTree; // @synthesize hasResourceTree=_hasResourceTree;
 @property(retain) NSMutableArray *stackFrames; // @synthesize stackFrames=_stackFrames;
-@property(readonly) GPUTraceResources *resourceGroups; // @synthesize resourceGroups=_resourceGroups;
+@property(retain) GPUTraceResources *resourceGroups; // @synthesize resourceGroups=_resourceGroups;
 @property(readonly) int displayIndex; // @synthesize displayIndex=_displayIndex;
 @property(readonly) int functionIndex; // @synthesize functionIndex=_functionIndex;
-@property(readonly) NSArray *allResources; // @synthesize allResources=_allResources;
-@property(readonly) NSArray *boundResources; // @synthesize boundResources=_boundResources;
+@property(retain) NSArray *allResources; // @synthesize allResources=_allResources;
+@property(retain) NSArray *boundResources; // @synthesize boundResources=_boundResources;
 - (void).cxx_destruct;
-- (id)rewriteContext:(unsigned long long)arg1;
-- (id)rewriteURL:(const char *)arg1;
-- (id)rewriteVariable:(const char *)arg1 context:(unsigned long long)arg2;
+- (id)generateLabel;
 - (void)releaseRealizedResources;
 - (void)_generateResources:(BOOL)arg1;
-- (void)_generateResourcesForGroup:(id)arg1 boundOnly:(BOOL)arg2;
-- (void)_createParentResourceGroups;
-- (id)_createResourceGroup:(id)arg1 boundOnly:(BOOL)arg2;
 - (BOOL)generateResources;
 - (BOOL)generateResourceTopLevelGroups;
 - (id)stackFramesWithVisibleSource;
 - (void)generateStackFrameItems;
-@property(copy) GPUStateMirror *stateMirror; // @synthesize stateMirror=_stateMirror;
 - (id)description;
 - (void)primitiveInvalidate;
 - (id)UUIDSection;

@@ -14,15 +14,17 @@
 }
 
 + (id)jointWithBodyA:(id)arg1 bodyB:(id)arg2 anchor:(struct CGPoint)arg3;
+@property(readonly) struct CGPoint anchor; // @synthesize anchor=_anchor;
 - (id).cxx_construct;
 - (void)create;
 - (struct b2JointDef *)_jointDef;
 - (void)set_joint:(struct b2Joint *)arg1;
 - (struct b2Joint *)_joint;
-@property double frictionTorque;
-@property double upperAngleLimit;
-@property double lowerAngleLimit;
-@property BOOL shouldEnableLimits;
+@property(nonatomic) double rotationSpeed;
+@property(nonatomic) double frictionTorque;
+@property(nonatomic) double upperAngleLimit;
+@property(nonatomic) double lowerAngleLimit;
+@property(nonatomic) BOOL shouldEnableLimits;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithBodyA:(id)arg1 bodyB:(id)arg2 anchor:(struct CGPoint)arg3;

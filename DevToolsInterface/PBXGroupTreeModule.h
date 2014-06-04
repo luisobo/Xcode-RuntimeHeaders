@@ -9,7 +9,7 @@
 #import "NSOutlineViewDataSource-Protocol.h"
 #import "NSOutlineViewDelegate-Protocol.h"
 
-@class NSArray, NSMenu, NSNumber, NSTableColumn, PBXExtendedOutlineView, PBXOutlineDataSourceSplitter;
+@class NSArray, NSMenu, NSNumber, NSString, NSTableColumn, PBXExtendedOutlineView, PBXOutlineDataSourceSplitter;
 
 @interface PBXGroupTreeModule : PBXProjectModule <NSOutlineViewDataSource, NSOutlineViewDelegate>
 {
@@ -183,6 +183,12 @@
 - (void)dealloc;
 - (void)viewDidLoad;
 - (id)initWithModuleNibName:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

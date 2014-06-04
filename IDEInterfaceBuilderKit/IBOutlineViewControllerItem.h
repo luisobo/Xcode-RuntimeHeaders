@@ -20,10 +20,12 @@
     NSArray *children;
     NSArray *filteredChildren;
     IBOutlineViewController *viewController;
+    BOOL _installed;
     id _representedDocumentObjectForAutolayoutStatus;
 }
 
 + (void)initialize;
+@property(nonatomic, getter=isInstalled) BOOL installed; // @synthesize installed=_installed;
 @property(retain) id representedDocumentObjectForAutolayoutStatus; // @synthesize representedDocumentObjectForAutolayoutStatus=_representedDocumentObjectForAutolayoutStatus;
 @property(copy) NSArray *filteredChildren; // @synthesize filteredChildren;
 @property(retain) IBOutlineViewController *viewController; // @synthesize viewController;
@@ -47,13 +49,16 @@
 - (BOOL)isVirtualItem;
 @property(readonly, getter=isCollapsible) BOOL collapsible;
 - (id)descriptionWithChildren;
-- (id)description;
+@property(readonly, copy) NSString *description;
 @property(readonly) IBDocumentMemberWrapper *representedWrapper;
 - (void)primitiveInvalidate;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

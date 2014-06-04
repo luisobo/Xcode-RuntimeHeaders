@@ -10,7 +10,7 @@
 #import "IDECapsuleListViewDataSource-Protocol.h"
 #import "NSTableViewDataSource-Protocol.h"
 
-@class DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, IDEActionStackView, IDEControlGroup, IDESchemeAction, NSArray, NSMutableArray;
+@class DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, IDEActionStackView, IDEControlGroup, IDESchemeAction, NSArray, NSMutableArray, NSString;
 
 @interface IDEActionRunPhaseSheetController : IDEViewController <NSTableViewDataSource, IDECapsuleListViewDataSource, IDEActionSliceViewControllerDelegate>
 {
@@ -33,7 +33,7 @@
 - (void).cxx_destruct;
 - (unsigned long long)capsuleListView:(id)arg1 validateDrop:(id)arg2 proposedRow:(long long)arg3;
 - (BOOL)capsuleListView:(id)arg1 acceptDrop:(id)arg2 row:(long long)arg3;
-- (BOOL)capsuleListView:(id)arg1 writeRowWithIndex:(unsigned long long)arg2 toPasteboard:(id)arg3;
+- (id)capsuleListView:(id)arg1 pastboardTypesForRowWithIndex:(unsigned long long)arg2;
 - (BOOL)capsuleListView:(id)arg1 shouldAllowDragOfRow:(long long)arg2;
 - (id)capsuleListView:(id)arg1 viewControllerForRow:(long long)arg2;
 - (long long)numberOfObjectsInCapsuleListView:(id)arg1;
@@ -55,6 +55,12 @@
 - (void)updateBoundIDEWorkspaceBinding;
 - (void)updateBoundIDERunContextBinding;
 - (id)dvtExtraBindings;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

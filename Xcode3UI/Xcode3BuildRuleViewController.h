@@ -22,7 +22,7 @@
 - (BOOL)canAddFiles;
 - (BOOL)capsuleViewCanBeRemoved:(id)arg1;
 - (id)capsuleViewTitleForEditing:(id)arg1;
-@property(readonly) NSString *titleForDisplay;
+@property(readonly, copy) NSString *titleForDisplay;
 
 // Remaining properties
 @property BOOL canAddItems;
@@ -32,9 +32,13 @@
 @property(readonly) BOOL canRename;
 @property(readonly) BOOL canSelect;
 @property(readonly) BOOL canUndisclose;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) BOOL disclosedByDefault;
-@property(readonly) NSString *footerLabel;
+@property(readonly, copy) NSString *footerLabel;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSImage *icon;
+@property(readonly) Class superclass;
 
 @end
 

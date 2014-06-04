@@ -10,12 +10,13 @@
 
 @interface IDEFileIdentityAndTypePopupController : IDEInspectorProperty
 {
-    NSPopUpButton *_popup;
     IDEInspectorKeyPath *_assignedFileTypeKeyPath;
     IDEInspectorKeyPath *_resolvedFilePathKeyPath;
     NSMenuItem *_defaulItem;
+    NSPopUpButton *_popup;
 }
 
+@property(retain, nonatomic) NSPopUpButton *popup; // @synthesize popup=_popup;
 - (void).cxx_destruct;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)userDidChangeValue:(id)arg1;

@@ -11,36 +11,26 @@
 @interface DVTSegmentedControl : NSSegmentedControl
 {
     NSMutableArray *_alternateImages;
-    NSMutableArray *_inactiveImages;
-    NSMutableArray *_alternateInactiveImages;
-    NSMutableArray *_disabledImages;
-    NSMutableArray *_disabledInactiveImages;
     BOOL _shouldDrawMenuIndictor;
     BOOL _bordered;
+    double _menuIndicatorInset;
 }
 
 + (id)toolbarSegmentedControlWithImages:(id)arg1 trackingMode:(unsigned long long)arg2;
-+ (id)toolbarSegmentedControlWithTrackingMode:(unsigned long long)arg1 images:(id)arg2 alternateImages:(id)arg3 inactiveImages:(id)arg4 alternateInactiveImages:(id)arg5;
-+ (id)toolbarSegmentedControlWithTrackingMode:(unsigned long long)arg1 images:(id)arg2 alternateImages:(id)arg3 inactiveImages:(id)arg4 alternateInactiveImages:(id)arg5 disabledImages:(id)arg6 disabledInactiveImages:(id)arg7;
++ (id)toolbarSegmentedControlWithTrackingMode:(unsigned long long)arg1 images:(id)arg2 alternateImages:(id)arg3;
 @property(getter=isBordered) BOOL bordered; // @synthesize bordered=_bordered;
+@property double menuIndicatorInset; // @synthesize menuIndicatorInset=_menuIndicatorInset;
 @property BOOL shouldDrawMenuIndictor; // @synthesize shouldDrawMenuIndictor=_shouldDrawMenuIndictor;
 - (void).cxx_destruct;
 - (BOOL)wantsDefaultClipping;
 - (void)setNeedsDisplay:(BOOL)arg1;
 - (void)applyDVTStyleWithTrackingMode:(unsigned long long)arg1;
-- (void)setAlternateInactiveImage:(id)arg1 forSegment:(long long)arg2;
-- (id)alternateInactiveImageForSegment:(long long)arg1;
-- (void)setInactiveImage:(id)arg1 forSegment:(long long)arg2;
-- (id)inactiveImageForSegment:(long long)arg1;
 - (void)setAlternateImage:(id)arg1 forSegment:(long long)arg2;
 - (id)alternateImageForSegment:(long long)arg1;
-- (void)setDisabledInactiveImage:(id)arg1 forSegment:(long long)arg2;
-- (id)disabledInactiveImageForSegment:(long long)arg1;
-- (void)setDisabledImage:(id)arg1 forSegment:(long long)arg2;
-- (id)disabledImageForSegment:(long long)arg1;
 - (id)_getImageInArray:(id)arg1 forSegment:(long long)arg2;
 - (void)_setImage:(id)arg1 inArray:(id)arg2 forSegment:(long long)arg3;
 - (id)initWithFrame:(struct CGRect)arg1;
+@property BOOL useAnyDrawingStyle;
 @property BOOL useRadioDrawingStyle;
 @property BOOL useMenuDelayForSelectedSegment;
 @property BOOL useMenuDelay;

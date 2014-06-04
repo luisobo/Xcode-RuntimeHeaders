@@ -11,18 +11,21 @@
 @protocol DVTTextCompletionItem <NSObject>
 @property(readonly) BOOL notRecommended;
 @property double priority;
+@property(readonly) unsigned long long priorityComparatorKind;
+@property(readonly) long long priorityBucket;
 @property(readonly) NSImage *icon;
-@property(readonly) NSAttributedString *descriptionText;
-@property(readonly) NSString *parentText;
-@property(readonly) NSString *completionText;
-@property(readonly) NSString *displayType;
-@property(readonly) NSString *displayText;
-@property(readonly) NSString *name;
+@property(readonly, copy) NSAttributedString *descriptionText;
+@property(readonly, copy) NSString *parentText;
+@property(readonly, copy) NSString *completionText;
+@property(readonly, copy) NSString *displayType;
+@property(readonly, copy) NSString *displayText;
+@property(readonly, copy) NSString *name;
 
 @optional
+@property(readonly, copy) NSString *previewText;
 @property(readonly) NSImage *highlightedStatusIcon;
 @property(readonly) NSImage *statusIcon;
-@property(readonly) NSArray *additionalCompletions;
+@property(readonly, copy) NSArray *additionalCompletions;
 @property(readonly) int completionItemStyle;
 - (void)infoViewControllerWithWidth:(double)arg1 context:(id)arg2 completionBlock:(id)arg3;
 @end

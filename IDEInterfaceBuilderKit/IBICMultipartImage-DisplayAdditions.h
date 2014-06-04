@@ -6,12 +6,27 @@
 
 #import "IBICMultipartImage.h"
 
+@class NSString;
+
 @interface IBICMultipartImage (DisplayAdditions)
++ (id)keyPathsForValuesAffectingIbShowsSizeClassSection;
 + (id)keyPathsForValuesAffectingIbInspectedImageName;
+- (void)setIbHeightCombination:(id)arg1;
+- (id)ibHeightCombination;
+- (void)setIbWidthCombination:(id)arg1;
+- (id)ibWidthCombination;
+- (id)ibSlotComponentMaskForCombinationIdentifier:(id)arg1 sizeClass:(Class)arg2 idiom:(id)arg3;
+- (void)ibSetCombination:(id)arg1 forPrimarySizeClass:(Class)arg2 secondarySizeClass:(Class)arg3;
+- (id)ibCombinationForSizeClass:(Class)arg1;
+- (id)ibInspectedHasRepsForSuggestionSet:(id)arg1 mask:(id)arg2;
 - (id)ibInspectedHasRepsForSuggestionSet:(id)arg1;
+- (void)setIbInspectedHasRepsForSuggestionSet:(id)arg1 toValue:(id)arg2 mask:(id)arg3;
 - (void)setIbInspectedHasRepsForSuggestionSet:(id)arg1 toValue:(id)arg2;
-- (void)setIbInspectedImageName:(id)arg1;
-- (id)ibInspectedImageName;
+- (BOOL)ibShowsSizeClassSection;
+- (void)setIbSlotsType:(long long)arg1;
+- (long long)ibSlotsType;
+- (id)ibSlotComponentMaskForImageSlotsType:(long long)arg1;
+@property(retain) NSString *ibInspectedImageName;
 - (id)itemsForOpeningInExternalEditor;
 - (BOOL)isSelectableInDetailArea;
 - (id)validatedFileNameForProposedDisplayName:(id)arg1;

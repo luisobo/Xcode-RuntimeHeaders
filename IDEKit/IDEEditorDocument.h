@@ -22,6 +22,7 @@
     DVTNotificationToken *_willRedoChangeNotificationToken;
     DVTNotificationToken *_willUndoChangeNotificationToken;
     DVTStackBacktrace *_addedToDocumentControllerBacktrace;
+    DVTStackBacktrace *_savePresentedItemChanges;
     DVTStackBacktrace *_autosaveWithImplicitCancellabilityCallerBacktrace;
     DVTStackBacktrace *_beginUnlockingBacktrace;
     DVTStackBacktrace *_canCloseDocumentCallPriorToClosingDocumentStackBacktrace;
@@ -63,6 +64,7 @@
 + (BOOL)_presentsVersionsUserInterface;
 + (BOOL)autosavesInPlace;
 + (id)editedFileContents;
++ (id)keyPathsForValuesAffectingIde_displayName;
 + (id)readableTypes;
 + (BOOL)_validateDocumentExtension:(id)arg1;
 + (BOOL)_shouldShowUtilititesAreaAtLoadForSimpleFilesFocusedWorkspace;
@@ -110,6 +112,7 @@
 - (void)updateChangeCountWithToken:(id)arg1 forSaveOperation:(unsigned long long)arg2;
 - (void)updateChangeCount:(unsigned long long)arg1;
 - (void)ide_didFixupChangeCountWithWasEdited:(BOOL)arg1 didHaveEditsSinceLastUserInitiatedSave:(BOOL)arg2 changeString:(id)arg3;
+- (BOOL)dvt_hasBeenEditedSinceLastUserInitiatedSave;
 - (BOOL)hasBeenEditedSinceLastUserInitiatedSave;
 - (void)ide_revertDocumentToSaved:(id)arg1;
 - (void)ide_moveDocumentTo:(id)arg1;
@@ -147,7 +150,7 @@
 - (void)_handleDocumentFileChanges:(id)arg1;
 - (id)windowForSheet;
 - (BOOL)_windowForSheet:(id *)arg1 workspaceForSheet:(id *)arg2 editor:(id *)arg3;
-- (id)ide_displayName;
+@property(readonly, copy) NSString *ide_displayName;
 - (void)setAutosavedContentsFileURL:(id)arg1;
 - (id)autosavedContentsFileURL;
 - (void)setFileURL:(id)arg1;
@@ -165,9 +168,8 @@
 - (id)_documentEditors;
 - (void)undoManagerWillModifyItself:(id)arg1;
 - (void)setHasUndoManager:(BOOL)arg1;
-- (void)setUndoManager:(id)arg1;
+@property(retain) DVTUndoManager *undoManager;
 - (void)ide_setUndoManager:(id)arg1;
-- (id)undoManager;
 - (void)teardownUndoManager:(id)arg1;
 - (void)setupUndoManager:(id)arg1;
 - (id)newUndoManager;
@@ -177,10 +179,12 @@
 - (void)_changeWasRedone:(id)arg1;
 - (void)_changeWasUndone:(id)arg1;
 - (void)_changeWasDone:(id)arg1;
+- (void)savePresentedItemChangesWithCompletionHandler:(id)arg1;
 - (void)autosaveWithImplicitCancellability:(BOOL)arg1 completionHandler:(id)arg2;
 - (void)continueAsynchronousWorkOnMainThreadUsingBlock:(id)arg1;
 - (void)continueActivityUsingBlock:(id)arg1;
 - (void)continueFileAccessUsingBlock:(id)arg1;
+- (id)applicableInspectorCategoriesGivenSuggestion:(id)arg1;
 - (void)setSdefSupport_displayName:(id)arg1;
 - (id)sdefSupport_displayName;
 @property(retain) DVTFileDataType *ide_hintedFileDataType;
@@ -188,6 +192,12 @@
 @property(readonly) BOOL ide_isTextRepresentation;
 - (void)convertToDocumentAtFilePath:(id)arg1 forFileDataType:(id)arg2 completionBlock:(id)arg3;
 @property BOOL ide_isTemporaryDocument;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

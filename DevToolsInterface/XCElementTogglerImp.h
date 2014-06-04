@@ -8,6 +8,8 @@
 
 #import "XCElementTogglerP-Protocol.h"
 
+@class NSString;
+
 @interface XCElementTogglerImp : XCElementBaseTogglerImp <XCElementTogglerP>
 {
 }
@@ -17,6 +19,12 @@
 - (BOOL)displayed;
 - (void)setDisplayed:(BOOL)arg1;
 - (BOOL)isToggler;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

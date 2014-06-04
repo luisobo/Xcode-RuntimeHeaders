@@ -6,19 +6,11 @@
 
 #import "NSTextFieldCell.h"
 
-@class NSImage, NSString;
-
 @interface _DVTLozengeTextFieldCell : NSTextFieldCell
 {
-    NSImage *_cachedImage;
-    NSString *_cachedStringValue;
 }
 
-+ (id)_lozengeImageWithSize:(struct CGSize)arg1 attributedTitle:(id)arg2;
-- (void).cxx_destruct;
 - (struct CGSize)cellSize;
-- (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
-- (id)_cachedImageWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 
 @end
 

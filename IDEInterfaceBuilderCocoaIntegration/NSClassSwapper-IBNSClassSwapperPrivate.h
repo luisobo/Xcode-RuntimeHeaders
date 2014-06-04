@@ -7,6 +7,7 @@
 #import "NSClassSwapper.h"
 
 @interface NSClassSwapper (IBNSClassSwapperPrivate)
+- (void)ibSwizzledEncodeWithCoder:(id)arg1;
 - (id)ibSwizzledInitWithCoder:(id)arg1;
 @end
 

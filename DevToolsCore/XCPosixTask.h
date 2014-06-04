@@ -8,7 +8,7 @@
 
 #import "NSPortDelegate-Protocol.h"
 
-@class NSError, NSObject<XCPosixTaskBackgroundParsing>, NSPort, NSRecursiveLock, XCPosixTaskBackgroundReaderThread, XCPosixTaskBackgroundWriterThread, XCPosixTaskLaunchInfo;
+@class NSError, NSObject<XCPosixTaskBackgroundParsing>, NSPort, NSRecursiveLock, NSString, XCPosixTaskBackgroundReaderThread, XCPosixTaskBackgroundWriterThread, XCPosixTaskLaunchInfo;
 
 @interface XCPosixTask : NSObject <NSPortDelegate>
 {
@@ -65,9 +65,14 @@
 - (int)spawnResult;
 - (BOOL)_wait:(BOOL)arg1;
 - (id)launchInfo;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)dealloc;
 - (id)initWithLaunchInfo:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

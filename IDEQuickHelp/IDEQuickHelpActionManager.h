@@ -18,8 +18,6 @@
 @property __weak IDEQuickHelpQueryResult *queryResult; // @synthesize queryResult=_queryResult;
 - (void).cxx_destruct;
 - (void)_workspaceOpenForURL:(id)arg1;
-- (void)openURLInWorkspace:(id)arg1;
-- (BOOL)_openURLInWorkspace:(id)arg1 inWorkspaceTabController:(id)arg2;
 - (void)openItemInDocumentationOrganizer:(id)arg1;
 - (void)_showDeclarationLocationForCurrentSymbol;
 - (id)bestIndexSymbolForSearchResultFromQuery:(id)arg1;
@@ -27,6 +25,7 @@
 - (void)showHeaderFile:(id)arg1;
 - (void)showDocumentation:(id)arg1;
 - (void)handleLinkClickWithActionInformation:(id)arg1;
+- (void)handleUsrLinkClick:(id)arg1 forPlatformName:(id)arg2 sdkVersion:(id)arg3;
 - (void)handleFileColonSlashSlashLinkClick:(id)arg1;
 - (void)handleFileColonSlashSlashLinkClick:(id)arg1 forPlatformName:(id)arg2 sdkVersion:(id)arg3;
 - (id)urlFromLinkClickActionInformation:(id)arg1;

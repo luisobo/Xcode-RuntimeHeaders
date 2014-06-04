@@ -7,11 +7,9 @@
 #import "NSProgressIndicator.h"
 
 @interface NSProgressIndicator (IBNSProgressIndicatorIntegration)
-+ (id)keyPathsForValuesAffectingIbWidgetTypeForDefaultLabel;
 + (id)keyPathsForValuesAffectingIbInspectedDoubleValue;
 + (id)keyPathsForValuesAffectingIbInspectedMinValue;
 + (id)keyPathsForValuesAffectingIbInspectedMaxValue;
-+ (id)keyPathsForValuesAffectingIbWidgetType;
 - (id)ibWidgetTypeForDefaultLabel;
 - (void)ibAutolayoutSafeSizeToFit;
 - (void)ibSwizzledInstallHeartBeat:(BOOL)arg1;

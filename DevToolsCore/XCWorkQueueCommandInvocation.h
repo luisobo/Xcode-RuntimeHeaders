@@ -8,7 +8,7 @@
 
 #import "XCOutputStreams-Protocol.h"
 
-@class XCBuildLogCommandInvocationSectionRecorder, XCSystemStatisticsMeasurement, XCWorkQueueOperation;
+@class NSString, XCBuildLogCommandInvocationSectionRecorder, XCSystemStatisticsMeasurement, XCWorkQueueOperation;
 
 @interface XCWorkQueueCommandInvocation : NSObject <XCOutputStreams>
 {
@@ -23,7 +23,7 @@
 }
 
 + (unsigned long long)messageLimit;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (double)elapsedSystemTime;
 - (double)elapsedUserTime;
 - (id)systemStatisticsDelta;
@@ -55,6 +55,11 @@
 - (id)workQueueOperation;
 - (void)dealloc;
 - (id)initWithSlotNumber:(unsigned long long)arg1 workQueueOperation:(id)arg2 workQueueCommand:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

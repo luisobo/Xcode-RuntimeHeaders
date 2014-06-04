@@ -17,11 +17,11 @@
 @property(retain) NSMutableArray *currentDisplayedItemStack; // @synthesize currentDisplayedItemStack=_currentDisplayedItemStack;
 @property(retain) DVTNotificationToken *iCloudNotificationToken; // @synthesize iCloudNotificationToken=_iCloudNotificationToken;
 - (void).cxx_destruct;
-- (void)primitiveInvalidate;
 - (void)_observeController:(id)arg1;
 - (void)_updateProgressBarWithItem:(id)arg1 itemChangeType:(BOOL)arg2;
 - (void)_insertItemIntoDisplayedItemStack:(id)arg1;
 @property(readonly, nonatomic) iCloudController *controller;
+- (void)dealloc;
 - (id)initWithController:(id)arg1;
 
 @end

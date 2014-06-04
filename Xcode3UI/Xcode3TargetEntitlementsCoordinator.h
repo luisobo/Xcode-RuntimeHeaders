@@ -8,7 +8,7 @@
 
 #import "IDEEntitlementsCoordination-Protocol.h"
 
-@class DVTFilePath, IDEEntitlementsFile, PBXNativeTarget;
+@class DVTFilePath, IDEEntitlementsFile, NSString, PBXNativeTarget;
 
 @interface Xcode3TargetEntitlementsCoordinator : Xcode3TargetCoordinator <IDEEntitlementsCoordination>
 {
@@ -45,6 +45,12 @@
 - (void)projectDidChangeNotification:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)initWithTarget:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -12,8 +12,10 @@
 + (id)keyPathsForValuesAffectingIbInspectedMinSizeHeight;
 + (id)keyPathsForValuesAffectingIbInspectedMinSizeWidth;
 + (id)keyPathsForValuesAffectingIbInspectedItemIdentifier;
-+ (id)keyPathsForValuesAffectingIbQualifyingInfoForDefaultLabel;
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
+- (void)ibSetupTriggerForSegueTemplate:(id)arg1 inCompilationUnit:(id)arg2;
+- (id)ibSegueTriggers;
+- (id)ibDefaultSegueTrigger;
 - (BOOL)ibCanHaveDescendantViewHierarchy;
 - (BOOL)ibIsChildArbitrationUnitRoot:(id)arg1;
 - (void)setIbInspectedMaxSizeHeight:(double)arg1;
@@ -26,8 +28,7 @@
 - (double)ibInspectedMinSizeWidth;
 - (void)setIbInspectedItemIdentifier:(id)arg1;
 - (id)ibInspectedItemIdentifier;
-- (void)ibFinishArchivingDocument:(id)arg1 withContext:(id)arg2;
-- (void)ibBeginArchivingDocument:(id)arg1 withContext:(id)arg2;
+- (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibInitialConnectionLabelSearchTerm;
 - (id)ibInspectedToolTip;

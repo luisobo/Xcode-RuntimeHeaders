@@ -29,7 +29,11 @@
 @property(retain) NSView *_primaryFilterControl; // @synthesize _primaryFilterControl;
 @property(nonatomic, getter=isFilteringEnabled) BOOL filteringEnabled; // @synthesize filteringEnabled=_filteringEnabled;
 - (void).cxx_destruct;
+- (void)focusedEditorDidSelectItem:(id)arg1;
+- (id)navigableItemsForArchivedNavigableItems:(id)arg1;
+- (void)revealArchivedNavigableItems:(id)arg1;
 - (void)revealNavigableItems:(id)arg1;
+- (void)_revealNavigableItems:(id)arg1;
 @property(readonly) NSString *filterDefinitionIdentifier;
 - (BOOL)canBecomeMainViewController;
 - (void)primitiveInvalidate;
@@ -44,6 +48,12 @@
 - (void)viewDidInstall;
 - (void)updateBoundContent;
 - (id)dvtExtraBindings;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

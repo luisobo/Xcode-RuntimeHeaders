@@ -7,6 +7,7 @@
 #import "NSObject.h"
 
 @interface NSObject (DVTObservingConvenience)
++ (id)dvt_creationBacktracesOfObservingTokensForObservedObject:(id)arg1;
 + (void)dvt_cancelAllObservingTokensForOwner:(id)arg1;
 - (void)dvt_changeValueForKeys:(id)arg1 usingBlock:(id)arg2;
 - (void)dvt_changeValueForKey:(id)arg1 usingBlock:(id)arg2;

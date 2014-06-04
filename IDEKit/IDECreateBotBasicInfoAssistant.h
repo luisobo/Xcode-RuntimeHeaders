@@ -6,7 +6,7 @@
 
 #import <IDEKit/IDEAssistant.h>
 
-@class DVTObservingToken, DVTStackView_ML, IDEAccountReachabilityToImageTransformer, IDECreateBotAssistantContext, IDEXcodeServerManager, NSArray, NSArrayController, NSButton, NSError, NSImage, NSPopUpButton, NSTextField, NSView;
+@class DVTObservingToken, IDEAccountReachabilityToImageTransformer, IDECreateBotAssistantContext, IDEXcodeServerManager, NSArray, NSArrayController, NSButton, NSError, NSImage, NSPopUpButton, NSStackView, NSTextField, NSView;
 
 @interface IDECreateBotBasicInfoAssistant : IDEAssistant
 {
@@ -22,8 +22,9 @@
     NSPopUpButton *_schemesPopup;
     NSTextField *_botNameField;
     NSButton *_integrateImmediatelyCheckbox;
-    DVTStackView_ML *_stackView;
+    NSStackView *_stackView;
     NSView *_controlsView;
+    NSView *_schemeChooserView;
     NSView *_schemeProblemView;
     NSTextField *_schemeProblemTextField;
     NSButton *_fixSchemeProblemCheckbox;
@@ -54,8 +55,9 @@
 @property(retain) NSButton *fixSchemeProblemCheckbox; // @synthesize fixSchemeProblemCheckbox=_fixSchemeProblemCheckbox;
 @property(retain) NSTextField *schemeProblemTextField; // @synthesize schemeProblemTextField=_schemeProblemTextField;
 @property(retain) NSView *schemeProblemView; // @synthesize schemeProblemView=_schemeProblemView;
+@property(retain) NSView *schemeChooserView; // @synthesize schemeChooserView=_schemeChooserView;
 @property(retain) NSView *controlsView; // @synthesize controlsView=_controlsView;
-@property(retain) DVTStackView_ML *stackView; // @synthesize stackView=_stackView;
+@property(retain) NSStackView *stackView; // @synthesize stackView=_stackView;
 @property(retain) NSButton *integrateImmediatelyCheckbox; // @synthesize integrateImmediatelyCheckbox=_integrateImmediatelyCheckbox;
 @property(retain) NSTextField *botNameField; // @synthesize botNameField=_botNameField;
 @property(retain) NSPopUpButton *schemesPopup; // @synthesize schemesPopup=_schemesPopup;
@@ -81,6 +83,7 @@
 - (void)_selectAssistantContextSchemeInPopUp;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
+- (void)loadView;
 - (void)willGoNextOrFinish;
 - (BOOL)canGoForward;
 - (id)assistantTitle;

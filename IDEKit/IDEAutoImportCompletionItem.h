@@ -23,28 +23,35 @@
 }
 
 @property(nonatomic) unsigned long long partialSelectorCount; // @synthesize partialSelectorCount=_partialSelectorCount;
-@property(readonly) NSArray *additionalCompletions; // @synthesize additionalCompletions=_additionalCompletions;
+@property(readonly, copy) NSArray *additionalCompletions; // @synthesize additionalCompletions=_additionalCompletions;
 - (void).cxx_destruct;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)infoViewControllerWithWidth:(double)arg1 context:(id)arg2 completionBlock:(id)arg3;
 - (void)removeAllAdditionalCompletions;
 - (void)addImportStatementForAutoImportable:(id)arg1 forInsertionIntoContext:(id)arg2 withHeaderVisibility:(unsigned long long)arg3;
 @property(readonly) int completionItemStyle;
 @property(readonly) BOOL notRecommended;
 @property double priority;
+@property(readonly) unsigned long long priorityComparatorKind;
+@property(readonly) long long priorityBucket;
 @property(readonly) NSImage *icon;
-@property(readonly) NSAttributedString *descriptionText; // @synthesize descriptionText=_descriptionText;
-@property(readonly) NSString *completionText;
-@property(readonly) NSString *parentText;
+@property(readonly, copy) NSAttributedString *descriptionText; // @synthesize descriptionText=_descriptionText;
+@property(readonly, copy) NSString *completionText;
+@property(readonly, copy) NSString *parentText;
 @property(readonly) NSImage *highlightedStatusIcon;
 @property(readonly) NSImage *statusIcon;
-@property(readonly) NSString *displayType;
-@property(readonly) NSString *displayText;
-@property(readonly) NSString *name;
+@property(readonly, copy) NSString *displayType;
+@property(readonly, copy) NSString *displayText;
+@property(readonly, copy) NSString *name;
 - (void)_parseCompletionString;
 - (id)initWithAutoImportable:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *previewText;
+@property(readonly) Class superclass;
 
 @end
 

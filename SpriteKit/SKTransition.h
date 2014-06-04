@@ -42,8 +42,8 @@
 + (id)pushWithDirection:(long long)arg1 duration:(double)arg2;
 + (id)moveInWithDirection:(long long)arg1 duration:(double)arg2;
 + (id)revealWithDirection:(long long)arg1 duration:(double)arg2;
-@property BOOL pausesOutgoingScene; // @synthesize pausesOutgoingScene=_pauseOutgoing;
-@property BOOL pausesIncomingScene; // @synthesize pausesIncomingScene=_pauseIncoming;
+@property(nonatomic) BOOL pausesOutgoingScene; // @synthesize pausesOutgoingScene=_pauseOutgoing;
+@property(nonatomic) BOOL pausesIncomingScene; // @synthesize pausesIncomingScene=_pauseIncoming;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)_filter;

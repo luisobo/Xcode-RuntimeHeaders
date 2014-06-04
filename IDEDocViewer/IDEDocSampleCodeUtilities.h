@@ -10,8 +10,10 @@
 {
 }
 
++ (void)downloadAndOpenPlaygroundArchiveAtURL:(id)arg1 title:(id)arg2 originWindow:(id)arg3;
 + (void)downloadAndOpenSampleCodeArchiveAtURL:(id)arg1 title:(id)arg2 originWindow:(id)arg3;
-+ (id)URLForDownloadableNavigableItemOfType:(unsigned long long)arg1 forNode:(id)arg2;
++ (id)URLForDownloadableNavigableItemOfType:(unsigned long long)arg1 forNode:(id)arg2 foundInNode:(id *)arg3;
++ (id)_downloadURLsForType:(unsigned long long)arg1 fromDictionary:(id)arg2;
 
 @end
 

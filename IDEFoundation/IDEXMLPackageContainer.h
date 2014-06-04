@@ -57,5 +57,11 @@
 - (void)dvt_addObject:(id)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)dvt_setProperty:(id)arg1 fromUTF8String:(const char *)arg2 fromXMLUnarchiver:(id)arg3;
 
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
+
 @end
 

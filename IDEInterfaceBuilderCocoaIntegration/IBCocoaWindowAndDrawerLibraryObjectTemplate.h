@@ -4,19 +4,13 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2011 by Steve Nygard.
  */
 
-#import "IBLibraryObjectTemplate.h"
+#import <IDEInterfaceBuilderCocoaIntegration/IBCocoaWindowAndDrawerObjectLibraryAsset.h>
 
-@class NSDrawer, NSWindow;
-
-@interface IBCocoaWindowAndDrawerLibraryObjectTemplate : IBLibraryObjectTemplate
+@interface IBCocoaWindowAndDrawerLibraryObjectTemplate : IBCocoaWindowAndDrawerObjectLibraryAsset
 {
-    NSDrawer *drawer;
-    NSWindow *windowToMimic;
 }
 
-- (void).cxx_destruct;
-@property(readonly) NSWindow *windowToMimic;
-@property(readonly) NSDrawer *drawer;
+- (Class)classForCoder;
 
 @end
 

@@ -10,14 +10,14 @@
 
 @interface IBStructureRepresentingConnection : NSObject
 {
-    IBMemberID *sourceOID;
-    IBMemberID *destinationOID;
-    NSString *label;
+    IBMemberID *_sourceOID;
+    IBMemberID *_destinationOID;
+    NSString *_label;
 }
 
-@property(copy) NSString *label; // @synthesize label;
-@property(copy) IBMemberID *destinationOID; // @synthesize destinationOID;
-@property(copy) IBMemberID *sourceOID; // @synthesize sourceOID;
+@property(copy) NSString *label; // @synthesize label=_label;
+@property(copy) IBMemberID *destinationOID; // @synthesize destinationOID=_destinationOID;
+@property(copy) IBMemberID *sourceOID; // @synthesize sourceOID=_sourceOID;
 - (void).cxx_destruct;
 - (id)description;
 - (id)initWithSourceOID:(id)arg1 destinationOID:(id)arg2 label:(id)arg3;

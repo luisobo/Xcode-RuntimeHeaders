@@ -10,7 +10,7 @@
 #import "IBDragAndDropInsertionIndicatorDelegate-Protocol.h"
 #import "IBICMultipartImageViewControllerDelegate-Protocol.h"
 
-@class IBDragAndDropInsertionIndicator, IBICCatalog, IBICCatalogActionContext, IBICQuickLookController, IBMutableIdentityDictionary, NSMutableArray;
+@class IBDragAndDropInsertionIndicator, IBICCatalog, IBICCatalogActionContext, IBICQuickLookController, IBMutableIdentityDictionary, NSMutableArray, NSString;
 
 @interface IBICCatalogOverviewController : IBICAbstractCatalogDetailController <DVTStatefulObject, IBDragAndDropInsertionIndicatorDelegate, IBICMultipartImageViewControllerDelegate>
 {
@@ -96,6 +96,12 @@
 - (void)invalidateChildControllers:(id)arg1;
 - (BOOL)automaticallyInvalidatesChildViewControllers;
 - (id)initWithDocumentEditor:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

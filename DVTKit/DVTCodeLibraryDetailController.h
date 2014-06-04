@@ -9,7 +9,7 @@
 #import "DVTSourceTextViewDelegate-Protocol.h"
 #import "DVTTextStorageDelegate-Protocol.h"
 
-@class DVTSourceTextView, DVTTextStorage;
+@class DVTSourceTextView, DVTTextStorage, NSDictionary, NSString;
 
 @interface DVTCodeLibraryDetailController : DVTLibraryDetailController <DVTSourceTextViewDelegate, DVTTextStorageDelegate>
 {
@@ -29,6 +29,13 @@
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (void)setDelegate:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) NSDictionary *sourceLanguageServiceContext;
+@property(readonly) Class superclass;
 
 @end
 

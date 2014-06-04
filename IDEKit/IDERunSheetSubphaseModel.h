@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class IDERunSheetPhaseModel, IDESchemeAction, NSImage, NSString;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface IDERunSheetSubphaseModel : NSObject
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, IDERunSheetPhaseModel, IDESchemeAction, NSImage, NSString;
+
+@interface IDERunSheetSubphaseModel : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     IDERunSheetPhaseModel *_phaseModel;
 }
@@ -24,6 +26,19 @@
 @property(readonly) Class detailViewControllerClass;
 @property(readonly) IDESchemeAction *runPhase;
 - (id)initWithRunSheetPhaseModel:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

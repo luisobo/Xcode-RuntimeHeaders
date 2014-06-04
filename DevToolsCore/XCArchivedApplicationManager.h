@@ -30,14 +30,14 @@
 - (void)setArchivedBuilds:(id)arg1;
 - (void)_updateSynthesizedArchivedApplications;
 - (id)_applicationForBuild:(id)arg1;
-@property(readonly) NSSet *archivedBuilds;
+@property(readonly, copy) NSSet *archivedBuilds;
 @property(readonly) NSMutableSet *mutableBuilds;
 - (void)removeArchivedApplications:(id)arg1;
 - (void)removeArchivedApplicationsObject:(id)arg1;
 - (void)addArchivedApplications:(id)arg1;
 - (void)addArchivedApplicationsObject:(id)arg1;
 - (void)setArchivedApplications:(id)arg1;
-@property(readonly) NSSet *archivedApplications;
+@property(readonly, copy) NSSet *archivedApplications;
 - (id)mutableArchivedApplications;
 - (void)scanForArchivedApplications;
 - (void)_noteAddedBuild:(id)arg1;

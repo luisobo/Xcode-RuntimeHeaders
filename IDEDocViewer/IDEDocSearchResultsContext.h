@@ -21,8 +21,13 @@
 }
 
 + (id)contextForQuery:(id)arg1 frameworkFilteredTokens:(id)arg2 extraTokens:(id)arg3 textResults:(id)arg4 tokenSortKey:(id)arg5 maximumTextResults:(unsigned long long)arg6 perfMetric:(id)arg7;
++ (id)old_contextForQuery:(id)arg1 frameworkFilteredTokens:(id)arg2 extraTokens:(id)arg3 textResults:(id)arg4 tokenSortKey:(id)arg5 maximumTextResults:(unsigned long long)arg6 perfMetric:(id)arg7;
++ (id)topTokenHitsFromAllTokens:(id)arg1 queryString:(id)arg2;
 + (id)sortedTokensPreferringExactMatches:(id)arg1 sortKey:(id)arg2 queryString:(id)arg3;
 + (id)sortedTokens:(id)arg1 withSortKey:(id)arg2 queryString:(id)arg3;
++ (BOOL)showMultipleTopHits;
++ (unsigned long long)maxDisplayedSearchResults;
++ (void)initialize;
 @property(retain) DSMQuery *query; // @synthesize query=_query;
 @property(retain) NSArray *textResults; // @synthesize textResults=_textResults;
 @property(retain) NSArray *extraTokens; // @synthesize extraTokens=_extraTokens;
@@ -34,7 +39,7 @@
 - (void).cxx_destruct;
 - (id)resultsGroupWithIdentifier:(id)arg1;
 - (void)sortAPIResultsWithKey:(id)arg1;
-@property(readonly) NSArray *childItems;
+@property(readonly, copy) NSArray *childItems;
 
 @end
 

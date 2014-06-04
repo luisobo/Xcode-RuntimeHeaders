@@ -11,5 +11,6 @@
 
 @optional
 @property unsigned long long supportedMatchingOptions;
+- (long long)compareFindableLocation:(id)arg1 withLocation:(id)arg2;
 @end
 

@@ -7,9 +7,7 @@
 #import "NSRunLoop.h"
 
 @interface NSRunLoop (IBIDEFoundationRunLoopAdditions)
-- (void)spinRunLoopInMode:(id)arg1 waitingForSemaphore:(struct dispatch_semaphore_s *)arg2;
-- (void)spinRunLoopInMode:(id)arg1 whileBlockExecutesConcurrently:(id)arg2;
-- (void)ib_spinRunLoopInMode:(id)arg1 waitingForSemaphore:(struct dispatch_semaphore_s *)arg2;
+- (void)ib_spinRunLoopInMode:(id)arg1 waitingForSemaphore:(id)arg2;
 - (void)ib_spinRunLoopInMode:(id)arg1 whileBlockExecutesConcurrently:(id)arg2;
 @end
 

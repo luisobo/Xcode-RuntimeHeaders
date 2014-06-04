@@ -9,7 +9,7 @@
 #import "NSCoding-Protocol.h"
 #import "XDUMLElement-Protocol.h"
 
-@class NSMutableDictionary;
+@class NSMutableDictionary, NSString;
 
 @interface XDUMLElementImp : NSObject <XDUMLElement, NSCoding>
 {
@@ -58,6 +58,12 @@
 - (void)setSyncable:(BOOL)arg1;
 - (BOOL)syncable;
 - (BOOL)_boolValueForKeyInUserInfo:(id)arg1 defaultValue:(BOOL)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

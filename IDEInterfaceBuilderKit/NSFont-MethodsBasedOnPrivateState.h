@@ -7,6 +7,9 @@
 #import "NSFont.h"
 
 @interface NSFont (MethodsBasedOnPrivateState)
+- (BOOL)xmlCoder:(id)arg1 shouldEncodeObject:(id *)arg2 forKey:(id)arg3 context:(id)arg4;
+- (id)xmlCoderEncodingCallbackContext:(id)arg1;
+- (id)metaFontName;
 - (long long)metaFont;
 @end
 

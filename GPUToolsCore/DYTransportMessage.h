@@ -37,12 +37,12 @@
 + (id)messageWithKind:(int)arg1 attributes:(id)arg2;
 + (id)messageWithKind:(int)arg1;
 @property(readonly, nonatomic) unsigned int transportSize; // @synthesize transportSize=_transportSize;
-@property(readonly, nonatomic) DYTransport *transport; // @synthesize transport=_transport;
+@property(readonly, retain, nonatomic) DYTransport *transport; // @synthesize transport=_transport;
 @property(readonly, nonatomic) unsigned int replySerial; // @synthesize replySerial=_replySerial;
 @property(readonly, nonatomic) unsigned int serial; // @synthesize serial=_serial;
 @property(retain, nonatomic) NSData *encodedAttributes; // @synthesize encodedAttributes=_encodedAttributes;
-@property(readonly, nonatomic) NSDictionary *attributes; // @synthesize attributes=_attributes;
-@property(readonly, nonatomic) NSData *payload; // @synthesize payload=_payload;
+@property(readonly, retain, nonatomic) NSDictionary *attributes; // @synthesize attributes=_attributes;
+@property(readonly, retain, nonatomic) NSData *payload; // @synthesize payload=_payload;
 @property(readonly, nonatomic) int kind; // @synthesize kind=_kind;
 - (id)objectPayloadWithAllowedBaseClasses:(id)arg1;
 - (id)objectPayloadWithAllowedBaseClass:(Class)arg1;

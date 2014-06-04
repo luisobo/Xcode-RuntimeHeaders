@@ -27,10 +27,14 @@
     BOOL asyncRequestPending;
     NSString *identityName;
     struct OpaqueSecIdentityRef *identity;
+    BOOL _suppressClientCertificateAuth;
+    BOOL _suppressCertificateTrustErrors;
     double _timeout;
 }
 
 + (void)initialize;
+@property BOOL suppressCertificateTrustErrors; // @synthesize suppressCertificateTrustErrors=_suppressCertificateTrustErrors;
+@property BOOL suppressClientCertificateAuth; // @synthesize suppressClientCertificateAuth=_suppressClientCertificateAuth;
 @property double timeout; // @synthesize timeout=_timeout;
 - (void).cxx_destruct;
 - (void)connection:(id)arg1 didReceiveAuthenticationChallenge:(id)arg2;
@@ -47,6 +51,12 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
 - (id)initWithServerAddress:(id)arg1 andPort:(int)arg2 andPath:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

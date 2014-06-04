@@ -129,8 +129,8 @@
 - (int)_storeFileDescriptor;
 @property(readonly, nonatomic, getter=isClosed) BOOL closed; // @dynamic closed;
 @property(readonly, nonatomic, getter=isReadOnly) BOOL readOnly; // @dynamic readOnly;
-@property(readonly, nonatomic) NSString *path; // @dynamic path;
-@property(readonly, nonatomic) NSURL *url; // @dynamic url;
+@property(readonly, retain, nonatomic) NSString *path; // @dynamic path;
+@property(readonly, retain, nonatomic) NSURL *url; // @dynamic url;
 - (void)setTargetQueue:(struct dispatch_queue_s *)arg1;
 - (void)dealloc;
 - (id)initWithURL:(id)arg1 options:(unsigned long long)arg2 error:(id *)arg3;
@@ -140,6 +140,12 @@
 - (void)_swapHashTable;
 - (BOOL)_loadArchiveAtPath:(id)arg1 error:(id *)arg2;
 - (BOOL)_createNewArchiveAtPath:(id)arg1 error:(id *)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

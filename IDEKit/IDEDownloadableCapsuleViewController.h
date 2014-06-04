@@ -33,7 +33,7 @@
 - (id)tableView:(id)arg1 rowViewForRow:(long long)arg2;
 - (id)tableView:(id)arg1 objectValueForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
-@property(readonly) NSString *titleForDisplay;
+@property(readonly, copy) NSString *titleForDisplay;
 - (void)reloadData;
 - (double)tableHeightWithContentRows;
 - (void)primitiveInvalidate;
@@ -47,9 +47,13 @@
 @property(readonly) BOOL canRename;
 @property(readonly) BOOL canSelect;
 @property(readonly) BOOL canUndisclose;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) BOOL disclosedByDefault;
-@property(readonly) NSString *footerLabel;
+@property(readonly, copy) NSString *footerLabel;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSImage *icon;
+@property(readonly) Class superclass;
 
 @end
 

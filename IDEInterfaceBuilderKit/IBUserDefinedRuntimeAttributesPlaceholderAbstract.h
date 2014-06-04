@@ -10,12 +10,14 @@
 
 @interface IBUserDefinedRuntimeAttributesPlaceholderAbstract : IBAttributePlaceholder
 {
-    NSArray *userDefinedRuntimeAttributes;
+    BOOL _mustConnectLast;
+    NSArray *_userDefinedRuntimeAttributes;
 }
 
+@property(nonatomic) BOOL mustConnectLast; // @synthesize mustConnectLast=_mustConnectLast;
+@property(retain, nonatomic) NSArray *userDefinedRuntimeAttributes; // @synthesize userDefinedRuntimeAttributes=_userDefinedRuntimeAttributes;
 - (void).cxx_destruct;
 - (id)archiveConnection;
-- (id)userDefinedRuntimeAttributes;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithObject:(id)arg1 andUserDefinedRuntimeAttributes:(id)arg2;

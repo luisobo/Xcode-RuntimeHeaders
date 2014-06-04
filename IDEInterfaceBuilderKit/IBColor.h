@@ -17,6 +17,7 @@
 + (id)selectableConstraintColor;
 + (id)selectedConstraintColor;
 + (id)constraintGuideLineColor;
++ (id)constraintBadgeColor;
 + (id)constraintColor;
 + (id)outlineViewMidGroupSeparatorColor;
 + (id)outlineViewTopSeparatorColor;

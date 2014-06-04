@@ -7,11 +7,12 @@
 #import "IDEComparisonEditorSubmode.h"
 
 #import "IDEComparisonEditorDelegate-Protocol.h"
+#import "IDEComparisonEditorSavableMergeState-Protocol.h"
 #import "NSSplitViewDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTComparisonSplitView, DVTDiffSession, DVTNotificationToken, DVTObservingToken, IDEEditor, IDESourceControlMergeData, NSDictionary, QLPreviewView;
+@class DVTBorderedView, DVTComparisonSplitView, DVTDiffSession, DVTObservingToken, IDEEditor, IDESourceControlMergeData, NSDictionary, NSString, QLPreviewView;
 
-@interface IDEQuickLookVersionsTwoUpSubmode : IDEComparisonEditorSubmode <IDEComparisonEditorDelegate, NSSplitViewDelegate>
+@interface IDEQuickLookVersionsTwoUpSubmode : IDEComparisonEditorSubmode <IDEComparisonEditorDelegate, NSSplitViewDelegate, IDEComparisonEditorSavableMergeState>
 {
     DVTBorderedView *_primaryLayoutView;
     DVTBorderedView *_secondaryLayoutView;
@@ -21,7 +22,6 @@
     IDEEditor *_secondaryEditor;
     BOOL _showingPrimaryDocumentStructure;
     DVTObservingToken *_responderToken;
-    DVTNotificationToken *_conflictResolutionDidCompleteObserver;
     NSDictionary *_previouslyRestoredStateDictionary;
     IDESourceControlMergeData *_previousMergeData;
     unsigned long long _documentLoadCount;
@@ -68,12 +68,19 @@
 - (void)_resetMergeState;
 - (id)_windowForError;
 @property(readonly) IDESourceControlMergeData *previousMergeData;
+- (void)saveMergeState;
 @property(retain) DVTDiffSession *diffSession;
 @property(retain) IDEEditor *secondaryEditor; // @synthesize secondaryEditor=_secondaryEditor;
 @property(retain) IDEEditor *primaryEditor; // @synthesize primaryEditor=_primaryEditor;
 @property(readonly) QLPreviewView *secondaryQuickLookView;
 @property(readonly) QLPreviewView *primaryQuickLookView;
 - (id)keyEditor;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

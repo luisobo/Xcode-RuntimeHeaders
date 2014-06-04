@@ -6,12 +6,28 @@
 
 #import "OSADefinition.h"
 
-@interface OSADefinition (IDEScriptingDefinitionItem)
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
+
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString;
+
+@interface OSADefinition (IDEScriptingDefinitionItem) <IDEKeyDrivenNavigableItemRepresentedObject>
 - (id)scriptingDefinition_childDefinitions;
 - (id)navigableItem_contentDocumentLocationInDocumentURL:(id)arg1;
-- (id)navigableItem_documentType;
-- (id)navigableItem_image;
-- (id)navigableItem_name;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) NSString *navigableItem_name;
 - (id)ideModelObjectTypeIdentifier;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 @end
 

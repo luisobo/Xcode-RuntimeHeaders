@@ -6,7 +6,7 @@
 
 #import "NSObject-Protocol.h"
 
-@class IBLayoutConstant;
+@class IBLayoutConstant, IBLayoutConstraintMultiplier;
 
 @protocol IBLayoutConstraintRepresentation <NSObject>
 @property(readonly, nonatomic, getter=isPlaceholder) BOOL placeholder;
@@ -15,7 +15,7 @@
 @property(readonly, nonatomic) id containingViewRepresentation;
 @property(readonly, nonatomic) double priority;
 @property(readonly, nonatomic) IBLayoutConstant *constant;
-@property(readonly, nonatomic) double multiplier;
+@property(readonly, nonatomic) IBLayoutConstraintMultiplier *multiplier;
 @property(readonly, nonatomic) unsigned long long secondAttribute;
 @property(readonly, nonatomic) id secondItemRepresentation;
 @property(readonly, nonatomic) long long relation;

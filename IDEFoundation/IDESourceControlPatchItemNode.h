@@ -31,7 +31,7 @@
 @property(copy) DVTFilePath *baseFilePath; // @synthesize baseFilePath=_baseFilePath;
 @property(copy) DVTFilePath *diffFilePath; // @synthesize diffFilePath=_diffFilePath;
 @property(copy) NSString *format; // @synthesize format=_format;
-@property(readonly) IDESourceControlWorkingTreeItem *item; // @synthesize item=_item;
+@property(readonly) __weak IDESourceControlWorkingTreeItem *item; // @synthesize item=_item;
 - (void).cxx_destruct;
 - (id)initWithItem:(id)arg1;
 - (id)representedObject;
@@ -40,6 +40,12 @@
 - (BOOL)resolved;
 - (id)indexInfo;
 - (id)fileWrapper;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

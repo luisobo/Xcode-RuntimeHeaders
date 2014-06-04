@@ -45,8 +45,8 @@
 - (id)userNameForElementDefinitionNamed:(id)arg1;
 - (id)definitionNamed:(id)arg1;
 - (id)parentDefinitionForDefinitionNamed:(id)arg1;
-@property(readonly) NSString *identifier;
-@property(readonly) NSString *name;
+@property(readonly, copy) NSString *identifier;
+@property(readonly, copy) NSString *name;
 - (id)initWithExtension:(id)arg1;
 
 @end

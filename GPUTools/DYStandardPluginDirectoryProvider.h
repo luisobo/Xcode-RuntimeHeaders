@@ -11,12 +11,13 @@
 @interface DYStandardPluginDirectoryProvider : DYPluginDirectoryProvider
 {
     NSBundle *_bundle;
+    BOOL _includeDeveloperDirectory;
 }
 
 + (id)_developerDirectory;
 - (void)enumerateDirectories:(id)arg1;
 - (void)dealloc;
-- (id)initWithBundle:(id)arg1;
+- (id)initWithBundle:(id)arg1 includeDeveloperDirectory:(BOOL)arg2;
 - (id)init;
 
 @end

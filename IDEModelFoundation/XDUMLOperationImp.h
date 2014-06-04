@@ -8,7 +8,7 @@
 
 #import "XDUMLOperation-Protocol.h"
 
-@class NSMutableArray;
+@class NSMutableArray, NSString;
 
 @interface XDUMLOperationImp : XDUMLNamespaceImp <XDUMLOperation>
 {
@@ -20,7 +20,7 @@
 }
 
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)setOwnedParameters:(id)arg1;
 - (void)setIsLeaf:(BOOL)arg1;
 - (void)setIsQuery:(BOOL)arg1;
@@ -52,6 +52,11 @@
 - (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -9,27 +9,41 @@
 #import "DVTInvalidation-Protocol.h"
 #import "IDEDebugSessionController-Protocol.h"
 
-@class DBGDataTipController, DBGDebugSession, DVTObservingToken, DVTStackBacktrace, IDEWorkspaceDocument;
+@class DBGDataTipController, DBGDebugSession, DVTObservingToken, DVTStackBacktrace, IDEWorkspaceDocument, NSSet, NSString;
 
 @interface DBGDebugSessionController : NSObject <IDEDebugSessionController, DVTInvalidation>
 {
     IDEWorkspaceDocument *_workspaceDocument;
     DBGDebugSession *_debugSession;
     DBGDataTipController *_dataTipController;
+    BOOL _settingCurrentStackFrameFromUIGesture;
+    BOOL _isNavigatingToViewDebuggerDocument;
     DVTObservingToken *_currentStackFrameFramePointerObservingToken;
+    DVTObservingToken *_currentStackFrameDisassemblyObservingToken;
+    DVTObservingToken *_viewDebuggerOpenRequestStateObservingToken;
+    NSSet *_classNamesImplementingCustomQuickLookMethod;
 }
 
 + (void)initialize;
++ (id)_createOptionsDictionaryFromOptionsElement:(id)arg1;
 + (id)descendantItemForRepresentedObject:(id)arg1 inRootNavigableItem:(id)arg2;
 + (id)_descendantItemForRepresentedObject:(id)arg1 inRootNavigableItem:(id)arg2;
++ (id)parentThreadInUIForStackFrame:(id)arg1;
 @property(readonly) DBGDataTipController *dataTipController; // @synthesize dataTipController=_dataTipController;
 @property(readonly) id <IDEDebugSession> debugSession; // @synthesize debugSession=_debugSession;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
+- (id)_quickLookProviderExtensionForTypeNames:(id)arg1;
+- (id)_quickLookProviderFromExtension:(id)arg1 forDataValue:(id)arg2;
+- (void)_quickLookProviderForDeveloperQuickLookMethod:(id)arg1 quickLookProviderHandler:(id)arg2;
+- (void)_quickLookProviderForDataValue:(id)arg1 quickLookProviderHandler:(id)arg2;
+- (void)quickLookProviderForDataValue:(id)arg1 quickLookProviderHandler:(id)arg2;
+- (void)_updateDefaultImageBasedQuickLookMethodNamesUsingIndex;
 - (void)_userWantsRerunFromConsole:(id)arg1;
 - (void)_userWantsQuitFromConsole:(id)arg1;
-- (void)requestPermissionForPoOfDataValue:(id)arg1;
-- (void)_requestPONotification:(id)arg1;
+- (void)_openViewDebuggerDocumentLocation:(id)arg1 inWorkspaceTabController:(id)arg2 withEventType:(unsigned long long)arg3;
+- (void)openViewDebuggerViewObject:(id)arg1 inWorkspaceTabController:(id)arg2 withEventType:(unsigned long long)arg3;
+- (void)openViewDebugger:(id)arg1 inWorkspaceTabController:(id)arg2 withEventType:(unsigned long long)arg3;
 - (void)openMemoryData:(id)arg1 withEventType:(unsigned long long)arg2;
 - (void)openMemoryBrowser;
 - (void)mouseExitedSidebarLineArea;
@@ -48,12 +62,18 @@
 - (void)_handleCurrentStackFrameChanged;
 - (void)_updateFileBreakpointsLocation;
 - (void)_navigateEditorToCurrentStackFrame;
+- (int)_navigationModeForActiveWorkspaceTabController;
 - (id)_activeWorkspaceTabController;
+@property(readonly) BOOL isViewingViewDebuggerDocument;
 - (id)initWithLaunchSession:(id)arg1 workspaceDocument:(id)arg2;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

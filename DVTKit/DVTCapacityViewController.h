@@ -12,7 +12,6 @@
 {
     NSMutableArray *_segmentValueObservers;
     NSMutableArray *_swatchValueLabels;
-    BOOL _circularSegmentLabel;
     double _maxCapacity;
     DVTCapacitySegment *_unusedCapacitySegment;
     NSArray *_segments;
@@ -26,7 +25,6 @@
 @property __weak NSView *leftLabelContainer; // @synthesize leftLabelContainer=_leftLabelContainer;
 @property __weak DVTCapacityView *capacityView; // @synthesize capacityView=_capacityView;
 @property(retain) NSFormatter *valueFormatter; // @synthesize valueFormatter=_valueFormatter;
-@property BOOL circularSegmentLabel; // @synthesize circularSegmentLabel=_circularSegmentLabel;
 @property(copy, nonatomic) NSArray *segments; // @synthesize segments=_segments;
 @property(retain, nonatomic) DVTCapacitySegment *unusedCapacitySegment; // @synthesize unusedCapacitySegment=_unusedCapacitySegment;
 @property(nonatomic) double maxCapacity; // @synthesize maxCapacity=_maxCapacity;

@@ -9,7 +9,7 @@
 #import "DVTSourceTextViewDelegate-Protocol.h"
 #import "DVTTextStorageDelegate-Protocol.h"
 
-@class DVTNotificationToken, DVTScriptSourceTextView, IDEShellScriptExecutionAction, NSPopUpButton, NSScrollView, NSTextField;
+@class DVTNotificationToken, DVTScriptSourceTextView, IDEShellScriptExecutionAction, NSDictionary, NSPopUpButton, NSScrollView, NSString, NSTextField;
 
 @interface IDEShellScriptExecutionActionViewController : IDEActionSliceViewController <DVTSourceTextViewDelegate, DVTTextStorageDelegate>
 {
@@ -34,6 +34,13 @@
 - (void)textStorageDidProcessEditing:(id)arg1;
 - (void)awakeFromNib;
 @property(readonly) IDEShellScriptExecutionAction *scriptAction;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) NSDictionary *sourceLanguageServiceContext;
+@property(readonly) Class superclass;
 
 @end
 

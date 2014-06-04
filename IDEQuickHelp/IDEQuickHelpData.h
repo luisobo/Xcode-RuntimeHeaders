@@ -12,9 +12,10 @@
 
 + (id)typeForSymbolKind:(id)arg1 inContainerWithSymbolKind:(id)arg2;
 + (id)sdkFromDocument:(id)arg1 inWorkspace:(id)arg2;
-+ (id)sdkFromExpressionSource:(id)arg1;
++ (id)sdkFromExpressionSource:(id)arg1 fallbackURL:(id)arg2;
 + (void)indexSymbolForSourceExpression:(id)arg1 fromSource:(id)arg2 completionBlock:(id)arg3;
-+ (struct dispatch_queue_s *)_indexQueriesSharedQueue;
++ (void)quickHelpDataContextForSourceExpression:(id)arg1 fromSource:(id)arg2 completionBlock:(id)arg3;
++ (id)_indexQueriesSharedQueue;
 - (void)queryCommentXMLFromIndexSymbol:(id)arg1 expressionSource:(id)arg2 completionBlock:(id)arg3;
 - (void)queryResultForIndexSymbol:(id)arg1 expressionSource:(id)arg2 completionBlock:(id)arg3;
 - (void)generateQueryResultForSourceExpression:(id)arg1 fromSource:(id)arg2 completionBlock:(id)arg3;

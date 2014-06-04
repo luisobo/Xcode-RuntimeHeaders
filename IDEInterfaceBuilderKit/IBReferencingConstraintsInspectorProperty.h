@@ -7,34 +7,73 @@
 #import "IDEInspectorProperty.h"
 
 #import "IBInspectorReferencingConstraintViewControllerDelegate-Protocol.h"
+#import "NSMenuDelegate-Protocol.h"
+#import "NSPopoverDelegate-Protocol.h"
 
-@class IBCancellationToken, IBInspectorReferencingConstraintViewController, IDEInspectorKeyPath, NSArray;
+@class DVTStackView_ML, IBCancellationToken, IBInspectorReferencingConstraintViewController, IDEInspectorKeyPath, NSArray, NSPopUpButton, NSPopover, NSString, NSTextField, NSView;
 
-@interface IBReferencingConstraintsInspectorProperty : IDEInspectorProperty <IBInspectorReferencingConstraintViewControllerDelegate>
+@interface IBReferencingConstraintsInspectorProperty : IDEInspectorProperty <IBInspectorReferencingConstraintViewControllerDelegate, NSPopoverDelegate, NSMenuDelegate>
 {
-    IBCancellationToken *_highlightCancellationToken;
     IBInspectorReferencingConstraintViewController *_highlightedController;
-    IDEInspectorKeyPath *_valueKeyPath;
+    IBCancellationToken *_highlightCancellationToken;
     NSArray *_referencingConstraintsControllers;
+    NSPopover *_currentConstraintEditingPopover;
+    IDEInspectorKeyPath *_valueKeyPath;
+    DVTStackView_ML *_stackView;
+    NSView *_filterContainerView;
+    NSPopUpButton *_filterPopUp;
+    NSTextField *_filterLabel;
 }
 
+@property __weak NSTextField *filterLabel; // @synthesize filterLabel=_filterLabel;
+@property __weak NSPopUpButton *filterPopUp; // @synthesize filterPopUp=_filterPopUp;
+@property(retain) NSView *filterContainerView; // @synthesize filterContainerView=_filterContainerView;
+@property(retain) DVTStackView_ML *stackView; // @synthesize stackView=_stackView;
 - (void).cxx_destruct;
+@property(nonatomic) long long orientationFilter;
+@property(nonatomic) long long typeFilter;
+@property(nonatomic) long long installationFilter;
+@property(nonatomic) long long hierarchyFilter;
+- (void)clearAllFilters:(id)arg1;
+- (void)toggleOrientationFilter:(id)arg1;
+- (void)toggleTypeFilter:(id)arg1;
+- (void)toggleInstallationFilter:(id)arg1;
+- (void)toggleHierarchyFilter:(id)arg1;
+- (void)menuNeedsUpdate:(id)arg1;
+- (id)_filterMenuTitle;
+- (void)_addFilterItemToMenu:(id)arg1 withTitle:(id)arg2 action:(SEL)arg3 value:(long long)arg4 currentValue:(long long)arg5;
+- (id)constraintsByApplyingFilterToConstraints:(id)arg1;
+- (BOOL)_shouldIncludeConstraint:(id)arg1 basedOnOrientationFilter:(long long)arg2;
+- (BOOL)_shouldIncludeConstraint:(id)arg1 basedOnTypeFilter:(long long)arg2;
+- (BOOL)_shouldIncludeConstraint:(id)arg1 basedOnHierarchyFilter:(long long)arg2;
+- (BOOL)_constraintIsReferencingDescendants:(id)arg1 relativeToItem:(id)arg2;
+- (BOOL)_constraintIsReferencingSiblingsOrAncestors:(id)arg1 relativeToItem:(id)arg2;
+- (BOOL)_shouldIncludeConstraint:(id)arg1 basedOnInstallationFilter:(long long)arg2;
 - (void)updateReferencingConstraintSubviews;
-- (void)referencingConstraintViewControllerPromoteConstraint:(id)arg1;
+- (void)_updateFilterLabelFromFilteredConstraints:(id)arg1 possibleConstraints:(id)arg2;
 - (void)referencingConstraintViewControllerStopHighlightingConstraint:(id)arg1;
 - (void)stopHighlightingConstraintForController:(id)arg1;
 - (void)referencingConstraintViewControllerStartHighlightingConstraint:(id)arg1;
 - (id)document;
-- (void)referencingConstraintViewControllerDeleteConstraint:(id)arg1;
 - (void)referencingConstraintViewControllerSelectConstraint:(id)arg1;
+- (void)popoverDidClose:(id)arg1;
+- (void)referencingConstraintViewControllerEditConstraint:(id)arg1;
+- (void)_closeCurrentConstraintEditingPopover;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)refresh;
 - (void)loadView;
-- (id)referencingConstraints;
+- (id)filteredReferencingConstraints;
+- (id)possibleConstraints;
 - (id)referencedView;
 - (id)inspectorController;
 - (void)primitiveInvalidate;
-- (void)invaldiatePreviousConstraintControllers:(id)arg1;
+- (void)invalidatePreviousConstraintControllers:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

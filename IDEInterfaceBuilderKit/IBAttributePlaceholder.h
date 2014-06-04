@@ -12,16 +12,16 @@
 
 @interface IBAttributePlaceholder : NSObject <NSCoding>
 {
-    NSString *name;
-    id object;
+    id _object;
+    NSString *_name;
 }
 
+@property(readonly) NSString *name; // @synthesize name=_name;
+@property(readonly) id object; // @synthesize object=_object;
 - (void).cxx_destruct;
 - (void)didCompileDocument:(id)arg1;
 - (void)willCompileDocument:(id)arg1;
 - (id)archiveConnection;
-- (id)name;
-- (id)object;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithObject:(id)arg1 andName:(id)arg2;

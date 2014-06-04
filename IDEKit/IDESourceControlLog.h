@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTDispatchLock, DVTPointerArray, DVTStackBacktrace, NSArray, NSMutableArray, NSString;
+@class DVTDispatchLock, DVTPointerArray, DVTStackBacktrace, NSArray, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
 
 @interface IDESourceControlLog : NSObject <DVTInvalidation>
 {
@@ -18,7 +18,7 @@
     NSMutableArray *_logItems;
     NSArray *_sourceTreeItems;
     DVTPointerArray *_lastRevisionsLoaded;
-    struct dispatch_queue_s *_queue;
+    NSObject<OS_dispatch_queue> *_queue;
     BOOL _displayFilesChanged;
     BOOL _datasourceExternal;
     NSString *_branchName;
@@ -61,7 +61,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

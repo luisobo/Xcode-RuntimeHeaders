@@ -6,7 +6,7 @@
 
 #import <IDEKit/IDEViewController.h>
 
-@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, DVTPopUpButtonCell, IDEControlGroup, IDEWorkspace, NSArrayController, NSButton, NSTableView, NSWindow;
+@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, DVTPopUpButtonCell, DVTTableView, IDEControlGroup, IDEWorkspace, NSArrayController, NSButton, NSWindow;
 
 @interface IDEManageRunContextsSheetController : IDEViewController
 {
@@ -14,7 +14,7 @@
     DVTBorderedView *_tableBorderView;
     NSArrayController *_runContextsArrayController;
     NSArrayController *_customDataStoresArrayController;
-    NSTableView *_tableView;
+    DVTTableView *_tableView;
     NSButton *_editButton;
     DVTPopUpButtonCell *_containerPopUpCell;
     DVTGradientImageButton *_addButton;
@@ -50,11 +50,13 @@
 - (void)deleteAction:(id)arg1;
 - (void)sheetOKAction:(id)arg1;
 - (void)autocreateSchemesAction:(id)arg1;
+- (void)cancelOperation:(id)arg1;
 @property BOOL shouldAutocreateSchemes;
 @property(retain) IDEWorkspace *workspace;
 - (void)primitiveInvalidate;
 - (void)_sheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)_beginSheetForWindow:(id)arg1;
+- (void)loadView;
 
 @end
 

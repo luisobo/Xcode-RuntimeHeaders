@@ -19,7 +19,6 @@
 }
 
 + (id)patternWithInput:(id)arg1;
-+ (void)initialize;
 @property(readonly) NSString *pattern; // @synthesize pattern=_pattern;
 - (void).cxx_destruct;
 - (double)scoreCandidate:(id)arg1 matchedRanges:(id *)arg2;

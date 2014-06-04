@@ -10,6 +10,7 @@
 
 @interface IDEBreakpointLocation : IDEBreakpoint
 {
+    IDEBreakpoint *_parentBreakpoint;
     NSString *_urlString;
     NSString *_timestampString;
     long long _startingColumnNumber;
@@ -17,7 +18,6 @@
     long long _startingLineNumber;
     long long _endingLineNumber;
     NSString *_characterRangeString;
-    IDEBreakpoint *_parentBreakpoint;
     DVTTextDocumentLocation *_documentLocation;
     NSString *_symbolName;
     NSString *_moduleName;
@@ -30,12 +30,12 @@
 @property(readonly) NSString *moduleName; // @synthesize moduleName=_moduleName;
 @property(readonly) NSString *symbolName; // @synthesize symbolName=_symbolName;
 @property(readonly) DVTTextDocumentLocation *documentLocation; // @synthesize documentLocation=_documentLocation;
-@property(retain) IDEBreakpoint *parentBreakpoint; // @synthesize parentBreakpoint=_parentBreakpoint;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
 - (void)dvt_encodeAttributesWithXMLArchiver:(id)arg1 version:(id)arg2;
 - (id)initFromXMLUnarchiver:(id)arg1 archiveVersion:(float)arg2;
+@property(retain) IDEBreakpoint *parentBreakpoint;
 - (BOOL)_isTextDocumentLocationEqual:(id)arg1;
 - (BOOL)isBreakpointLocationTheSameDisregardingAddress:(id)arg1;
 - (id)mutableLocations;

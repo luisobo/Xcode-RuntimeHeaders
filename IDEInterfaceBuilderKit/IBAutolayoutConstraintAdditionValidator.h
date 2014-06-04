@@ -19,13 +19,13 @@
 + (id)centerInContainerAlignmentConstraintsForItems:(id)arg1 attribute:(unsigned long long)arg2 ancestorItem:(id)arg3 useExistingConstant:(BOOL)arg4 context:(unsigned long long)arg5 document:(id)arg6;
 + (BOOL)canAddCenterInContainerAlignmentConstraintsForItems:(id)arg1 attribute:(unsigned long long)arg2 context:(unsigned long long)arg3 document:(id)arg4;
 + (id)baselineAlignmentConstraintsForItems:(id)arg1 ancestorItem:(id)arg2 useExistingConstant:(BOOL)arg3 context:(unsigned long long)arg4 document:(id)arg5;
-+ (BOOL)canAddBaselineAlignmentConstraintsForItems:(id)arg1 ancestorItem:(id)arg2;
++ (BOOL)canAddBaselineAlignmentConstraintsForItems:(id)arg1 ancestorItem:(id)arg2 document:(id)arg3;
 + (id)edgeOrCenterAlignmentConstraintsForItems:(id)arg1 attribute:(unsigned long long)arg2 ancestorItem:(id)arg3 useExistingConstant:(BOOL)arg4 context:(unsigned long long)arg5 document:(id)arg6;
-+ (BOOL)canAddEdgeOrCenterAlignmentConstraintsForItems:(id)arg1 attribute:(unsigned long long)arg2 ancestorItem:(id)arg3;
++ (BOOL)canAddEdgeOrCenterAlignmentConstraintsForItems:(id)arg1 attribute:(unsigned long long)arg2 ancestorItem:(id)arg3 document:(id)arg4;
 + (id)_constraintsForAligningItems:(id)arg1 withAttribute:(unsigned long long)arg2 ancestorItem:(id)arg3 useExistingConstant:(BOOL)arg4 context:(unsigned long long)arg5 document:(id)arg6;
 + (id)_constraintsForAligningItems:(id)arg1 toItem:(id)arg2 withAttribute:(unsigned long long)arg3 ancestorItem:(id)arg4 useExistingConstant:(BOOL)arg5 context:(unsigned long long)arg6 document:(id)arg7;
 + (id)equalSizingConstraintsForItems:(id)arg1 attribute:(unsigned long long)arg2 useExistingConstant:(BOOL)arg3 ancestorItem:(id)arg4 document:(id)arg5;
-+ (BOOL)canAddEqualSizeConstraintsForItems:(id)arg1 attribute:(unsigned long long)arg2 ancestorItem:(id)arg3;
++ (BOOL)canAddEqualSizeConstraintsForItems:(id)arg1 attribute:(unsigned long long)arg2 ancestorItem:(id)arg3 document:(id)arg4;
 + (id)edgeConstraintsForItems:(id)arg1 attribute:(unsigned long long)arg2 useExistingConstant:(BOOL)arg3 context:(unsigned long long)arg4 document:(id)arg5;
 + (id)_edgeConstraintForItem:(id)arg1 attribute:(unsigned long long)arg2 useExistingConstant:(BOOL)arg3 document:(id)arg4;
 + (BOOL)canAddEdgeToContainerConstraintsForItems:(id)arg1 attribute:(unsigned long long)arg2 context:(unsigned long long)arg3 document:(id)arg4;
@@ -33,8 +33,10 @@
 + (id)spacingConstraintBetweenItems:(id)arg1 forOrientation:(unsigned long long)arg2 useExistingConstant:(BOOL)arg3 areInSameArbitrationUnit:(BOOL)arg4 document:(id)arg5;
 + (BOOL)canAddSpacingConstraintsBetweenItems:(id)arg1 forOrientation:(unsigned long long)arg2 areInSameArbitrationUnit:(BOOL)arg3 document:(id)arg4;
 + (BOOL)_canHaveSpacingConstraintBetweenItem:(id)arg1 andItem:(id)arg2 areInSameArbitrationUnit:(BOOL)arg3 document:(id)arg4;
++ (id)aspectRatioConstraintsForItems:(id)arg1 descendingFromItem:(id)arg2 context:(unsigned long long)arg3 hasEmptySelection:(BOOL)arg4 selectedContainingItem:(id)arg5 document:(id)arg6;
++ (BOOL)canAddAspectRatioConstraintsForItems:(id)arg1 descendingFromItem:(id)arg2 context:(unsigned long long)arg3 hasEmptySelection:(BOOL)arg4 selectedContainingItem:(id)arg5 document:(id)arg6;
 + (id)absoluteSizingConstraintsForItems:(id)arg1 descendingFromItem:(id)arg2 attribute:(unsigned long long)arg3 context:(unsigned long long)arg4 hasEmptySelection:(BOOL)arg5 selectedContainingItem:(id)arg6 document:(id)arg7;
-+ (BOOL)canAddAbsoluteSizingConstraintsForItems:(id)arg1 attribute:(unsigned long long)arg2 context:(unsigned long long)arg3 hasEmptySelection:(BOOL)arg4 selectedContainingItem:(id)arg5;
++ (BOOL)canAddAbsoluteSizingConstraintsForItems:(id)arg1 attribute:(unsigned long long)arg2 context:(unsigned long long)arg3 hasEmptySelection:(BOOL)arg4 selectedContainingItem:(id)arg5 document:(id)arg6;
 + (long long)_nextLogicalLayoutRelationForAddingNewConstraintToItem:(id)arg1 forConstraintsMatchingBlock:(id)arg2;
 + (BOOL)_allOrAllButOneItemsHaveUnownedLayout:(id)arg1;
 + (BOOL)_allItemsHaveUnownedLayout:(id)arg1;

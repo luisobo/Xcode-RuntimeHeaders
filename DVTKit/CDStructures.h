@@ -49,11 +49,6 @@ struct CGSize {
     double height;
 };
 
-struct ProcessSerialNumber {
-    unsigned int _field1;
-    unsigned int _field2;
-};
-
 struct _DVTFindBarFlags {
     unsigned int findResultsValid:1;
     unsigned int userIsChangingFindString:1;
@@ -63,6 +58,20 @@ struct _DVTFindBarFlags {
     unsigned int ignoreNextInvalidate:1;
     unsigned int viewIsInstalled:1;
     unsigned int _reserved:29;
+};
+
+struct _DVTGraphBounds {
+    double minX;
+    double maxX;
+    double minY;
+    double maxY;
+};
+
+struct _DVTGraphInsets {
+    double top;
+    double left;
+    double bottom;
+    double right;
 };
 
 struct _DVTIncrementalFindBarFlags {
@@ -75,6 +84,7 @@ struct _DVTIncrementalFindBarFlags {
 struct _DVTLayoutManagerFlags {
     unsigned int disableAnnotationAdjustment:1;
     unsigned int severeBubbleAnnotationsMiniaturized:1;
+    unsigned int temporaryLinkIsAlternate:1;
 };
 
 struct _DVTTextChangeEntry {

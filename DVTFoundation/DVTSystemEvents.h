@@ -6,14 +6,17 @@
 
 #import "NSObject.h"
 
+@class NSObject<OS_dispatch_source>;
+
 @interface DVTSystemEvents : NSObject
 {
     BOOL _systemNotificationsEnabled;
-    struct dispatch_source_s *_cache_event_source;
+    NSObject<OS_dispatch_source> *_cache_event_source;
 }
 
 + (void)stop;
 + (void)start;
+- (void).cxx_destruct;
 - (void)_stopEvents;
 - (void)_startEvents;
 - (id)_initInternal;

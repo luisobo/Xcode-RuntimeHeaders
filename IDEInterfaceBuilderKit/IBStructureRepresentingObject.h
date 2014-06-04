@@ -10,21 +10,21 @@
 
 @interface IBStructureRepresentingObject : NSObject
 {
-    NSString *className;
-    NSString *effectiveClassName;
-    NSString *externalClassName;
-    IBMemberID *objectID;
-    IBMemberID *containingGroupID;
-    IBStructureRepresentingObject *parentObject;
-    NSMutableArray *childObjects;
+    NSMutableArray *_childObjects;
+    NSString *_className;
+    NSString *_externalClassName;
+    NSString *_effectiveClassName;
+    IBMemberID *_objectID;
+    IBMemberID *_containingGroupID;
+    IBStructureRepresentingObject *_parentObject;
 }
 
-@property(copy) IBMemberID *containingGroupID; // @synthesize containingGroupID;
-@property(copy) NSString *externalClassName; // @synthesize externalClassName;
-@property __weak IBStructureRepresentingObject *parentObject; // @synthesize parentObject;
-@property(copy) IBMemberID *objectID; // @synthesize objectID;
-@property(copy) NSString *effectiveClassName; // @synthesize effectiveClassName;
-@property(copy) NSString *className; // @synthesize className;
+@property __weak IBStructureRepresentingObject *parentObject; // @synthesize parentObject=_parentObject;
+@property(copy) IBMemberID *containingGroupID; // @synthesize containingGroupID=_containingGroupID;
+@property(copy) IBMemberID *objectID; // @synthesize objectID=_objectID;
+@property(copy) NSString *effectiveClassName; // @synthesize effectiveClassName=_effectiveClassName;
+@property(copy) NSString *externalClassName; // @synthesize externalClassName=_externalClassName;
+@property(copy) NSString *className; // @synthesize className=_className;
 - (void).cxx_destruct;
 - (id)description;
 - (id)children;

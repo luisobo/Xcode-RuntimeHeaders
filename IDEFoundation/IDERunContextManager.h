@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTMapTable, DVTStackBacktrace, IDERunDestination, IDEScheme, IDEWorkspace, NSArray, NSCountedSet, NSMutableArray, NSMutableDictionary, NSMutableSet;
+@class DVTMapTable, DVTStackBacktrace, IDERunDestination, IDEScheme, IDEWorkspace, NSArray, NSCountedSet, NSMutableArray, NSMutableSet, NSString;
 
 @interface IDERunContextManager : NSObject <DVTInvalidation>
 {
@@ -19,10 +19,8 @@
     NSMutableArray *_runContexts;
     IDEScheme *_activeRunContext;
     IDERunDestination *_activeRunDestination;
-    NSMutableArray *_activeRunDestinationHistory;
     NSMutableArray *_ignoredChangesDevices;
     NSCountedSet *_schemeNameCounts;
-    NSMutableDictionary *_containerReloadingDetails;
     BOOL _bulkChangingBlueprints;
     BOOL _blueprintChangedDuringBulkChanges;
 }
@@ -45,7 +43,6 @@
 - (void)_invalidateAvailableRunDestinations;
 - (void)_invalidateAvailableRunDestinationsForSchemes:(id)arg1;
 - (void)_invalidateActiveRunDestination;
-- (id)_bestDestinationForScheme:(id)arg1 previousDestination:(id)arg2;
 - (void)shouldIgnoreDeviceChangesDidEnd:(id)arg1;
 - (void)shouldIgnoreDeviceChangesWillBegin:(id)arg1;
 - (void)_updateOrderHint:(unsigned long long)arg1 forRunContext:(id)arg2;
@@ -66,10 +63,6 @@
 - (void)_addContext:(id)arg1 specifierToRunContextMap:(id)arg2;
 - (id)_uniqueSpecifierForSpecifier:(id)arg1 inMap:(id)arg2;
 - (void)_customDataStoresDidUpdate;
-- (void)_customDataStoresDidChangeFrom:(id)arg1 to:(id)arg2;
-- (void)_customDataStoresWillChangeFrom:(id)arg1 to:(id)arg2;
-- (void)_restoreActiveSchemeAndRunDestinationUsingReloadDetails:(id)arg1;
-- (id)_containerReloadDetails;
 - (void)_finishUpdatingRunContexts;
 - (void)_startUpdatingRunContexts;
 - (void)_ensureActiveRunContext;
@@ -80,7 +73,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

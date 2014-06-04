@@ -9,7 +9,7 @@
 #import "NSOutlineViewDataSource-Protocol.h"
 #import "NSOutlineViewDelegate-Protocol.h"
 
-@class DSANode, IDEDocContentOutlineView, _IDEDocContentOutlineViewRootNode;
+@class DSANode, IDEDocContentOutlineView, NSString, _IDEDocContentOutlineViewRootNode;
 
 @interface IDEDocContentOutlineViewController : IDEDocNavigator <NSOutlineViewDataSource, NSOutlineViewDelegate>
 {
@@ -40,6 +40,12 @@
 - (void)updateWithURL:(id)arg1 node:(id)arg2 webView:(id)arg3;
 - (void)primitiveInvalidate;
 - (void)loadView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

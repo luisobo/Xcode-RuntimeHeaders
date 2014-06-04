@@ -8,7 +8,7 @@
 
 #import "XCSelectionSource-Protocol.h"
 
-@class NSMenu, PBXExtendedOutlineView;
+@class NSMenu, NSString, PBXExtendedOutlineView;
 
 @interface PBXBookmarksModule : PBXProjectModule <XCSelectionSource>
 {
@@ -61,6 +61,12 @@
 - (void)projectDocumentWillChange:(id)arg1;
 - (void)dealloc;
 - (id)initWithModuleNibName:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class IDEIndexDatabase, NSDate;
+@class IDEIndexDatabase, NSDate, NSObject<OS_dispatch_queue>;
 
 @interface IDEIndexImportSession : NSObject
 {
@@ -16,7 +16,7 @@
     void *_cxIndex;
     void *_cxIndexAction;
     void *_resolvedPathMap;
-    struct dispatch_queue_s *_resolvedPathQueue;
+    NSObject<OS_dispatch_queue> *_resolvedPathQueue;
     NSDate *_startTime;
     long long _nUnits_C;
     long long _nUnits_ObjC;

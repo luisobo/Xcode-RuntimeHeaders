@@ -25,9 +25,9 @@
 - (void)didStopFrameDecisionRequestSession;
 - (void)didStartFrameDecisionRequestSession;
 @property(readonly, getter=isRunningFrameDecisionRequestSession) BOOL runningFrameDecisionRequestSession;
-- (CDStruct_961d3510)viewMovementResultForView:(id)arg1 forSizingView:(id)arg2 alongEdge:(int)arg3 inCoordinateSpaceOfView:(id)arg4;
-- (void)addConstraints:(id)arg1 replacingConstraints:(id)arg2 enforcingCurrentSizeOfViews:(id)arg3 mutuallyExclusiveConstraintBreakageStrategy:(int)arg4 returningConstraintsAdded:(id *)arg5 returningConstraintsRemoved:(id *)arg6 framePropagationBlock:(id)arg7;
-- (id)sizeView:(SEL)arg1 toLayoutSize:(id)arg2 suggestedLayoutOrigin:(struct CGSize)arg3 mutuallyExclusiveConstraintBreakageStrategy:(struct CGPoint)arg4 framePropagationBlock:(int)arg5;
+- (CDStruct_961d3510)viewMovementResultForView:(id)arg1 forSizingView:(id)arg2 alongEdge:(unsigned int)arg3 inCoordinateSpaceOfView:(id)arg4;
+- (void)addConstraints:(id)arg1 replacingConstraints:(id)arg2 enforcingCurrentSizeOfViews:(id)arg3 mutuallyExclusiveConstraintBreakageStrategy:(unsigned long long)arg4 returningConstraintsAdded:(id *)arg5 returningConstraintsRemoved:(id *)arg6 framePropagationBlock:(id)arg7;
+- (id)sizeView:(SEL)arg1 toLayoutSize:(id)arg2 suggestedLayoutOrigin:(struct CGSize)arg3 mutuallyExclusiveConstraintBreakageStrategy:(struct CGPoint)arg4 framePropagationBlock:(unsigned long long)arg5;
 - (void)enumerateLayoutFramesForViews:(id)arg1 usingBlock:(id)arg2;
 @property(readonly) id <IBAutolayoutInfoProvider> layoutInfo;
 - (id)initWithArbitrationUnit:(id)arg1 initialStatus:(id)arg2 options:(id)arg3;

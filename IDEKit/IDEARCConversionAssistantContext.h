@@ -22,7 +22,7 @@
 + (void)initialize;
 @property unsigned long long currentConversionStage; // @synthesize currentConversionStage=_currentConversionStage;
 @property long long numberOfIncompatibilityErrors; // @synthesize numberOfIncompatibilityErrors=_numIncompatibilityErrors;
-@property(readonly) NSArray *targets; // @synthesize targets=_targets;
+@property(readonly, copy) NSArray *targets; // @synthesize targets=_targets;
 - (void).cxx_destruct;
 - (id)migrateFolderForBuildable:(id)arg1;
 - (id)convertedFilePathForOriginalFilePath:(id)arg1;
@@ -38,7 +38,7 @@
 - (id)init;
 
 // Remaining properties
-@property(readonly) NSMutableArray *mutableSelectedTargets; // @dynamic mutableSelectedTargets;
+@property(readonly, copy) NSMutableArray *mutableSelectedTargets; // @dynamic mutableSelectedTargets;
 @property(copy) NSArray *selectedTargets; // @dynamic selectedTargets;
 
 @end

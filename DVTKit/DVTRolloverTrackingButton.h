@@ -10,11 +10,14 @@
 {
     long long _trackingRectTag;
     BOOL _mouseOver;
-    BOOL _redrawOnMouseEnteredAndExited;
     BOOL _trackingMouseDown;
     BOOL _trackingRectUpdatePending;
+    BOOL _redrawOnMouseEnteredAndExited;
+    BOOL _shouldUseRolloverAppearance;
 }
 
+@property(nonatomic) BOOL shouldUseRolloverAppearance; // @synthesize shouldUseRolloverAppearance=_shouldUseRolloverAppearance;
+@property(nonatomic) BOOL redrawOnMouseEnteredAndExited; // @synthesize redrawOnMouseEnteredAndExited=_redrawOnMouseEnteredAndExited;
 - (void)rightMouseDown:(id)arg1;
 - (void)mouseExited:(id)arg1;
 - (void)mouseEntered:(id)arg1;
@@ -24,9 +27,6 @@
 - (void)updateTrackingRect;
 - (void)_removeTrackingRect;
 - (void)updateMouseIsOver:(int)arg1;
-- (BOOL)shouldUseRolloverAppearance;
-- (BOOL)redrawOnMouseEnteredAndExited;
-- (void)setRedrawOnMouseEnteredAndExited:(BOOL)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)mouseEnteredOrExited:(BOOL)arg1;
 - (BOOL)mouseIsOver;

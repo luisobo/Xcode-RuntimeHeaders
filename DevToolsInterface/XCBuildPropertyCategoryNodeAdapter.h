@@ -8,7 +8,7 @@
 
 #import "XCEDataNodeAdapterP-Protocol.h"
 
-@class XCBuildPropertiesInspectorPane, XCBuildPropertyTwoFlavorsCell, XCPropertyDomainSpecification;
+@class NSString, XCBuildPropertiesInspectorPane, XCBuildPropertyTwoFlavorsCell, XCPropertyDomainSpecification;
 
 @interface XCBuildPropertyCategoryNodeAdapter : NSObject <XCEDataNodeAdapterP>
 {
@@ -36,6 +36,12 @@
 - (id)dataNode:(id)arg1 objectValueForTableColumn:(id)arg2;
 - (id)nameForNode:(id)arg1;
 - (id)nameForData:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

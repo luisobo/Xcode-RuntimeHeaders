@@ -23,7 +23,7 @@
 @property __weak id representedObject;
 @property __weak id <IDEDiagnosticItemDelegate> delegate;
 @property(readonly) NSArray *fixableDiagnosticItems;
-@property(readonly) NSArray *diagnosticFixItItemsSnapshot;
+@property(readonly, copy) NSArray *diagnosticFixItItemsSnapshot;
 - (void)removeObjectFromDiagnosticFixItItemsAtIndex:(unsigned long long)arg1;
 - (void)insertObject:(id)arg1 inDiagnosticFixItItemsAtIndex:(unsigned long long)arg2;
 @property(readonly) NSMutableArray *mutableDiagnosticFixItItems;

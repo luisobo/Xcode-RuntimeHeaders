@@ -9,7 +9,7 @@
 #import "DVTPackageInstallerHelperDelegate-Protocol.h"
 #import "NSTextViewDelegate-Protocol.h"
 
-@class IDEPackageInstallerHelper, NSArray, NSArrayController, NSButton, NSImageView, NSProgressIndicator, NSScrollView, NSTextField, NSTextView, NSTimer, NSView, NSWindow;
+@class IDEPackageInstallerHelper, NSArray, NSArrayController, NSButton, NSImageView, NSProgressIndicator, NSScrollView, NSString, NSTextField, NSTextView, NSTimer, NSView, NSWindow;
 
 @interface IDEPackageInstallerViewController : NSViewController <DVTPackageInstallerHelperDelegate, NSTextViewDelegate>
 {
@@ -67,6 +67,12 @@
 - (void)loadView;
 - (id)_localizedString:(id)arg1;
 - (id)initWithDefaultNib;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -17,7 +17,7 @@
 
 + (id)newCheckpointWithLabel:(id)arg1;
 @property(readonly) double checkpointTime; // @synthesize checkpointTime=_checkpointTime;
-@property(readonly) NSString *label; // @synthesize label=_label;
+@property(readonly, copy) NSString *label; // @synthesize label=_label;
 - (void).cxx_destruct;
 - (void)iterateStatisticValues:(id)arg1;
 - (void)dealloc;

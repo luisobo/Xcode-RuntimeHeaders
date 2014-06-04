@@ -24,8 +24,13 @@
 - (void).cxx_destruct;
 - (void)cancelClient;
 - (id)initWithClientName:(id)arg1 clientTracker:(id)arg2 cancellationBlock:(id)arg3;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)unregisterClient;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

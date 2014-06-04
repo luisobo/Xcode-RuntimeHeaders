@@ -20,7 +20,6 @@
 - (void)drawRect:(struct CGRect)arg1;
 - (void)setLineDash:(double *)arg1 count:(long long)arg2 phase:(double)arg3;
 - (void)setColor:(id)arg1;
-- (void)finalize;
 - (void)dealloc;
 
 @end

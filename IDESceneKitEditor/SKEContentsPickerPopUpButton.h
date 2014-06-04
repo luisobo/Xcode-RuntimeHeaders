@@ -7,11 +7,13 @@
 #import "NSView.h"
 
 #import "DVTWindowActivationStateObserver-Protocol.h"
+#import "IDEInspectorPropertyEnablable-Protocol.h"
+#import "NSDraggingSource-Protocol.h"
 #import "NSMenuDelegate-Protocol.h"
 
 @class DVTObservingToken, NSDictionary, NSMenu, NSString;
 
-@interface SKEContentsPickerPopUpButton : NSView <DVTWindowActivationStateObserver, NSMenuDelegate>
+@interface SKEContentsPickerPopUpButton : NSView <DVTWindowActivationStateObserver, NSMenuDelegate, IDEInspectorPropertyEnablable, NSDraggingSource>
 {
     NSMenu *_contentsMenu;
     struct CGRect _popUpButtonArrowsRect;
@@ -19,12 +21,15 @@
     struct CGRect _contentsLabelRect;
     struct CGRect _wellRect;
     struct CGRect _contentsLabelTitleRect;
+    BOOL _acceptsImages;
+    BOOL _acceptsColors;
     NSDictionary *_imageStateDictionary;
     id <DVTCancellable> _windowActivationObservation;
     id _contentsValueBindingController;
     NSString *_contentsValueBindingKeyPath;
     DVTObservingToken *_contentsValueBindingObservation;
-    BOOL _acceptsImages;
+    BOOL _acceptsNil;
+    BOOL _acceptsNonFilePathImages;
     BOOL _enabled;
     BOOL _active;
     BOOL _highlighted;
@@ -44,8 +49,10 @@
 @property SEL action; // @synthesize action=_action;
 @property(retain) id target; // @synthesize target=_target;
 @property(retain, nonatomic) id contents; // @synthesize contents=_contents;
-@property BOOL acceptsImages; // @synthesize acceptsImages=_acceptsImages;
+@property BOOL acceptsNonFilePathImages; // @synthesize acceptsNonFilePathImages=_acceptsNonFilePathImages;
+@property BOOL acceptsNil; // @synthesize acceptsNil=_acceptsNil;
 - (void).cxx_destruct;
+@property(retain) id objectValue;
 - (void)mouseDown:(id)arg1;
 - (BOOL)isMouseEventInColorWellRect:(id)arg1;
 - (void)drawRect:(struct CGRect)arg1;
@@ -78,7 +85,9 @@
 - (void)takeColorFromColorChooser:(id)arg1;
 - (void)takeColorFromColorPanel:(id)arg1;
 - (void)takeContentsFromPopUpMenu:(id)arg1;
+- (void)setNilContents:(id)arg1;
 - (void)sendAction;
+- (unsigned long long)draggingSession:(id)arg1 sourceOperationMaskForDraggingContext:(long long)arg2;
 - (void)beginImageDragForEvent:(id)arg1;
 - (void)beginColorDragForEvent:(id)arg1;
 - (id)imageForDraggedColor:(id)arg1;
@@ -107,12 +116,20 @@
 - (id)titleFont;
 - (id)effectiveSwatchBorderColor;
 - (id)effectiveTextColor;
-- (BOOL)isOnActiveWindow;
+- (BOOL)contentsIsAllowedNil;
 - (BOOL)contentsIsImage;
 - (BOOL)contentsIsColor;
+@property BOOL acceptsColors;
+@property BOOL acceptsImages;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

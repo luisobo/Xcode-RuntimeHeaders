@@ -10,10 +10,11 @@
 
 @interface IDEInspectorImageMatrixProperty : IDEInspectorEnumerationProperty
 {
-    IDEInspectorResizableMatrix *matrixView;
     IDEInspectorKeyPath *_valueKeyPath;
+    IDEInspectorResizableMatrix *_matrixView;
 }
 
+@property(retain, nonatomic) IDEInspectorResizableMatrix *matrixView; // @synthesize matrixView=_matrixView;
 - (void).cxx_destruct;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)refresh;

@@ -10,7 +10,7 @@
 #import "NSWindowDelegate-Protocol.h"
 #import "XCAPIQueryCallbackProtocol-Protocol.h"
 
-@class NSArray, NSScrollView, NSTextView<XCTextViewAdditions>, NSWindow, PBXSymbol, XCAPIAssistant, XCAPIAssistantConfigurationTableController, XCAPIQueries, XCRAAttributedStringGenerator, XCRAQuery, XCRASliceController;
+@class NSArray, NSScrollView, NSString, NSTextView<XCTextViewAdditions>, NSWindow, PBXSymbol, XCAPIAssistant, XCAPIAssistantConfigurationTableController, XCAPIQueries, XCRAAttributedStringGenerator, XCRAQuery, XCRASliceController;
 
 @interface XCAPIAssistantController : NSObject <XCAPIQueryCallbackProtocol, NSWindowDelegate, NSTextViewDelegate>
 {
@@ -120,6 +120,12 @@
 - (id)localizedString:(id)arg1 description:(id)arg2;
 - (void)awakeFromNib;
 - (void)dealloc;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

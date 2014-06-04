@@ -8,6 +8,8 @@
 
 #import "IDECommandHandler-Protocol.h"
 
+@class NSString;
+
 @interface IDEQuickHelpCommandHandler : NSObject <IDECommandHandler>
 {
 }
@@ -17,6 +19,12 @@
 - (void)showQuickHelp:(id)arg1;
 - (void)showDocumentationForSymbol:(id)arg1;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

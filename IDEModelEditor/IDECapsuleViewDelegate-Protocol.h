@@ -15,6 +15,9 @@
 - (id)headerContentViewForCapsuleView:(id)arg1;
 - (void)capsuleViewDidClickRemoveButton:(id)arg1;
 - (BOOL)capsuleViewCanBeRemoved:(id)arg1;
+- (BOOL)allowCustomContentHeaderViewToDriveHeaderHeight:(id)arg1;
+- (double)capsuleViewSidePadding:(id)arg1;
+- (id)capsuleViewBorderColor:(id)arg1;
 - (id)capsuleViewBackgroundColor:(id)arg1;
 - (void)capsuleView:(id)arg1 setTitle:(id)arg2;
 - (id)capsuleViewTitleForEditing:(id)arg1;

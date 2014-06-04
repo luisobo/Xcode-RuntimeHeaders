@@ -8,11 +8,12 @@
 
 #import "IDEIndexNewFileBase-Protocol.h"
 
-@class DVTFilePath, IDEIndexDBFactory, IDEIndexNewMainFile, NSDate, NSMutableArray, NSString;
+@class DVTFilePath, IDEIndexDBFactory, IDEIndexNewMainFile, NSDate, NSMutableArray, NSString, NSURL;
 
 @interface IDEIndexNewFile : NSObject <IDEIndexNewFileBase>
 {
     DVTFilePath *_path;
+    NSURL *_moduleURL;
     NSDate *_modified;
     IDEIndexNewFile *_includer;
     long long _fileId;
@@ -44,6 +45,7 @@
 @property(nonatomic) long long fileId; // @synthesize fileId=_fileId;
 @property(readonly, nonatomic) IDEIndexNewMainFile *mainFile; // @synthesize mainFile=_mainFile;
 @property(readonly, nonatomic) NSDate *modified; // @synthesize modified=_modified;
+@property(retain, nonatomic) NSURL *moduleURL; // @synthesize moduleURL=_moduleURL;
 @property(readonly, nonatomic) DVTFilePath *path; // @synthesize path=_path;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) NSString *signature_inBody;

@@ -9,7 +9,7 @@
 #import "IDEInitialization-Protocol.h"
 #import "NSNetServiceBrowserDelegate-Protocol.h"
 
-@class NSMapTable, NSMutableDictionary, NSMutableSet, NSRecursiveLock;
+@class NSMapTable, NSMutableDictionary, NSMutableSet, NSRecursiveLock, NSString;
 
 @interface iCloudServiceCenter : NSObject <IDEInitialization, NSNetServiceBrowserDelegate>
 {
@@ -40,7 +40,8 @@
 - (void)notifyObserversOfDeviceAdded:(id)arg1;
 - (void)removeObserver:(id)arg1 forDevice:(id)arg2;
 - (void)removeObserver:(id)arg1 forDevice:(id)arg2 forContainer:(id)arg3;
-- (void)addObserver:(id)arg1 forDevice:(id)arg2 forContainer:(id)arg3;
+- (void)fetchDataForObserver:(id)arg1 forDevice:(id)arg2 forContainer:(id)arg3;
+- (void)registerObserver:(id)arg1 forContainer:(id)arg2;
 - (void)sendCommand:(id)arg1 toMonitorWithID:(id)arg2 usingProcessor:(id)arg3;
 - (id)monitorForID:(id)arg1;
 - (void)stopSimulatingLocationOnDevice:(id)arg1 usingProcessor:(id)arg2;
@@ -58,6 +59,12 @@
 - (id)_authorizationHelperForMonitor:(id)arg1;
 - (void)initiateMonitors;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -9,7 +9,7 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class DVTLocale, DVTObservingToken, IDENavigatorDataCell, NSArray, NSArrayController, NSView, Xcode3LocalizationCommands, Xcode3LocalizationInspectorContentView;
+@class DVTObservingToken, IDENavigatorDataCell, NSArray, NSArrayController, NSString, NSView, Xcode3LocalizationCommands, Xcode3LocalizationInspectorContentView;
 
 @interface Xcode3LocalizationsInspector : IDEInspectorViewController <NSTableViewDelegate, NSTableViewDataSource>
 {
@@ -19,19 +19,15 @@
     Xcode3LocalizationInspectorContentView *_localizationInspectorContentView;
     NSArrayController *_localizationsArrayController;
     NSView *_makeLocalizedAccessoryView;
-    DVTLocale *_conversionLocale;
     NSArrayController *_makeLocalizationsArrayController;
-    NSArrayController *_baseLocalizationsArrayController;
     NSView *_baseLocalizationAccessoryView;
-    DVTLocale *_baseDestinationLocale;
+    NSArrayController *_baseLocalizationsArrayController;
 }
 
 + (id)keyPathsForValuesAffectingFileExists;
-@property(retain) DVTLocale *baseDestinationLocale; // @synthesize baseDestinationLocale=_baseDestinationLocale;
-@property NSView *baseLocalizationAccessoryView; // @synthesize baseLocalizationAccessoryView=_baseLocalizationAccessoryView;
 @property NSArrayController *baseLocalizationsArrayController; // @synthesize baseLocalizationsArrayController=_baseLocalizationsArrayController;
+@property NSView *baseLocalizationAccessoryView; // @synthesize baseLocalizationAccessoryView=_baseLocalizationAccessoryView;
 @property NSArrayController *makeLocalizationsArrayController; // @synthesize makeLocalizationsArrayController=_makeLocalizationsArrayController;
-@property(retain) DVTLocale *conversionLocale; // @synthesize conversionLocale=_conversionLocale;
 @property NSView *makeLocalizedAccessoryView; // @synthesize makeLocalizedAccessoryView=_makeLocalizedAccessoryView;
 @property(retain) NSArrayController *localizationsArrayController; // @synthesize localizationsArrayController=_localizationsArrayController;
 @property(retain) Xcode3LocalizationInspectorContentView *localizationInspectorContentView; // @synthesize localizationInspectorContentView=_localizationInspectorContentView;
@@ -58,6 +54,7 @@
 - (id)variantGroup;
 - (id)project;
 - (void)makeLocalized:(id)arg1;
+- (id)_makeLocalizedChoice;
 - (void)refreshLocalesPreservingFileTypes:(BOOL)arg1;
 @property(readonly) BOOL fileExists;
 - (id)imageForLocale:(id)arg1 fileDataType:(id)arg2;
@@ -67,8 +64,15 @@
 - (id)nibName;
 - (void)primitiveInvalidate;
 - (void)loadView;
-- (id)_projectLocalizationsExcludingBase;
 - (id)_projectLocalizations;
+- (id)_projectLocalizationsIncludingBaseIfNeeded;
+- (BOOL)_projectIsBaseEnabled;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,7 +8,7 @@
 
 #import "NSTextFieldDelegate-Protocol.h"
 
-@class IDEAppleScriptBreakpointAction, NSImageView, NSTextField, NSTextView;
+@class IDEAppleScriptBreakpointAction, NSImageView, NSString, NSTextField, NSTextView;
 
 @interface IDEAppleScriptBreakpointActionEditor : NSViewController <NSTextFieldDelegate>
 {
@@ -24,7 +24,14 @@
 - (id)_compileScriptAndSetStatusMessage;
 - (void)compileScript:(id)arg1;
 - (void)loadView;
+- (void)dealloc;
 - (id)initWithAction:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

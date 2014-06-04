@@ -17,15 +17,19 @@ struct Argument {
 
 struct CoreFunction {
     unsigned int _field1;
-    unsigned short _field2;
+    unsigned int _field2;
     unsigned short _field3;
-    unsigned long long _field4;
-    struct Argument _field5;
-    struct Argument _field6[16];
-    unsigned int _field7;
+    unsigned short _field4;
+    union {
+        unsigned long long _field1;
+        unsigned long long _field2;
+    } _field5;
+    struct Argument _field6;
+    struct Argument _field7[16];
     unsigned int _field8;
-    void *_field9;
+    unsigned int _field9;
     void *_field10;
+    void *_field11;
 };
 
 struct Function {
@@ -45,45 +49,6 @@ struct Function {
     void *_field14;
 };
 
-struct ObjectTrackingMap<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>, unsigned long long> {
-    struct unordered_map<unsigned long long, int, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, int>>> mInternalIDMap;
-    struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>>>> mObjectMap;
-    int mNextFreeInternalID;
-};
-
-struct PassthroughBase {
-    struct function<void *(const char *, unsigned long *)> LoadURLData;
-};
-
-struct StateMirrorManager<GPUTools::AnalyzerBaseObjectTypes> {
-    struct unordered_map<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>>> _contextStateMirrorMap;
-    struct unordered_map<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>>> _sharegroupStateMirrorMap;
-    struct ObjectTrackingMap<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>, unsigned long long> _drawableInfoMap;
-    struct PassthroughBase _passthrough;
-    unsigned long long _surfaceBoundsDrawableID;
-    int _deviceOrientation;
-    int _lastFunctionIndex;
-};
-
-struct Stream {
-    struct VMBuffer *_field1;
-    union {
-        void *_field1;
-        struct *_field2;
-    } _field2;
-    void *_field3;
-    unsigned long long _field4;
-    struct __CFString *_field5;
-    id _field6;
-    void _field7;
-    id _field8;
-    void _field9;
-    int _field10;
-    _Bool _field11;
-};
-
-struct VMBuffer;
-
 struct _CSTypeRef {
     unsigned long long _opaque_1;
     unsigned long long _opaque_2;
@@ -94,17 +59,7 @@ struct _NSRange {
     unsigned long long length;
 };
 
-struct __hash_node<std::__1::pair<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>>, void *>;
-
-struct __hash_node<std::__1::pair<unsigned long long, DYDevice *>, void *>;
-
-struct __hash_node<std::__1::pair<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>;
-
-struct __hash_node<std::__1::pair<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>;
-
-struct __hash_node<std::__1::pair<unsigned long long, int>, void *>;
-
-struct __hash_node<unsigned long long, void *>;
+struct __hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>;
 
 struct dy_timebase {
     struct mach_timebase_info mach_timebase;
@@ -112,183 +67,34 @@ struct dy_timebase {
     unsigned long long mach_timestamp;
 };
 
-struct function<void *(const char *, unsigned long *)> {
-    struct type __buf_;
-    struct __base<void *(const char *, unsigned long *)> *__f_;
-};
-
 struct mach_timebase_info {
     unsigned int numer;
     unsigned int denom;
 };
 
-struct type {
-    unsigned char __lx[24];
-};
-
-struct unique_ptr<std::__1::__hash_node<std::__1::pair<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::pair<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>>> {
-        struct __hash_node<std::__1::pair<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::pair<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>>> {
+    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>>> {
+        struct __hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
     } __ptr_;
-};
-
-struct unique_ptr<std::__1::__hash_node<std::__1::pair<unsigned long long, DYDevice *>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, DYDevice *>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::pair<unsigned long long, DYDevice *>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, DYDevice *>, void *>*>>> {
-        struct __hash_node<std::__1::pair<unsigned long long, DYDevice *>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, DYDevice *>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, DYDevice *>, void *>*>> {
-                unsigned long long __first_;
-            } __data_;
-        } __second_;
-    } __ptr_;
-};
-
-struct unique_ptr<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>*>>> {
-        struct __hash_node<std::__1::pair<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>*>> {
-                unsigned long long __first_;
-            } __data_;
-        } __second_;
-    } __ptr_;
-};
-
-struct unique_ptr<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>*>>> {
-        struct __hash_node<std::__1::pair<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>*>> {
-                unsigned long long __first_;
-            } __data_;
-        } __second_;
-    } __ptr_;
-};
-
-struct unique_ptr<std::__1::__hash_node<std::__1::pair<unsigned long long, int>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, int>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::pair<unsigned long long, int>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, int>, void *>*>>> {
-        struct __hash_node<std::__1::pair<unsigned long long, int>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, int>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, int>, void *>*>> {
-                unsigned long long __first_;
-            } __data_;
-        } __second_;
-    } __ptr_;
-};
-
-struct unique_ptr<std::__1::__hash_node<unsigned long long, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<unsigned long long, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<unsigned long long, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<unsigned long long, void *>*>>> {
-        struct __hash_node<unsigned long long, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<unsigned long long, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<unsigned long long, void *>*>> {
-                unsigned long long __first_;
-            } __data_;
-        } __second_;
-    } __ptr_;
-};
-
-struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>>>> {
-    struct __hash_table<std::__1::pair<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::__unordered_map_hasher<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::pair<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::pair<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>>> __bucket_list_;
-        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::pair<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::pair<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::pair<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> {
-                struct __hash_node<std::__1::pair<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>>, void *> *__next_;
-            } __first_;
-        } __p1_;
-        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>, std::__1::hash<int>, true>> {
-            unsigned long long __first_;
-        } __p2_;
-        struct __compressed_pair<float, std::__1::__unordered_map_equal<int, std::__1::shared_ptr<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>>, std::__1::equal_to<int>, true>> {
-            float __first_;
-        } __p3_;
-    } __table_;
 };
 
 struct unordered_map<unsigned long long, DYDevice *, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, DYDevice *>>> {
-    struct __hash_table<std::__1::pair<unsigned long long, DYDevice *>, std::__1::__unordered_map_hasher<unsigned long long, DYDevice *, std::__1::hash<unsigned long long>, true>, std::__1::__unordered_map_equal<unsigned long long, DYDevice *, std::__1::equal_to<unsigned long long>, true>, std::__1::allocator<std::__1::pair<unsigned long long, DYDevice *>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::pair<unsigned long long, DYDevice *>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, DYDevice *>, void *>*>>> __bucket_list_;
-        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::pair<unsigned long long, DYDevice *>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, DYDevice *>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::pair<unsigned long long, DYDevice *>, void *>*> {
-                struct __hash_node<std::__1::pair<unsigned long long, DYDevice *>, void *> *__next_;
+    struct __hash_table<std::__1::__hash_value_type<unsigned long long, DYDevice *>, std::__1::__unordered_map_hasher<unsigned long long, std::__1::__hash_value_type<unsigned long long, DYDevice *>, std::__1::hash<unsigned long long>, true>, std::__1::__unordered_map_equal<unsigned long long, std::__1::__hash_value_type<unsigned long long, DYDevice *>, std::__1::equal_to<unsigned long long>, true>, std::__1::allocator<std::__1::__hash_value_type<unsigned long long, DYDevice *>>> {
+        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>>> __bucket_list_;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*> {
+                struct __hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *> *__next_;
             } __first_;
         } __p1_;
-        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<unsigned long long, DYDevice *, std::__1::hash<unsigned long long>, true>> {
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<unsigned long long, std::__1::__hash_value_type<unsigned long long, DYDevice *>, std::__1::hash<unsigned long long>, true>> {
             unsigned long long __first_;
         } __p2_;
-        struct __compressed_pair<float, std::__1::__unordered_map_equal<unsigned long long, DYDevice *, std::__1::equal_to<unsigned long long>, true>> {
-            float __first_;
-        } __p3_;
-    } __table_;
-};
-
-struct unordered_map<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>>> {
-    struct __hash_table<std::__1::pair<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, std::__1::__unordered_map_hasher<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*, std::__1::hash<unsigned long long>, true>, std::__1::__unordered_map_equal<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*, std::__1::equal_to<unsigned long long>, true>, std::__1::allocator<std::__1::pair<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>*>>> __bucket_list_;
-        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>*> {
-                struct __hash_node<std::__1::pair<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *> *__next_;
-            } __first_;
-        } __p1_;
-        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*, std::__1::hash<unsigned long long>, true>> {
-            unsigned long long __first_;
-        } __p2_;
-        struct __compressed_pair<float, std::__1::__unordered_map_equal<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*, std::__1::equal_to<unsigned long long>, true>> {
-            float __first_;
-        } __p3_;
-    } __table_;
-};
-
-struct unordered_map<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>>> {
-    struct __hash_table<std::__1::pair<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, std::__1::__unordered_map_hasher<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*, std::__1::hash<unsigned long long>, true>, std::__1::__unordered_map_equal<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*, std::__1::equal_to<unsigned long long>, true>, std::__1::allocator<std::__1::pair<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>*>>> __bucket_list_;
-        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::pair<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *>*> {
-                struct __hash_node<std::__1::pair<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>, void *> *__next_;
-            } __first_;
-        } __p1_;
-        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*, std::__1::hash<unsigned long long>, true>> {
-            unsigned long long __first_;
-        } __p2_;
-        struct __compressed_pair<float, std::__1::__unordered_map_equal<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*, std::__1::equal_to<unsigned long long>, true>> {
-            float __first_;
-        } __p3_;
-    } __table_;
-};
-
-struct unordered_map<unsigned long long, int, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, int>>> {
-    struct __hash_table<std::__1::pair<unsigned long long, int>, std::__1::__unordered_map_hasher<unsigned long long, int, std::__1::hash<unsigned long long>, true>, std::__1::__unordered_map_equal<unsigned long long, int, std::__1::equal_to<unsigned long long>, true>, std::__1::allocator<std::__1::pair<unsigned long long, int>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::pair<unsigned long long, int>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, int>, void *>*>>> __bucket_list_;
-        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::pair<unsigned long long, int>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::pair<unsigned long long, int>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::pair<unsigned long long, int>, void *>*> {
-                struct __hash_node<std::__1::pair<unsigned long long, int>, void *> *__next_;
-            } __first_;
-        } __p1_;
-        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<unsigned long long, int, std::__1::hash<unsigned long long>, true>> {
-            unsigned long long __first_;
-        } __p2_;
-        struct __compressed_pair<float, std::__1::__unordered_map_equal<unsigned long long, int, std::__1::equal_to<unsigned long long>, true>> {
-            float __first_;
-        } __p3_;
-    } __table_;
-};
-
-struct unordered_set<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long>> {
-    struct __hash_table<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long>> {
-        struct unique_ptr<std::__1::__hash_node<unsigned long long, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<unsigned long long, void *>*>>> __bucket_list_;
-        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<unsigned long long, void *>*>, std::__1::allocator<std::__1::__hash_node<unsigned long long, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<unsigned long long, void *>*> {
-                struct __hash_node<unsigned long long, void *> *__next_;
-            } __first_;
-        } __p1_;
-        struct __compressed_pair<unsigned long, std::__1::hash<unsigned long long>> {
-            unsigned long long __first_;
-        } __p2_;
-        struct __compressed_pair<float, std::__1::equal_to<unsigned long long>> {
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<unsigned long long, std::__1::__hash_value_type<unsigned long long, DYDevice *>, std::__1::equal_to<unsigned long long>, true>> {
             float __first_;
         } __p3_;
     } __table_;
@@ -342,32 +148,4 @@ typedef struct {
     unsigned int _field4;
     unsigned int _field5;
 } CDStruct_fc1d2ed0;
-
-// Template types
-typedef struct StateMirrorManager<GPUTools::AnalyzerBaseObjectTypes> {
-    struct unordered_map<unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, GPUTools::SM::ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>>> _contextStateMirrorMap;
-    struct unordered_map<unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, GPUTools::SM::SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes>*>>> _sharegroupStateMirrorMap;
-    struct ObjectTrackingMap<GPUTools::SM::DrawableInfo<GPUTools::AnalyzerBaseObjectTypes>, unsigned long long> _drawableInfoMap;
-    struct PassthroughBase _passthrough;
-    unsigned long long _surfaceBoundsDrawableID;
-    int _deviceOrientation;
-    int _lastFunctionIndex;
-} StateMirrorManager_6a358214;
-
-typedef struct unordered_set<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long>> {
-    struct __hash_table<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long>> {
-        struct unique_ptr<std::__1::__hash_node<unsigned long long, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<unsigned long long, void *>*>>> __bucket_list_;
-        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<unsigned long long, void *>*>, std::__1::allocator<std::__1::__hash_node<unsigned long long, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<unsigned long long, void *>*> {
-                struct __hash_node<unsigned long long, void *> *__next_;
-            } __first_;
-        } __p1_;
-        struct __compressed_pair<unsigned long, std::__1::hash<unsigned long long>> {
-            unsigned long long __first_;
-        } __p2_;
-        struct __compressed_pair<float, std::__1::equal_to<unsigned long long>> {
-            float __first_;
-        } __p3_;
-    } __table_;
-} unordered_set_6cd805f9;
 

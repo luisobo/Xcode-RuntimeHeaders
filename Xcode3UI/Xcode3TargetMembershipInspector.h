@@ -8,7 +8,7 @@
 
 #import "NSTableViewDelegate-Protocol.h"
 
-@class IDENavigatorDataCell, NSArray, NSArrayController, NSMutableArray, Xcode3Project, Xcode3TargetMembershipInspectorContentView;
+@class IDENavigatorDataCell, NSArray, NSArrayController, NSMutableArray, NSString, Xcode3Project, Xcode3TargetMembershipInspectorContentView;
 
 @interface Xcode3TargetMembershipInspector : IDEInspectorViewController <NSTableViewDelegate>
 {
@@ -42,6 +42,12 @@
 - (id)_references;
 - (id)_pbxProject;
 - (id)_project;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

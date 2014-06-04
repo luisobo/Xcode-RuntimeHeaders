@@ -8,10 +8,14 @@
 
 @interface IBMenuBarEditorView : IBMenuEditorView
 {
-    BOOL fixedWidth;
+    BOOL _fixedWidth;
+    BOOL _drawsBottomBorder;
 }
 
+@property(nonatomic) BOOL drawsBottomBorder; // @synthesize drawsBottomBorder=_drawsBottomBorder;
+@property(nonatomic) BOOL fixedWidth; // @synthesize fixedWidth=_fixedWidth;
 - (void)layoutBottomUp;
+- (void)layoutTopDown;
 - (id)copyForDisplayingMenu:(id)arg1;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)bottomBorderColor;
@@ -23,7 +27,6 @@
 - (double)maxEdgeInset;
 - (double)minEdgeInset;
 - (double)itemPadding;
-- (id)initWithMenu:(id)arg1;
 
 @end
 

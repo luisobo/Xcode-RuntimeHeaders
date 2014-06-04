@@ -51,7 +51,7 @@
 - (id)_predefinedValueForValue:(id)arg1;
 - (void)_updateEnabledStates;
 - (void)showValueItem:(id)arg1 withTitle:(id)arg2 inPopUp:(id)arg3;
-- (void)showMarkerItemWithTitle:(id)arg1 representedObject:(id)arg2 inPopUp:(id)arg3;
+- (void)showMarkerItemWithTitle:(id)arg1 representedObject:(id)arg2 inPopUp:(id)arg3 enabled:(BOOL)arg4;
 - (void)_updateFontsInFontPanel;
 - (id)_fontRepresentation;
 - (void)takeSizeFrom:(id)arg1;

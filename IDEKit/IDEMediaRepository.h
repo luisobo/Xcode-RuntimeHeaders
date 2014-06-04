@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, NSMutableDictionary, NSSet;
+@class DVTStackBacktrace, NSMutableDictionary, NSSet, NSString;
 
 @interface IDEMediaRepository : NSObject <DVTInvalidation>
 {
@@ -25,12 +25,16 @@
 - (void)didUnregisterMediaRepositoryObserver;
 - (void)willRegisterMediaRepositoryObserver;
 - (void)notifyObserversOfAddsAndModifies:(id)arg1 andDeletes:(id)arg2;
-@property(readonly, nonatomic) NSSet *resources;
+@property(readonly, copy, nonatomic) NSSet *resources;
 - (void)primitiveInvalidate;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTDispatchLock, DVTMapTable, DVTObservingToken, DVTStackBacktrace, IDEContainerQuery, IDELogStore, IDESourceControlManager, IDESourceControlProject, IDESourceControlRequest, IDEWorkspace, NSArray, NSDate, NSMutableArray, NSMutableDictionary, NSMutableSet, NSOperationQueue, NSString, NSTimer;
+@class DVTDispatchLock, DVTFilePath, DVTMapTable, DVTNotificationToken, DVTObservingToken, DVTSourceControlWorkspace, DVTSourceControlWorkspaceBlueprint, DVTStackBacktrace, IDEContainerQuery, IDELogStore, IDESourceControlManager, IDESourceControlProject, IDESourceControlRequest, IDEWorkspace, NSArray, NSDate, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString, NSTimer;
 
 @interface IDESourceControlWorkspaceMonitor : NSObject <DVTInvalidation>
 {
@@ -17,9 +17,14 @@
     IDEContainerQuery *_query;
     NSMutableDictionary *_workspaceSCMInfo;
     NSMutableSet *_fileRefSet;
+    NSMutableSet *_workspaceFolders;
+    NSObject<OS_dispatch_queue> *_scanningQueue;
+    BOOL _resumedScanningQueue;
     NSDate *_startDate;
     NSDate *_endDate;
     NSMutableSet *_repositoriesWarnedAreNewer;
+    NSMutableSet *_workingCopies;
+    NSMutableArray *_workingCopiesNeedingUpgrade;
     NSMutableArray *_workingTrees;
     DVTDispatchLock *_workingTreesLock;
     NSMutableSet *_workingTreeBranchTokens;
@@ -29,34 +34,45 @@
     IDELogStore *_logStore;
     DVTObservingToken *_containerQueryMatchesObserver;
     NSOperationQueue *_scmFileEventQueue;
-    struct dispatch_queue_s *_scmQueue;
-    struct dispatch_group_s *_scmGroup;
+    NSObject<OS_dispatch_queue> *_scmQueue;
+    NSObject<OS_dispatch_group> *_scmGroup;
     IDESourceControlRequest *_sourceControlInfoRequest;
     double _serverStatusUpdateInterval;
     NSTimer *_statusUpdateTimer;
-    struct dispatch_source_s *_scanningTimer;
     NSString *_developerFolderPathString;
     BOOL _localStatusCheckingEnabled;
     BOOL _remoteStatusCheckingEnabled;
     BOOL _idleNotificationPosted;
-    BOOL _isPerformingInitialWorkspaceScan;
-    BOOL _finishedScan;
     BOOL _hasConfiguredTBTForWorkingCopies;
     BOOL _hasMergedProjectData;
     unsigned long long _workingTreesCount;
     unsigned long long _workingTreesConfigured;
     BOOL _shouldAskForNewWorkingCopies;
-    BOOL _pauseScanning;
-    BOOL _didScanWorkspace;
+    BOOL _shouldSaveLegacyBlueprint;
+    DVTDispatchLock *_derivedDataLock;
+    DVTFilePath *_derivedDataFilePath;
+    DVTObservingToken *_deriviedDataObservationToken;
+    DVTFilePath *_intermediatesFilePath;
+    DVTObservingToken *_intermediatesObservationToken;
+    DVTFilePath *_productsFilePath;
+    DVTObservingToken *_productsObservationToken;
+    DVTNotificationToken *_sourceControlEnabledToken;
+    DVTSourceControlWorkspace *_sourceControlWorkspace;
     IDESourceControlProject *_sourceControlProject;
+    unsigned long long _state;
+    DVTSourceControlWorkspaceBlueprint *_cachedBlueprint;
 }
 
 + (id)keyPathsForValuesAffectingLogRecords;
++ (id)keyPathsForValuesAffectingDidScanWorkspace;
++ (id)keyPathsForValuesAffectingIsPerformingInitialWorkspaceScan;
 + (void)initialize;
-@property BOOL didScanWorkspace; // @synthesize didScanWorkspace=_didScanWorkspace;
+@property(retain) DVTSourceControlWorkspaceBlueprint *cachedBlueprint; // @synthesize cachedBlueprint=_cachedBlueprint;
+@property unsigned long long state; // @synthesize state=_state;
 @property(retain) IDESourceControlProject *sourceControlProject; // @synthesize sourceControlProject=_sourceControlProject;
+@property(retain) DVTSourceControlWorkspace *sourceControlWorkspace; // @synthesize sourceControlWorkspace=_sourceControlWorkspace;
+@property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 @property(retain) IDELogStore *logStore; // @synthesize logStore=_logStore;
-@property BOOL isPerformingInitialWorkspaceScan; // @synthesize isPerformingInitialWorkspaceScan=_isPerformingInitialWorkspaceScan;
 @property(copy) NSTimer *statusUpdateTimer; // @synthesize statusUpdateTimer=_statusUpdateTimer;
 @property double serverStatusUpdateInterval; // @synthesize serverStatusUpdateInterval=_serverStatusUpdateInterval;
 @property(readonly) DVTMapTable *workspaceRootForWorkingTreeMapTable; // @synthesize workspaceRootForWorkingTreeMapTable=_workspaceRootForWorkingTreeMapTable;
@@ -68,12 +84,7 @@
 - (id)rootDirectoryOfAllWorkingCopies;
 - (void)setState:(unsigned long long)arg1 forWorkingCopyConfigurationStateDictionary:(id)arg2;
 - (void)setState:(unsigned long long)arg1 forWorkingTree:(id)arg2;
-- (void)checkForMissingCheckouts;
-- (void)checkForCorrectWorkingCopyOrigin:(id)arg1 withProjectPath:(id)arg2 withCompletionBlock:(id)arg3;
-- (void)createAndCompareProjectData;
-- (id)derivedDataSourceControlProjectCreateIfNeeded:(BOOL)arg1;
-- (id)_DerivedDataSCMProjectFilePath;
-- (id)savedProjectData;
+- (void)saveProjectData;
 - (void)saveSCMInfo;
 - (id)getSCMInfoObjectforKey:(id)arg1;
 - (void)setSCMInfoObject:(id)arg1 forSCMKey:(id)arg2;
@@ -101,24 +112,32 @@
 - (void)evaluateWorkspaceRootForWorkingTree:(id)arg1 relativeToFilePath:(id)arg2;
 - (id)rootDirectoryInWorkspaceForWorkingTree:(id)arg1;
 - (id)rootDirectoryFilePathInWorkspaceForWorkingTree:(id)arg1;
-- (void)_findWorkingTreesForFilePath:(id)arg1;
 - (void)_scanFinished;
-- (void)_startScanTimer;
 - (void)startScanningWorkspace:(id)arg1;
 - (void)_startScanningWorkspace:(id)arg1;
 - (void)_processFileRefsBatch:(id)arg1;
-@property BOOL pauseScanning;
+- (void)upgradedWorkingCopy:(id)arg1;
+- (void)addWorkspaceFilePathToCheck:(id)arg1;
+- (void)scanWorkspaceFolders;
 - (BOOL)_filePathIsInDerivedDataFolder:(id)arg1;
+@property(readonly) BOOL didScanWorkspace;
+@property(readonly) BOOL isPerformingInitialWorkspaceScan;
 - (void)addWorkingTree:(id)arg1;
 - (void)_sortWorkingCopies;
 @property(readonly) NSArray *workingTrees; // @synthesize workingTrees=_workingTrees;
+@property(readonly) NSArray *workingCopiesNeedingUpgrade; // @synthesize workingCopiesNeedingUpgrade=_workingCopiesNeedingUpgrade;
 - (void)primitiveInvalidate;
+- (void)_disableSourceControlMonitor;
 - (id)initWithSCMManager:(id)arg1;
 - (id)init;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

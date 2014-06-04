@@ -8,7 +8,7 @@
 
 #import "IDESourceControlWindowController-Protocol.h"
 
-@class DVTBindingToken, DVTReplacementView, DVTSearchField, IDESourceControlSwitchOperationInfo, IDESourceControlWorkspaceUIHandler, IDEWorkspace, NSButton, NSTextField, NSWindow;
+@class DVTBindingToken, DVTReplacementView, DVTSearchField, IDESourceControlSwitchOperationInfo, IDESourceControlWorkspaceUIHandler, IDEWorkspace, NSButton, NSString, NSTextField, NSWindow;
 
 @interface IDESourceControlSwitchBranchChooserWindowController : NSWindowController <IDESourceControlWindowController>
 {
@@ -37,7 +37,7 @@
 - (void)cancel:(id)arg1;
 - (void)cancelSheet;
 - (void)choose:(id)arg1;
-- (void)_doubleClick:(id)arg1;
+- (void)doubleClickBranch:(id)arg1;
 - (void)branchChooserSheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)fetchBranches;
 @property(readonly) BOOL canContinue;
@@ -45,6 +45,12 @@
 - (void)beginSheetForWindow:(id)arg1;
 - (id)windowNibName;
 - (id)tableViewController;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

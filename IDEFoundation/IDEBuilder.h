@@ -6,7 +6,7 @@
 
 #import "DVTOperation.h"
 
-@class DVTDynamicLogController, DVTSystemStatisticsMeasurement, IDEActivityLogSection, IDEBuildOperationQueueSet, IDEBuildStatisticsSection, IDEBuildableSnapshot, IDESchemeActionResult, NSArray, NSDictionary, NSMutableArray, NSMutableSet, NSSet, NSString;
+@class DVTDynamicLogController, DVTSystemStatisticsMeasurement, IDEActivityLogSection, IDEBuildOperationQueueSet, IDEBuildStatisticsSection, IDEBuildableSnapshot, IDEBuilderHarvestedInfo, IDESchemeActionResult, NSArray, NSDictionary, NSMutableArray, NSMutableSet, NSSet, NSString;
 
 @interface IDEBuilder : DVTOperation
 {
@@ -34,15 +34,17 @@
     BOOL _dontActuallyRunCommands;
     DVTDynamicLogController *_builderTimingDataLogController;
     IDEBuildStatisticsSection *_buildStatisticsSection;
+    IDEBuilderHarvestedInfo *_harvestedInfo;
     IDESchemeActionResult *_schemeBuildResult;
 }
 
 + (void)initialize;
 @property(retain) IDESchemeActionResult *schemeBuildResult; // @synthesize schemeBuildResult=_schemeBuildResult;
+@property(readonly) IDEBuilderHarvestedInfo *harvestedInfo; // @synthesize harvestedInfo=_harvestedInfo;
 @property(retain) IDEBuildStatisticsSection *buildStatisticsSection; // @synthesize buildStatisticsSection=_buildStatisticsSection;
 @property(retain) DVTDynamicLogController *builderTimingDataLogController; // @synthesize builderTimingDataLogController=_builderTimingDataLogController;
 @property BOOL dontActuallyRunCommands; // @synthesize dontActuallyRunCommands=_dontActuallyRunCommands;
-@property(readonly) NSString *uniqueIdentifier; // @synthesize uniqueIdentifier=_uniqueIdentifier;
+@property(readonly, copy) NSString *uniqueIdentifier; // @synthesize uniqueIdentifier=_uniqueIdentifier;
 @property(copy) NSDictionary *copiedFilePathsFromBuildableProduct; // @synthesize copiedFilePathsFromBuildableProduct=_copiedFilePathsFromBuildableProduct;
 @property(copy) NSDictionary *copiedFilePathsFromBuildOperation; // @synthesize copiedFilePathsFromBuildOperation=_copiedFilePathsFromBuildOperation;
 @property(copy) id updateBuildStatus; // @synthesize updateBuildStatus=_updateBuildStatusBlock;
@@ -65,6 +67,7 @@
 - (void)_logBuilderTimingDataIfNecessary;
 - (void)addGeneratedFileInfo:(id)arg1;
 - (void)main;
+- (void)prepareForBuilding;
 - (id)init;
 - (id)initForBuildCommand:(int)arg1 withBuildableSnapshot:(id)arg2 buildTaskQueueSet:(id)arg3 buildOnlyTheseFiles:(id)arg4 restorePersistedBuildResults:(BOOL)arg5;
 

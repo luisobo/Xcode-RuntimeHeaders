@@ -6,7 +6,7 @@
 
 #import <IDEKit/IDEViewController.h>
 
-@class DVTBindingToken, DVTBorderedView, IDENavigableItemCoordinator, IDESnapshotsListController, IDEWorkspace, NSButton, NSDictionary, NSWindow;
+@class DVTBindingToken, DVTBorderedView, IDENavigableItemCoordinator, IDESnapshotsListController, IDEWorkspace, NSButton, NSDictionary, NSString, NSWindow;
 
 @interface IDESnapshotRestoreController : IDEViewController
 {
@@ -21,11 +21,14 @@
     NSDictionary *_localizedStrings;
     BOOL _showProgress;
     DVTBindingToken *_listBindingToken;
+    DVTBindingToken *_filterBindingToken;
     DVTBindingToken *_restoreButtonBindingToken;
+    NSString *_filterString;
 }
 
 + (id)defaultViewNibName;
 + (void)runRestoreSheetForWorkspace:(id)arg1 window:(id)arg2;
+@property(copy) NSString *filterString; // @synthesize filterString=_filterString;
 @property BOOL showProgress; // @synthesize showProgress=_showProgress;
 @property(retain) NSWindow *workspaceWindow; // @synthesize workspaceWindow=_workspaceWindow;
 @property(retain) IDESnapshotsListController *listController; // @synthesize listController=_listController;

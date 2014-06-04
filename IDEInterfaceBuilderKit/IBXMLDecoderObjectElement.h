@@ -12,7 +12,7 @@
 
 + (id)elementName;
 - (BOOL)requestInsertionIntoParent:(id)arg1 error:(id *)arg2;
-- (id)initWithAttributes:(const char **)arg1 parser:(id)arg2 error:(id *)arg3;
+- (id)initWithAttributes:(const char **)arg1 stringTable:(id)arg2 error:(id *)arg3;
 
 @end
 

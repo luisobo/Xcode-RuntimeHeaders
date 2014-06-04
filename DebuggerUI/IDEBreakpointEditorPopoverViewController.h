@@ -41,6 +41,7 @@
 - (void).cxx_destruct;
 - (id)_findAssociatedBreakpointEditorExtension;
 - (void)popoverDidClose:(id)arg1;
+- (void)popoverWillClose:(id)arg1;
 - (BOOL)popoverShouldClose:(id)arg1;
 - (void)popoverWillShow:(id)arg1;
 @property(readonly) NSString *ignoreCountPostText;
@@ -58,6 +59,12 @@
 - (int)_placmentForElement:(id)arg1;
 - (void)loadView;
 - (id)_initWithBreakpoint:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

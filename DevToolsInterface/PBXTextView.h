@@ -9,7 +9,7 @@
 #import "NSLayoutManagerDelegate-Protocol.h"
 #import "XCTextViewAdditions-Protocol.h"
 
-@class NSColor, XCTextSelectionSymbolInfo;
+@class NSColor, NSString, XCTextSelectionSymbolInfo;
 
 @interface PBXTextView : NSTextView <NSLayoutManagerDelegate, XCTextViewAdditions>
 {
@@ -214,6 +214,12 @@
 - (BOOL)indentAtBeginningOfLine;
 - (void)indentSelectionIfIndentable:(id)arg1;
 - (void)indentSelection:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

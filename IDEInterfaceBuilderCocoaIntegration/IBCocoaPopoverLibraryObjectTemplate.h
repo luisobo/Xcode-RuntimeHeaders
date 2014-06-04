@@ -4,19 +4,13 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2011 by Steve Nygard.
  */
 
-#import "IBLibraryObjectTemplate.h"
+#import <IDEInterfaceBuilderCocoaIntegration/IBCocoaPopoverObjectLibraryAsset.h>
 
-@class NSPopover, NSViewController;
-
-@interface IBCocoaPopoverLibraryObjectTemplate : IBLibraryObjectTemplate
+@interface IBCocoaPopoverLibraryObjectTemplate : IBCocoaPopoverObjectLibraryAsset
 {
-    NSPopover *popover;
-    NSViewController *contentViewController;
 }
 
-- (void).cxx_destruct;
-@property(readonly) NSViewController *contentViewController;
-@property(readonly) NSPopover *popover;
+- (Class)classForCoder;
 
 @end
 

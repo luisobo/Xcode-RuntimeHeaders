@@ -29,7 +29,6 @@
 - (unsigned long long)count;
 - (id)knownStringMapping;
 - (void)dealloc;
-- (void)finalize;
 - (id)initWithCapacity:(unsigned long long)arg1;
 - (id)initWithKnownStringMapping:(id)arg1;
 

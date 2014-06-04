@@ -10,7 +10,7 @@
 #import "NSCoding-Protocol.h"
 #import "NSCopying-Protocol.h"
 
-@class IBLayoutConstant, NSObject<IBAutolayoutItem>;
+@class IBLayoutConstant, IBLayoutConstraintMultiplier, NSObject<IBAutolayoutItem>, NSString;
 
 @interface IBLayoutConstraint : NSObject <NSCopying, NSCoding, IBLayoutConstraintRepresentation>
 {
@@ -21,7 +21,7 @@
     long long _relation;
     NSObject<IBAutolayoutItem> *_secondItem;
     unsigned long long _secondAttribute;
-    double _multiplier;
+    IBLayoutConstraintMultiplier *_multiplier;
     IBLayoutConstant *_constant;
     double _priority;
     NSObject<IBAutolayoutItem> *_containingView;
@@ -33,6 +33,7 @@
 + (id)dvt_keysToSkipWeakReferenceObservingValidation;
 + (Class)archivableRepresentationClass;
 + (id)keyPathsForValuesAffectingUserDefined;
++ (id)keyPathsForValuesAffectingContentType;
 + (double)minimumPriority;
 + (double)maximumPriority;
 + (id)constraintsWithVisualFormat:(id)arg1 options:(unsigned long long)arg2 metrics:(id)arg3 views:(id)arg4 layoutInfo:(id)arg5;
@@ -55,7 +56,7 @@
 @property(nonatomic) NSObject<IBAutolayoutItem> *containingView; // @synthesize containingView=_containingView;
 @property(nonatomic) double priority; // @synthesize priority=_priority;
 @property(retain, nonatomic) IBLayoutConstant *constant; // @synthesize constant=_constant;
-@property(nonatomic) double multiplier; // @synthesize multiplier=_multiplier;
+@property(retain, nonatomic) IBLayoutConstraintMultiplier *multiplier; // @synthesize multiplier=_multiplier;
 @property(nonatomic) unsigned long long secondAttribute; // @synthesize secondAttribute=_secondAttribute;
 @property(nonatomic) NSObject<IBAutolayoutItem> *secondItem; // @synthesize secondItem=_secondItem;
 @property(nonatomic) long long relation; // @synthesize relation=_relation;
@@ -65,21 +66,24 @@
 - (Class)classForArchiver;
 - (void)ibVerifyAfterUnarchivingWithLayoutInfo:(id)arg1;
 - (id)convertConstantToView:(id)arg1;
+@property(readonly, nonatomic, getter=isInstallable) BOOL installable;
 - (BOOL)satisfyConstantUpdatingIfNeededWithLayoutInfo:(id)arg1 context:(id)arg2;
-- (BOOL)isSatisfiedAccordingToFrameworkMetricsWithLayoutDirection:(long long)arg1 substitutingConstant:(id)arg2 context:(id)arg3;
-- (BOOL)isSatisfiedAccordingToFrameworkMetricsWithLayoutDirection:(long long)arg1 returningCurrentCanvasConstant:(double *)arg2 differenceBetweenDeclaredConstantAndCurrentCanvasConstant:(double *)arg3 context:(id)arg4;
-- (BOOL)_isSatisfiedAccordingToFrameworkMetricsWithLayoutDirection:(long long)arg1 substitutingConstant:(id)arg2 returningCurrentCanvasConstant:(double *)arg3 differenceBetweenDeclaredConstantAndCurrentCanvasConstant:(double *)arg4 context:(id)arg5;
+- (unsigned long long)satisfiabilityStateAccordingToFrameworkMetricsWithLayoutDirection:(long long)arg1 substitutingConstant:(id)arg2 context:(id)arg3;
+- (unsigned long long)satisfiabilityStateAccordingToFrameworkMetricsWithLayoutDirection:(long long)arg1 returningCurrentCanvasConstant:(double *)arg2 differenceBetweenDeclaredConstantAndCurrentCanvasConstant:(double *)arg3 context:(id)arg4;
+- (unsigned long long)_satisfiabilityStateAccordingToFrameworkMetricsWithLayoutDirection:(long long)arg1 substitutingConstant:(id)arg2 returningCurrentCanvasConstant:(double *)arg3 differenceBetweenDeclaredConstantAndCurrentCanvasConstant:(double *)arg4 context:(id)arg5;
 - (double)knownMagnitudeOfAnyRoundingAdjustmentWithContext:(id)arg1;
 - (BOOL)mayRequireRoundingAdjustmentWithContext:(id)arg1;
 - (double)roundingAdjustmentWithUserInterfaceLayoutDirection:(long long)arg1;
-- (CDStruct_2268a5ae)geometricDescriptionInCoordinateSpaceOfView:(id)arg1 userInterfaceLayoutDirection:(long long)arg2;
+- (CDStruct_474337f7)geometricDescriptionInCoordinateSpaceOfView:(id)arg1 userInterfaceLayoutDirection:(long long)arg2;
 - (id)suggestedViewForGeometricDescription;
-- (CDStruct_2268a5ae)relativeGeometricDescriptionInCoordinateSpaceOfView:(id)arg1 userInterfaceLayoutDirection:(long long)arg2;
-- (CDStruct_2268a5ae)absoluteGeometricDescriptionInCoordinateSpaceOfView:(id)arg1 userInterfaceLayoutDirection:(long long)arg2 ofItem:(id)arg3 attribute:(unsigned long long)arg4;
+- (CDStruct_474337f7)relativeGeometricDescriptionInCoordinateSpaceOfView:(id)arg1 userInterfaceLayoutDirection:(long long)arg2;
+- (CDStruct_474337f7)absoluteGeometricDescriptionInCoordinateSpaceOfView:(id)arg1 userInterfaceLayoutDirection:(long long)arg2 ofItem:(id)arg3 attribute:(unsigned long long)arg4;
+- (void)enumerateItems:(id)arg1;
 - (id)itemNotMatchingItem:(id)arg1;
 - (id)constraintByReplacingView:(id)arg1 withView:(id)arg2 andReplacingView:(id)arg3 withView:(id)arg4;
 - (id)constraintByReplacingView:(id)arg1 withView:(id)arg2;
 - (id)constraintByReversingFirstAndSecondItem;
+- (void)reverseFirstAndSecondItem;
 - (id)generateNSLayoutConstraintWithContext:(id)arg1;
 - (id)generateNSLayoutConstraintWithContext:(id)arg1 constraintClass:(Class)arg2;
 - (unsigned long long)hashOfComponents;
@@ -93,12 +97,11 @@
 @property(readonly, nonatomic) id containingViewRepresentation;
 @property(readonly, nonatomic) id secondItemRepresentation;
 @property(readonly, nonatomic) id firstItemRepresentation;
-- (void)assertConstraintValidity;
 - (id)archivableRepresentationWithRepresentationForItemBlock:(id)arg1;
 - (void)setScoringType:(double)arg1 andScoringClass:(long long)arg2 basedUponLayoutInfo:(id)arg3;
 @property(nonatomic, getter=isUserDefined) BOOL userDefined;
 @property(readonly, nonatomic, getter=isAbsolute) BOOL absolute;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)descriptionOfComponents;
 - (CDStruct_e1b7b57a)scoreVector;
 @property(readonly, nonatomic) double inferredScoringType;
@@ -110,11 +113,12 @@
 - (id)initWithRepresentation:(id)arg1 itemForItemRepresentationBlock:(id)arg2;
 - (id)initWithItem:(id)arg1 attribute:(unsigned long long)arg2 constant:(id)arg3;
 - (id)initWithFirstItem:(id)arg1 firstAttribute:(unsigned long long)arg2 relation:(long long)arg3 secondItem:(id)arg4 secondAttribute:(unsigned long long)arg5 constant:(id)arg6;
-- (id)initWithFirstItem:(id)arg1 firstAttribute:(unsigned long long)arg2 relation:(long long)arg3 secondItem:(id)arg4 secondAttribute:(unsigned long long)arg5 multiplier:(double)arg6 constant:(id)arg7 priority:(double)arg8;
-- (BOOL)satisfyConstantUpdatingIfNeededWithLayoutInfo:(id)arg1;
-- (id)generateNSLayoutConstraint;
-- (BOOL)isSatisfiedAccordingToFrameworkMetricsWithLayoutDirection:(long long)arg1 substitutingConstant:(id)arg2;
-- (BOOL)isSatisfiedAccordingToFrameworkMetricsWithLayoutDirection:(long long)arg1 returningCurrentCanvasConstant:(double *)arg2 differenceBetweenDeclaredConstantAndCurrentCanvasConstant:(double *)arg3;
+- (id)initWithFirstItem:(id)arg1 firstAttribute:(unsigned long long)arg2 relation:(long long)arg3 secondItem:(id)arg4 secondAttribute:(unsigned long long)arg5 multiplier:(id)arg6 constant:(id)arg7 priority:(double)arg8;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

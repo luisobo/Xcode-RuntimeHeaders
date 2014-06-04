@@ -10,9 +10,9 @@
 
 @interface IBFileBuildSettingsSnapshot : NSObject
 {
-    NSMutableDictionary *cachedValueByBuildableThenConfigurationThenSetting;
-    NSDictionary *buildParametersByBuildableThenConfiguration;
-    NSMutableDictionary *cachedValuesByBuildSetting;
+    NSMutableDictionary *_cachedValueByBuildableThenConfigurationThenSetting;
+    NSDictionary *_buildParametersByBuildableThenConfiguration;
+    NSMutableDictionary *_cachedValuesByBuildSetting;
     NSSet *buildables;
 }
 
@@ -21,9 +21,11 @@
 - (void).cxx_destruct;
 @property(readonly) NSSet *unpreprocessedInfoPlistPaths;
 - (void)enumerateValuesForBuildSetting:(id)arg1 withBlock:(id)arg2;
+- (id)minimumDeploymentTargetForPlatform:(id)arg1;
 @property(readonly) NSString *minimumIOSDeploymentTarget;
 @property(readonly) NSString *minimumMacOSXDeploymentTarget;
 - (id)minimumDeploymentTargetOfTargets:(id)arg1;
+- (id)deploymentTargetsForPlatform:(id)arg1;
 @property(readonly) NSSet *iOSDeploymentTargets;
 @property(readonly) NSSet *macOSXDeploymentTargets;
 @property(readonly) BOOL anyBuildablesRequireManualSynthesis;

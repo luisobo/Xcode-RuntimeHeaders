@@ -28,7 +28,7 @@
 - (id)description;
 - (id)iterativeDescriptionWithIndent:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-@property(readonly) NSString *title;
+@property(readonly, copy) NSString *title;
 - (id)docSet;
 - (id)parentNode;
 - (id)nearestNodeID;

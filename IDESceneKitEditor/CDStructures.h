@@ -21,6 +21,12 @@ struct CGSize {
     double height;
 };
 
+struct SCNVector3 {
+    double _field1;
+    double _field2;
+    double _field3;
+};
+
 struct _NSRange {
     unsigned long long _field1;
     unsigned long long _field2;
@@ -34,10 +40,4 @@ typedef struct {
     double _field3;
     double _field4;
 } CDStruct_d2b197d1;
-
-typedef struct {
-    double _field1;
-    double _field2;
-    double _field3;
-} CDStruct_39925896;
 

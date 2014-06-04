@@ -25,7 +25,7 @@
 }
 
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)setIsReadOnly:(BOOL)arg1;
 - (void)setIsComposite:(BOOL)arg1;
 - (void)setAssociation:(id)arg1;
@@ -60,6 +60,11 @@
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

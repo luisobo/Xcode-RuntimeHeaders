@@ -6,25 +6,15 @@
 
 #import "NSButtonCell.h"
 
-@class NSImage;
-
 @interface IDEWelcomeWindowHighlightButtonCell : NSButtonCell
 {
-    BOOL _mouseOver;
-    BOOL _mouseDown;
-    NSImage *_rolloverImage;
-    NSImage *_pressedImage;
 }
 
 + (id)_buttonHighlightImage;
-@property(retain, nonatomic) NSImage *pressedImage; // @synthesize pressedImage=_pressedImage;
-@property(retain, nonatomic) NSImage *rolloverImage; // @synthesize rolloverImage=_rolloverImage;
-@property BOOL mouseOver; // @synthesize mouseOver=_mouseOver;
-- (void).cxx_destruct;
+- (BOOL)trackMouse:(id)arg1 inRect:(struct CGRect)arg2 ofView:(id)arg3 untilMouseUp:(BOOL)arg4;
 - (struct CGRect)imageRectForBounds:(struct CGRect)arg1;
-- (void)stopTracking:(struct CGPoint)arg1 at:(struct CGPoint)arg2 inView:(id)arg3 mouseIsUp:(BOOL)arg4;
-- (BOOL)continueTracking:(struct CGPoint)arg1 at:(struct CGPoint)arg2 inView:(id)arg3;
-- (BOOL)startTrackingAt:(struct CGPoint)arg1 inView:(id)arg2;
+- (void)drawBezelWithFrame:(struct CGRect)arg1 inView:(id)arg2;
+- (void)drawImage:(id)arg1 withFrame:(struct CGRect)arg2 inView:(id)arg3;
 - (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 
 @end

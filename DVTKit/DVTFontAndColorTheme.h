@@ -59,6 +59,7 @@
 + (id)_defaultSourceCodeFont;
 + (id)keyPathsForValuesAffectingConsoleTextSecondarySelectionColor;
 + (id)keyPathsForValuesAffectingSourceTextSecondarySelectionColor;
++ (void)recordMessageTracerStatistics;
 + (id)titleForNewPreferenceSetFromTemplate;
 + (id)preferenceSetsListHeader;
 + (id)preferenceSetsFileExtension;
@@ -141,8 +142,8 @@
 @property(readonly) NSColor *sourceTextSidebarEdgeColor;
 @property(readonly) NSColor *sourceTextSidebarBackgroundColor;
 @property(readonly) NSColor *sourceTextBackgroundColor;
-- (id)description;
-@property(readonly) NSString *localizedName;
+@property(readonly, copy) NSString *description;
+@property(readonly, copy) NSString *localizedName;
 - (void)_updateHasMultipleSourceTextFonts;
 - (void)_updateDerivedColors;
 - (BOOL)_loadFontsAndColors;
@@ -156,7 +157,10 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

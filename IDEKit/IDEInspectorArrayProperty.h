@@ -12,12 +12,12 @@
 
 @interface IDEInspectorArrayProperty : IDEInspectorProperty <NSTableViewDataSource>
 {
-    NSTableView *itemsTableView;
     IDEInspectorKeyPath *_defaultValueKeyPath;
     IDEInspectorKeyPath *_valueKeyPath;
     IDEInspectorKeyPath *_enabledKeyPath;
     NSArray *_reflectedValues;
     NSString *_defaultValue;
+    NSTableView *_itemsTableView;
     IDEControlGroup *_controlGroup;
     DVTBorderedView *_controlBar;
     DVTGradientImageButton *_addButton;
@@ -28,21 +28,30 @@
 @property(retain, nonatomic) DVTGradientImageButton *addButton; // @synthesize addButton=_addButton;
 @property(retain, nonatomic) DVTBorderedView *controlBar; // @synthesize controlBar=_controlBar;
 @property(retain, nonatomic) IDEControlGroup *controlGroup; // @synthesize controlGroup=_controlGroup;
+@property(retain, nonatomic) NSTableView *itemsTableView; // @synthesize itemsTableView=_itemsTableView;
 - (void).cxx_destruct;
 - (void)removeRow:(id)arg1;
 - (BOOL)canRemoveRow;
 - (void)addRow:(id)arg1;
 - (void)tableViewSelectionDidChange:(id)arg1;
-- (void)tableView:(id)arg1 setObjectValue:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
+- (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (id)tableView:(id)arg1 objectValueForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
+- (id)findIndicatorContentViewWithContext:(id)arg1;
+- (void)editItem:(id)arg1;
 - (void)updateRemoveButtonEnabledState;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)refresh;
-- (void)awakeFromNib;
+- (void)loadView;
 - (double)baseline;
 - (void)pushValuesToModel:(id)arg1;
 - (void)setupControlBarAfterLoading;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

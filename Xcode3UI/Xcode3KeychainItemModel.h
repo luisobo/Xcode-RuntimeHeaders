@@ -16,7 +16,7 @@
 @property(copy, nonatomic) NSArray *keychainAccessGroups; // @synthesize keychainAccessGroups=_keychainAccessGroups;
 - (void).cxx_destruct;
 - (BOOL)isEnabledUsingEducatedGuess;
-- (id)entitlementsFlightCheck;
+- (id)flightChecks;
 - (void)modelWasDisabled;
 - (void)modelWasEnabledWithContext:(id)arg1;
 - (id)defaultKeychainAccessGroups;
@@ -24,7 +24,6 @@
 - (void)_setKeychainAccessGroups:(id)arg1 postAssignmentBlock:(id)arg2;
 - (void)targetCoordinatorChanged:(id)arg1;
 - (void)readValuesFromEntitlements;
-- (void)publishStateWithContext:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)initWithCapabilitiesContext:(id)arg1 item:(id)arg2;
 

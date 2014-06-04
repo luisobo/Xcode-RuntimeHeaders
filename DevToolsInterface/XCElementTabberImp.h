@@ -8,6 +8,8 @@
 
 #import "XCElementTabberP-Protocol.h"
 
+@class NSString;
+
 @interface XCElementTabberImp : XCElementImp <XCElementTabberP>
 {
     struct NSObject *_marker;
@@ -27,6 +29,12 @@
 - (struct NSObject *)marker;
 - (void)setMarker:(struct NSObject *)arg1;
 - (BOOL)isTabber;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

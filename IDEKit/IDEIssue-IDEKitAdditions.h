@@ -6,9 +6,11 @@
 
 #import "IDEIssue.h"
 
-@class NSImage;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface IDEIssue (IDEKitAdditions)
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString;
+
+@interface IDEIssue (IDEKitAdditions) <IDEKeyDrivenNavigableItemRepresentedObject>
 + (BOOL)isCandidateAnnotationRepresentedObject:(id)arg1;
 + (id)defaultImageForIssueType:(int)arg1 ofSize:(unsigned long long)arg2;
 - (id)exploredIssue;
@@ -17,14 +19,25 @@
 - (BOOL)isNoteSeverity;
 - (id)childExplorableItems;
 - (id)parentExplorableItem;
-- (id)navigableItem_documentType;
-- (id)navigableItem_contentDocumentLocation;
-- (id)navigableItem_image;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) NSImage *navigableItem_image;
 - (id)navigableItem_subtitle;
-- (id)navigableItem_name;
+@property(readonly) NSString *navigableItem_name;
 @property(readonly) id exploreAnnotationRepresentedObject;
 @property(readonly) id annotationRepresentedObject;
 - (id)fixItImage;
 @property(readonly) NSImage *image;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 @end
 

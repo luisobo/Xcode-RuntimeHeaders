@@ -7,6 +7,13 @@
 #import "NSObject.h"
 
 @interface NSObject (IBMemberIntegration)
++ (id)ibClassDefaultImage;
++ (id)ibDefaultImageForInstance:(id)arg1;
++ (void)ibPopulateAdditionalInspectors:(id)arg1 forCategory:(id)arg2;
++ (long long)ibMemberType;
+- (id)ibDefaultImage;
+- (BOOL)ibIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;
+- (id)ibApplicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
 - (void)ibRestoreDevelopmentStringArraysDuringCompilingInDocument:(id)arg1 usingContext:(id)arg2;
 - (void)ibSwapInLocalizableStringArraysDuringCompilingInDocument:(id)arg1 usingContext:(id)arg2;
 - (void)ibRestoreDevelopmentStringsDuringCompilingInDocument:(id)arg1 usingContext:(id)arg2;
@@ -14,7 +21,6 @@
 - (void)ibRestoreLocalizableStringsIfNeededInDocument:(id)arg1 withContext:(id)arg2;
 - (void)ibSwapInLocalizableStringsIfNeededInDocument:(id)arg1 withContext:(id)arg2;
 - (id)ibCoerceValueToPlistTypeForIBToolDisplay:(id)arg1 forKeyPath:(id)arg2 strictness:(long long)arg3;
-- (id)ibImageForNavigationRepresentation;
 - (void)ibWillRemoveObject:(id)arg1 fromNonChildToManyRelation:(id)arg2;
 - (void)ibWillRemoveObject:(id)arg1 fromNonChildToOneRelation:(id)arg2;
 @end

@@ -9,31 +9,33 @@
 #import "DTXConnectionRemoteReceiveQueueCalls-Protocol.h"
 #import "DTXMessenger-Protocol.h"
 
-@class DTXChannel, DTXMessageParser, DTXMessageTransmitter, DTXResourceTracker, DTXTransport, NSDictionary, NSMutableDictionary;
+@class DTXChannel, DTXMessageParser, DTXMessageTransmitter, DTXResourceTracker, DTXTransport, NSDictionary, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSString;
 
 @interface DTXConnection : NSObject <DTXConnectionRemoteReceiveQueueCalls, DTXMessenger>
 {
-    struct dispatch_queue_s *_outgoing_message_queue;
-    struct dispatch_queue_s *_outgoing_control_queue;
+    NSObject<OS_dispatch_queue> *_outgoing_message_queue;
+    NSObject<OS_dispatch_queue> *_outgoing_control_queue;
     DTXTransport *_controlTransport;
-    struct dispatch_queue_s *_receive_queue;
+    NSObject<OS_dispatch_queue> *_receive_queue;
+    NSObject<OS_dispatch_queue> *_handler_queue;
     unsigned int _nextChannelCode;
     NSMutableDictionary *_channelsByCode;
+    NSMutableDictionary *_unconfiguredChannelsByCode;
     NSMutableDictionary *_handlersByIdentifier;
-    NSMutableDictionary *_localCapabilities;
-    NSDictionary *_remoteCapabilities;
-    struct dispatch_queue_s *_handler_queue;
+    NSMutableDictionary *_protocolHandlers;
+    NSMutableDictionary *_localCapabilityVersions;
+    NSMutableDictionary *_localCapabilityClasses;
+    NSDictionary *_remoteCapabilityVersions;
     DTXResourceTracker *_resourceTracker;
     DTXResourceTracker *_incomingResourceTracker;
-    struct dispatch_semaphore_s *_firstMessageSem;
+    NSObject<OS_dispatch_semaphore> *_firstMessageSem;
     DTXMessageParser *_incomingParser;
     DTXMessageTransmitter *_outgoingTransmitter;
     DTXChannel *_defaultChannel;
     BOOL _legacyMode;
-    BOOL _routeMissingChannelToDefault;
     BOOL _tracer;
-    BOOL _traceToSyslog;
     BOOL _remoteTracer;
+    int _connectionIndex;
     id _channelHandler;
 }
 
@@ -41,11 +43,9 @@
 + (id)connectionToAddress:(id)arg1;
 + (void)registerTransport:(Class)arg1 forScheme:(id)arg2;
 + (void)initialize;
-@property(readonly, nonatomic) DTXChannel *defaultChannel; // @synthesize defaultChannel=_defaultChannel;
-@property(nonatomic) BOOL routeMissingChannelToDefault; // @synthesize routeMissingChannelToDefault=_routeMissingChannelToDefault;
+@property(readonly, nonatomic) int atomicConnectionNumber; // @synthesize atomicConnectionNumber=_connectionIndex;
 @property(copy) id channelHandler; // @synthesize channelHandler=_channelHandler;
 @property(nonatomic) BOOL remoteTracer; // @synthesize remoteTracer=_remoteTracer;
-@property(nonatomic) BOOL traceToSyslog; // @synthesize traceToSyslog=_traceToSyslog;
 @property(nonatomic) BOOL tracer; // @synthesize tracer=_tracer;
 @property(nonatomic) BOOL legacyMode; // @synthesize legacyMode=_legacyMode;
 - (void)_setTracerState:(unsigned int)arg1;
@@ -64,18 +64,28 @@
 - (void)sendControlSync:(id)arg1 replyHandler:(id)arg2;
 - (void)sendControlAsync:(id)arg1 replyHandler:(id)arg2;
 - (void)cancel;
+- (void)registerDisconnectHandler:(id)arg1;
 - (void)setDispatchTarget:(id)arg1;
 - (void)setMessageHandler:(id)arg1;
 - (void)resume;
 - (void)suspend;
 - (long long)remoteCapabilityVersion:(id)arg1;
-- (void)publishCapability:(id)arg1 withVersion:(long long)arg2;
+- (id)localCapabilities;
+- (void)publishCapability:(id)arg1 withVersion:(long long)arg2 forClass:(Class)arg3;
 @property(nonatomic) unsigned long long maximumEnqueueSize;
+@property(readonly, copy) NSString *description;
+- (id)publishedAddresses;
 - (void)dealloc;
 - (id)initWithTransport:(id)arg1;
 - (void)_setupWireProtocols;
-- (id)initPublishingAddress:(id)arg1;
-- (id)initWithAddress:(id)arg1;
+- (void)publishServicesInBundle:(id)arg1;
+- (id)makeProxyChannelWithRemoteInterface:(id)arg1 exportedInterface:(id)arg2;
+- (void)handleProxyRequestForInterface:(id)arg1 peerInterface:(id)arg2 handler:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

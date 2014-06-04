@@ -20,6 +20,7 @@
 
 @property(retain) NSToolbarItem *toolbarItem; // @synthesize toolbarItem=_toolbarItem;
 - (void).cxx_destruct;
+- (void)_stopLaunchSession:(id)arg1;
 - (void)_handleExecutionTrackersChanged:(id)arg1 forExecutionEnvironment:(id)arg2;
 - (void)_handleToolbarIdleStateChange:(id)arg1 forWorkspace:(id)arg2;
 - (void)_setEnabled:(BOOL)arg1;

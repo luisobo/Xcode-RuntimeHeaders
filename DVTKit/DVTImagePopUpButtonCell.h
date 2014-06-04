@@ -13,9 +13,7 @@
     NSButtonCell *_buttonCell;
     NSImage *_iconImage;
     NSImage *_alternateIconImage;
-    NSImage *_inactiveIconImage;
     NSImage *_disabledIconImage;
-    NSImage *_disabledInactiveIconImage;
     struct CGSize _iconSize;
     double _widthRatio;
     NSImage *_arrowImage;
@@ -42,9 +40,7 @@
 - (BOOL)_shouldShowMenuImmediately:(id)arg1;
 - (BOOL)_shouldShowMenu;
 - (void)setControlSize:(unsigned long long)arg1;
-@property(copy) NSImage *disabledInactiveIconImage;
 @property(copy) NSImage *disabledIconImage;
-@property(copy) NSImage *inactiveIconImage;
 @property(copy) NSImage *alternateIconImage;
 @property(copy) NSImage *iconImage; // @synthesize iconImage=_iconImage;
 - (void)highlight:(BOOL)arg1 withFrame:(struct CGRect)arg2 inView:(id)arg3;

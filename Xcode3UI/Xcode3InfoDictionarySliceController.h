@@ -63,5 +63,11 @@
 - (id)_sectionWithName:(id)arg1 createIfNotFound:(BOOL)arg2;
 - (id)_defaultSection;
 
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
+
 @end
 

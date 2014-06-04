@@ -7,11 +7,9 @@
 #import "NSTextFieldCell.h"
 
 @interface NSTextFieldCell (IBNSTextFieldCellIntegration)
-+ (id)keyPathsForValuesAffectingIbQualifyingInfoForDefaultLabel;
 + (id)keyPathsForValuesAffectingIbInspectedAllowsOnlyRomanCharacters;
 + (id)keyPathsForValuesAffectingIbInspectedBackgroundColor;
 + (id)keyPathsForValuesAffectingIbInspectedDrawsBackground;
-+ (id)keyPathsForValuesAffectingIbWidgetType;
 + (id)keyPathsForValuesAffectingIbIsStaticText;
 + (id)keyPathsForValuesAffectingIbInspectorLayout;
 + (id)keyPathsForValuesAffectingIbInspectedTextBorderType;
@@ -36,8 +34,7 @@
 - (id)ibDisplayNameForKeyPath:(id)arg1;
 - (Class)ibEditorClass;
 - (BOOL)ibWouldClipContentWithCellSize:(struct CGSize)arg1;
-- (void)setIbInspectorLayout:(long long)arg1;
-- (long long)ibInspectorLayout;
+@property(nonatomic) long long ibInspectorLayout;
 - (void)setIbInspectedTextBorderType:(long long)arg1;
 - (long long)ibInspectedTextBorderType;
 - (void)setIbInspectedEditingBehavior:(long long)arg1;

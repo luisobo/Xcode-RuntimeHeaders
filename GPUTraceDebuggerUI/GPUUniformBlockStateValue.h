@@ -6,7 +6,6 @@
 
 #import <GPUTraceDebuggerUI/GPUStateValue.h>
 
-// Not exported
 @interface GPUUniformBlockStateValue : GPUStateValue
 {
     unsigned int _blockBinding;

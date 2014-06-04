@@ -8,7 +8,7 @@
 
 #import "IDECompletionDestinationDelegate-Protocol.h"
 
-@class DVTNotificationToken, IDECompletionDestinationManager, IDEGroup, IDESaveDestinationContext, NSPopUpButton, NSView;
+@class DVTNotificationToken, IDECompletionDestinationManager, IDEGroup, IDESaveDestinationContext, NSPopUpButton, NSString, NSView;
 
 @interface IDESaveDestinationController : DVTViewController <IDECompletionDestinationDelegate>
 {
@@ -42,6 +42,12 @@
 - (id)configuredSavePanel;
 - (void)primitiveInvalidate;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

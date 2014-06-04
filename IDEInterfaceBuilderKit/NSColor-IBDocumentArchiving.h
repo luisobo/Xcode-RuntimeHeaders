@@ -8,9 +8,11 @@
 
 #import "IBDocumentArchiving-Protocol.h"
 
+@class NSString;
+
 @interface NSColor (IBDocumentArchiving) <IBDocumentArchiving>
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
-+ (CDUnion_37ff53f0)unarchiveWhiteValueWithDocumentUnarchiver:(id)arg1;
++ (CDUnion_af3ad131)unarchiveWhiteValueWithDocumentUnarchiver:(id)arg1;
 + (CDUnion_24d33b01)unarchiveRGBValueWithDocumentUnarchiver:(id)arg1;
 + (CDUnion_b8f7e27c)unarchiveCMYKValueWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
@@ -18,5 +20,11 @@
 - (void)archiveWhiteComponentsWithDocumentArchiver:(id)arg1;
 - (void)archiveRGBComponentsWithDocumentArchiver:(id)arg1;
 - (void)archiveCMYKComponentsWithDocumentArchiver:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

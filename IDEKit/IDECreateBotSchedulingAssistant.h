@@ -8,7 +8,7 @@
 
 #import "NSControlTextEditingDelegate-Protocol.h"
 
-@class IDECreateBotAssistantContext, NSDatePicker, NSMatrix, NSPopUpButton, NSTextField, NSView;
+@class IDECreateBotAssistantContext, NSDatePicker, NSMatrix, NSPopUpButton, NSString, NSTextField, NSView;
 
 @interface IDECreateBotSchedulingAssistant : IDEAssistant <NSControlTextEditingDelegate>
 {
@@ -81,6 +81,12 @@
 - (void)viewDidInstall;
 - (void)loadView;
 - (id)nextAssistantIdentifier;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

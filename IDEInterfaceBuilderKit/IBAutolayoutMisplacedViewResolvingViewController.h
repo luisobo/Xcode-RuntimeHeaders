@@ -24,6 +24,7 @@
 @property(readonly, nonatomic) IBDocument *document; // @synthesize document=_document;
 @property(readonly, nonatomic) IBAutolayoutMisplacementStatus *status; // @synthesize status=_status;
 - (void).cxx_destruct;
+- (void)primitiveInvalidate;
 - (void)confirmChanges;
 @property(nonatomic) BOOL shouldResetToSuggestedConstraints;
 @property(nonatomic) BOOL shouldUpdateConstants;

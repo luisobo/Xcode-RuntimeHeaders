@@ -15,7 +15,7 @@
 - (id)initWithEditorItemModel:(id)arg1 portalInfoDelegate:(id)arg2;
 
 // Remaining properties
-@property(retain, nonatomic) Xcode3InAppPurchaseItemModel *model;
+@property(readonly, nonatomic) Xcode3InAppPurchaseItemModel *model;
 
 @end
 

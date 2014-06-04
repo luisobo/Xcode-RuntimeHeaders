@@ -35,26 +35,25 @@
         unsigned int userDraggable:1;
         unsigned int userRemovable:1;
         unsigned int isParagraphEdited:1;
+        unsigned int usesFirstLineFragmentMode:1;
     } _taFlags;
-    BOOL _wantsScrollbarMarker;
-    BOOL _scrollbarMarkerHighlight;
     BOOL _lazyInvalidation;
     int _annotationStackPolicy;
+    unsigned long long _scrollbarMarkerType;
 }
 
 + (void)drawLineHighlightForAnnotations:(id)arg1 highlightRanges:(BOOL)arg2 textView:(id)arg3 getParaRectBlock:(id)arg4;
 + (void)sortAndFilterSupressedAnnotationsInArray:(id)arg1 usingComparisonSelector:(SEL)arg2;
 + (id)logAspect;
 + (void)initialize;
-@property(retain) id <DVTTextAnnotationDelegate> delegate; // @synthesize delegate=_delegate;
 @property BOOL lazyInvalidation; // @synthesize lazyInvalidation=_lazyInvalidation;
-@property BOOL scrollbarMarkerHighlight; // @synthesize scrollbarMarkerHighlight=_scrollbarMarkerHighlight;
-@property BOOL wantsScrollbarMarker; // @synthesize wantsScrollbarMarker=_wantsScrollbarMarker;
-@property(nonatomic) double sidebarMarkerOpacity; // @synthesize sidebarMarkerOpacity=_sidebarMarkerOpacity;
+@property unsigned long long scrollbarMarkerType; // @synthesize scrollbarMarkerType=_scrollbarMarkerType;
 @property(nonatomic) unsigned long long highlightSidebarStyle; // @synthesize highlightSidebarStyle=_highlightSidebarStyle;
+@property(nonatomic) double sidebarMarkerOpacity; // @synthesize sidebarMarkerOpacity=_sidebarMarkerOpacity;
 @property(nonatomic) double sidebarMarkerHorizontalOffset; // @synthesize sidebarMarkerHorizontalOffset=_sidebarMarkerHorizontalOffset;
 @property double sidebarMarkerVerticalPadding; // @synthesize sidebarMarkerVerticalPadding=_sidebarMarkerVerticalPadding;
 @property(retain, nonatomic) NSImage *sidebarMarkerImage; // @synthesize sidebarMarkerImage=_sidebarMarkerImage;
+@property(retain) id <DVTTextAnnotationDelegate> delegate; // @synthesize delegate=_delegate;
 @property int annotationStackPolicy; // @synthesize annotationStackPolicy=_annotationStackPolicy;
 @property unsigned long long severity; // @synthesize severity=_severity;
 @property(readonly) struct _NSRange paragraphRange; // @synthesize paragraphRange=_paragraphRange;
@@ -86,7 +85,7 @@
 - (void)addHighlightedRange:(struct _NSRange)arg1;
 - (void)removeObjectFromHighlightedRangesAtIndex:(unsigned long long)arg1;
 - (void)insertObject:(id)arg1 inHighlightedRangesAtIndex:(unsigned long long)arg2;
-@property(copy) NSArray *highlightedRanges; // @synthesize highlightedRanges=_highlightedRanges;
+@property(copy) NSArray *highlightedRanges;
 @property(getter=isHighlightedRangesVisible) BOOL highlightedRangesVisible;
 - (id)_highlightedRanges;
 @property(getter=isLineHighlightVisible) BOOL lineHighlightVisible;
@@ -101,8 +100,9 @@
 - (void)setTheme:(id)arg1 forState:(id)arg2;
 - (id)themeForState:(id)arg1;
 - (void)resolveLocationIfNeededForLayoutManager:(id)arg1;
+@property BOOL usesFirstLineFragmentMode;
 @property(getter=isParagraphEdited) BOOL paragraphEdited;
-@property(copy) NSArray *secondaryLocations; // @synthesize secondaryLocations=_secondaryLocations;
+@property(copy) NSArray *secondaryLocations;
 - (void)removeLayoutManager:(id)arg1;
 - (void)addLayoutManager:(id)arg1;
 @property(readonly) NSArray *layoutManagers;

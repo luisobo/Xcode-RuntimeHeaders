@@ -23,8 +23,8 @@
 - (void)removeObjectFromChildItemsAtIndex:(unsigned long long)arg1;
 - (void)insertObject:(id)arg1 inChildItemsAtIndex:(unsigned long long)arg2;
 - (id)_childItems;
-@property(readonly) NSMutableArray *mutableChildItems;
-@property(readonly) NSArray *childItems; // @synthesize childItems=_childItems;
+@property(readonly, copy) NSMutableArray *mutableChildItems;
+@property(readonly, copy) NSArray *childItems; // @synthesize childItems=_childItems;
 - (void)setChildItems:(id)arg1;
 @property(readonly) NSString *toolTip;
 @property(readonly) BOOL isGroupedAlternate;

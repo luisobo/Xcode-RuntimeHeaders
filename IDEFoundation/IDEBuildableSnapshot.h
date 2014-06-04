@@ -19,10 +19,12 @@
     NSMutableArray *_postprocessingBlocks;
     NSArray *_currentBuildTasks;
     NSMutableArray *_readyBuildCommands;
+    NSMutableArray *_startedBuildTasks;
 }
 
-+ (struct dispatch_semaphore_s *)_enqueue_semaphore;
++ (id)_enqueue_semaphore;
 + (void)initialize;
+@property(retain) NSMutableArray *startedBuildTasks; // @synthesize startedBuildTasks=_startedBuildTasks;
 @property(retain) NSMutableArray *readyBuildCommands; // @synthesize readyBuildCommands=_readyBuildCommands;
 @property(retain) NSArray *currentBuildTasks; // @synthesize currentBuildTasks=_currentBuildTasks;
 @property(retain) NSMutableArray *postprocessingBlocks; // @synthesize postprocessingBlocks=_postprocessingBlocks;
@@ -50,7 +52,6 @@
 - (void)_updateBuildOperationStatusForBuilder:(id)arg1 buildTask:(id)arg2;
 - (void)_buildTaskDidStartForBuilder:(id)arg1 buildTask:(id)arg2;
 - (void)addPostprocessingBlocks:(id)arg1;
-- (BOOL)useNewBuildCommandEngineForBuilder:(id)arg1 buildCommand:(int)arg2 buildOnlyTheseFiles:(id)arg3;
 - (id)initFromBuildable:(id)arg1 withBuildParameters:(id)arg2;
 
 @end

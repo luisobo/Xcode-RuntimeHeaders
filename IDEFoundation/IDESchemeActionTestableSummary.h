@@ -32,14 +32,18 @@
 @property(readonly) NSArray *containedTestSummaries;
 - (id)dictionaryRepresentation;
 - (id)addNewTestSummaryGroupWithName:(id)arg1 identifier:(id)arg2;
-- (id)addNewTestSummaryWithName:(id)arg1 identifier:(id)arg2 status:(unsigned long long)arg3;
+- (id)addNewTestSummaryWithName:(id)arg1 identifier:(id)arg2 status:(unsigned long long)arg3 failureSummaries:(id)arg4 performanceMetrics:(id)arg5;
 - (unsigned long long)status;
 - (id)initWithDictionaryRepresentation:(id)arg1;
 - (id)initWithName:(id)arg1 blueprintProviderPath:(id)arg2 blueprintName:(id)arg3;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(copy) NSMutableArray *mutableTests; // @dynamic mutableTests;
 @property(copy) NSString *name;
+@property(readonly) Class superclass;
 @property(copy) NSArray *tests; // @dynamic tests;
 
 @end

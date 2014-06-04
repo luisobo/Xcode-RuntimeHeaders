@@ -22,6 +22,7 @@
 - (void).cxx_destruct;
 - (id)containingClassImage;
 - (id)insertionConnectionTypeString;
+- (BOOL)parseSourceModelItem:(id)arg1;
 - (BOOL)parseSourceModelItem:(id)arg1 sourceModel:(id)arg2;
 - (id)springLoadedDocumentLocation;
 - (double)positionPriority;

@@ -21,18 +21,25 @@
 - (id)initWithName:(id)arg1 filePath:(id)arg2;
 
 // Remaining properties
-@property(readonly) NSArray *additionalCompletions;
+@property(readonly, copy) NSArray *additionalCompletions;
 @property(readonly) int completionItemStyle;
-@property(readonly) NSString *completionText;
-@property(readonly) NSAttributedString *descriptionText;
-@property(readonly) NSString *displayText;
-@property(readonly) NSString *displayType;
+@property(readonly, copy) NSString *completionText;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly, copy) NSAttributedString *descriptionText;
+@property(readonly, copy) NSString *displayText;
+@property(readonly, copy) NSString *displayType;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSImage *highlightedStatusIcon;
-@property(readonly) NSString *name;
+@property(readonly, copy) NSString *name;
 @property(readonly) BOOL notRecommended;
-@property(readonly) NSString *parentText;
+@property(readonly, copy) NSString *parentText;
+@property(readonly, copy) NSString *previewText;
 @property double priority;
+@property(readonly) long long priorityBucket;
+@property(readonly) unsigned long long priorityComparatorKind;
 @property(readonly) NSImage *statusIcon;
+@property(readonly) Class superclass;
 
 @end
 

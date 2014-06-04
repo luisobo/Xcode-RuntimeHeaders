@@ -8,7 +8,7 @@
 
 #import "IDEFilePickerViewDelegate-Protocol.h"
 
-@class IDETestSchemeAction, IDEWorkspace;
+@class IDETestSchemeAction, IDEWorkspace, NSString;
 
 @interface IDEAddTestBundleToSchemeActionSheetHelper : NSObject <IDEFilePickerViewDelegate>
 {
@@ -23,6 +23,12 @@
 - (BOOL)_shouldEnableFilePickerItem:(id)arg1;
 - (id)_testableProviders;
 - (id)initWithWorkspace:(id)arg1 completionBlock:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -63,13 +63,13 @@
 + (id)globalSymbolKind;
 + (id)containerSymbolKind;
 @property(readonly) BOOL navigationPrefersDefinition; // @synthesize navigationPrefersDefinition=_navigationPrefersDefinition;
-@property(readonly) NSString *localizedDescription; // @synthesize localizedDescription=_localizedDescription;
-@property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
+@property(readonly, copy) NSString *localizedDescription; // @synthesize localizedDescription=_localizedDescription;
+@property(readonly, copy) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (BOOL)conformsToSymbolKind:(id)arg1;
 @property(readonly, getter=isContainer) BOOL container;
-@property(readonly) NSArray *allConformingSymbolKinds;
-@property(readonly) NSArray *conformedToSymbolKinds;
+@property(readonly, copy) NSArray *allConformingSymbolKinds;
+@property(readonly, copy) NSArray *conformedToSymbolKinds;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;
 - (id)initWithSourceCodeSymbolKindExtension:(id)arg1;

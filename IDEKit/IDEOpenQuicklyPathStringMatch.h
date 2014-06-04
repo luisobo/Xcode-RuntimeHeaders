@@ -13,6 +13,7 @@
     NSString *_path;
     DVTDocumentLocation *_linelessDocumentLocation;
     DVTLocale *_localization;
+    BOOL _inFramework;
 }
 
 @property(retain) DVTLocale *localization; // @synthesize localization=_localization;
@@ -23,7 +24,7 @@
 - (id)locationGivenMatchContext:(id)arg1;
 - (BOOL)isEqualToOpenQuicklyMatch:(id)arg1;
 - (BOOL)isEqualToOpenQuicklyPathStringMatch:(id)arg1;
-- (id)initWithMatchedCandidate:(id)arg1 path:(id)arg2 provider:(id)arg3;
+- (id)initWithMatchedCandidate:(id)arg1 url:(id)arg2 provider:(id)arg3;
 
 @end
 

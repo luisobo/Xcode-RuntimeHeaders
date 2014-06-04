@@ -18,7 +18,9 @@
 
 // Remaining properties
 @property(retain, nonatomic) NSSet *appIDs; // @dynamic appIDs;
+@property(retain, nonatomic) NSSet *applicationGroups; // @dynamic applicationGroups;
 @property(retain, nonatomic) NSSet *certificates; // @dynamic certificates;
+@property(retain, nonatomic) NSSet *cloudContainers; // @dynamic cloudContainers;
 @property(retain, nonatomic) NSSet *developers; // @dynamic developers;
 @property(retain, nonatomic) NSSet *devices; // @dynamic devices;
 @property(nonatomic) BOOL enhancedDevelopmentForMembers; // @dynamic enhancedDevelopmentForMembers;

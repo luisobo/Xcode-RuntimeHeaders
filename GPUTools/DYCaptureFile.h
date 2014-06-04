@@ -20,7 +20,7 @@
 }
 
 @property(readonly, nonatomic) BOOL alias; // @synthesize alias=_alias;
-@property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
+@property(readonly, retain, nonatomic) NSString *name; // @synthesize name=_name;
 @property(readonly, nonatomic) DYCaptureArchive *archive; // @synthesize archive=_archive;
 - (id)decodeSerializedPropertyListWithOptions:(unsigned long long)arg1 error:(id *)arg2;
 - (id)decodeArchivedObjectWithAllowedBaseClasses:(id)arg1;

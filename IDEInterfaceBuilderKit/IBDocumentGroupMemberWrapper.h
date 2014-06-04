@@ -17,6 +17,7 @@
 + (id)childWrapperInvalidationNotificationNames;
 - (void).cxx_destruct;
 - (id)applicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
+- (void)didAddOrRemoveDescendantConnection:(id)arg1;
 - (void)invalidateChildWrappersAfterDocumentMutationNotification:(id)arg1;
 - (void)invalidateChildWrappers;
 - (BOOL)wrapsNormalDocumentObject;

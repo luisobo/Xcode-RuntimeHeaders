@@ -6,12 +6,13 @@
 
 #import <IDEKit/IDEAssistant.h>
 
+#import "IDEFilterControlBarTarget-Protocol.h"
 #import "NSOutlineViewDataSource-Protocol.h"
 #import "NSOutlineViewDelegate-Protocol.h"
 
 @class DVTBorderedView, DVTOutlineView, IDEFilterControlBar, IDEMigrationTargetChooserStatePersistence, NSArray, NSImageView, NSMutableIndexSet, NSString, NSTextField, NSTreeController;
 
-@interface IDEARCConversionTargetChooserAssistant : IDEAssistant <NSOutlineViewDataSource, NSOutlineViewDelegate>
+@interface IDEARCConversionTargetChooserAssistant : IDEAssistant <NSOutlineViewDataSource, NSOutlineViewDelegate, IDEFilterControlBarTarget>
 {
     NSArray *_targetItems;
     NSString *_searchString;
@@ -54,15 +55,22 @@
 - (id)filterDefinitionIdentifier;
 - (void)_restoreSelectedTargetChooserItemsAndExpandedRows;
 - (void)_saveSelectedTargetChooserItemsAndExpandedRows;
-@property(readonly) NSArray *arrangedTargetItems;
+@property(readonly, copy) NSArray *arrangedTargetItems;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (void)loadView;
+- (id)filterControlBar;
 - (void)finishWithCompletionBlock:(id)arg1;
 - (BOOL)alwaysShowFinish;
 - (BOOL)canFinish;
 - (void)setAssistantContext:(id)arg1;
 - (void)primitiveInvalidate;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

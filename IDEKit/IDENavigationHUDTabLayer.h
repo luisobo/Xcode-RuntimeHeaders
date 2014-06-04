@@ -10,7 +10,7 @@
 #import "IDENavigationHUDNavigableLayer-Protocol.h"
 #import "IDENavigationHUDSelectionDrivenLayer-Protocol.h"
 
-@class IDENavigationHUDNewSplitTabLayoutTreeLayer, IDENavigationHUDSelection, IDENavigationHUDTabLayout, IDENavigationHUDWorkspaceWindowLayer, IDEWorkspaceTabController, NSMapTable;
+@class IDENavigationHUDNewSplitTabLayoutTreeLayer, IDENavigationHUDSelection, IDENavigationHUDTabLayout, IDENavigationHUDWorkspaceWindowLayer, IDEWorkspaceTabController, NSMapTable, NSString;
 
 @interface IDENavigationHUDTabLayer : CALayer <IDENavigationHUDSelectionDrivenLayer, IDENavigationHUDNavigableLayer, IDENavigationHUDDisposableLayer>
 {
@@ -44,6 +44,12 @@
 - (id)workspaceWindowController;
 - (void)dispose;
 - (id)initWithWorkspaceTabController:(id)arg1 workspaceWindowLayer:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

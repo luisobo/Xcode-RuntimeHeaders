@@ -9,7 +9,7 @@
 #import "DVTScopeBarContentController-Protocol.h"
 #import "NSTextViewDelegate-Protocol.h"
 
-@class DVTBorderedView, IDEDocContentAreaViewController, NSDictionary, NSTextView;
+@class DVTBorderedView, IDEDocContentAreaViewController, NSDictionary, NSString, NSTextView;
 
 @interface IDEDocInheritanceHierarchyViewController : DVTViewController <NSTextViewDelegate, DVTScopeBarContentController>
 {
@@ -19,7 +19,7 @@
     IDEDocContentAreaViewController *_hostContentAreaViewController;
 }
 
-+ (struct dispatch_queue_s *)_indexQueriesSharedQueue;
++ (id)_indexQueriesSharedQueue;
 @property IDEDocContentAreaViewController *hostContentAreaViewController; // @synthesize hostContentAreaViewController=_hostContentAreaViewController;
 @property NSTextView *textView; // @synthesize textView=_textView;
 @property DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
@@ -34,6 +34,12 @@
 @property(readonly) double preferredViewHeight;
 - (void)primitiveInvalidate;
 - (void)viewDidInstall;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -9,6 +9,8 @@
 #import "IDECommandHandler-Protocol.h"
 #import "IDECommandHandlerVendor-Protocol.h"
 
+@class NSString;
+
 @interface IDEApplicationCommands : NSObject <IDECommandHandler, IDECommandHandlerVendor>
 {
     id <IDESelectionSource> _selectionSource;
@@ -28,12 +30,14 @@
 - (void)showSuddenTerminationCount:(id)arg1;
 - (void)updateSuddenTerminationCount:(id)arg1;
 - (void)triggerCollectionChecking:(id)arg1;
+- (void)showDevicesWindow:(id)arg1;
 - (void)makeWindowFirstResponder:(id)arg1;
 - (void)showWelcomeToXcode:(id)arg1;
 - (void)contextMenu_openWithExternalEditor:(id)arg1;
 - (void)openWithExternalEditor:(id)arg1;
 - (void)openWithExternalEditorUsingContextualMenuSelection:(BOOL)arg1;
 - (void)contextMenu_revealInProjectNavigator:(id)arg1;
+- (void)_revealArchivedItemsInNavigator:(id)arg1;
 - (void)revealInDebugNavigator:(id)arg1;
 - (void)revealInProjectNavigator:(id)arg1;
 - (void)contextMenu_showInFinder:(id)arg1;
@@ -57,6 +61,12 @@
 - (void)orderFrontAboutPanel:(id)arg1;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (id)_initWithSelectionSource:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

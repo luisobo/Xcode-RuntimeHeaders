@@ -8,10 +8,11 @@
 
 #import "NSXMLParserDelegate-Protocol.h"
 
-@class IBXMLDecoderArchiveElement, IBXMLDecoderElement, IBXMLDecoderParserStringTable, NSError, NSMutableArray;
+@class IBXMLDecoderArchiveElement, IBXMLDecoderElement, IBXMLDecoderParserStringTable, NSError, NSMutableArray, NSString;
 
 @interface IBXMLDecoderParser : NSObject <NSXMLParserDelegate>
 {
+    int _retainCountMinusOne;
     NSMutableArray *elementStack;
     NSError *parseError;
     IBXMLDecoderArchiveElement *archiveElement;
@@ -148,9 +149,19 @@
 + (id)parseArchive:(id)arg1 error:(id *)arg2;
 + (void)initialize;
 - (void).cxx_destruct;
-- (id)stringFromXMLCharacters:(const char *)arg1;
 - (id)parseArchive:(id)arg1 error:(id *)arg2;
 - (id)init;
+- (BOOL)_isDeallocating;
+- (BOOL)_tryRetain;
+- (unsigned long long)retainCount;
+- (oneway void)release;
+- (id)retain;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

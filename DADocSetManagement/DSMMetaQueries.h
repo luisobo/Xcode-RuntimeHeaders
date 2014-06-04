@@ -10,7 +10,10 @@
 {
 }
 
++ (id)_appleRefFromUSR:(id)arg1;
 + (id)nodeForUUID:(id)arg1 inDocSet:(id)arg2;
+- (id)tokenForUSR:(id)arg1;
+- (id)tokenForUSR:(id)arg1 platform:(id)arg2 sdkVersion:(id)arg3;
 - (id)tokenForAppleRef:(id)arg1;
 - (id)tokenForAppleRef:(id)arg1 platform:(id)arg2 sdkVersion:(id)arg3;
 - (id)reverseArray:(id)arg1;

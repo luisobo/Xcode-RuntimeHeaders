@@ -15,7 +15,7 @@
 
 + (id)elementName;
 - (void).cxx_destruct;
-- (id)interpretedBytesValue;
+- (id)interpretedObjectValue:(char *)arg1;
 - (BOOL)acceptsData;
 - (BOOL)interpretDataReturningError:(id *)arg1;
 - (BOOL)requestInsertionIntoParent:(id)arg1 error:(id *)arg2;

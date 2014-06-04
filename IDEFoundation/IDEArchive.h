@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTFilePath, IDEArchivedApplication, IDEArchivedContent, NSDate, NSDictionary, NSMutableDictionary, NSString;
+@class DVTFilePath, IDEArchivedApplication, IDEArchivedContent, NSArray, NSDate, NSDictionary, NSMutableDictionary, NSString;
 
 @interface IDEArchive : NSObject
 {
@@ -15,6 +15,7 @@
     IDEArchivedContent *_archivedContent;
     BOOL _savePending;
     BOOL _estimateInProgress;
+    NSArray *_topLevelDistributionItems;
 }
 
 + (long long)_computedApproximateAppStoreFileSizeForArchiveContentPath:(id)arg1 forPlatform:(id)arg2;
@@ -40,6 +41,9 @@
 @property(readonly) IDEArchivedContent *archivedContent; // @synthesize archivedContent=_archivedContent;
 @property(retain) DVTFilePath *path; // @synthesize path=_path;
 - (void).cxx_destruct;
+- (id)topLevelDistributionItemsWithLogAspect:(id)arg1 error:(id *)arg2;
+- (id)_distributionItemForPath:(id)arg1 pathsToItems:(id)arg2 pathsToChildPaths:(id)arg3 logAspect:(id)arg4 error:(id *)arg5;
+- (id)expandedCustomEntitlementsForItemAtPath:(id)arg1 error:(id *)arg2;
 - (void)estimateSizeInBackgroundForPlatform:(id)arg1;
 - (void)_saveArchive:(id)arg1;
 - (void)markDirty;

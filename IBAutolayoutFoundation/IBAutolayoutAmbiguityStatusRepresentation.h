@@ -8,6 +8,8 @@
 
 #import "IBBinaryArchiving-Protocol.h"
 
+@class NSString;
+
 @interface IBAutolayoutAmbiguityStatusRepresentation : NSObject <IBBinaryArchiving>
 {
     id _viewRepresentation;
@@ -22,6 +24,12 @@
 - (id)initWithBinaryUnarchiver:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithViewRepresentation:(id)arg1 ambiguityStatusMask:(unsigned long long)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

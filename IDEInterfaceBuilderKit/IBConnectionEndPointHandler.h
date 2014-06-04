@@ -19,6 +19,7 @@
 - (void)connectionMenu:(id)arg1 willHighlightItem:(id)arg2;
 - (id)connectionForPrototype:(id)arg1 interfaceStyle:(id)arg2;
 - (id)connectionForConnectingFromObject:(id)arg1;
+- (void)_addConnections:(id)arg1 fromSource:(id)arg2 toMutableMenuItems:(id)arg3 underGroupWithDisplayGroupIdentifier:(id)arg4 deprecated:(BOOL)arg5 addingConnectionsToMutableCollection:(id)arg6 addingItemsWithStateImagesToMutableCollection:(id)arg7;
 - (void)primitiveInvalidate;
 
 @end

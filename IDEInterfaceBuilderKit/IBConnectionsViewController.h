@@ -9,7 +9,7 @@
 #import "DVTInvalidation-Protocol.h"
 #import "IBConnectionPrototypeViewDelegate-Protocol.h"
 
-@class DVTDelayedInvocation, DVTMutableOrderedDictionary, DVTNotificationToken, DVTStackBacktrace, IBCancellationToken, IBConnectionInterfaceStyle, IBConnectionPrototypeView, IBDocument, NSColor;
+@class DVTDelayedInvocation, DVTMutableOrderedDictionary, DVTNotificationToken, DVTStackBacktrace, IBCancellationToken, IBConnectionInterfaceStyle, IBConnectionPrototypeView, IBDocument, NSColor, NSString;
 
 @interface IBConnectionsViewController : NSViewController <IBConnectionPrototypeViewDelegate, DVTInvalidation>
 {
@@ -30,6 +30,7 @@
 
 + (void)initialize;
 - (void).cxx_destruct;
+- (id)findIndicatorContentViewForConnection:(id)arg1;
 - (void)refreshConnectionsData:(id)arg1;
 - (void)syncPrototypeStack:(id)arg1 withPrototypeData:(id)arg2;
 - (id)matchingPrototypeForPrototype:(id)arg1 inSet:(id)arg2;
@@ -55,7 +56,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

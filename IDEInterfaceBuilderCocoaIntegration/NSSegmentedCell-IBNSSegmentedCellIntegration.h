@@ -9,7 +9,6 @@
 @class NSArray;
 
 @interface NSSegmentedCell (IBNSSegmentedCellIntegration)
-+ (id)keyPathsForValuesAffectingIbQualifyingInfoForDefaultLabel;
 @property long long ibShadowedNumberOfSegments;
 @property(copy) NSArray *ibShadowedSelectedStates;
 - (void)setIbShadowedEnabledStates:(id)arg1;

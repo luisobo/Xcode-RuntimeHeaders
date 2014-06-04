@@ -9,7 +9,7 @@
 #import "NSCopying-Protocol.h"
 #import "NSObject-Protocol.h"
 
-@class NSDate;
+@class NSDate, NSString;
 
 @interface CSDateTime : NSObject <NSObject, NSCopying>
 {
@@ -24,13 +24,18 @@
 - (void).cxx_destruct;
 - (void)decodeFromDictionary:(id)arg1;
 - (id)encodeToDictionary;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)isoValue;
 - (BOOL)isEqualTo:(id)arg1;
 - (double)epochValue;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
 - (id)initWithDate:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

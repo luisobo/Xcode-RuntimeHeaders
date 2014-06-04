@@ -9,6 +9,6 @@
 @protocol IBXMLCoderDelegate <NSObject>
 - (id)xmlCoder:(id)arg1 classNameForClass:(Class)arg2;
 - (BOOL)xmlCoder:(id)arg1 object:(id)arg2 shouldEncodeObject:(id *)arg3 forKey:(id)arg4 conditional:(BOOL)arg5;
-- (id)xmlCoder:(id)arg1 sortDescriptorForCollection:(id)arg2;
+- (id)xmlCoder:(SEL)arg1 comparatorForCollection:(id)arg2;
 @end
 

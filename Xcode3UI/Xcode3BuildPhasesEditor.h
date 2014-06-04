@@ -10,7 +10,7 @@
 #import "NSMenuDelegate-Protocol.h"
 #import "Xcode3SourceListItemEditor-Protocol.h"
 
-@class DVTBorderedView, DVTGradientImagePopUpButton, DVTMapTable, DVTObservingToken, DVTPerformanceMetric, DVTSourceExpression, DVTStateToken, IDECapsuleListView, IDEContainerQuery, NSArray, NSMenu, NSMutableArray, NSMutableSet, NSString, NSView, Xcode3BuildPhaseViewController, Xcode3ProjectEditor;
+@class DVTBorderedView, DVTGradientImagePopUpButton, DVTObservingToken, DVTPerformanceMetric, DVTSourceExpression, DVTStateToken, IDECapsuleListView, IDEContainerQuery, NSArray, NSMutableArray, NSMutableSet, NSString, NSView, Xcode3BuildPhaseViewController, Xcode3ProjectEditor;
 
 @interface Xcode3BuildPhasesEditor : IDEViewController <Xcode3SourceListItemEditor, IDECapsuleListViewDataSource, NSMenuDelegate>
 {
@@ -22,7 +22,6 @@
     NSMutableArray *_phaseViewControllers;
     NSArray *_arrangedPhaseViewControllers;
     id <IDEBlueprint> _inspectedBlueprint;
-    NSMenu *_addBuildPhaseMenu;
     NSString *_searchString;
     IDEContainerQuery *_rezFileQuery;
     Xcode3BuildPhaseViewController *_modifiedController;
@@ -32,7 +31,7 @@
     DVTObservingToken *_phaseViewControllersObserver;
     DVTObservingToken *_searchStringObserver;
     DVTObservingToken *_rezQueryObserver;
-    DVTMapTable *_searchResultsObservers;
+    NSMutableSet *_searchResultsObservers;
     NSMutableSet *_expandedPhases;
     BOOL _menuNeedsUpdate;
     BOOL _filterStateChanged;
@@ -62,7 +61,7 @@
 - (void)capsuleListView:(id)arg1 didCollapseRow:(long long)arg2;
 - (void)capsuleListView:(id)arg1 didExpandRow:(long long)arg2;
 - (BOOL)capsuleListView:(id)arg1 shouldAllowDragOfRow:(long long)arg2;
-- (BOOL)capsuleListView:(id)arg1 writeRowWithIndex:(unsigned long long)arg2 toPasteboard:(id)arg3;
+- (id)capsuleListView:(id)arg1 pastboardTypesForRowWithIndex:(unsigned long long)arg2;
 - (unsigned long long)capsuleListView:(id)arg1 validateDrop:(id)arg2 proposedRow:(long long)arg3;
 - (BOOL)capsuleListView:(id)arg1 acceptDrop:(id)arg2 row:(long long)arg3;
 - (BOOL)capsuleListView:(id)arg1 canDeleteRow:(long long)arg2;
@@ -86,7 +85,7 @@
 - (void)insertObject:(id)arg1 inPhaseViewControllersAtIndex:(unsigned long long)arg2;
 - (id)objectInPhaseViewControllersAtIndex:(unsigned long long)arg1;
 - (unsigned long long)countOfPhaseViewControllers;
-@property(readonly) NSMutableArray *mutablePhaseViewControllers;
+@property(readonly, copy) NSMutableArray *mutablePhaseViewControllers;
 @property(copy) NSArray *phaseViewControllers;
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)Xcode3Support_newBuildCarbonResourcesBuildPhase:(id)arg1;
@@ -102,11 +101,7 @@
 - (BOOL)_tryToUnfoldAll:(BOOL)arg1;
 - (BOOL)_tryToFoldAll:(BOOL)arg1;
 - (BOOL)_tryToFold:(BOOL)arg1;
-- (void)_updateAddBuildPhaseMenu;
-- (BOOL)_validateMenuItem:(id)arg1;
 - (BOOL)_canAddBuildPhaseClass:(Class)arg1;
-- (id)addBuildPhaseMenu;
-- (void)_buildAddBuildPhaseMenu;
 - (id)buildPhaseNamed:(id)arg1;
 - (void)addBuildPhase:(id)arg1;
 - (void)_addBuildPhaseClass:(Class)arg1;
@@ -133,10 +128,14 @@
 
 // Remaining properties
 @property(readonly) struct CGRect currentSelectionFrame;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(copy, nonatomic) NSArray *inspectedBlueprints;
 @property(readonly, nonatomic) DVTSourceExpression *mouseOverExpression;
 @property(readonly, nonatomic) DVTSourceExpression *selectedExpression;
 @property(retain) DVTStateToken *stateToken; // @dynamic stateToken;
+@property(readonly) Class superclass;
 
 @end
 

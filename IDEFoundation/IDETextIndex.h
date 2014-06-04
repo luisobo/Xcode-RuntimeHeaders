@@ -6,16 +6,17 @@
 
 #import "NSObject.h"
 
+#import "DVTEncodableIndexDelegate-Protocol.h"
 #import "DVTInvalidation-Protocol.h"
-#import "DVTLibraryFragmentFilterDelegate-Protocol.h"
 
-@class DVTLibraryFragmentFilter, DVTStackBacktrace, IDEWorkspace, NSArray, NSMutableSet;
+@class DVTEncodableIndex, DVTLibraryFragmentFilter, DVTStackBacktrace, IDEWorkspace, NSArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
 
-@interface IDETextIndex : NSObject <DVTLibraryFragmentFilterDelegate, DVTInvalidation>
+@interface IDETextIndex : NSObject <DVTEncodableIndexDelegate, DVTInvalidation>
 {
-    struct dispatch_queue_s *_indexQueue;
+    NSObject<OS_dispatch_queue> *_indexQueue;
     unsigned long long _maxConcurrentOperationCount;
-    DVTLibraryFragmentFilter *_searchIndex;
+    DVTLibraryFragmentFilter *_filterIndex;
+    DVTEncodableIndex *_findIndex;
     IDEWorkspace *_workspace;
     NSArray *_dataProviders;
     int _readyFlag;
@@ -23,12 +24,12 @@
     unsigned long long _nRunningJobs;
     double _startTime;
     long long _nCompleted;
-    struct dispatch_queue_s *_updateQueue;
+    NSObject<OS_dispatch_queue> *_updateQueue;
     double _timeOfLastUpdateRequest;
     BOOL _updatePending;
-    struct dispatch_queue_s *_saveQueue;
+    NSObject<OS_dispatch_queue> *_saveQueue;
     double _timeOfLastSaveRequest;
-    BOOL _savePending;
+    unsigned long long _indexTypesForPendingSave;
 }
 
 + (void)_logMissingProviderForFileDataType:(id)arg1;
@@ -36,8 +37,12 @@
 + (id)logAspect;
 + (void)initialize;
 - (void).cxx_destruct;
+- (id)_dataProviderForFilePath:(id)arg1 lastKnownFileDataType:(id)arg2 outFileDataType:(id *)arg3;
 - (id)_dataProviderForFileDataType:(id)arg1;
 - (void)_initDataProviders;
+- (id)_computeFindableForFilePath:(id)arg1 withDataProvider:(id)arg2;
+- (BOOL)_computeFilterForFilePath:(id)arg1 withDataProvider:(id)arg2 queryString:(id)arg3;
+- (id)findableForFilePath:(id)arg1;
 - (id)filePathsPossiblyContainingString:(id)arg1 indexedFilePaths:(id *)arg2;
 - (void)_finishIndexing;
 - (void)_reportProgress:(double)arg1;
@@ -47,19 +52,20 @@
 - (void)setMaxConcurrentOperationCount:(unsigned long long)arg1;
 - (void)scheduleJob:(id)arg1;
 - (void)scheduleJobs:(id)arg1;
-- (void)libraryFragmentFilter:(id)arg1 didRemoveFilterForIdentifier:(id)arg2;
-- (void)libraryFragmentFilter:(id)arg1 didAddFilterForIdentifier:(id)arg2;
-- (void)_removeIndexEntriesForPathStrings:(id)arg1;
-- (void)_removeIndexEntryForPathString:(id)arg1;
+- (void)encodableIndex:(id)arg1 didRemoveItemForIdentifier:(id)arg2;
+- (void)encodableIndex:(id)arg1 didAddItemForIdentifier:(id)arg2;
+- (void)_removeIndexEntriesForPathStrings:(id)arg1 indexTypes:(unsigned long long)arg2;
 - (void)_indexFileInPath:(id)arg1;
 - (id)_collectFilePathsForTextIndex;
 - (void)_scheduleUpdate;
 - (void)updateTextIndex;
 - (void)_updateIfReady;
+- (BOOL)_hasBegunTextIndexing;
+- (void)_beginTextIndexingIfNeeded;
 - (void)beginTextIndexing;
 - (id)_indexFolderPath;
-- (void)_scheduleSave;
-- (void)_saveTextIndex;
+- (void)_scheduleSaveForTypes:(unsigned long long)arg1;
+- (void)_saveTextIndexForTypes:(unsigned long long)arg1;
 - (void)_loadTextIndex;
 - (void)primitiveInvalidate;
 - (void)dealloc;
@@ -68,7 +74,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

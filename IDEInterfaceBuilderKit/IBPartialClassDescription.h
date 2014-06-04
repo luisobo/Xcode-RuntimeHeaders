@@ -6,38 +6,40 @@
 
 #import "NSObject.h"
 
-#import "IBDocumentArchiving-Protocol.h"
 #import "NSCoding-Protocol.h"
 #import "NSCopying-Protocol.h"
 #import "NSMutableCopying-Protocol.h"
 
-@class IBClassDescriptionSource, NSMutableDictionary, NSString;
+@class IBClassDescriptionSource, NSArray, NSMutableArray, NSString;
 
-@interface IBPartialClassDescription : NSObject <NSCopying, NSMutableCopying, NSCoding, IBDocumentArchiving>
+@interface IBPartialClassDescription : NSObject <NSCopying, NSMutableCopying, NSCoding>
 {
-    NSString *className;
-    NSString *superclassName;
-    NSMutableDictionary *actionInfosByName;
-    NSMutableDictionary *toOneOutletInfosByName;
-    NSMutableDictionary *toManyOutletInfosByName;
-    IBClassDescriptionSource *sourceIdentifier;
+    int _retainCountMinusOne;
+    NSString *_className;
+    NSString *_superclassName;
+    NSMutableArray *_relationships;
+    IBClassDescriptionSource *_sourceIdentifier;
+    BOOL _designable;
 }
 
-+ (id)instantiateWithDocumentUnarchiver:(id)arg1;
 + (id)descriptionWithClassName:(id)arg1;
 + (id)userDescriptionWithClassName:(id)arg1;
-@property(readonly) IBClassDescriptionSource *sourceIdentifier; // @synthesize sourceIdentifier;
-@property(readonly) NSString *className; // @synthesize className;
-@property(readonly) NSString *superclassName; // @synthesize superclassName;
+@property(readonly, copy, nonatomic) IBClassDescriptionSource *sourceIdentifier; // @synthesize sourceIdentifier=_sourceIdentifier;
+@property(readonly, nonatomic, getter=isDesignable) BOOL designable; // @synthesize designable=_designable;
+@property(readonly, copy, nonatomic) NSString *superclassName; // @synthesize superclassName=_superclassName;
+@property(readonly, copy, nonatomic) NSString *className; // @synthesize className=_className;
 - (void).cxx_destruct;
-- (BOOL)describesAnyConnections;
-- (id)relationshipInfoForNamedRelation:(id)arg1 ofRelationshipType:(long long)arg2;
+- (id)partialClassDescriptionBySettingSourceIdentifier:(id)arg1;
+- (BOOL)describesAnyRelationships;
+- (id)typeForInspectable:(id)arg1;
 - (id)typeForToManyOutlet:(id)arg1;
 - (id)typeForToOneOutlet:(id)arg1;
 - (id)typeForAction:(id)arg1;
+- (id)inspectableNames;
 - (id)toManyOutletNames;
 - (id)toOneOutletNames;
 - (id)actionNames;
+- (BOOL)describesInspectable:(id)arg1;
 - (BOOL)describesToManyOutlet:(id)arg1;
 - (BOOL)describesToOneOutlet:(id)arg1;
 - (BOOL)describesAction:(id)arg1;
@@ -46,20 +48,23 @@
 - (id)namedRelationsOfRelationshipType:(long long)arg1;
 - (id)typeForNamedRelation:(id)arg1 ofRelationshipType:(long long)arg2;
 - (BOOL)describesNamedRelation:(id)arg1 ofRelationshipType:(long long)arg2;
-- (id)dictionaryForRelationInformationOfType:(long long)arg1;
-@property(readonly) NSString *workspaceDocumentRelativeInterfaceFile;
+- (id)relationshipInfoForNamedRelation:(id)arg1 ofRelationshipType:(long long)arg2;
+@property(readonly, nonatomic) NSString *workspaceDocumentRelativeInterfaceFile;
 - (id)description;
-@property(readonly, getter=isCategory) BOOL category;
+@property(readonly, nonatomic, getter=isCategory) BOOL category;
+@property(readonly, nonatomic) NSArray *relationshipInfos;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithStaticDescription:(id)arg1 andSourceIdentifier:(id)arg2;
 - (id)initWithName:(id)arg1 andSourceIdentifier:(id)arg2;
-- (id)initWithName:(id)arg1 superclass:(id)arg2 actions:(id)arg3 toOneOutlets:(id)arg4 toManyOutlets:(id)arg5 andSourceIdentifier:(id)arg6;
-- (id)partialClassDescriptionBySettingSourceIdentifier:(id)arg1;
+- (id)initWithName:(id)arg1 source:(id)arg2 superclassName:(id)arg3 isDesignable:(BOOL)arg4 relationshipsKnownToBeUniqueByNamePerType:(id)arg5;
+- (BOOL)_isDeallocating;
+- (BOOL)_tryRetain;
+- (unsigned long long)retainCount;
+- (oneway void)release;
+- (id)retain;
 
 @end
 

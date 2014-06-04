@@ -8,7 +8,7 @@
 
 #import "NSTextFieldDelegate-Protocol.h"
 
-@class IDELogBreakpointAction;
+@class IDELogBreakpointAction, NSString;
 
 @interface IDELogBreakpointActionEditor : NSViewController <NSTextFieldDelegate>
 {
@@ -17,6 +17,12 @@
 
 - (void).cxx_destruct;
 - (id)initWithAction:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

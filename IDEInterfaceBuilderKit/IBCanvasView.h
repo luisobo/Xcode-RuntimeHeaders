@@ -9,42 +9,46 @@
 #import "DVTInvalidation-Protocol.h"
 #import "IBSelectionOwnerDelegate-Protocol.h"
 
-@class DVTDelayedInvocation, DVTStackBacktrace, IBCanvasBackgroundView, IBCanvasBandSelectionView, IBCanvasFrame, IBCanvasScrollView, IBMutableIdentityDictionary, IBSelectionOwner, IBShadowBox, NSArray, NSMutableArray, NSMutableDictionary, NSMutableSet, NSSet, NSValue, NSView;
+@class DVTDelayedInvocation, DVTStackBacktrace, IBCanvasBackgroundView, IBCanvasBandSelectionView, IBCanvasFrame, IBCanvasScrollView, IBMutableIdentityDictionary, IBSelectionOwner, NSArray, NSMutableArray, NSMutableDictionary, NSMutableSet, NSSet, NSString, NSValue, NSView;
 
 @interface IBCanvasView : DVTLayoutView_ML <IBSelectionOwnerDelegate, DVTInvalidation>
 {
-    IBCanvasScrollView *scrollView;
-    IBCanvasFrame *keyCanvasFrame;
-    BOOL drawsWithActiveLook;
-    IBMutableIdentityDictionary *overlaysPerCanvasFrame;
-    NSMutableSet *frameViews;
-    NSMutableArray *canvasOverlays;
-    IBCanvasBackgroundView *backgroundView;
-    IBShadowBox *shadowBox;
-    NSView *endOfUndockedViewsToken;
-    NSView *endOfDockedViewsToken;
-    DVTDelayedInvocation *shrinkInvocation;
-    BOOL shrinksToFitFrames;
-    IBSelectionOwner *canvasFrameSelectionOwner;
-    IBCanvasBandSelectionView *bandSelectionView;
-    double currentZoomFactor;
-    double targetZoomFactor;
-    struct CGPoint zoomAnchor;
-    NSValue *centerToPoint;
-    BOOL animatingZoom;
-    NSMutableDictionary *expansionRects;
-    BOOL autoscrollEnabled;
-    long long trackingAreaUpdateSuppressionCount;
-    id <IBCanvasViewDelegate> delegate;
+    long long _trackingAreaUpdateSuppressionCount;
+    IBMutableIdentityDictionary *_overlaysPerCanvasFrame;
+    NSMutableSet *_frameViews;
+    NSMutableArray *_canvasOverlays;
+    NSView *_endOfUndockedViewsToken;
+    NSView *_endOfDockedViewsToken;
+    NSMutableDictionary *_expansionRects;
+    DVTDelayedInvocation *_shrinkInvocation;
+    IBSelectionOwner *_canvasFrameSelectionOwner;
+    IBCanvasBandSelectionView *_bandSelectionView;
+    double _currentZoomFactor;
+    double _targetZoomFactor;
+    struct CGPoint _zoomAnchor;
+    NSValue *_centerToPoint;
+    BOOL _animatingZoom;
+    BOOL _autoscrollEnabled;
+    BOOL _drawsWithActiveLook;
+    BOOL _shrinksToFitFrames;
+    IBCanvasBackgroundView *_backgroundView;
+    IBCanvasScrollView *_scrollView;
+    id <IBCanvasViewDelegate> _delegate;
+    IBCanvasFrame *_keyCanvasFrame;
+    struct CGSize _framePaddingSizeForOverlayScrollers;
+    struct CGSize _layoutPositioningScale;
 }
 
 + (void)initialize;
-@property(getter=isAutoscrollEnabled) BOOL autoscrollEnabled; // @synthesize autoscrollEnabled;
-@property(readonly) IBCanvasScrollView *scrollView; // @synthesize scrollView;
-@property(retain, nonatomic) IBCanvasFrame *keyCanvasFrame; // @synthesize keyCanvasFrame;
-@property(nonatomic) BOOL shrinksToFitFrames; // @synthesize shrinksToFitFrames;
-@property(readonly) IBCanvasBackgroundView *backgroundView; // @synthesize backgroundView;
-@property(nonatomic) __weak id <IBCanvasViewDelegate> delegate; // @synthesize delegate;
+@property(nonatomic) struct CGSize layoutPositioningScale; // @synthesize layoutPositioningScale=_layoutPositioningScale;
+@property(nonatomic) struct CGSize framePaddingSizeForOverlayScrollers; // @synthesize framePaddingSizeForOverlayScrollers=_framePaddingSizeForOverlayScrollers;
+@property(nonatomic) BOOL shrinksToFitFrames; // @synthesize shrinksToFitFrames=_shrinksToFitFrames;
+@property(nonatomic) BOOL drawsWithActiveLook; // @synthesize drawsWithActiveLook=_drawsWithActiveLook;
+@property(retain, nonatomic) IBCanvasFrame *keyCanvasFrame; // @synthesize keyCanvasFrame=_keyCanvasFrame;
+@property(nonatomic) __weak id <IBCanvasViewDelegate> delegate; // @synthesize delegate=_delegate;
+@property(retain) IBCanvasScrollView *scrollView; // @synthesize scrollView=_scrollView;
+@property(readonly) IBCanvasBackgroundView *backgroundView; // @synthesize backgroundView=_backgroundView;
+@property(getter=isAutoscrollEnabled) BOOL autoscrollEnabled; // @synthesize autoscrollEnabled=_autoscrollEnabled;
 - (void).cxx_destruct;
 - (void)canvasFrameResizingTest:(id)arg1;
 - (void)canvasScrollTest:(id)arg1;
@@ -73,12 +77,15 @@
 - (void)preventShrinkingWhileAsynchronouslyScrolling;
 - (void)selectionOwner:(id)arg1 didSelect:(id)arg2 andDeselect:(id)arg3;
 - (struct CGRect)adjustScroll:(struct CGRect)arg1;
-- (void)adjustScrollbarForZoomingWhileInvoking:(id)arg1;
+- (void)adjustScrollersForZoomingWhileInvoking:(id)arg1;
+- (void)adjustScrollersForCanvasContentSizingAndMovingWhileInvoking:(id)arg1;
 - (void)centerToPoint:(struct CGPoint)arg1;
-@property(readonly) double zoomFactor;
+- (double)zoomFactor;
 - (void)zoomToFactor:(double)arg1 anchor:(struct CGPoint)arg2 animateSynchronously:(BOOL)arg3;
 - (void)zoomToFactor:(double)arg1 anchor:(struct CGPoint)arg2 animateSynchronouslyForDuration:(double)arg3;
 - (void)zoomToFactor:(double)arg1 anchor:(struct CGPoint)arg2;
+- (struct CGPoint)convertFrameSpacePointToAnchorSpacePoint:(struct CGPoint)arg1;
+- (struct CGPoint)convertAnchorSpacePointToFrameSpacePoint:(struct CGPoint)arg1;
 - (void)_updateTrackingAreas;
 - (void)_invalidateCursorRects;
 - (BOOL)isUpdateTrackingAreasEnabled;
@@ -88,10 +95,11 @@
 - (id)hitTest:(struct CGPoint)arg1;
 - (void)scrollCanvasFrameToVisible:(id)arg1 keepingRectVisible:(struct CGRect)arg2 zoomingToFactor:(double)arg3 animateSynchronously:(BOOL)arg4;
 - (struct CGRect)rectToScrollCanvasFrameToVisible:(id)arg1 keepingRectVisible:(struct CGRect)arg2;
-- (void)canvasFrame:(id)arg1 didChangeSize:(struct CGSize)arg2;
+- (void)canvasFrame:(id)arg1 didChangeFrame:(struct CGRect)arg2;
+- (void)canvasFrame:(id)arg1 anchorDidChange:(struct CGPoint)arg2;
 - (void)didCompleteLayout;
 - (void)didLayoutSubview:(id)arg1;
-- (struct CGRect)autopositionedFrameForCanvasFrame:(id)arg1 inRect:(struct CGRect)arg2;
+- (struct CGPoint)initialAnchorForCanvasFrame:(id)arg1 visibleRect:(struct CGRect)arg2;
 - (struct CGRect)sizeAndPositionDockedViews;
 - (void)sizeAndPositionOverlays;
 - (void)sizeToFitFixedCanvasFrames;
@@ -107,7 +115,9 @@
 - (void)clipViewBoundsDidChange:(id)arg1;
 - (id)framesForViews:(id)arg1 inView:(id)arg2;
 - (struct CGRect)frameForDockedCanvasFrame:(id)arg1 undockedArea:(struct CGRect *)arg2;
+- (struct CGRect)currentViewPort;
 - (BOOL)isFlipped;
+- (void)setSubviews:(id)arg1;
 - (void)orderCanvasFrameFront:(id)arg1;
 - (id)currentCanvasOrder;
 - (void)removeOverlayView:(id)arg1 forCanvasFrame:(id)arg2;
@@ -117,7 +127,6 @@
 - (void)removeCanvasFrame:(id)arg1;
 - (void)addCanvasFrame:(id)arg1;
 @property(readonly) NSArray *canvasFramesFromBackToFront;
-@property BOOL drawsWithActiveLook;
 - (BOOL)becomeFirstResponder;
 - (BOOL)acceptsFirstResponder;
 @property(copy) NSSet *selectedCanvasFrames;
@@ -131,7 +140,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "XCEDataNodeAdapterP-Protocol.h"
 
-@class XCBuildResultsCell;
+@class NSString, XCBuildResultsCell;
 
 @interface XCBuildResultAdapter : NSObject <XCEDataNodeAdapterP>
 {
@@ -36,6 +36,12 @@
 - (id)defaultFont;
 - (id)imageForDataNode:(id)arg1;
 - (id)titleForDataNode:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

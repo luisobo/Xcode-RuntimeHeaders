@@ -6,10 +6,33 @@
 
 #import "IDEIndexCompletionItem.h"
 
-@class NSImage;
+#import "DVTTextCompletionItem-Protocol.h"
 
-@interface IDEIndexCompletionItem (IDEKitExtensions)
+@class NSArray, NSAttributedString, NSImage, NSString;
+
+@interface IDEIndexCompletionItem (IDEKitExtensions) <DVTTextCompletionItem>
+@property(readonly) unsigned long long priorityComparatorKind;
+@property(readonly) long long priorityBucket;
 - (void)infoViewControllerWithWidth:(double)arg1 context:(id)arg2 completionBlock:(id)arg3;
 @property(readonly) NSImage *icon;
+
+// Remaining properties
+@property(readonly, copy) NSArray *additionalCompletions;
+@property(readonly) int completionItemStyle;
+@property(readonly, copy) NSString *completionText;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly, copy) NSAttributedString *descriptionText;
+@property(readonly, copy) NSString *displayText;
+@property(readonly, copy) NSString *displayType;
+@property(readonly) unsigned long long hash;
+@property(readonly) NSImage *highlightedStatusIcon;
+@property(readonly, copy) NSString *name;
+@property(readonly) BOOL notRecommended;
+@property(readonly, copy) NSString *parentText;
+@property(readonly, copy) NSString *previewText;
+@property double priority;
+@property(readonly) NSImage *statusIcon;
+@property(readonly) Class superclass;
 @end
 

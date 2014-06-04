@@ -56,5 +56,11 @@
 - (id)initWithIdentifier:(id)arg1 inParentRepository:(id)arg2;
 - (id)initWithIdentifier:(id)arg1 inParentStateToken:(id)arg2;
 
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
+
 @end
 

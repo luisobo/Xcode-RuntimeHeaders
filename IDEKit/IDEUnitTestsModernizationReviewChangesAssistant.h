@@ -9,7 +9,7 @@
 #import "IDEComparisonEditorDataSource-Protocol.h"
 #import "IDEReviewFilesDataSource-Protocol.h"
 
-@class DVTBorderedView, DVTMapTable, DVTObservingToken, IDENavigableItemCoordinator, IDENavigatorDataCell, IDEReviewFilesViewController, NSArray, NSMutableSet, NSOperationQueue;
+@class DVTBorderedView, DVTMapTable, DVTObservingToken, IDENavigableItemCoordinator, IDENavigatorDataCell, IDEReviewFilesViewController, NSArray, NSMutableSet, NSObject<OS_dispatch_semaphore>, NSOperationQueue, NSString;
 
 @interface IDEUnitTestsModernizationReviewChangesAssistant : IDEAssistant <IDEReviewFilesDataSource, IDEComparisonEditorDataSource>
 {
@@ -26,7 +26,7 @@
     NSOperationQueue *_operationQueue;
     NSMutableSet *_readOnlyStatusObservationTokens;
     unsigned long long _numCheckedFilePaths;
-    struct dispatch_semaphore_s *_completionSemaphore;
+    NSObject<OS_dispatch_semaphore> *_completionSemaphore;
     NSMutableSet *_bindingTokens;
 }
 
@@ -44,9 +44,9 @@
 - (id)_fileReferenceCell;
 - (id)_groupCell;
 - (id)_containerFileReferenceCell;
-@property(readonly) NSArray *issueNavigableItems;
+@property(readonly, copy) NSArray *issueNavigableItems;
 - (id)fileSystemNavigableItems;
-@property(readonly) NSArray *workspaceNavigableItems;
+@property(readonly, copy) NSArray *workspaceNavigableItems;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (void)loadView;
@@ -64,6 +64,12 @@
 - (BOOL)canFinish;
 - (BOOL)canGoBack;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,6 +8,8 @@
 
 #import "NSMenuDelegate-Protocol.h"
 
+@class NSString;
+
 // Not exported
 @interface GPUImageEditorMenuDelegate : NSObject <NSMenuDelegate>
 {
@@ -15,6 +17,12 @@
 
 - (void)menuNeedsUpdate:(id)arg1;
 - (id)editorForMenuContent;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

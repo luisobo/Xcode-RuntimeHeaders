@@ -6,30 +6,37 @@
 
 #import <IDEInterfaceBuilderKit/IBDocumentMemberWrapper.h>
 
-@class IBMutableIdentityDictionary, NSArray, NSSet;
+@class IBMutableIdentityDictionary, NSArray, NSImage, NSObject, NSString;
 
 @interface IBDocumentObjectMemberWrapper : IBDocumentMemberWrapper
 {
-    IBMutableIdentityDictionary *navigationGroupIdentifierToGroupMap;
-    NSSet *notificationForwarderTokens;
-    NSArray *childWrappers;
+    IBMutableIdentityDictionary *_navigationGroupIdentifierToGroupMap;
+    NSArray *_childWrappers;
+    NSString *_name;
+    NSImage *_image;
+    BOOL _installed;
 }
 
-+ (id)keyPathsForValuesAffectingImage;
-+ (id)keyPathsForValuesAffectingName;
 + (id)keyPathsForValuesAffectingObject;
 - (void).cxx_destruct;
-- (void)document:(id)arg1 relationshipKeyPath:(id)arg2 didChangeForMember:(id)arg3;
+- (void)document:(id)arg1 mayHaveTurnedMemberOnOrOff:(id)arg2;
+- (void)document:(id)arg1 didChangeRelationshipKeyPath:(id)arg2 forMember:(id)arg3;
+- (void)document:(id)arg1 didChangeKeyPath:(id)arg2 forMember:(id)arg3;
+- (void)refreshProperties;
 - (void)document:(id)arg1 didRemoveChildObject:(id)arg2 fromMember:(id)arg3;
 - (void)document:(id)arg1 didAddChildObject:(id)arg2 toMember:(id)arg3;
 - (void)invalidateChildWrappers;
 - (BOOL)wrapsNormalDocumentObject;
+- (void)setInstalled:(BOOL)arg1;
+- (BOOL)isInstalled;
 - (id)image;
+- (void)setImage:(id)arg1;
 - (id)name;
+- (void)setName:(id)arg1;
 - (void)setChildWrappers:(id)arg1;
 - (id)childWrappers;
 - (void)rebuildChildWrappers;
-@property(readonly) id object;
+@property(readonly) NSObject *object;
 - (void)primitiveInvalidate;
 - (id)initWithMember:(id)arg1 document:(id)arg2;
 - (id)humanReadableNameForInspectorKeyPath:(id)arg1;

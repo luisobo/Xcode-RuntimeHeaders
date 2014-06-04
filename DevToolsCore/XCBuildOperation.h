@@ -54,7 +54,7 @@
 + (Class)buildLogClass;
 + (id)operationArbitrator;
 + (void)initialize;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)buildLog:(id)arg1 didChangeBuildLogItems:(id)arg2 changeEvents:(id)arg3;
 - (void)buildLog:(id)arg1 didReportStatus:(id)arg2 taskPercentComplete:(double)arg3;
 - (void)buildLog:(id)arg1 descendantLogSection:(id)arg2 message:(id)arg3 didAddMessage:(id)arg4;
@@ -125,6 +125,11 @@
 - (void)dealloc;
 - (id)initWithIdentifier:(id)arg1;
 - (id)initWithProject:(id)arg1 buildAction:(id)arg2 configurationName:(id)arg3 activeArchitecture:(id)arg4 overridingProperties:(id)arg5 buildables:(id)arg6;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

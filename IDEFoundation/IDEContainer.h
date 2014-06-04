@@ -10,10 +10,11 @@
 #import "DVTInvalidation-Protocol.h"
 #import "IDEIntegrityLogDataSource-Protocol.h"
 #import "IDEReadOnlyItem-Protocol.h"
+#import "IDEUpgradeableItem-Protocol.h"
 
 @class DVTExtension, DVTFilePath, DVTMapTable, DVTOperation, DVTStackBacktrace, IDEActivityLogSection, IDEGroup, IDEWorkspace, NSDictionary, NSMapTable, NSMutableDictionary, NSMutableSet, NSString, NSTimer, NSURL;
 
-@interface IDEContainer : DVTModelObject <DVTInvalidation, IDEIntegrityLogDataSource, IDEReadOnlyItem, DVTDirectoryBasedCustomDataStoreDelegate>
+@interface IDEContainer : DVTModelObject <DVTInvalidation, IDEIntegrityLogDataSource, IDEReadOnlyItem, DVTDirectoryBasedCustomDataStoreDelegate, IDEUpgradeableItem>
 {
     id <IDEContainerCore> _containerCore;
     IDEWorkspace *_workspace;
@@ -108,9 +109,12 @@
 @property(readonly) NSURL *readOnlyItemURL;
 - (void)debugPrintStructure;
 - (void)debugPrintInnerStructure;
-- (id)description;
+@property(readonly, copy) NSString *description;
+- (void)collectMessageTracerStatisticsIntoDictionary:(id)arg1;
 @property(readonly) IDEActivityLogSection *integrityLog;
 - (void)analyzeModelIntegrity;
+- (void)enumerateUpgradeTasksWithBlock:(id)arg1;
+@property(readonly, getter=isFolderLike) BOOL folderLike;
 @property(readonly, getter=isMajorGroup) BOOL majorGroup;
 @property(readonly, getter=isEditable) BOOL editable;
 - (void)_initRootGroup;
@@ -183,7 +187,10 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -4,34 +4,32 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2011 by Steve Nygard.
  */
 
-#import "NSViewController.h"
+#import "DBGAbstractQuickLookProvider.h"
 
-#import "IDEVariablesViewQuickLookProvider-Protocol.h"
+@class DVTObservingToken, NSImageView, NSLayoutConstraint;
 
-@class DVTObservingToken, NSImageView, NSLayoutConstraint, NSString, NSURL, NSView;
-
-@interface DBGImageQuickLookProvider : NSViewController <IDEVariablesViewQuickLookProvider>
+@interface DBGImageQuickLookProvider : DBGAbstractQuickLookProvider
 {
-    int _loadedState;
     id <DBGNSImageProvider> _nsImageProvider;
     DVTObservingToken *_nsImageProviderObserver;
+    int _loadedState;
     NSImageView *_imageView;
     NSLayoutConstraint *_imageWidth;
     NSLayoutConstraint *_imageHeight;
 }
 
-@property int loadedState; // @synthesize loadedState=_loadedState;
+@property __weak NSLayoutConstraint *imageHeight; // @synthesize imageHeight=_imageHeight;
+@property __weak NSLayoutConstraint *imageWidth; // @synthesize imageWidth=_imageWidth;
+@property __weak NSImageView *imageView; // @synthesize imageView=_imageView;
+- (void)setLoadedState:(int)arg1;
+- (int)loadedState;
 - (void).cxx_destruct;
 - (void)writeAtomicallyToTemporaryFile:(id)arg1;
-@property(readonly) NSString *extensionForTemporaryFile;
+- (id)extensionForTemporaryFile;
 - (void)cancelLoading;
-@property(readonly) NSView *quickLookView;
 - (void)_updateImage:(id)arg1;
 - (void)loadView;
 - (id)initWithDataValue:(id)arg1 options:(id)arg2;
-
-// Remaining properties
-@property(readonly) NSURL *existingURLToOpen;
 
 @end
 

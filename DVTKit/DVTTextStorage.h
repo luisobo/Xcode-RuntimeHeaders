@@ -6,13 +6,12 @@
 
 #import "NSTextStorage.h"
 
-#import "DVTNodeTypeProvider-Protocol.h"
 #import "DVTSourceBufferProvider-Protocol.h"
-#import "DVTSourceLandmarkItemDelegate-Protocol.h"
+#import "DVTSourceLanguageServiceDelegate-Protocol.h"
 
-@class DVTFontAndColorTheme, DVTObservingToken, DVTSourceCodeLanguage, DVTSourceLandmarkItem, DVTSourceModel, NSMutableAttributedString, NSTimer, _LazyInvalidationHelper;
+@class DVTFontAndColorTheme, DVTObservingToken, DVTSourceCodeLanguage, DVTSourceLandmarkItem, DVTSourceLanguageService<DVTSourceLanguageSourceModelService>, DVTSourceLanguageService<DVTSourceLanguageSyntaxTypeService>, DVTSourceModel, NSDictionary, NSMutableAttributedString, NSString, NSTimer, _LazyInvalidationHelper;
 
-@interface DVTTextStorage : NSTextStorage <DVTNodeTypeProvider, DVTSourceBufferProvider, DVTSourceLandmarkItemDelegate>
+@interface DVTTextStorage : NSTextStorage <DVTSourceBufferProvider, DVTSourceLanguageServiceDelegate>
 {
     NSMutableAttributedString *_contents;
     struct _DVTTextLineOffsetTable _lineOffsets;
@@ -20,7 +19,6 @@
     unsigned long long _numChanges;
     struct _DVTTextChangeEntry *_changes;
     DVTSourceCodeLanguage *_language;
-    DVTSourceModel *_sourceModel;
     NSTimer *_sourceModelUpdater;
     DVTSourceLandmarkItem *_topSourceLandmark;
     DVTSourceLandmarkItem *_rootImportLandmark;
@@ -48,11 +46,16 @@
         unsigned int delegateRespondsToShouldAllowEditing:1;
         unsigned int delegateRespondsToDidUpdateSourceLandmarks:1;
         unsigned int delegateRespondsToNodeTypeForItem:1;
+        unsigned int delegateRespondsToSourceLanguageServiceContext:1;
         unsigned int forceFixAttributes:1;
+        unsigned int languageServiceSupportsSourceModel:1;
     } _tsflags;
     _LazyInvalidationHelper *_lazyInvalidationHelper;
+    DVTSourceLanguageService<DVTSourceLanguageSyntaxTypeService> *_sourceLanguageService;
+    DVTObservingToken *_sourceLanguageServiceContextObservingToken;
 }
 
++ (id)keyPathsForValuesAffectingSourceLanguageServiceContext;
 + (void)initialize;
 + (BOOL)usesScreenFonts;
 + (id)_changeTrackingLogAspect;
@@ -61,21 +64,23 @@
 @property unsigned long long indentWidth; // @synthesize indentWidth=_indentWidth;
 @property double lastEditTimestamp; // @synthesize lastEditTimestamp=_lastEditTimestamp;
 - (void).cxx_destruct;
+- (id)updatedLocationFromLocation:(id)arg1 toTimestamp:(double)arg2;
+- (id)compatibleLocationFromLocation:(id)arg1;
+- (id)convertLocationToNativeNSStringEncodedLocation:(id)arg1;
+- (id)convertLocationToUTF8EncodedLocation:(id)arg1;
 - (void)_restoreRecomputableState;
 - (void)_dropRecomputableState;
 - (unsigned long long)lineBreakBeforeIndex:(unsigned long long)arg1 withinRange:(struct _NSRange)arg2;
-- (id)tokenizableItemsForItemAtRange:(struct _NSRange)arg1;
 - (id)_ancestorItemForTokenizableItem:(id)arg1;
 - (long long)nodeTypeForTokenizableItem:(id)arg1;
 - (double)indentationForWrappedLineAtIndex:(unsigned long long)arg1;
 - (unsigned long long)leadingWhitespacePositionsForLine:(unsigned long long)arg1;
-- (id)colorAtCharacterIndex:(unsigned long long)arg1 inTextView:(id)arg2 effectiveRange:(struct _NSRange *)arg3;
-- (long long)nodeTypeAtCharacterIndex:(unsigned long long)arg1 inTextView:(id)arg2 effectiveRange:(struct _NSRange *)arg3;
+- (long long)syntaxTypeForItem:(id)arg1 context:(id)arg2;
+- (id)colorAtCharacterIndex:(unsigned long long)arg1 effectiveRange:(struct _NSRange *)arg2 context:(id)arg3;
+- (long long)nodeTypeAtCharacterIndex:(unsigned long long)arg1 effectiveRange:(struct _NSRange *)arg2 context:(id)arg3;
 - (void)_themeColorsChanged:(id)arg1;
 @property(retain) DVTFontAndColorTheme *fontAndColorTheme;
 @property(getter=isSyntaxColoringEnabled) BOOL syntaxColoringEnabled;
-- (id)stringByTogglingCommentsInRange:(struct _NSRange)arg1;
-- (BOOL)stringContainsUncommentedLines:(id)arg1 lineCommentPrefix:(id *)arg2;
 - (id)stringBySwappingRange:(struct _NSRange)arg1 withAdjacentRange:(struct _NSRange)arg2;
 - (struct _NSRange)functionOrMethodBodyRangeAtIndex:(unsigned long long)arg1;
 - (struct _NSRange)functionRangeAtIndex:(unsigned long long)arg1 isDefinitionOrCall:(char *)arg2;
@@ -98,21 +103,15 @@
 @property(readonly) DVTSourceLandmarkItem *topSourceLandmark;
 @property(readonly) BOOL hasPendingSourceLandmarkInvalidation;
 - (void)_invalidateSourceLandmarks:(id)arg1;
-- (void)_addLandmarkItemsFromItem:(id)arg1 toParent:(id)arg2 matchingType:(id)arg3 altParent:(void)arg4 matchingAltType:(id)arg5 visitChildren:(id)arg6;
-- (id)landmarkItemNameForSourceModelItem:(id)arg1 nameRange:(struct _NSRange *)arg2;
+- (void)invalidateAllLandmarks;
 - (id)stringForItem:(id)arg1;
-- (struct _NSRange)rangeForBlockContainingRange:(struct _NSRange)arg1;
-- (long long)foldingDepthAtLocation:(unsigned long long)arg1;
-- (id)foldableBlockItemForLocation:(unsigned long long)arg1;
-- (id)foldableBlockItemForLineAtLocation:(unsigned long long)arg1;
-- (id)blockItemAtLocation:(unsigned long long)arg1;
-- (id)commonSourceModelItemAtRange:(struct _NSRange)arg1;
-- (id)sourceModelItemAtCharacterIndex:(unsigned long long)arg1;
-- (id)sourceModelItemAtCharacterIndex:(unsigned long long)arg1 affinity:(unsigned long long)arg2;
 @property(readonly) DVTSourceModel *sourceModelWithoutParsing;
 @property(readonly) DVTSourceModel *sourceModel;
+@property(readonly) DVTSourceLanguageService<DVTSourceLanguageSourceModelService> *sourceModelService;
+@property(readonly, nonatomic) NSDictionary *sourceLanguageServiceContext;
+@property(readonly) DVTSourceLanguageService<DVTSourceLanguageSyntaxTypeService> *languageService;
 @property(copy) DVTSourceCodeLanguage *language;
-- (void)didReplaceCharactersInRange:(struct _NSRange)arg1 withString:(id)arg2 changeInLength:(long long)arg3;
+- (void)didReplaceCharactersInRange:(struct _NSRange)arg1 withString:(id)arg2 changeInLength:(long long)arg3 replacedString:(id)arg4;
 - (void)willReplaceCharactersInRange:(struct _NSRange)arg1 withString:(id)arg2 changeInLength:(long long)arg3;
 - (void)_dumpChangeHistory;
 - (struct _NSRange)lineRangeForLineRange:(struct _NSRange)arg1 fromTimestamp:(double)arg2 toTimestamp:(double)arg3;
@@ -126,11 +125,15 @@
 @property(readonly) unsigned long long currentChangeIndex;
 - (id)_debugInfoString;
 @property(readonly) unsigned long long numberOfLines;
+- (struct _NSRange)currentWordAtIndex:(unsigned long long)arg1;
 - (struct _NSRange)lineRangeForCharacterRange:(struct _NSRange)arg1;
 - (struct _NSRange)characterRangeForLineRange:(struct _NSRange)arg1;
+- (struct _NSRange)characterRangeFromDocumentLocation:(id)arg1;
 - (void)_dumpLineOffsetsTable;
 - (id)_debugStringFromUnsignedIntegers:(const unsigned long long *)arg1 count:(unsigned long long)arg2;
+- (void)serviceAvailabilityNotification:(BOOL)arg1 message:(id)arg2;
 - (void)scheduleLazyInvalidationForRange:(struct _NSRange)arg1;
+- (void)_updateLazyInvalidationForEditedRange:(struct _NSRange)arg1 changeInLength:(long long)arg2;
 - (void)_processLazyInvalidation;
 - (void)_invalidateCallback:(id)arg1;
 @property BOOL processingLazyInvalidation;
@@ -142,14 +145,15 @@
 - (void)fixAttributesInRange:(struct _NSRange)arg1;
 - (void)fixSyntaxColoringInRange:(struct _NSRange)arg1;
 - (void)fixAttachmentAttributeInRange:(struct _NSRange)arg1;
-@property(retain) id <DVTTextStorageDelegate> delegate;
+@property id <DVTTextStorageDelegate> delegate;
 - (id)_associatedTextViews;
 - (void)replaceCharactersInRange:(struct _NSRange)arg1 withAttributedString:(id)arg2 withUndoManager:(id)arg3;
 - (void)replaceCharactersInRange:(struct _NSRange)arg1 withString:(id)arg2 withUndoManager:(id)arg3;
 - (void)addLayoutManager:(id)arg1;
 - (void)invalidateAttributesInRange:(struct _NSRange)arg1;
 - (BOOL)fixesAttributesLazily;
-- (void)_dvt_setForceFixAttributes:(BOOL)arg1;
+- (BOOL)_forceFixAttributes;
+- (void)_setForceFixAttributes:(BOOL)arg1;
 - (void)processEditing;
 - (void)endEditing;
 - (void)beginEditing;
@@ -159,13 +163,6 @@
 - (void)addAttribute:(id)arg1 value:(id)arg2 range:(struct _NSRange)arg3;
 - (void)setAttributes:(id)arg1 range:(struct _NSRange)arg2;
 - (void)replaceCharactersInRange:(struct _NSRange)arg1 withString:(id)arg2;
-- (id)attribute:(id)arg1 atIndex:(unsigned long long)arg2 longestEffectiveRange:(struct _NSRange *)arg3 inRange:(struct _NSRange)arg4;
-- (id)attributesAtIndex:(unsigned long long)arg1 longestEffectiveRange:(struct _NSRange *)arg2 inRange:(struct _NSRange)arg3;
-- (id)attributedSubstringFromRange:(struct _NSRange)arg1;
-- (id)attribute:(id)arg1 atIndex:(unsigned long long)arg2 effectiveRange:(struct _NSRange *)arg3;
-- (unsigned long long)length;
-- (id)attributesAtIndex:(unsigned long long)arg1 effectiveRange:(struct _NSRange *)arg2;
-- (id)string;
 - (BOOL)isDoingBatchEdit;
 - (void)doingBatchEdit:(BOOL)arg1;
 - (void)doingBatchEdit:(BOOL)arg1 notifyModel:(BOOL)arg2;
@@ -179,7 +176,7 @@
 @property(nonatomic) unsigned long long tabWidth;
 @property(readonly) BOOL isEditable;
 @property unsigned long long lineEndings;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)dealloc;
 - (id)init;
 - (id)initWithString:(id)arg1;
@@ -205,8 +202,7 @@
 - (BOOL)isAtBOL:(struct _NSRange)arg1;
 - (void)indentCharacterRange:(struct _NSRange)arg1 undoManager:(id)arg2;
 - (void)indentLineRange:(struct _NSRange)arg1 undoManager:(id)arg2;
-- (BOOL)indentLine:(long long)arg1 onlyIfMovingRight:(BOOL)arg2 undoManager:(id)arg3;
-- (void)indentLine:(long long)arg1 to:(long long)arg2 undoManager:(id)arg3;
+- (BOOL)indentLine:(long long)arg1 options:(unsigned long long)arg2 undoManager:(id)arg3;
 - (long long)firstNonblankForLine:(long long)arg1 convertTabs:(BOOL)arg2;
 - (id)getTextForLineSansBlanks:(long long)arg1;
 @property(readonly, getter=isIndentable) BOOL indentable;
@@ -215,6 +211,19 @@
 - (BOOL)_isInvalidObjectLiteralItem:(id)arg1;
 - (unsigned long long)firstColonAfterItem:(id)arg1 inRange:(struct _NSRange)arg2;
 - (long long)columnForPositionConvertingTabs:(unsigned long long)arg1;
+- (id)attribute:(id)arg1 atIndex:(unsigned long long)arg2 longestEffectiveRange:(struct _NSRange *)arg3 inRange:(struct _NSRange)arg4;
+- (id)attributesAtIndex:(unsigned long long)arg1 longestEffectiveRange:(struct _NSRange *)arg2 inRange:(struct _NSRange)arg3;
+- (id)attributedSubstringFromRange:(struct _NSRange)arg1;
+- (id)attribute:(id)arg1 atIndex:(unsigned long long)arg2 effectiveRange:(struct _NSRange *)arg3;
+- (unsigned long long)length;
+- (id)attributesAtIndex:(unsigned long long)arg1 effectiveRange:(struct _NSRange *)arg2;
+- (id)contents;
+- (id)string;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

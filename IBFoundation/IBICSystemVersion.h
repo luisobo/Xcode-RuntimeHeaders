@@ -6,9 +6,11 @@
 
 #import <IBFoundation/IBICMultipartImageRepSlotComponent.h>
 
+#import "NSCoding-Protocol.h"
+
 @class NSString;
 
-@interface IBICSystemVersion : IBICMultipartImageRepSlotComponent
+@interface IBICSystemVersion : IBICMultipartImageRepSlotComponent <NSCoding>
 {
     NSString *_platform;
     NSString *_marketingVersion;
@@ -19,6 +21,9 @@
 @property(readonly) NSString *marketingVersion; // @synthesize marketingVersion=_marketingVersion;
 @property(readonly) NSString *platform; // @synthesize platform=_platform;
 - (void).cxx_destruct;
+- (void)ibic_appendAdditionalPseudoXMLAttrbutes:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (BOOL)isEqualToSchemaImageRepIDComponent:(id)arg1;
 - (BOOL)isEqualToSystemVersion:(id)arg1;
 - (id)initWithIdentifier:(id)arg1 fileNameComponent:(id)arg2 title:(id)arg3 platform:(id)arg4 marketingVersion:(id)arg5 displayOrder:(double)arg6;

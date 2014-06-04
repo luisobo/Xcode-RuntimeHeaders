@@ -20,7 +20,6 @@
     BOOL _hideMenuButton;
     BOOL _selected;
     NSObject<IDESourceControlNameTokenViewDelegate> *_delegate;
-    BOOL _showChatButton;
     NSMutableDictionary *_textAttributes;
     double _fontSize;
     BOOL _isBold;
@@ -39,19 +38,15 @@
 - (id)tokenForegroundGradient;
 - (id)tokenBackgroundColor;
 - (void)_drawTokenWithContext:(id)arg1 frame:(struct CGRect)arg2 clip:(BOOL)arg3;
-- (struct CGRect)_chatIconRectWithTokenFrame:(struct CGRect)arg1;
-- (id)_chatImage;
 - (id)_pullDownImage;
 - (struct CGRect)_pullDownRectForTokenFrame:(struct CGRect)arg1;
 - (struct CGRect)_tokenRectForStringRect:(struct CGRect)arg1;
 @property BOOL hideMenuButton; // @synthesize hideMenuButton=_hideMenuButton;
-@property BOOL showChatButton; // @synthesize showChatButton=_showChatButton;
 @property BOOL forceHideToken; // @synthesize forceHideToken=_forceHideToken;
 @property(copy) NSString *value;
 @property(readonly) struct CGRect textFrame;
 - (void)_resetTokenRect;
 - (struct CGRect)_rectForString:(id)arg1 withRect:(struct CGRect)arg2;
-- (double)_widthOfChatButtonWithPadding;
 - (double)_widthOfRightMenuWithPadding;
 - (void)mouseUp:(id)arg1;
 - (void)menuDidClose:(id)arg1;
@@ -64,6 +59,12 @@
 - (void)_setFontSize:(double)arg1 bold:(BOOL)arg2;
 @property BOOL isBold; // @synthesize isBold=_isBold;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

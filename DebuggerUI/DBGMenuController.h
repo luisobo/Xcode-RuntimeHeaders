@@ -9,6 +9,8 @@
 #import "IDECommandHandler-Protocol.h"
 #import "IDECommandHandlerVendor-Protocol.h"
 
+@class NSString;
+
 @interface DBGMenuController : NSObject <IDECommandHandlerVendor, IDECommandHandler>
 {
 }
@@ -21,8 +23,16 @@
 - (void)showDrawing:(id)arg1;
 - (void)showAlignmentRectangles:(id)arg1;
 - (void)showFrames:(id)arg1;
+- (void)captureViewHierarchy:(id)arg1;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
-- (id)_appkitViewDebuggingAddition;
+- (id)_viewDebuggingAdditionUIController;
+- (id)_kitViewDebuggingAddition;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

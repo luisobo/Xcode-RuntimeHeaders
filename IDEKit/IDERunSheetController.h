@@ -8,12 +8,11 @@
 
 #import "NSWindowDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTReplacementView, IDEExecutionEnvironment, IDENavigableItemCoordinator, IDENavigatorDataCell, IDENavigatorOutlineView, IDEScheme, IDESchemeAction, IDESchemeCommand, IDEWorkspace, NSArray, NSArrayController, NSButton, NSPopUpButton, NSSegmentedControl, NSString, NSTabView, NSTextField, NSWindow;
+@class DVTBorderedView, DVTObservingToken, DVTReplacementView, IDEExecutionEnvironment, IDENavigableItemCoordinator, IDENavigatorDataCell, IDENavigatorOutlineView, IDEScheme, IDESchemeAction, IDESchemeCommand, IDESchemePathControlViewController, IDEWorkspace, NSArray, NSArrayController, NSButton, NSImageView, NSString, NSTextField, NSView, NSWindow;
 
 @interface IDERunSheetController : IDEViewController <NSWindowDelegate>
 {
     NSWindow *_sheetWindow;
-    NSSegmentedControl *_breakpointsButton;
     NSButton *_goButton;
     NSButton *_doneButton;
     DVTBorderedView *_masterBorderedView;
@@ -21,18 +20,19 @@
     DVTBorderedView *_detailBorderedView;
     DVTReplacementView *_detailReplacementView;
     NSArrayController *_customDataStoresArrayController;
-    NSTabView *_topTabView;
     NSTextField *_nameField;
-    NSPopUpButton *_containerPopUp;
+    NSView *contentView;
+    NSButton *_sharedButton;
+    NSImageView *_schemeImage;
     NSArray *_phaseModelNavigables;
     IDENavigatorDataCell *_phaseCell;
     IDENavigatorDataCell *_subphaseCell;
     NSWindow *_workspaceWindow;
     IDEWorkspace *_workspace;
     IDENavigableItemCoordinator *_navigableItemCoordinator;
+    IDESchemePathControlViewController *_pathControlViewController;
     DVTObservingToken *_runContextObservingToken;
     DVTObservingToken *_runContextClosingObservingToken;
-    DVTObservingToken *_breakpointsActivatedObservingToken;
     DVTObservingToken *_buildPhaseSubtitleObservingToken;
     DVTObservingToken *_testPhaseSubtitleObservingToken;
     DVTObservingToken *_launchPhaseSubtitleObservingToken;
@@ -40,7 +40,6 @@
     DVTObservingToken *_profilePhaseSubtitleObservingToken;
     DVTObservingToken *_analyzePhaseSubtitleObservingToken;
     DVTObservingToken *_installPhaseSubtitleObservingToken;
-    DVTObservingToken *_customDataStoresControllerObservingToken;
     id <IDEClientTrackingToken> _clientTrackingToken;
     BOOL _okButtonReflectsSchemeCommand;
     IDESchemeCommand *_selectedSchemeCommand;
@@ -57,16 +56,15 @@
 + (id)keyPathsForValuesAffectingExecutionEnvironment;
 + (void)beginSheetForWindow:(id)arg1 workspaceWindow:(id)arg2 editingIdentity:(BOOL)arg3 forSchemeCommand:(id)arg4 okButtonReflectsSchemeCommand:(BOOL)arg5 showDoneButton:(BOOL)arg6 completionHandler:(id)arg7;
 + (id)sheetOpeningLogAspect;
-@property(copy) NSString *selectedSchemeCommandTitle; // @synthesize selectedSchemeCommandTitle=_selectedSchemeCommandTitle;
-@property(retain) IDESchemeCommand *selectedSchemeCommand; // @synthesize selectedSchemeCommand=_selectedSchemeCommand;
 @property(copy) NSArray *phaseModelNavigables; // @synthesize phaseModelNavigables=_phaseModelNavigables;
 @property(retain) IDESchemeAction *selectedRunPhase; // @synthesize selectedRunPhase=_selectedRunPhase;
 @property BOOL isDetailViewContentBound; // @synthesize isDetailViewContentBound=_isDetailViewContentBound;
 @property Class viewControllerClassForSelectedRunPhase; // @synthesize viewControllerClassForSelectedRunPhase=_viewControllerClassForSelectedRunPhase;
 @property(retain) NSWindow *workspaceWindow; // @synthesize workspaceWindow=_workspaceWindow;
+@property(copy) NSString *selectedSchemeCommandTitle; // @synthesize selectedSchemeCommandTitle=_selectedSchemeCommandTitle;
+@property(retain) IDESchemeCommand *selectedSchemeCommand; // @synthesize selectedSchemeCommand=_selectedSchemeCommand;
 - (void).cxx_destruct;
 - (void)windowDidResize:(id)arg1;
-- (void)_updateStoreImagesInPopUp;
 - (void)_updateSelectedSchemeCommand;
 - (void)_updateSelectedRunPhaseRowIndex;
 - (void)_bindDetailViewContent;
@@ -81,11 +79,14 @@
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
+- (double)maxWidthForSchemePathControl;
+- (void)controlTextDidEndEditing:(id)arg1;
+- (void)beginEditingIdentityForScheme:(id)arg1;
 - (void)manageContextsAction:(id)arg1;
 - (void)duplicateContextAction:(id)arg1;
-- (void)breakpointsButtonAction:(id)arg1;
 - (void)sheetDoneAction:(id)arg1;
 - (void)sheetGoAction:(id)arg1;
+- (void)cancelOperation:(id)arg1;
 @property(readonly) IDEScheme *runContext;
 @property(readonly) IDEExecutionEnvironment *executionEnvironment;
 @property(retain) IDEWorkspace *workspace;
@@ -98,6 +99,12 @@
 - (void)_setUpMainUI;
 - (void)_updatePhaseNavigables;
 - (void)_invalidatePhaseNavigables;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

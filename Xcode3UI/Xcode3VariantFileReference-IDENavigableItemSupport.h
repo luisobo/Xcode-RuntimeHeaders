@@ -7,6 +7,7 @@
 #import "Xcode3VariantFileReference.h"
 
 @interface Xcode3VariantFileReference (IDENavigableItemSupport)
++ (id)keyPathsForValuesAffectingNavigableItem_name;
 - (id)navigableItem_name;
 @end
 

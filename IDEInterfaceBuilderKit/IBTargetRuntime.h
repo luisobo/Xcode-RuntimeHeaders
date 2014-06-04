@@ -6,48 +6,40 @@
 
 #import "NSObject.h"
 
-@class NSSet;
+@class IBIdiom, IBPlatform, NSMutableDictionary, NSObject<OS_dispatch_queue>;
 
 @interface IBTargetRuntime : NSObject
 {
-    NSSet *_objectLibraryTemplateExtensions;
-    NSSet *_documentDependencies;
-    NSSet *_classDescriptionsExtensions;
-    NSSet *_embeddingPolicyExtensions;
-    NSSet *_buildEnvironmentVerifiers;
-    NSSet *_connectionExtensions;
+    NSMutableDictionary *_imageRequestersByScaleFactor;
     BOOL _installedColorList;
+    NSObject<OS_dispatch_queue> *_asynchronousRequestQueue;
+    NSMutableDictionary *_requestProxiesByScaleFactor;
 }
 
-+ (id)targetRuntimeWithArchiveIdentifier:(id)arg1 variantIdentifier:(id)arg2;
 + (id)targetRuntimeWithIdentifier:(id)arg1;
-+ (id)sharedTargetRuntime;
-+ (void)registerSharedInstance;
 - (void).cxx_destruct;
-- (id)displayNameForPrimaryUserInterface;
-- (id)nextTargetRuntime;
-- (id)alternateTargetRuntimes;
+- (id)asynchronousRequestQueue;
+- (id)imageRequesterWithScaleFactor:(id)arg1;
+- (Class)imageRequestProcessorClass;
+- (id)asynchronousRequestProxyAttachingIfNeededForScaleFactor:(id)arg1;
+- (id)attachToToolProxyForScaleFactor:(id)arg1 assertOnFailureToAttach:(BOOL)arg2 assertOnPostLaunchRequestFailures:(BOOL)arg3 error:(id *)arg4;
+- (id)toolProxyManager;
+- (id)displayNameForUserInterfaceStyle;
+- (id)nextPreviewableTargetRuntime;
+- (id)alternatePreviewableTargetRuntimes;
+- (id)connectionClasses;
+- (id)segueClasses;
 @property(readonly) id <DVTFontTextFieldDataSource> fontDataSource;
 - (void)installColorListIfNeeded;
 - (id)colorList;
-- (id)connectionClasses;
-- (id)connectionExtensionForConnectionClass:(Class)arg1;
-- (id)buildEnvironmentVerifiers;
-- (id)connectionExtensions;
-- (id)embeddingPolicyExtensions;
-- (id)classDescriptionsExtensions;
-- (id)documentDependencyForType:(id)arg1;
-- (id)documentDependencies;
-- (id)objectLibraryTemplateExtensions;
-- (id)icon;
-- (Class)documentClass;
-- (id)operatingSystemName;
-- (id)windowPasteboardType;
-- (id)viewPasteboardType;
-- (id)objectPasteboardType;
+- (struct CGSize)canvasViewFramePaddingSizeForOverlayScrollers;
 - (id)archiveVariantIdentifier;
 - (id)archiveIdentifier;
 - (id)identifier;
+@property(readonly, nonatomic) IBIdiom *idiom;
+@property(readonly, nonatomic) IBPlatform *platform;
+- (void)dealloc;
+- (id)init;
 
 @end
 

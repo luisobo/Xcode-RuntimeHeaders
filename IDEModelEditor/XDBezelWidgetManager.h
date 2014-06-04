@@ -9,7 +9,7 @@
 #import "NSAnimationDelegate-Protocol.h"
 #import "NSWindowDelegate-Protocol.h"
 
-@class NSTimer, XDBezelWidgetPanel, XDBezelWidgetView;
+@class NSString, NSTimer, XDBezelWidgetPanel, XDBezelWidgetView;
 
 @interface XDBezelWidgetManager : NSObject <NSWindowDelegate, NSAnimationDelegate>
 {
@@ -32,9 +32,14 @@
 - (void)_createBezelWidgetTimer;
 - (void)_bezelWidgetTimerAction:(id)arg1;
 - (id)bezelWidgetView;
-- (void)finalize;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

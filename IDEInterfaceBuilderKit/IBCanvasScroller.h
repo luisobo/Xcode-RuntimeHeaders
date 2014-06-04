@@ -13,8 +13,11 @@
     IBCanvasView *canvasView;
 }
 
++ (BOOL)isCompatibleWithOverlayScrollers;
 - (void).cxx_destruct;
 - (void)mouseDown:(id)arg1;
+- (void)setHidden:(BOOL)arg1;
+- (void)setHiddenIgnoringCanUpdateScrollers:(BOOL)arg1;
 
 @end
 

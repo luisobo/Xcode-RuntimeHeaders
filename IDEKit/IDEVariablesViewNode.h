@@ -13,19 +13,18 @@
 
 @interface IDEVariablesViewNode : NSObject <NSPasteboardWriting, NSCopying>
 {
-    NSString *_name;
-    NSString *_manuallySetName;
-    NSString *_placeholderStringForNilDataValue;
-    id <IDEDataValue> _dataValue;
     IDEVariablesViewNode *_parent;
-    NSArray *_childSortDescriptors;
     DVTObservingToken *_childObserver;
     DVTObservingToken *_childValuesCountValidObserver;
     DVTPointerArray *_childrenPointerArray;
     NSMutableArray *_filteredChildren;
-    NSPredicate *_childFilter;
-    unsigned long long _type;
     BOOL _expanded;
+    id <IDEDataValue> _dataValue;
+    unsigned long long _type;
+    NSPredicate *_childFilter;
+    NSString *_placeholderStringForNilDataValue;
+    NSArray *_childSortDescriptors;
+    NSString *_manuallySetName;
 }
 
 + (id)keyPathsForValuesAffectingNumberOfChildren;
@@ -34,14 +33,14 @@
 + (id)keyPathsForValuesAffectingName;
 + (id)rootWithChildren:(id)arg1;
 + (void)initialize;
+@property(copy) NSString *manuallySetName; // @synthesize manuallySetName=_manuallySetName;
 @property(copy, nonatomic) NSArray *childSortDescriptors; // @synthesize childSortDescriptors=_childSortDescriptors;
+@property(copy) NSString *placeholderStringForNilDataValue; // @synthesize placeholderStringForNilDataValue=_placeholderStringForNilDataValue;
 @property(nonatomic) BOOL expanded; // @synthesize expanded=_expanded;
 @property(retain, nonatomic) NSPredicate *childFilter; // @synthesize childFilter=_childFilter;
-@property __weak IDEVariablesViewNode *parent; // @synthesize parent=_parent;
-@property(readonly) id <IDEDataValue> dataValue; // @synthesize dataValue=_dataValue;
 @property(readonly) unsigned long long type; // @synthesize type=_type;
-@property(copy) NSString *placeholderStringForNilDataValue; // @synthesize placeholderStringForNilDataValue=_placeholderStringForNilDataValue;
-@property(copy) NSString *manuallySetName; // @synthesize manuallySetName=_manuallySetName;
+@property(readonly) id <IDEDataValue> dataValue; // @synthesize dataValue=_dataValue;
+@property __weak IDEVariablesViewNode *parent; // @synthesize parent=_parent;
 - (void).cxx_destruct;
 - (long long)compareType:(id)arg1;
 - (id)pasteboardPropertyListForType:(id)arg1;
@@ -62,16 +61,20 @@
 @property(readonly) BOOL childValuesCountValid;
 @property(readonly) BOOL hasChildren;
 @property(readonly) BOOL isTopLevelNode;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSString *fullNamePath;
 - (void)overrideDefaultName:(id)arg1;
-@property(readonly) NSString *name; // @synthesize name=_name;
+@property(readonly) NSString *name;
 - (void)setDataValue:(id)arg1;
 - (void)cleanup;
 - (id)initWithDataValue:(id)arg1 type:(unsigned long long)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

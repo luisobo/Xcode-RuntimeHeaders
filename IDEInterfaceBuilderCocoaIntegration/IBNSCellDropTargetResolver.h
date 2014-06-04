@@ -11,6 +11,7 @@
 }
 
 - (id)editorView;
+- (id)editedCell;
 
 @end
 

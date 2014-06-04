@@ -9,16 +9,20 @@
 #import "NSCopying-Protocol.h"
 #import "NSMutableCopying-Protocol.h"
 
-@class NSDictionary, NSString;
+@class NSDictionary, NSSet, NSString;
 
 @interface IBCompositeClassDescription : NSObject <NSCopying, NSMutableCopying>
 {
-    NSDictionary *descriptions;
-    NSString *className;
+    int _retainCountMinusOne;
+    NSDictionary *_descriptions;
+    NSString *_className;
+    id _cachedSuperclass;
+    NSSet *_cachedDescriptions;
 }
 
++ (id)compositeDescriptionWithPartialDescription:(id)arg1;
 + (id)compositeDescriptionOfClassNamed:(id)arg1;
-@property(readonly) NSDictionary *classDescriptionSources; // @synthesize classDescriptionSources=descriptions;
+@property(readonly) NSDictionary *classDescriptionSources; // @synthesize classDescriptionSources=_descriptions;
 - (void).cxx_destruct;
 - (long long)numberOfPartialClassDescriptions;
 - (id)partialDescriptionDescribingToOneOutlet:(id)arg1;
@@ -33,19 +37,26 @@
 - (id)namedRelationsOfRelationshipType:(long long)arg1;
 - (BOOL)describesNamedRelation:(id)arg1 ofRelationshipType:(long long)arg2;
 - (id)typeForNamedRelation:(id)arg1 ofRelationshipType:(long long)arg2;
+- (BOOL)isDesignable;
+- (BOOL)isSystemClass;
 - (id)description;
 - (id)superclassName;
 - (id)className;
-- (id)partialClassDescriptionsEnumeratorOrderedForDefinitionContention;
 - (id)partialClassDescriptions;
 - (id)documentLocalDescription;
-- (id)partialClassDescriptionWithSource:(id)arg1;
+- (id)partialClassDescriptionForSource:(id)arg1;
 - (id)partialDescriptionDescribingNamedRelation:(id)arg1 ofRelationshipType:(long long)arg2;
-- (id)compositedPartialDescription;
+- (id)definitivePartialClassDescriptionPassingTest:(id)arg1;
+- (id)compositeClassDescriptionByRemovingSources:(id)arg1;
+- (id)compositeClassDescriptionByIntegratingPartialDescription:(id)arg1;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)initWithClassName:(id)arg1;
 - (id)initWithClassName:(id)arg1 andDescriptions:(id)arg2;
+- (BOOL)_isDeallocating;
+- (BOOL)_tryRetain;
+- (unsigned long long)retainCount;
+- (oneway void)release;
+- (id)retain;
 
 @end
 

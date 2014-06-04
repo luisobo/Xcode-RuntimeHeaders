@@ -8,7 +8,7 @@
 
 #import "XCElementDisplayerP-Protocol.h"
 
-@class NSInvocation, NSObject, XCElementDataDelegate;
+@class NSInvocation, NSObject, NSString, XCElementDataDelegate;
 
 @interface XCElementDisplayerImp : XCElementImp <XCElementDisplayerP>
 {
@@ -92,6 +92,12 @@
 - (struct CGSize)originalSize;
 - (void)setOriginalSize:(struct CGSize)arg1;
 - (BOOL)isDisplayer;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

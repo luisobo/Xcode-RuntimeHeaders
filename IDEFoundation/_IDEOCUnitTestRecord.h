@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTPerformanceTestOutput, IDETest, IDETestResult, NSArray, NSDate, NSMutableArray;
+@class DVTPerformanceTestOutput, IDETest, IDETestResult, NSArray, NSDate, NSMutableArray, NSMutableSet;
 
 @interface _IDEOCUnitTestRecord : NSObject
 {
@@ -16,9 +16,13 @@
     NSDate *_startDate;
     double _duration;
     DVTPerformanceTestOutput *_performanceTestOutput;
+    NSMutableArray *_performanceMetrics;
+    NSMutableSet *_failureLocationsForCurrentTest;
 }
 
 + (void)initialize;
+@property(readonly) NSMutableSet *failureLocationsForCurrentTest; // @synthesize failureLocationsForCurrentTest=_failureLocationsForCurrentTest;
+@property(retain) NSMutableArray *performanceMetrics; // @synthesize performanceMetrics=_performanceMetrics;
 @property(copy) DVTPerformanceTestOutput *performanceTestOutput; // @synthesize performanceTestOutput=_performanceTestOutput;
 @property double duration; // @synthesize duration=_duration;
 @property(copy) NSDate *startDate; // @synthesize startDate=_startDate;
@@ -29,7 +33,7 @@
 - (id)initWithTest:(id)arg1;
 
 // Remaining properties
-@property(readonly) NSMutableArray *mutableOutputMessages; // @dynamic mutableOutputMessages;
+@property(readonly, copy) NSMutableArray *mutableOutputMessages; // @dynamic mutableOutputMessages;
 @property(copy) NSArray *outputMessages; // @dynamic outputMessages;
 
 @end

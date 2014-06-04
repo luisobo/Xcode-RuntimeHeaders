@@ -29,6 +29,7 @@
 - (void)setState:(long long)arg1;
 - (void)_setState:(long long)arg1 setStateChildren:(BOOL)arg2;
 - (BOOL)isEnabled;
+- (id)subtitle;
 - (id)title;
 
 @end

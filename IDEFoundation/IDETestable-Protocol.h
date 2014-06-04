@@ -5,15 +5,15 @@
  */
 
 #import "DVTInvalidation-Protocol.h"
+#import "IDETestContainer-Protocol.h"
 #import "NSObject-Protocol.h"
 
-@class NSArray, NSSet, NSString;
+@class NSSet, NSString;
 
-@protocol IDETestable <NSObject, DVTInvalidation>
+@protocol IDETestable <IDETestContainer, DVTInvalidation, NSObject>
 @property(readonly) BOOL isSearchingForTests;
 @property(readonly) NSSet *testFiles;
 @property(readonly) NSString *name;
-@property(readonly) NSArray *tests;
 @property(readonly) id <IDETestableProvider> testableProvider;
 - (BOOL)canHaveSubtestsForTestWithIdentifier:(id)arg1;
 - (id)supertestForTestWithIdentifier:(id)arg1;

@@ -11,12 +11,12 @@
 @interface IBXMLDecoderDataElement : IBXMLDecoderElement
 {
     NSDictionary *_keyedAbstractValueElements;
-    NSMutableArray *elements;
+    NSMutableArray *_elements;
 }
 
 + (id)elementName;
 - (void).cxx_destruct;
-- (id)elements;
+- (void)enumerateElements:(id)arg1;
 @property(readonly) NSDictionary *keyedAbstractValueElements;
 - (void)finishedAddingSubelements;
 - (BOOL)acceptAbstractValueElement:(id)arg1 error:(id *)arg2;

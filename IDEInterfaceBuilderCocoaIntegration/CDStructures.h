@@ -37,5 +37,6 @@ typedef struct {
 
 typedef struct {
     struct CGRect _field1[8];
-} CDStruct_648df176;
+    char _field2[8];
+} CDStruct_fa3e0eee;
 

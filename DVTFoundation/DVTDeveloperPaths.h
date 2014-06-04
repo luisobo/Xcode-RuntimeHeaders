@@ -38,6 +38,7 @@
 - (id)appleInternalPrivatePlugInSearchPathForPlatform:(id)arg1;
 - (id)thirdPartyPlugInSearchPathForPlatform:(id)arg1;
 - (id)corePlugInSearchPathForPlatform:(id)arg1;
+- (id)developerPrivateFrameworksDirectoryPlatform:(id)arg1;
 - (id)developerFrameworksDirectoryPlatform:(id)arg1;
 - (id)developerLibraryDirectoryPlatform:(id)arg1;
 - (id)developerDirectory;

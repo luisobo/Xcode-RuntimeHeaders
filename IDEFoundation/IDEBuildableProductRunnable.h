@@ -8,7 +8,7 @@
 
 #import "DVTXMLUnarchiving-Protocol.h"
 
-@class IDESchemeBuildableReference;
+@class IDESchemeBuildableReference, NSString;
 
 @interface IDEBuildableProductRunnable : IDERunnable <DVTXMLUnarchiving>
 {
@@ -29,6 +29,7 @@
 - (void)resolveBuildableFromImport;
 - (void)setScheme:(id)arg1;
 @property(readonly) id <IDEBuildableProduct> buildableProduct; // @synthesize buildableProduct=_buildableProduct;
+- (int)runnableType;
 - (id)runnableUTIType:(id *)arg1;
 - (BOOL)hasRunnablePath;
 - (id)pathToRunnableForBuildParameters:(id)arg1;
@@ -37,6 +38,12 @@
 - (id)displayName;
 - (id)initFromXMLUnarchiver:(id)arg1 archiveVersion:(float)arg2;
 - (id)initWithBuildableProduct:(id)arg1 scheme:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

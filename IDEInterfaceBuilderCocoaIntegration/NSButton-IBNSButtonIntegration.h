@@ -7,7 +7,6 @@
 #import "NSButton.h"
 
 @interface NSButton (IBNSButtonIntegration)
-+ (id)keyPathsForValuesAffectingIbQualifyingInfoForDefaultLabel;
 - (unsigned long long)ibOrientationsForSizingToFitFromLibrary;
 - (void)ibVerifyFrameToControlSizeConsistency;
 - (id)ibQualifyingInfoForDefaultLabel;

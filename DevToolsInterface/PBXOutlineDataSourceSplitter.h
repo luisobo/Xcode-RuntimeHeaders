@@ -10,7 +10,7 @@
 #import "NSOutlineViewDelegate-Protocol.h"
 #import "XCSelectionSource-Protocol.h"
 
-@class NSMapTable, NSOutlineView;
+@class NSMapTable, NSOutlineView, NSString;
 
 @interface PBXOutlineDataSourceSplitter : NSObject <NSOutlineViewDataSource, NSOutlineViewDelegate, XCSelectionSource>
 {
@@ -70,6 +70,12 @@
 - (void)finalize;
 - (void)dealloc;
 - (id)initWithOutlineView:(id)arg1 mainDataSource:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

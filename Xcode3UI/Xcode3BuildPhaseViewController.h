@@ -30,7 +30,7 @@
 - (void)capsuleView:(id)arg1 setTitle:(id)arg2;
 - (id)capsuleViewTitleForEditing:(id)arg1;
 - (BOOL)capsuleViewCanBeRenamed:(id)arg1;
-@property(readonly) NSString *titleForDisplay;
+@property(readonly, copy) NSString *titleForDisplay;
 - (void)selectLocations:(id)arg1;
 - (id)currentSelectedLocations;
 @property(readonly) BOOL disclosedByDefault;
@@ -48,8 +48,12 @@
 @property(readonly) BOOL canRename;
 @property(readonly) BOOL canSelect;
 @property(readonly) BOOL canUndisclose;
-@property(readonly) NSString *footerLabel;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly, copy) NSString *footerLabel;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSImage *icon;
+@property(readonly) Class superclass;
 
 @end
 

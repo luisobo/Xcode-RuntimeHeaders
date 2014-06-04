@@ -7,10 +7,11 @@
 #import "NSObject.h"
 
 #import "DVTInvalidation-Protocol.h"
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@class DVTFilePath, DVTObservingToken, DVTStackBacktrace, IDEBreakpointBucket, IDEFileBreakpoint, NSArray, NSImage, NSMutableArray, NSString;
+@class DVTDocumentLocation, DVTFileDataType, DVTFilePath, DVTObservingToken, DVTStackBacktrace, IDEBreakpointBucket, IDEFileBreakpoint, IDEFileReference, NSArray, NSImage, NSMutableArray, NSString;
 
-@interface IDEFileBreakpointGroup : NSObject <DVTInvalidation>
+@interface IDEFileBreakpointGroup : NSObject <IDEKeyDrivenNavigableItemRepresentedObject, DVTInvalidation>
 {
     IDEBreakpointBucket *_bucket;
     NSArray *_breakpoints;
@@ -31,7 +32,7 @@
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (id)ideModelObjectTypeIdentifier;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)containsBreakpoint:(id)arg1;
 - (void)_assertBreakpointsFileIsSameAsGroup:(id)arg1;
@@ -40,15 +41,24 @@
 - (void)addFileBreakpointInSortedOrder:(id)arg1;
 - (id)initWithBucket:(id)arg1;
 - (id)textColor;
-- (id)navigableItem_contentDocumentLocation;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) NSString *navigableItem_name;
 
 // Remaining properties
 @property(copy) NSArray *breakpoints; // @dynamic breakpoints;
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(copy) NSMutableArray *mutableBreakpoints; // @dynamic mutableBreakpoints;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

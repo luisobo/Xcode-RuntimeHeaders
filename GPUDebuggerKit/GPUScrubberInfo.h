@@ -11,17 +11,17 @@
 @interface GPUScrubberInfo : NSObject
 {
     IDEWorkspaceTabController *_tabController;
-    unsigned long long _drawLocation;
+    unsigned long long _displayableLocation;
     id _sender;
     int _direction;
 }
 
 @property(readonly, nonatomic) int direction; // @synthesize direction=_direction;
 @property(readonly, nonatomic) id sender; // @synthesize sender=_sender;
-@property(readonly, nonatomic) unsigned long long drawLocation; // @synthesize drawLocation=_drawLocation;
+@property(readonly, nonatomic) unsigned long long displayableLocation; // @synthesize displayableLocation=_displayableLocation;
 @property(readonly, nonatomic) IDEWorkspaceTabController *tabController; // @synthesize tabController=_tabController;
 - (void).cxx_destruct;
-- (id)initWithSender:(id)arg1 workspaceTabController:(id)arg2 drawLocation:(unsigned long long)arg3 direction:(int)arg4;
+- (id)initWithSender:(id)arg1 workspaceTabController:(id)arg2 displayableLocation:(unsigned long long)arg3 direction:(int)arg4;
 
 @end
 

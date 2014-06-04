@@ -8,8 +8,10 @@
 
 @interface DVTModernTableHeaderCell : NSTableHeaderCell
 {
+    double _leftTitleMargin;
 }
 
+@property double leftTitleMargin; // @synthesize leftTitleMargin=_leftTitleMargin;
 - (struct CGRect)sortIndicatorRectForBounds:(struct CGRect)arg1;
 - (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (id)init;

@@ -12,6 +12,7 @@
 
 - (id)chooseDestinationForDragInfo:(id)arg1;
 - (void)populatePolicies:(id)arg1;
+- (id)editedTableColumn;
 - (id)editedView;
 
 @end

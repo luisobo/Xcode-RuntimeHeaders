@@ -13,6 +13,8 @@
 - (BOOL)isOpaque;
 - (void)drawBackgroundInRect:(struct CGRect)arg1;
 - (long long)groupRowStyle2;
+- (void)drawSeparatorInRect:(struct CGRect)arg1;
+- (struct CGRect)separatorRectForTable:(id)arg1;
 
 @end
 

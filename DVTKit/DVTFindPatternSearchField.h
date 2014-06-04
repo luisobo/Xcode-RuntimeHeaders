@@ -8,7 +8,7 @@
 
 #import "DVTFindPatternField-Protocol.h"
 
-@class DVTFindPatternAttachmentCell;
+@class DVTFindPatternAttachmentCell, NSString;
 
 @interface DVTFindPatternSearchField : DVTSearchField <DVTFindPatternField>
 {
@@ -51,6 +51,12 @@
 - (BOOL)_isFindField;
 - (id)replaceField;
 - (id)findField;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

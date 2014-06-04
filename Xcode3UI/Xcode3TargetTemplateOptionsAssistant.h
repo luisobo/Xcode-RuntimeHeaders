@@ -8,7 +8,7 @@
 
 #import "IDECompletionDestinationDelegate-Protocol.h"
 
-@class IDECompletionDestinationManager, NSPopUpButton, NSString, Xcode3Target, Xcode3TargetChooserViewController;
+@class IDECompletionDestinationManager, NSArray, NSMutableDictionary, NSPopUpButton, NSString, Xcode3Target, Xcode3TargetChooserViewController;
 
 @interface Xcode3TargetTemplateOptionsAssistant : IDETemplateOptionsAssistant <IDECompletionDestinationDelegate>
 {
@@ -17,6 +17,13 @@
     NSPopUpButton *_targetPopUp;
     Xcode3Target *_selectedTarget;
     NSString *_suggestedProductName;
+    NSArray *_associatedTargetAllowableProductTypes;
+    BOOL _associatedTargetIsDependent;
+    BOOL _associatedTargetIsTargetToBeTested;
+    BOOL _associatedTargetNeedsProductBuildPhaseInjection;
+    NSString *_associatedTargetPopUpTitle;
+    NSString *_associatedTargetPopUpDescription;
+    NSMutableDictionary *_prevOptionValuesFromConstraints;
     Xcode3TargetChooserViewController *_blueprintChooser;
 }
 
@@ -30,6 +37,7 @@
 - (void)restoreSelectionFromUserDefaults;
 - (void)setAssistantContext:(id)arg1;
 - (void)takeSelectedTargetFromMenuItem:(id)arg1;
+- (void)updateOptionConstraints;
 - (void)rebuildTargetPopupIfNeeded;
 - (void)updateDefaultPackageName;
 - (void)updateClassPrefix;
@@ -45,6 +53,12 @@
 - (id)additionalOptions;
 - (void)primitiveInvalidate;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

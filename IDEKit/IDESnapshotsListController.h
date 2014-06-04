@@ -6,26 +6,24 @@
 
 #import <IDEKit/IDEViewController.h>
 
-#import "DVTTableViewDelegate-Protocol.h"
+#import "NSTableViewDataSource-Protocol.h"
+#import "NSTableViewDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTFilePath, DVTObservingToken, DVTTableView, IDESnapshotRestoreController, NSArray, NSArrayController, NSButton, NSPredicate, NSString, NSTableColumn;
+@class DVTBorderedView, DVTFilePath, DVTObservingToken, DVTTableView, IDESnapshotRestoreController, NSArray, NSArrayController, NSButton, NSPredicate, NSString;
 
-@interface IDESnapshotsListController : IDEViewController <DVTTableViewDelegate>
+@interface IDESnapshotsListController : IDEViewController <NSTableViewDataSource, NSTableViewDelegate>
 {
-    BOOL _showUserCreatedSnapshots;
     DVTBorderedView *_scopeBar;
     NSString *_filterString;
     DVTTableView *_tableView;
-    NSTableColumn *_nameColumn;
-    double _tableColumnWidth;
     NSArrayController *_arrayController;
     DVTBorderedView *_toolbarView;
-    BOOL _hideToolbar;
+    BOOL _hideFilterAndToolbar;
     NSButton *_restoreSnapshotButton;
     NSButton *_deleteSnapshotButton;
     DVTObservingToken *_selectionObserverToken;
     DVTObservingToken *_snapshotPathObserverToken;
-    DVTObservingToken *_hideToolbarToken;
+    DVTObservingToken *_hideFilterAndToolbarToken;
     id _notificationToken;
     DVTFilePath *_snapshotsLocation;
     NSArray *_allSnapshots;
@@ -35,11 +33,10 @@
 
 + (id)keyPathsForValuesAffectingFilterPredicate;
 + (id)defaultViewNibName;
-@property BOOL showUserCreatedSnapshots; // @synthesize showUserCreatedSnapshots=_showUserCreatedSnapshots;
 @property(copy) NSString *filterString; // @synthesize filterString=_filterString;
 @property(retain) IDESnapshotRestoreController *restoreController; // @synthesize restoreController=_restoreController;
 @property BOOL isRestoring; // @synthesize isRestoring=_isRestoring;
-@property BOOL hideToolbar; // @synthesize hideToolbar=_hideToolbar;
+@property BOOL hideFilterAndToolbar; // @synthesize hideFilterAndToolbar=_hideFilterAndToolbar;
 @property(retain) NSArrayController *arrayController; // @synthesize arrayController=_arrayController;
 @property(copy) NSArray *allSnapshots; // @synthesize allSnapshots=_allSnapshots;
 @property(copy, nonatomic) DVTFilePath *snapshotsLocation; // @synthesize snapshotsLocation=_snapshotsLocation;
@@ -52,14 +49,16 @@
 @property(readonly) NSPredicate *filterPredicate;
 - (void)loadAllCommits;
 - (BOOL)tableView:(id)arg1 doCommandBySelector:(SEL)arg2;
-- (double)tableView:(id)arg1 heightOfRow:(long long)arg2;
-- (BOOL)tableView:(id)arg1 shouldShowCellExpansionForTableColumn:(id)arg2 row:(long long)arg3;
-- (void)tableViewColumnDidResize:(id)arg1;
-- (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
+- (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (void)primitiveInvalidate;
-- (void)viewDidInstall;
 - (void)loadView;
 - (id)dvtExtraBindings;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

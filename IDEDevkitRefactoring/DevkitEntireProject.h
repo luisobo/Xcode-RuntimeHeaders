@@ -22,8 +22,8 @@
     NSMutableDictionary *_fileSummaryCache;
     NSMutableDictionary *_filesParsedInCompilationUnit;
     void *_stringTable;
-    struct _NSZone *_lexerZone;
-    struct _NSZone *_everythingZone;
+    struct _malloc_zone_t *_lexerZone;
+    struct _malloc_zone_t *_everythingZone;
     NSString *_currentCompilationUnitName;
     BOOL _shutDownImmediately;
     NSString *_sdkRoot;

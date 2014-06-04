@@ -7,8 +7,6 @@
 #import "NSSegmentedControl.h"
 
 @interface NSSegmentedControl (IBNSSegmentedControlCellIntegration)
-+ (id)keyPathsForValuesAffectingIbWidgetType;
-+ (id)keyPathsForValuesAffectingIbQualifyingInfoForDefaultLabel;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (void)ibCustomizeForInsertionIntoNSToolbar:(id)arg1 withObjects:(id)arg2 fromLibraryOrDifferentTargetRuntime:(BOOL)arg3 andInsertionContext:(id)arg4;
 - (void)ibEnableAutolayoutInDocument:(id)arg1 context:(id)arg2;

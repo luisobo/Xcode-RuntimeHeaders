@@ -13,7 +13,7 @@
     XCEConfigurableDataNode *_dataNode;
 }
 
-@property(nonatomic) __weak XCEConfigurableDataNode *dataNode; // @synthesize dataNode=_dataNode;
+@property(nonatomic) XCEConfigurableDataNode *dataNode; // @synthesize dataNode=_dataNode;
 - (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)trackMouse:(id)arg1 inRect:(struct CGRect)arg2 ofView:(id)arg3 untilMouseUp:(BOOL)arg4;

@@ -6,23 +6,34 @@
 
 #import "NSObject.h"
 
-@class IDEIndexSymbol;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface IDEIndexGeniusResult : NSObject
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, IDEIndexSymbol, NSImage, NSString;
+
+@interface IDEIndexGeniusResult : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     IDEIndexSymbol *_indexSymbol;
 }
 
 - (void).cxx_destruct;
 - (id)ideModelObjectTypeIdentifier;
-- (id)navigableItem_documentType;
-- (id)navigableItem_contentDocumentLocation;
-- (id)navigableItem_image;
-- (id)navigableItem_name;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) NSString *navigableItem_name;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
-- (id)description;
+@property(readonly) unsigned long long hash;
+@property(readonly, copy) NSString *description;
 - (id)initWithIndexSymbol:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

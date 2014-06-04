@@ -11,6 +11,7 @@
 }
 
 - (void)populatePolicies:(id)arg1;
+- (id)editedTabView;
 
 @end
 

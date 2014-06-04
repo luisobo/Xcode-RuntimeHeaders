@@ -31,11 +31,16 @@
 @property(readonly, nonatomic) NSString *completionString; // @synthesize completionString=_completionString;
 @property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly, nonatomic) IDEIndexCollection *definitions;
 @property(readonly, nonatomic, getter=isAutoImportable) BOOL autoImportable; // @synthesize autoImportable=_autoImportable;
 - (id)initWithName:(id)arg1 completionString:(id)arg2 resolution:(id)arg3 file:(id)arg4 inProject:(BOOL)arg5 symbolKind:(id)arg6 database:(id)arg7 resolutionOffset:(long long)arg8;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) Class superclass;
 
 @end
 

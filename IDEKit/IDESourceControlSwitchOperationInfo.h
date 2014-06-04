@@ -8,7 +8,7 @@
 
 #import "IDESourceControlBranchingOperationInfoProtocol-Protocol.h"
 
-@class IDESourceControlBranch;
+@class IDESourceControlBranch, NSString;
 
 @interface IDESourceControlSwitchOperationInfo : IDESourceControlOperationInfo <IDESourceControlBranchingOperationInfoProtocol>
 {
@@ -20,6 +20,12 @@
 @property(retain) IDESourceControlBranch *otherBranch; // @synthesize otherBranch=_newBranch;
 - (void).cxx_destruct;
 - (id)processInfoWithProgressBlock:(id)arg1 isSingleOperation:(void)arg2 completionBlock:(BOOL)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

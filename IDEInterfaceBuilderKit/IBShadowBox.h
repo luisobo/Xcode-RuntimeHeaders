@@ -15,10 +15,10 @@
 }
 
 @property(nonatomic) unsigned long long shadowedEdges; // @synthesize shadowedEdges;
-@property(copy, nonatomic) NSShadow *shadow; // @synthesize shadow;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)hitTest:(struct CGPoint)arg1;
+@property(copy) NSShadow *shadow; // @synthesize shadow;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

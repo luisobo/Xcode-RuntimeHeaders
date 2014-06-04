@@ -9,7 +9,7 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class NSColor, NSMutableArray, NSMutableDictionary, XCFloatingControlWindow;
+@class NSColor, NSMutableArray, NSMutableDictionary, NSString, XCFloatingControlWindow;
 
 @interface XCOutlineHoverView : PBXExtendedTableView <NSTableViewDataSource, NSTableViewDelegate>
 {
@@ -72,6 +72,12 @@
 - (id)_columnForIdentifier:(id)arg1;
 - (void)_reloadData:(id)arg1;
 - (void)dealloc;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

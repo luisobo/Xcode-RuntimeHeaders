@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class IDEIndexSymbol, IDEIndexSymbolOccurrence;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface IDESourceCodeCallerGeniusResult : NSObject
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, IDEIndexSymbol, IDEIndexSymbolOccurrence, NSImage, NSString;
+
+@interface IDESourceCodeCallerGeniusResult : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     IDEIndexSymbolOccurrence *_calleeSymbolOccurrence;
     IDEIndexSymbol *_callerSymbol;
@@ -16,12 +18,22 @@
 
 - (void).cxx_destruct;
 - (id)ideModelObjectTypeIdentifier;
-- (id)navigableItem_documentType;
-- (id)navigableItem_contentDocumentLocation;
-- (id)navigableItem_image;
-- (id)navigableItem_name;
-- (id)description;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) NSString *navigableItem_name;
+@property(readonly, copy) NSString *description;
 - (id)initWithCalleeSymbolOccurrence:(id)arg1 inSymbolForCaller:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

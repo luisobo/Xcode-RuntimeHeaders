@@ -8,7 +8,7 @@
 
 #import "IDEFilePickerViewDelegate-Protocol.h"
 
-@class IDEFilePickerPanel, IDEWorkspace, NSArray, NSTimer, Xcode3Target;
+@class IDEFilePickerPanel, IDEWorkspace, NSArray, NSString, NSTimer, Xcode3Target;
 
 @interface Xcode3AddFrameworksController : NSObject <IDEFilePickerViewDelegate>
 {
@@ -37,6 +37,12 @@
 - (void)endSheetWithReturnCode:(long long)arg1;
 - (void)beginSheetModalForWindow:(id)arg1 completionHandler:(id)arg2;
 - (id)initWithTarget:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

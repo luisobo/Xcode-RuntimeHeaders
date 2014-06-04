@@ -8,6 +8,8 @@
 
 #import "IDEDebugCompressionStrategy-Protocol.h"
 
+@class NSString;
+
 // Not exported
 @interface GPUStackFramesDefaultCompressionStrategy : NSObject <IDEDebugCompressionStrategy>
 {
@@ -23,6 +25,12 @@
 - (unsigned long long)maxCompressionLevel;
 - (id)_initInternal;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

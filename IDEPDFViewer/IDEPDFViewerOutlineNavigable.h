@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, NSImage, NSString, NSURL, PDFDocument, PDFOutline;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface IDEPDFViewerOutlineNavigable : NSObject
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString, NSURL, PDFDocument, PDFOutline;
+
+@interface IDEPDFViewerOutlineNavigable : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     NSURL *_documentURL;
     PDFDocument *_pdfDocument;
@@ -25,6 +27,17 @@
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 - (id)ideModelObjectTypeIdentifier;
 - (id)initWithDocumentURL:(id)arg1 PDFOutline:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

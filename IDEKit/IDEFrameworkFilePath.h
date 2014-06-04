@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, DVTFilePath, DVTSDK, IDETypeIdentifier, NSArray, NSImage, NSMutableArray, NSString;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface IDEFrameworkFilePath : NSObject
+@class DVTDocumentLocation, DVTFileDataType, DVTFilePath, DVTSDK, IDEFileReference, IDETypeIdentifier, NSArray, NSImage, NSMutableArray, NSString;
+
+@interface IDEFrameworkFilePath : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     DVTFilePath *_filePath;
     NSString *_name;
@@ -27,14 +29,14 @@
 @property(readonly) unsigned long long frameworkFilePathType; // @synthesize frameworkFilePathType=_frameworkFilePathType;
 @property(retain) DVTSDK *SDK; // @synthesize SDK=_SDK;
 @property(copy, nonatomic) NSArray *childPathComponents; // @synthesize childPathComponents=_childPathComponents;
-@property(readonly) NSString *name; // @synthesize name=_name;
-@property(readonly) DVTFilePath *filePath; // @synthesize filePath=_filePath;
+@property(readonly, copy) NSString *name; // @synthesize name=_name;
+@property(readonly, copy) DVTFilePath *filePath; // @synthesize filePath=_filePath;
 - (void).cxx_destruct;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
-@property(readonly) IDETypeIdentifier *ideModelObjectTypeIdentifier;
+@property(readonly) unsigned long long hash;
+@property(readonly, copy) IDETypeIdentifier *ideModelObjectTypeIdentifier;
 - (id)navigableItem_conformanceString;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)initWithFilePath:(id)arg1 name:(id)arg2 type:(unsigned long long)arg3;
 - (id)init;
 - (id)_pathOfNamesForDescendantWithFilePath:(id)arg1;
@@ -42,6 +44,15 @@
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) NSString *navigableItem_name;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

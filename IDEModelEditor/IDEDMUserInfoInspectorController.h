@@ -9,7 +9,7 @@
 #import "NSTableViewDelegate-Protocol.h"
 #import "XDTableViewScrollDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTGradientImageButton, NSArrayController, XDTableView;
+@class DVTBorderedView, DVTGradientImageButton, NSArrayController, NSString, XDTableView;
 
 @interface IDEDMUserInfoInspectorController : IDEInspectorViewController <NSTableViewDelegate, XDTableViewScrollDelegate>
 {
@@ -31,6 +31,12 @@
 - (void)_resize;
 - (id)nibBundle;
 - (id)nibName;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

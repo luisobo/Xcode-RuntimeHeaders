@@ -16,7 +16,6 @@
 }
 
 - (void).cxx_destruct;
-- (void)finalize;
 - (void)dealloc;
 - (void)_removeObservers;
 - (id)configuration;

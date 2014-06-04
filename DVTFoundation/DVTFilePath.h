@@ -51,7 +51,7 @@
 - (void)removeAssociatesWithRole:(id)arg1;
 - (void)removeAssociate:(id)arg1 withRole:(id)arg2;
 - (void)addAssociate:(id)arg1 withRole:(id)arg2 observingDidChangeRecursively:(BOOL)arg3 onOperationQueue:(id)arg4 block:(id)arg5;
-- (void)addAssociate:(id)arg1 withRole:(id)arg2 observingDidChangeRecursively:(BOOL)arg3 onDispatchQueue:(struct dispatch_queue_s *)arg4 block:(id)arg5;
+- (void)addAssociate:(id)arg1 withRole:(id)arg2 observingDidChangeRecursively:(BOOL)arg3 onDispatchQueue:(id)arg4 block:(id)arg5;
 - (void)addAssociate:(id)arg1 withRole:(id)arg2;
 - (id)associatesWithRole:(id)arg1;
 - (id)associatesWithRole:(id)arg1 forAllPathsToSameFile:(BOOL)arg2;
@@ -67,10 +67,12 @@
 @property(readonly) NSDictionary *fileSystemAttributes;
 @property(readonly) NSDictionary *fileAttributes;
 @property(readonly) NSString *fileTypeAttribute;
+@property(readonly) BOOL isDirectory;
 @property(readonly) NSArray *sortedDirectoryContents;
 @property(readonly) NSArray *directoryContents;
 @property(readonly) NSDate *modificationDate;
 @property(readonly) BOOL isExcludedFromBackup;
+@property(readonly) BOOL isSymbolicLink;
 @property(readonly) BOOL isExecutable;
 @property(readonly) BOOL isDeletable;
 @property(readonly) BOOL isWritable;
@@ -86,7 +88,7 @@
 - (void)_invalidateKnownDoesNotExist:(BOOL)arg1 explicitlyInvalidateChildren:(BOOL)arg2;
 - (void)_invalidateChildrenRecursivelyKnownDoesNotExist:(BOOL)arg1;
 - (void)_locked_validateTentativelyInvalidatedChildrenRecursively;
-- (void)_locked_tentativelyInvalidateChildrenRecursively;
+- (void)_locked_tentativelyInvalidateChildrenRecursivelyWithChildrenShouldBeTentativelyInvalid:(BOOL)arg1;
 - (BOOL)isSameFileAsFilePath:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (id)relativePathStringFromFilePath:(id)arg1;

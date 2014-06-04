@@ -10,7 +10,7 @@
 #import "DVTSourceTextScrollViewDelegate-Protocol.h"
 #import "NSScrollerImpPairDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTComparisonScroller, DVTSourceTextScrollView, DVTSourceTextView, NSArray, NSIndexSet, NSScrollerImpPair;
+@class DVTBorderedView, DVTComparisonScroller, DVTSourceTextScrollView, DVTSourceTextView, NSArray, NSIndexSet, NSScrollerImpPair, NSString;
 
 @interface DVTComparisonScrollCoordinator : NSObject <NSScrollerImpPairDelegate, DVTSourceTextScrollViewDelegate, DVTComparisonScrollContentAreaDelegate>
 {
@@ -60,6 +60,7 @@
 - (void)updateDiffMarks;
 - (void)_doUpdateDiffMarks;
 - (void)notifyScroll:(double)arg1;
+- (void)notifyScroll:(double)arg1 leftScrollView:(BOOL)arg2 rightScrollView:(BOOL)arg3;
 - (void)computeTotalScrollSize;
 - (double)getTargetPositionFromSide:(long long)arg1;
 - (double)getTargetPositionFromRight:(double)arg1 ensureLayout:(BOOL)arg2;
@@ -74,7 +75,7 @@
 - (void)scrollViewDidSetFrameSize:(id)arg1;
 - (void)scrollViewDidEndLiveResize:(id)arg1;
 - (void)scrollViewWillStartLiveResize:(id)arg1;
-- (void)scrollView:(id)arg1 didReceiveScrollWheelEvent:(id)arg2;
+- (BOOL)scrollView:(id)arg1 shouldHandleScrollWheelEvent:(id)arg2;
 - (void)scrollWheel:(id)arg1;
 @property(readonly) DVTSourceTextView *rightTextView;
 @property(readonly) DVTSourceTextView *leftTextView;
@@ -82,6 +83,12 @@
 - (void)updateBoundSelectedIndex;
 - (void)updateBoundContentArray;
 - (id)dvtExtraBindings;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

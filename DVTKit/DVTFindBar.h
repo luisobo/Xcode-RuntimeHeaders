@@ -119,9 +119,9 @@
 @property BOOL findResultsValid;
 - (BOOL)shouldCloseOnEscape;
 - (void)wasAssociatedWithScopeBarController:(id)arg1;
-@property(readonly, nonatomic) NSString *replaceExpression;
+@property(readonly, copy, nonatomic) NSString *replaceExpression;
 @property(copy) NSString *replaceString;
-@property(readonly, nonatomic) NSString *findRegularExpression;
+@property(readonly, copy, nonatomic) NSString *findRegularExpression;
 @property(copy, nonatomic) NSString *findString;
 - (void)setFindAttributedStringAndUpdate:(id)arg1;
 - (void)setFindAttributedString:(id)arg1 andUpdate:(BOOL)arg2;
@@ -135,6 +135,12 @@
 - (void)viewDidInstall;
 - (void)loadView;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

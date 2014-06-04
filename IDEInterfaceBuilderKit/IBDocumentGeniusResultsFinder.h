@@ -6,7 +6,7 @@
 
 #import "IDEIndexGeniusResultsFinder.h"
 
-@class NSSet;
+@class IBDocument, NSSet;
 
 @interface IBDocumentGeniusResultsFinder : IDEIndexGeniusResultsFinder
 {
@@ -21,6 +21,7 @@
 - (void)registerObservationsWithDocument:(id)arg1;
 - (BOOL)_getUpdateGeniusResultsPhaseOneBlock:(id *)arg1 phaseTwoBlock:(void)arg2 phaseThreeBlock:(id *)arg3;
 - (void)primitiveInvalidate;
+@property(readonly) IBDocument *editorDocument;
 
 @end
 

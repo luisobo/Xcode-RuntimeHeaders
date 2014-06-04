@@ -6,13 +6,11 @@
 
 #import <IDEInterfaceBuilderKit/IBAbstractSizeInspectorProperty.h>
 
-@class IBFillView, NSArray, NSButton, NSDate, NSImageView, NSTimer, NSTrackingArea, NSView;
+@class IBFillView, IBViewResizingDiagram, IDEInspectorKeyPath, NSButton, NSDate, NSImageView, NSTimer, NSTrackingArea, NSView;
 
 @interface IBSizeInspectorAutoresizingMaskInspectorProperty : IBAbstractSizeInspectorProperty
 {
-    NSView *animatedViewContainer;
     IBFillView *animationStageFrame;
-    NSView *animatedView;
     NSImageView *desktopBackgroundImageView;
     NSView *autosizingControlArea;
     NSButton *minXStrut;
@@ -21,8 +19,7 @@
     NSButton *maxYStrut;
     NSButton *widthSpring;
     NSButton *heightSpring;
-    NSArray *observationTokens;
-    double animationDuration;
+    IBViewResizingDiagram *resizingDiagram;
     NSDate *animationStart;
     NSDate *animationEnd;
     NSTimer *animationTimer;
@@ -32,12 +29,12 @@
     BOOL applicationIsActive;
     id currentFrameAnimator;
     id previousFrameAnimator;
-    struct CGRect initialAnimationViewFrame;
-    struct CGRect initialAnimationViewContainerFrame;
-    struct CGRect finalAnimationViewContainerFrame;
+    struct CGRect initialDiagramObjectFrame;
+    struct CGRect initialDiagramContainerFrame;
+    struct CGRect finalDiagramContainerFrame;
+    IDEInspectorKeyPath *_valueKeyPath;
 }
 
-@property double animationDuration; // @synthesize animationDuration;
 - (void).cxx_destruct;
 - (void)resetAutoresizingDemonstrationAnimation:(id)arg1;
 - (void)appDidDeactivate:(id)arg1;
@@ -54,14 +51,14 @@
 - (void)abortAnimating;
 - (void)applyAutoresizingMask:(id)arg1;
 - (void)refreshAutoSizingButtons;
-- (void)setNormalizedAutoresizingMask:(unsigned long long)arg1 forView:(id)arg2;
-- (unsigned long long)normalizedAutoresizingMaskForView:(id)arg1;
+- (unsigned long long)specializeAutoresizingMask:(unsigned long long)arg1 forView:(id)arg2;
+- (unsigned long long)normalizeAutoresizingMask:(unsigned long long)arg1 forView:(id)arg2;
+- (double)baseline;
 - (void)refresh;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)propertyViewWillUninstallFromContentView;
 - (void)propertyViewDidInstallIntoContentView;
 - (void)loadView;
-- (id)initWithPropertyDefinition:(id)arg1 andController:(id)arg2;
 
 @end
 

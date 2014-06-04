@@ -7,7 +7,6 @@
 #import "NSStepperCell.h"
 
 @interface NSStepperCell (IBNSStepperCellIntegration)
-+ (id)keyPathsForValuesAffectingIbWidgetType;
 + (id)keyPathsForValuesAffectingIbInspectedDoubleValue;
 - (Class)ibPreferredControlClass;
 - (id)ibTypeNameForDefaultLabel;

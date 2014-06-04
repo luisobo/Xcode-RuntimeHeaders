@@ -9,7 +9,7 @@
 #import "IDECapsuleListViewDataSource-Protocol.h"
 #import "Xcode3SourceListItemEditor-Protocol.h"
 
-@class DVTDelayedInvocation, DVTObservingToken, DVTPerformanceMetric, DVTSourceExpression, DVTStackView_ML, IDECapsuleListView, NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSScrollView, NSView, Xcode3InfoController, Xcode3ProjectEditor;
+@class DVTDelayedInvocation, DVTObservingToken, DVTPerformanceMetric, DVTSourceExpression, DVTStackView_ML, IDECapsuleListView, NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSScrollView, NSString, NSView, Xcode3InfoController, Xcode3ProjectEditor;
 
 @interface Xcode3InfoEditor : IDEViewController <Xcode3SourceListItemEditor, IDECapsuleListViewDataSource>
 {
@@ -55,8 +55,12 @@
 - (void)viewDidInstall;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(copy, nonatomic) NSArray *inspectedBlueprints;
 @property(readonly, nonatomic) DVTSourceExpression *mouseOverExpression;
+@property(readonly) Class superclass;
 
 @end
 

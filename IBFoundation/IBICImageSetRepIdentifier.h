@@ -6,7 +6,7 @@
 
 #import <IBFoundation/IBICMultipartImageRepIdentifier.h>
 
-@class IBICIdiom, IBICScale, IBICSubtype;
+@class IBICHeightClass, IBICIdiom, IBICScale, IBICSubtype, IBICWidthClass;
 
 @interface IBICImageSetRepIdentifier : IBICMultipartImageRepIdentifier
 {
@@ -19,6 +19,8 @@
 + (id)inferredImageRepIdentifierForPath:(id)arg1;
 + (Class)slotClass;
 - (id)slot;
+@property(readonly) IBICHeightClass *heightClass;
+@property(readonly) IBICWidthClass *widthClass;
 @property(readonly) IBICScale *scale;
 @property(readonly) IBICSubtype *subtype;
 @property(readonly) IBICIdiom *idiom;

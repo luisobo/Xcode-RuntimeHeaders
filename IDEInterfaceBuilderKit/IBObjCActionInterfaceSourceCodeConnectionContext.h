@@ -11,7 +11,7 @@
 }
 
 - (id)representativeCounterpart;
-- (unsigned long long)methodContext;
+- (unsigned long long)methodKind;
 
 @end
 

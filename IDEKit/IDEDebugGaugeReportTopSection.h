@@ -15,6 +15,8 @@
     NSTextField *_titleLabel;
     NSView *_titleAccessoryContainer;
     NSLayoutConstraint *_titleAccessoryContainerWidthConstraintToBeDeleted;
+    NSView *_centerTitleAccessoryContainer;
+    NSLayoutConstraint *_centerTitleAccessoryContainerWidthConstraintToBeDeleted;
     NSTextField *_shortDescriptionLabel;
     NSView *_shortDescriptionContainer;
     NSView *_descriptionContainer;
@@ -31,6 +33,8 @@
 @property __weak NSView *descriptionContainer; // @synthesize descriptionContainer=_descriptionContainer;
 @property __weak NSView *shortDescriptionContainer; // @synthesize shortDescriptionContainer=_shortDescriptionContainer;
 @property __weak NSTextField *shortDescriptionLabel; // @synthesize shortDescriptionLabel=_shortDescriptionLabel;
+@property __weak NSLayoutConstraint *centerTitleAccessoryContainerWidthConstraintToBeDeleted; // @synthesize centerTitleAccessoryContainerWidthConstraintToBeDeleted=_centerTitleAccessoryContainerWidthConstraintToBeDeleted;
+@property __weak NSView *centerTitleAccessoryContainer; // @synthesize centerTitleAccessoryContainer=_centerTitleAccessoryContainer;
 @property __weak NSLayoutConstraint *titleAccessoryContainerWidthConstraintToBeDeleted; // @synthesize titleAccessoryContainerWidthConstraintToBeDeleted=_titleAccessoryContainerWidthConstraintToBeDeleted;
 @property __weak NSView *titleAccessoryContainer; // @synthesize titleAccessoryContainer=_titleAccessoryContainer;
 @property __weak NSTextField *titleLabel; // @synthesize titleLabel=_titleLabel;
@@ -43,6 +47,7 @@
 - (id)_createLabel:(id)arg1 selectable:(BOOL)arg2;
 - (void)_addDescription;
 - (void)_addShortDescription;
+- (void)_addTopSectionCenterTitleAccessoryView;
 - (void)_addTopSectionTitleAccessoryView;
 - (void)_addSubView:(id)arg1 toContainerView:(id)arg2 subviewProvidesWidth:(BOOL)arg3;
 - (id)initWithContentDelegate:(id)arg1;

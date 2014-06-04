@@ -10,7 +10,7 @@
 #import "IDENavigationHUDSelectableLayer-Protocol.h"
 #import "IDENavigationHUDWindowLevelNavigableLayer-Protocol.h"
 
-@class IDENavigationHUDController, IDENavigationHUDSelection;
+@class IDENavigationHUDController, IDENavigationHUDSelection, NSString;
 
 @interface IDENavigationHUDAbstractWorkspaceWindowLayer : CAGradientLayer <IDENavigationHUDSelectableLayer, IDENavigationHUDWindowLevelNavigableLayer, IDENavigationHUDDisposableLayer>
 {
@@ -29,6 +29,12 @@
 @property(readonly) IDENavigationHUDSelection *representativeSelection;
 - (void)dispose;
 - (id)initWithNavigationHUDController:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

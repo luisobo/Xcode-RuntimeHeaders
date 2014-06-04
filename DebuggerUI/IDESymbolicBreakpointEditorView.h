@@ -8,7 +8,7 @@
 
 #import "IDEBreakpointEditor-Protocol.h"
 
-@class IDESymbolicBreakpoint, NSTextField, NSView;
+@class IDESymbolicBreakpoint, NSString, NSTextField, NSView;
 
 @interface IDESymbolicBreakpointEditorView : NSViewController <IDEBreakpointEditor>
 {
@@ -20,6 +20,12 @@
 @property(readonly) NSView *initialFirstResponder;
 - (void)loadView;
 - (id)initWithBreakpoint:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

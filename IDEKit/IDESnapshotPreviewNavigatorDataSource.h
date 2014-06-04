@@ -8,7 +8,7 @@
 
 #import "IDEReviewFilesDataSource-Protocol.h"
 
-@class IDENavigatorDataCell, NSArray, NSMutableSet;
+@class IDENavigatorDataCell, NSArray, NSMutableSet, NSString;
 
 @interface IDESnapshotPreviewNavigatorDataSource : NSObject <IDEReviewFilesDataSource>
 {
@@ -28,6 +28,12 @@
 - (id)fileSystemNavigableItems;
 - (id)workspaceNavigableItems;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

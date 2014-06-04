@@ -8,10 +8,11 @@
 
 #import "IBMouseMovedObservingView-Protocol.h"
 
-@class NSImageView, NSPopUpButton, NSTextField;
+@class NSImageView, NSTextField;
 
 @interface IBInspectorReferencingConstraintView : DVTLayoutView_ML <IBMouseMovedObservingView>
 {
+    BOOL _selected;
     BOOL highlighted;
     long long borderAttributes;
     id <IBInspectorReferencingConstraintViewDelegate> delegate;
@@ -20,12 +21,10 @@
     NSTextField *constantTypeLabel;
     NSTextField *relatedViewNameLabel;
     NSTextField *constantValueLabel;
-    NSPopUpButton *popUpButton;
     long long layoutType;
 }
 
 @property(nonatomic) long long layoutType; // @synthesize layoutType;
-@property(retain, nonatomic) NSPopUpButton *popUpButton; // @synthesize popUpButton;
 @property(retain, nonatomic) NSTextField *constantValueLabel; // @synthesize constantValueLabel;
 @property(retain, nonatomic) NSTextField *relatedViewNameLabel; // @synthesize relatedViewNameLabel;
 @property(retain, nonatomic) NSTextField *constantTypeLabel; // @synthesize constantTypeLabel;
@@ -35,6 +34,8 @@
 @property(nonatomic, getter=isHighlighted) BOOL highlighted; // @synthesize highlighted;
 @property(nonatomic) long long borderAttributes; // @synthesize borderAttributes;
 - (void).cxx_destruct;
+- (void)mouseUp:(id)arg1;
+- (void)mouseDown:(id)arg1;
 - (void)layoutBottomUp;
 - (void)layoutConstantValueLabel;
 - (void)layoutRelatedViewNameLabel;
@@ -51,6 +52,8 @@
 - (struct CGRect)contentBounds;
 - (BOOL)isFlipped;
 - (void)drawRect:(struct CGRect)arg1;
+- (id)highlightColor;
+- (id)borderColor;
 - (id)borderPath;
 - (struct CGRect)borderRect;
 - (double)borderThickness;

@@ -38,6 +38,7 @@
 }
 
 + (void)_setDefaultPlugInManager:(id)arg1;
++ (BOOL)enumerateExtensionDataForPluginAtPath:(id)arg1 error:(id *)arg2 withBlock:(id)arg3;
 + (id)defaultPlugInManager;
 + (void)initialize;
 @property(retain) DVTPlugInLocator *plugInLocator; // @synthesize plugInLocator=_plugInLocator;
@@ -58,10 +59,10 @@
 @property(readonly) BOOL usePlugInCache;
 - (void)_preLoadPlugIns;
 - (BOOL)_checkPresenceOfRequiredPlugIns:(id)arg1 error:(id *)arg2;
-- (BOOL)_checkMarketingVersionOfApplePlugIns:(id)arg1 error:(id *)arg2;
 - (BOOL)shouldPerformConsistencyCheck;
 - (void)_registerPlugInsFromScanRecords:(id)arg1;
 - (void)_pruneUnusablePlugInsAndScanRecords:(id)arg1;
+- (id)_plugInsToIgnore;
 - (void)_recordSanitizedPluginStatus:(id)arg1 errorMessage:(id)arg2;
 - (void)_addSanitizedNonApplePlugInStatusForBundle:(id)arg1 reason:(id)arg2;
 @property(readonly) NSSet *sanitizedNonApplePlugInStatuses;
@@ -69,14 +70,14 @@
 - (void)_applyActivationRulesToScanRecords:(id)arg1;
 - (id)_scanForPlugInsInDirectories:(id)arg1 skippingDuplicatesOfPlugIns:(id)arg2;
 - (BOOL)_scanForPlugIns:(id *)arg1;
-@property(readonly) NSUUID *plugInHostUUID;
+@property(readonly, copy) NSUUID *plugInHostUUID;
 @property BOOL hasScannedForPlugIns; // @dynamic hasScannedForPlugIns;
 - (id)_scanRecordForBundle:(id)arg1 atPath:(id)arg2;
 - (BOOL)_isInitialScan;
 - (id)_defaultPathExtensions;
-@property(readonly) NSArray *defaultSearchPaths;
+@property(readonly, copy) NSArray *defaultSearchPaths;
 - (id)_defaultApplicationSupportSubdirectory;
-@property(readonly) NSArray *extraSearchPaths;
+@property(readonly, copy) NSArray *extraSearchPaths;
 - (id)_extensionsForExtensionPoint:(id)arg1 matchingPredicate:(id)arg2;
 - (id)sharedExtensionsForExtensionPoint:(id)arg1 matchingPredicate:(id)arg2;
 - (id)sharedExtensionWithIdentifier:(id)arg1;

@@ -8,7 +8,7 @@
 
 #import "DVTFirstResponderShowingView-Protocol.h"
 
-@class DVTFirstResponderDrawingStrategy, IBICImageResizingBehavior, NSBitmapImageRep, NSMutableDictionary, NSValue;
+@class DVTFirstResponderDrawingStrategy, IBICImageResizingBehavior, NSBitmapImageRep, NSMutableDictionary, NSString, NSValue;
 
 @interface IBICImageSlicingView : DVTLayoutView_ML <DVTFirstResponderShowingView>
 {
@@ -68,7 +68,7 @@
 - (struct CGSize)idealSize;
 - (struct CGRect)frameForPart:(CDStruct_912cb5d2)arg1;
 - (struct CGRect)frameForDivider:(CDStruct_912cb5d2)arg1;
-- (CDStruct_79f57be0)dividerOffsetForPart:(CDStruct_912cb5d2)arg1;
+- (CDStruct_c3b9c2ee)dividerOffsetForPart:(CDStruct_912cb5d2)arg1;
 - (CDStruct_c519178c)scaledCapInsets;
 - (struct CGRect)contentRect;
 - (struct CGSize)contentSizeWithoutDividers;
@@ -83,6 +83,12 @@
 - (CDStruct_c519178c)capInsets;
 - (id)effectiveBorderColor;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

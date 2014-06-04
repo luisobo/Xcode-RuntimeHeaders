@@ -30,6 +30,7 @@
 - (id)ideModelObjectTypeIdentifier;
 - (void)_handleConsoleAdaptorRemoved:(id)arg1 forLaunchSession:(id)arg2;
 - (void)_handleConsoleAdaptorAdded:(id)arg1 forLaunchSession:(id)arg2;
+- (id)keyForConsole:(id)arg1 launchSession:(id)arg2;
 - (void)_handleConsoleAdaptorsChanged:(id)arg1 forLaunchSession:(id)arg2;
 - (void)_handleLaunchSessionStateChanged:(id)arg1;
 - (void)_handleLaunchSessionsChanged:(id)arg1;

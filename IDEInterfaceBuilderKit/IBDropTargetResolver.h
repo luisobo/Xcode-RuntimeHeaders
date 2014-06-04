@@ -10,7 +10,7 @@
 #import "IBDragAndDropInsertionIndicatorDelegate-Protocol.h"
 #import "IBDragAndDropPolicyDelegate-Protocol.h"
 
-@class DVTStackBacktrace, IBDocument, IBEditorCanvasFrameController, IBOrderedRelationshipDragAndDropPolicy, NSArray, NSView;
+@class DVTStackBacktrace, IBDocument, IBEditorCanvasFrameController, IBOrderedRelationshipDragAndDropPolicy, NSArray, NSString, NSView;
 
 @interface IBDropTargetResolver : NSObject <IBDragAndDropPolicyDelegate, IBDragAndDropInsertionIndicatorDelegate, DVTInvalidation>
 {
@@ -26,7 +26,7 @@
 + (void)initialize;
 @property(readonly) IBEditorCanvasFrameController *frameController; // @synthesize frameController;
 @property(readonly) IBDropTargetResolver *parentDropTargetResolver; // @synthesize parentDropTargetResolver;
-@property(readonly) id editedObject; // @synthesize editedObject;
+@property(readonly) NSObject *editedObject; // @synthesize editedObject;
 @property __weak id <IBDropTargetResolverDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
 - (void)insertionPolicy:(id)arg1 orderedRelationInsertionIndexDidChange:(long long)arg2;
@@ -70,7 +70,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

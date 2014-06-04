@@ -10,7 +10,7 @@
 {
 }
 
-+ (BOOL)validateBuildEnvironmentForTargetRuntime:(id)arg1 error:(id *)arg2;
++ (BOOL)validateBuildEnvironmentForPlatform:(id)arg1 error:(id *)arg2;
 + (BOOL)validateBuildEnvironment:(id *)arg1;
 
 @end

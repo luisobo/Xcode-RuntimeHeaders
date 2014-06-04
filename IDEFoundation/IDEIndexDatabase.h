@@ -27,6 +27,7 @@
     DVTDispatchLock *_dataLock;
     IDEIndexDBStringStorage *_directoryStringStorage;
     IDEIndexDBStringStorage *_filenameStringStorage;
+    IDEIndexDBStringStorage *_moduleURLStringStorage;
     IDEIndexDBStringStorage *_spellingStringStorage;
     IDEIndexDBStringStorage *_resolutionStringStorage;
     IDEIndexDBStringStorage *_completionStringStorage;
@@ -50,20 +51,24 @@
 @property(readonly, nonatomic) IDEIndexImporter *importer; // @synthesize importer=_importer;
 @property(copy, nonatomic) NSURL *fileURL; // @synthesize fileURL=_fileURL;
 - (void).cxx_destruct;
+- (id)symbolDumpForFile:(id)arg1;
 - (void)saveStringStorage;
 - (void)findSpellingStringsContaining:(id)arg1 anchorStart:(BOOL)arg2 anchorEnd:(BOOL)arg3 subsequence:(BOOL)arg4 lowercase:(BOOL)arg5 cancelWhen:(id)arg6 forEachResult:(void)arg7;
 - (void)findFilenameStringsContaining:(id)arg1 anchorStart:(BOOL)arg2 anchorEnd:(BOOL)arg3 subsequence:(BOOL)arg4 lowercase:(BOOL)arg5 cancelWhen:(id)arg6 forEachResult:(void)arg7;
 - (void)findStringsContaining:(id)arg1 inStorage:(id)arg2 anchorStart:(BOOL)arg3 anchorEnd:(BOOL)arg4 subsequence:(BOOL)arg5 lowercase:(BOOL)arg6 cancelWhen:(id)arg7 forEachResult:(void)arg8;
+- (id)moduleURLAtOffset:(long long)arg1;
 - (id)filePathForDirectoryAtOffset:(long long)arg1 fileAtOffset:(long long)arg2;
 - (char *)completionCStringAtOffset:(long long)arg1;
 - (char *)resolutionCStringAtOffset:(long long)arg1;
 - (char *)spellingCStringAtOffset:(long long)arg1;
+- (char *)moduleURLCStringAtOffset:(long long)arg1;
 - (char *)filenameCStringAtOffset:(long long)arg1;
 - (char *)directoryCStringAtOffset:(long long)arg1;
 - (char *)cStringAtOffset:(long long)arg1 inStorage:(id)arg2;
 - (id)completionStringAtOffset:(long long)arg1;
 - (id)resolutionStringAtOffset:(long long)arg1;
 - (id)spellingStringAtOffset:(long long)arg1;
+- (id)moduleURLStringAtOffset:(long long)arg1;
 - (id)filenameStringAtOffset:(long long)arg1;
 - (id)directoryStringAtOffset:(long long)arg1;
 - (id)stringAtOffset:(long long)arg1 inStorage:(id)arg2;
@@ -73,6 +78,7 @@
 - (long long)offsetOfCompletionString:(id)arg1 addIfMissing:(BOOL)arg2;
 - (long long)offsetOfResolutionString:(id)arg1 addIfMissing:(BOOL)arg2;
 - (long long)offsetOfSpellingString:(id)arg1 addIfMissing:(BOOL)arg2;
+- (long long)offsetOfModuleURLString:(id)arg1 addIfMissing:(BOOL)arg2;
 - (long long)offsetOfFilenameString:(id)arg1 addIfMissing:(BOOL)arg2;
 - (long long)offsetOfDirectoryString:(id)arg1 addIfMissing:(BOOL)arg2;
 - (long long)offsetOfString:(id)arg1 inStorage:(id)arg2 addIfMissing:(BOOL)arg3;
@@ -118,6 +124,7 @@
 - (void)close;
 - (void)releaseQueryConnection:(id)arg1;
 - (id)obtainQueryConnection:(id)arg1;
+- (id)newBackgroundPriorityConnection;
 - (id)newConnection;
 - (void)openReadonly:(BOOL)arg1 diagnosticMode:(BOOL)arg2;
 - (void)openInDiagnosticMode;

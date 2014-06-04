@@ -18,6 +18,7 @@
     BOOL _isSimpleToken;
     BOOL _altIsSimpleToken;
     BOOL _caseSensitive;
+    unsigned long long _maxLinesPerToken;
 }
 
 - (void).cxx_destruct;
@@ -25,6 +26,7 @@
 - (BOOL)canTokenize;
 - (id)parse:(id)arg1 withContext:(id)arg2 initialToken:(long long)arg3 inputStream:(id)arg4 range:(struct _NSRange)arg5 dirtyRange:(struct _NSRange *)arg6;
 - (long long)nextToken:(id)arg1 withContext:(id)arg2 initialToken:(long long)arg3 until:(unsigned long long)arg4 subItems:(id *)arg5;
+- (unsigned long long)locationOfNextNewlineFrom:(unsigned long long)arg1 until:(unsigned long long)arg2 inStream:(id)arg3;
 - (long long)tokenForString:(id)arg1 forRange:(struct _NSRange *)arg2 subItems:(id *)arg3;
 - (BOOL)predictsRule:(long long)arg1 inputStream:(id)arg2;
 - (id)initWithPropertyListDictionary:(id)arg1 language:(long long)arg2;

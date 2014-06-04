@@ -6,24 +6,23 @@
 
 #import "NSObject.h"
 
-@class DVTDeveloperModeHelper, NSString, NSWindow;
+@class NSString, NSWindow;
 
 @interface DVTDeveloperModeAlertHelper : NSObject
 {
-    NSWindow *_parentWindow;
+    BOOL _shouldAskUserAboutDeveloperMode;
     int _messageType;
-    id _completionHandler;
-    DVTDeveloperModeHelper *_developerModeHelper;
+    NSWindow *_parentWindow;
 }
 
-+ (void)askToEnableDeveloperModeIfNecessary:(id)arg1 messageType:(int)arg2 completionHandler:(id)arg3;
 + (void)initialize;
-- (void)_alertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
+@property(nonatomic) BOOL shouldAskUserAboutDeveloperMode; // @synthesize shouldAskUserAboutDeveloperMode=_shouldAskUserAboutDeveloperMode;
+@property(nonatomic) int messageType; // @synthesize messageType=_messageType;
+@property(retain, nonatomic) NSWindow *parentWindow; // @synthesize parentWindow=_parentWindow;
+- (void).cxx_destruct;
 @property(readonly) NSString *informativeText;
-- (void)_askToEnableDeveloperModeIfNecessary;
-- (BOOL)_shouldAskUserAboutDeveloperMode;
-- (void)dealloc;
-- (id)_initWithParentWindow:(id)arg1 messageType:(int)arg2 completionHandler:(id)arg3;
+- (void)setDeveloperModeWithReturnCode:(long long)arg1;
+- (void)askToEnableDeveloperModeIfNecessaryWithCompletionHandler:(id)arg1;
 
 @end
 

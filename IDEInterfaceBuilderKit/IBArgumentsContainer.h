@@ -20,6 +20,7 @@
 @property long long outputFormat; // @synthesize outputFormat=_outputFormat;
 @property BOOL shouldPrintUsage; // @synthesize shouldPrintUsage=_shouldPrintUsage;
 - (void).cxx_destruct;
+- (BOOL)longArgumentIsPresentOnCommandLine:(id)arg1;
 - (void)validateAfterInterpretingOptionsCollectingErrors:(id)arg1;
 @property(readonly) IBCLIOptionIndex *optionIndex;
 - (long long)outputFormatArgumentCode;

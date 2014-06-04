@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, IDEWorkspace;
+@class DVTStackBacktrace, IDEWorkspace, NSString;
 
 @interface IDEContextAutocreationController : NSObject <DVTInvalidation>
 {
@@ -23,6 +23,12 @@
 @property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 - (void).cxx_destruct;
 - (id)createSchemeForBuildable:(id)arg1 withName:(id)arg2;
+- (void)_setDefaultProfileActionForScheme:(id)arg1 forBuildable:(id)arg2;
+- (void)_setDefaultLaunchActionForScheme:(id)arg1 forBuildable:(id)arg2;
+- (void)_setDefaultBuildActionForScheme:(id)arg1 forBuildable:(id)arg2;
+- (id)_applicationsInWorkspaceThatDependOnBuildable:(id)arg1;
+- (id)_applicationBuildablesInWorkspace:(id)arg1;
+- (BOOL)_isAppExtension:(id)arg1;
 - (void)_setDefaultConfigurationsInScheme:(id)arg1 forBuildable:(id)arg2;
 - (id)_configFromArray:(id)arg1 matchingPrefix:(id)arg2 preferringConfig:(id)arg3;
 - (void)addBuildable:(id)arg1 toScheme:(id)arg2;
@@ -43,7 +49,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

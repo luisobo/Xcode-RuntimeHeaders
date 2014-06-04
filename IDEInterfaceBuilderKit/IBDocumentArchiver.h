@@ -33,6 +33,7 @@
 - (void)archiveInt64:(long long)arg1 forKey:(id)arg2 defaultValue:(long long)arg3;
 - (void)archiveString:(id)arg1 forKey:(id)arg2 defaultValue:(id)arg3;
 - (void)archiveWrappedInset:(id)arg1 forKey:(id)arg2;
+- (void)archiveWrappedSize:(id)arg1 forKey:(id)arg2;
 - (void)archiveWrappedBitmask:(id)arg1 fromBitmask:(id)arg2 forKey:(id)arg3;
 - (void)archiveWrappedEnumeratedValue:(id)arg1 fromEnumeration:(id)arg2 forKey:(id)arg3;
 - (void)archiveWrappedDouble:(id)arg1 forKey:(id)arg2;
@@ -47,6 +48,7 @@
 - (void)archiveRect:(struct CGRect)arg1 forKey:(id)arg2 defaultValue:(struct CGRect)arg3;
 - (void)archiveSize:(struct CGSize)arg1 forKey:(id)arg2 defaultValue:(struct CGSize)arg3;
 - (void)archivePoint:(struct CGPoint)arg1 forKey:(id)arg2 defaultValue:(struct CGPoint)arg3;
+- (void)archiveObjectReferenceDictionary:(id)arg1 withName:(id)arg2 referenceType:(id)arg3 forOptionalKey:(id)arg4 defaultValue:(id)arg5;
 - (void)archiveDictionary:(id)arg1 withName:(id)arg2 forOptionalKey:(id)arg3 defaultValue:(id)arg4;
 - (void)archiveArray:(id)arg1 withName:(id)arg2 forOptionalKey:(id)arg3 defaultValue:(id)arg4;
 - (void)archiveObjectReference:(id)arg1 referenceType:(id)arg2 forKey:(id)arg3 defaultValue:(id)arg4;
@@ -62,7 +64,7 @@
 - (void)archiveBitmask:(unsigned long long)arg1 fromBitmask:(id)arg2 forKey:(id)arg3;
 - (void)addNonKeyAttributeWithName:(id)arg1 andStringValue:(id)arg2;
 - (void)archiveRange:(struct _NSRange)arg1 forKey:(id)arg2;
-- (void)archiveOffset:(CDStruct_79f57be0)arg1 forKey:(id)arg2;
+- (void)archiveOffset:(CDStruct_c3b9c2ee)arg1 forKey:(id)arg2;
 - (void)archiveEdgeInsets:(CDStruct_c519178c)arg1 forKey:(id)arg2;
 - (void)archiveInset:(CDStruct_c519178c)arg1 forKey:(id)arg2;
 - (void)archiveRect:(struct CGRect)arg1 forKey:(id)arg2;
@@ -71,14 +73,19 @@
 - (void)archiveGroupWithName:(id)arg1 usingBlock:(id)arg2;
 - (void)archiveGroupWithName:(id)arg1 forKey:(id)arg2 usingBlock:(id)arg3;
 - (void)archiveGroupWithName:(id)arg1 forOptionalKey:(id)arg2 usingBlock:(id)arg3;
+- (void)archiveObjectReferenceDictionary:(id)arg1 withName:(id)arg2 referenceType:(id)arg3 forOptionalKey:(id)arg4;
 - (void)archiveDictionary:(id)arg1 withName:(id)arg2 forOptionalKey:(id)arg3;
+- (void)archiveDictionary:(id)arg1 withName:(id)arg2 forOptionalKey:(id)arg3 valueArchivingBlock:(id)arg4;
 - (void)archiveArray:(id)arg1 withName:(id)arg2 forOptionalKey:(id)arg3;
 - (void)archiveObjectReference:(id)arg1 referenceType:(id)arg2 forKey:(id)arg3;
 - (void)archiveObjectReferenceArray:(id)arg1 withName:(id)arg2 referenceType:(id)arg3 forOptionalKey:(id)arg4;
 - (void)archiveObjectReference:(id)arg1 referenceType:(id)arg2;
+- (void)archiveObjectReferenceAsElement:(id)arg1 referenceType:(id)arg2 forOptionalKey:(id)arg3;
 - (void)archiveObject:(id)arg1 forKey:(id)arg2;
 - (void)archiveObject:(id)arg1;
 - (void)archiveObject:(id)arg1 forOptionalKey:(id)arg2;
+- (void)archiveFormattedClassSymbol:(id)arg1 forKey:(id)arg2 moduleKey:(id)arg3 moduleProviderKey:(id)arg4;
+- (void)archiveCustomFormattedClassSymbol:(id)arg1;
 - (void)archiveUsingBlockAfterArchivingSubgraph:(id)arg1;
 - (id)archiveElementNameForObject:(id)arg1;
 - (void)archiveNilWithKey:(id)arg1 elementName:(id)arg2;

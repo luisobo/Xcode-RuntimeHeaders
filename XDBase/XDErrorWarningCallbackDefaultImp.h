@@ -32,5 +32,11 @@
 - (void)dealloc;
 - (id)initWithErrorWarningPrefix:(id)arg1 stopAtFirstError:(BOOL)arg2 logFlag:(BOOL)arg3 hideWarnings:(BOOL)arg4 compilerFlags:(id)arg5;
 
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
+
 @end
 

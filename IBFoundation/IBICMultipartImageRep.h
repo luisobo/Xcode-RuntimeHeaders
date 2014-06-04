@@ -29,6 +29,12 @@
 @property(copy, nonatomic) IBICMultipartImageRepSlot *slot; // @synthesize slot=_slot;
 @property(nonatomic, getter=isUnassigned) BOOL unassigned; // @synthesize unassigned=_unassigned;
 - (void).cxx_destruct;
+- (BOOL)hasPDFSibling;
+- (BOOL)isPDF;
+- (BOOL)isJPEG;
+- (BOOL)isPNG;
+- (BOOL)matchesFileType:(id)arg1;
+- (id)fileType;
 - (id)suggestedFileName;
 @property(readonly) NSValue *imageDataPixelSize;
 @property(readonly) NSValue *requiredPointSize;

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSException;
+@class NSDictionary, NSError;
 
 @interface DTXMessage : NSObject
 {
@@ -21,7 +21,6 @@
     BOOL _deserialized;
     BOOL _immutable;
     BOOL _expectsReply;
-    BOOL _cannotTransmit;
     unsigned int _identifier;
     unsigned int _channelCode;
     unsigned int _conversationIndex;
@@ -34,25 +33,25 @@
 + (id)messageReferencingBuffer:(const void *)arg1 length:(unsigned long long)arg2 destructor:(id)arg3;
 + (id)messageWithBuffer:(const void *)arg1 length:(unsigned long long)arg2;
 + (id)messageWithPrimitive:(void *)arg1;
++ (id)messageWithError:(id)arg1;
 + (id)messageWithObject:(id)arg1;
 + (void)initialize;
 @property(readonly, nonatomic) unsigned long long cost; // @synthesize cost=_cost;
+@property(nonatomic) int errorStatus; // @synthesize errorStatus=_status;
 @property(readonly, nonatomic) BOOL deserialized; // @synthesize deserialized=_deserialized;
-@property(nonatomic) BOOL cannotTransmit; // @synthesize cannotTransmit=_cannotTransmit;
 @property(nonatomic) unsigned int conversationIndex; // @synthesize conversationIndex=_conversationIndex;
 @property(nonatomic) BOOL expectsReply; // @synthesize expectsReply=_expectsReply;
 @property(nonatomic) unsigned int channelCode; // @synthesize channelCode=_channelCode;
 @property(nonatomic) int messageType; // @synthesize messageType=_messageType;
 @property(nonatomic) unsigned int identifier; // @synthesize identifier=_identifier;
 @property(readonly, nonatomic) unsigned long long serializedLength;
-- (void)serializedFormApply:(id)arg1;
+- (void)serializedFormExpectingReply:(BOOL)arg1 apply:(id)arg2;
 - (id)initWithSerializedForm:(const char *)arg1 length:(unsigned long long)arg2 destructor:(id)arg3;
-- (id)invokeWithTarget:(id)arg1;
+- (void)invokeWithTarget:(id)arg1 replyChannel:(id)arg2 validator:(id)arg3;
 - (BOOL)shouldInvokeWithTarget:(id)arg1;
 @property(readonly, nonatomic) BOOL isBarrier;
 @property(readonly, nonatomic) BOOL isDispatch;
-@property(nonatomic) NSException *exception;
-@property(nonatomic) int errorStatus;
+@property(nonatomic) NSError *error;
 - (id)valueForMessageKey:(id)arg1;
 - (void)setData:(id)arg1 forMessageKey:(id)arg2;
 - (void)setInteger:(long long)arg1 forMessageKey:(id)arg2;
@@ -71,7 +70,9 @@
 - (void)_setPayloadBuffer:(const char *)arg1 length:(unsigned long long)arg2 shouldCopy:(BOOL)arg3 destructor:(id)arg4;
 - (void)_clearPayloadBuffer;
 - (void)dealloc;
+- (id)initWithInvocation:(id)arg1;
 - (id)initWithSelector:(SEL)arg1 firstArg:(id)arg2 remainingObjectArgs:(struct __va_list_tag [1])arg3;
+- (id)newReplyWithError:(id)arg1;
 - (id)newReplyWithObject:(id)arg1;
 - (id)newReply;
 - (id)description;

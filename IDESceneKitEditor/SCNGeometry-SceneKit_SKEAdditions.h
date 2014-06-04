@@ -6,14 +6,17 @@
 
 #import "SCNGeometry.h"
 
+@class NSImage, NSString;
+
 @interface SCNGeometry (SceneKit_SKEAdditions)
++ (id)ske_displayNameForUndoKVOKeypath:(id)arg1;
++ (id)keyPathsForValuesAffectingIde_displayName;
 - (id)ide_sources;
 - (id)ide_elements;
 - (id)ide_polygon_count;
 - (id)ide_vertex_count;
-- (id)ide_icon;
-- (id)geometry;
-- (id)ske_displayNameForUndoKVOKeypath:(id)arg1;
+@property(readonly) NSImage *ide_icon;
 - (id)ske_undoKVOKeypaths;
+@property(readonly) NSString *ide_displayName;
 @end
 

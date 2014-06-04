@@ -8,7 +8,7 @@
 
 #import "XCSelectionSource-Protocol.h"
 
-@class PBXReference;
+@class NSString, PBXReference;
 
 @interface XCBarItem : NSTextField <XCSelectionSource>
 {
@@ -70,6 +70,12 @@
 - (void)mouseEntered:(id)arg1;
 - (void)resetCursorRects;
 - (void)dealloc;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

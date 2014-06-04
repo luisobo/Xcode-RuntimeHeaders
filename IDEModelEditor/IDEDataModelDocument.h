@@ -12,7 +12,7 @@
 #import "NSKeyedUnarchiverDelegate-Protocol.h"
 #import "XDPMModelDelegate-Protocol.h"
 
-@class CDMModel, DVTNotificationToken, DVTToolsVersion, DVTVersion, NSArray, NSSet, XDDiagramStorage;
+@class CDMModel, DVTNotificationToken, DVTToolsVersion, DVTVersion, NSArray, NSSet, NSString, XDDiagramStorage;
 
 @interface IDEDataModelDocument : IDEEditorDocument <NSKeyedUnarchiverDelegate, IDEDocumentStructureProviding, XDPMModelDelegate, DVTTextFindable, DVTTextReplacable>
 {
@@ -77,6 +77,10 @@
 - (void)setDisplayName:(id)arg1;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @property unsigned long long supportedMatchingOptions;
 
 @end

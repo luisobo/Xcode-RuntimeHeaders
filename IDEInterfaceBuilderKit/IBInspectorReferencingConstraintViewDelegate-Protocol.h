@@ -7,6 +7,8 @@
 #import "NSObject-Protocol.h"
 
 @protocol IBInspectorReferencingConstraintViewDelegate <NSObject>
+- (void)constraintView:(id)arg1 didHandleDoubleMouseUpWithEvent:(id)arg2;
+- (void)constraintView:(id)arg1 didHandleSingleMouseUpWithEvent:(id)arg2;
 - (void)constraintViewWillChangeHighlighted:(id)arg1;
 @end
 

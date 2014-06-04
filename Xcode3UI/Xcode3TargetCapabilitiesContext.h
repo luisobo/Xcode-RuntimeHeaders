@@ -23,6 +23,7 @@
     NSMutableArray *_changeNotificationTokens;
     NSMutableDictionary *_capabilityModelsByItemIdentifier;
     NSArray *_capabilityItemModels;
+    NSString *_platformIdentifier;
     Xcode3Target *_target;
 }
 
@@ -30,13 +31,11 @@
 + (id)_projectItemExtensions;
 + (void)initialize;
 @property(readonly) Xcode3Target *target; // @synthesize target=_target;
+@property(readonly) NSString *platformIdentifier; // @synthesize platformIdentifier=_platformIdentifier;
 - (void).cxx_destruct;
 - (void)_runFlightChecksForModel:(id)arg1;
 - (void)_coordinatorChanged:(id)arg1;
-- (id)_coordinatorForNotification:(id)arg1;
-- (id)_flightCheckFromModel:(id)arg1 forCoordinator:(id)arg2;
 - (id)_applicableItems;
-- (void)_syncPBXTarget;
 @property(readonly) NSString *provisioningProfileUUID;
 @property(readonly) NSString *codesignIdentity;
 - (void)useTeamBasedSigningWithTeam:(id)arg1 account:(id)arg2;
@@ -45,13 +44,11 @@
 @property(retain, nonatomic) DVTDeveloperAccount *selectedAccount;
 @property(retain, nonatomic) DVTTeamRecord *selectedTeamRecord;
 @property(readonly, getter=isInternal) BOOL internal;
-@property(readonly) NSArray *explicitlyEnabledAppIDFeatures;
+- (id)expandEntitlements:(id)arg1 error:(id *)arg2;
 - (id)appIDFeatureStateBasedOnCapabilitiesAndEntitlements;
 - (id)appIDFeatureStateBasedOnCapabilities;
 - (id)_appIDFeatureStateIncludingEntitlements:(BOOL)arg1;
-@property(readonly) NSArray *enabledAppIDFeatures;
 @property(readonly) NSString *targetBundleIdentifier;
-@property(readonly) NSString *platformIdentifier;
 @property(readonly) NSArray *capabilityItemModels; // @synthesize capabilityItemModels=_capabilityItemModels;
 @property(readonly) Xcode3TargetPortalEntitlementsCoordinator *portalEntitlementsCoordinator;
 @property(readonly) Xcode3TargetLinkedFrameworksCoordinator *linkedFrameworksCoordinator;
@@ -71,7 +68,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

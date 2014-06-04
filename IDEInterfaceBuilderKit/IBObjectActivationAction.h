@@ -11,15 +11,15 @@
     BOOL _clearSelection;
     BOOL _shouldSelectDeepestObjectOnNextMouseUp;
     BOOL _shouldPruneToSingleSelectionOnNextMouseUp;
-    id _objectToActivate;
-    id _objectToSelect;
+    NSObject *_objectToActivate;
+    NSObject *_objectToSelect;
 }
 
 @property(nonatomic) BOOL shouldPruneToSingleSelectionOnNextMouseUp; // @synthesize shouldPruneToSingleSelectionOnNextMouseUp=_shouldPruneToSingleSelectionOnNextMouseUp;
 @property(nonatomic) BOOL shouldSelectDeepestObjectOnNextMouseUp; // @synthesize shouldSelectDeepestObjectOnNextMouseUp=_shouldSelectDeepestObjectOnNextMouseUp;
 @property(nonatomic) BOOL clearSelection; // @synthesize clearSelection=_clearSelection;
-@property(retain, nonatomic) id objectToSelect; // @synthesize objectToSelect=_objectToSelect;
-@property(retain, nonatomic) id objectToActivate; // @synthesize objectToActivate=_objectToActivate;
+@property(retain, nonatomic) NSObject *objectToSelect; // @synthesize objectToSelect=_objectToSelect;
+@property(retain, nonatomic) NSObject *objectToActivate; // @synthesize objectToActivate=_objectToActivate;
 - (void).cxx_destruct;
 - (id)initWithObjectToActivate:(id)arg1 clearSelection:(BOOL)arg2 objectToSelect:(id)arg3 shouldSelectDeepestObjectOnNextMouseUp:(BOOL)arg4 shouldPruneToSingleSelectionOnNextMouseUp:(BOOL)arg5;
 

@@ -6,11 +6,16 @@
 
 #import "NSWindow.h"
 
+@class NSWindowController;
+
 @interface IDEWelcomeWindow : NSWindow
 {
+    NSWindowController *_controller;
 }
 
-- (void)performClose:(id)arg1;
+@property(retain) NSWindowController *controller; // @synthesize controller=_controller;
+- (void).cxx_destruct;
+- (void)close;
 - (BOOL)validateMenuItem:(id)arg1;
 - (BOOL)canBecomeKeyWindow;
 - (BOOL)canBecomeMainWindow;

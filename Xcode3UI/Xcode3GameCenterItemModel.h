@@ -6,18 +6,26 @@
 
 #import "IDEProjectItemModel.h"
 
+@class NSNumber;
+
 @interface Xcode3GameCenterItemModel : IDEProjectItemModel
 {
-    BOOL _platformIsIOS;
+    NSNumber *_requiresGameCenterDeviceCompatibilityInfoPlistEntry;
+    NSNumber *_requiresLocalGameCenterEntitlement;
+    id <IDEFlightChecking> _portalFlightCheck;
+    id <IDEFlightChecking> _linkedFrameworksFlightCheck;
+    id <IDEFlightChecking> _infoPlistFlightCheck;
 }
 
-@property(readonly, nonatomic) BOOL platformIsIOS; // @synthesize platformIsIOS=_platformIsIOS;
+- (void).cxx_destruct;
 - (BOOL)isEnabledUsingEducatedGuess;
+- (id)flightChecks;
 - (id)infoPlistFlightCheck;
 - (id)linkedFrameworksFlightCheck;
 - (id)portalFlightCheck;
 - (void)publishStateWithContext:(id)arg1;
-- (id)initWithCapabilitiesContext:(id)arg1 item:(id)arg2;
+- (BOOL)requiresLocalGameCenterEntitlement;
+- (BOOL)requiresGameCenterDeviceCompatibilityInfoPlistEntry;
 
 @end
 

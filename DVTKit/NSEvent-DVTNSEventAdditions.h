@@ -7,6 +7,9 @@
 #import "NSEvent.h"
 
 @interface NSEvent (DVTNSEventAdditions)
+- (struct CGPoint)dvt_locationInWindowRelativeToView:(id)arg1;
+- (BOOL)dvt_isLeftMouseButtonUp;
+- (BOOL)dvt_isLeftMouseButtonDown;
 - (struct CGPoint)dvt_flooredLocationInWindow;
 - (struct CGPoint)dvt_flooredLocationInView:(id)arg1;
 - (BOOL)dvt_isDragEventAnIntentialLeftDragWithRespectToMouseDown:(id)arg1;

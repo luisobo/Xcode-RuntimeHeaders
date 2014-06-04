@@ -10,7 +10,7 @@
 #import "DVTProgressReporting-Protocol.h"
 #import "IDETestsInTestableObserver-Protocol.h"
 
-@class DVTStackBacktrace, IDETest, IDETestManager, NSDictionary;
+@class DVTStackBacktrace, IDETest, IDETestManager, NSDictionary, NSString;
 
 @interface IDETestRunSession : NSObject <IDETestsInTestableObserver, DVTInvalidation, DVTProgressReporting>
 {
@@ -49,7 +49,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

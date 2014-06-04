@@ -6,6 +6,8 @@
 
 #import "NSObject.h"
 
+@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>;
+
 @interface DTXResourceTracker : NSObject
 {
     unsigned long long _total;
@@ -14,8 +16,8 @@
     unsigned int _waiting;
     unsigned int _acquireNum;
     int _suspendCount;
-    struct dispatch_queue_s *_queue;
-    struct dispatch_semaphore_s *_acqSem;
+    NSObject<OS_dispatch_queue> *_queue;
+    NSObject<OS_dispatch_semaphore> *_acqSem;
     DTXResourceTracker *_parentTracker;
     BOOL _log;
 }

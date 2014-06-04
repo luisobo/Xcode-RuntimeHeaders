@@ -20,7 +20,7 @@
     NSString *_fileName;
     NSString *_explicitContainingDirectory;
     NSURL *_absoluteFileURL;
-    NSDate *_modificatoinDate;
+    NSDate *_modificationDate;
     NSDate *_manifestModificationDate;
 }
 
@@ -37,9 +37,9 @@
 + (id)itemWithContentsOfPath:(id)arg1;
 + (id)itemWithContentsOfPath:(id)arg1 results:(id)arg2;
 @property(readonly, nonatomic) NSSet *children; // @synthesize children=_children;
-@property(readonly, nonatomic) IBICAbstractCatalogItem *parent; // @synthesize parent=_parent;
+@property(readonly, nonatomic) __weak IBICAbstractCatalogItem *parent; // @synthesize parent=_parent;
 @property(readonly, nonatomic) NSDate *manifestModificationDate; // @synthesize manifestModificationDate=_manifestModificationDate;
-@property(readonly, nonatomic) NSDate *modificatoinDate; // @synthesize modificatoinDate=_modificatoinDate;
+@property(readonly, nonatomic) NSDate *modificationDate; // @synthesize modificationDate=_modificationDate;
 @property(copy, nonatomic) NSURL *absoluteFileURL; // @synthesize absoluteFileURL=_absoluteFileURL;
 @property(copy, nonatomic) NSString *explicitContainingDirectory; // @synthesize explicitContainingDirectory=_explicitContainingDirectory;
 @property(copy, nonatomic) NSString *fileName; // @synthesize fileName=_fileName;

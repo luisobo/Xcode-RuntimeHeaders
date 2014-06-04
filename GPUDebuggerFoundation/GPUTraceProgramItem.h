@@ -17,9 +17,11 @@
 @property(readonly, nonatomic, getter=isPipeline) BOOL pipeline; // @synthesize pipeline=_pipeline;
 @property(nonatomic) GPUTraceShaderItem *defaultShaderItem; // @synthesize defaultShaderItem=_defaultShaderItem;
 - (void)primitiveInvalidate;
-- (id)initWithController:(id)arg1 parent:(id)arg2 programID:(unsigned int)arg3 isPipeline:(BOOL)arg4 unrealizedResourceObject:(const void *)arg5 context:(unsigned long long)arg6 label:(id)arg7;
+- (id)initProgramWithController:(id)arg1 parent:(id)arg2 programID:(unsigned long long)arg3 isPipeline:(BOOL)arg4 unrealizedResourceObject:(const void *)arg5 containerID:(unsigned long long)arg6 label:(id)arg7;
+- (id)initComputePipelineStateWithController:(id)arg1 parent:(id)arg2 programID:(unsigned long long)arg3 unrealizedResourceObject:(const void *)arg4 containerID:(unsigned long long)arg5 label:(id)arg6;
+- (id)initRenderPipelineStateWithController:(id)arg1 parent:(id)arg2 programID:(unsigned long long)arg3 unrealizedResourceObject:(const void *)arg4 containerID:(unsigned long long)arg5 label:(id)arg6;
+- (id)_initWithController:(id)arg1 parent:(id)arg2 programID:(unsigned long long)arg3 unrealizedResourceObject:(const void *)arg4 containerID:(unsigned long long)arg5 label:(id)arg6 type:(unsigned int)arg7;
 - (void)establishChildren;
-- (id)programObjectForShaderType:(unsigned int)arg1;
 
 @end
 

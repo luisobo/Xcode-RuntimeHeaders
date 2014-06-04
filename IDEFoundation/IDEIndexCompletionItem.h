@@ -28,7 +28,7 @@
 @property(readonly) BOOL notRecommended;
 @property(readonly) DVTSourceCodeSymbolKind *symbolKind;
 @property(readonly) NSAttributedString *descriptionText;
-@property(readonly) NSString *parentText;
+@property(readonly, copy) NSString *parentText;
 @property(readonly) NSString *completionText;
 @property(readonly) NSString *displayType;
 @property(readonly) NSString *displayText;

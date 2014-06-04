@@ -15,8 +15,8 @@
     NSString *_underlyingIvarName;
 }
 
-@property(readonly, nonatomic) NSString *underlyingIvarName; // @synthesize underlyingIvarName=_underlyingIvarName;
-@property(readonly, nonatomic) NSString *key; // @synthesize key=_key;
+@property(readonly, copy, nonatomic) NSString *underlyingIvarName; // @synthesize underlyingIvarName=_underlyingIvarName;
+@property(readonly, copy, nonatomic) NSString *key; // @synthesize key=_key;
 - (id)underlyingIvarValueForObject:(id)arg1;
 - (void)dealloc;
 - (id)initWithKey:(id)arg1 underlyingIvarName:(id)arg2;

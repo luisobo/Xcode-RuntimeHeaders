@@ -8,10 +8,18 @@
 
 #import "IBDocumentArchiving-Protocol.h"
 
+@class NSString;
+
 @interface NSExpression (IBDocumentArchiving) <IBDocumentArchiving>
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (Class)classForDocumentArchiver:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

@@ -10,9 +10,7 @@
 {
 }
 
-- (BOOL)isEnabledUsingEducatedGuess;
-- (id)portalFlightCheck;
-- (void)publishStateWithContext:(id)arg1;
+- (id)flightChecks;
 
 @end
 

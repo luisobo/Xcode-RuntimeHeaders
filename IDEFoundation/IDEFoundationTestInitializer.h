@@ -10,7 +10,7 @@
 {
 }
 
-+ (BOOL)initializeTestabilityOrError:(id *)arg1;
++ (BOOL)initializeTestabilityWithUI:(BOOL)arg1 error:(id *)arg2;
 
 @end
 

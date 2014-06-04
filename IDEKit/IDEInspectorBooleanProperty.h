@@ -10,14 +10,15 @@
 
 @interface IDEInspectorBooleanProperty : IDEInspectorProperty
 {
-    NSButton *_checkbox;
     IDEInspectorKeyPath *_valueKeyPath;
     BOOL _isBitfield;
     BOOL _allowsMixedState;
     long long _bits;
     long long _bitMask;
+    NSButton *_checkbox;
 }
 
+@property(retain, nonatomic) NSButton *checkbox; // @synthesize checkbox=_checkbox;
 - (void).cxx_destruct;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)loadView;

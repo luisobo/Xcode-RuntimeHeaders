@@ -6,7 +6,9 @@
 
 #import <IBFoundation/IBICMultipartImageRepSlotComponent.h>
 
-@interface IBICExtent : IBICMultipartImageRepSlotComponent
+#import "NSCoding-Protocol.h"
+
+@interface IBICExtent : IBICMultipartImageRepSlotComponent <NSCoding>
 {
     int _extentValue;
 }
@@ -14,6 +16,9 @@
 + (id)itemWithIdentifier:(id)arg1 fileNameComponent:(id)arg2 title:(id)arg3 extent:(int)arg4 displayOrder:(double)arg5;
 + (id)contentsJSONKey;
 @property(readonly) int extentValue; // @synthesize extentValue=_extentValue;
+- (void)ibic_appendAdditionalPseudoXMLAttrbutes:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (BOOL)isEqualToSchemaImageRepIDComponent:(id)arg1;
 - (BOOL)isEqualToExtent:(id)arg1;
 - (id)initWithIdentifier:(id)arg1 fileNameComponent:(id)arg2 title:(id)arg3 extent:(int)arg4 displayOrder:(double)arg5;

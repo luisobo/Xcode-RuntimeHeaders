@@ -53,8 +53,8 @@
 @property(readonly, getter=isBuiltIn) BOOL builtIn; // @synthesize builtIn=_builtIn;
 @property(retain) DVTCustomDataSpecifier *customDataSpecifier; // @synthesize customDataSpecifier=_customDataSpecifier;
 @property(retain) NSImage *image; // @synthesize image=_image;
-@property(readonly) NSString *localizedName; // @synthesize localizedName=_localizedName;
-@property(readonly) NSString *name; // @synthesize name=_name;
+@property(readonly, copy) NSString *localizedName; // @synthesize localizedName=_localizedName;
+@property(readonly, copy) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (void)activate;
 - (void)_resolveConflictWithMenuKeyBindingSet:(id)arg1 textKeyBindingSet:(id)arg2;
@@ -80,7 +80,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

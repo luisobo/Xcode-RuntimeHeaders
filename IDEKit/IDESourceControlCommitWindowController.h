@@ -8,7 +8,7 @@
 
 #import "IDENavigableItemCoordinatorDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTTextViewWithPlaceholder, IDESourceControlPushOperationInfo, IDESourceControlRepositoryChooserItem, IDESourceControlReviewFilesDataSource, IDESourceControlWorkspaceUIHandler, NSArray, NSButton, NSImageView, NSMutableArray, NSMutableDictionary, NSOperationQueue, NSPopUpButton, NSSplitView, NSString, NSTextField;
+@class DVTBorderedView, DVTObservingToken, DVTTextViewWithPlaceholder, IDESourceControlPushOperationInfo, IDESourceControlRepositoryChooserItem, IDESourceControlReviewFilesDataSource, IDESourceControlWorkspaceUIHandler, NSArray, NSButton, NSImageView, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_semaphore>, NSOperationQueue, NSPopUpButton, NSSplitView, NSString, NSTextField;
 
 @interface IDESourceControlCommitWindowController : IDESourceControlReviewFilesWindowController <IDENavigableItemCoordinatorDelegate>
 {
@@ -27,7 +27,7 @@
     IDESourceControlReviewFilesDataSource *_workspaceDataSource;
     IDESourceControlReviewFilesDataSource *_fileSystemDataSource;
     IDESourceControlReviewFilesDataSource *_flatDataSource;
-    struct dispatch_semaphore_s *_multipleFileSaveWaiter;
+    NSObject<OS_dispatch_semaphore> *_multipleFileSaveWaiter;
     NSMutableArray *_distributedWorkingTrees;
     NSArray *_pushOperationInfos;
     NSOperationQueue *_pushOperationQueue;
@@ -94,6 +94,12 @@
 - (void)windowDidLoad;
 - (id)windowNibName;
 - (id)initWithWindow:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

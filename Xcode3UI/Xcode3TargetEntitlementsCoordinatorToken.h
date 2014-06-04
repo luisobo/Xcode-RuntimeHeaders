@@ -20,6 +20,8 @@
 - (id)arrayOfStringsEntitlementValueForKey:(id)arg1;
 - (void)removeEntitlementsFileIfNeeded;
 - (void)makeEntitlementsFileIfNeeded;
+- (id)objectForKeyedSubscript:(id)arg1;
+- (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
 - (void)setEntitlementValue:(id)arg1 forKey:(id)arg2;
 - (id)allEntitlementKeys;
 - (id)init;

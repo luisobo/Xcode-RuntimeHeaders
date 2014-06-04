@@ -8,7 +8,7 @@
 
 #import "IBBindingSliceDelegate-Protocol.h"
 
-@class DVTDelayedInvocation, DVTNotificationToken, DVTStackView_ML, IBBindingSuggestedKeyPathProvider, NSArray, NSMutableArray, NSMutableSet, NSScrollView;
+@class DVTDelayedInvocation, DVTNotificationToken, DVTStackView_ML, IBBindingSuggestedKeyPathProvider, NSArray, NSMutableArray, NSMutableSet, NSScrollView, NSString;
 
 @interface IBBindingsInspector : IBInspectorViewController <IBBindingSliceDelegate>
 {
@@ -57,13 +57,18 @@
 - (id)categoryViewWithCategoryString:(id)arg1;
 - (void)rebuildKeyPathProvider;
 - (void)documentWillRemoveObject:(id)arg1;
-- (id)inspectedDocument;
 - (void)viewWillUninstall;
 - (void)primitiveInvalidate;
 - (BOOL)automaticallyInvalidatesChildViewControllers;
 - (void)viewDidInstall;
 - (void)setContent:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

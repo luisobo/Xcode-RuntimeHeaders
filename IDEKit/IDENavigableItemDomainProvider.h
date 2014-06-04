@@ -12,6 +12,7 @@
 
 + (id)navigableItemImageForDocumentURL:(id)arg1;
 + (id)navigableItemNameForDocumentURL:(id)arg1;
++ (id)domainObjectForURL:(id)arg1 forWorkspace:(id)arg2;
 + (id)domainObjectForWorkspace:(id)arg1;
 
 @end

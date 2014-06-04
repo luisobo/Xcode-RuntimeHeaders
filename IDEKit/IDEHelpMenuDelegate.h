@@ -8,12 +8,20 @@
 
 #import "NSMenuDelegate-Protocol.h"
 
+@class NSString;
+
 @interface IDEHelpMenuDelegate : NSObject <NSMenuDelegate>
 {
 }
 
 - (void)menuWillOpen:(id)arg1;
 - (void)buildMenu:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

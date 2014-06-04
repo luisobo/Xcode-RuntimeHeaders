@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTObservingToken, DVTStackBacktrace, IDEContainer, IDEContainerQuery, NSDictionary, NSMutableDictionary, NSMutableSet, NSSet, NSString;
+@class DVTDelayedInvocation, DVTObservingToken, DVTStackBacktrace, IDEContainer, IDEContainerQuery, NSDictionary, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet, NSString;
 
 @interface IDEFileReferenceContainerObserver : NSObject <DVTInvalidation>
 {
@@ -25,9 +25,12 @@
     NSMutableSet *_observationBlocks;
     NSDictionary *_currentFilePaths;
     NSSet *_currentFileReferences;
-    struct dispatch_queue_s *_ioQueue;
+    NSObject<OS_dispatch_queue> *_ioQueue;
     NSString *_identifier;
     NSSet *_observedTypes;
+    BOOL _hasProcessedFirstBatchOfContainerQueryMatches;
+    DVTDelayedInvocation *_processInvocation;
+    DVTDelayedInvocation *_postInvocation;
 }
 
 + (void)initialize;
@@ -39,23 +42,26 @@
 @property(readonly) NSSet *observedTypes; // @synthesize observedTypes=_observedTypes;
 @property(readonly) IDEContainer *observedContainer; // @synthesize observedContainer=_observedContainer;
 - (void).cxx_destruct;
-- (void)processPendingResults;
+- (void)processPendingResults:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)processResultForPath:(id)arg1 withLastKnownFileType:(id)arg2 updateType:(long long)arg3;
-- (void)postResults;
+- (void)postResults:(id)arg1;
 - (void)postResultsRetrospectiveResultsToObserverBlock:(id)arg1;
 - (void)setResult:(id)arg1 forPath:(id)arg2;
 - (void)matchedContainerItemsDidChange:(id)arg1;
 - (void)invalidateProcessing;
 - (void)invalidatePosting;
 - (id)addObserver:(id)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)primitiveInvalidate;
 - (id)initWithContainer:(id)arg1 types:(id)arg2 identifier:(id)arg3 updateHandlerBlock:(id)arg4 cleanUpBlock:(void)arg5 skipFileReferencePredicate:(id)arg6;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

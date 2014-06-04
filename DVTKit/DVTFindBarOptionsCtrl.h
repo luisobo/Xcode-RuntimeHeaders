@@ -8,7 +8,7 @@
 
 #import "NSPopoverDelegate-Protocol.h"
 
-@class DVTStackView_AppKitAutolayout, NSPopover, NSView;
+@class DVTStackView_AppKitAutolayout, NSPopover, NSString, NSView;
 
 @interface DVTFindBarOptionsCtrl : DVTViewController <NSPopoverDelegate>
 {
@@ -57,6 +57,12 @@
 - (id)findDescriptorForAttributedString:(id)arg1 error:(id *)arg2;
 - (void)loadView;
 - (id)initWithSupportForRegex:(BOOL)arg1 andSupportForWordMatching:(BOOL)arg2 supportsCaseInsensitiveMatching:(BOOL)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

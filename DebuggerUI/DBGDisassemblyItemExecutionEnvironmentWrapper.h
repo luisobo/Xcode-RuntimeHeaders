@@ -6,9 +6,11 @@
 
 #import "IDENavigableItemDomainProvider.h"
 
-@class DVTMapTable, DVTObservingToken, IDEWorkspace, NSArray, NSMutableArray;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface DBGDisassemblyItemExecutionEnvironmentWrapper : IDENavigableItemDomainProvider
+@class DVTDocumentLocation, DVTFileDataType, DVTMapTable, DVTObservingToken, IDEFileReference, IDEWorkspace, NSArray, NSImage, NSMutableArray, NSString;
+
+@interface DBGDisassemblyItemExecutionEnvironmentWrapper : IDENavigableItemDomainProvider <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     IDEWorkspace *_workspace;
     NSMutableArray *_processWrappers;
@@ -19,10 +21,11 @@
 }
 
 + (id)domainObjectForWorkspace:(id)arg1;
-+ (id)modelForWorkspace:(id)arg1;
++ (id)providerForWorkspace:(id)arg1;
 + (void)initialize;
 - (void).cxx_destruct;
-- (id)disassemblyItemForStackFrame:(id)arg1;
+@property(readonly) NSString *navigableItem_name;
+- (id)geniusDisassemblyItemForStackFrame:(id)arg1;
 - (void)_handleProcessRemoved:(id)arg1;
 - (void)_handleProcessChanged:(id)arg1;
 - (void)_handleLaunchSessionsAdded:(id)arg1;
@@ -31,8 +34,20 @@
 - (id)initWithWorkspace:(id)arg1;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSMutableArray *mutableProcessWrappers; // @dynamic mutableProcessWrappers;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) NSArray *processWrappers; // @dynamic processWrappers;
+@property(readonly) Class superclass;
 
 @end
 

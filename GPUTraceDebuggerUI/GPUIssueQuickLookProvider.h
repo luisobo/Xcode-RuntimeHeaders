@@ -30,8 +30,12 @@
 - (id)initWithDataValue:(id)arg1 options:(id)arg2;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) NSURL *existingURLToOpen;
 @property(readonly) NSString *extensionForTemporaryFile;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

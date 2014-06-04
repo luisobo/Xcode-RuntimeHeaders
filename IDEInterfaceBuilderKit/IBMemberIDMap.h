@@ -10,17 +10,17 @@
 
 @interface IBMemberIDMap : NSObject
 {
-    NSMutableArray *_allObjects;
-    IBMutableIdentityDictionary *_objectsToMemberIDs;
+    NSMutableArray *_allMembers;
+    IBMutableIdentityDictionary *_membersToMemberIDs;
 }
 
-@property(readonly, nonatomic) NSArray *allObjects; // @synthesize allObjects=_allObjects;
+@property(readonly, nonatomic) NSArray *allMembers; // @synthesize allMembers=_allMembers;
 - (void).cxx_destruct;
-- (id)memberIDForObjectOrMemberID:(id)arg1;
-- (id)memberIDForObject:(id)arg1;
-- (id)objectForMemberID:(id)arg1;
-- (void)removeObject:(id)arg1;
-- (void)addObject:(id)arg1 withMemberID:(id)arg2;
+- (id)memberIDForMemberOrID:(id)arg1;
+- (id)memberIDForMember:(id)arg1;
+- (id)memberForMemberID:(id)arg1;
+- (void)removeMember:(id)arg1;
+- (void)addMember:(id)arg1 withMemberID:(id)arg2;
 - (id)init;
 
 @end

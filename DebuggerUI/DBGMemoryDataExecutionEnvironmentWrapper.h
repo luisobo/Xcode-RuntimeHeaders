@@ -17,7 +17,7 @@
 }
 
 + (id)domainObjectForWorkspace:(id)arg1;
-+ (id)modelForWorkspace:(id)arg1;
++ (id)providerForWorkspace:(id)arg1;
 + (void)initialize;
 - (void).cxx_destruct;
 - (unsigned long long)navigableItem_indexOfRepresentedObjectForIdentifier:(id)arg1 inRelationshipKeyPath:(id)arg2;

@@ -9,7 +9,7 @@
 #import "NSTextViewDelegate-Protocol.h"
 #import "NSWindowDelegate-Protocol.h"
 
-@class NSFont;
+@class NSFont, NSString;
 
 @interface DVTFontTextField : DVTButtonTextField <NSTextViewDelegate, NSWindowDelegate>
 {
@@ -29,6 +29,12 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)_commonInit;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

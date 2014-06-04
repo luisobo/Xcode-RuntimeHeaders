@@ -6,10 +6,11 @@
 
 #import <DVTKit/DTDKSelectionDialogController.h>
 
-@class NSArray, NSArrayController, NSSet;
+@class DVTObservingToken, NSArray, NSArrayController, NSSet;
 
 @interface DTDKMultipleSelectionDialogController : DTDKSelectionDialogController
 {
+    DVTObservingToken *_observingToken;
     NSArray *_tableContents;
     NSSet *_selectedIdentifiers;
     NSArrayController *_arrayController;
@@ -25,6 +26,7 @@
 @property(readonly) _Bool canProceed;
 - (void)setChoices:(id)arg1;
 - (void)loadWindow;
+- (void)dealloc;
 
 @end
 

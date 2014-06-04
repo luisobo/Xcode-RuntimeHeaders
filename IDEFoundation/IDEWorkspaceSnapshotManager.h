@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTFilePath, DVTPerformanceMetric, DVTStackBacktrace, IDESnapshotsManager, IDEWorkspace, NSDictionary, NSString;
+@class DVTFilePath, DVTPerformanceMetric, DVTStackBacktrace, IDESnapshotsManager, IDEWorkspace, NSDictionary, NSObject<OS_dispatch_queue>, NSString;
 
 @interface IDEWorkspaceSnapshotManager : NSObject <DVTInvalidation>
 {
@@ -19,7 +19,7 @@
     BOOL _userIntentToSnapshot;
     NSString *_currentOperationName;
     id <IDESnapshotConfirmationDelegate> _confirmationDelegate;
-    struct dispatch_queue_s *_snapshotManagerQueue;
+    NSObject<OS_dispatch_queue> *_snapshotManagerQueue;
     NSDictionary *_localizedStrings;
 }
 
@@ -40,7 +40,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

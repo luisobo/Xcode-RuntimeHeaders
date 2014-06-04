@@ -8,16 +8,15 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTObservingToken, DVTStackBacktrace, IDEWorkspaceDocument, NSTimer;
+@class DVTObservingToken, DVTStackBacktrace, IDEWorkspace, IDEWorkspaceDocument, NSString, NSTimer;
 
 @interface IBAbstractWorkspaceDocumentClassProvider : IBAbstractClassProvider <DVTInvalidation>
 {
-    DVTStackBacktrace *unregisterBacktrace;
-    IDEWorkspaceDocument *workspaceDocument;
-    int referenceCount;
-    NSTimer *timeoutTimer;
-    DVTObservingToken *workspaceObservingToken;
-    BOOL ignoreTimeoutAndImmediatelyUnregister;
+    int _referenceCount;
+    NSTimer *_timeoutTimer;
+    DVTObservingToken *_workspaceObservingToken;
+    BOOL _ignoreTimeoutAndImmediatelyUnregister;
+    IDEWorkspaceDocument *_workspaceDocument;
 }
 
 + (double)timeout;
@@ -25,7 +24,7 @@
 + (void)unregisterWorkspaceDocumentClassProvider:(id)arg1;
 + (id)retainedClassProviderForWorkspaceDocument:(id)arg1;
 + (id)retainedClassProviderForReferenceKey:(id)arg1 initNewProviderBlock:(id)arg2;
-@property(readonly) IDEWorkspaceDocument *workspaceDocument; // @synthesize workspaceDocument;
+@property(readonly) IDEWorkspaceDocument *workspaceDocument; // @synthesize workspaceDocument=_workspaceDocument;
 - (void).cxx_destruct;
 - (void)releaseClassProvider;
 - (id)retainClassProvider;
@@ -33,12 +32,17 @@
 - (void)markForInvalidation;
 - (void)timeoutTimerDidFire:(id)arg1;
 - (id)referenceKey;
+@property(readonly) IDEWorkspace *workspace;
 - (void)primitiveInvalidate;
 - (id)initWithWorkspaceDocument:(id)arg1;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

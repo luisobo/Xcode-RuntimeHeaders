@@ -8,6 +8,8 @@
 
 #import "NSTabViewDelegate-Protocol.h"
 
+@class NSString;
+
 @interface IBNSTabViewEditor : IBNSViewEditor <NSTabViewDelegate>
 {
 }
@@ -21,13 +23,17 @@
 - (void)reattachDraggedObjects:(id)arg1 dragContext:(id)arg2;
 - (id)dragImageOfTabViewItems:(id)arg1 clickedItem:(id)arg2 dragLocation:(struct CGPoint *)arg3;
 - (void)noteDescendant:(id)arg1 didChangeProperty:(id)arg2 fromValue:(id)arg3;
-- (void)documentDidSave;
-- (void)documentWillSave;
 - (void)didDeactivate;
 - (void)didActivate;
 - (void)willClose;
 - (void)didOpen;
 - (id)editedTabView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -7,7 +7,7 @@
 #import "NSTabViewItem.h"
 
 @interface NSTabViewItem (IBTabViewItemIntegration)
-+ (id)keyPathsForValuesAffectingIbQualifyingInfoForDefaultLabel;
+- (BOOL)ibShouldEncodeImage;
 - (id)ibSuperviewOfView:(id)arg1 inDocument:(id)arg2;
 - (void)ibWillArbitrateChild:(id)arg1 inArbitrationUnit:(id)arg2;
 - (BOOL)ibIsChildArbitrationUnitRoot:(id)arg1;
@@ -29,5 +29,9 @@
 - (BOOL)ibIsChildTypicalConnectionTarget:(id)arg1;
 - (BOOL)ibCanRemoveChildren:(id)arg1;
 - (void)ibPopulateChildRelationOrder:(id)arg1;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
+- (id)ibLocalToOneRelationshipsKeyPaths;
+- (id)ibToOneRelationshipKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

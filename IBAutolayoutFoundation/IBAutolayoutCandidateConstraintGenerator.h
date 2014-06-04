@@ -12,10 +12,11 @@
 
 + (id)candidateVerticalSpacingConstraintBetweenDescendant:(id)arg1 andDescendant:(id)arg2 ofView:(id)arg3 layoutInfo:(id)arg4;
 + (id)candidateHorizontalSpacingConstraintBetweenDescendant:(id)arg1 andDescendant:(id)arg2 ofView:(id)arg3 layoutInfo:(id)arg4;
++ (id)constraintsWithVisualFormatViews:(id)arg1 layoutInfo:(id)arg2 overridingContainingItem:(id)arg3 formatsAndOptionsAndMetrics:(id)arg4;
 + (id)constraintsWithVisualFormatViews:(id)arg1 layoutInfo:(id)arg2 formatsAndOptionsAndMetricsAndScoringTypes:(id)arg3;
 + (id)constraintsWithVisualFormatViews:(id)arg1 layoutInfo:(id)arg2 formatsAndOptionsAndMetricsAndScoringClassesAndTypes:(id)arg3;
 + (id)constraintsWithVisualFormat:(id)arg1 options:(unsigned long long)arg2 metrics:(id)arg3 views:(id)arg4 scoringType:(id)arg5 layoutInfo:(id)arg6;
-+ (id)constraintsWithVisualFormat:(id)arg1 options:(unsigned long long)arg2 metrics:(id)arg3 views:(id)arg4 scoringClass:(id)arg5 scoringType:(id)arg6 layoutInfo:(id)arg7;
++ (id)constraintsWithVisualFormat:(id)arg1 options:(unsigned long long)arg2 metrics:(id)arg3 views:(id)arg4 overridingContainingItem:(id)arg5 scoringClass:(id)arg6 scoringType:(id)arg7 layoutInfo:(id)arg8;
 + (id)candidateLayoutConstraintsForDescendants:(id)arg1 ofView:(id)arg2 layoutInfo:(id)arg3 layoutEngine:(id)arg4 withOptions:(unsigned long long)arg5;
 + (id)_candidateLayoutConstraintsToNearestNeighborsForDescendants:(id)arg1 ofView:(id)arg2 layoutInfo:(id)arg3 layoutEngine:(id)arg4 withOptions:(unsigned long long)arg5;
 + (id)candidateLayoutConstraintForNearestNeighbor:(id)arg1 ofItem:(id)arg2 attribute:(unsigned long long)arg3 descendantOfItem:(id)arg4 layoutInfo:(id)arg5;

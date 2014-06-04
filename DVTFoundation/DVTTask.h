@@ -29,6 +29,7 @@
     int _runLoopSignal;
     NSMutableSet *_fileHandlesToCloseAfterLaunching;
     NSNumber *_argumentEncoding;
+    long long _qos;
 }
 
 + (id)launchedTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 error:(id *)arg3;
@@ -46,6 +47,7 @@
 @property(copy) NSString *currentDirectoryPath; // @synthesize currentDirectoryPath=_currentDirectoryPath;
 @property(copy) NSString *launchPath; // @synthesize launchPath=_launchPath;
 - (void).cxx_destruct;
+- (id)stringRepresentation;
 - (id)description;
 @property(readonly) BOOL isRunning;
 - (void)markFileHandleToStayOpenAcrossExec:(id)arg1;
@@ -59,15 +61,17 @@
 - (void)addFileHandleToCloseAfterLaunch:(id)arg1;
 - (BOOL)runReturningStandardOutput:(id *)arg1 standardError:(id *)arg2 error:(id *)arg3;
 - (BOOL)runReturningStandardOutput:(id *)arg1 standardError:(id *)arg2 standardInput:(id)arg3 error:(id *)arg4;
+- (BOOL)sendSignal:(int)arg1 error:(id *)arg2;
 - (void)waitUntilExit;
 - (void)waitUntilExitRunningRunLoopInWaitMode;
 - (BOOL)launchReturningError:(id *)arg1;
 - (id)installRunLoopSignal;
-- (BOOL)launchRunningTerminationHandlerOnQueue:(struct dispatch_queue_s *)arg1 error:(id *)arg2 terminationHandler:(id)arg3;
+- (BOOL)launchRunningTerminationHandlerOnQueue:(id)arg1 error:(id *)arg2 terminationHandler:(id)arg3;
 - (id)applyFileDescriptorMappingsToFileActions:(void **)arg1;
 - (void)warnAboutBogusFileDescriptors;
 - (id)applyPreferredArchitecturesToSpawnAttributes:(void **)arg1;
-- (void)installEventHandlersForChildPID:(int)arg1 queue:(struct dispatch_queue_s *)arg2 terminationHandler:(id)arg3;
+- (void)installEventHandlersForChildPID:(int)arg1 queue:(id)arg2 terminationHandler:(id)arg3;
+@property long long qualityOfService;
 - (void)setValue:(id)arg1 forEnvironmentVariableNamed:(id)arg2;
 - (id)init;
 

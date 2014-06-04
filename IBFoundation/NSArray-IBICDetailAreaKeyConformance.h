@@ -8,8 +8,17 @@
 
 #import "IBICDetailAreaKeyGroup-Protocol.h"
 #import "IBICDetailAreaKeySection-Protocol.h"
+#import "IBICDetailAreaKeySubgroup-Protocol.h"
 
-@interface NSArray (IBICDetailAreaKeyConformance) <IBICDetailAreaKeySection, IBICDetailAreaKeyGroup>
+@class NSString;
+
+@interface NSArray (IBICDetailAreaKeyConformance) <IBICDetailAreaKeySection, IBICDetailAreaKeyGroup, IBICDetailAreaKeySubgroup>
 - (id)ib_onlyComponent;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

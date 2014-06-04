@@ -9,7 +9,7 @@
 #import "XCCompatibilityChecking-Protocol.h"
 #import "XCFileSystemWatcherRegisteredObject-Protocol.h"
 
-@class NSDate, NSMutableArray, NSSet, PBXBuildSettingsDictionary, PBXFileReference, XCFileSystemNode;
+@class NSDate, NSMutableArray, NSSet, NSString, PBXBuildSettingsDictionary, PBXFileReference, XCFileSystemNode;
 
 @interface XCBuildConfiguration : PBXBuildStyle <XCCompatibilityChecking, XCFileSystemWatcherRegisteredObject>
 {
@@ -72,6 +72,12 @@
 - (id)appleScriptBaseBuildSettings;
 - (id)appleScriptBuildSettings;
 - (id)objectSpecifier;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

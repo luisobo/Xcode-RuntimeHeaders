@@ -97,5 +97,11 @@
 - (void)lineGraphicTool:(id)arg1 modifierFlagsChangedTo:(unsigned long long)arg2 inDiagramView:(id)arg3;
 - (BOOL)lineGraphicTool:(id)arg1 shouldStartLineWithTailGraphic:(id)arg2;
 
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
+
 @end
 

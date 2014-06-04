@@ -10,6 +10,6 @@
 
 @protocol DVTAdditionalTextCompletion <NSObject>
 @property(readonly) unsigned long long completionLocation;
-@property(readonly) NSString *completionText;
+@property(readonly, copy) NSString *completionText;
 @end
 

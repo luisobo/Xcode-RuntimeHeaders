@@ -8,13 +8,13 @@
 
 #import "DVTInvalidation-Protocol.h"
 
-@class DVTStackBacktrace, GPURenderBuffer, NSArray, NSMutableDictionary;
+@class DVTStackBacktrace, GPURenderBuffer, NSArray, NSString;
 
 // Not exported
 @interface GPURenderBufferPool : NSObject <DVTInvalidation>
 {
-    NSMutableDictionary *_renderbufferDictionary;
     _Bool _powerOf2ZoomClamping;
+    GPURenderBuffer *_pool[24];
     NSArray *_allActiveBuffers;
     NSArray *_activeColorBuffers;
     GPURenderBuffer *_activeDepthBuffer;
@@ -31,14 +31,18 @@
 @property(readonly, nonatomic) BOOL hasColorData;
 @property(readonly, nonatomic) BOOL hasStencilData;
 @property(readonly, nonatomic) BOOL hasDepthData;
-- (void)enableRenderbuffersWithRenderJobs:(id)arg1 attachmentInfos:(id)arg2;
+- (void)enableRenderbuffersWithRenderJobs:(id)arg1;
 - (void)setRenderbufferViewCoordinator:(id)arg1;
-- (id)initWithContextMenu:(id)arg1 traceEditor:(id)arg2 infoDelegate:(id)arg3;
-- (void)_renderbufferForAttachment:(unsigned int)arg1 contextMenu:(id)arg2 traceEditor:(id)arg3 infoDelegate:(id)arg4;
+- (id)initWithContextMenu:(id)arg1 traceEditor:(id)arg2;
+- (id)_createRenderBufferWithContextMenu:(id)arg1 andTraceEditor:(id)arg2;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, NSMutableDictionary, NSString;
+@class NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
 
 @interface IDEIndexingJobScheduler : NSObject
 {
-    struct dispatch_queue_s *_control_queue;
+    NSObject<OS_dispatch_queue> *_control_queue;
     long long _width;
     long long _lastThrottledWidth;
     BOOL _onBatteryPower;
@@ -19,9 +19,12 @@
     double _timeBuildCommandsChecked;
     NSMutableArray *_engines;
     NSMutableDictionary *_hotFilesByEngine;
+    NSMutableDictionary *_hotFileIndicesByEngine;
     NSMutableDictionary *_priorityIndicesByEngine;
     NSMutableDictionary *_waitingJobsByEngine;
     NSMutableArray *_runningJobs;
+    id _buildNotifications[2];
+    long long _nBuildOperations;
 }
 
 + (id)sharedInstance;

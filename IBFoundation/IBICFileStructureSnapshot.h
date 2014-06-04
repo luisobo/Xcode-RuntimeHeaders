@@ -21,7 +21,7 @@
 }
 
 + (id)snapshotOfPath:(id)arg1 error:(id *)arg2;
-@property(readonly) IBICFileStructureSnapshot *parent; // @synthesize parent=_parent;
+@property(readonly) __weak IBICFileStructureSnapshot *parent; // @synthesize parent=_parent;
 @property(readonly) NSArray *children; // @synthesize children=_children;
 @property(readonly) BOOL isDirectory; // @synthesize isDirectory=_isDirectory;
 @property(readonly) NSDate *modificationDate; // @synthesize modificationDate=_modificationDate;

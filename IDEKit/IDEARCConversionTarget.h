@@ -15,7 +15,7 @@
     BOOL _fileOveridesARCSetting;
 }
 
-@property(readonly) NSString *displayName; // @synthesize displayName=_displayName;
+@property(readonly, copy) NSString *displayName; // @synthesize displayName=_displayName;
 @property(readonly) IDEARCConversionAssistantContext *assistantContext; // @synthesize assistantContext=_assistantContext;
 @property(readonly) BOOL fileOveridesARCSetting; // @synthesize fileOveridesARCSetting=_fileOveridesARCSetting;
 - (void).cxx_destruct;
@@ -28,6 +28,8 @@
 - (id)warningMessage;
 @property(readonly) BOOL buildsWithARC;
 @property(readonly) BOOL canConvertToUseARC;
+@property(readonly, nonatomic) NSString *blueprintProviderName;
+@property(readonly, nonatomic) NSString *title;
 - (id)initWithBlueprint:(id)arg1 assistantContext:(id)arg2;
 
 @end

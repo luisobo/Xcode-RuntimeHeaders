@@ -6,7 +6,7 @@
 
 #import <IDEFoundation/IDEIndexDataSource.h>
 
-@class IDEIndexNewFile, IDEIndexNewMainFile, IDEIndexingJob, NSArray, NSMutableDictionary, NSString;
+@class IDEIndexClangTranslationUnit, IDEIndexNewFile, IDEIndexNewMainFile, IDEIndexingJob, NSArray, NSMutableDictionary, NSString;
 
 @interface IDEIndexClangDataSource : IDEIndexDataSource
 {
@@ -17,6 +17,8 @@
     NSArray *_astArgs;
     NSString *_workingDirectory;
     BOOL _hasCpp;
+    BOOL _isModuleFile;
+    IDEIndexClangTranslationUnit *_translationUnit;
 }
 
 + (id)translationUnitForPCHFile:(id)arg1 arguments:(id)arg2 session:(id)arg3 create:(BOOL)arg4;
@@ -32,6 +34,7 @@
 + (BOOL)displayDiagnostics;
 + (long long)timingMode;
 + (void)initialize;
+@property(retain, nonatomic) IDEIndexClangTranslationUnit *translationUnit; // @synthesize translationUnit=_translationUnit;
 @property(readonly, nonatomic) BOOL hasCpp; // @synthesize hasCpp=_hasCpp;
 @property(readonly, nonatomic) IDEIndexNewFile *topLevelSourceFile; // @synthesize topLevelSourceFile=_topLevelSourceFile;
 @property(readonly, nonatomic) IDEIndexNewMainFile *topLevelFile; // @synthesize topLevelFile=_topLevelFile;

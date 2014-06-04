@@ -9,7 +9,7 @@
 #import "DVTXMLUnarchiving-Protocol.h"
 #import "IDETestingSpecifier-Protocol.h"
 
-@class IDEDeviceAppDataReference, IDELocationScenarioReference, IDEScheme, IDESchemeBuildableReference, NSArray, NSMutableArray;
+@class IDEDeviceAppDataReference, IDELocationScenarioReference, IDEScheme, IDESchemeBuildableReference, NSArray, NSMutableArray, NSString;
 
 @interface IDETestableReference : NSObject <IDETestingSpecifier, DVTXMLUnarchiving>
 {
@@ -39,13 +39,16 @@
 - (void)resolveBuildableFromImport;
 - (id)testableName;
 - (id)testable;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)init;
 - (id)initWithTestable:(id)arg1 scheme:(id)arg2;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSMutableArray *mutableSkippedTests; // @dynamic mutableSkippedTests;
 @property(copy) NSArray *skippedTests; // @dynamic skippedTests;
+@property(readonly) Class superclass;
 
 @end
 

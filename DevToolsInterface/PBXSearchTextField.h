@@ -8,6 +8,8 @@
 
 #import "NSMenuDelegate-Protocol.h"
 
+@class NSString;
+
 @interface PBXSearchTextField : NSSearchField <NSMenuDelegate>
 {
     id _homeKeyHandler;
@@ -17,6 +19,12 @@
 - (void)showSearchTypeMenu:(id)arg1;
 - (void)setHomeKeyHandler:(id)arg1;
 - (void)dealloc;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -12,7 +12,7 @@
 #import "XCFosterParentHostProtocol-Protocol.h"
 #import "XCSelectionSource-Protocol.h"
 
-@class NSArray, NSButton, NSColor, NSMenu, NSPopUpButton, NSScrollView, NSSplitView, NSTreeController, PBXControlScrollView, PBXExtendedOutlineView, SCMSandboxOwner, XCSCMDataSource, XCSCMSmartGroup;
+@class NSArray, NSButton, NSColor, NSMenu, NSPopUpButton, NSScrollView, NSSplitView, NSString, NSTreeController, PBXControlScrollView, PBXExtendedOutlineView, SCMSandboxOwner, XCSCMDataSource, XCSCMSmartGroup;
 
 @interface PBXCVSModule : PBXProjectModule <NSSplitViewDelegate, NSOutlineViewDelegate, NSOutlineViewDataSource, XCSelectionSource, XCFosterParentHostProtocol>
 {
@@ -101,6 +101,12 @@
 - (id)label;
 - (void)dealloc;
 - (id)initWithModuleNibName:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

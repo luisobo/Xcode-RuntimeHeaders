@@ -7,8 +7,10 @@
 #import "NSAttributedString.h"
 
 @interface NSAttributedString (IBAttributedStringAdditions)
++ (id)ib_attributedStringWithStringAndAttributes:(id)arg1;
 + (id)ib_attributedStringWithString:(id)arg1 andAttributes:(id)arg2;
 + (id)ib_attributedStringWithString:(id)arg1;
 + (id)ib_attributedString;
+- (id)ib_attributedStringByMappingAttributes:(id)arg1;
 @end
 

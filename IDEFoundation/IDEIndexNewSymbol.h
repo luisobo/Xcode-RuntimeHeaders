@@ -23,7 +23,7 @@
 @property(nonatomic) long long symbolId; // @synthesize symbolId=_symbolId;
 @property(readonly, nonatomic) long long column; // @synthesize column=_column;
 @property(readonly, nonatomic) long long lineNumber; // @synthesize lineNumber=_lineNumber;
-@property(readonly, nonatomic) IDEIndexNewFile *file; // @synthesize file=_file;
+@property(readonly, nonatomic) __weak IDEIndexNewFile *file; // @synthesize file=_file;
 - (void).cxx_destruct;
 - (void)didAddBody;
 @property(readonly, nonatomic) long long realSymbolId;

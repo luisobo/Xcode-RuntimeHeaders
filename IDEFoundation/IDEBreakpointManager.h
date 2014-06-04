@@ -7,10 +7,11 @@
 #import "NSObject.h"
 
 #import "DVTInvalidation-Protocol.h"
+#import "IDEInternalBreakpointDelegate-Protocol.h"
 
-@class DVTMapTable, DVTObservingToken, DVTStackBacktrace, IDEBreakpointBucket, IDEWorkspace, NSArray, NSMutableArray;
+@class DVTMapTable, DVTObservingToken, DVTStackBacktrace, IDEBreakpointBucket, IDEWorkspace, NSArray, NSMutableArray, NSMutableSet, NSString;
 
-@interface IDEBreakpointManager : NSObject <DVTInvalidation>
+@interface IDEBreakpointManager : NSObject <IDEInternalBreakpointDelegate, DVTInvalidation>
 {
     IDEWorkspace *_workspace;
     DVTObservingToken *_workspaceReferencedContainersToken;
@@ -27,11 +28,11 @@
     DVTMapTable *_sharedToUserBuckets;
     NSMutableArray *_breakpoints;
     BOOL _breakpointsActivated;
+    NSMutableSet *_breakpointObservers;
 }
 
 + (BOOL)_isBreakpointAtLocation:(id)arg1 location:(id)arg2;
 + (void)initialize;
-@property BOOL breakpointsActivated; // @synthesize breakpointsActivated=_breakpointsActivated;
 @property(readonly) IDEBreakpointBucket *sharedWorkspaceBucket; // @synthesize sharedWorkspaceBucket=_sharedWorkspaceBucket;
 @property(readonly) IDEBreakpointBucket *userGlobalBucket; // @synthesize userGlobalBucket=_userGlobalBucket;
 @property(readonly) IDEBreakpointBucket *userWorkspaceBucket; // @synthesize userWorkspaceBucket=_userWorkspaceBucket;
@@ -39,13 +40,18 @@
 @property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
+- (void)internal_breakpointLocationsAdded:(id)arg1 removed:(id)arg2;
+- (void)internal_breakpointEnablementChanged:(id)arg1;
+- (void)_notifyObserversOfActivationStateChange;
+- (void)removeBreakpointObserver:(id)arg1;
+- (void)addBreakpointObserver:(id)arg1;
 - (void)_handleBreakpointsChanged:(id)arg1;
 - (void)_addListenerToBucketsBreakpointList:(id)arg1;
 - (void)_removeListenerFromBucketsBreakpointList:(id)arg1;
 - (BOOL)_canSetBreakpointAtURL:(id)arg1;
 - (void)setBreakpointShared:(id)arg1 shared:(BOOL)arg2;
+@property BOOL breakpointsActivated;
 - (id)fileBreakpointAtDocumentLocation:(id)arg1;
-- (id)pathOfModulesMatchingFileBreakpoint:(id)arg1;
 - (void)removeWatchpoint:(id)arg1;
 - (void)removeBreakpoint:(id)arg1;
 - (BOOL)_managesBucket:(id)arg1;
@@ -66,11 +72,15 @@
 // Remaining properties
 @property(copy) NSArray *breakpoints; // @dynamic breakpoints;
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) NSMutableArray *mutableBreakpoints; // @dynamic mutableBreakpoints;
 @property(readonly) NSMutableArray *mutableSharedProjectBuckets; // @dynamic mutableSharedProjectBuckets;
 @property(readonly) NSMutableArray *mutableUserProjectBuckets; // @dynamic mutableUserProjectBuckets;
 @property(retain) NSArray *sharedProjectBuckets; // @dynamic sharedProjectBuckets;
+@property(readonly) Class superclass;
 @property(retain) NSArray *userProjectBuckets; // @dynamic userProjectBuckets;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 

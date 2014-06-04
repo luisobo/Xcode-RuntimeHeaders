@@ -8,9 +8,9 @@
 #import "NSObject-Protocol.h"
 
 @protocol IDEIndexable <NSObject, NSCopying>
-- (id)buildSettingsForMainFile:(id)arg1;
+- (id)buildSettingsForMainFile:(id)arg1 workspace:(id)arg2;
 - (id)localizedIndexableDescription;
-- (void)languageOfMainFile:(id)arg1 completionBlock:(id)arg2;
+- (void)languageOfMainFile:(id)arg1 workspace:(id)arg2 completionBlock:(id)arg3;
 - (BOOL)requiresMainThread;
 - (BOOL)writeProductHeaders:(id)arg1 toFile:(id)arg2 error:(id *)arg3;
 - (void)productHeadersInWorkspace:(id)arg1 withCompletionBlock:(id)arg2;
@@ -21,9 +21,12 @@
 
 @optional
 @property(nonatomic) __weak id <IDEIndexable> proxy;
+- (BOOL)isUnitTest;
+- (id)productType;
+- (id)productNameWithBuildSetting:(id)arg1 workspace:(id)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)clearCachedBuildSettings;
 - (id)settingsForFile:(id)arg1;
-- (void)settingsForFilesInWorkspace:(id)arg1 withCompletionBlock:(id)arg2;
+- (void)settingsForFilesInWorkspace:(id)arg1 shouldWriteAuxiliaryFiles:(BOOL)arg2 withCompletionBlock:(id)arg3;
 @end
 

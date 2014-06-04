@@ -50,7 +50,7 @@
 - (void).cxx_destruct;
 - (id)outlineView:(id)arg1 dataCellForTableColumn:(id)arg2 item:(id)arg3;
 - (void)_setSummaryOfTestable:(id)arg1 forCell:(id)arg2 inSchemeAction:(id)arg3;
-- (int)_countOfTestsForTestArray:(id)arg1 excluded:(int *)arg2 failed:(int *)arg3 inSchemeAction:(id)arg4;
+- (int)_countOfTestsFor:(id)arg1 excluded:(int *)arg2 failed:(int *)arg3 inSchemeAction:(id)arg4;
 - (BOOL)_cachedIsEnabled:(id)arg1 inSchemeAction:(id)arg2;
 - (void)_setState:(unsigned long long)arg1 pendingRun:(BOOL)arg2 forCell:(id)arg3;
 - (id)_defaultCell;
@@ -73,6 +73,7 @@
 - (void)_updateSchemeFilter;
 - (void)setFilterPredicate:(id)arg1;
 - (id)filterDefinitionIdentifier;
+- (void)focusedEditorDidSelectItem:(id)arg1;
 - (void)revealTestsAndTestables:(id)arg1;
 - (void)setVisibleRectString:(id)arg1;
 - (id)visibleRectString;
@@ -105,10 +106,14 @@
 
 // Remaining properties
 @property(copy) NSSet *collapsedItems; // @dynamic collapsedItems;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(copy) NSSet *expandedItems; // @dynamic expandedItems;
-@property(readonly) NSMutableSet *mutableCollapsedItems; // @dynamic mutableCollapsedItems;
-@property(readonly) NSMutableSet *mutableExpandedItems; // @dynamic mutableExpandedItems;
+@property(readonly) unsigned long long hash;
+@property(readonly, copy) NSMutableSet *mutableCollapsedItems; // @dynamic mutableCollapsedItems;
+@property(readonly, copy) NSMutableSet *mutableExpandedItems; // @dynamic mutableExpandedItems;
 @property(retain) IDETestNavigatorOutlineView *outlineView;
+@property(readonly) Class superclass;
 
 @end
 

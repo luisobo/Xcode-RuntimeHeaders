@@ -6,17 +6,18 @@
 
 #import <IDEFoundation/IDEIndexDBSQLStream.h>
 
-@class IDEIndexDatabase, NSMutableSet;
+@class IDEIndexDatabase, NSMutableSet, NSObject<OS_dispatch_queue>;
 
 @interface IDEIndexDBConnection : IDEIndexDBSQLStream
 {
     IDEIndexDatabase *_database;
-    struct dispatch_queue_s *_runQueue;
+    NSObject<OS_dispatch_queue> *_runQueue;
     struct sqlite3 *_dbHandle;
     id _cancelCallback;
     long long _tempTableCount;
     NSMutableSet *_tempTables;
     BOOL _closing;
+    void *_checkpointInfo;
     int _inUseCount;
     int _collectionCount;
 }
@@ -45,7 +46,8 @@
 - (id)newTempTableName;
 - (void)doBlock:(id)arg1;
 - (id)dbConnection;
-- (id)initWithDatabase:(id)arg1 create:(BOOL)arg2;
+- (void)setAutoCheckpointThreshold:(int)arg1;
+- (id)initWithDatabase:(id)arg1 create:(BOOL)arg2 backgroundPriority:(BOOL)arg3;
 
 @end
 

@@ -18,6 +18,7 @@
 @property IDECapsuleView *capsuleView; // @synthesize capsuleView=_capsuleView;
 @property(retain, nonatomic) NSView *capsuleHeaderContentView; // @synthesize capsuleHeaderContentView=_capsuleHeaderContentView;
 - (void).cxx_destruct;
+- (void)drawRect:(struct CGRect)arg1;
 - (id)defaultCloseButton;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)layoutBottomUp;

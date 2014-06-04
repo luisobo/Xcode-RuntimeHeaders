@@ -10,12 +10,11 @@
 
 @interface IBEmbeddingPolicy : NSObject
 {
-    DVTExtension *representedExtension;
-    long long tag;
+    DVTExtension *_representedExtension;
 }
 
 + (id)embeddingPolicyWithRepresentedExtension:(id)arg1;
-@property(readonly) DVTExtension *representedExtension; // @synthesize representedExtension;
+@property(readonly) DVTExtension *representedExtension; // @synthesize representedExtension=_representedExtension;
 - (void).cxx_destruct;
 - (void)performEmbedWithObjects:(id)arg1 inDocumentEditor:(id)arg2;
 - (BOOL)canEmbedObjects:(id)arg1 fromDocument:(id)arg2;

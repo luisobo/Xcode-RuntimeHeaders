@@ -18,8 +18,8 @@
 + (id)strategyWithPersistenceIdentifier:(id)arg1;
 + (id)strategyWithStrategyIdentifier:(id)arg1 persistanceIdentifier:(id)arg2;
 + (void)initialize;
-@property(readonly) NSString *displayName; // @synthesize displayName=_displayName;
-@property(readonly) NSString *persistenceIdentifier; // @synthesize persistenceIdentifier=_persistenceIdentifier;
+@property(readonly, copy) NSString *displayName; // @synthesize displayName=_displayName;
+@property(readonly, copy) NSString *persistenceIdentifier; // @synthesize persistenceIdentifier=_persistenceIdentifier;
 @property(readonly) DVTExtension *extension; // @synthesize extension=_extension;
 - (void).cxx_destruct;
 - (id)displayNameInContext:(id)arg1;

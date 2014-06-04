@@ -23,6 +23,7 @@
 - (void)prepareToAcceptDragInfo:(id)arg1;
 - (long long)dropGravityForPoint:(struct CGPoint)arg1;
 - (long long)insertionIndexForPoint:(struct CGPoint)arg1;
+- (id)editedStackView;
 
 @end
 

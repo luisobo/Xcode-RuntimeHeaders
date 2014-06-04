@@ -6,22 +6,31 @@
 
 #import "SKEmitterNode.h"
 
-@class NSColor, NSImage;
+#import "SKNodeWithShader-Protocol.h"
 
-@interface SKEmitterNode (InspectorAdditions)
+@class NSColor, NSImage, NSString, NSURL, SKShader;
+
+@interface SKEmitterNode (InspectorAdditions) <SKNodeWithShader>
+@property(retain, nonatomic) NSURL *customSpriteShader;
 - (id)ide_undoKVOKeypaths;
 - (void)setNilValueForKey:(id)arg1;
 - (id)inspectorAttributes;
-@property struct CGPoint previewParticlePosition;
-@property unsigned long long numParticlesToEmitWithAction;
-@property double particleRotationSpeedDeg;
-@property double particleRotationRangeDeg;
-@property double particleRotationDeg;
-@property double emissionAngleRangeDeg;
-@property double emissionAngleDeg;
+@property BOOL shouldShowParentInInspector;
+@property(nonatomic) struct CGPoint previewParticlePosition;
+@property(nonatomic) unsigned long long numParticlesToEmitWithAction;
+@property(nonatomic) double particleRotationSpeedDeg;
+@property(nonatomic) double particleRotationRangeDeg;
+@property(nonatomic) double particleRotationDeg;
+@property(nonatomic) double emissionAngleRangeDeg;
+@property(nonatomic) double emissionAngleDeg;
 @property(retain, nonatomic) NSColor *backgroundColor;
 @property(retain, nonatomic) NSImage *particleTextureImage;
-- (id)navigableItem_name;
-- (id)ideModelObjectTypeIdentifier;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(retain, nonatomic) SKShader *shader;
+@property(readonly) Class superclass;
 @end
 

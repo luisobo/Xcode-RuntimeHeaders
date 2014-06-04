@@ -10,7 +10,7 @@
 #import "IDEDebugNavigableModel-Protocol.h"
 #import "NSCopying-Protocol.h"
 
-@class DVTStackBacktrace, GPUDebuggerController, GPUGlobalStateManager, GPUTraceOutline, IDELaunchSession, NSMutableArray, NSString, NSURL;
+@class DVTStackBacktrace, GPUDebuggerController, GPUGlobalStateManager, GPUTraceModelFactory, IDELaunchSession, NSMutableArray, NSString, NSURL;
 
 @interface GPUTraceOutlineItem : NSObject <IDEDebugNavigableModel, DVTInvalidation, NSCopying>
 {
@@ -37,14 +37,14 @@
 @property(readonly, nonatomic) struct Function *decodedFunction; // @dynamic decodedFunction;
 - (void)setDecodedFunctionPointer:(shared_ptr_2d3f6817)arg1;
 @property(readonly) IDELaunchSession *launchSession;
-@property(readonly) NSString *associatedProcessUUID;
-- (unsigned long long)hash;
+@property(readonly, copy) NSString *associatedProcessUUID;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)_createUUID;
 - (id)_createUUIDLabelForItem:(id)arg1;
 - (id)UUIDSection;
-- (id)description;
-@property(readonly, nonatomic) GPUTraceOutline *gputraceOutline; // @dynamic gputraceOutline;
+@property(readonly, copy) NSString *description;
+@property(readonly, nonatomic) GPUTraceModelFactory *modelFactory; // @dynamic modelFactory;
 @property(readonly, nonatomic) NSURL *captureArchiveURL;
 @property(readonly, nonatomic) GPUGlobalStateManager *globalStateManager; // @dynamic globalStateManager;
 - (id)copyWithZone:(struct _NSZone *)arg1;
@@ -54,7 +54,9 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

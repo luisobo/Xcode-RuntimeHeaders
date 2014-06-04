@@ -21,6 +21,7 @@
 - (id)itemView;
 - (id)allowedItemsView;
 - (id)configurationView;
+- (id)editedToolbarItem;
 
 @end
 

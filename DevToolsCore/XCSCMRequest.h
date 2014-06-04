@@ -71,15 +71,19 @@
 - (void)queueOperationsFromArray:(id)arg1;
 - (void)queueOperation:(id)arg1;
 - (long long)totalOperationsToProcess;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)touchedReferences;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)suspend;
 - (void)run;
 - (void)performSetupForOperation:(id)arg1 withArguments:(id)arg2 references:(id)arg3;
 - (void)dealloc;
 - (id)initWithID:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

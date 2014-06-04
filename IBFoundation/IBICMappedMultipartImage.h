@@ -15,6 +15,7 @@
 + (double)latestUnderstoodContentsJSONVersionNumber;
 + (double)earliestUnderstoodContentsJSONVersionNumber;
 - (id)contentsDictionary;
+- (id)infoDictionary;
 - (void)populateContentsJSONImageEntry:(id)arg1 forImageRep:(id)arg2;
 - (BOOL)shouldIncludeImageRepInContentsJSON:(id)arg1;
 - (void)replaceChildrenFromFileSystemSnapshot:(id)arg1 results:(id)arg2;

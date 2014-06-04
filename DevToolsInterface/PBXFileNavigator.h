@@ -380,7 +380,7 @@
 - (long long)_filesPopUpColumn;
 - (void)setProgressPercent:(double)arg1;
 - (void)setProgressIndicatorVisible:(BOOL)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)closeModule;
 - (void)_removeDebuggerBar;
 - (void)dealloc;
@@ -389,6 +389,11 @@
 - (id)selectedProjectItems;
 - (BOOL)_shouldCloseDocIfReceiverCloses:(id)arg1 groupIsClosing:(BOOL)arg2;
 - (BOOL)hasShownFileDocument:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

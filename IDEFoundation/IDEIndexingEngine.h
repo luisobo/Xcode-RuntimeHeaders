@@ -8,22 +8,24 @@
 
 #import "NSCopying-Protocol.h"
 
-@class DVTPerformanceMetric, IDEIndex, IDEIndexImportSession, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet;
+@class DVTPerformanceMetric, IDEIndex, IDEIndexImportSession, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>;
 
 @interface IDEIndexingEngine : NSObject <NSCopying>
 {
     IDEIndex *_index;
-    struct dispatch_queue_s *_engine_queue;
+    NSObject<OS_dispatch_queue> *_engine_queue;
     NSMutableArray *_waitingLoadJobs;
     NSMutableArray *_waitingFileJobs;
     NSMutableSet *_waitingDeferredJobs;
     NSMutableSet *_waitingHeldJobs;
     NSMutableDictionary *_registeredIndexables;
+    NSMutableDictionary *_productInfos;
     NSMutableDictionary *_rootPaths;
     NSMutableSet *_registeredFiles;
     NSMutableDictionary *_missingFiles;
     NSMutableDictionary *_priorityFiles;
     IDEIndexImportSession *_session;
+    id _prebuildNotificationToken;
     double _timeIndexablesChanged;
     double _timeFilesChanged;
     double _timeFileJobsChanged;
@@ -99,6 +101,7 @@
 - (void)retryHeldJobs;
 - (void)dontDeferJobForFile:(id)arg1 indexable:(id)arg2;
 - (void)dontDeferJobs;
+- (void)indexFile:(id)arg1 indexable:(id)arg2 dirtyFile:(id)arg3 settings:(id)arg4;
 - (void)indexFile:(id)arg1 indexable:(id)arg2 dirtyFile:(id)arg3;
 - (void)stopIndexing;
 - (void)resumeIndexing;
@@ -111,6 +114,7 @@
 - (void)unregisterFile:(id)arg1;
 - (void)registerFile:(id)arg1;
 - (void)unregisterIndexable:(id)arg1;
+- (void)buildSettingsChanged:(id)arg1;
 - (void)indexableChanged:(id)arg1 addOnly:(BOOL)arg2;
 - (void)registerIndexable:(id)arg1;
 - (void)dealloc;

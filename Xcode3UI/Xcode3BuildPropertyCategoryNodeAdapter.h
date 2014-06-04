@@ -8,7 +8,7 @@
 
 #import "XCEDataNodeAdapterP-Protocol.h"
 
-@class XCPropertyDomainSpecification, Xcode3BuildSettingsEditor;
+@class NSString, XCPropertyDomainSpecification, Xcode3BuildSettingsEditor;
 
 @interface Xcode3BuildPropertyCategoryNodeAdapter : NSObject <XCEDataNodeAdapterP>
 {
@@ -37,6 +37,12 @@
 - (id)nameForData:(id)arg1;
 - (void)dealloc;
 - (id)initWithEditor:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

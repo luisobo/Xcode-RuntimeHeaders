@@ -34,7 +34,6 @@
     DVTObservingToken *_launchSessionsObserverToken;
     DVTObservingToken *_consoleAdaptorsObservingToken;
     DVTObservingToken *_debugSessionStateObservingToken;
-    DVTObservingToken *_debugSessionPausedScriptingObservingToken;
     DVTFindBar *_findBar;
     DVTScopeBarController *_findScopeBarController;
     DVTScopeBarsManager *_scopeBarsManager;
@@ -79,7 +78,7 @@
 - (struct _NSRange)rangeOfExpressionInUserEnteredStringAfterPrompt:(id)arg1;
 - (void)showNextCommandFromHistory:(id)arg1;
 - (void)showPreviousCommandFromHistory:(id)arg1 currentStringAfterPrompt:(id)arg2;
-- (void)consoleView:(id)arg1 didEndText:(id)arg2 forDebugger:(BOOL)arg3;
+- (void)consoleView:(id)arg1 didEndText:(id)arg2 forDebugger:(BOOL)arg3 trackHistory:(BOOL)arg4;
 @property(readonly) BOOL tracksInputHistoryForDebugger;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
@@ -114,7 +113,11 @@
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSScrollView *scopeBarsAdjustableScrollView;
+@property(readonly) Class superclass;
 
 @end
 

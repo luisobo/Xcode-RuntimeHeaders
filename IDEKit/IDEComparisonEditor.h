@@ -9,7 +9,7 @@
 #import "IDEPathCellDelegate-Protocol.h"
 #import "NSSplitViewDelegate-Protocol.h"
 
-@class DVTBindingToken, DVTComparisonDocumentLocation, DVTDispatchLock, DVTObservingToken, DVTPerformanceMetric, DVTReplacementView, IDEComparisonEditorAutoLayoutView, IDEComparisonEditorSubmode, IDEComparisonNavTimelineBar, IDEComparisonToolbar, IDEEditorDocument, IDENavigableItem, IDENavigableItemCoordinator, IDESourceControlConflictResolutionController, IDESourceControlInteractiveCommitController, NSArray, NSDictionary, NSMutableArray, NSMutableSet, NSSet, NSSplitView;
+@class DVTBindingToken, DVTComparisonDocumentLocation, DVTDispatchLock, DVTObservingToken, DVTPerformanceMetric, DVTReplacementView, IDEComparisonEditorAutoLayoutView, IDEComparisonEditorSubmode, IDEComparisonNavTimelineBar, IDEComparisonToolbar, IDEEditorDocument, IDENavigableItem, IDENavigableItemCoordinator, IDESourceControlConflictResolutionController, IDESourceControlInteractiveCommitController, NSArray, NSDictionary, NSMutableArray, NSMutableSet, NSSet, NSSplitView, NSString;
 
 @interface IDEComparisonEditor : IDEEditor <NSSplitViewDelegate, IDEPathCellDelegate>
 {
@@ -81,10 +81,10 @@
 + (id)keyPathsForValuesAffectingCurrentSelectedItems;
 + (id)keyPathsForValuesAffectingKeyEditor;
 + (BOOL)automaticallyNotifiesObserversOfInternalComparisonDocumentLocation;
++ (id)keyPathsForValuesAffectingSubmode;
 + (id)keyPathsForValuesAffectingIsThreeWayDiff;
 + (id)keyPathsForValuesAffectingSecondaryRootNavigableItem_arrayOfOne;
 + (id)keyPathsForValuesAffectingPrimaryRootNavigableItem_arrayOfOne;
-+ (id)keyPathsForValuesAffectingSubmode;
 + (void)initialize;
 + (id)performanceLogAspect;
 + (id)comparisonEditorLogAspect;
@@ -175,12 +175,20 @@
 @property(retain) id <IDEComparisonEditorDataSource> dataSource; // @synthesize dataSource=_dataSource;
 - (void)viewDidInstall;
 - (void)loadView;
+- (BOOL)secondaryEditorShowsDocumentPreview;
+- (BOOL)primaryEditorShowsDocumentPreview;
 - (BOOL)shouldShowAnnotationsFromProviderClass:(Class)arg1;
 - (void)primitiveInvalidate;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 document:(id)arg3;
 - (void)_setupNavItemCoordinators;
 - (void)_cleanupNavItemCoordinators;
 - (id)performanceMetric;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

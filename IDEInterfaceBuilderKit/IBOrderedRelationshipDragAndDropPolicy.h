@@ -48,10 +48,16 @@
 - (unsigned long long)orderedRelationInsertionEdgeForDragAndDropInsertionIndicator:(id)arg1;
 - (long long)orderedRelationInsertionIndexForDragAndDropInsertionIndicator:(id)arg1;
 - (id)orderedRelationForDragAndDropInsertionIndicator:(id)arg1;
-@property(readonly, nonatomic) NSArray *orderedRelation;
+@property(readonly, copy, nonatomic) NSArray *orderedRelation;
 - (id)initWithDelegate:(id)arg1 representedObject:(id)arg2 toManyRelation:(id)arg3 pasteboardType:(id)arg4 andGrowthDirection:(long long)arg5;
 - (id)initWithDelegate:(id)arg1 representedObject:(id)arg2 toManyRelation:(id)arg3 pasteboardTypes:(id)arg4 andGrowthDirection:(long long)arg5;
 - (id)initWithDelegate:(id)arg1 representedObject:(id)arg2 toManyRelation:(id)arg3 pasteboardTypes:(id)arg4 primaryGrowthDirection:(long long)arg5 secondaryGrowthDirection:(long long)arg6;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

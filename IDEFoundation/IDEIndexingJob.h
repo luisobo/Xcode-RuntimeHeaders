@@ -21,11 +21,13 @@
     BOOL _deferred;
     BOOL _treatAsDeferred;
     BOOL _onHold;
+    BOOL _highPriority;
     NSSet *_oldDirtyFiles;
 }
 
 + (void)initialize;
 @property(readonly, nonatomic) NSSet *oldDirtyFiles; // @synthesize oldDirtyFiles=_oldDirtyFiles;
+@property(nonatomic, getter=isHighPriority) BOOL highPriority; // @synthesize highPriority=_highPriority;
 @property(nonatomic, getter=isOnHold) BOOL onHold; // @synthesize onHold=_onHold;
 @property(nonatomic, getter=isDeferred) BOOL deferred; // @synthesize deferred=_deferred;
 @property(retain, nonatomic) NSDictionary *settings; // @synthesize settings=_settings;
@@ -33,7 +35,7 @@
 @property(readonly, nonatomic) NSSet *dirtyFiles; // @synthesize dirtyFiles=_dirtyFiles;
 @property(readonly, nonatomic) DVTFilePath *file; // @synthesize file=_file;
 @property(readonly, nonatomic) id <IDEIndexable> indexable; // @synthesize indexable=_indexable;
-@property(readonly, nonatomic) IDEIndexingEngine *engine; // @synthesize engine=_engine;
+@property(readonly, nonatomic) __weak IDEIndexingEngine *engine; // @synthesize engine=_engine;
 - (void).cxx_destruct;
 - (void)didCompleteWithLanguage:(id)arg1 pch:(BOOL)arg2;
 - (void)didComplete;

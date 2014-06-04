@@ -18,15 +18,16 @@
 + (id)_archNameForExecutableArchitecture:(int)arg1;
 + (id)_archtiectureForTarget:(id)arg1;
 + (void)askUserForProcessIdentifierAndAttachToItFromWorkspaceTabController:(id)arg1;
-+ (void)attachToProcess:(id)arg1 fromWorkspaceTabController:(id)arg2;
++ (id)attachToProcess:(id)arg1 fromWorkspaceTabController:(id)arg2 usingRunDestination:(id)arg3;
++ (id)attachToProcess:(id)arg1 fromWorkspaceTabController:(id)arg2;
 - (void).cxx_destruct;
 - (void)processIDEntered:(int)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3;
 - (void)processNameEntered:(id)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3;
 - (void)processInformationSelected:(id)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3;
 - (void)_showAlertForNonDebuggableArchitecture:(id)arg1;
-- (void)_attachToPID:(int)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3 displayName:(id)arg4 processPath:(id)arg5 targetArchitecture:(id)arg6 launchStyle:(int)arg7;
-- (void)_attachToProcessName:(id)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3;
-- (void)_attachToProcess:(id)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3;
+- (id)_attachToPID:(int)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3 displayName:(id)arg4 processPath:(id)arg5 targetArchitecture:(id)arg6 launchStyle:(int)arg7 usingRunDestination:(id)arg8;
+- (void)_attachToProcessName:(id)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3 usingRunDestination:(id)arg4;
+- (id)_attachToProcess:(id)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3 usingRunDestination:(id)arg4;
 - (id)_initWithWorkspaceTabController:(id)arg1;
 
 @end

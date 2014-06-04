@@ -6,7 +6,7 @@
 
 #import "NSTableCellView.h"
 
-@class IBNSLayoutConstraintPrioritySlider, NSNumber, NSStepper, NSTextField;
+@class IBNSViewPrioritySlider, NSNumber, NSStepper, NSTextField;
 
 @interface IBNSViewPriorityCell : NSTableCellView
 {
@@ -14,10 +14,10 @@
     NSTextField *_numberField;
     id <IBNSViewPriorityCellDelegate> _delegate;
     NSStepper *_stepper;
-    IBNSLayoutConstraintPrioritySlider *_slider;
+    IBNSViewPrioritySlider *_slider;
 }
 
-@property(nonatomic) IBNSLayoutConstraintPrioritySlider *slider; // @synthesize slider=_slider;
+@property(nonatomic) IBNSViewPrioritySlider *slider; // @synthesize slider=_slider;
 @property(nonatomic) NSStepper *stepper; // @synthesize stepper=_stepper;
 @property(nonatomic) id <IBNSViewPriorityCellDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) NSTextField *numberField; // @synthesize numberField=_numberField;

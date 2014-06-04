@@ -8,7 +8,7 @@
 
 #import "NSTableViewDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTReplacementView, DVTTabChooserView, NSArray, NSArrayController, NSColor, NSFont, NSObjectController, NSTableView, NSView;
+@class DVTBorderedView, DVTObservingToken, DVTReplacementView, DVTTabChooserView, NSArray, NSArrayController, NSColor, NSFont, NSObjectController, NSString, NSTableView, NSView;
 
 @interface IDEFontAndColorPrefsPaneController : IDEViewController <NSTableViewDelegate>
 {
@@ -47,6 +47,12 @@
 @property(copy) NSFont *combinedSyntaxFont;
 @property(copy) NSColor *combinedSyntaxColor;
 - (void)primitiveInvalidate;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

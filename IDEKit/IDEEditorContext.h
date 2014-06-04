@@ -18,7 +18,7 @@
 #import "NSMenuDelegate-Protocol.h"
 #import "NSPathControlDelegate-Protocol.h"
 
-@class CALayer, DVTBindingToken, DVTBorderedView, DVTFileDataType, DVTFindBar, DVTGradientImagePopUpButton, DVTNotificationToken, DVTObservingToken, DVTScopeBarsManager, DVTStackBacktrace, DVTStateRepository, IDEEditor, IDEEditorArea, IDEEditorGeniusResults, IDEEditorHistoryController, IDEEditorHistoryItem, IDEEditorIssueMenuController, IDEEditorMultipleContext, IDEEditorReadOnlyIndicatorController, IDEEditorSplittingController, IDEEditorStepperView, IDENavBar, IDENavigableItem, IDENavigableItemCoordinator, NSArray, NSArrayController, NSDictionary, NSIndexSet, NSMutableArray, NSScrollView, NSString, NSView, _IDEGeniusResultsContext;
+@class CALayer, DVTBindingToken, DVTBorderedView, DVTFileDataType, DVTFindBar, DVTGradientImagePopUpButton, DVTNotificationToken, DVTObservingToken, DVTScopeBarsManager, DVTStackBacktrace, DVTStateRepository, IDEEditor, IDEEditorArea, IDEEditorGeniusResults, IDEEditorHistoryController, IDEEditorHistoryItem, IDEEditorIssueMenuController, IDEEditorMultipleContext, IDEEditorReadOnlyIndicatorController, IDEEditorSplittingController, IDEEditorStepperView, IDENavBar, IDENavigableItem, IDENavigableItemCoordinator, NSArray, NSArrayController, NSDictionary, NSIndexSet, NSMutableArray, NSScrollView, NSString, NSURL, NSView, _IDEGeniusResultsContext;
 
 @interface IDEEditorContext : IDEViewController <NSMenuDelegate, IDEEditorContextProtocol, IDEEditorSplittingControllerDelegate, DVTFindBarHostable, NSPathControlDelegate, IDEPathCellDelegate, DVTScopeBarHost, IDENavigableItemCoordinatorDelegate, IDEEditorDelegate, DVTStateRepositoryDelegate, NSAnimationDelegate>
 {
@@ -42,12 +42,15 @@
     DVTNotificationToken *_editorContextWillOpenNavigableItemNotificationToken;
     DVTNotificationToken *_editorDocumentForNavBarStructureDidChangeNotificationToken;
     DVTNotificationToken *_editorDocumentForNavBarStructureWillCloseNotificationToken;
+    DVTNotificationToken *_editorDocumentIsEditedStatusDidChangeNotificationToken;
     DVTNotificationToken *_editorDocumentWillCloseNotificationToken;
     DVTNotificationToken *_findStringChangedNotificationToken;
+    DVTNotificationToken *_navigableItemPropertyObserver;
     DVTNotificationToken *_navigableItemCoordinatorDidForgetItemsNotificationToken;
     DVTNotificationToken *_workspaceWillWriteNotificationToken;
     DVTObservingToken *_editorDocumentForNavBarStructureChangedObservingToken;
     DVTObservingToken *_windowMainViewControllerChangedObservingToken;
+    DVTNotificationToken *_windowDidBecomeKeyObserverToken;
     DVTObservingToken *_lastActiveEditorContextChangedObservingToken;
     DVTObservingToken *_currentSelectedItemsObservingToken;
     id <DVTCancellable> _deferredUpdateSubDocumentNavigableItemsCancellableToken;
@@ -96,6 +99,7 @@
     BOOL _isReplacingClosedDocument;
     BOOL _isDraggingPathCell;
     BOOL _isFetchingCurrentSelectedItems;
+    BOOL _shouldImmediatleyProcessCurrentSelectedItemsChange;
     unsigned long long _currentSwipeAnimationGeneration;
     char *_swipeAnimationAborted;
     BOOL _disableGeniusResultUpdatesDuringSwipeAnimation;
@@ -103,6 +107,8 @@
     CALayer *_swipeBackgroundLayer;
     CALayer *_swipeForegroundLayer;
     id _swipeCompletionBlock;
+    NSDictionary *_editorStateDictionaryPreviousToSwipe;
+    NSURL *_originalRequestedDocumentURL;
     _IDEGeniusResultsContext *_geniusResultsContext;
 }
 
@@ -119,6 +125,7 @@
 + (id)keyPathsForValuesAffectingIsLastActiveEditorContext;
 + (id)keyPathsForValuesAffectingValueForNavBarNavigableItemRootChildItems;
 @property(retain) _IDEGeniusResultsContext *geniusResultsContext; // @synthesize geniusResultsContext=_geniusResultsContext;
+@property(retain) NSURL *originalRequestedDocumentURL; // @synthesize originalRequestedDocumentURL=_originalRequestedDocumentURL;
 @property(copy) id retryOpenOperationBlock; // @synthesize retryOpenOperationBlock=_retryOpenOperationBlock;
 @property BOOL hideWorkspaceLoadingProgressIndicator; // @synthesize hideWorkspaceLoadingProgressIndicator=_hideWorkspaceLoadingProgressIndicator;
 @property(nonatomic) BOOL canRemoveSplit; // @synthesize canRemoveSplit=_canRemoveSplit;
@@ -292,6 +299,7 @@
 - (void)_navigableItemChanged;
 - (BOOL)_openEditorHistoryItem:(id)arg1 updateHistory:(BOOL)arg2;
 - (BOOL)_openEmptyEditor;
+- (void)_teardownDocumentNotifications;
 - (void)_registerForDocumentNotificationsForDocument:(id)arg1;
 - (void)_updateNavBarNavigableItemForNavItem:(id)arg1;
 - (void)_setEmptyRootNavigableItem;
@@ -331,6 +339,12 @@
 - (id)greatestDocumentAncestor;
 - (id)navBarNavigableItemRootChildItems;
 - (id)_generateNodeAndAddMappingToWorkspaceTabControllerLayoutTree:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

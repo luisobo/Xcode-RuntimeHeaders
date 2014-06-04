@@ -10,17 +10,18 @@
 
 @interface DVTMarkedScroller : NSScroller
 {
-    _DVTMarkerList *_normalMarks;
-    _DVTMarkerList *_highlightMarks;
-    _DVTMarkerList *_diffNormalMarks;
-    _DVTMarkerList *_diffHighlightMarks;
+    _DVTMarkerList *_errorMarks;
+    _DVTMarkerList *_warningMarks;
+    _DVTMarkerList *_analyzerMarks;
+    _DVTMarkerList *_diffMarks;
+    _DVTMarkerList *_diffConflictMarks;
 }
 
 + (BOOL)isCompatibleWithOverlayScrollers;
 - (void).cxx_destruct;
 - (void)setFloatValue:(float)arg1;
 - (void)setFrameSize:(struct CGSize)arg1;
-- (void)addMark:(double)arg1 ofType:(int)arg2;
+- (void)addMark:(double)arg1 ofType:(unsigned long long)arg2;
 - (void)_updateMarksForGeometryChange;
 - (void)_updateMarkRectsIfNeeded:(id)arg1 newMarkRect:(struct CGRect)arg2;
 - (struct CGRect)_markRect;

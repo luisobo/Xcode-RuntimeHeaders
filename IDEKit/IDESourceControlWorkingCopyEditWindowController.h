@@ -12,7 +12,7 @@
 #import "NSOutlineViewDataSource-Protocol.h"
 #import "NSOutlineViewDelegate-Protocol.h"
 
-@class DVTBindingToken, DVTBorderedView, DVTChoice, DVTObservingToken, DVTReplacementView, DVTTabChooserView, IDESourceControlWorkingCopyConfiguration, IDESourceControlWorkingTree, IDEWorkspace, NSButton, NSDictionary, NSMutableArray, NSPopUpButton, NSTextField;
+@class DVTBindingToken, DVTBorderedView, DVTChoice, DVTObservingToken, DVTReplacementView, DVTTabChooserView, IDESourceControlWorkingCopyConfiguration, IDESourceControlWorkingTree, IDEWorkspace, NSButton, NSDictionary, NSMutableArray, NSPopUpButton, NSString, NSTextField;
 
 @interface IDESourceControlWorkingCopyEditWindowController : NSWindowController <NSOutlineViewDataSource, NSOutlineViewDelegate, DVTReplacementViewDelegate, IDESourceControlBranchTableDelegate, DVTTabChooserViewDelegate>
 {
@@ -71,6 +71,12 @@
 - (void)beginSheetForWindow:(id)arg1;
 - (void)windowDidLoad;
 - (id)windowNibName;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

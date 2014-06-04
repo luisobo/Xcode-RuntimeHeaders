@@ -8,6 +8,8 @@
 
 #import "XCPropertyValues-Protocol.h"
 
+@class NSString;
+
 @interface XCPropertyValue : NSObject <XCPropertyValues>
 {
 }
@@ -16,12 +18,17 @@
 + (id)propertyValueFromStringRepresentation:(id)arg1;
 + (void)initialize;
 - (id)propertyValueDebugDescription;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)arrayOfStringRepresentations;
 - (void)assertInternalConsistency;
 - (id)evaluateAsStringInContext:(id)arg1;
 - (id)evaluateAsStringInContext:(id)arg1 withNestingState:(const void *)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

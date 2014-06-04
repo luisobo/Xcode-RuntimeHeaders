@@ -8,7 +8,7 @@
 
 #import "NSOpenSavePanelDelegate-Protocol.h"
 
-@class NSMutableArray, NSMutableDictionary;
+@class NSMutableArray, NSMutableDictionary, NSString;
 
 @interface PBXDocumentController : NSDocumentController <NSOpenSavePanelDelegate>
 {
@@ -79,6 +79,12 @@
 - (void)pluginDidLoad:(id)arg1;
 - (void)addDocumentTypes:(id)arg1;
 - (id)documentClassNames;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

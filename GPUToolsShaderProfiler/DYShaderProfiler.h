@@ -15,7 +15,6 @@
     DYShaderAnalyzer *_shaderAnalyzer;
     int _pendingRequestLock;
     unsigned int _pendingRequest;
-    BOOL _harvestDrawCallFootprint;
 }
 
 + (void)removeTemporaryDirectory;
@@ -25,18 +24,14 @@
 + (BOOL)isRenderBeginWithEvents:(void *)arg1 type:(unsigned int)arg2;
 + (BOOL)isRenderEndWithEvents:(void *)arg1 type:(unsigned int)arg2;
 + (id)newShaderProfilerWithDelegate:(id)arg1;
-+ (id)_shaderInfoDictForProgram:(unsigned int)arg1 stages:(unsigned int)arg2 contextStateMirror:(ContextStateMirror_c03a0fb6 *)arg3 archiveModifier:(id)arg4;
-@property(readonly, nonatomic) id <DYShaderProfilerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly, nonatomic) __weak id <DYShaderProfilerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)_calculateUtilizations:(id)arg1 result:(id)arg2;
-- (void)_calculateFrameTime:(id)arg1 result:(id)arg2;
+- (void)calculateUtilizations:(id)arg1 result:(id)arg2;
+- (void)calculateFrameTime:(id)arg1 result:(id)arg2;
 - (BOOL)isDeviceSupported;
 - (BOOL)_isAlwaysEnabled;
 - (id)profileShader:(id)arg1;
-- (id)_getShaderList;
-- (void)_initializeShaderAnalyzer;
-- (int)_getRendererType;
-- (_Bool)_isSimulator;
+- (void)initializeShaderAnalyzer;
 - (void)dealloc;
 - (id)initWithDelegate:(id)arg1;
 - (id)init;

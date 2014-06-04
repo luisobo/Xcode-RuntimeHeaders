@@ -43,9 +43,14 @@
 - (void)setName:(id)arg1;
 - (id)nameWithIndent;
 - (id)name;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)dealloc;
 - (id)initWithName:(id)arg1 type:(long long)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

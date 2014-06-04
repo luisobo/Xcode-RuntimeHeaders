@@ -12,10 +12,12 @@
 {
     NSMutableDictionary *plistCache;
     NSMutableDictionary *_configurationLastModDateByName;
+    NSMutableDictionary *_configurationLastModDateCheckByName;
 }
 
 + (id)allocWithZone:(struct _NSZone *)arg1;
 + (id)sharedInstance;
+@property(retain) NSMutableDictionary *configurationLastModDateCheckByName; // @synthesize configurationLastModDateCheckByName=_configurationLastModDateCheckByName;
 @property(retain) NSMutableDictionary *configurationLastModDateByName; // @synthesize configurationLastModDateByName=_configurationLastModDateByName;
 - (void).cxx_destruct;
 - (void)clearCacheIfConfigChanged:(id)arg1;

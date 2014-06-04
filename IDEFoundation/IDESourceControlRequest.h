@@ -43,7 +43,7 @@
 @property BOOL cancelable; // @synthesize cancelable=_cancelable;
 @property(readonly) IDELogStore *logStore; // @synthesize logStore=_logStore;
 @property BOOL shouldGenerateLog; // @synthesize shouldGenerateLog=_shouldGenerateLog;
-@property(readonly) NSString *workspaceName; // @synthesize workspaceName=_workspaceName;
+@property(readonly, copy) NSString *workspaceName; // @synthesize workspaceName=_workspaceName;
 @property(retain) IDEActivityLogSection *logSection; // @synthesize logSection=_logSection;
 @property(retain) IDEActivityLogSection *log; // @synthesize log=_log;
 @property BOOL stopAllActivityWhenCanceled; // @synthesize stopAllActivityWhenCanceled=_stopAllActivityWhenCanceled;
@@ -61,10 +61,10 @@
 - (void)cancelOperation;
 - (void)setShouldGenerateLog:(BOOL)arg1 logStore:(id)arg2 workspaceName:(id)arg3;
 - (void)setShouldGenerateLog:(BOOL)arg1 logStore:(id)arg2 shortTitle:(id)arg3 longTitle:(id)arg4;
-@property(readonly) NSString *longTitle; // @synthesize longTitle=_longTitle;
-@property(readonly) NSString *shortTitle; // @synthesize shortTitle=_shortTitle;
+@property(readonly, copy) NSString *longTitle; // @synthesize longTitle=_longTitle;
+@property(readonly, copy) NSString *shortTitle; // @synthesize shortTitle=_shortTitle;
 - (BOOL)isRequestBlacklistedFromLogging;
-- (id)description;
+@property(readonly, copy) NSString *description;
 @property(readonly) IDESourceControlRepository *repositoryToAuthenticate;
 @property(retain) IDESourceControlExtension *sourceControlExtension; // @synthesize sourceControlExtension=_sourceControlExtension;
 - (id)initWithType:(int)arg1 startingRevision:(id)arg2 destination:(id)arg3 options:(id)arg4;
@@ -79,7 +79,10 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

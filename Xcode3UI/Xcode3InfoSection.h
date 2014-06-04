@@ -38,12 +38,15 @@
 - (unsigned long long)imageView:(id)arg1 validateDrop:(id)arg2;
 - (BOOL)hasRightColumn;
 @property(readonly) NSDictionary *entryDictionary;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)init;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
 @property(retain) NSArray *entries; // @dynamic entries;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSMutableArray *mutableEntries; // @dynamic mutableEntries;
+@property(readonly) Class superclass;
 
 @end
 

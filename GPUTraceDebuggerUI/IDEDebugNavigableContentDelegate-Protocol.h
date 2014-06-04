@@ -20,18 +20,16 @@
 - (BOOL)shouldSelectItemForRepresentedObject:(id)arg1 withPrevious:(id)arg2 next:(id)arg3;
 - (id)dataCellForRepresentedObject:(id)arg1;
 - (void)willDisplayCell:(id)arg1 forRepresentedObject:(id)arg2 item:(id)arg3;
+- (void)updateForNewFilterString:(id)arg1;
+- (id)filterView;
 - (void)debugNavigatorViewWillUninstall;
 - (void)debugNavigatorViewDidInstall;
 - (id)initWithProcess:(id)arg1 debugNavigator:(id)arg2;
 
 @optional
+- (id)outputSelectionNavItemForSelectedNavItem:(id)arg1;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
-- (id)minCompressionButtonTooltip;
-- (id)compressionSliderTooltip;
-- (id)maxCompressionButtonTooltip;
-- (id)showOnlyInterestingContentButtonTooltip;
-- (id)showOnlyInterestingContentButtonImage;
 - (void)contextualMenuNeedsUpdate:(id)arg1;
 - (BOOL)validateUserInterfaceAction:(SEL)arg1 forRepresentedObject:(id)arg2;
 - (BOOL)validateUserInterfaceAction:(SEL)arg1;
@@ -39,8 +37,6 @@
 - (void)didExpandForItem:(id)arg1;
 - (void)willExpandForItem:(id)arg1;
 - (void)handleUserDirectDeleteRepresentedObject:(id)arg1;
-- (void)updateForNewCompressionValue:(id)arg1;
-- (void)updateForNewShowOnlyInterestingContent:(id)arg1;
 - (BOOL)shouldExpandItemAsResultOfOptionClick:(id)arg1 clickedItem:(id)arg2;
 - (BOOL)isGroupHeaderForRepresentedObject:(id)arg1 item:(id)arg2;
 - (double)heightOfRowForRepresentedObject:(id)arg1;

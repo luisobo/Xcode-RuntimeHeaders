@@ -13,10 +13,12 @@
     struct unordered_set<std::__1::basic_string<char>, std::__1::hash<std::__1::basic_string<char>>, std::__1::equal_to<std::__1::basic_string<char>>, std::__1::allocator<std::__1::basic_string<char>>> tokenNames1;
     struct unordered_set<std::__1::basic_string<char>, std::__1::hash<std::__1::basic_string<char>>, std::__1::equal_to<std::__1::basic_string<char>>, std::__1::allocator<std::__1::basic_string<char>>> tokenNames2;
     struct set<std::__1::basic_string<char>, std::__1::less<std::__1::basic_string<char>>, std::__1::allocator<std::__1::basic_string<char>>> scopes;
+    struct unordered_map<std::__1::basic_string<char>, std::__1::__hash_map_const_iterator<std::__1::__hash_const_iterator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, const tokenPayload>, void *>*>>, std::__1::hash<std::__1::basic_string<char>>, std::__1::equal_to<std::__1::basic_string<char>>, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::__hash_map_const_iterator<std::__1::__hash_const_iterator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, const tokenPayload>, void *>*>>>>> tokenUSRIndex;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (id)tokenMatchingUSR:(id)arg1 docSet:(id)arg2;
 - (BOOL)docSet:(id)arg1 hasTokenWithScope:(id)arg2;
 - (id)tokensMatchingString:(id)arg1 withMatchType:(unsigned long long)arg2 docSet:(id)arg3;
 - (void)createCache:(id)arg1;

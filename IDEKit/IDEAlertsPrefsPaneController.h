@@ -6,29 +6,24 @@
 
 #import <IDEKit/IDEViewController.h>
 
-@class DVTGradientImageButton, DVTPointerArray, DVTTableView, IDEAlertsView, IDEControlGroup, NSArray, NSCell, NSMutableArray;
+@class DVTGradientImageButton, DVTPointerArray, IDEAlertsView, IDEControlGroup, NSArray, NSCell, NSMutableArray, NSTableView;
 
 @interface IDEAlertsPrefsPaneController : IDEViewController
 {
+    IDEAlertsView *_alertsView;
+    NSTableView *_tableView;
+    IDEControlGroup *_controlGroup;
+    DVTGradientImageButton *_addButton;
+    DVTGradientImageButton *_removeButton;
     DVTPointerArray *_alertEvents;
     NSCell *_dividerCell;
     NSMutableArray *_observationTokens;
     NSMutableArray *_customObservationTokens;
     BOOL _ignoreNextEdit;
-    IDEAlertsView *_alertsView;
-    DVTTableView *_tableView;
-    IDEControlGroup *_controlGroup;
-    DVTGradientImageButton *_addButton;
-    DVTGradientImageButton *_removeButton;
     NSArray *_customAlertEvents;
 }
 
 @property(copy, nonatomic) NSArray *customAlertEvents; // @synthesize customAlertEvents=_customAlertEvents;
-@property(retain, nonatomic) DVTGradientImageButton *removeButton; // @synthesize removeButton=_removeButton;
-@property(retain, nonatomic) DVTGradientImageButton *addButton; // @synthesize addButton=_addButton;
-@property(retain, nonatomic) IDEControlGroup *controlGroup; // @synthesize controlGroup=_controlGroup;
-@property(retain, nonatomic) DVTTableView *tableView; // @synthesize tableView=_tableView;
-@property(retain, nonatomic) IDEAlertsView *alertsView; // @synthesize alertsView=_alertsView;
 - (void).cxx_destruct;
 - (void)beginEditingFromClick:(id)arg1;
 - (void)removeCustomAlertEvent:(id)arg1;

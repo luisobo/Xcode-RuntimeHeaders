@@ -22,10 +22,10 @@
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEmpty;
 - (id)macroDefinitionTables;
-@property(readonly) DVTMacroDefinitionTable *macrosFromEnvironmentXcconfigFile;
-@property(readonly) DVTMacroDefinitionTable *macrosFromCommandLineXcconfigFile;
-@property(readonly) DVTMacroDefinitionTable *macrosFromCommandLine;
-@property(readonly) DVTMacroDefinitionTable *synthesizedMacros;
+@property(readonly, copy) DVTMacroDefinitionTable *macrosFromEnvironmentXcconfigFile;
+@property(readonly, copy) DVTMacroDefinitionTable *macrosFromCommandLineXcconfigFile;
+@property(readonly, copy) DVTMacroDefinitionTable *macrosFromCommandLine;
+@property(readonly, copy) DVTMacroDefinitionTable *synthesizedMacros;
 - (void)_setMacroDefinitionTable:(id)arg1 forLevel:(int)arg2;
 - (id)macroDefinitionTableForLevel:(int)arg1;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;

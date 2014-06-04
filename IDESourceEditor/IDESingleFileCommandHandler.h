@@ -9,6 +9,8 @@
 #import "IDECommandHandler-Protocol.h"
 #import "IDECommandHandlerVendor-Protocol.h"
 
+@class NSString;
+
 @interface IDESingleFileCommandHandler : NSObject <IDECommandHandlerVendor, IDECommandHandler>
 {
     id <IDESelectionSource> _selectionSource;
@@ -23,6 +25,12 @@
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (id)_sourceEditor;
 - (id)initWithSelectionSource:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

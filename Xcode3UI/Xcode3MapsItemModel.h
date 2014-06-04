@@ -10,6 +10,7 @@
 
 @interface Xcode3MapsItemModel : IDEProjectItemModel
 {
+    id <IDEFlightChecking> _linkedFrameworksFlightCheck;
     NSSet *_enabledRoutingTypes;
 }
 
@@ -31,6 +32,7 @@
 - (id)directionsRequestDocumentTypeDeclarations;
 - (BOOL)plistContainsDirectionsRequestDocumentType;
 - (BOOL)isEnabledUsingEducatedGuess;
+- (id)flightChecks;
 - (id)linkedFrameworksFlightCheck;
 @property(nonatomic) BOOL other; // @dynamic other;
 - (void)_setOther:(BOOL)arg1 postAssignmentBlock:(id)arg2;

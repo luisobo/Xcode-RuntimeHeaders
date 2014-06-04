@@ -13,14 +13,17 @@
 @interface IBGroup : NSObject <NSCoding>
 {
     DVTMutableOrderedSet *objectRecords;
-    DVTMutableOrderedSet *objects;
     IBMutableBijectiveDictionary *identifierToRecordBijectiveDictionary;
+    DVTMutableOrderedSet *objects;
     id <IBGroupDelegate> delegate;
 }
 
++ (long long)ibMemberType;
 @property __weak id <IBGroupDelegate> delegate; // @synthesize delegate;
 @property(readonly) DVTMutableOrderedSet *objects; // @synthesize objects;
 - (void).cxx_destruct;
+- (id)ibMemberIDInObjectContainer:(id)arg1;
+- (BOOL)ibIsInObjectContainer:(id)arg1;
 - (id)objectWithIdentifier:(id)arg1;
 - (id)identifierForObject:(id)arg1;
 - (void)removeIdentifierForObject:(id)arg1;
@@ -29,7 +32,6 @@
 - (void)moveObject:(id)arg1 toIndex:(long long)arg2;
 - (void)insertObject:(id)arg1 atIndex:(long long)arg2;
 - (void)addObject:(id)arg1;
-- (BOOL)recursivelyContainsObject:(id)arg1;
 - (BOOL)containsObject:(id)arg1;
 - (id)description;
 - (id)objectRecordForObject:(id)arg1;

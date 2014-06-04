@@ -15,7 +15,7 @@
     IDEAnalyzerResultsExplorer *_explorer;
 }
 
-@property(readonly) IDEAnalyzerResultsExplorer *explorer; // @synthesize explorer=_explorer;
+@property(readonly) __weak IDEAnalyzerResultsExplorer *explorer; // @synthesize explorer=_explorer;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)drawOverTextInRect:(struct CGRect)arg1;

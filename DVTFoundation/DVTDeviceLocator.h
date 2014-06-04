@@ -13,21 +13,25 @@
     NSMutableSet *_locatedDevices;
 }
 
++ (id)deviceLocator;
 + (void)initialize;
 - (void).cxx_destruct;
+- (void)deleteDevice:(id)arg1 completionHandler:(id)arg2;
 - (BOOL)matchDevice:(id)arg1 againstOptions:(id)arg2 genericOnly:(BOOL)arg3;
 - (BOOL)validateDeviceSpecifierOptions:(id)arg1 genericOnly:(BOOL)arg2 allowMultipleMatches:(BOOL)arg3 error:(id *)arg4;
 @property(readonly) DVTDeviceType *deviceType; // @dynamic deviceType;
 - (id)knownDeviceAtDeviceLocation:(id)arg1;
 - (void)stopLocating;
+- (BOOL)startLocatingWithError:(id *)arg1;
 - (void)startLocating;
-@property(readonly) DVTPlatform *platform;
-@property(readonly) NSString *deviceLocationScheme; // @dynamic deviceLocationScheme;
+@property(readonly, copy) NSSet *platforms;
+@property(readonly, copy) DVTPlatform *platform;
+@property(readonly, copy) NSString *deviceLocationScheme; // @dynamic deviceLocationScheme;
 - (id)init;
 
 // Remaining properties
-@property(readonly) NSSet *locatedDevices; // @dynamic locatedDevices;
-@property(readonly) NSMutableSet *mutableLocatedDevices; // @dynamic mutableLocatedDevices;
+@property(readonly, copy) NSSet *locatedDevices; // @dynamic locatedDevices;
+@property(readonly, copy) NSMutableSet *mutableLocatedDevices; // @dynamic mutableLocatedDevices;
 
 @end
 

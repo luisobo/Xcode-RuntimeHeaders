@@ -9,7 +9,6 @@
 @interface SKESceneViewNestView : NSView
 {
     NSView *sceneView;
-    NSView *identifierView;
     struct CGSize _aspectRatio;
 }
 

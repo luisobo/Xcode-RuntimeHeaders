@@ -8,12 +8,11 @@
 
 #import "GPURenderBufferViewStateCoordinationProtocol-Protocol.h"
 #import "GPUTraceBubbleOwner-Protocol.h"
-#import "GPUTraceResourceInfoDelegateProtocol-Protocol.h"
 
 @class DVTBorderedView, DYRenderingAttributes, GPUPathControl, GPURenderBufferBezeledLabel, GPURenderBufferButton, GPURenderBufferView, GPUTraceResourceInfoBubble, GPUTraceResourceSettingsBubble, NSButton, NSImage, NSLayoutConstraint, NSObject<OS_dispatch_queue>, NSPopUpButton, NSSegmentedControl, NSString, NSTextField;
 
 // Not exported
-@interface GPUImageEditor : GPUResourceEditor <GPUTraceBubbleOwner, GPUTraceResourceInfoDelegateProtocol, GPURenderBufferViewStateCoordinationProtocol>
+@interface GPUImageEditor : GPUResourceEditor <GPUTraceBubbleOwner, GPURenderBufferViewStateCoordinationProtocol>
 {
     GPURenderBufferView *_imageView;
     DVTBorderedView *_bottomToolBar;
@@ -48,7 +47,6 @@
     NSTextField *_imageLabel;
 }
 
-+ (id)_keyForResourceItem:(id)arg1;
 + (id)assetBundle;
 @property __weak NSTextField *imageLabel; // @synthesize imageLabel=_imageLabel;
 - (id).cxx_construct;
@@ -58,9 +56,7 @@
 - (void)settingsToggleBlueEnable;
 - (void)settingsToggleGreenEnable;
 - (void)settingsToggleRedEnable;
-- (int)openGLAPI;
-- (id)_gputraceOutline;
-- (id)currentStateMirror;
+- (id)currentDisplayableItem;
 - (void)settingsBubbleClosed;
 - (void)showSettings:(id)arg1;
 - (void)infoBubbleClosed;
@@ -100,7 +96,13 @@
 - (void)loadView;
 - (void)_makeSegmentedControlImagesTemplates:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (id)supportedResourceClasses;
+- (id)supportedResourceProtocols;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -22,11 +22,13 @@
 - (id)entityNavigableChildren;
 @property(readonly) id <IDEDMModelObject> parentObject;
 @property(readonly) id <IDEDMSourceObject> sourceObject;
-- (unsigned long long)hash;
-- (BOOL)isEqual:(id)arg1;
 @property(readonly) IDETypeIdentifier *ideModelObjectTypeIdentifier;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSString *name; // @dynamic name;
+@property(readonly) Class superclass;
 @end
 

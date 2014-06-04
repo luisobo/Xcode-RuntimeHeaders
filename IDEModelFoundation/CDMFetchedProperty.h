@@ -8,7 +8,7 @@
 
 #import "IDEInspectorMatching-Protocol.h"
 
-@class CDMFetchRequest;
+@class CDMFetchRequest, NSString;
 
 @interface CDMFetchedProperty : CDMProperty <IDEInspectorMatching>
 {
@@ -31,6 +31,12 @@
 - (void)primitiveInvalidate;
 @property(retain) CDMFetchRequest *fetchRequest; // @synthesize fetchRequest;
 - (id)applicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

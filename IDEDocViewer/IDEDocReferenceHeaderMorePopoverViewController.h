@@ -8,7 +8,7 @@
 
 #import "NSTextViewDelegate-Protocol.h"
 
-@class NSAttributedString, NSTextView, NSTrackingArea;
+@class NSAttributedString, NSString, NSTextView, NSTrackingArea;
 
 @interface IDEDocReferenceHeaderMorePopoverViewController : DVTViewController <NSTextViewDelegate>
 {
@@ -40,6 +40,12 @@
 - (BOOL)textView:(id)arg1 clickedOnLink:(id)arg2 atIndex:(unsigned long long)arg3;
 - (void)primitiveInvalidate;
 - (void)loadView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

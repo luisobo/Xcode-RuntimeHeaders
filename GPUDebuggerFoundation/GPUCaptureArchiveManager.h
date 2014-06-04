@@ -8,7 +8,7 @@
 
 #import "NSFileManagerDelegate-Protocol.h"
 
-@class DVTMapTable, NSFileManager, NSMutableSet, NSObject<OS_dispatch_queue>;
+@class DVTMapTable, NSFileManager, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
 
 @interface GPUCaptureArchiveManager : NSObject <NSFileManagerDelegate>
 {
@@ -45,6 +45,12 @@
 - (id)_readCaptureArchiveForURL:(id)arg1;
 - (id)_addCaptureArchive:(id)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,49 +6,34 @@
 
 #import "IDEInspectorProperty.h"
 
-#import "IBCustomClassSuggestionsProviderDelegate-Protocol.h"
+@class IBAutoCompletingComboBoxDataSource, IBButtonComboBox, IDEInspectorKeyPath;
 
-@class DVTDelayedInvocation, IBAutoCompletingComboBoxDataSource, IBButtonComboBox, IBCustomClassIndexStateProvider, IBCustomClassQuickStateProvider, IBCustomClassSuggestionsProvider, IDEInspectorKeyPath, NSArray;
-
-@interface IBAbstractCustomClassInspectorProperty : IDEInspectorProperty <IBCustomClassSuggestionsProviderDelegate>
+@interface IBAbstractCustomClassInspectorProperty : IDEInspectorProperty
 {
-    IBButtonComboBox *_comboBox;
-    IBCustomClassSuggestionsProvider *_classSuggestionsProvider;
-    DVTDelayedInvocation *_indexBasedRefreshInvocation;
-    IBCustomClassQuickStateProvider *_quickStateProvider;
-    IBCustomClassIndexStateProvider *_indexStateProvider;
-    IBAutoCompletingComboBoxDataSource *_comboBoxDatasource;
-    BOOL _comboBoxStringValueIsRefreshingFromIndex;
-    BOOL _comboBoxSuggestionsQueryInFlight;
-    id <DVTCancellable> _firstResponderToken;
     IDEInspectorKeyPath *_valueKeyPath;
-    BOOL showingProgressIndicator;
-    BOOL updatingApplicableCustomClassNames;
-    NSArray *applicableCustomClassNames;
+    IBButtonComboBox *_classComboBox;
+    IBAutoCompletingComboBoxDataSource *_classComboBoxDatasource;
 }
 
-@property BOOL updatingApplicableCustomClassNames; // @synthesize updatingApplicableCustomClassNames;
-@property(nonatomic) BOOL showingProgressIndicator; // @synthesize showingProgressIndicator;
-@property(copy) NSArray *applicableCustomClassNames; // @synthesize applicableCustomClassNames;
+@property(retain) IBAutoCompletingComboBoxDataSource *classComboBoxDatasource; // @synthesize classComboBoxDatasource=_classComboBoxDatasource;
+@property(retain) IBButtonComboBox *classComboBox; // @synthesize classComboBox=_classComboBox;
 - (void).cxx_destruct;
 - (void)awakeFromNib;
-- (void)primitiveInvalidate;
-- (void)tearDownRefreshTriggers;
 - (void)setupRefreshTriggersAndConfigure;
-- (void)propertyViewWillUninstallFromWindow;
-- (void)propertyViewDidInstallIntoWindow;
 - (void)refresh;
 - (void)refreshComboBox;
-- (void)refreshComboBoxFromQuickState;
-- (void)refreshComboBoxFromIndexState:(id)arg1;
-- (void)userDidChangeValue:(id)arg1;
+- (void)userDidChangeClassName:(id)arg1;
 - (void)revealCustomClassInEditor:(id)arg1;
-- (void)cancelQueryingComboBoxDataSource;
-- (void)refreshComboBoxDataSource;
 - (void)applyValidatedClassName:(id)arg1 toMember:(id)arg2;
-- (void)customClassSuggestionsProvider:(id)arg1 didUpdateQueryState:(BOOL)arg2;
-- (void)setComboBoxStringValueIsRefreshingFromIndex:(BOOL)arg1;
-- (void)updateSpinnerWithNewRefreshingStringValueState:(BOOL)arg1 dataSourceState:(BOOL)arg2;
+- (BOOL)anyCustomClasses;
+- (BOOL)allObjectsCanChangeClassName;
+- (id)commonEffectiveClassName;
+- (id)commonRuntimeClassName;
+- (id)commonBaseClassOfMembers;
+- (id)leastDerivedValidClassName;
+- (BOOL)isLegalClassName:(id)arg1 minimumName:(id)arg2;
+- (BOOL)isCompleteType:(id)arg1;
+- (id)findIndicatorContentViewWithContext:(id)arg1;
 - (double)baseline;
 - (id)inspectedDocumentMembers;
 - (BOOL)canMemberChangeCustomClassName:(id)arg1;

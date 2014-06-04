@@ -24,5 +24,11 @@
 - (id)initWithPropertyList:(id)arg1 owner:(id)arg2;
 - (id)initWithName:(id)arg1 isOptional:(BOOL)arg2;
 
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
+
 @end
 

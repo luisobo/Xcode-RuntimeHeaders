@@ -7,8 +7,9 @@
 #import "NSWindow.h"
 
 @interface NSWindow (IBWindowAdditions)
++ (void)ib_ignoreMakeFirstResponderDuring:(id)arg1;
 + (id)windowForOverlaying;
-+ (id)visibleWindowsFromFrontToBack;
+- (BOOL)ibSwizzledMakeFirstResponder:(id)arg1;
 - (void)ib_inheritFirstResponder:(id)arg1;
 - (void)setContentViewSizePinningTopLeft:(struct CGSize)arg1;
 - (void)setContentViewSizePinningTopLeft:(struct CGSize)arg1 display:(BOOL)arg2;
@@ -21,10 +22,6 @@
 - (void)setContentRect:(struct CGRect)arg1;
 - (struct CGRect)contentRect;
 - (void)setFrame:(struct CGRect)arg1;
-- (struct CGPoint)convertPointToUserSpace:(struct CGPoint)arg1;
-- (struct CGPoint)convertPointFromUserSpace:(struct CGPoint)arg1;
-- (struct CGRect)convertRectFromUserSpace:(struct CGRect)arg1;
-- (struct CGRect)convertRectToUserSpace:(struct CGRect)arg1;
 - (BOOL)isFullKeyboardAccessEnabled;
 - (BOOL)closesOnDeactivate;
 - (void)setClosesWhenLosesMain:(BOOL)arg1;

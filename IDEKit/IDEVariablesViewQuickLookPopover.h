@@ -8,7 +8,7 @@
 
 #import "NSPopoverDelegate-Protocol.h"
 
-@class DVTObservingToken, NSButton, NSImageView, NSLayoutConstraint, NSPopover, NSProgressIndicator, NSTextField, NSView;
+@class DVTObservingToken, NSButton, NSImageView, NSLayoutConstraint, NSPopover, NSProgressIndicator, NSString, NSTextField, NSView;
 
 @interface IDEVariablesViewQuickLookPopover : NSViewController <NSPopoverDelegate>
 {
@@ -27,14 +27,22 @@
     NSButton *_quickLookOpenWithEditorButton;
     NSView *_quickLookViewContainer;
     NSProgressIndicator *_progressIndicator;
-    NSTextField *_errorMessageLabel;
     NSLayoutConstraint *_quickLookViewContainerDefaultWidth;
     NSLayoutConstraint *_quickLookViewContainerDefaultHeight;
+    NSViewController *_errorViewController;
+    NSImageView *_errorViewWarningIcon;
+    NSImageView *_errorViewVariableTypeIcon;
+    NSTextField *_errorViewVariableName;
+    NSTextField *_errorMessageLabel;
 }
 
+@property(retain) NSTextField *errorMessageLabel; // @synthesize errorMessageLabel=_errorMessageLabel;
+@property(retain) NSTextField *errorViewVariableName; // @synthesize errorViewVariableName=_errorViewVariableName;
+@property(retain) NSImageView *errorViewVariableTypeIcon; // @synthesize errorViewVariableTypeIcon=_errorViewVariableTypeIcon;
+@property(retain) NSImageView *errorViewWarningIcon; // @synthesize errorViewWarningIcon=_errorViewWarningIcon;
+@property(retain) NSViewController *errorViewController; // @synthesize errorViewController=_errorViewController;
 @property(retain) NSLayoutConstraint *quickLookViewContainerDefaultHeight; // @synthesize quickLookViewContainerDefaultHeight=_quickLookViewContainerDefaultHeight;
 @property(retain) NSLayoutConstraint *quickLookViewContainerDefaultWidth; // @synthesize quickLookViewContainerDefaultWidth=_quickLookViewContainerDefaultWidth;
-@property(retain) NSTextField *errorMessageLabel; // @synthesize errorMessageLabel=_errorMessageLabel;
 @property(retain) NSProgressIndicator *progressIndicator; // @synthesize progressIndicator=_progressIndicator;
 @property(retain) NSView *quickLookViewContainer; // @synthesize quickLookViewContainer=_quickLookViewContainer;
 @property(retain) NSButton *quickLookOpenWithEditorButton; // @synthesize quickLookOpenWithEditorButton=_quickLookOpenWithEditorButton;
@@ -57,13 +65,23 @@
 - (void)openWithEditor:(id)arg1;
 - (void)_setViewControllerWithoutAnimationAndWithoutChangingFirstResponder:(id)arg1;
 - (void)_useViewController:(id)arg1 forDataValue:(id)arg2;
+- (void)_useErrorMessage:(id)arg1 forDataValue:(id)arg2 usingIcon:(id)arg3;
+- (void)useMessageFromError:(id)arg1 forDataValue:(id)arg2 usingIcon:(id)arg3;
 - (void)useDefaultQuickLookForDataValue:(id)arg1 usingIcon:(id)arg2;
 - (id)_externalApplicationURL;
 - (void)_setupOpenWithExternalEditorButton;
+- (struct CGRect)_maxContentSizeForQuickLookProvider;
 - (void)_quickLookProviderDidFinishLoading;
 - (void)useQuickLookProvider:(id)arg1 forDataValue:(id)arg2 usingIcon:(id)arg3;
+- (void)loadView;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

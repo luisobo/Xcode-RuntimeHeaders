@@ -8,6 +8,8 @@
 
 #import "IDEDocumentationWindow-Protocol.h"
 
+@class NSString;
+
 @interface IDEDocWindow : NSWindow <IDEDocumentationWindow>
 {
     BOOL _firstResponderLocked;
@@ -19,6 +21,12 @@
 - (void)toggleToolbarShown:(id)arg1;
 - (void)keyDown:(id)arg1;
 - (BOOL)makeFirstResponder:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

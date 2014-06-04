@@ -7,6 +7,7 @@
 #import "NSView.h"
 
 @interface NSView (IBViewAdditions)
++ (id)ib_viewWithSize:(struct CGSize)arg1;
 - (void)ib_removeFromSuperviewMakingAncestorFirstResponderIfNeeded;
 - (void)ib_setSubviewsMakingAncestorFirstResponderIfNeeded:(id)arg1;
 - (id)ib_layoutDescription;
@@ -35,18 +36,12 @@
 - (struct CGRect)convertRectToScreen:(struct CGRect)arg1;
 - (struct CGSize)convertOffsetFromWindow:(struct CGSize)arg1;
 - (struct CGSize)convertOffsetToWindow:(struct CGSize)arg1;
-- (struct CGPoint)convertPointFromWindowUserSpace:(struct CGPoint)arg1;
-- (struct CGPoint)convertPointToWindowUserSpace:(struct CGPoint)arg1;
-- (struct CGRect)convertRectFromWindowUserSpace:(struct CGRect)arg1;
-- (struct CGRect)convertRectToWindowUserSpace:(struct CGRect)arg1;
 - (struct CGSize)convertSizeFromWindow:(struct CGSize)arg1;
 - (struct CGSize)convertSizeToWindow:(struct CGSize)arg1;
 - (struct CGPoint)convertPointFromWindow:(struct CGPoint)arg1;
 - (struct CGPoint)convertPointToWindow:(struct CGPoint)arg1;
 - (struct CGRect)convertRectFromWindow:(struct CGRect)arg1;
 - (struct CGRect)convertRectToWindow:(struct CGRect)arg1;
-- (CDStruct_c519178c)convertInsetFromWindowUserSpace:(CDStruct_c519178c)arg1;
-- (CDStruct_c519178c)convertInsetToWindowUserSpace:(CDStruct_c519178c)arg1;
 - (CDStruct_c519178c)convertInsetFromWindow:(CDStruct_c519178c)arg1;
 - (CDStruct_c519178c)convertInsetToWindow:(CDStruct_c519178c)arg1;
 - (CDStruct_c519178c)convertInset:(CDStruct_c519178c)arg1 fromView:(id)arg2;
@@ -59,5 +54,6 @@
 - (void)insertSubview:(id)arg1 atIndex:(long long)arg2;
 - (void)foreachRectBeingDrawn:(id)arg1;
 - (BOOL)isVisible;
+- (void)invokeWithTemporarySuperview:(id)arg1 block:(id)arg2;
 @end
 

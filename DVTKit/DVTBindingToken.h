@@ -8,7 +8,7 @@
 
 #import "DVTCancellable-Protocol.h"
 
-@class DVTStackBacktrace;
+@class DVTStackBacktrace, NSString;
 
 @interface DVTBindingToken : NSObject <DVTCancellable>
 {
@@ -23,6 +23,12 @@
 - (void)cancel;
 @property(readonly, getter=isCancelled) BOOL cancelled;
 - (id)initWithCancellationBlock:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

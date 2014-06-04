@@ -10,7 +10,7 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTImageAndTextColumn, DVTMapTable, DVTObservingToken, DVTPreferenceSetManager, IDEControlGroup, NSArray, NSArrayController, NSMenuItem, NSTableView;
+@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTImageAndTextColumn, DVTMapTable, DVTObservingToken, DVTPreferenceSetManager, IDEControlGroup, NSArray, NSArrayController, NSMenuItem, NSString, NSTableView;
 
 @interface IDEPreferenceSetViewController : IDEViewController <NSTableViewDelegate, NSTableViewDataSource, NSMenuDelegate>
 {
@@ -52,6 +52,12 @@
 - (void)loadView;
 - (void)setupWithPreferenceSetManager:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTDeveloperAccountCredentials, DVTDeveloperAccountSession, DVTReaderWriterLock, NSDictionary, NSString;
+@class DVTDeveloperAccountCredentials, DVTDeveloperAccountSession, DVTDispatchLock, NSDictionary, NSString;
 
 @interface DVTDeveloperAccount : NSObject
 {
-    DVTReaderWriterLock *_lock;
+    DVTDispatchLock *_lock;
     BOOL _enabled;
     DVTDeveloperAccountSession *_session;
     DVTDeveloperAccountCredentials *_accountCredentials;
@@ -21,9 +21,6 @@
 + (id)keyPathsForValuesAffectingHasPassword;
 + (id)keyPathsForValuesAffectingPassword;
 + (id)accountWithPropertyListRepresentation:(id)arg1 keychain:(struct OpaqueSecKeychainRef *)arg2 error:(id *)arg3;
-+ (id)accountWithCertificate:(id)arg1 andAccountCredentials:(id)arg2;
-+ (id)accountWithIdentity:(struct OpaqueSecIdentityRef *)arg1 andAccountCredentials:(id)arg2;
-+ (id)accountWithCertificate:(id)arg1;
 + (id)accountWithIdentity:(struct OpaqueSecIdentityRef *)arg1;
 + (id)accountWithCredentials:(id)arg1;
 @property BOOL enabled; // @synthesize enabled=_enabled;
@@ -37,10 +34,11 @@
 @property(readonly) _Bool isCertBased;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
-@property(readonly) NSString *username;
+@property(readonly, copy) NSString *username;
 - (void)revokeSession:(id)arg1;
 - (id)sessionIfAvailable;
 @property(readonly) DVTDeveloperAccountSession *session; // @synthesize session=_session;
+- (void)executeWithSession:(id)arg1;
 - (id)sessionByLoggingInIfNeeded:(id *)arg1;
 - (id)_sessionByLoggingIn:(id *)arg1;
 - (id)init;

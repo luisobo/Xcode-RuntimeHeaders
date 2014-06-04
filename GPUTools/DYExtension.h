@@ -16,9 +16,9 @@
     NSDictionary *_dictionary;
 }
 
-@property(readonly, nonatomic) NSBundle *bundle; // @synthesize bundle=_bundle;
-@property(readonly, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
-@property(readonly, nonatomic) NSString *slot; // @synthesize slot=_slot;
+@property(readonly, retain, nonatomic) NSBundle *bundle; // @synthesize bundle=_bundle;
+@property(readonly, retain, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
+@property(readonly, retain, nonatomic) NSString *slot; // @synthesize slot=_slot;
 - (id)objectForKey:(id)arg1;
 - (id)description;
 - (void)dealloc;

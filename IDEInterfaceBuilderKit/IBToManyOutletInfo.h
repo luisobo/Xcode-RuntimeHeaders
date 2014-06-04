@@ -10,7 +10,7 @@
 
 @interface IBToManyOutletInfo : IBAbstractRelationshipInfo
 {
-    NSString *collectionClassName;
+    NSString *_collectionClassName;
 }
 
 + (id)instantiateWithDocumentUnarchiver:(id)arg1 relationshipName:(id)arg2 andCandidateClassName:(id)arg3;

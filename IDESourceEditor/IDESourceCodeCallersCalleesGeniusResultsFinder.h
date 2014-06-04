@@ -11,9 +11,6 @@
 }
 
 + (Class)editorDocumentClass;
-+ (id)methodOrFunctionLocationAt:(unsigned long long)arg1 inDocument:(id)arg2;
-+ (id)_methodOrFunctionDefinitionSourceLandmarkItemForSourceLandmarkItem:(id)arg1;
-+ (id)_methodOrFunctionSourceLandmarkItemForSourceLandmarkItem:(id)arg1;
 - (BOOL)_getUpdateGeniusResultsPhaseOneBlock:(id *)arg1 phaseTwoBlock:(void)arg2 phaseThreeBlock:(id *)arg3;
 
 @end

@@ -10,9 +10,9 @@
 
 @interface IBObjcParser : IBSourceCodeParser
 {
-    long long errorLine;
-    NSString *errorFile;
-    NSMutableArray *descriptions;
+    long long _errorLine;
+    NSString *_errorFile;
+    NSMutableArray *_descriptions;
 }
 
 + (BOOL)useClassicMethodParsing;
@@ -20,11 +20,12 @@
 + (id)primaryParsableFileTypeIdentifiers;
 + (id)supportedFileExtensions;
 - (void).cxx_destruct;
-- (id)parseData:(id)arg1 fromFile:(id)arg2 errors:(id *)arg3;
+- (id)parseData:(id)arg1 fromFile:(id)arg2 withContext:(id)arg3 errors:(id *)arg4;
+- (BOOL)parseDesignableTokenUsingState:(CDStruct_67f4b74a *)arg1;
 - (void)resetParseState;
-- (BOOL)parseClass:(CDStruct_30f319a3 *)arg1;
-- (BOOL)addMethodsUsingState:(CDStruct_30f319a3 *)arg1 intoActions:(id)arg2 andOutlets:(id)arg3;
-- (BOOL)addMethodsUsingState:(CDStruct_30f319a3 *)arg1 intoActions:(id)arg2 outlets:(id)arg3 andToManyOutlets:(id)arg4;
+- (BOOL)parseTopLevelBlockUsingState:(CDStruct_67f4b74a *)arg1 precededByIsDesignableToken:(BOOL)arg2;
+- (BOOL)addMethodsUsingState:(CDStruct_67f4b74a *)arg1 intoActions:(id)arg2 andOutlets:(id)arg3;
+- (BOOL)addMethodsUsingState:(CDStruct_67f4b74a *)arg1 intoActions:(id)arg2 outlets:(id)arg3 andToManyOutlets:(id)arg4 inspectables:(id)arg5;
 
 @end
 

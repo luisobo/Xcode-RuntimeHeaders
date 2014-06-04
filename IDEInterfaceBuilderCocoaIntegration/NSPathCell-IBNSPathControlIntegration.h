@@ -10,7 +10,6 @@
 + (id)keyPathsForValuesAffectingIbInspectedAllowsAllTypes;
 + (id)keyPathsForValuesAffectingIbInspectedAllowsSpecificTypes;
 + (id)keyPathsForValuesAffectingIbInspectedPath;
-+ (id)keyPathsForValuesAffectingIbWidgetType;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (void)setIbInspectedAllowsAllTypes:(BOOL)arg1;
 - (BOOL)ibInspectedAllowsAllTypes;

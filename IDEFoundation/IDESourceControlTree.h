@@ -14,25 +14,18 @@
     IDESourceControlExtension *_sourceControlExtension;
     NSString *_location;
     NSString *_name;
-    int _reachabilityFlags;
     unsigned long long _state;
-    long long _reachable;
     BOOL _disallowLoadingChildren;
-    BOOL _isObservingReachability;
     NSString *_identifier;
     NSString *_cachedFirstRevision;
 }
 
 + (void)initialize;
-+ (id)keyPathsForValuesAffectingConnected;
 + (id)treeLoadingModelObjectGraph;
 @property(copy) NSString *cachedFirstRevision; // @synthesize cachedFirstRevision=_cachedFirstRevision;
 @property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
-@property BOOL isObservingReachability; // @synthesize isObservingReachability=_isObservingReachability;
-@property long long reachable; // @synthesize reachable=_reachable;
 @property BOOL disallowLoadingChildren; // @synthesize disallowLoadingChildren=_disallowLoadingChildren;
 @property unsigned long long state; // @synthesize state=_state;
-@property int reachabilityFlags; // @synthesize reachabilityFlags=_reachabilityFlags;
 @property(copy) NSString *location; // @synthesize location=_location;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(retain) IDESourceControlExtension *sourceControlExtension; // @synthesize sourceControlExtension=_sourceControlExtension;
@@ -41,8 +34,6 @@
 - (id)copyRepository;
 - (id)description;
 - (BOOL)containsItemAtLocation:(id)arg1;
-- (void)endObservingReachability;
-- (void)startObservingReachability;
 - (id)firstRevisionWithCompletionBlock:(id)arg1;
 - (id)subclass_createRootNode;
 - (void)primitiveInvalidate;

@@ -15,14 +15,14 @@
     NSImage *_iconImage;
 }
 
-@property(readonly) NSImage *iconImage; // @synthesize iconImage=_iconImage;
-@property(readonly) NSArray *buildFiles; // @synthesize buildFiles=_buildFiles;
+@property(readonly, copy) NSImage *iconImage; // @synthesize iconImage=_iconImage;
+@property(readonly, copy) NSArray *buildFiles; // @synthesize buildFiles=_buildFiles;
 @property(readonly) id <IDEBlueprint> blueprint; // @synthesize blueprint=_blueprint;
 - (void).cxx_destruct;
 @property(readonly) BOOL buildsWithXCTest;
 @property(readonly) BOOL buildsWithClang;
 @property(readonly) BOOL buildsValidArchtectures;
-@property(readonly) NSString *warningMessage;
+@property(readonly, copy) NSString *warningMessage;
 - (id)latestSDK;
 - (void)updateBuildSettings;
 

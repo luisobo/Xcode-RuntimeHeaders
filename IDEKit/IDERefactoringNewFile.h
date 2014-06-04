@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, DVTFilePath, NSImage, NSString;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface IDERefactoringNewFile : NSObject
+@class DVTDocumentLocation, DVTFileDataType, DVTFilePath, IDEFileReference, NSImage, NSString;
+
+@interface IDERefactoringNewFile : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     id <IDERefactoringResult> _result;
     NSImage *_image;
@@ -25,8 +27,18 @@
 @property(readonly) DVTFilePath *filePath; // @synthesize filePath=_filePath;
 @property(readonly) id <IDERefactoringResult> result; // @synthesize result=_result;
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)initWithRefactoringResult:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

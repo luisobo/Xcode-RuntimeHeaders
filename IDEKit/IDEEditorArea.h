@@ -8,7 +8,7 @@
 
 #import "IDEDebuggerBarEditorInfoProvider-Protocol.h"
 
-@class DVTBorderedView, DVTLayoutView_ML, DVTObservingToken, DVTReplacementView, DVTSplitView, DVTSplitViewItem, DVTStateToken, IDEDebugArea, IDEDebugBar, IDEEditorContext, IDEEditorDocument, IDEEditorModeViewController, IDENavigableItem, IDEWorkspaceTabControllerLayoutTree, NSMutableDictionary, NSView;
+@class DVTBorderedView, DVTLayoutView_ML, DVTObservingToken, DVTReplacementView, DVTSplitView, DVTSplitViewItem, DVTStateToken, IDEDebugArea, IDEDebugBar, IDEEditorContext, IDEEditorDocument, IDEEditorModeViewController, IDENavigableItemArchivableRepresentation, IDEWorkspaceTabControllerLayoutTree, NSMutableDictionary, NSString, NSView;
 
 @interface IDEEditorArea : IDEViewController <IDEDebuggerBarEditorInfoProvider>
 {
@@ -42,17 +42,20 @@
     BOOL _showDebuggerArea;
     id <DVTCancellable> _setEditorModeAfterDelayToken;
     id <DVTCancellable> _invokeCompletionBlockAfterDelayToken;
+    IDEEditorContext *_navigationTargetedEditorContext;
 }
 
 + (long long)version;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (id)keyPathsForValuesAffectingShowEditor;
-+ (id)keyPathsForValuesAffectingSelectedMainNavigableItem;
++ (id)keyPathsForValuesAffectingSelectedNavigableItemArchivedRepresentation;
++ (id)keyPathsForValuesAffectingNavigationTargetedEditorDocument;
 + (id)keyPathsForValuesAffectingPrimaryEditorDocument;
 + (id)keyPathsForValuesAffectingPrimaryEditorContext;
 + (int)defaultVersionEditorSubmode;
 + (int)defaultEditorMode;
 + (BOOL)automaticallyNotifiesObserversOfLastActiveEditorContext;
+@property(retain) IDEEditorContext *navigationTargetedEditorContext; // @synthesize navigationTargetedEditorContext=_navigationTargetedEditorContext;
 @property(nonatomic) int versionEditorSubmode; // @synthesize versionEditorSubmode=_versionEditorSubmode;
 @property(nonatomic) int editorMode; // @synthesize editorMode=_editorMode;
 @property(retain) IDEDebugArea *activeDebuggerArea; // @synthesize activeDebuggerArea=_activeDebuggerArea;
@@ -106,7 +109,8 @@
 - (id)_editorContexts;
 - (void)_openEditorOpenSpecifier:(id)arg1 editorContext:(id)arg2 takeFocus:(BOOL)arg3;
 - (void)_openEditorHistoryItem:(id)arg1 editorContext:(id)arg2 takeFocus:(BOOL)arg3;
-@property(readonly) IDENavigableItem *selectedMainNavigableItem;
+@property(readonly) IDENavigableItemArchivableRepresentation *selectedNavigableItemArchivedRepresentation;
+@property(readonly) IDEEditorDocument *navigationTargetedEditorDocument;
 @property(readonly) IDEEditorDocument *primaryEditorDocument;
 @property(readonly) IDEEditorContext *primaryEditorContext;
 - (void)_installDebugAreaWithExtensionID:(id)arg1 revertDebugAreaState:(BOOL)arg2;
@@ -132,6 +136,12 @@
 - (void)primitiveInvalidate;
 - (void)loadView;
 - (void)_setEditorModeViewControllerWithPrimaryEditorContext:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,7 +8,7 @@
 
 #import "DBGNSImageProvider-Protocol.h"
 
-@class DBGDataValue, DBGNSDataForDataValueProvider, DVTObservingToken, NSImage, NSString;
+@class DBGDataValue, DBGNSDataForDataValueProvider, DVTObservingToken, NSData, NSImage, NSString;
 
 @interface DBGNSImageProviderForCGImage : NSObject <DBGNSImageProvider>
 {
@@ -24,8 +24,11 @@
     NSString *_colorSpaceName;
     unsigned int _bitmapInfo;
     int _renderingIntent;
+    NSData *_iccProfileData;
     DBGNSDataForDataValueProvider *_nsDataForDataValueProvider;
     DVTObservingToken *_nsDataForDataValueProviderObserver;
+    DBGNSDataForDataValueProvider *_iccProfileNSDataForDataValueProvider;
+    DVTObservingToken *_iccProfileNSDataForDataValueProviderObserver;
 }
 
 @property(readonly) BOOL hasImageBeenRetrieved; // @synthesize hasImageBeenRetrieved=_hasImageBeenRetrieved;
@@ -34,13 +37,19 @@
 - (void)_imageWasFetched:(id)arg1;
 - (void)_failedToGetData;
 - (void)_releaseDataValue:(id)arg1;
+- (void)_fetchICCProfileCompletionHandler:(id)arg1;
 - (void)_fetchColorSpaceName:(id)arg1;
 - (void)_fetchValueFromCGFunction:(id)arg1 completionHandler:(id)arg2;
 - (void)_retrieveData;
 - (void)_startRetrieval;
 - (void)cancel;
-- (id)blockStartAddress;
 - (id)initWithDataValue:(id)arg1 options:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

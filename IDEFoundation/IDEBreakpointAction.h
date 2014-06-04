@@ -39,8 +39,12 @@
 - (id)init;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(copy) NSArray *expressions; // @dynamic expressions;
+@property(readonly) unsigned long long hash;
 @property(readonly) NSMutableArray *mutableExpressions; // @dynamic mutableExpressions;
+@property(readonly) Class superclass;
 
 @end
 

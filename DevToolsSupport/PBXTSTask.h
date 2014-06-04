@@ -47,7 +47,7 @@
 + (id)_cpuStringForCPUSubType:(id)arg1;
 + (id)_cpuTypeForArch:(id)arg1;
 @property(retain) NSArray *preferredArchitectures; // @synthesize preferredArchitectures=_preferredArchitectures;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)setTaskAutomaticStandardInData:(id)arg1;
 - (id)taskAutomaticStandardInData;
 - (void)setTaskEnvironment:(id)arg1;
@@ -98,6 +98,11 @@
 - (void)finalize;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

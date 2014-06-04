@@ -7,7 +7,6 @@
 #import "NSSliderCell.h"
 
 @interface NSSliderCell (IBNSSliderCellIntegration)
-+ (id)keyPathsForValuesAffectingIbWidgetType;
 @property unsigned long long ibArchivedTickMarkPosition;
 - (Class)ibPreferredControlClass;
 - (unsigned long long)ibPreferredMatrixMode;

@@ -48,9 +48,20 @@ typedef struct {
 } CDStruct_e1b7b57a;
 
 typedef struct {
+    struct CGPoint start;
+    struct CGPoint end;
+} CDStruct_f6143a38;
+
+typedef struct {
+    CDStruct_f6143a38 _field1;
+} CDStruct_474337f7;
+
+typedef struct {
+    struct CGRect rect;
+    unsigned int rectEdge;
     struct {
-        struct CGPoint _field1;
-        struct CGPoint _field2;
-    } _field1;
-} CDStruct_2268a5ae;
+        double start;
+        double length;
+    } range;
+} CDStruct_8f194ad9;
 

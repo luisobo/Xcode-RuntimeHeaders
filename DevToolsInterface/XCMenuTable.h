@@ -8,6 +8,8 @@
 
 #import "NSMenuDelegate-Protocol.h"
 
+@class NSString;
+
 @interface XCMenuTable : NSObject <NSMenuDelegate>
 {
     id <XCMenuTableDataSource> _datasource;
@@ -28,6 +30,12 @@
 - (void)setTarget:(id)arg1;
 - (id)dataSource;
 - (void)setDataSource:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

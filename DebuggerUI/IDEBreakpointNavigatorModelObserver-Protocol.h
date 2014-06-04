@@ -7,7 +7,6 @@
 #import "NSObject-Protocol.h"
 
 @protocol IDEBreakpointNavigatorModelObserver <NSObject>
-- (void)breakpointActivationStateChanged:(BOOL)arg1;
 - (void)breakpointWasRemoved:(id)arg1;
 - (void)breakpointWasAdded:(id)arg1;
 @end

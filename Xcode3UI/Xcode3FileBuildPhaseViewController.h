@@ -55,7 +55,8 @@
 - (id)_tableMenu;
 - (id)contextMenuSelection;
 - (id)outputSelection;
-- (id)_objectValueForRowColumnOfBuildFile:(id)arg1;
+- (id)_tooltipForRoleColumnForBuildFile:(id)arg1;
+- (id)_objectValueForRoleColumnOfBuildFile:(id)arg1;
 - (id)_dataCellForRoleOfBuildFile:(id)arg1;
 - (id)_nameCell;
 - (id)_nameWithPathCell;
@@ -119,14 +120,22 @@
 - (void)removeItems:(id)arg1;
 - (void)addItems:(id)arg1;
 - (void)editSettings:(id)arg1;
-- (void)setRoleOfSelectedBuildFiles:(id)arg1;
-@property(readonly) BOOL _canSetRole;
+- (void)_setAttributeOfSelectedBuildFiles:(id)arg1 toBoolValue:(BOOL)arg2;
+- (void)_setRoleOfSelectedBuildFilesToString:(id)arg1;
+- (BOOL)_canSetRole;
+- (void)_showHeaderView;
 - (void)viewDidInstall;
 - (void)loadView;
 - (id)initWithBuildFileGroup:(id)arg1 ofBuildPhase:(id)arg2;
 - (id)initWithBuildPhase:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)nibName;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

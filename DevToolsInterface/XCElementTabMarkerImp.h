@@ -8,7 +8,7 @@
 
 #import "XCElementTabMarkerP-Protocol.h"
 
-@class NSMutableArray;
+@class NSMutableArray, NSString;
 
 @interface XCElementTabMarkerImp : NSObject <XCElementTabMarkerP>
 {
@@ -26,6 +26,12 @@
 - (void)removeTabber:(struct NSObject *)arg1;
 - (void)registerTabber:(struct NSObject *)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

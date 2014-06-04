@@ -7,12 +7,13 @@
 #import "NSObject.h"
 
 #import "DVTInvalidation-Protocol.h"
+#import "IDESourceControlWorkspaceUIHandlerProtocol-Protocol.h"
 #import "NSAlertDelegate-Protocol.h"
 #import "NSWindowDelegate-Protocol.h"
 
-@class DVTFilePath, DVTStackBacktrace, IDESourceControlCreateGitRepositoryOperationInfo, IDESourceControlNewCheckoutWindowController, IDESourceControlUpgradeWindowController, IDEWorkspaceWindowController, IDEXcodeServer, NSAlert, NSMutableSet, NSOperationQueue;
+@class DVTFilePath, DVTStackBacktrace, IDESourceControlCreateGitRepositoryOperationInfo, IDESourceControlNewCheckoutWindowController, IDESourceControlUpgradeWindowController, IDEWorkspaceDocument, IDEXcodeServer, NSAlert, NSMutableSet, NSOperationQueue, NSString;
 
-@interface IDESourceControlWorkspaceUIHandler : NSObject <DVTInvalidation, NSAlertDelegate, NSWindowDelegate>
+@interface IDESourceControlWorkspaceUIHandler : NSObject <IDESourceControlWorkspaceUIHandlerProtocol, DVTInvalidation, NSAlertDelegate, NSWindowDelegate>
 {
     id _sourceControlCommandContinuationBlock;
     id _upgradeContinuationBlock;
@@ -20,12 +21,10 @@
     NSAlert *_checkingForUpdatesAlert;
     NSAlert *_upgradeWorkignCopyAlert;
     IDESourceControlUpgradeWindowController *_upgradeWindowController;
-    id _didScanToken;
-    id _foundUpgradableToken;
     BOOL _initialScanAlertIsShowing;
     BOOL _initialWorkspaceScanIsComplete;
     BOOL _shouldShowUpgradeAlert;
-    IDEWorkspaceWindowController *_workspaceWindowController;
+    IDEWorkspaceDocument *_workspaceDocument;
     IDESourceControlNewCheckoutWindowController *_checkoutWC;
     NSMutableSet *_windowControllers;
     IDESourceControlCreateGitRepositoryOperationInfo *_operationInfo;
@@ -47,6 +46,7 @@
 - (void)finishedCreateGitRepositoryWithWorkingTree:(id)arg1;
 - (void)createGitRepositoryForFilePath:(id)arg1 workingTree:(id)arg2 repoName:(id)arg3 pushingToServer:(id)arg4;
 - (void)displayError:(id)arg1;
+- (void)shouldCreateLocalRepository:(BOOL)arg1 atFilePath:(id)arg2 pushToServer:(id)arg3;
 - (void)initialWorkspaceScanIsFinished;
 - (void)displayWaitingOnInitialWorkspaceScanAlertInWindow:(id)arg1 withContinuationBlock:(id)arg2;
 - (id)waitingOnInitialScanAlert;
@@ -54,20 +54,25 @@
 - (void)windowWillClose:(id)arg1;
 - (void)presentCheckoutsForProject:(id)arg1 scopingToWorkingCopyConfigurations:(id)arg2 attachedToWindow:(id)arg3;
 - (void)askToCheckOutDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
-- (void)missingCheckoutsNotification:(id)arg1;
-- (void)repositoryNewerNotification:(id)arg1;
+- (void)offerAdditionalWorkingCopies;
+- (void)warnAboutNewerRepositoryVersionWithError:(id)arg1;
 - (void)newWorkingCopyDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
-- (void)newWorkingCopyNotification:(id)arg1;
-- (void)showUpgradeWindowForWindow:(id)arg1 workingTreesNeedingUpgrade:(id)arg2 showsSuppressionButton:(BOOL)arg3;
-- (id)initWithWorkspaceWindowController:(id)arg1;
+- (void)askToShareNewWorkingCopy:(id)arg1;
+- (void)showUpgradeWindowForWindow:(id)arg1 workingCopiesNeedingUpgrade:(id)arg2 showsSuppressionButton:(BOOL)arg3;
+- (void)workspaceMonitorDidFinishScanning:(id)arg1;
+- (void)didFindUpgradableWorkingCopy;
+- (id)initWithWorkspaceDocument:(id)arg1;
 - (void)finishedUpgrade;
 - (BOOL)alertShowHelp:(id)arg1;
 - (void)upgradeAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
-@property(readonly) BOOL representsActiveWorkspaceWindow;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

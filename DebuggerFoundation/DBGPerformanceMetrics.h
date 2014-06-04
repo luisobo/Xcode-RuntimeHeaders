@@ -13,15 +13,16 @@
     DVTPerformanceMetric *_perceivedStepMetric;
     DVTPerformanceMetric *_variablesViewUpdateMetric;
     DVTPerformanceMetric *_nonPrimaryPCUpdateMetric;
-    DVTPerformanceMetric *_xpcDebuggingMetric;
+    DVTPerformanceMetric *_viewDebuggingSnapshotMetric;
 }
 
 + (id)defaultMetrics;
 - (void).cxx_destruct;
-- (void)xpcDebuggingCheckpoint:(id)arg1 withLabel:(id)arg2;
-- (void)xpcDebuggingCompleted:(id)arg1;
-- (void)xpcDebuggingStarted:(id)arg1;
-- (id)_xpcIdentifierForDebugSession:(id)arg1;
+- (void)viewDebuggerSnapshotCompleted:(id)arg1;
+- (void)viewDebuggerSnapshotStarted:(id)arg1;
+- (void)viewDebuggerHierarchyFetchCompleted:(id)arg1;
+- (void)viewDebuggerHierarchyFetchStarted:(id)arg1;
+- (id)_snapshotIdentifierForViewDebugger:(id)arg1;
 - (void)disassemblyFetchCompleted:(id)arg1;
 - (void)disassemblyFetchStarted:(id)arg1;
 - (void)formattedSummaryFetchCompleted:(id)arg1;

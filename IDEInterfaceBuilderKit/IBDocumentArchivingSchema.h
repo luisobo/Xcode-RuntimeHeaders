@@ -10,24 +10,25 @@
 
 @interface IBDocumentArchivingSchema : NSObject
 {
-    IBMutableIdentityDictionary *classesToElementNames;
-    NSMutableDictionary *elementNamesToClasses;
-    NSMutableDictionary *enumerationsByTypeNames;
-    NSMutableDictionary *bitmasksByTypeNames;
-    NSMutableDictionary *bitmasksByElementNames;
-    NSMutableSet *dictionaryNames;
-    NSMutableSet *groupNames;
-    NSMutableSet *arrayNames;
-    NSString *identifier;
+    IBMutableIdentityDictionary *_classesToElementNames;
+    NSMutableDictionary *_elementNamesToClasses;
+    NSMutableDictionary *_enumerationsByTypeNames;
+    NSMutableDictionary *_bitmasksByTypeNames;
+    NSMutableDictionary *_bitmasksByElementNames;
+    NSMutableSet *_dictionaryNames;
+    NSMutableSet *_groupNames;
+    NSMutableSet *_arrayNames;
+    NSString *_identifier;
 }
 
 + (id)sharedSchemaForSchemaExtensionIdentifier:(id)arg1;
 + (id)schemaForSchemaExtensionPointIdentifier:(id)arg1;
-@property(readonly) NSString *identifier; // @synthesize identifier;
++ (void)populateSchemaWithCodeProvidedAdditions:(id)arg1;
++ (void)populateSchemaWithPluginDataProvidedAdditions:(id)arg1;
+@property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (id)description;
 - (void)verify;
-- (BOOL)shouldVerify;
 - (id)bitmaskWithElementName:(id)arg1;
 - (id)bitmaskWithTypeName:(id)arg1;
 - (id)enumerationWithTypeName:(id)arg1;
@@ -36,9 +37,9 @@
 - (BOOL)isDefinedGroup:(id)arg1;
 - (BOOL)isDefinedArray:(id)arg1;
 - (BOOL)isDefinedDictionary:(id)arg1;
-- (void)addGroup:(id)arg1;
-- (void)addArray:(id)arg1;
-- (void)addDictionary:(id)arg1;
+- (void)addGroupName:(id)arg1;
+- (void)addArrayName:(id)arg1;
+- (void)addDictionaryName:(id)arg1;
 - (void)addBitmask:(id)arg1;
 - (void)addEnumeration:(id)arg1;
 - (void)addClass:(Class)arg1 withElementName:(id)arg2;

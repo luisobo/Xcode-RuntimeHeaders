@@ -11,8 +11,6 @@
 @interface NSTabView (IBNSTabViewIntegration)
 + (id)keyPathsForValuesAffectingIbInspectedInitialTabViewItem;
 + (id)keyPathsForValuesAffectingIbInspectedNumberOfTabViewItems;
-+ (id)keyPathsForValuesAffectingIbQualifyingInfoForDefaultLabel;
-+ (id)keyPathsForValuesAffectingIbWidgetType;
 - (unsigned long long)ibCustomSubviewLayoutStrategy;
 - (BOOL)ibShouldChildBeIncludedInArbitrationUnitWithParent:(id)arg1;
 - (BOOL)ibOverridablePrefersToVerticallyResizeWithContainer;

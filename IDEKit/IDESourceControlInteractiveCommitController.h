@@ -6,12 +6,18 @@
 
 #import <IDEKit/IDESourceControlMergeController.h>
 
+@class NSMutableSet;
+
 @interface IDESourceControlInteractiveCommitController : IDESourceControlMergeController
 {
+    NSMutableSet *_submodesToNotify;
 }
 
 + (BOOL)hasToggledDifferences:(id)arg1;
+- (void).cxx_destruct;
 - (void)startInteractiveCommit;
+- (void)removeSubmodeToNotify:(id)arg1;
+- (void)addSubmodeToNotify:(id)arg1;
 - (void)_validateMergeData:(id)arg1;
 - (void)revertChangesFromMergeData:(id)arg1 toItemAtFilePath:(id)arg2;
 - (void)applyChangesFromMergeData:(id)arg1 toItemAtFilePath:(id)arg2;

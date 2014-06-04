@@ -28,12 +28,15 @@
 @property(copy) NSString *reason; // @synthesize reason=_reason;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)initWithOptions:(unsigned long long)arg1 reason:(id)arg2;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

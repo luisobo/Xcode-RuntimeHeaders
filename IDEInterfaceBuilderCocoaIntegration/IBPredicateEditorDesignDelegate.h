@@ -8,6 +8,8 @@
 
 #import "NSRuleEditorDelegate-Protocol.h"
 
+@class NSString;
+
 @interface IBPredicateEditorDesignDelegate : NSObject <NSRuleEditorDelegate>
 {
 }
@@ -20,6 +22,12 @@
 - (long long)ruleEditor:(id)arg1 numberOfChildrenForCriterion:(id)arg2 withRowType:(unsigned long long)arg3;
 - (void)syncRowTemplatesUpToPredicateEditor:(id)arg1;
 - (void)respondToEditorChanges:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,14 +6,12 @@
 
 #import "IDEEditor.h"
 
-@class DVTObservingToken, GPUSharedTabUIState, GPUTraceDrawItem, GPUTraceOutline, GPUTraceOutlineItem, NSObject<OS_dispatch_queue>;
+@class DVTObservingToken, GPUSharedTabUIState, GPUTraceDisplayableItem, GPUTraceOutlineItem, NSObject<OS_dispatch_queue>;
 
 @interface GPUMainEditor : IDEEditor
 {
     NSObject<OS_dispatch_queue> *_queue;
-    GPUTraceDrawItem *_currentDrawItem;
     GPUSharedTabUIState *_sharedUIStateObj;
-    GPUTraceOutline *_outline;
     BOOL _navIdle;
     BOOL _ignoreDebugBarModelItemSelected;
     unsigned int _nextSliderIndex;
@@ -24,24 +22,26 @@
     GPUTraceOutlineItem *_nextNavItem;
     DVTObservingToken *_debugBarSelectedModelItemToken;
     DVTObservingToken *_gpuTraceCurrentLocationObserverToken;
+    GPUTraceDisplayableItem *_currentDisplayableItem;
 }
 
+@property(retain, nonatomic) GPUTraceDisplayableItem *currentDisplayableItem; // @synthesize currentDisplayableItem=_currentDisplayableItem;
 - (void).cxx_destruct;
 - (void)onDeviceCacheInvalidated:(id)arg1;
 - (void)updateMasterLocation:(id)arg1;
 - (void)_openSubEditorLocation:(id)arg1;
 - (void)handleOpenScrubberTriggeredNewLocation:(id)arg1;
-- (void)updateDrawPosition:(id)arg1;
-- (void)scrubToDrawIndex:(unsigned int)arg1;
-- (void)_updateScrubberForDrawItem:(id)arg1 isAssociatedDraw:(BOOL)arg2;
+- (void)updateDisplayablePosition:(id)arg1;
+- (void)scrubToDisplayableIndex:(unsigned int)arg1;
+- (void)_updateScrubberForDisplayableItem:(id)arg1 isAssociatedDisplayable:(BOOL)arg2;
 - (void)handleNewDocumentLocations:(id)arg1;
 - (void)updateCurrentTraceItem:(id)arg1;
 - (BOOL)_updateCurrentMainTraceItem:(id)arg1;
 - (void)_handleUpdatedDrawResponse:(id)arg1 navItem:(id)arg2 updateCompletionBlock:(id)arg3;
 - (void)handleUpdatedMainTraceItem:(id)arg1;
-- (id)updateViewsWithDrawItem:(id)arg1;
+- (id)updateViewsWithDisplayableItem:(id)arg1;
 - (id)_updateToStateItem:(id)arg1;
-- (id)updateToDrawItem:(id)arg1;
+- (id)updateToDisplayableItem:(id)arg1;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (void)_setupDebugBar;

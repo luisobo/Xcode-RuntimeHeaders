@@ -26,8 +26,8 @@
 @property BOOL activitiesDidChanged; // @synthesize activitiesDidChanged=_activitiesDidChanged;
 @property int activityCode; // @synthesize activityCode=_activityCode;
 @property(copy) NSString *activityMessage; // @synthesize activityMessage=_activityMessage;
-@property __weak SCMModel *model; // @synthesize model=_model;
-@property __weak SCMActivity *parent; // @synthesize parent=_parent;
+@property SCMModel *model; // @synthesize model=_model;
+@property SCMActivity *parent; // @synthesize parent=_parent;
 @property(retain) NSMutableDictionary *attributes; // @synthesize attributes=_attributes;
 @property(retain) NSMutableArray *activities; // @synthesize activities=_activities;
 - (BOOL)writeToFile:(id)arg1;

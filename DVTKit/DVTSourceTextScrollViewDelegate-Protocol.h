@@ -13,6 +13,6 @@
 - (void)scrollViewDidSetFrameSize:(id)arg1;
 - (void)scrollViewDidEndLiveResize:(id)arg1;
 - (void)scrollViewWillStartLiveResize:(id)arg1;
-- (void)scrollView:(id)arg1 didReceiveScrollWheelEvent:(id)arg2;
+- (BOOL)scrollView:(id)arg1 shouldHandleScrollWheelEvent:(id)arg2;
 @end
 

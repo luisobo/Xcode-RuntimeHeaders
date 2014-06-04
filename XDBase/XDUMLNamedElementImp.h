@@ -17,7 +17,7 @@
     NSMutableArray *_containingBuckets;
 }
 
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)removeContainingBucket:(id)arg1;
 - (void)addContainingBucket:(id)arg1;
 - (id)separator;
@@ -31,6 +31,11 @@
 - (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,7 +8,7 @@
 
 #import "NSMenuDelegate-Protocol.h"
 
-@class NSMenu;
+@class NSMenu, NSString;
 
 @interface DVTClippedTabsIndicator : DVTMainStatusAwareButton <NSMenuDelegate>
 {
@@ -37,6 +37,12 @@
 - (void)setDelegate:(id)arg1;
 - (id)init;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

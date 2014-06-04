@@ -9,19 +9,19 @@
 #import "IDECompletionDestinationDelegate-Protocol.h"
 #import "NSOpenSavePanelDelegate-Protocol.h"
 
-@class IDECompletionDestinationManager, IDEGroup, IDEWorkspace, NSPopUpButton, NSSavePanel, NSURL;
+@class IDECompletionDestinationManager, IDEGroup, IDEWorkspace, NSPopUpButton, NSSavePanel, NSString, NSURL;
 
 @interface IDETemplateCompletionAssistant : IDETemplateInstantiationAssistant <NSOpenSavePanelDelegate, IDECompletionDestinationDelegate>
 {
     BOOL _canInstantiateTemplate;
     id _completionBlock;
-    NSPopUpButton *_destinationWorkspacePopUp;
-    NSPopUpButton *_destinationGroupPopUp;
     IDEGroup *_initialDestinationGroup;
     IDEWorkspace *_initialDestinationWorkspace;
     IDECompletionDestinationManager *_destinationManager;
     BOOL _shouldReplaceExisting;
     NSSavePanel *_activeSavePanel;
+    NSPopUpButton *_destinationGroupPopUp;
+    NSPopUpButton *_destinationWorkspacePopUp;
 }
 
 @property(retain) NSPopUpButton *destinationWorkspacePopUp; // @synthesize destinationWorkspacePopUp=_destinationWorkspacePopUp;
@@ -56,9 +56,15 @@
 - (void)setAssistantContext:(id)arg1;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
-@property(copy) NSURL *destinationURL; // @dynamic destinationURL;
+@property(copy) NSURL *destinationURL;
 - (void)primitiveInvalidate;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

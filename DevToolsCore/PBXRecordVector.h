@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSMutableData;
+@class NSMutableData, NSObject<OS_dispatch_queue>;
 
 @interface PBXRecordVector : NSObject
 {
@@ -20,7 +20,7 @@
     unsigned long long _cursor;
     void *_records;
     unsigned long long _tag;
-    struct dispatch_queue_s *_vectorAccessQueue;
+    NSObject<OS_dispatch_queue> *_vectorAccessQueue;
 }
 
 - (void)replaceRecordsAtRow:(unsigned long long)arg1 withVector:(id)arg2;
@@ -36,7 +36,7 @@
 - (BOOL)getNextRecord:(void *)arg1;
 - (void)setTag:(unsigned long long)arg1;
 - (unsigned long long)getTag;
-- (BOOL)writeDataToFile:(id)arg1 queue:(struct dispatch_queue_s *)arg2;
+- (BOOL)writeDataToFile:(id)arg1 queue:(id)arg2;
 - (unsigned long long)count;
 - (void *)records;
 - (BOOL)setRecord:(const void *)arg1 atRow:(unsigned long long)arg2;
@@ -47,8 +47,8 @@
 - (unsigned long long)rowForRecord:(void *)arg1;
 - (void *)recordAtRow:(unsigned long long)arg1;
 - (void)dealloc;
-- (id)initWithContentsOfFile:(id)arg1 accessQueue:(struct dispatch_queue_s *)arg2;
-- (id)initRecordSize:(unsigned long long)arg1 capacity:(unsigned long long)arg2 accessQueue:(struct dispatch_queue_s *)arg3;
+- (id)initWithContentsOfFile:(id)arg1 accessQueue:(id)arg2;
+- (id)initRecordSize:(unsigned long long)arg1 capacity:(unsigned long long)arg2 accessQueue:(id)arg3;
 - (BOOL)getTopRecord:(void *)arg1;
 - (BOOL)popRecord:(void *)arg1;
 - (unsigned long long)pushRecord:(const void *)arg1;

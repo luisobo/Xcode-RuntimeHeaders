@@ -11,7 +11,7 @@
     id _requestHandlerBlock;
 }
 
-@property(readonly) id requestHandlerBlock; // @synthesize requestHandlerBlock=_requestHandlerBlock;
+@property(readonly, copy) id requestHandlerBlock; // @synthesize requestHandlerBlock=_requestHandlerBlock;
 - (void).cxx_destruct;
 - (id)handleRequest:(id)arg1;
 - (id)initWithBlock:(id)arg1;

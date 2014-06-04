@@ -13,11 +13,11 @@
 {
     NSArray *_cachedChildRepresentedObjects;
     GPUTraceDocumentLocation *_cachedLocation;
-    BOOL _displayRelatedDraws;
+    BOOL _displayRelatedDisplayables;
 }
 
 - (void).cxx_destruct;
-- (BOOL)displayRelatedDraws:(BOOL)arg1;
+- (BOOL)displayRelatedDisplayables:(BOOL)arg1;
 - (void)invalidateChildItems;
 - (id)childRepresentedObjects;
 - (id)contentDocumentLocation;

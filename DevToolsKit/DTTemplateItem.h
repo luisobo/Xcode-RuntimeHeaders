@@ -20,7 +20,7 @@
     DTTemplateItem *selectedSubtemplate;
 }
 
-@property DTTemplateItem *selectedSubtemplate; // @synthesize selectedSubtemplate;
+@property(nonatomic) DTTemplateItem *selectedSubtemplate; // @synthesize selectedSubtemplate;
 @property(readonly) NSArray *subtemplates; // @synthesize subtemplates;
 @property(readonly) NSString *subidentifier; // @synthesize subidentifier;
 @property(readonly) NSString *identifier; // @synthesize identifier;

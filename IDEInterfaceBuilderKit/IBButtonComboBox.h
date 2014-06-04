@@ -8,7 +8,7 @@
 
 #import "DVTColoredSpinnerDelegate-Protocol.h"
 
-@class DVTColoredSpinner, DVTDelayedInvocation, IBImageButton;
+@class DVTColoredSpinner, DVTDelayedInvocation, IBImageButton, NSString;
 
 @interface IBButtonComboBox : NSComboBox <DVTColoredSpinnerDelegate>
 {
@@ -37,6 +37,12 @@
 - (double)buttonSize;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -22,8 +22,9 @@
 - (BOOL)_acceptDrop:(id)arg1 onGroup:(id)arg2 proposedRow:(unsigned long long)arg3;
 - (BOOL)_addItems:(id)arg1 atRow:(unsigned long long)arg2;
 - (void)_setFrameworkRole:(id)arg1;
-- (id)_objectValueForRowColumnOfBuildFile:(id)arg1;
+- (id)_objectValueForRoleColumnOfBuildFile:(id)arg1;
 - (id)_dataCellForRoleOfBuildFile:(id)arg1;
+- (id)_titleOfRoleColumn;
 - (BOOL)_canSetRole;
 - (void)viewDidInstall;
 - (void)primitiveInvalidate;

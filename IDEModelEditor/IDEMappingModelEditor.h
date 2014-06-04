@@ -12,7 +12,7 @@
 #import "NSPathControlDelegate-Protocol.h"
 #import "NSSplitViewDelegate-Protocol.h"
 
-@class DVTControllerContentView, DVTDelayedMenuButton, DVTStackView_ML, IDECapsuleListView, IDEMappingModelAttributeMappingsController, IDEMappingModelRelationshipMappingsController, NSArray, NSPathControl, NSView;
+@class DVTControllerContentView, DVTDelayedMenuButton, DVTStackView_ML, IDECapsuleListView, IDEMappingModelAttributeMappingsController, IDEMappingModelRelationshipMappingsController, NSArray, NSPathControl, NSString, NSView;
 
 @interface IDEMappingModelEditor : IDEDMEditor <NSSplitViewDelegate, DVTOutlineViewDelegate, IDECapsuleListViewDataSource, NSPathControlDelegate, NSOpenSavePanelDelegate>
 {
@@ -71,6 +71,12 @@
 - (void)_configurePathControlOpenPanel:(id)arg1;
 - (void)_setupButtons;
 - (void)_setupPathControls;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

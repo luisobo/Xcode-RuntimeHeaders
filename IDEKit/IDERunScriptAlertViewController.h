@@ -8,7 +8,7 @@
 
 #import "NSOpenSavePanelDelegate-Protocol.h"
 
-@class NSMutableArray, NSPopUpButton;
+@class NSMutableArray, NSPopUpButton, NSString;
 
 @interface IDERunScriptAlertViewController : IDEAlertViewController <NSOpenSavePanelDelegate>
 {
@@ -26,6 +26,12 @@
 - (void)chooseScript:(id)arg1;
 - (void)selectScript:(id)arg1;
 - (void)setAlert:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -13,7 +13,7 @@
     NSDictionary *_updatedFileTimestamps;
 }
 
-+ (id)combineDiskMutationResuls:(id)arg1;
++ (id)combineDiskMutationResults:(id)arg1;
 + (id)mutationResultByUpdatingAndRecordingTimeStampsForContainingDirectoriesOfPaths:(id)arg1 upToBase:(id)arg2 error:(id *)arg3;
 + (id)emptyMutationResult;
 + (id)mutationResultWithTimeStampForParentDirectoryOfItemRemovedFromPath:(id)arg1 error:(id *)arg2;

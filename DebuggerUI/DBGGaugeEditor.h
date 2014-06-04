@@ -8,7 +8,7 @@
 
 #import "IDEDebugGaugeReportContentDelegate-Protocol.h"
 
-@class DBGDebugSession;
+@class DBGDebugSession, NSString;
 
 @interface DBGGaugeEditor : IDEDebugGaugeReportEditor <IDEDebugGaugeReportContentDelegate>
 {
@@ -22,6 +22,12 @@
 - (void)launchInstruments:(id)arg1;
 - (void)updateText:(id)arg1 inTextField:(id *)arg2 withTitle:(id)arg3 toView:(id)arg4;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 document:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

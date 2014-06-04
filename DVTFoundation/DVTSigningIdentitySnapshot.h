@@ -19,6 +19,7 @@
 }
 
 + (id)snapshotForTeamID:(id)arg1 account:(id)arg2;
++ (id)snapshotForTeamID:(id)arg1 account:(id)arg2 certificateUtilities:(id)arg3;
 @property(copy) NSArray *validNonSigningIdentitiesMatchingAccount; // @synthesize validNonSigningIdentitiesMatchingAccount=_validNonSigningIdentitiesMatchingAccount;
 @property(copy) NSArray *revokedSigningIdentitiesMatchingTeam; // @synthesize revokedSigningIdentitiesMatchingTeam=_revokedSigningIdentitiesMatchingTeam;
 @property(copy) NSArray *expiredSigningIdentitiesMatchingTeam; // @synthesize expiredSigningIdentitiesMatchingTeam=_expiredSigningIdentitiesMatchingTeam;

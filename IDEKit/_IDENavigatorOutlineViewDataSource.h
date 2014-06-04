@@ -10,22 +10,23 @@
 #import "NSOutlineViewDataSource-Protocol.h"
 #import "NSOutlineViewDelegate-Protocol.h"
 
-@class DVTMapTable, DVTStackBacktrace, IDENICFilterProxy, IDENavigatorOutlineView, NSArray, NSHashTable;
+@class DVTMapTable, DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, DVTWeakInterposer, IDENICFilterProxy, IDENavigatorOutlineView, NSArray, NSHashTable, NSString;
 
 @interface _IDENavigatorOutlineViewDataSource : NSObject <NSOutlineViewDataSource, NSOutlineViewDelegate, DVTInvalidation>
 {
     id _expandedItems;
     id _rootItems;
-    id _filterProgressObserver;
-    id _navigableItemGraphObserver;
-    id _navigableItemPropertyObserver;
-    id _forgottenNavigableItemsObserver;
+    DVTObservingToken *_filterProgressObserver;
+    DVTNotificationToken *_navigableItemGraphObserver;
+    DVTNotificationToken *_navigableItemPropertyObserver;
+    DVTNotificationToken *_forgottenNavigableItemsObserver;
     DVTMapTable *_navItemChangeCountByItem;
     IDENICFilterProxy *_coordinatorFilteredItems;
     unsigned long long _numberOfRowsBeforeExpandOrCollapse;
     BOOL _didWarnForUnusualRowHeight;
     IDENavigatorOutlineView *_outlineView;
     id _realObject;
+    DVTWeakInterposer *_realObjectInterposer;
     DVTMapTable *_trayOpenMap;
     double _currentModifiedExpansionTimestamp;
     struct {
@@ -45,7 +46,6 @@
         unsigned int realDelegateRespondsTo_ItemDidCollapseTray:1;
         unsigned int realDelegateRespondsTo_heightOfRowByItem:1;
         unsigned int realDelegateRespondsTo_shouldShowOutlineCellForItem:1;
-        unsigned int realDelegateRespondsTo_shouldShowOutlineCellForItemMouseHovering:1;
         unsigned int realDelegateRespondsTo_shouldExpandItem:1;
         unsigned int realDelegateRespondsTo_shouldCollapseItem:1;
         unsigned int realDelegateRespondsTo_shouldCollapseTrayForItem:1;
@@ -61,7 +61,6 @@
 }
 
 + (void)initialize;
-@property(retain) id realObject; // @synthesize realObject=_realObject;
 @property(retain) IDENavigatorOutlineView *outlineView; // @synthesize outlineView=_outlineView;
 - (void).cxx_destruct;
 - (double)outlineView:(id)arg1 heightOfRowByItem:(id)arg2;
@@ -96,6 +95,7 @@
 - (id)trayCellsForHeaderItem:(id)arg1;
 - (id)childItemsForItem:(id)arg1;
 - (void)refreshFilterPredicate;
+@property(retain) id realObject;
 @property(copy) NSArray *rootItems;
 - (void)processNavigableItemDidForgetNotification:(id)arg1;
 - (void)processNavigableItemGraphChangeNotification:(id)arg1;
@@ -107,7 +107,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

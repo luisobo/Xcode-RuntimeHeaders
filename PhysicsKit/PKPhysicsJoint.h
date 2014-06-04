@@ -13,21 +13,27 @@
 @interface PKPhysicsJoint : NSObject <NSCoding>
 {
     BOOL _inUse;
+    BOOL _implicit;
+    struct b2Joint *_baseJoint;
     PKPhysicsBody *_bodyA;
     PKPhysicsBody *_bodyB;
 }
 
-@property(retain) PKPhysicsBody *bodyB; // @synthesize bodyB=_bodyB;
-@property(retain) PKPhysicsBody *bodyA; // @synthesize bodyA=_bodyA;
+@property(retain, nonatomic) PKPhysicsBody *bodyB; // @synthesize bodyB=_bodyB;
+@property(retain, nonatomic) PKPhysicsBody *bodyA; // @synthesize bodyA=_bodyA;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) double reactionTorque;
+@property(readonly, nonatomic) struct CGVector reactionForce;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)create;
-@property(readonly) struct b2JointDef *_jointDef;
+@property(readonly, nonatomic) struct b2JointDef *_jointDef;
 - (void)set_inUse:(BOOL)arg1;
 - (BOOL)_inUse;
-@property struct b2Joint *_joint;
+- (void)set_implicit:(BOOL)arg1;
+- (BOOL)_implicit;
+@property(nonatomic) struct b2Joint *_joint;
 
 @end
 

@@ -13,6 +13,6 @@
 - (id)workspace;
 - (void)didRemoveBranch;
 - (void)willRemoveBranch;
-- (void)selectedBranch:(id)arg1;
+- (void)setSelectedBranch:(id)arg1;
 @end
 

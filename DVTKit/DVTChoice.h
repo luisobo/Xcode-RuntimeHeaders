@@ -22,8 +22,8 @@
 @property(readonly) id representedObject; // @synthesize representedObject=_representedObject;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
 @property(readonly) NSImage *image; // @synthesize image=_image;
-@property(readonly) NSString *toolTip; // @synthesize toolTip=_toolTip;
-@property(readonly) NSString *title; // @synthesize title=_title;
+@property(readonly, copy) NSString *toolTip; // @synthesize toolTip=_toolTip;
+@property(readonly, copy) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
 - (id)description;
 - (id)initWithTitle:(id)arg1 toolTip:(id)arg2 image:(id)arg3 representedObject:(id)arg4;

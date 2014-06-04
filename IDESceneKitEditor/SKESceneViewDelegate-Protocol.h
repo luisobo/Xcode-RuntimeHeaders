@@ -6,8 +6,6 @@
 
 @protocol SKESceneViewDelegate
 - (id)selectedNodeForSceneView:(id)arg1;
-- (void)sceneViewLostSelectionAnchor:(id)arg1;
-- (void)sceneView:(id)arg1 didUpdateSelectionAnchor:(struct CGPoint)arg2;
 - (void)sceneViewBeganFreeBrowsing:(id)arg1;
 - (void)sceneView:(id)arg1 droppedContent:(id)arg2 onNode:(id)arg3 geometryIndex:(long long)arg4;
 - (void)sceneView:(id)arg1 didSelectNode:(id)arg2 geometryIndex:(long long)arg3;

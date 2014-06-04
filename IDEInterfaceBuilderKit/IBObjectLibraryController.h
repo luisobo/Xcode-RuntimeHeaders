@@ -8,36 +8,32 @@
 
 #import "IBObjectContainerArchivingDelegate-Protocol.h"
 
-@class DVTNotificationToken, DVTPerformanceMetric, IBMutableIdentityDictionary, IBObjectLibraryTemplateController, IBTargetRuntime, NSString;
+@class DVTNotificationToken, DVTPerformanceMetric, IBMutableIdentityDictionary, IBTargetRuntime, NSString;
 
 @interface IBObjectLibraryController : IDELibraryController <IBObjectContainerArchivingDelegate>
 {
-    IBMutableIdentityDictionary *templateControllers;
-    IBObjectLibraryTemplateController *userAssetTemplateController;
-    IBTargetRuntime *targetRuntime;
-    NSString *currentDragMarker;
-    DVTPerformanceMetric *objectLibraryLoadingPerformanceMetric;
-    DVTNotificationToken *documentDidAddDraggedObjectsToken;
+    DVTNotificationToken *_documentDidAddDraggedObjectsToken;
+    IBMutableIdentityDictionary *_assetProviders;
+    IBTargetRuntime *_targetRuntime;
+    Class _documentClass;
+    NSString *_currentDragMarker;
+    DVTPerformanceMetric *_objectLibraryLoadingPerformanceMetric;
 }
 
-+ (id)defaultTargetRuntime;
-+ (Class)minimumTargetRuntimeClass;
-@property(copy) NSString *currentDragMarker; // @synthesize currentDragMarker;
-@property(retain) DVTPerformanceMetric *objectLibraryLoadingPerformanceMetric; // @synthesize objectLibraryLoadingPerformanceMetric;
-@property(retain, nonatomic) IBTargetRuntime *targetRuntime; // @synthesize targetRuntime;
+@property(retain) DVTPerformanceMetric *objectLibraryLoadingPerformanceMetric; // @synthesize objectLibraryLoadingPerformanceMetric=_objectLibraryLoadingPerformanceMetric;
+@property(copy) NSString *currentDragMarker; // @synthesize currentDragMarker=_currentDragMarker;
+@property(retain, nonatomic) Class documentClass; // @synthesize documentClass=_documentClass;
+@property(retain, nonatomic) IBTargetRuntime *targetRuntime; // @synthesize targetRuntime=_targetRuntime;
 - (void).cxx_destruct;
 - (void)libraryDidLoad;
 - (void)activeEditorDocumentDidChange:(id)arg1;
-- (BOOL)isApplicableDocument:(id)arg1;
-- (BOOL)isApplicableTargetRuntime:(id)arg1;
-- (void)loadAvailableLibraryTemplateControllers;
-- (void)removeLibraryTemplateControllers;
+- (void)loadAvailableLibraryAssetProviders;
+- (void)removeLibraryAssetProviders;
 - (void)userDidEditAsset:(id)arg1;
 - (BOOL)createAsset:(id *)arg1 forLibrarySourceWithIdentifier:(id *)arg2 fromPasteboard:(id)arg3;
-- (id)constructTemplateImageForDraggedObjects:(id)arg1;
-- (id)defaultLabelForObjectTemplate:(id)arg1;
+- (id)constructAssetImageForDraggedObjects:(id)arg1;
+- (id)defaultLabelForObjectAsset:(id)arg1;
 - (BOOL)canCreateAssetsFromPasteboard:(id)arg1 targetingLibrarySourceIdentifier:(id *)arg2;
-- (id)temporaryDocument;
 - (BOOL)depositAssets:(id)arg1;
 - (id)activeWorkspaceTabController;
 - (void)documentDidAddDraggedObjects:(id)arg1;
@@ -47,27 +43,32 @@
 - (id)bitmapDragImageOfAsset:(id)arg1;
 - (void)populatePasteboard:(id)arg1 withAssets:(id)arg2;
 - (void)populatePasteboard:(id)arg1 withAssets:(id)arg2 identifierMapTable:(id *)arg3;
-- (id)objectContainerFromTemplate:(id)arg1 forInsertionIntoPasteboard:(id)arg2;
 - (void)putObjectContainer:(id)arg1 onPasteboard:(id)arg2;
 - (void)objectContainerClass:(Class)arg1 didCreateObjectContainerWithCoder:(id)arg2;
 - (void)objectContainerClass:(Class)arg1 willCreateObjectContainerWithCoder:(id)arg2;
 - (void)objectContainer:(id)arg1 didCreateDataRepresentationWithCoder:(id)arg2 context:(id)arg3;
 - (void)objectContainer:(id)arg1 willCreateDataRepresentationWithCoder:(id)arg2 context:(id)arg3;
 - (id)searchStringsForAsset:(id)arg1;
-- (id)loadAssetsFromTemplateController:(id)arg1;
-- (void)prepareLibraryObjectTemplateForAssetCreation:(id)arg1 fromController:(id)arg2;
-- (id)createAssetForTemplate:(id)arg1 inNamespace:(id)arg2;
-- (id)createDetailedDescriptionFromTemplate:(id)arg1;
-- (id)createImageFromObjectTemplate:(id)arg1;
-- (id)libraryObjectTemplatesFromNibContent:(id)arg1 fromController:(id)arg2;
-- (BOOL)shouldIncludeLibraryObjectTemplate:(id)arg1 fromController:(id)arg2;
-- (id)userAssetTemplateController;
+- (id)initialAssetComparator;
+- (id)loadAssetsFromAssetProvider:(id)arg1;
+- (void)prepareObjectLibraryAssetForAssetCreation:(id)arg1 fromProvider:(id)arg2;
+- (id)createLibraryAssetForObjectAsset:(id)arg1 inNamespace:(id)arg2;
+- (id)createDetailedDescriptionFromAsset:(id)arg1;
+- (id)createImageFromObjectAsset:(id)arg1;
+- (id)objectLibraryAssetsFromNibContent:(id)arg1 fromProvider:(id)arg2;
+- (BOOL)shouldIncludeObjectLibraryAsset:(id)arg1 fromProvider:(id)arg2;
 - (id)objectPasteboardType;
-- (id)createUserAssetTemplateController;
-- (id)allObjectLibraryTemplateExtensions;
-- (id)templateControllerForExtension:(id)arg1;
+- (id)platform;
+- (id)allObjectLibraryAssetProviderExtensions;
+- (id)assetProviderForExtension:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

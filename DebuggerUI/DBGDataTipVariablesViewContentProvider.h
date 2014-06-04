@@ -9,7 +9,7 @@
 #import "IDEVariablesViewContentProvider-Protocol.h"
 #import "IDEVariablesViewContextMenuDelegate-Protocol.h"
 
-@class DBGDataValue, DVTStackBacktrace, IDEVariablesView, NSButtonCell, NSImage;
+@class DBGDataValue, DVTStackBacktrace, IDEVariablesView, NSButtonCell, NSImage, NSString;
 
 @interface DBGDataTipVariablesViewContentProvider : NSObject <IDEVariablesViewContextMenuDelegate, IDEVariablesViewContentProvider>
 {
@@ -30,7 +30,7 @@
 - (int)formatterSizeStyle;
 - (BOOL)showCellExpansion;
 - (int)compoundNodeFormatterModeForItem:(id)arg1 atRow:(long long)arg2;
-- (id)quickLookProviderForDataValue:(id)arg1;
+- (void)quickLookProviderForDataValue:(id)arg1 quickLookProviderHandler:(id)arg2;
 - (id)statusCellsDictionary;
 - (void)printDescriptionOfClickedRow:(id)arg1;
 - (void)toggleQuickLookForClickedRow:(id)arg1;
@@ -48,8 +48,12 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) BOOL loadingNewVariablesInBackground;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

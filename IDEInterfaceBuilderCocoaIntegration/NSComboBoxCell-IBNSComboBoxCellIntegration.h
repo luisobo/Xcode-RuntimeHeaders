@@ -9,7 +9,6 @@
 @interface NSComboBoxCell (IBNSComboBoxCellIntegration)
 + (id)keyPathsForValuesAffectingIbInspectedEnableAddingObjectValues;
 + (id)keyPathsForValuesAffectingIbShadowedObjectValues;
-+ (id)keyPathsForValuesAffectingIbWidgetType;
 - (Class)ibPreferredControlClass;
 - (BOOL)ibWouldClipContentWithCellSize:(struct CGSize)arg1;
 - (struct CGSize)ibPreferredSizeForSize:(struct CGSize)arg1;
@@ -24,5 +23,6 @@
 - (id)ibWidgetType;
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (id)ibDisplayNameForKeyPath:(id)arg1;
+- (id)ibDefaultDataValueForTableView:(id)arg1;
 @end
 

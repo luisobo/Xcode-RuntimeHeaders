@@ -9,12 +9,13 @@
 #import "NSTableViewDataSource-Protocol.h"
 #import "NSTableViewDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTColoredSpinner, DVTObservingToken, IDECreateBotAssistantContext, NSArray, NSPopUpButton, NSScrollView, NSTableView;
+@class DVTBorderedView, DVTColoredSpinner, DVTObservingToken, IDECreateBotAssistantContext, NSArray, NSPopUpButton, NSScrollView, NSString, NSTableView;
 
 @interface IDECreateBotDevicePickerAssistant : IDEAssistant <NSTableViewDelegate, NSTableViewDataSource>
 {
     DVTObservingToken *_destinationSelectionTypeObservingToken;
     BOOL _viewIsInstalled;
+    BOOL _showDevicesChooser;
     NSPopUpButton *_destinationSelectionTypePopUp;
     NSTableView *_tableView;
     DVTColoredSpinner *_progressIndicator;
@@ -23,9 +24,12 @@
     NSArray *_simulatorDevices;
     NSArray *_iosDevices;
     NSArray *_rowObjects;
+    long long _selectedDeviceType;
 }
 
 + (id)keyPathsForValuesAffectingCanGoForward;
+@property(nonatomic) BOOL showDevicesChooser; // @synthesize showDevicesChooser=_showDevicesChooser;
+@property(nonatomic) long long selectedDeviceType; // @synthesize selectedDeviceType=_selectedDeviceType;
 @property(retain, nonatomic) NSArray *rowObjects; // @synthesize rowObjects=_rowObjects;
 @property(retain, nonatomic) NSArray *iosDevices; // @synthesize iosDevices=_iosDevices;
 @property(retain, nonatomic) NSArray *simulatorDevices; // @synthesize simulatorDevices=_simulatorDevices;
@@ -51,6 +55,12 @@
 - (void)_processDevices:(id)arg1;
 - (void)_updateDevicesWithCompletionBlock:(id)arg1;
 - (BOOL)_shouldShowSimulators;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

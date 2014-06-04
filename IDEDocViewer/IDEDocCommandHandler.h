@@ -9,12 +9,18 @@
 #import "IDECommandHandler-Protocol.h"
 #import "NSMenuDelegate-Protocol.h"
 
+@class NSString;
+
 @interface IDEDocCommandHandler : NSObject <IDECommandHandler, NSMenuDelegate>
 {
 }
 
 + (BOOL)handleURL:(id)arg1 error:(id *)arg2;
 + (void)handleURLQueryString:(id)arg1;
++ (void)handleURL_recipe:(id)arg1;
++ (void)handleURL_URLString:(id)arg1;
++ (void)handleURL_appleRef:(id)arg1 platform:(id)arg2;
++ (void)handleURL_search:(id)arg1;
 + (BOOL)shouldRegisterURLHandlerForScheme:(id)arg1;
 + (void)showFullResultsPageForSearchString:(id)arg1;
 + (void)showAllResultsInContext:(id)arg1;
@@ -35,10 +41,13 @@
 - (void)showWhatsNewInXcode:(id)arg1;
 - (void)showXcodeReleaseNotes:(id)arg1;
 - (void)showXcodeHelp:(id)arg1;
+- (void)windowMenu_showDocumentation:(id)arg1;
 - (void)showDeveloperDocumentation:(id)arg1;
 - (void)showXcodeUserGuide:(id)arg1;
 - (void)documentation_showLibrary:(id)arg1;
 - (void)documentation_showBookmarks:(id)arg1;
+- (void)documentation_share_openPlayground:(id)arg1;
+- (void)documentation_share_showIBook:(id)arg1;
 - (void)documentation_share_showPDF:(id)arg1;
 - (void)documentation_share_messageLink:(id)arg1;
 - (void)documentation_share_emailLink:(id)arg1;
@@ -49,6 +58,12 @@
 - (void)searchDocumentationForSelectedText:(id)arg1;
 - (void)searchForString:(id)arg1;
 - (void)_addBookmarkForNode:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

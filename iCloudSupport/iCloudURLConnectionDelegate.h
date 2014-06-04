@@ -8,7 +8,7 @@
 
 #import "NSURLConnectionDelegate-Protocol.h"
 
-@class NSMutableData, NSURLConnection, iCloud;
+@class NSMutableData, NSString, NSURLConnection, iCloud;
 
 @interface iCloudURLConnectionDelegate : NSObject <NSURLConnectionDelegate>
 {
@@ -32,6 +32,12 @@
 - (void)connection:(id)arg1 didReceiveResponse:(id)arg2;
 - (id)initWithOwner:(id)arg1 dataHandler:(id)arg2;
 - (id)initWithOwner:(id)arg1 completionBlock:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

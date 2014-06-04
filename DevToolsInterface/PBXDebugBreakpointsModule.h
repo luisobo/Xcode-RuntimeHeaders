@@ -9,7 +9,7 @@
 #import "NSOutlineViewDelegate-Protocol.h"
 #import "XCSelectionSource-Protocol.h"
 
-@class NSButton, NSMutableArray, NSMutableSet, NSTableColumn, PBXBreakpointGroupList, PBXExtendedOutlineView;
+@class NSButton, NSMutableArray, NSMutableSet, NSString, NSTableColumn, PBXBreakpointGroupList, PBXExtendedOutlineView;
 
 @interface PBXDebugBreakpointsModule : PBXProjectModule <XCSelectionSource, NSOutlineViewDelegate>
 {
@@ -77,6 +77,12 @@
 - (id)outlineView:(id)arg1 objectValueForTableColumn:(id)arg2 byItem:(id)arg3;
 - (id)outlineView:(id)arg1 child:(long long)arg2 ofItem:(id)arg3;
 - (long long)outlineView:(id)arg1 numberOfChildrenOfItem:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

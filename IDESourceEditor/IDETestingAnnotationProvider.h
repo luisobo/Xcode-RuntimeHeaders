@@ -9,14 +9,12 @@
 #import "DVTTextAnnotationDelegate-Protocol.h"
 #import "IDETestsInFileObserver-Protocol.h"
 
-@class DVTObservingToken, IDEAnnotationContext, NSURL;
+@class IDEAnnotationContext, NSString, NSURL;
 
 @interface IDETestingAnnotationProvider : DVTAnnotationProvider <DVTTextAnnotationDelegate, IDETestsInFileObserver>
 {
     double _lastHoverEventTimeInterval;
     struct CGPoint _lastHoverEventPoint;
-    DVTObservingToken *_runSessionsObservingToken;
-    BOOL _isRunningTests;
     IDEAnnotationContext *_context;
     NSURL *_fileURL;
 }
@@ -27,7 +25,6 @@
 - (void).cxx_destruct;
 - (void)annotation:(id)arg1 willDrawInTextSidebarView:(id)arg2 withAnnotationsInSameLine:(id)arg3;
 - (id)contextMenuItemsForAnnotation:(id)arg1 inTextSidebarView:(id)arg2;
-- (id)_createMenuItem:(id)arg1 annotation:(id)arg2;
 - (BOOL)shouldMoveCursorForAnnotation:(id)arg1;
 - (void)didEndRolloverOnAnnotation:(id)arg1 inTextSidebarView:(id)arg2 event:(id)arg3;
 - (void)didBeginRolloverOnAnnotation:(id)arg1 inTextSidebarView:(id)arg2 event:(id)arg3;
@@ -39,6 +36,12 @@
 - (void)providerWillUninstall;
 - (id)initWithContext:(id)arg1;
 - (id)_createAnnotationForSourceDocument:(id)arg1 test:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

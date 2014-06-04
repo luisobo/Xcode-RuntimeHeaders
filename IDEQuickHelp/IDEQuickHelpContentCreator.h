@@ -12,7 +12,7 @@
 }
 
 @property unsigned long long exclusionMask; // @synthesize exclusionMask=_exclusionMask;
-- (id)contentForClangCommentBlock:(id)arg1;
+- (id)contentForXMLCommentBlock:(id)arg1 withQueryResult:(id)arg2;
 - (id)contentForQueryResult:(id)arg1;
 - (id)_declarationFromElement:(id)arg1;
 - (id)elementForLinkingString:(id)arg1 withURL:(id)arg2 titleAttribute:(id)arg3 elementName:(id)arg4;

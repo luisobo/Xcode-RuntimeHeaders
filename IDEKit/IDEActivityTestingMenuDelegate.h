@@ -8,6 +8,8 @@
 
 #import "NSMenuDelegate-Protocol.h"
 
+@class NSString;
+
 @interface IDEActivityTestingMenuDelegate : NSObject <NSMenuDelegate>
 {
 }
@@ -16,6 +18,12 @@
 - (void)stopAllActivitiesFromMenuItem:(id)arg1;
 - (void)doActionFromMenuItem:(id)arg1;
 - (id)workspace;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,14 +6,15 @@
 
 #import "NSObject.h"
 
-@class NSMutableDictionary, NSMutableSet;
+@class NSDictionary, NSSet;
 
 @interface IBIntegratorBundleManager : NSObject
 {
-    NSMutableDictionary *runtimesToIntegratedClassesToIntegratorBundleIdentifier;
-    NSMutableDictionary *runtimesToClassesToDependentFrameworks;
-    NSMutableSet *replacedIntegratorBundleIdentifiers;
-    NSMutableSet *integratedClasses;
+    NSDictionary *_platformsToIntegratedClassesToIntegratorBundleIdentifier;
+    NSDictionary *_platformsToClassesToDependentFrameworks;
+    NSSet *_replacedIntegratorBundleIdentifiers;
+    NSSet *_integratedClasses;
+    NSDictionary *_integratorBundlesByIdentifier;
 }
 
 + (id)sharedInstance;
@@ -22,6 +23,7 @@
 - (BOOL)hasPluginIdentifierBeenSupercededByIntegratorBundleIdentifier:(id)arg1;
 - (id)integratorBundleDependencyForClassName:(id)arg1 inDocument:(id)arg2;
 - (id)frameworkDependenciesForClassName:(id)arg1 inDocument:(id)arg2;
+- (id)integratorBundleForIdentifier:(id)arg1;
 - (id)init;
 
 @end

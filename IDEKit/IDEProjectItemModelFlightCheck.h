@@ -9,11 +9,13 @@
 #import "DVTInvalidation-Protocol.h"
 #import "IDEFlightChecking-Protocol.h"
 
-@class DVTStackBacktrace, NSError, NSString;
+@class DVTStackBacktrace, NSError, NSObject<OS_dispatch_queue>, NSString;
 
 @interface IDEProjectItemModelFlightCheck : NSObject <IDEFlightChecking, DVTInvalidation>
 {
-    struct dispatch_queue_s *_activityQueue;
+    NSObject<OS_dispatch_queue> *_activityQueue;
+    BOOL _requiresAccountAndTeamSelection;
+    BOOL _longRunning;
     BOOL _failed;
     int _status;
     id _backgroundResolutionBlock;
@@ -29,12 +31,14 @@
 @property(nonatomic) BOOL failed; // @synthesize failed=_failed;
 @property(retain, nonatomic) NSError *resolutionError; // @synthesize resolutionError=_resolutionError;
 @property(nonatomic) int status; // @synthesize status=_status;
-@property(readonly, nonatomic) NSString *pastTitle; // @synthesize pastTitle=_pastTitle;
-@property(readonly, nonatomic) NSString *resolvingTitle; // @synthesize resolvingTitle=_resolvingTitle;
-@property(readonly, nonatomic) NSString *title; // @synthesize title=_title;
-@property(readonly, nonatomic) id backgroundValidityCheckBlock; // @synthesize backgroundValidityCheckBlock=_backgroundValidityCheckBlock;
-@property(readonly, nonatomic) id backgroundUnresolutionBlock; // @synthesize backgroundUnresolutionBlock=_backgroundUnresolutionBlock;
-@property(readonly, nonatomic) id backgroundResolutionBlock; // @synthesize backgroundResolutionBlock=_backgroundResolutionBlock;
+@property(readonly, copy, nonatomic) NSString *pastTitle; // @synthesize pastTitle=_pastTitle;
+@property(readonly, copy, nonatomic) NSString *resolvingTitle; // @synthesize resolvingTitle=_resolvingTitle;
+@property(readonly, copy, nonatomic) NSString *title; // @synthesize title=_title;
+@property(readonly, copy, nonatomic) id backgroundValidityCheckBlock; // @synthesize backgroundValidityCheckBlock=_backgroundValidityCheckBlock;
+@property(readonly, copy, nonatomic) id backgroundUnresolutionBlock; // @synthesize backgroundUnresolutionBlock=_backgroundUnresolutionBlock;
+@property(readonly, copy, nonatomic) id backgroundResolutionBlock; // @synthesize backgroundResolutionBlock=_backgroundResolutionBlock;
+@property(readonly, nonatomic, getter=isLongRunning) BOOL longRunning; // @synthesize longRunning=_longRunning;
+@property(readonly, nonatomic) BOOL requiresAccountAndTeamSelection; // @synthesize requiresAccountAndTeamSelection=_requiresAccountAndTeamSelection;
 - (void).cxx_destruct;
 - (void)revert;
 - (void)unresolve;
@@ -50,7 +54,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

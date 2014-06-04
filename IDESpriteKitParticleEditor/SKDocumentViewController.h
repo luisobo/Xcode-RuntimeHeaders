@@ -7,23 +7,54 @@
 #import "IDEEditor.h"
 
 #import "DVTReplacementViewDelegate-Protocol.h"
+#import "SKFileSystemEventStreamDelegate-Protocol.h"
 
-@class SKDocument, SKEditView;
+@class EditOverlayView, NSArray, NSButton, NSPopUpButton, NSString, NSTextField, SKDocument, SKEditView, SKFileSystemEventStream, SKToolbarBackgroundView;
 
-@interface SKDocumentViewController : IDEEditor <DVTReplacementViewDelegate>
+@interface SKDocumentViewController : IDEEditor <DVTReplacementViewDelegate, SKFileSystemEventStreamDelegate>
 {
+    NSButton *_pausePlayButton;
+    NSTextField *_pausePlayTextField;
+    NSButton *_zoomInButton;
+    NSButton *_zoomRestoreButton;
+    NSButton *_zoomOutButton;
+    NSPopUpButton *_addPopupButton;
+    SKToolbarBackgroundView *_toolbarBackgroundView;
+    SKFileSystemEventStream *_eventStream;
     SKEditView *_mainView;
+    EditOverlayView *_overlayView;
+    NSArray *_currentSelectedItems;
+    NSArray *_currentSelectedDocumentLocations;
 }
 
-@property(retain, nonatomic) SKEditView *mainView; // @synthesize mainView=_mainView;
++ (BOOL)canProvideCurrentSelectedItems;
+@property(copy) NSArray *currentSelectedDocumentLocations; // @synthesize currentSelectedDocumentLocations=_currentSelectedDocumentLocations;
+@property(copy) NSArray *currentSelectedItems; // @synthesize currentSelectedItems=_currentSelectedItems;
+@property(nonatomic) __weak EditOverlayView *overlayView; // @synthesize overlayView=_overlayView;
+@property(nonatomic) __weak SKEditView *mainView; // @synthesize mainView=_mainView;
 - (void).cxx_destruct;
+- (void)setToolbarBackgroundViewActive:(BOOL)arg1;
+- (void)didEvaluateActionsOverride;
+- (void)replaceDidEvaluateActions:(id)arg1;
+- (void)buttonPressed:(id)arg1;
 - (void)takeFocus;
-- (id)currentSelectedDocumentLocations;
-- (id)currentSelectedItems;
+- (void)selectDocumentLocations:(id)arg1;
 @property(readonly) SKDocument *document;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
+- (void)receivedShaderSourceEditorStartedNotification:(id)arg1;
+- (void)rebuildShaderForPath:(id)arg1 skipIfNoChange:(BOOL)arg2;
+- (void)fileSystemEventStream:(id)arg1 notedChangeAtPath:(id)arg2 scanRecursively:(BOOL)arg3;
+- (void)registerFSEvents;
+- (void)invalidateFSEvents;
+- (id)_activeWorkspace;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 document:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

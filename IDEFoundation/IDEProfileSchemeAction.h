@@ -26,6 +26,7 @@
     NSString *_savedToolIdentifier;
     IDESchemeBuildableReference *_profileBuildableReferenceToUseForMacroExpansion;
     DVTNotificationToken *_buildablesToken;
+    BOOL _askForAppToLaunch;
 }
 
 + (id)keyPathsForValuesAffectingBuildableReferenceToUseForMacroExpansion;
@@ -34,6 +35,7 @@
 + (id)keyPathsForValuesAffectingDoesNonActionWork;
 + (id)keyPathsForValuesAffectingSubtitle;
 + (void)initialize;
+@property BOOL askForAppToLaunch; // @synthesize askForAppToLaunch=_askForAppToLaunch;
 @property(retain, nonatomic) NSString *savedToolIdentifier; // @synthesize savedToolIdentifier=_savedToolIdentifier;
 @property BOOL debugDocumentVersioning; // @synthesize debugDocumentVersioning=_debugDocumentVersioning;
 @property BOOL ignoresPersistentStateOnLaunch; // @synthesize ignoresPersistentStateOnLaunch=_ignoresPersistentStateOnLaunch;
@@ -66,7 +68,11 @@
 - (id)commandLineArgumentsForDevice:(id)arg1;
 @property(readonly) NSMutableArray *mutableCommandLineArgumentEntries; // @dynamic mutableCommandLineArgumentEntries;
 @property(copy) NSArray *commandLineArgumentEntries; // @dynamic commandLineArgumentEntries;
+- (id)_profileOperationWithExecutionEnvironment:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 testManager:(id)arg5 overridingTestingSpecifiers:(id)arg6 schemeActionRecord:(id)arg7 environmentVariables:(id)arg8 commandLineArguments:(id)arg9 outError:(id *)arg10 actionCallbackBlock:(id)arg11;
+- (id)_testRunnerForTestManager:(id)arg1 overridingTestingSpecifiers:(id)arg2;
 - (id)profileOperationForExecutionEnvironment:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 schemeActionRecord:(id)arg5 outError:(id *)arg6 actionCallbackBlock:(id)arg7;
+- (id)profileOperationWithTestManager:(id)arg1 executionEnvironment:(id)arg2 withBuildOperation:(id)arg3 buildParameters:(id)arg4 buildableProductDirectories:(id)arg5 overridingTestingSpecifiers:(id)arg6 schemeActionRecord:(id)arg7 outError:(id *)arg8 actionCallbackBlock:(id)arg9;
+- (id)_filePathsForContainersAndExtensions;
 - (void)_setAnalysisToolService:(id)arg1;
 - (void)_updateCurrentTool;
 - (void)_updateAnalysisToolService;
@@ -80,6 +86,12 @@
 - (void)_commonInit;
 - (id)initFromXMLUnarchiver:(id)arg1 archiveVersion:(float)arg2;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -14,9 +14,6 @@
 
 @interface IDEConsoleTextView : DVTCompletingTextView <DVTTextFindable, DVTFindBarFindable, DVTInvalidation>
 {
-    int _logMode;
-    id <IDEConsoleTextViewStandardIODelegate> _stdIODelegate;
-    id <IDEConsoleTextViewObjectiveCExpressionRangeDelegate> _openingBracketLocationDelegate;
     unsigned long long _startLocationOfLastLine;
     long long _lastRemovableTextLocation;
     NSString *_promptString;
@@ -25,7 +22,6 @@
     NSMutableArray *_itemsToAppendAfterDelay;
     unsigned long long _viewableCharactersExceededHit;
     BOOL _wasScrolledToBottomWhenHidden;
-    BOOL _shouldDoCommandBySelector;
     NSDictionary *_debuggerPromptTextAttributes;
     NSDictionary *_debuggerInputTextAttributes;
     NSDictionary *_debuggerOutputTextAttributes;
@@ -33,13 +29,16 @@
     NSDictionary *_debuggedTargetOutputTextAttributes;
     NSDictionary *_textTypeToAttributes;
     DVTObservingToken *_suggestCompletionsObserver;
+    int _logMode;
+    id <IDEConsoleTextViewStandardIODelegate> _standardIODelegate;
+    id <IDEConsoleTextViewObjectiveCExpressionRangeDelegate> _openingBracketLocationDelegate;
 }
 
 + (id)autoCompleteChars;
 + (void)initialize;
 @property(nonatomic) int logMode; // @synthesize logMode=_logMode;
 @property(retain) id <IDEConsoleTextViewObjectiveCExpressionRangeDelegate> openingBracketLocationDelegate; // @synthesize openingBracketLocationDelegate=_openingBracketLocationDelegate;
-@property(retain) id <IDEConsoleTextViewStandardIODelegate> standardIODelegate; // @synthesize standardIODelegate=_stdIODelegate;
+@property(retain) id <IDEConsoleTextViewStandardIODelegate> standardIODelegate; // @synthesize standardIODelegate=_standardIODelegate;
 - (void).cxx_destruct;
 - (id)startingLocationForFindBar:(id)arg1 findingBackwards:(BOOL)arg2;
 - (void)dvtFindBar:(id)arg1 didUpdateCurrentResult:(id)arg2;
@@ -62,14 +61,12 @@
 - (id)writablePasteboardTypes;
 - (BOOL)shouldChangeTextInRange:(struct _NSRange)arg1 replacementString:(id)arg2;
 - (void)keyDown:(id)arg1;
-- (void)doCommandBySelector:(SEL)arg1;
 - (void)_sendKeyImmediatelyIfNecessary:(id)arg1;
 - (void)_moveInsertionPointToEnd;
 - (id)userEnteredTextAfterPromptUpToLocation:(unsigned long long)arg1;
 - (id)userEnteredTextAfterPrompt;
 - (void)repeatInput:(id)arg1;
 - (void)_appendPromptConsoleItem:(id)arg1;
-- (void)_appendPromptString:(id)arg1 shouldCauseNotifications:(BOOL)arg2;
 - (void)_appendNonPromptSameConsoleItems:(id)arg1;
 - (void)appendConsoleItemsImmediatelyWithoutScrolling:(id)arg1;
 - (void)_appendConsoleItemsWaitingToBeAppended;
@@ -97,7 +94,6 @@
 - (BOOL)acceptsFirstMouse:(id)arg1;
 - (void)viewDidUnhide;
 - (void)viewDidHide;
-- (void)scrollWheel:(id)arg1;
 - (void)primitiveInvalidate;
 - (void)awakeFromNib;
 - (void)_dvt_commonInit;
@@ -106,7 +102,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property unsigned long long supportedMatchingOptions;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 

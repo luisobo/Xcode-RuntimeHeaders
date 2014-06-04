@@ -19,7 +19,7 @@
 #import "NSPopoverDelegate-Protocol.h"
 #import "NSTextViewDelegate-Protocol.h"
 
-@class DVTDispatchLock, DVTLayoutManager, DVTNotificationToken, DVTObservingToken, DVTOperation, DVTScopeBarController, DVTSourceExpression, DVTSourceTextView, DVTStackBacktrace, DVTTextDocumentLocation, DVTTextSidebarView, DVTWeakInterposer, IDEAnalyzerResultsExplorer, IDENoteAnnotationExplorer, IDESingleFileProcessingToolbarController, IDESourceCodeDocument, IDESourceCodeEditorAnnotationProvider, IDESourceCodeEditorContainerView, IDESourceCodeHelpNavigationRequest, IDESourceCodeNavigationRequest, IDESourceCodeSingleLineBlameProvider, IDESourceControlLogDetailViewController, IDEViewController<IDESourceEditorViewControllerHost>, NSArray, NSDictionary, NSMutableArray, NSOperationQueue, NSPopover, NSProgressIndicator, NSScrollView, NSString, NSTimer, NSTrackingArea, NSView;
+@class DVTDispatchLock, DVTLayoutManager, DVTNotificationToken, DVTObservingToken, DVTOperation, DVTSDK, DVTScopeBarController, DVTSourceExpression, DVTSourceLanguageService, DVTSourceTextView, DVTStackBacktrace, DVTTextDocumentLocation, DVTTextSidebarView, DVTWeakInterposer, IDEAnalyzerResultsExplorer, IDENoteAnnotationExplorer, IDESingleFileProcessingToolbarController, IDESourceCodeDocument, IDESourceCodeEditorAnnotationProvider, IDESourceCodeEditorContainerView, IDESourceCodeHelpNavigationRequest, IDESourceCodeNavigationRequest, IDESourceCodeSingleLineBlameProvider, IDESourceControlLogDetailViewController, IDEViewController<IDESourceEditorViewControllerHost>, NSArray, NSDictionary, NSMutableArray, NSObject<OS_dispatch_queue>, NSOperationQueue, NSPopover, NSProgressIndicator, NSScrollView, NSString, NSTimer, NSTrackingArea, NSView;
 
 @interface IDESourceCodeEditor : IDEEditor <NSTextViewDelegate, NSMenuDelegate, NSPopoverDelegate, DVTSourceTextViewDelegate, DVTFindBarFindable, IDESourceExpressionSource, IDERefactoringExpressionSource, IDETextVisualizationHost, IDEOpenQuicklyJumpToSupport, IDEComparisonEditorHostContext, IDESourceControlLogDetailDelegate, IDETestingSelection>
 {
@@ -34,7 +34,7 @@
     DVTSourceExpression *_mouseOverExpression;
     IDESourceCodeNavigationRequest *_currentNavigationRequest;
     IDESourceCodeHelpNavigationRequest *_helpNavigationRequest;
-    struct dispatch_queue_s *_symbolLookupQueue;
+    NSObject<OS_dispatch_queue> *_symbolLookupQueue;
     NSMutableArray *_stateChangeObservingTokens;
     DVTObservingToken *_topLevelItemsObserverToken;
     DVTObservingToken *_firstResponderObserverToken;
@@ -49,7 +49,6 @@
     DVTNotificationToken *_blueprintDidChangeNotificationObservingToken;
     DVTNotificationToken *_textStorageDidProcessEndingObserver;
     DVTNotificationToken *_textViewBoundsDidChangeObservingToken;
-    DVTNotificationToken *_sourceCodeDocumentWillSaveNotificationToken;
     DVTNotificationToken *_sourceCodeDocumentDidSaveNotificationToken;
     DVTNotificationToken *_indexDidChangeNotificationToken;
     IDESourceCodeEditorAnnotationProvider *_annotationProvider;
@@ -62,6 +61,7 @@
     IDESourceControlLogDetailViewController *_blameDetailController;
     IDESingleFileProcessingToolbarController *_singleFileProcessingToolbarController;
     NSView *_emptyView;
+    NSView *_contentGenerationBackgroundView;
     NSProgressIndicator *_contentGenerationProgressIndicator;
     NSTimer *_contentGenerationProgressTimer;
     NSOperationQueue *_tokenizeQueue;
@@ -69,7 +69,7 @@
     unsigned long long _tokenizeGeneration;
     NSTrackingArea *_mouseTracking;
     NSDictionary *_previouslyRestoredStateDictionary;
-    long long _previousLineNumber;
+    struct _NSRange _previousSelectedLineRange;
     unsigned long long _lastFocusedAnnotationIndex;
     struct _NSRange _lastEditedCharRange;
     DVTTextDocumentLocation *_continueToHereDocumentLocation;
@@ -84,6 +84,7 @@
         unsigned int reserved:3;
     } _hvcFlags;
     BOOL _trackingMouse;
+    BOOL _scheduledInitialSetup;
     BOOL _initialSetupDone;
     BOOL _nodeTypesPrefetchingStarted;
     BOOL _isUninstalling;
@@ -95,13 +96,14 @@
 + (long long)version;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 @property(retain) IDESingleFileProcessingToolbarController *singleFileProcessingToolbarController; // @synthesize singleFileProcessingToolbarController=_singleFileProcessingToolbarController;
+@property struct _NSRange lastEditedCharacterRange; // @synthesize lastEditedCharacterRange=_lastEditedCharRange;
 @property(retain) IDEAnalyzerResultsExplorer *analyzerResultsExplorer; // @synthesize analyzerResultsExplorer=_analyzerResultsExplorer;
 @property(retain, nonatomic) DVTSourceExpression *mouseOverExpression; // @synthesize mouseOverExpression=_mouseOverExpression;
 @property(retain) IDESourceCodeEditorContainerView *containerView; // @synthesize containerView=_containerView;
+@property(retain) DVTLayoutManager *layoutManager; // @synthesize layoutManager=_layoutManager;
 @property(retain) DVTSourceTextView *textView; // @synthesize textView=_textView;
 @property(retain) NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
 - (void).cxx_destruct;
-- (BOOL)editorWantsAnnotationsFromProviderClass:(Class)arg1;
 - (BOOL)editorDocumentIsCurrentRevision;
 - (BOOL)editorIsHostedInComparisonEditor;
 - (id)_documentLocationForLineNumber:(long long)arg1;
@@ -117,6 +119,9 @@
 - (void)_cancelCurrentNavigationRequest;
 - (void)contextMenu_revealInSymbolNavigator:(id)arg1;
 - (void)jumpToSelection:(id)arg1;
+- (void)jumpToOriginalSourceOfGeneratedFileWithShiftPlusAlternate:(id)arg1;
+- (void)jumpToOriginalSourceOfGeneratedFileWithAlternate:(id)arg1;
+- (void)jumpToOriginalSourceOfGeneratedFile:(id)arg1;
 - (void)jumpToDefinitionWithShiftPlusAlternate:(id)arg1;
 - (void)jumpToDefinitionWithAlternate:(id)arg1;
 - (void)jumpToDefinition:(id)arg1;
@@ -133,6 +138,7 @@
 - (void)mouseMoved:(id)arg1;
 - (void)deregisterForMouseEvents;
 - (void)registerForMouseEvents;
+@property(readonly, nonatomic) DVTSourceLanguageService *languageService;
 - (struct CGRect)expressionFrameForExpression:(id)arg1;
 - (id)importStringInExpression:(id)arg1;
 - (BOOL)isExpressionModuleImport:(id)arg1;
@@ -145,7 +151,7 @@
 - (BOOL)isExpressionFunctionOrMethodDefinition:(id)arg1;
 - (BOOL)isExpressionInPlainCode:(id)arg1;
 - (BOOL)isExpressionWithinComment:(id)arg1;
-- (void)symbolsForExpression:(id)arg1 inQueue:(struct dispatch_queue_s *)arg2 completionBlock:(id)arg3;
+- (void)symbolsForExpression:(id)arg1 inQueue:(id)arg2 completionBlock:(id)arg3;
 @property(readonly, nonatomic) NSString *selectedText;
 @property(readonly, nonatomic) struct CGRect currentSelectionFrame;
 - (void)_sendDelayedSelectedExpressionDidChangeMessage;
@@ -226,7 +232,7 @@
 - (void)textViewDidScroll:(id)arg1;
 - (void)textViewDidFinishAnimatingScroll:(id)arg1;
 - (id)textView:(id)arg1 menu:(id)arg2 forEvent:(id)arg3 atIndex:(unsigned long long)arg4;
-- (void)tokenizableItemsForItemAtRange:(struct _NSRange)arg1 completionBlock:(id)arg2;
+- (void)tokenizableRangesWithRange:(struct _NSRange)arg1 completionBlock:(id)arg2;
 - (void)textViewBoundsDidChange:(id)arg1;
 - (void)textView:(id)arg1 handleMouseDidExitSidebar:(id)arg2;
 - (void)textView:(id)arg1 handleMouseDidMoveOverSidebar:(id)arg2 atLineNumber:(unsigned long long)arg3;
@@ -256,8 +262,6 @@
 - (id)startingLocationForFindBar:(id)arg1 findingBackwards:(BOOL)arg2;
 - (void)dvtFindBar:(id)arg1 didUpdateCurrentResult:(id)arg2;
 - (void)dvtFindBar:(id)arg1 didUpdateResults:(id)arg2;
-- (void)_sourceCodeDocumentDidSave:(id)arg1;
-- (void)_sourceCodeDocumentWillSave:(id)arg1;
 - (void)didSetupEditor;
 - (void)takeFocus;
 - (BOOL)canBecomeMainViewController;
@@ -291,7 +295,12 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) DVTSDK *sdk;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

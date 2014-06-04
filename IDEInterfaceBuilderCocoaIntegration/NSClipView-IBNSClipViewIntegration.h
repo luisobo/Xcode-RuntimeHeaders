@@ -12,8 +12,8 @@
 - (BOOL)ibChildPrefersToVerticallyResizeWithContainer:(id)arg1;
 - (BOOL)ibChildPrefersToHorizontallyResizeWithContainer:(id)arg1;
 - (void)ibUnarchiveAutolayoutProperties:(id)arg1;
-- (void)setIbArchivedSubviews:(id)arg1;
-- (id)ibArchivedSubviews;
+- (void)setIbArchivedSubviews:(id)arg1 withConfigurationPropertyStorage:(id)arg2;
+- (id)ibArchivedSubviewsWithConfigurationPropertyStorage:(id)arg1;
 - (void)setIbShadowedSubviews:(id)arg1;
 - (id)ibShadowedSubviews;
 - (BOOL)ibHasResolved14284306;

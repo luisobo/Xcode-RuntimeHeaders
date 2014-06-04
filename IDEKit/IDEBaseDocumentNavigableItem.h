@@ -6,12 +6,15 @@
 
 #import <IDEKit/IDEFileNavigableItem.h>
 
+@class DVTNotificationToken;
+
 @interface IDEBaseDocumentNavigableItem : IDEFileNavigableItem
 {
-    id _dirtyNotificationToken;
+    DVTNotificationToken *_dirtyNotificationToken;
 }
 
 - (void).cxx_destruct;
+- (void)primitiveInvalidate;
 - (void)invalidateImage;
 - (void)_updateEditorDocument:(id)arg1;
 

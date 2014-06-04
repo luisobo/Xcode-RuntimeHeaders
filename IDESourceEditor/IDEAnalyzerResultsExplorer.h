@@ -9,7 +9,7 @@
 #import "DVTMessageBubbleAnnotationDelegate-Protocol.h"
 #import "DVTScopeBarContentController-Protocol.h"
 
-@class DVTNotificationToken, IDEActivityLogAnalyzerResultMessage, IDEAnalyzerResultsVisualization, IDESourceCodeEditor, NSArray, NSArrayController, NSImageView, NSMutableArray, NSPopUpButton, NSSegmentedControl;
+@class DVTNotificationToken, IDEActivityLogAnalyzerResultMessage, IDEAnalyzerResultsVisualization, IDESourceCodeEditor, NSArray, NSArrayController, NSImageView, NSMutableArray, NSPopUpButton, NSSegmentedControl, NSString;
 
 @interface IDEAnalyzerResultsExplorer : DVTViewController <DVTScopeBarContentController, DVTMessageBubbleAnnotationDelegate>
 {
@@ -53,6 +53,12 @@
 - (void)awakeFromNib;
 - (id)initWithEditor:(id)arg1;
 - (id)initUsingDefaultNib;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

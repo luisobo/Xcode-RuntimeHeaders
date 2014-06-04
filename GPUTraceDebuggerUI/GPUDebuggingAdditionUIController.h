@@ -8,7 +8,7 @@
 
 #import "IDEDebuggingAdditionUIController-Protocol.h"
 
-@class DVTExtension, DVTStackBacktrace, GPUDebuggingAddition, GPUTraceSession, IDEBreakpointManager, IDEEditorArea, IDEWorkspaceDocument, IDEWorkspaceTabController, NSCell;
+@class DVTExtension, DVTStackBacktrace, GPUDebuggingAddition, GPUTraceSession, IDEBreakpointManager, IDEEditorArea, IDEWorkspaceDocument, IDEWorkspaceTabController, NSCell, NSString;
 
 @interface GPUDebuggingAdditionUIController : NSObject <IDEDebuggingAdditionUIController>
 {
@@ -27,16 +27,18 @@
 @property(retain) GPUDebuggingAddition *debuggingAddition; // @synthesize debuggingAddition=_debuggingAddition;
 @property(readonly) IDEWorkspaceTabController *workspaceTabController; // @synthesize workspaceTabController=_workspaceTabController;
 - (void).cxx_destruct;
+- (void)_onEditorDocumentSaved:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)stepToNextMarker:(id)arg1;
 - (void)stepToPreviousMarker:(id)arg1;
+- (void)_stepToMarker:(BOOL)arg1;
 - (void)stepToNextCall:(id)arg1;
 - (void)stepToPreviousCall:(id)arg1;
-- (void)stepToNextDrawCall:(id)arg1;
-- (void)stepToPreviousDrawCall:(id)arg1;
+- (void)stepToNextDisplayableCall:(id)arg1;
+- (void)stepToPreviousDisplayableCall:(id)arg1;
 - (id)_currentMainTraceItem;
-- (void)runExpertWithExistingCapture:(id)arg1;
-- (void)releaseOpenGLESFrame:(id)arg1;
+- (void)runInvestigatorWithExistingCapture:(id)arg1;
+- (void)ReleaseGPUFrame:(id)arg1;
 - (void)openLocation:(id)arg1 withEventType:(unsigned long long)arg2;
 - (void)openTraceItem:(id)arg1 withEventType:(unsigned long long)arg2;
 - (void)openSelectedNavigableItem:(id)arg1 withEventType:(unsigned long long)arg2;
@@ -58,7 +60,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

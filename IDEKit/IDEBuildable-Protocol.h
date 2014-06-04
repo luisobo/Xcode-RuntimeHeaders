@@ -8,25 +8,32 @@
 #import "IDEBuildSettingsProvider-Protocol.h"
 #import "NSObject-Protocol.h"
 
-@class NSSet, NSString;
+@class IDEEntityIdentifier, NSSet, NSString;
 
 @protocol IDEBuildable <IDEBuildSettingsProvider, DVTInvalidation, NSObject>
-@property(readonly) NSString *legacyIdentifier;
+@property(readonly, copy) NSString *legacyIdentifier;
+@property(readonly) NSSet *pathsOfFilesInCopyFilesBuildPhases;
+@property(readonly) NSSet *pathsOfFilesInLinkedBinariesPhase;
 @property(readonly) NSSet *namesOfLinkedBinaries;
 @property(readonly) BOOL hasRecursiveDependencyCycle;
 @property(readonly) NSString *toolTip;
 @property(readonly) NSString *displayName;
 @property(readonly) id <IDEBlueprint> blueprint;
-@property(readonly) NSString *buildableIdentifier;
-- (id)createBuilderForBuildCommand:(int)arg1 withBuildTaskQueueSet:(id)arg2 parameters:(id)arg3 buildOnlyTheseFiles:(id)arg4 restorePersistedBuildResults:(BOOL)arg5;
+@property(readonly, copy) IDEEntityIdentifier *entityIdentifier;
+@property(readonly, copy) NSString *buildableIdentifier;
+- (id)createBuilderForBuildCommand:(int)arg1 withBuildTaskQueueSet:(id)arg2 parameters:(id)arg3 buildOnlyTheseFiles:(id)arg4 restorePersistedBuildResults:(BOOL)arg5 withManager:(id)arg6;
 - (id)implicitDependenciesForBuildParameters:(id)arg1 executionEnvironment:(id)arg2 returningMessages:(id *)arg3;
 - (id)directDependencies;
 - (id)uncachedOrderedRecursiveDependenciesIncludingSelf:(BOOL)arg1 visitedBuildables:(id)arg2;
 - (id)orderedRecursiveDependenciesIncludingSelf:(BOOL)arg1;
+- (id)toolSearchPathWithBuildParameters:(id)arg1;
 - (id)absolutePathByEvaluatingBuildSettingExpressionString:(id)arg1 withBuildParameters:(id)arg2;
 - (id)stringByEvaluatingBuildSettingExpressionString:(id)arg1 withBuildParameters:(id)arg2;
 - (id)evaluatedStringListValueForBuildSetting:(id)arg1 withBuildParameters:(id)arg2;
 - (id)evaluatedStringValueForBuildSetting:(id)arg1 withBuildParameters:(id)arg2;
 - (id)allBuildSettingNamesWithBuildParameters:(id)arg1;
+
+@optional
+- (Class)buildOperationManagerClass;
 @end
 

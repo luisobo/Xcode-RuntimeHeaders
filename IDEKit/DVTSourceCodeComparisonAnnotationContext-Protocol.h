@@ -9,8 +9,8 @@
 @class DVTDiffDescriptor, DVTDiffSession, NSURL;
 
 @protocol DVTSourceCodeComparisonAnnotationContext <NSObject>
-@property(readonly) DVTDiffSession *diffSession;
-@property(readonly) DVTDiffDescriptor *diffDescriptor;
+@property(readonly) __weak DVTDiffSession *diffSession;
+@property(readonly) __weak DVTDiffDescriptor *diffDescriptor;
 @property(readonly) int dataSourceType;
 @property(readonly) NSURL *documentURL;
 @end

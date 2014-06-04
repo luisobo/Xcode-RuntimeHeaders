@@ -6,41 +6,33 @@
 
 #import <IDEInterfaceBuilderKit/IBAbstractClassProvider.h>
 
-@class IBTargetRuntime, NSMutableDictionary;
+@class IBPlatform, NSMutableDictionary;
 
 @interface IBSystemClassProvider : IBAbstractClassProvider
 {
-    NSMutableDictionary *classNameToPrimaryPartialClassDescriptionMap;
-    NSMutableDictionary *classNameToPartialClassDescriptionsMap;
-    NSMutableDictionary *classNameToSubclassesMap;
-    IBTargetRuntime *targetRuntime;
+    NSMutableDictionary *_classNameToPrimaryPartialClassDescriptionMap;
+    NSMutableDictionary *_classNameToPartialClassDescriptionsMap;
+    NSMutableDictionary *_classNameToSubclassesMap;
+    IBPlatform *_platform;
+    NSMutableDictionary *_partialDescriptionsBySourceIdentifier;
 }
 
-+ (id)systemClassProviderForTargetRuntime:(id)arg1;
++ (id)systemClassProviderForPlatform:(id)arg1;
 - (void).cxx_destruct;
+- (id)partialClassDescriptions;
 - (void)loadSystemClassDescriptions;
 - (void)loadSystemClassDescriptionsFromExtensionParameter:(id)arg1;
 - (id)filePathForClassDescriptionsParameter:(id)arg1;
-- (void)addPartialClassDescription:(id)arg1 fromExtensionWithIdentifier:(id)arg2;
+- (void)addPartialClassDescriptionsWithStaticDescriptions:(id)arg1 fromExtensionWithIdentifier:(id)arg2;
 - (void)addKnownSubclass:(id)arg1 toClassNamed:(id)arg2;
 - (id)conflictingClassDescriptionsPreventingIntegrationOfClassDescriptionBecauseOfConflictingSuperClasses:(id)arg1;
 - (BOOL)wouldAddingClassNamed:(id)arg1 withSuperClassNamedIntroduceACycle:(id)arg2;
 - (id)lineageOfClassNamed:(id)arg1;
 - (id)partialClassDescriptionsForClassNamed:(id)arg1;
-- (id)collectionTypeForToManyOutlet:(id)arg1 forClassNamed:(id)arg2;
-- (id)typeForNamedRelation:(id)arg1 ofRelationshipType:(long long)arg2 forClassNamed:(id)arg3;
-- (id)namedRelationsOfRelationshipType:(long long)arg1 forClassNamed:(id)arg2 withLineage:(id)arg3 recursive:(BOOL)arg4;
-- (id)namedRelationsOfRelationshipType:(long long)arg1 forClassNamed:(id)arg2;
-- (id)namedRelationsOfRelationshipType:(long long)arg1;
-- (id)classNamesForClassesWithActionsNamed:(id)arg1;
 - (id)classNames;
-- (id)descendantsOfClassesNamed:(id)arg1;
-- (id)subclassesOfClassNamed:(id)arg1;
 - (id)superclassOfClassNamed:(id)arg1;
-- (BOOL)hasDescriptionOfClassNamed:(id)arg1;
 - (id)partialClassDescriptionsExcludedForEncoding;
-- (id)partialClassDescriptionsForEncodingClassNamed:(id)arg1;
-- (id)initWithTargetRuntime:(id)arg1;
+- (id)initWithPlatform:(id)arg1;
 
 @end
 

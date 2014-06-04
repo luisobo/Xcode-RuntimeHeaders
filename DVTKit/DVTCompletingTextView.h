@@ -4,13 +4,13 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2011 by Steve Nygard.
  */
 
-#import "NSTextView.h"
+#import <DVTKit/DVTTextView.h>
 
 #import "DVTLayoutManagerDelegate-Protocol.h"
 
-@class DVTFoldingLayoutManager, DVTFoldingManager, DVTSourceCodeLanguage, DVTTextCompletionController, DVTTextCompletionDataSource, NSColor;
+@class DVTFoldingLayoutManager, DVTFoldingManager, DVTLayoutManager, DVTSourceCodeLanguage, DVTTextCompletionController, DVTTextCompletionDataSource, DVTTextStorage, NSColor, NSString;
 
-@interface DVTCompletingTextView : NSTextView <DVTLayoutManagerDelegate>
+@interface DVTCompletingTextView : DVTTextView <DVTLayoutManagerDelegate>
 {
     DVTTextCompletionController *_completionController;
     DVTTextCompletionDataSource *_completionsDataSource;
@@ -63,8 +63,8 @@
 - (id)_formatBlockLiteralFromDeclaration:(id)arg1 lineCount:(unsigned long long *)arg2;
 - (void)textStorage:(id)arg1 didEndEditRange:(struct _NSRange)arg2 changeInLength:(long long)arg3;
 - (void)textStorage:(id)arg1 willEndEditRange:(struct _NSRange)arg2 changeInLength:(long long)arg3;
-- (id)textStorage;
-- (id)layoutManager;
+@property(readonly) DVTTextStorage *textStorage;
+@property(readonly) DVTLayoutManager *layoutManager;
 - (void)didInsertCompletionTextAtRange:(struct _NSRange)arg1;
 - (void)invalidateDisplayForRange:(struct _NSRange)arg1;
 - (unsigned long long)draggingEntered:(id)arg1;
@@ -119,12 +119,17 @@
 @property(readonly) DVTFoldingManager *foldingManager;
 @property(readonly) DVTFoldingLayoutManager *foldingLayoutManager;
 - (BOOL)removeMenusNotInWhiteList:(id)arg1 fromMenu:(id)arg2 removeSeparators:(BOOL)arg3;
+- (void)dvt_shouldDeallocate;
 - (id)cell;
 - (id)selectedCell;
 - (id)accessibilityAttributeValue:(id)arg1;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
 @property(retain) id <DVTCompletingTextViewDelegate> delegate; // @dynamic delegate;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

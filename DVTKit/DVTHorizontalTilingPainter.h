@@ -8,7 +8,7 @@
 
 #import "DVTPainter-Protocol.h"
 
-@class NSImage;
+@class NSImage, NSString;
 
 @interface DVTHorizontalTilingPainter : NSObject <DVTPainter>
 {
@@ -19,6 +19,12 @@
 - (void).cxx_destruct;
 - (void)drawInRect:(struct CGRect)arg1 forView:(id)arg2;
 - (id)initWithHorizontalActiveImageTile:(id)arg1 inactiveImage:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

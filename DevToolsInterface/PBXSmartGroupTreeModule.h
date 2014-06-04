@@ -12,7 +12,7 @@
 #import "XCFosterParentHostProtocol-Protocol.h"
 #import "XCSelectionSource-Protocol.h"
 
-@class NSDictionary, NSMutableArray, PBXFosterParent, PBXGroup, PBXTableColumnManager;
+@class NSDictionary, NSMutableArray, NSString, PBXFosterParent, PBXGroup, PBXTableColumnManager;
 
 @interface PBXSmartGroupTreeModule : PBXGroupTreeModule <NSOutlineViewDataSource, NSOutlineViewDelegate, PBXTableColumnProvider, XCSelectionSource, XCFosterParentHostProtocol>
 {
@@ -150,6 +150,12 @@
 - (void)addTransients:(id)arg1 toLocation:(int)arg2;
 - (id)transientsForLocation:(int)arg1;
 - (void)dealloc;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

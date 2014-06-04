@@ -9,7 +9,7 @@
 #import "DVTInvalidation-Protocol.h"
 #import "IDEComparisonEditorDataSource-Protocol.h"
 
-@class DVTStackBacktrace, IDEEditorDocument, NSOperationQueue;
+@class DVTStackBacktrace, IDEEditorDocument, NSOperationQueue, NSString;
 
 @interface IDESourceControlComparisonEditorDataSource : NSObject <IDEComparisonEditorDataSource, DVTInvalidation>
 {
@@ -42,7 +42,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

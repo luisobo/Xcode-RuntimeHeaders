@@ -8,7 +8,7 @@
 
 #import "IDENavigationHUDSelectionDrivenLayer-Protocol.h"
 
-@class CAScrollLayer, IDENavigationHUDSelection, IDENavigationHUDTabBarLayer, IDEWorkspaceWindowController, NSArray, NSDictionary, NSMapTable;
+@class CAScrollLayer, IDENavigationHUDSelection, IDENavigationHUDTabBarLayer, IDEWorkspaceWindowController, NSArray, NSDictionary, NSMapTable, NSString;
 
 @interface IDENavigationHUDWorkspaceWindowLayer : IDENavigationHUDAbstractWorkspaceWindowLayer <IDENavigationHUDSelectionDrivenLayer>
 {
@@ -45,6 +45,12 @@
 @property(readonly) BOOL canCreateNewTab;
 - (void)dispose;
 - (id)initWithNavigationHUDController:(id)arg1 workspaceWindowController:(id)arg2 initialSelection:(id)arg3 options:(id)arg4;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

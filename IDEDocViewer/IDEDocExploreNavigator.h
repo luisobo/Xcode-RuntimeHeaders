@@ -10,16 +10,11 @@
 #import "NSOutlineViewDataSource-Protocol.h"
 #import "NSOutlineViewDelegate-Protocol.h"
 
-@class DVTObservingToken, IDEDocExploreOutlineView, IDENavigableItem, IDENavigatorDataCell, NSArray, NSImage, NSMapTable, NSMutableArray, NSMutableSet, NSSet;
+@class DVTObservingToken, IDEDocExploreOutlineView, NSArray, NSMapTable, NSMutableArray, NSMutableSet, NSSet, NSString;
 
 @interface IDEDocExploreNavigator : IDEDocNavigator <NSOutlineViewDataSource, NSOutlineViewDelegate, DSMDocSetLoaderListener>
 {
     IDEDocExploreOutlineView *_docSetsOutlineView;
-    NSImage *_docSetsImage;
-    NSImage *_categoryImage;
-    IDENavigatorDataCell *_docSetCell;
-    IDENavigatorDataCell *_nodeCell;
-    IDENavigableItem *_selectedNode;
     NSSet *_expandedItems;
     NSArray *_selectedObjects;
     BOOL _restoringState;
@@ -58,7 +53,6 @@
 - (id)outlineView:(id)arg1 child:(long long)arg2 ofItem:(id)arg3;
 - (id)outlineView:(id)arg1 selectionIndexesForProposedSelection:(id)arg2;
 - (void)_loadEditorWithSelectedNode;
-- (id)nodeCell;
 - (void)docSetWillBeUnloadedOrUpdated:(id)arg1;
 - (void)docSetDidUnload:(id)arg1;
 - (void)docSetDidLoad:(id)arg1;
@@ -71,10 +65,14 @@
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 
 // Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(copy) NSSet *expandedItems; // @dynamic expandedItems;
-@property(readonly) NSMutableSet *mutableExpandedItems; // @dynamic mutableExpandedItems;
-@property(readonly) NSMutableArray *mutableSelectedObjects; // @dynamic mutableSelectedObjects;
+@property(readonly) unsigned long long hash;
+@property(readonly, copy) NSMutableSet *mutableExpandedItems; // @dynamic mutableExpandedItems;
+@property(readonly, copy) NSMutableArray *mutableSelectedObjects; // @dynamic mutableSelectedObjects;
 @property(copy) NSArray *selectedObjects; // @dynamic selectedObjects;
+@property(readonly) Class superclass;
 
 @end
 

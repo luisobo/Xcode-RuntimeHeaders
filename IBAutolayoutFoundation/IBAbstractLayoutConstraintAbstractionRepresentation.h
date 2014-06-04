@@ -9,6 +9,8 @@
 #import "IBBinaryArchiving-Protocol.h"
 #import "NSCoding-Protocol.h"
 
+@class NSString;
+
 @interface IBAbstractLayoutConstraintAbstractionRepresentation : NSObject <IBBinaryArchiving, NSCoding>
 {
 }
@@ -19,6 +21,12 @@
 - (id)initWithCoder:(id)arg1;
 - (Class)abstractionClass;
 - (id)abstractionWithLayoutConstraintClass:(Class)arg1 objectForObjectRepresentationBlock:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

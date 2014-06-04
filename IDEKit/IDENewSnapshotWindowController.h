@@ -6,13 +6,14 @@
 
 #import "NSWindowController.h"
 
-@class DVTTextViewWithPlaceholder, IDEWorkspace, NSString, NSWindow;
+@class DVTBorderedView, IDEWorkspace, NSString, NSTextView, NSWindow;
 
 @interface IDENewSnapshotWindowController : NSWindowController
 {
     NSString *_snapshotName;
     NSString *_snapshotDescription;
-    DVTTextViewWithPlaceholder *_descriptionTextView;
+    NSTextView *_descriptionTextView;
+    DVTBorderedView *_borderView;
     IDEWorkspace *_workspace;
     IDENewSnapshotWindowController *_wc;
     NSWindow *_hostWindow;

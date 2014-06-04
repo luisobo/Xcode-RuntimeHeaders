@@ -8,6 +8,8 @@
 
 #import <DVTKit/DVTClickableLayer-Protocol.h>
 
+@class NSString;
+
 @interface DVTClickableTextLayer : DVTTextLayer <DVTClickableLayer>
 {
     id _clickHandlerBlock;
@@ -28,6 +30,12 @@
 - (void)fireClickHandler;
 - (void)layerShouldShowUnclickedState;
 - (void)layerShouldShowClickedState;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -8,7 +8,7 @@
 
 #import "NSTextFieldDelegate-Protocol.h"
 
-@class NSButton, NSTextField;
+@class NSButton, NSString, NSTextField;
 
 @interface PBXTextFieldEntryModule : PBXModule <NSTextFieldDelegate>
 {
@@ -40,6 +40,12 @@
 - (unsigned long long)moduleWindowStyleMask;
 - (Class)moduleWindowClass;
 - (id)loadModuleWindow;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

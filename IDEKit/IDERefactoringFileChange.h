@@ -17,7 +17,7 @@
 
 @property BOOL shouldBeApplied; // @synthesize shouldBeApplied=_shouldBeApplied;
 @property(readonly) IDERefactoringFileChangeLocation *fileLocation; // @synthesize fileLocation=_fileLocation;
-@property(readonly) IDERefactoringFileChangeSet *fileChangeSet; // @synthesize fileChangeSet=_fileChangeSet;
+@property(readonly) __weak IDERefactoringFileChangeSet *fileChangeSet; // @synthesize fileChangeSet=_fileChangeSet;
 - (void).cxx_destruct;
 - (BOOL)isEqualToFileChange:(id)arg1;
 - (BOOL)isEqual:(id)arg1;

@@ -9,7 +9,7 @@
 #import "IBGroupDelegate-Protocol.h"
 #import "NSCoding-Protocol.h"
 
-@class IBMemberIDMap, IBMutableIdentityDictionary, IBObjectRecord, IBObjectRecordSet, NSArray, NSMutableDictionary, NSSet, NSString;
+@class IBMemberIDMap, IBMutableIdentityDictionary, IBObjectRecord, IBObjectRecordSet, NSArray, NSMutableDictionary, NSString;
 
 @interface IBObjectContainer : NSObject <IBGroupDelegate, NSCoding>
 {
@@ -20,46 +20,29 @@
     IBMutableIdentityDictionary *connectionsToIdentifiers;
     NSMutableDictionary *identifiersToConnections;
     NSMutableDictionary *objectIDsToObjectRecords;
-    NSMutableDictionary *unlocalizedProperties;
-    NSMutableDictionary *localizations;
-    NSSet *cachedLocalizationKeys;
-    NSString *activeLocalization;
     NSString *sourceID;
     NSString *uniqueID;
-    long long maxID;
-    BOOL usesAutoincrementingIDs;
     NSArray *verificationIssues;
-    IBObjectRecord *_rootRecord;
-    NSObject *_rootObject;
     IBMemberIDMap *_groupContainer;
     NSMutableDictionary *_memberMetadata;
-    id <IBObjectContainerDelegate> delegate;
+    IBObjectRecord *_rootRecord;
+    BOOL _usesAutoincrementingIDs;
+    NSObject *_rootObject;
+    long long _maxID;
+    id <IBObjectContainerDelegate> _delegate;
 }
 
 + (id)objectContainerFromData:(id)arg1 withArchivingDelegate:(id)arg2;
 + (id)objectContainerWithInitilallyDesignableChildrenOfObjects:(id)arg1 usingAutoincrementingIDs:(BOOL)arg2;
-@property id <IBObjectContainerDelegate> delegate; // @synthesize delegate;
-@property(nonatomic) BOOL usesAutoincrementingIDs; // @synthesize usesAutoincrementingIDs;
+@property id <IBObjectContainerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) long long maxID; // @synthesize maxID=_maxID;
+@property(nonatomic) BOOL usesAutoincrementingIDs; // @synthesize usesAutoincrementingIDs=_usesAutoincrementingIDs;
+@property(readonly) NSObject *rootObject; // @synthesize rootObject=_rootObject;
 - (void).cxx_destruct;
 - (void)removeObject:(id)arg1;
 - (void)setSourceID:(id)arg1;
 - (id)uniqueID;
 - (id)sourceID;
-- (id)invalidLocalizablePropertiesForLocalization:(id)arg1;
-- (long long)numberOfInvalidLocalizablePropertiesForLocalization:(id)arg1;
-- (void)validateLocalizableProperty:(id)arg1 onObject:(id)arg2 forLocalization:(id)arg3;
-- (void)invalidateLocalizableProperty:(id)arg1 onObject:(id)arg2 forLocalization:(id)arg3;
-- (BOOL)isProperty:(id)arg1 ofObject:(id)arg2 localizedForLocalization:(id)arg3;
-- (void)invalidateLocalizableProperty:(id)arg1 onObject:(id)arg2;
-- (void)setLocalizedProperty:(id)arg1 toValue:(id)arg2 forObject:(id)arg3 inLocalization:(id)arg4;
-- (id)localizedProperty:(id)arg1 forObject:(id)arg2 inLocalization:(id)arg3;
-- (void)removeLocalizationNamed:(id)arg1;
-- (void)addLocalizationNamed:(id)arg1;
-@property(copy) NSString *activeLocalization;
-@property(readonly) NSSet *localizations;
-- (long long)numberOfLocalizations;
-- (id)unwrapLocalizationValue:(id)arg1;
-- (id)wrapLocalizationValue:(id)arg1;
 - (void)removeMetadataForKey:(id)arg1 onObject:(id)arg2;
 - (void)unionMetadata:(id)arg1 ofObject:(id)arg2;
 - (void)setMetadata:(id)arg1 ofObject:(id)arg2;
@@ -107,7 +90,8 @@
 - (void)removeConnection:(id)arg1 context:(id)arg2;
 - (id)connectionForConnectionID:(id)arg1;
 - (id)connectionIDForConnection:(id)arg1;
-- (id)connectionIDForConnectionIfContained:(id)arg1;
+- (void)replaceConnection:(id)arg1 withConnection:(id)arg2;
+- (id)connectionsBeforeConnection:(id)arg1;
 - (void)addConnection:(id)arg1 withConnectionID:(id)arg2;
 - (void)addConnection:(id)arg1 withConnectionID:(id)arg2 sourceIndex:(long long)arg3;
 - (void)addConnection:(id)arg1 withConnectionID:(id)arg2 blockForInsertingIntoConnectionsBySource:(id)arg3;
@@ -130,7 +114,6 @@
 - (id)objectsForObjectIDs:(id)arg1;
 - (id)objectForObjectID:(id)arg1;
 - (id)objectIDForObject:(id)arg1;
-- (id)objectIDForObjectIfContained:(id)arg1;
 - (BOOL)areObjectsSiblings:(id)arg1;
 - (id)childrenOfObject:(id)arg1;
 - (long long)numberOfChildrenOfObject:(id)arg1;
@@ -145,16 +128,14 @@
 - (BOOL)isObject:(id)arg1 aChildOfObject:(id)arg2;
 - (void)insertObject:(id)arg1 asChildOfParent:(id)arg2 atIndex:(long long)arg3 withExplicitLabel:(id)arg4 andOID:(id)arg5;
 - (id)validatedIdentifier:(id)arg1;
-@property long long maxID; // @synthesize maxID;
 - (id)topLevelObjects;
 - (long long)numberOfObjects;
 - (id)objects;
 - (id)members;
 - (id)objectRecordForObject:(id)arg1;
-- (id)rootObject;
 - (void)didAddObject:(id)arg1 phase:(unsigned long long)arg2;
 - (void)willAddObject:(id)arg1 toParent:(id)arg2;
-- (void)didChangePropertyFromValue:(id)arg1 toValue:(id)arg2 forKey:(id)arg3 ofMember:(id)arg4;
+- (void)didChangeMetadataPropertyFromValue:(id)arg1 toValue:(id)arg2 forKey:(id)arg3 ofMember:(id)arg4;
 - (void)didRemoveObject:(id)arg1 fromParent:(id)arg2;
 - (void)willRemoveObject:(id)arg1 previouslyMemberOfGroup:(id)arg2;
 - (void)didRemoveConnection:(id)arg1;
@@ -173,7 +154,6 @@
 - (void)decodeObjectsWithCoder:(id)arg1;
 - (id)initUsingAutoincrementingIDs:(BOOL)arg1;
 - (id)init;
-- (id)copyViaSerialization;
 @property(readonly) NSArray *verificationIssues;
 - (void)verify;
 - (void)verifyMembersHaveUniqueIDs;
@@ -193,9 +173,16 @@
 - (id)objectsToTopLevelFromParentOfObject:(id)arg1;
 - (id)objectsToTopLevelFromObject:(id)arg1;
 - (id)objectsFromObject:(id)arg1 toAncestor:(id)arg2;
+- (id)objectBeforeObjectInPreorderTraversal:(id)arg1;
+- (id)objectAfterObjectInPreorderTraversal:(id)arg1;
+- (long long)compareObjectInPreorderTraversal:(id)arg1 toObject:(id)arg2;
+- (id)lastDescendantOfObject:(id)arg1;
+- (id)lastObjectInPreorderTraversal;
+- (id)firstObjectInPreorderTraversal;
 - (id)objectsFromTopLevelToParentOfObject:(id)arg1;
 - (id)objectsFromTopLevelToObject:(id)arg1;
 - (id)objectsFromAncestor:(id)arg1 toObject:(id)arg2;
+- (long long)depthOfObject:(id)arg1;
 - (void)addObjectAndItsInitilallyDesignableChildren:(id)arg1 toParent:(id)arg2;
 - (id)pasteboardTypes;
 - (void)putObjects:(id)arg1 onPasteboard:(id)arg2 forOwner:(id)arg3 withArchivingDelegate:(id)arg4 context:(id)arg5;

@@ -7,7 +7,6 @@
 #import "NSBrowser.h"
 
 @interface NSBrowser (IBBrowserIntegration)
-+ (id)keyPathsForValuesAffectingIbWidgetType;
 - (BOOL)ibOverridablePrefersToVerticallyResizeWithContainer;
 - (BOOL)ibOverridablePrefersToHorizontallyResizeWithContainer;
 - (void)adjustMinimumBrowserSizeForInspectedProperty:(id)arg1;

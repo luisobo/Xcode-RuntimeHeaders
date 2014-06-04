@@ -37,8 +37,14 @@
 - (void)update;
 - (void)autoUpdate;
 @property(readonly) IDELaunchSession *launchSession;
-@property(readonly) NSString *associatedProcessUUID;
+@property(readonly, copy) NSString *associatedProcessUUID;
 - (id)initWithExpression:(id)arg1 numberOfBytes:(unsigned long long)arg2 process:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

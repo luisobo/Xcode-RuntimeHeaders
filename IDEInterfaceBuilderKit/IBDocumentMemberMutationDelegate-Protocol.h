@@ -7,7 +7,9 @@
 #import "NSObject-Protocol.h"
 
 @protocol IBDocumentMemberMutationDelegate <NSObject>
-- (void)document:(id)arg1 relationshipKeyPath:(id)arg2 didChangeForMember:(id)arg3;
+- (void)document:(id)arg1 mayHaveTurnedMemberOnOrOff:(id)arg2;
+- (void)document:(id)arg1 didChangeRelationshipKeyPath:(id)arg2 forMember:(id)arg3;
+- (void)document:(id)arg1 didChangeKeyPath:(id)arg2 forMember:(id)arg3;
 - (void)document:(id)arg1 didRemoveChildObject:(id)arg2 fromMember:(id)arg3;
 - (void)document:(id)arg1 didAddChildObject:(id)arg2 toMember:(id)arg3;
 - (void)document:(id)arg1 willRemoveChildObject:(id)arg2 fromMember:(id)arg3;

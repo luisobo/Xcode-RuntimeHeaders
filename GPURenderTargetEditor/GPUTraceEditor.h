@@ -7,13 +7,11 @@
 #import "GPUMainEditor.h"
 
 #import "GPURenderBufferViewStateCoordinationProtocol-Protocol.h"
-#import "GPUTraceResourceInfoDelegateProtocol-Protocol.h"
-#import "IDEDebuggingAdditionUIControllerLifeCycleObserver-Protocol.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTSegmentedControl, GPUDebuggingAdditionUIController, GPURenderBufferBezeledLabel, GPURenderBufferCanvas, GPURenderBufferCanvasGrid, GPURenderBufferPool, GPUTraceFramebuffer, GPUTraceSubEditor, NSImage, NSMenuItem, NSSegmentedControl, NSString, NSTextField, NSView;
+@class DVTBorderedView, DVTObservingToken, DVTSegmentedControl, GPUDebuggingAdditionUIController, GPURenderBufferBezeledLabel, GPURenderBufferCanvas, GPURenderBufferCanvasGrid, GPURenderBufferPool, GPUTraceSubEditor, NSImage, NSMenuItem, NSSegmentedControl, NSString, NSTextField, NSView;
 
 // Not exported
-@interface GPUTraceEditor : GPUMainEditor <IDEDebuggingAdditionUIControllerLifeCycleObserver, GPUTraceResourceInfoDelegateProtocol, GPURenderBufferViewStateCoordinationProtocol>
+@interface GPUTraceEditor : GPUMainEditor <GPURenderBufferViewStateCoordinationProtocol>
 {
     DVTBorderedView *_bottomToolBar;
     NSSegmentedControl *_viewSegmentedControl;
@@ -36,6 +34,8 @@
     NSMenuItem *_toggleDeviceWireframeMenuItem;
     GPUDebuggingAdditionUIController *_debuggingAdditionUIController;
     DVTObservingToken *_debugerControllerDebugStateObserverToken;
+    BOOL _haveRequestedUIController;
+    id <DVTCancellable> _uiControllerObserver;
     id _controlKeyEventTap;
     NSImage *_zoomToFitIcon;
     NSImage *_zoomToActualIcon;
@@ -47,14 +47,12 @@
     double _scaleX;
     double _scaleY;
     int _rotation;
-    GPUTraceFramebuffer *_currentDrawBuffer;
     DVTSegmentedControl *_buffersSegmentedControl;
 }
 
 + (long long)version;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 @property __weak DVTSegmentedControl *buffersSegmentedControl; // @synthesize buffersSegmentedControl=_buffersSegmentedControl;
-@property GPUTraceFramebuffer *currentDrawBuffer; // @synthesize currentDrawBuffer=_currentDrawBuffer;
 @property(readonly, nonatomic) GPURenderBufferCanvas *renderBufferCanvas; // @synthesize renderBufferCanvas=_renderBufferCanvas;
 @property(copy) NSMenuItem *toggleDeviceWireframeMenuItem; // @synthesize toggleDeviceWireframeMenuItem=_toggleDeviceWireframeMenuItem;
 @property(copy) NSMenuItem *toggleWireframeMenuItem; // @synthesize toggleWireframeMenuItem=_toggleWireframeMenuItem;
@@ -72,8 +70,6 @@
 - (void)debuggingAddtionUIControllerUpdated:(id)arg1;
 - (Class)classOfDebuggingAddtionUIControllerInterestedIn;
 - (void)renderBufferViewDidChangeState:(id)arg1;
-- (int)openGLAPI;
-- (id)currentStateMirror;
 - (void)changeZoom:(id)arg1;
 - (void)gpuZoomToFit:(id)arg1;
 - (void)gpuZoomActual:(id)arg1;
@@ -104,13 +100,14 @@
 - (BOOL)_colorBufferEnabled:(id)arg1;
 - (BOOL)_autoBuffersEnabled:(id)arg1;
 - (void)_updateRenderBuffersVisibilityAfterDelay;
-- (id)updateViewsWithDrawItem:(id)arg1;
-- (void)renderFramebufferAttachments:(BOOL)arg1;
-- (void)_renderFramebufferAttachments:(BOOL)arg1;
+- (id)updateViewsWithDisplayableItem:(id)arg1;
+- (void)renderDisplaySet:(BOOL)arg1;
+- (void)_renderDisplaySet:(BOOL)arg1;
 - (void)viewWillUninstall;
+- (void)_handleDebuggingAdditionUIControllerCreated:(id)arg1;
 - (void)viewDidInstall;
 - (BOOL)_documentIsInQuickLookMode;
-- (void)_loadInitialDraw;
+- (void)_loadInitialDisplayable;
 - (void)replayCapture:(id)arg1;
 - (void)gpuBuffersStencil:(id)arg1;
 - (void)gpuBuffersDepth:(id)arg1;

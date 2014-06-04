@@ -22,6 +22,7 @@
 - (void).cxx_destruct;
 - (unsigned long long)_findIndexForLocation:(id)arg1 inResults:(id)arg2;
 - (BOOL)_findNext;
+- (long long)_compareLocation:(id)arg1 toLocation:(id)arg2;
 - (id)findResultsFrom:(id)arg1 to:(id)arg2 beforeDate:(id)arg3;
 - (BOOL)findBeforeDate:(id)arg1;
 - (id)findResultAfter:(id)arg1;

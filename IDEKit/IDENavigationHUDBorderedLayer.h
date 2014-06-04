@@ -8,6 +8,8 @@
 
 #import <IDEKit/IDENavigationHUDBorderedLayer-Protocol.h>
 
+@class NSString;
+
 @interface IDENavigationHUDBorderedLayer : CALayer <IDENavigationHUDBorderedLayer>
 {
     int _borderSides;
@@ -26,6 +28,12 @@
 @property int highlightSides;
 @property int borderSides;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

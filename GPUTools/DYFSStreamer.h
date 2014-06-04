@@ -42,8 +42,8 @@
 @property(copy, nonatomic) NSString *owner; // @synthesize owner=_owner;
 @property(retain, nonatomic) NSPredicate *filenameFilter; // @synthesize filenameFilter=_filenameFilter;
 @property(copy, nonatomic) NSString *destinationName; // @synthesize destinationName=_destinationName;
-@property(readonly, nonatomic) NSString *path; // @synthesize path=_path;
-@property(readonly, nonatomic) NSURL *url; // @synthesize url=_url;
+@property(readonly, retain, nonatomic) NSString *path; // @synthesize path=_path;
+@property(readonly, retain, nonatomic) NSURL *url; // @synthesize url=_url;
 @property(readonly, nonatomic) NSArray *urls; // @synthesize urls=_urls;
 - (void)denyTransfer:(id)arg1;
 - (id)receiveTransfer:(id)arg1;

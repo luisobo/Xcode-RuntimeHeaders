@@ -6,23 +6,35 @@
 
 #import "NSObject.h"
 
-@class DBGStackFrame;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface DBGDisassemblyItem : NSObject
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString, NSURL;
+
+@interface DBGDisassemblyItem : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
-    DBGStackFrame *_stackFrame;
+    NSURL *_url;
+    id _representedObject;
 }
 
-+ (id)keyPathsForValuesAffectingNavigableItem_image;
-+ (id)keyPathsForValuesAffectingNavigableItem_name;
-@property(readonly) DBGStackFrame *stackFrame; // @synthesize stackFrame=_stackFrame;
+@property(readonly) id representedObject; // @synthesize representedObject=_representedObject;
 - (void).cxx_destruct;
-- (id)description;
-- (id)navigableItem_contentDocumentLocation;
-- (id)navigableItem_documentType;
-- (id)navigableItem_image;
-- (id)navigableItem_name;
-- (id)initWithStackFrame:(id)arg1;
+@property(readonly) unsigned long long hash;
+- (BOOL)isEqual:(id)arg1;
+@property(readonly, copy) NSString *description;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) NSString *navigableItem_name;
+- (id)initWithRepresentedObject:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

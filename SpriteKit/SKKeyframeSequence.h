@@ -35,8 +35,8 @@
 - (void)removeAllKeyframes;
 - (void)removeLastKeyframe;
 - (void)addKeyframeValue:(id)arg1 time:(double)arg2;
-@property long long repeatMode;
-@property long long interpolationMode;
+@property(nonatomic) long long repeatMode;
+@property(nonatomic) long long interpolationMode;
 - (unsigned long long)count;
 - (id)initWithKeyframeValues:(id)arg1 times:(id)arg2;
 - (id)initWithCapacity:(unsigned long long)arg1;

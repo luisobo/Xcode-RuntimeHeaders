@@ -9,6 +9,5 @@
 @interface NSValue (IBBinaryArchiving)
 + (id)decodeWithBinaryUnarchiver:(id)arg1;
 - (void)encodeWithBinaryArchiver:(id)arg1;
-- (long long)binaryArchivingValueType;
 @end
 

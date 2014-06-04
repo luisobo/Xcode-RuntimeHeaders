@@ -9,7 +9,7 @@
 #import "DVTFindBarFindable-Protocol.h"
 #import "IDEOpenQuicklyJumpToSupport-Protocol.h"
 
-@class DVTSourceTextView, NSDictionary;
+@class DVTSourceTextView, NSDictionary, NSString;
 
 @interface IDESourceCodeComparisonEditor : IDEComparisonEditor <DVTFindBarFindable, IDEOpenQuicklyJumpToSupport>
 {
@@ -33,8 +33,15 @@
 @property(readonly) DVTSourceTextView *keyTextView;
 - (void)_updateViewBasedOnSubmode;
 - (struct CGRect)overlayFrameForView:(id)arg1;
+- (id)pathCell:(id)arg1 menuItemForNavigableItem:(id)arg2 defaultMenuItem:(id)arg3;
 - (BOOL)pathCell:(id)arg1 shouldInitiallyShowMenuSearch:(id)arg2;
 - (BOOL)pathCell:(id)arg1 shouldSeparateDisplayOfChildItemsForItem:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

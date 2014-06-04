@@ -106,9 +106,9 @@ typedef struct {
 } CDStruct_c519178c;
 
 typedef struct {
-    double start;
-    double length;
-} CDStruct_79f57be0;
+    double _field1;
+    double _field2;
+} CDStruct_c3b9c2ee;
 
 typedef struct {
     long long _field1;
@@ -139,7 +139,8 @@ typedef struct {
     long long _field4;
     struct Token _field5;
     long long _field6;
-} CDStruct_30f319a3;
+    long long _field7;
+} CDStruct_67f4b74a;
 
 typedef struct {
     struct CGPoint start;
@@ -148,20 +149,15 @@ typedef struct {
 
 typedef struct {
     struct CGRect _field1[8];
-} CDStruct_648df176;
-
-typedef struct {
-    struct CGRect rect;
-    unsigned long long rectEdge;
-    CDStruct_79f57be0 range;
-} CDStruct_700ccd87;
+    char _field2[8];
+} CDStruct_fa3e0eee;
 
 #pragma mark Typedef'd Unions
 
 typedef union {
     double _field1[2];
-    CDStruct_79f57be0 _field2;
-} CDUnion_37ff53f0;
+    CDStruct_c3b9c2ee _field2;
+} CDUnion_af3ad131;
 
 typedef union {
     double _field1[4];

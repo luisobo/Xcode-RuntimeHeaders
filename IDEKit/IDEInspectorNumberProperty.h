@@ -10,10 +10,6 @@
 
 @interface IDEInspectorNumberProperty : IDEInspectorProperty
 {
-    NSTextField *_textField;
-    NSStepper *_stepper;
-    NSTextField *_label;
-    NSButton *_checkbox;
     double _increment;
     BOOL _allowsNilValues;
     BOOL _enabled;
@@ -34,9 +30,18 @@
     NSNumberFormatter *_numberFormatter;
     NSNumber *_maxValue;
     NSNumber *_minValue;
+    NSTextField *_textField;
+    NSStepper *_stepper;
+    NSTextField *_label;
+    NSButton *_checkbox;
 }
 
+@property(retain, nonatomic) NSButton *checkbox; // @synthesize checkbox=_checkbox;
+@property(retain, nonatomic) NSTextField *label; // @synthesize label=_label;
+@property(retain, nonatomic) NSStepper *stepper; // @synthesize stepper=_stepper;
+@property(retain, nonatomic) NSTextField *textField; // @synthesize textField=_textField;
 - (void).cxx_destruct;
+- (id)findIndicatorContentViewWithContext:(id)arg1;
 - (void)refresh;
 - (void)refreshTextField;
 - (void)refreshStepper;
@@ -51,6 +56,7 @@
 - (BOOL)canTileIntoColumnsWithMinimumWidth:(double)arg1;
 - (void)setupRefreshTriggersAndConfigure;
 - (id)nibName;
+- (void)loadView;
 - (id)initWithPropertyDefinition:(id)arg1 andController:(id)arg2;
 
 @end

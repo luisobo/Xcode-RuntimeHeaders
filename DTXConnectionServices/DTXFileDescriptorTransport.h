@@ -6,25 +6,27 @@
 
 #import <DTXConnectionServices/DTXTransport.h>
 
+@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>;
+
 @interface DTXFileDescriptorTransport : DTXTransport
 {
     int _inFD;
     int _outFD;
-    struct dispatch_queue_s *_inputQueue;
-    struct dispatch_queue_s *_outputQueue;
+    NSObject<OS_dispatch_queue> *_inputQueue;
+    NSObject<OS_dispatch_queue> *_outputQueue;
     int _outputWaitKQ;
-    struct dispatch_source_s *_inputSource;
-    BOOL _assumingOwnershipOfFDs;
+    NSObject<OS_dispatch_source> *_inputSource;
+    id _disconnectBlock;
 }
 
 - (void)disconnect;
 - (unsigned long long)transmit:(const void *)arg1 ofLength:(unsigned long long)arg2;
-- (void)setupWithIncomingDescriptor:(int)arg1 outgoingDescriptor:(int)arg2 assumingOwnership:(BOOL)arg3;
+- (void)setupWithIncomingDescriptor:(int)arg1 outgoingDescriptor:(int)arg2 disconnectBlock:(id)arg3;
 - (int)_createWriteKQueue:(int)arg1;
-- (struct dispatch_source_s *)_createReadSource:(int)arg1;
+- (id)_createReadSource:(int)arg1;
 - (void)dealloc;
+- (id)initWithIncomingFileDescriptor:(int)arg1 outgoingFileDescriptor:(int)arg2 disconnectBlock:(id)arg3;
 - (id)initWithIncomingFilePath:(id)arg1 outgoingFilePath:(id)arg2 error:(id *)arg3;
-- (id)initWithIncomingFilePath:(id)arg1 outgoingFilePath:(id)arg2;
 - (id)init;
 
 @end

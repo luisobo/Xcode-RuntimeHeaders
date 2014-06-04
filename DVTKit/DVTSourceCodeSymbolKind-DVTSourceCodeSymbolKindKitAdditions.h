@@ -9,8 +9,8 @@
 @class NSImage, NSString;
 
 @interface DVTSourceCodeSymbolKind (DVTSourceCodeSymbolKindKitAdditions)
-@property(readonly) NSImage *largeIcon;
-@property(readonly) NSImage *icon;
-@property(readonly) NSString *iconPath;
+@property(readonly, copy) NSImage *largeIcon;
+@property(readonly, copy) NSImage *icon;
+@property(readonly, copy) NSString *iconPath;
 @end
 

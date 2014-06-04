@@ -8,7 +8,7 @@
 
 #import "DVTXMLUnarchiving-Protocol.h"
 
-@class IDEBuildSchemeAction, IDESchemeBuildableReference;
+@class IDEBuildSchemeAction, IDESchemeBuildableReference, NSString;
 
 @interface IDEBuildActionEntry : NSObject <DVTXMLUnarchiving>
 {
@@ -64,7 +64,12 @@
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
 - (id)initFromXMLUnarchiver:(id)arg1 archiveVersion:(float)arg2;
 - (id)initWithBuildableReference:(id)arg1 buildAction:(id)arg2 explicityManaged:(BOOL)arg3;
-- (id)description;
+@property(readonly, copy) NSString *description;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

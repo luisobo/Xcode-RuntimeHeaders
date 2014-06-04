@@ -8,7 +8,6 @@
 
 @class GPUDebuggerController;
 
-// Not exported
 @interface GPUCaptureStoreDelegate : NSObject
 {
     GPUDebuggerController *_controller;

@@ -8,7 +8,7 @@
 
 #import "NSPopoverDelegate-Protocol.h"
 
-@class DBGDataValue, DVTReplacementView, IDEVariablesView, NSPopover;
+@class DBGDataValue, DVTReplacementView, IDEVariablesView, NSPopover, NSString;
 
 @interface DBGDataTipPopoverViewController : IDEViewController <NSPopoverDelegate>
 {
@@ -40,6 +40,12 @@
 - (void)_updatePopoverSizeAfterDelay;
 - (void)loadView;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

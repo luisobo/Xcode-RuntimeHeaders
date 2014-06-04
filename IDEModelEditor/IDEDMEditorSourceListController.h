@@ -8,7 +8,7 @@
 
 #import "DVTOutlineViewDelegate-Protocol.h"
 
-@class DVTBorderedView, DVTImageAndTextColumn, IDEDMEditor, IDEDMIndentationAdjustingOutlineView, NSArray, NSTextFieldCell, NSTreeController;
+@class DVTBorderedView, DVTImageAndTextColumn, IDEDMEditor, IDEDMIndentationAdjustingOutlineView, NSArray, NSString, NSTextFieldCell, NSTreeController;
 
 @interface IDEDMEditorSourceListController : IDEDMEditorController <DVTOutlineViewDelegate>
 {
@@ -43,7 +43,6 @@
 - (id)selectedTopLevelObjects;
 - (void)selectTopLevelObjects:(id)arg1;
 - (void)takeFocus;
-- (BOOL)outlineView:(id)arg1 shouldMouseHoverForTableColumn:(id)arg2 row:(long long)arg3;
 - (id)outlineView:(id)arg1 selectionIndexesForProposedSelection:(id)arg2;
 - (id)outlineView:(id)arg1 dataCellForTableColumn:(id)arg2 item:(id)arg3;
 - (BOOL)outlineView:(id)arg1 shouldShowOutlineCellForItem:(id)arg2;
@@ -63,6 +62,12 @@
 - (id)createSourceListItemCell;
 - (id)createSourceListTitleCell;
 - (id)modelRoot;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -48,13 +48,19 @@
 - (void)parser:(id)arg1 didEndElement:(id)arg2 namespaceURI:(id)arg3 qualifiedName:(id)arg4;
 - (void)parser:(id)arg1 didStartElement:(id)arg2 namespaceURI:(id)arg3 qualifiedName:(id)arg4 attributes:(id)arg5;
 - (void)loadMap;
-@property(readonly) struct CGSize mapSize;
-@property(readonly) struct CGSize tileSize;
+@property(readonly, nonatomic) struct CGSize mapSize;
+@property(readonly, nonatomic) struct CGSize tileSize;
 - (id)textureForGid:(unsigned int)arg1;
 - (id)tileAtGridLocationX:(unsigned int)arg1 y:(unsigned int)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

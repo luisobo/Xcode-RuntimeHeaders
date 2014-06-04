@@ -9,7 +9,7 @@
 #import "IDEExecutingOperationTrackable-Protocol.h"
 #import "IDERunOperationWorkerDelegate-Protocol.h"
 
-@class IDELaunchSession, IDERunOperationWorker, NSMutableArray;
+@class IDELaunchSession, IDERunOperationWorker, NSMutableArray, NSString;
 
 @interface IDERunOperation : DVTOperation <IDEExecutingOperationTrackable, IDERunOperationWorkerDelegate>
 {
@@ -36,6 +36,12 @@
 - (void)main;
 - (void)workerDidComplete:(id)arg1 withError:(id)arg2;
 - (id)initWithWorker:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

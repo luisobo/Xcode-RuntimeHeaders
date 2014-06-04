@@ -10,18 +10,18 @@
 
 @interface IBCanvasFrameOrder : NSObject
 {
-    IBMutableIdentityDictionary *zOrder;
-    IBMutableIdentityDictionary *preOrder;
-    IBMutableIdentityDictionary *postOrder;
-    IBMutableIdentityDictionary *viewsToFrames;
-    IBMutableIdentityDictionary *framesToRootFrames;
+    IBMutableIdentityDictionary *_zOrder;
+    IBMutableIdentityDictionary *_preOrder;
+    IBMutableIdentityDictionary *_postOrder;
+    IBMutableIdentityDictionary *_viewsToFrames;
+    IBMutableIdentityDictionary *_framesToRootFrames;
 }
 
-@property(retain, nonatomic) IBMutableIdentityDictionary *framesToRootFrames; // @synthesize framesToRootFrames;
-@property(retain, nonatomic) IBMutableIdentityDictionary *viewsToFrames; // @synthesize viewsToFrames;
-@property(retain, nonatomic) IBMutableIdentityDictionary *postOrder; // @synthesize postOrder;
-@property(retain, nonatomic) IBMutableIdentityDictionary *preOrder; // @synthesize preOrder;
-@property(retain, nonatomic) IBMutableIdentityDictionary *zOrder; // @synthesize zOrder;
+@property(retain, nonatomic) IBMutableIdentityDictionary *framesToRootFrames; // @synthesize framesToRootFrames=_framesToRootFrames;
+@property(retain, nonatomic) IBMutableIdentityDictionary *viewsToFrames; // @synthesize viewsToFrames=_viewsToFrames;
+@property(retain, nonatomic) IBMutableIdentityDictionary *postOrder; // @synthesize postOrder=_postOrder;
+@property(retain, nonatomic) IBMutableIdentityDictionary *preOrder; // @synthesize preOrder=_preOrder;
+@property(retain, nonatomic) IBMutableIdentityDictionary *zOrder; // @synthesize zOrder=_zOrder;
 - (void).cxx_destruct;
 - (id)init;
 

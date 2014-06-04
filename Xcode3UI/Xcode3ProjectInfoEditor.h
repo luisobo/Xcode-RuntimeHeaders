@@ -13,7 +13,7 @@
 #import "NSTableViewDelegate-Protocol.h"
 #import "Xcode3SourceListItemEditor-Protocol.h"
 
-@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTImageAndTextCell, DVTLocale, DVTLozengeTextField, DVTOutlineView, DVTPerformanceMetric, DVTSourceExpression, DVTStackView_ML, DVTTableView, IDECapsuleListView, IDEViewController<IDECapsuleViewController>, NSArray, NSBox, NSButton, NSComboBox, NSMenu, NSMutableArray, NSMutableDictionary, NSPopUpButton, NSString, NSTextField, NSTextFieldCell, NSTimer, NSView, PBXProject, Xcode3ProjectEditor;
+@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTImageAndTextCell, DVTLocale, DVTLozengeTextField, DVTOutlineView, DVTPerformanceMetric, DVTSourceExpression, DVTStackView_ML, DVTTableView, IDECapsuleListView, IDEViewController<IDECapsuleViewController>, NSArray, NSButton, NSComboBox, NSMenu, NSMutableArray, NSMutableDictionary, NSPopUpButton, NSString, NSTextField, NSTextFieldCell, NSTimer, NSView, PBXProject, Xcode3ProjectEditor;
 
 @interface Xcode3ProjectInfoEditor : IDEViewController <Xcode3SourceListItemEditor, NSTableViewDelegate, NSTableViewDataSource, NSOutlineViewDelegate, NSOutlineViewDataSource, IDECapsuleListViewDataSource>
 {
@@ -42,9 +42,8 @@
     IDEViewController<IDECapsuleViewController> *_configurationsViewController;
     DVTBorderedView *_configurationsBorder;
     DVTBorderedView *_localizationsBorder;
-    NSBox *_iPhoneOSTargetsBox;
-    NSBox *_sdkSeparator;
-    NSBox *_MacOSTargetsBox;
+    NSView *_iOSDeploymentTargetContainer;
+    NSView *_OSXDeploymentTargetContainer;
     NSView *_configurationsContentView;
     DVTOutlineView *_configurationsOutlineView;
     DVTGradientImageButton *_removeConfigurationButton;
@@ -164,9 +163,13 @@
 
 // Remaining properties
 @property(readonly) struct CGRect currentSelectionFrame;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(copy, nonatomic) NSArray *inspectedBlueprints;
 @property(readonly, nonatomic) DVTSourceExpression *mouseOverExpression;
 @property(readonly, nonatomic) DVTSourceExpression *selectedExpression;
+@property(readonly) Class superclass;
 
 @end
 

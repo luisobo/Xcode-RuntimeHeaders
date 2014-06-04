@@ -8,13 +8,21 @@
 
 #import "IDEURLHandler-Protocol.h"
 
+@class NSString;
+
 @interface IBURLHandler : NSObject <IDEURLHandler>
 {
 }
 
-+ (BOOL)handleURL:(id)arg1 error:(id *)arg2;
++ (void)handleURL:(id)arg1 completionHandler:(id)arg2;
 + (BOOL)shouldRegisterURLHandlerForScheme:(id)arg1;
 + (BOOL)shouldOpenIBURLs;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

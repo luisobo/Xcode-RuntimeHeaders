@@ -6,12 +6,17 @@
 
 #import "DBGDataType.h"
 
+@class NSString;
+
 // Not exported
 @interface DBGLLDBDataType : DBGDataType
 {
     struct SBType _lldbType;
+    NSString *_pointeeTypeName;
+    BOOL _isPointer;
 }
 
+@property(retain) NSString *pointeeTypeName; // @synthesize pointeeTypeName=_pointeeTypeName;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (BOOL)isUnknownType;

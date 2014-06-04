@@ -8,6 +8,8 @@
 
 #import "PBXTrackableTask-Protocol.h"
 
+@class NSString;
+
 @interface XCBuildResultsRestoreOperation (PBXTrackableTaskAdditions) <PBXTrackableTask>
 - (id)taskBadge;
 - (id)taskDescriptionString;
@@ -18,5 +20,11 @@
 - (BOOL)taskStopRunning;
 - (int)taskProgressType;
 - (float)taskPercentComplete;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

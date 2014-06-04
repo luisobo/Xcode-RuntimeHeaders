@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, DVTFilePath, IDENavigableItem, NSArray, NSImage, NSString;
+#import "IDEKeyDrivenNavigableItemRepresentedObject-Protocol.h"
 
-@interface IDEContainerItemSnapshot : NSObject
+@class DVTDocumentLocation, DVTFileDataType, DVTFilePath, IDEFileReference, IDENavigableItem, NSArray, NSImage, NSString;
+
+@interface IDEContainerItemSnapshot : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     NSString *_name;
     NSImage *_image;
@@ -35,8 +37,18 @@
 @property(readonly) NSImage *navigableItem_image; // @synthesize navigableItem_image=_image;
 @property(retain, nonatomic) NSString *navigableItem_name; // @synthesize navigableItem_name=_name;
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)initWithNavigableItem:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

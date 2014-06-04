@@ -47,7 +47,7 @@
 @property(retain) NSImage *iconImage; // @dynamic iconImage;
 - (id)iconImageOfSize:(struct CGSize)arg1;
 - (id)description;
-@property(readonly) NSString *lastPathComponent; // @dynamic lastPathComponent;
+@property(readonly, copy) NSString *lastPathComponent; // @dynamic lastPathComponent;
 @property BOOL hasSnapshots; // @dynamic hasSnapshots;
 - (void)setBuildableInitially:(BOOL)arg1;
 @property(getter=isBuildable) BOOL buildable; // @dynamic buildable;

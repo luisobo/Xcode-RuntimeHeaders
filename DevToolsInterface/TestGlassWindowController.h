@@ -8,7 +8,7 @@
 
 #import "NSToolbarDelegate-Protocol.h"
 
-@class NSObject;
+@class NSObject, NSString;
 
 @interface TestGlassWindowController : NSWindowController <NSToolbarDelegate>
 {
@@ -25,6 +25,12 @@
 - (id)toolbar:(id)arg1 itemForItemIdentifier:(id)arg2 willBeInsertedIntoToolbar:(BOOL)arg3;
 - (id)toolbarItemWithIdentifier:(id)arg1 label:(id)arg2 imageName:(id)arg3 toolTip:(id)arg4 action:(SEL)arg5;
 - (void)_setupToolbar;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

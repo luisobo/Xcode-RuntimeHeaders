@@ -50,7 +50,7 @@
 @property(retain) NSArray *blameItems; // @synthesize blameItems=_blameItems;
 @property(readonly) NSString *revision; // @synthesize revision=_revision;
 @property(readonly) IDEEditorDocument *editorDocument; // @synthesize editorDocument=_editorDocument;
-@property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
+@property(readonly) __weak IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 @property(retain, nonatomic) IDESourceControlDocumentLocation *sourceDocLocation; // @synthesize sourceDocLocation=_sourceDocLocation;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
@@ -64,7 +64,11 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

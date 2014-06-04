@@ -7,6 +7,8 @@
 #import "NSView.h"
 
 @interface NSView (DVTNSViewAdditions)
+- (BOOL)dvt_viewShouldDrawActive;
+- (void)dvt_invalidateCursorRects;
 - (void)dvt_scrollRectToVisible:(struct CGRect)arg1 animated:(BOOL)arg2;
 - (void)dvt_viewDidEndLiveAnimation;
 - (void)dvt_viewWillBeginLiveAnimation;
@@ -20,5 +22,8 @@
 - (struct CGPoint)dvt_convertPointFromScreen:(struct CGPoint)arg1;
 - (struct CGPoint)dvt_integralPointInBase:(struct CGPoint)arg1;
 - (struct CGRect)dvt_integralRectInBase:(struct CGRect)arg1;
+
+// Remaining properties
+@property(nonatomic, getter=isHidden) BOOL hidden;
 @end
 

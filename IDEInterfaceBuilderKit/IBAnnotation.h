@@ -10,27 +10,26 @@
 
 @interface IBAnnotation : DVTTextAnnotation
 {
-    struct CGRect lastRectDrawnIn;
-    NSMutableSet *referencingLocations;
-    NSString *annotationName;
-    NSString *containingClassName;
-    long long relationshipType;
+    NSMutableSet *_referencingLocations;
     NSString *expectedEndPointClassName;
-    unsigned long long sourceModelContext;
     BOOL shouldDisplayInverted;
     BOOL rolledOver;
+    NSString *_annotationName;
+    NSString *_containingClassName;
+    unsigned long long _kind;
+    struct CGRect _lastRectDrawnIn;
 }
 
 + (id)invertedConnectionInterfaceStyle;
 + (id)connectionInterfaceStyle;
-@property unsigned long long sourceModelContext; // @synthesize sourceModelContext;
+@property unsigned long long kind; // @synthesize kind=_kind;
+@property(retain) NSString *containingClassName; // @synthesize containingClassName=_containingClassName;
+@property(retain) NSString *annotationName; // @synthesize annotationName=_annotationName;
+@property struct CGRect lastRectDrawnIn; // @synthesize lastRectDrawnIn=_lastRectDrawnIn;
 @property(copy, nonatomic) NSString *expectedEndPointClassName; // @synthesize expectedEndPointClassName;
 @property(nonatomic) BOOL shouldDisplayInverted; // @synthesize shouldDisplayInverted;
-@property(readonly) NSSet *referencingLocations; // @synthesize referencingLocations;
-@property(readonly) NSString *containingClassName; // @synthesize containingClassName;
-@property(readonly) NSString *annotationName; // @synthesize annotationName;
+@property(readonly) NSSet *referencingLocations; // @synthesize referencingLocations=_referencingLocations;
 @property(nonatomic) BOOL rolledOver; // @synthesize rolledOver;
-@property(readonly) struct CGRect lastRectDrawnIn; // @synthesize lastRectDrawnIn;
 - (void).cxx_destruct;
 - (id)description;
 - (void)drawSidebarMarkerIconInRect:(struct CGRect)arg1 textView:(id)arg2;
@@ -40,8 +39,8 @@
 - (void)removeReferenceFromLocation:(id)arg1;
 - (void)addReferenceFromLocation:(id)arg1;
 - (void)purgeAllReferences;
-@property(readonly) long long relationshipType; // @synthesize relationshipType;
-- (id)initWithName:(id)arg1 inClassNamed:(id)arg2 sourceModelContext:(unsigned long long)arg3;
+- (long long)relationshipType;
+- (id)initWithName:(id)arg1 inClassNamed:(id)arg2 kind:(unsigned long long)arg3;
 
 @end
 

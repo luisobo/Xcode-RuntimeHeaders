@@ -21,10 +21,7 @@
     IDEActivityReport *_switchBranchActivityReport;
     IDEActivityReport *_upgradeActivityReport;
     IDEActivityReport *_createGitRepoReport;
-    IDEActivityReport *_scmPrepareToMergeReport;
-    IDEActivityReport *_scmPrepareToUpdateReport;
-    IDEActivityReport *_scmPrepareToPullReport;
-    IDEActivityReport *_scmPrepareToPushReport;
+    IDEActivityReport *_scmPrepareToUpdatePushPullMergeReport;
     DVTNotificationToken *_willScanToken;
     DVTNotificationToken *_didScanToken;
     DVTNotificationToken *_willUpdateToken;

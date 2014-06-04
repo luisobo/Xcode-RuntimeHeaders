@@ -9,7 +9,7 @@
 #import "DVTShadowDrawing-Protocol.h"
 #import "DVTWindowActivationStateObserver-Protocol.h"
 
-@class NSColor, NSGradient, NSView;
+@class NSColor, NSGradient, NSString, NSView;
 
 @interface DVTBorderedView : DVTLayoutView_ML <DVTWindowActivationStateObserver, DVTShadowDrawing>
 {
@@ -83,6 +83,12 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

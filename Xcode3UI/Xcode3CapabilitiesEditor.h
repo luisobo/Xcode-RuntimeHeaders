@@ -9,7 +9,7 @@
 #import "IDECapsuleListViewDataSource-Protocol.h"
 #import "Xcode3SourceListItemEditor-Protocol.h"
 
-@class DVTSourceExpression, IDECapsuleListView, NSArray, NSDictionary, NSScrollView, Xcode3ProjectEditor;
+@class DVTSourceExpression, IDECapsuleListView, NSArray, NSDictionary, NSScrollView, NSString, Xcode3ProjectEditor;
 
 @interface Xcode3CapabilitiesEditor : IDEViewController <Xcode3SourceListItemEditor, IDECapsuleListViewDataSource>
 {
@@ -47,9 +47,13 @@
 
 // Remaining properties
 @property(readonly) struct CGRect currentSelectionFrame;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(copy, nonatomic) NSArray *inspectedBlueprints;
 @property(readonly, nonatomic) DVTSourceExpression *mouseOverExpression;
 @property(readonly, nonatomic) DVTSourceExpression *selectedExpression;
+@property(readonly) Class superclass;
 
 @end
 

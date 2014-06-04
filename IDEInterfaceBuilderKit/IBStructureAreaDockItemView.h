@@ -6,7 +6,7 @@
 
 #import "DVTLayoutView_ML.h"
 
-@class IBStructureAreaDockLabelContainer, IBStructureAreaDockLabelPopUp, NSImage, NSString;
+@class IBAbstractStructureAreaDockLabelPopUp, IBStructureAreaDockLabelContainer, NSImage, NSString;
 
 @interface IBStructureAreaDockItemView : DVTLayoutView_ML
 {
@@ -14,7 +14,7 @@
     NSString *title;
     struct CGSize imageSize;
     id representedObject;
-    IBStructureAreaDockLabelPopUp *labelPopUp;
+    IBAbstractStructureAreaDockLabelPopUp *labelPopUp;
     NSImage *cachedPressedImageMask;
     BOOL pressed;
     BOOL drawsWithActiveLook;
@@ -24,10 +24,12 @@
     BOOL showingOpenIndicator;
     unsigned long long labelArrowEdge;
     BOOL shouldShowLabelPopUp;
+    BOOL _drawsWithFlatStyle;
     id <IBStructureAreaDockItemViewDelegate> _delegate;
 }
 
 + (id)openIndicatorImage;
+@property(nonatomic) BOOL drawsWithFlatStyle; // @synthesize drawsWithFlatStyle=_drawsWithFlatStyle;
 @property(nonatomic) __weak id <IBStructureAreaDockItemViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) BOOL shouldShowLabelPopUp; // @synthesize shouldShowLabelPopUp;
 @property(nonatomic) unsigned long long labelArrowEdge; // @synthesize labelArrowEdge;

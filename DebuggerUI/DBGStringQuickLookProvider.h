@@ -4,19 +4,16 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2011 by Steve Nygard.
  */
 
-#import "NSViewController.h"
+#import "DBGAbstractQuickLookProvider.h"
 
-#import "IDEVariablesViewQuickLookProvider-Protocol.h"
+@class DBGNSDataForDataValueProvider, DVTObservingToken, NSLayoutConstraint, NSTextView;
 
-@class DBGNSDataForDataValueProvider, DVTObservingToken, NSLayoutConstraint, NSString, NSTextView, NSURL, NSView;
-
-@interface DBGStringQuickLookProvider : NSViewController <IDEVariablesViewQuickLookProvider>
+@interface DBGStringQuickLookProvider : DBGAbstractQuickLookProvider
 {
-    int _loadedState;
-    id <IDEDataValue> _dataValue;
     DBGNSDataForDataValueProvider *_nsDataForDataValueProvider;
     DVTObservingToken *_nsDataForDataValueProviderObserver;
     BOOL _isAttributedString;
+    int _loadedState;
     NSTextView *_textView;
     NSLayoutConstraint *_heightConstraint;
 }
@@ -26,15 +23,11 @@
 @property int loadedState; // @synthesize loadedState=_loadedState;
 - (void).cxx_destruct;
 - (void)writeAtomicallyToTemporaryFile:(id)arg1;
-@property(readonly) NSString *extensionForTemporaryFile;
+- (id)extensionForTemporaryFile;
 - (void)cancelLoading;
-@property(readonly) NSView *quickLookView;
 - (void)_updateTextViewFromData;
 - (void)loadView;
 - (id)initWithDataValue:(id)arg1 options:(id)arg2;
-
-// Remaining properties
-@property(readonly) NSURL *existingURLToOpen;
 
 @end
 

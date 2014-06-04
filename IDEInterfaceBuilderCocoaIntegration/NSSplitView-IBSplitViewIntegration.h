@@ -7,8 +7,12 @@
 #import "NSSplitView.h"
 
 @interface NSSplitView (IBSplitViewIntegration)
++ (id)ibDirectSubviewsRelationshipName;
 + (id)keyPathsForValuesAffectingIbInspectedVertical;
 + (id)keyPathsForValuesAffectingIbShadowedHoldingPriorities;
+- (void)setIbDirectSubviewCandidates:(id)arg1;
+- (id)ibDirectSubviewCandidates;
+- (id)ibLocalPerConfigurationToManyChildRelationshipKeyPaths;
 - (id)ibViewsRelevantToPriorityOfKeyPath:(id)arg1 atIndex:(unsigned long long)arg2;
 - (id)ibLabelForPriorityOfKeyPath:(id)arg1 atIndex:(unsigned long long)arg2;
 - (BOOL)ibShouldEnsureChildViewHasTranslatesAutoresizingMaskIntoConstraintsInCanvas:(id)arg1;
@@ -27,14 +31,16 @@
 - (BOOL)ibOverridablePrefersToHorizontallyResizeWithContainer;
 - (double)ibPriorityStrongerThanInternalWeakSizeConstraintsForCompressingViewInLayoutEngineForOrientation:(unsigned long long)arg1;
 - (unsigned long long)ibOrientationsWithInternalConstraintsThatWeaklyDefineViewSize;
-- (void)setIbArchivedSubviews:(id)arg1;
-- (id)ibArchivedSubviews;
+- (void)setIbArchivedSubviews:(id)arg1 withConfigurationPropertyStorage:(id)arg2;
+- (id)ibArchivedSubviewsWithConfigurationPropertyStorage:(id)arg1;
+- (id)ibArchiveKeyForConfigurableRelationship:(id)arg1;
 - (BOOL)ibChildView:(id)arg1 canHaveUninitializedAutolayoutAmbiguityStatusInDocument:(id)arg2;
 - (BOOL)ibChildView:(id)arg1 shouldUseConstraintsInsteadOfAutoresizingWhenAddedToDocument:(id)arg2;
 - (void)setIbInspectedVertical:(BOOL)arg1;
 - (BOOL)ibInspectedVertical;
 - (void)setIbShadowedVertical:(BOOL)arg1;
 - (BOOL)ibShadowedVertical;
+- (void)ibSetValue:(id)arg1 forInsertingPasteboardObjectsIntoToManyRelationship:(id)arg2 document:(id)arg3 insertionContext:(id)arg4;
 - (id)ibAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 insertionContext:(id)arg3;
 - (id)ibDividerHitTestRects;
 - (void)ibDidAddToDocument:(id)arg1 phase:(unsigned long long)arg2;
@@ -59,6 +65,8 @@
 - (Class)ibEditorClass;
 - (BOOL)ibIsNSAppearanceContainer;
 - (void)ibRemoveChildren:(id)arg1;
+- (void)ibTurnOffChildren:(id)arg1 inConfiguration:(id)arg2 document:(id)arg3;
+- (BOOL)ibCanTurnOffChildren:(id)arg1 document:(id)arg2;
 - (void)ibPopulateEditorSelectionOrderRelationLists:(id)arg1;
 - (void)ibPopulateChildRelationOrder:(id)arg1;
 @end

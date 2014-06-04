@@ -6,16 +6,17 @@
 
 #import <DVTFoundation/DVTOperationGroup.h>
 
-@class DTDKDeveloperPortalService, DVTPortalOperationToken, DVTStackBacktrace, NSArray, NSString;
+@class DTDKDeveloperPortalService, DVTLogAspect, DVTPortalOperationToken, DVTStackBacktrace, NSArray, NSString;
 
 @interface DVTPortalOperation : DVTOperationGroup
 {
     _Bool _cancelOnDependencies;
     _Bool _cancelOnSuboperations;
     DVTPortalOperationToken *_token;
+    DVTLogAspect *_logAspect;
+    NSString *_name;
     DTDKDeveloperPortalService *_service;
     DVTStackBacktrace *_creationBacktrace;
-    NSString *_name;
 }
 
 + (id)keyPathsForValuesAffectingResultCode;
@@ -25,17 +26,18 @@
 + (id)operationWithName:(id)arg1;
 + (id)operationWithToken:(id)arg1;
 + (id)operationWithToken:(id)arg1 name:(id)arg2 andBlock:(id)arg3;
-@property(copy) NSString *name; // @synthesize name=_name;
 @property(retain) DVTStackBacktrace *creationBacktrace; // @synthesize creationBacktrace=_creationBacktrace;
 @property(retain) DTDKDeveloperPortalService *service; // @synthesize service=_service;
 @property _Bool cancelOnSuboperations; // @synthesize cancelOnSuboperations=_cancelOnSuboperations;
 @property _Bool cancelOnDependencies; // @synthesize cancelOnDependencies=_cancelOnDependencies;
+@property(copy) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (long long)resultCode;
-@property(readonly) NSArray *responseWrappers;
-@property(readonly) NSArray *responseDictionaries;
-@property(readonly) NSArray *errors;
+@property(readonly, copy) NSArray *responseWrappers;
+@property(readonly, copy) NSArray *responseDictionaries;
+@property(readonly, copy) NSArray *errors;
 - (id)error;
+@property(retain) DVTLogAspect *logAspect; // @synthesize logAspect=_logAspect;
 @property(retain) DVTPortalOperationToken *token; // @synthesize token=_token;
 - (id)description;
 - (void)_updateCaches;

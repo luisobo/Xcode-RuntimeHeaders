@@ -8,11 +8,10 @@
 
 #import "iCloudItemProvider-Protocol.h"
 
-@class NSMutableDictionary, NSRecursiveLock, iCloudNotificationCenter;
+@class NSMutableDictionary, NSRecursiveLock, NSString;
 
 @interface iCloudUbiquityService : iCloudService <iCloudItemProvider>
 {
-    iCloudNotificationCenter *_notificationCenter;
     NSMutableDictionary *_itemCacheByItemID;
     NSMutableDictionary *_itemCacheByLocalURL;
     NSRecursiveLock *_cacheLock;
@@ -21,7 +20,6 @@
 @property(retain, nonatomic) NSRecursiveLock *cacheLock; // @synthesize cacheLock=_cacheLock;
 @property(retain, nonatomic) NSMutableDictionary *itemCacheByLocalURL; // @synthesize itemCacheByLocalURL=_itemCacheByLocalURL;
 @property(retain, nonatomic) NSMutableDictionary *itemCacheByItemID; // @synthesize itemCacheByItemID=_itemCacheByItemID;
-@property(retain, nonatomic) iCloudNotificationCenter *notificationCenter; // @synthesize notificationCenter=_notificationCenter;
 - (void).cxx_destruct;
 - (void)downloadItem:(id)arg1 destinationPath:(id)arg2 completionBlock:(id)arg3;
 - (void)accountInfoWithCompletionBlock:(id)arg1;
@@ -38,6 +36,12 @@
 - (BOOL)hasCachedItemForLocalURL:(id)arg1;
 - (id)ubiquityURLForCommand:(id)arg1 id:(id)arg2 parameters:(id)arg3;
 - (id)initWithOwner:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

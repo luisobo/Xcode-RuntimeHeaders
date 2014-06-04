@@ -8,8 +8,16 @@
 
 #import "IBDocumentArchiving-Protocol.h"
 
+@class NSString;
+
 @interface NSTableView (IBDocumentArchivingGenerator) <IBDocumentArchiving>
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

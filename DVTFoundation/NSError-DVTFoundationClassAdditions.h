@@ -14,6 +14,8 @@
 + (id)dvt_errorWithDomain:(id)arg1 errorCode:(int)arg2 messageFormat:(id)arg3;
 + (id)dvt_errorWithDomain:(id)arg1 errorCode:(int)arg2 messageFormat:(id)arg3 arguments:(struct __va_list_tag [1])arg4;
 - (BOOL)dvt_hasDomain:(id)arg1 errorCode:(long long)arg2;
+- (id)dvt_errorByInjectingUserInfoObjects:(id)arg1;
 - (id)dvt_errorByInjectingUserInfoObject:(id)arg1 forKey:(id)arg2;
+- (id)dvt_errorBySettingRecoveryOptions:(id)arg1 andRecoveryBlock:(id)arg2;
 @end
 

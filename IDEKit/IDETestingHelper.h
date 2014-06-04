@@ -11,6 +11,10 @@
 }
 
 + (void)runTestsAndTestables:(id)arg1;
++ (void)profileTestsAndTestables:(id)arg1 forWorkspaceTabController:(id)arg2;
++ (void)runTestsAndTestables:(id)arg1 forWorkspaceTabController:(id)arg2;
++ (void)_executeTestsAndTestables:(id)arg1 forWorkspaceTabController:(id)arg2 withBlock:(id)arg3;
++ (id)testingSpecifiersForTestsAndTestables:(id)arg1 forWorkspaceTabController:(id)arg2;
 + (void)_ensureTestingSpecifierIsCreatedFor:(id)arg1 inSpecifierArray:(id)arg2 withSchemeAction:(id)arg3 andSelectedTestsAndTestables:(id)arg4;
 + (void)_updateSkippedTests:(id)arg1 forTestable:(id)arg2 withSelectedTestsAndTestables:(id)arg3 andSchemeAction:(id)arg4;
 + (void)_addIdentifiers:(id)arg1 forTestMethodsIn:(id)arg2 ignoreSkippedTests:(BOOL)arg3 inSchemeAction:(id)arg4;
@@ -19,19 +23,24 @@
 + (id)_refactorMenuForContext:(id)arg1;
 + (id)_newTestClassAndTestBundleMenuItemsForContext:(id)arg1;
 + (void)_validateMenuItems:(id)arg1 forContext:(id)arg2;
-+ (void)_updateTitleAndVisibilityOfMenuItem:(id)arg1 forSelection:(id)arg2;
-+ (void)_updateRunTestMenuItem:(id)arg1;
++ (void)_validateMenuItem:(id)arg1 forSelection:(id)arg2 forWorkspaceTabController:(id)arg3;
++ (void)_updateProfileTestMenuItem:(id)arg1 forSelection:(id)arg2;
++ (void)_updateRunTestMenuItem:(id)arg1 forSelection:(id)arg2;
 + (void)_updateEnableDisableTestsMenuItem:(id)arg1 enableMenu:(BOOL)arg2 forSelection:(id)arg3;
 + (id)topLevelTestsAndTestablesForSelectedItems:(id)arg1;
-+ (void)_removeRedundantChildItemsFromSelection:(id)arg1 fromMutableCopy:(id)arg2;
++ (void)_removeRedundantChildItemsInSelection:(id)arg1 fromMutableCopy:(id)arg2;
 + (id)_localizedString:(id)arg1;
 + (id)_selectionStringForItems:(id)arg1;
++ (id)profileStringForSelectedItems:(id)arg1;
 + (id)testStringForSelectedItems:(id)arg1;
 + (long long)_enabledStateForSelection:(id)arg1 inSchemeAction:(id)arg2;
 + (long long)_itemTypeForSelection:(id)arg1;
 + (void)contextMenu_revealInTestNavigator:(id)arg1;
 + (void)contextMenu_revealInSymbolNavigator:(id)arg1;
 + (void)contextMenu_revealInProjectNavigator:(id)arg1;
++ (void)contextMenu_revealTestInReportEditor:(id)arg1;
++ (id)testReportDocumentLocationForTest:(id)arg1 workspaceTabController:(id)arg2;
++ (void)contextMenu_profileTest:(id)arg1;
 + (void)contextMenu_runTest:(id)arg1;
 + (void)contextMenu_newTestBundle:(id)arg1;
 + (void)contextMenu_newTestClass:(id)arg1;

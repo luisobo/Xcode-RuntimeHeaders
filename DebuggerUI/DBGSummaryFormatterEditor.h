@@ -33,7 +33,7 @@
 @property(retain) DBGDataType *selectedType; // @synthesize selectedType=_selectedType;
 @property(retain) NSArray *types; // @synthesize types=_types;
 @property(copy) NSString *displayedSummaryFormat; // @synthesize displayedSummaryFormat=_displayedSummaryFormat;
-@property(readonly) DBGDataValue *dataValue; // @synthesize dataValue=_dataValue;
+@property(retain) DBGDataValue *dataValue; // @synthesize dataValue=_dataValue;
 - (void).cxx_destruct;
 - (void)doneButtonPressed:(id)arg1;
 - (void)revert;

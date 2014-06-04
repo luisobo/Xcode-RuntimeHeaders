@@ -7,12 +7,12 @@
 #import "NSUserDefaultsController.h"
 
 @interface NSUserDefaultsController (IBNSUserDefaultsControllerIntegration)
++ (id)ibDefaultImageForInstance:(id)arg1;
 + (id)ibSharedUserDefaultsControllerProxy;
 + (id)ibSynthesizeControllerKeyPaths;
 - (void)ibDidAddToDocument:(id)arg1 phase:(unsigned long long)arg2;
 - (id)ibTypeNameForDefaultLabel;
-- (id)ibDefaultImage;
-- (id)ibApplicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
+- (BOOL)ibIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;
 - (id)ibSwizzledAwakeAfterUsingCoder:(id)arg1;
 - (BOOL)ibIsPlaceholder;
 - (id)ibResolvedTypeNameForControllerKey:(id)arg1;

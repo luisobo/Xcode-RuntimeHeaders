@@ -6,11 +6,13 @@
 
 #import "NSObject.h"
 
+#import "IBICPseudoXMLGeneration-Protocol.h"
+#import "NSCoding-Protocol.h"
 #import "NSCopying-Protocol.h"
 
 @class NSString;
 
-@interface IBICMultipartImageRepSlotComponent : NSObject <NSCopying>
+@interface IBICMultipartImageRepSlotComponent : NSObject <NSCopying, NSCoding, IBICPseudoXMLGeneration>
 {
     NSString *_title;
     NSString *_identifier;
@@ -25,13 +27,22 @@
 @property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
 @property(readonly) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (id)ibic_pseudoXMLWithIndent:(unsigned long long)arg1;
+- (void)ibic_appendAdditionalPseudoXMLAttrbutes:(id)arg1;
+- (id)ibic_pseudoXML;
 - (long long)compareDisplayOrder:(id)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToSchemaImageRepIDComponent:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithIdentifier:(id)arg1 fileNameComponent:(id)arg2 title:(id)arg3 displayOrder:(double)arg4;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

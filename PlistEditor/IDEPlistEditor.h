@@ -11,7 +11,7 @@
 #import "DVTSourceExpressionSource-Protocol.h"
 #import "NSUserInterfaceValidations-Protocol.h"
 
-@class DVTNotificationToken, DVTObservingToken, DVTPlistViewController, DVTSourceExpression, DVTStackBacktrace, NSString;
+@class DVTNotificationToken, DVTObservingToken, DVTPlistViewController, DVTSDK, DVTSourceExpression, DVTSourceLanguageService, DVTStackBacktrace, NSString;
 
 @interface IDEPlistEditor : IDEEditor <DVTPlistViewControllerProtocol, DVTSourceExpressionSource, DVTFindBarFindable, NSUserInterfaceValidations>
 {
@@ -50,9 +50,15 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly, nonatomic) DVTSourceLanguageService *languageService;
 @property(readonly) DVTSourceExpression *quickHelpExpression;
+@property(readonly) DVTSDK *sdk;
 @property(readonly, nonatomic) NSString *selectedText;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

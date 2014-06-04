@@ -24,14 +24,7 @@
 - (id)_inactiveOrDisabledInnerShadow;
 - (id)_activeAlternateInnerShadow;
 - (id)_activeInnerShadow;
-- (id)_image:(id)arg1 withAlpha:(double)arg2;
-- (id)_imageWithAlternateInactiveAlpha:(id)arg1;
-- (id)_imageWithDisabledInactiveAlpha:(id)arg1;
-- (id)_imageWithInactiveAlpha:(id)arg1;
-- (id)imageAlternateInactive;
-- (id)imageDisabledInactive;
-- (id)imageInactive;
-- (id)imageDisabled;
+- (id)imageInsetDisabled;
 - (id)imageAlternatePressed;
 - (id)imageAlternate;
 - (id)_pressedImageForImage:(id)arg1 tintAlpha:(double)arg2;
@@ -40,7 +33,6 @@
 - (struct CGSize)sizeWithoutHighlight;
 - (struct CGRect)rectWithHighlight;
 - (struct CGRect)naturalRect;
-- (id)templatePathWithRect:(struct CGRect)arg1;
 - (id)initWithSize:(struct CGSize)arg1;
 
 @end

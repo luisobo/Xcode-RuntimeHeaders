@@ -22,6 +22,7 @@
 + (id)_automatic_keyPathsForValuesAffectingMajorGroup;
 + (id)keyPathsForValuesAffectingFileReference;
 + (id)keyPathsForValuesAffectingGroupIdentifier;
++ (id)keyPathsForValuesAffectingToolTip;
 + (id)keyPathsForValuesAffectingImage;
 + (id)keyPathsForValuesAffectingName;
 + (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
@@ -34,6 +35,7 @@
 + (id)keyPathsForValuesAffectingSourceControlServerStatus;
 + (id)keyPathsForValuesAffectingSourceControlLocalStatusFlag;
 + (id)keyPathsForValuesAffectingSourceControlLocalStatus;
++ (id)keyPathsForValuesAffectingProgressValue;
 - (void).cxx_destruct;
 - (unsigned long long)indexOfChildItemForIdentifier:(id)arg1;
 - (id)identifierForChildItem:(id)arg1;
@@ -43,8 +45,10 @@
 - (id)documentType;
 - (id)fileReference;
 - (id)groupIdentifier;
+- (id)toolTip;
 - (id)image;
 - (id)name;
+- (void)_setRepresentedObject:(id)arg1;
 - (void)invalidateValueForKey:(id)arg1;
 - (id)cachedValueForProperty:(id)arg1;
 - (void)cacheValue:(id)arg1 forProperty:(id)arg2;
@@ -64,6 +68,7 @@
 - (void)_removeFromNavigableItemByRepresentedObjectMap;
 - (void)_registerInNavigableItemByRepresentedObjectMap;
 - (BOOL)representedObjectSupportsVariableConformanceString;
+- (id)initWithRepresentedObject:(id)arg1;
 - (id)sourceControlSourceTreeName;
 - (unsigned long long)conflictStateForUpdateOrMerge;
 - (id)sourceControlCurrentRevision;
@@ -72,6 +77,7 @@
 - (int)sourceControlServerStatusFlag;
 - (id)sourceControlLocalStatus;
 - (int)sourceControlLocalStatusFlag;
+- (long long)progressValue;
 
 @end
 

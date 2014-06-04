@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSError;
+@class NSError, NSObject<OS_dispatch_semaphore>;
 
 @interface IBAsyncIOSerializer : NSObject
 {
-    struct dispatch_semaphore_s *_semaphore;
+    NSObject<OS_dispatch_semaphore> *_semaphore;
     BOOL _success;
     NSError *_error;
     id _completionCallback;

@@ -9,6 +9,11 @@
 @interface NSString (IBStringAdditions)
 + (id)ib_stringWithListComponentsJoinedByCommasAndAnd:(id)arg1;
 + (id)ib_UUIDString;
+- (id)ib_substringAfterLastOccurenceOfString:(id)arg1;
+- (id)ib_substringBeforeLastOccurenceOfString:(id)arg1;
+- (id)ib_substringAfterFirstOccurenceOfString:(id)arg1;
+- (id)ib_substringBeforeFirstOccurenceOfString:(id)arg1;
+- (id)ib_stringByStrippingCommonWordPrefixWithString:(id)arg1;
 - (void)ib_invokeWithAccessToFileSystemRepresentation:(id)arg1;
 - (id)ib_onlyPathComponent;
 - (id)ib_firstPathComponent;

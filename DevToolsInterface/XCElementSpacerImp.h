@@ -8,11 +8,19 @@
 
 #import "XCElementSpacerP-Protocol.h"
 
+@class NSString;
+
 @interface XCElementSpacerImp : XCElementImp <XCElementSpacerP>
 {
 }
 
 - (id)initInMain:(id)arg1 width:(double)arg2 height:(double)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

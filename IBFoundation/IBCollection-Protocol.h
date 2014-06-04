@@ -10,14 +10,28 @@
 #import "NSObject-Protocol.h"
 
 @protocol IBCollection <NSObject, NSCopying, NSFastEnumeration, NSMutableCopying>
++ (id)ib_collectionWithObject:(id)arg1;
++ (id)ib_emptyCollection;
++ (Class)ib_mutableClass;
+- (void)ib_removeObjectsInReceiverFromArray:(id)arg1;
+- (void)ib_removeObjectsInReceiverFromOrderedSet:(id)arg1;
+- (void)ib_removeObjectsInReceiverFromSet:(id)arg1;
 - (id)ib_maximumObjectUsingComparator:(id)arg1;
 - (id)ib_minimumObjectUsingComparator:(id)arg1;
 - (long long)ib_numberOfObjectsPassingTest:(id)arg1;
+- (id)ib_arrayByMappingBlock:(id)arg1;
+- (id)ib_arrayBySortingUsingComparator:(id)arg1;
 - (id)ib_arrayBySortingUsingSelector:(SEL)arg1 onKeyPath:(id)arg2;
 - (id)ib_arrayBySortingUsingSelector:(SEL)arg1;
 - (void)ib_enumerateObjectsUsingMutatingBlock:(id)arg1;
 - (void)ib_enumerateCopyOfObjectsUsingBlock:(id)arg1;
 - (void)ib_enumerateObjectsUsingBlock:(id)arg1;
+- (id)ib_collectionByRemovingObject:(id)arg1;
+- (id)ib_collectionByAddingObject:(id)arg1;
+- (id)ib_collectionByRemovingObjectsInSet:(id)arg1;
+- (id)ib_collectionByAddingObjectsFromCollection:(id)arg1;
+- (id)ib_collectionByRemovingObjectsFromCollection:(id)arg1;
+- (id)ib_collectionByMappingBlock:(id)arg1;
 - (id)ib_collectionByFilteringUsingBlock:(id)arg1;
 - (id)ib_collectionByRemovingNulls;
 - (id)ib_onlyObjectPassingTest:(id)arg1;

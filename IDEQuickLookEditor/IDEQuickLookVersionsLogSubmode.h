@@ -8,7 +8,7 @@
 
 #import "IDEComparisonEditorDelegate-Protocol.h"
 
-@class DVTBorderedView, IDEEditor, NSDictionary, QLPreviewView;
+@class DVTBorderedView, IDEEditor, NSDictionary, NSString, QLPreviewView;
 
 @interface IDEQuickLookVersionsLogSubmode : IDEComparisonEditorSubmode <IDEComparisonEditorDelegate>
 {
@@ -38,6 +38,12 @@
 @property(retain) IDEEditor *primaryEditor; // @synthesize primaryEditor=_primaryEditor;
 @property(readonly) QLPreviewView *primaryQuickLookView;
 - (id)keyEditor;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

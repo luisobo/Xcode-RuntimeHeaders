@@ -9,7 +9,7 @@
 #import "NSOpenSavePanelDelegate-Protocol.h"
 #import "PBXSelectionTarget-Protocol.h"
 
-@class NSArray, NSMutableArray, NSMutableDictionary, PBXProject, PBXReference, PBXTrackableTaskManager, XCBreakpointsBucket, XCBuildOperation, XCIndexerProxy, XCLibraryChooser, XCProjectFindController, XCProjectSelection, XCRefactoring, XCSCMController, XCTaskListModule;
+@class NSArray, NSMutableArray, NSMutableDictionary, NSString, PBXProject, PBXReference, PBXTrackableTaskManager, XCBreakpointsBucket, XCBuildOperation, XCIndexerProxy, XCLibraryChooser, XCProjectFindController, XCProjectSelection, XCRefactoring, XCSCMController, XCTaskListModule;
 
 @interface PBXProjectDocument : NSDocument <PBXSelectionTarget, NSOpenSavePanelDelegate>
 {
@@ -146,6 +146,12 @@
 - (void)addAssociatedProjectModule:(id)arg1;
 - (BOOL)willClose;
 - (BOOL)isClosing;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

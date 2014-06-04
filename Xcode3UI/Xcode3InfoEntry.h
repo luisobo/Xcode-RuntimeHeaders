@@ -39,7 +39,7 @@
 @property(readonly) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (id)description;
+@property(readonly, copy) NSString *description;
 @property(copy) id inspectorValue;
 @property(readonly) NSString *_inspectorKeyPath;
 @property(readonly) NSString *_entryKeyPath;
@@ -49,7 +49,10 @@
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end

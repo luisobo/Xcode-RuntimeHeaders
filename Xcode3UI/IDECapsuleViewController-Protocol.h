@@ -9,11 +9,11 @@
 @class NSImage, NSString;
 
 @protocol IDECapsuleViewController <NSObject>
-@property(readonly) NSString *titleForDisplay;
+@property(readonly, copy) NSString *titleForDisplay;
 
 @optional
 @property(readonly) BOOL disclosedByDefault;
-@property(readonly) NSString *footerLabel;
+@property(readonly, copy) NSString *footerLabel;
 @property(readonly) BOOL canDrag;
 @property(readonly) BOOL canUndisclose;
 @property BOOL canRemoveItems;

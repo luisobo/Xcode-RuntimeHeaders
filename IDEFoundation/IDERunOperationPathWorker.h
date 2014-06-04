@@ -10,12 +10,9 @@
 
 @interface IDERunOperationPathWorker : IDERunOperationWorker
 {
-    DVTFilePath *_filePathToBinary;
 }
 
-- (void).cxx_destruct;
 @property(readonly) NSMutableDictionary *compositeEnvironmentVariables;
-@property(readonly) DVTFilePath *filePathToBinary;
 @property(readonly) DVTFilePath *filePath;
 
 @end
