@@ -29,3 +29,5 @@ folders.each do |path|
     `class-dump -H -o #{dir_name} #{path}/#{item}`
   end
 end
+
+
